@@ -1,0 +1,535 @@
+<!-- ##### SECTION Title ##### -->
+GDataPicasaWebFile
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataPicasaWebFile ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataPicasaWebFile:album-id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:caption ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:checksum ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:client ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:comment-count ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:credit ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:distance ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:edited ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:exposure ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:flash ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:focal-length ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:fstop ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:image-unique-id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:is-commenting-enabled ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:iso ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:latitude ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:longitude ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:make ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:model ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:position ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:rotation ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:size ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:tags ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:timestamp ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:version ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:video-status ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:width ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataPicasaWebFileClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_edited ##### -->
+<para>
+
+</para>
+
+@self: 
+@edited: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_version ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_position ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_position ##### -->
+<para>
+
+</para>
+
+@self: 
+@position: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_album_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_album_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@album_id: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_width ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_height ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_client ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_client ##### -->
+<para>
+
+</para>
+
+@self: 
+@client: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_checksum ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_checksum ##### -->
+<para>
+
+</para>
+
+@self: 
+@checksum: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_timestamp ##### -->
+<para>
+
+</para>
+
+@self: 
+@timestamp: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_timestamp ##### -->
+<para>
+
+</para>
+
+@self: 
+@timestamp: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_is_commenting_enabled ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_is_commenting_enabled ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_commenting_enabled: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_comment_count ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_rotation ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_rotation ##### -->
+<para>
+
+</para>
+
+@self: 
+@rotation: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_video_status ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_tags ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_tags ##### -->
+<para>
+
+</para>
+
+@self: 
+@tags: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_credit ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_caption ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_caption ##### -->
+<para>
+
+</para>
+
+@self: 
+@caption: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_contents ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_thumbnails ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_distance ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_exposure ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_flash ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_focal_length ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_fstop ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_image_unique_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_iso ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_make ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_model ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_coordinates ##### -->
+<para>
+
+</para>
+
+@self: 
+@latitude: 
+@longitude: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_set_coordinates ##### -->
+<para>
+
+</para>
+
+@self: 
+@latitude: 
+@longitude: 
+
+

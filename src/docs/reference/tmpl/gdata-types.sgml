@@ -1,0 +1,49 @@
+<!-- ##### SECTION Title ##### -->
+GData Types
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataColor ##### -->
+<para>
+
+</para>
+
+@red: 
+@green: 
+@blue: 
+
+<!-- ##### FUNCTION gdata_color_from_hexadecimal ##### -->
+<para>
+
+</para>
+
+@hexadecimal: 
+@color: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_color_to_hexadecimal ##### -->
+<para>
+
+</para>
+
+@color: 
+@Returns: 
+
+

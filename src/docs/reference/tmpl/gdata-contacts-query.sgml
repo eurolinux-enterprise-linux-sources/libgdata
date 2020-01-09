@@ -1,0 +1,145 @@
+<!-- ##### SECTION Title ##### -->
+GDataContactsQuery
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataContactsQuery ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataContactsQuery:group ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataContactsQuery:order-by ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataContactsQuery:show-deleted ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataContactsQuery:sort-order ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataContactsQueryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_contacts_query_new ##### -->
+<para>
+
+</para>
+
+@q: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_query_new_with_limits ##### -->
+<para>
+
+</para>
+
+@q: 
+@start_index: 
+@max_results: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_query_get_order_by ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_query_set_order_by ##### -->
+<para>
+
+</para>
+
+@self: 
+@order_by: 
+
+
+<!-- ##### FUNCTION gdata_contacts_query_get_sort_order ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_query_set_sort_order ##### -->
+<para>
+
+</para>
+
+@self: 
+@sort_order: 
+
+
+<!-- ##### FUNCTION gdata_contacts_query_show_deleted ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_query_set_show_deleted ##### -->
+<para>
+
+</para>
+
+@self: 
+@show_deleted: 
+
+
+<!-- ##### FUNCTION gdata_contacts_query_get_group ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_query_set_group ##### -->
+<para>
+
+</para>
+
+@self: 
+@group: 
+
+

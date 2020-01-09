@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataMediaCategory</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch06.html" title="Media RSS API">
+<link rel="prev" href="ch06.html" title="Media RSS API">
+<link rel="next" href="GDataMediaContent.html" title="GDataMediaContent">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch06.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch06.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataMediaContent.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataMediaCategory.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataMediaCategory.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataMediaCategory.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataMediaCategory.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataMediaCategory"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataMediaCategory.top_of_page"></a>GDataMediaCategory</span></h2>
+<p>GDataMediaCategory — Media RSS category element</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaCategory.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataMediaCategory.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/media/gdata-media-category.h&gt;
+
+                    <a href="GDataMediaCategory.html#GDataMediaCategory-struct">GDataMediaCategory</a>;
+                    <a href="GDataMediaCategory.html#GDataMediaCategoryClass">GDataMediaCategoryClass</a>;
+<a href="GDataMediaCategory.html">GDataMediaCategory</a> * <a href="GDataMediaCategory.html#gdata-media-category-new">gdata_media_category_new</a>           (const gchar *category,
+                                                         const gchar *scheme,
+                                                         const gchar *label);
+const gchar *       <a href="GDataMediaCategory.html#gdata-media-category-get-category">gdata_media_category_get_category</a>   (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self);
+void                <a href="GDataMediaCategory.html#gdata-media-category-set-category">gdata_media_category_set_category</a>   (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self,
+                                                         const gchar *category);
+const gchar *       <a href="GDataMediaCategory.html#gdata-media-category-get-scheme">gdata_media_category_get_scheme</a>     (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self);
+void                <a href="GDataMediaCategory.html#gdata-media-category-set-scheme">gdata_media_category_set_scheme</a>     (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self,
+                                                         const gchar *scheme);
+const gchar *       <a href="GDataMediaCategory.html#gdata-media-category-get-label">gdata_media_category_get_label</a>      (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self);
+void                <a href="GDataMediaCategory.html#gdata-media-category-set-label">gdata_media_category_set_label</a>      (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self,
+                                                         const gchar *label);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaCategory.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----GDataMediaCategory
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaCategory.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataMediaCategory.html#GDataMediaCategory--category">category</a>"                 gchar*                : Read / Write
+  "<a href="GDataMediaCategory.html#GDataMediaCategory--label">label</a>"                    gchar*                : Read / Write
+  "<a href="GDataMediaCategory.html#GDataMediaCategory--scheme">scheme</a>"                   gchar*                : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaCategory.description"></a><h2>Description</h2>
+<p>
+<a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a> represents a "category" element from the
+<a class="ulink" href="http://video.search.yahoo.com/mrss" target="_top">Media RSS specification</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaCategory.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataMediaCategory-struct"></a><h3>GDataMediaCategory</h3>
+<pre class="programlisting">typedef struct _GDataMediaCategory GDataMediaCategory;</pre>
+<p>
+All the fields in the <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataMediaCategoryClass"></a><h3>GDataMediaCategoryClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataMediaCategoryClass;
+</pre>
+<p>
+All the fields in the <a href="GDataMediaCategory.html#GDataMediaCategoryClass"><span class="type">GDataMediaCategoryClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-category-new"></a><h3>gdata_media_category_new ()</h3>
+<pre class="programlisting"><a href="GDataMediaCategory.html">GDataMediaCategory</a> * gdata_media_category_new           (const gchar *category,
+                                                         const gchar *scheme,
+                                                         const gchar *label);</pre>
+<p>
+Creates a new <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a>. More information is available in the <a class="ulink" href="http://search.yahoo.com/mrss/" target="_top">Media RSS specification</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>category</code></em> :</span></p></td>
+<td> a category describing the content
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scheme</code></em> :</span></p></td>
+<td> a URI identifying the categorisation scheme, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a human-readable name for the category, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-category-get-category"></a><h3>gdata_media_category_get_category ()</h3>
+<pre class="programlisting">const gchar *       gdata_media_category_get_category   (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self);</pre>
+<p>
+Gets the <a href="GDataMediaCategory.html#GDataMediaCategory--category"><span class="type">"category"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the actual category
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-category-set-category"></a><h3>gdata_media_category_set_category ()</h3>
+<pre class="programlisting">void                gdata_media_category_set_category   (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self,
+                                                         const gchar *category);</pre>
+<p>
+Sets the <a href="GDataMediaCategory.html#GDataMediaCategory--category"><span class="type">"category"</span></a> property to <em class="parameter"><code>category</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>category</code></em> :</span></p></td>
+<td> the new category
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-category-get-scheme"></a><h3>gdata_media_category_get_scheme ()</h3>
+<pre class="programlisting">const gchar *       gdata_media_category_get_scheme     (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self);</pre>
+<p>
+Gets the <a href="GDataMediaCategory.html#GDataMediaCategory--scheme"><span class="type">"scheme"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the category's scheme, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-category-set-scheme"></a><h3>gdata_media_category_set_scheme ()</h3>
+<pre class="programlisting">void                gdata_media_category_set_scheme     (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self,
+                                                         const gchar *scheme);</pre>
+<p>
+Sets the <a href="GDataMediaCategory.html#GDataMediaCategory--scheme"><span class="type">"scheme"</span></a> property to <em class="parameter"><code>scheme</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>scheme</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scheme</code></em> :</span></p></td>
+<td> the category's new scheme, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-category-get-label"></a><h3>gdata_media_category_get_label ()</h3>
+<pre class="programlisting">const gchar *       gdata_media_category_get_label      (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self);</pre>
+<p>
+Gets the <a href="GDataMediaCategory.html#GDataMediaCategory--label"><span class="type">"label"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the category's label, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-category-set-label"></a><h3>gdata_media_category_set_label ()</h3>
+<pre class="programlisting">void                gdata_media_category_set_label      (<a href="GDataMediaCategory.html">GDataMediaCategory</a> *self,
+                                                         const gchar *label);</pre>
+<p>
+Sets the <a href="GDataMediaCategory.html#GDataMediaCategory--label"><span class="type">"label"</span></a> property to <em class="parameter"><code>label</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>label</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> the category's new label, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaCategory.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataMediaCategory--category"></a><h3>The <code class="literal">"category"</code> property</h3>
+<pre class="programlisting">  "category"                 gchar*                : Read / Write</pre>
+<p>
+The category name.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://video.search.yahoo.com/mrss" target="_top">Media RSS specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataMediaCategory--label"></a><h3>The <code class="literal">"label"</code> property</h3>
+<pre class="programlisting">  "label"                    gchar*                : Read / Write</pre>
+<p>
+A human-readable label that can be displayed in end-user applications.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://video.search.yahoo.com/mrss" target="_top">Media RSS specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataMediaCategory--scheme"></a><h3>The <code class="literal">"scheme"</code> property</h3>
+<pre class="programlisting">  "scheme"                   gchar*                : Read / Write</pre>
+<p>
+A URI that identifies the categorization scheme.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://video.search.yahoo.com/mrss" target="_top">Media RSS specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

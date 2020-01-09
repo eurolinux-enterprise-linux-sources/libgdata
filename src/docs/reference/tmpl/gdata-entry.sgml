@@ -1,0 +1,260 @@
+<!-- ##### SECTION Title ##### -->
+GDataEntry
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataEntry ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataEntry:content ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataEntry:etag ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataEntry:id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataEntry:is-inserted ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataEntry:published ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataEntry:rights ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataEntry:summary ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataEntry:title ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataEntry:updated ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataEntryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_entry_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_get_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_set_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@title: 
+
+
+<!-- ##### FUNCTION gdata_entry_get_summary ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_set_summary ##### -->
+<para>
+
+</para>
+
+@self: 
+@summary: 
+
+
+<!-- ##### FUNCTION gdata_entry_get_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_get_etag ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_get_content ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_set_content ##### -->
+<para>
+
+</para>
+
+@self: 
+@content: 
+
+
+<!-- ##### FUNCTION gdata_entry_get_published ##### -->
+<para>
+
+</para>
+
+@self: 
+@published: 
+
+
+<!-- ##### FUNCTION gdata_entry_get_updated ##### -->
+<para>
+
+</para>
+
+@self: 
+@updated: 
+
+
+<!-- ##### FUNCTION gdata_entry_add_author ##### -->
+<para>
+
+</para>
+
+@self: 
+@author: 
+
+
+<!-- ##### FUNCTION gdata_entry_add_category ##### -->
+<para>
+
+</para>
+
+@self: 
+@category: 
+
+
+<!-- ##### FUNCTION gdata_entry_get_categories ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_add_link ##### -->
+<para>
+
+</para>
+
+@self: 
+@link: 
+
+
+<!-- ##### FUNCTION gdata_entry_look_up_link ##### -->
+<para>
+
+</para>
+
+@self: 
+@rel: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_look_up_links ##### -->
+<para>
+
+</para>
+
+@self: 
+@rel: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_is_inserted ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_get_rights ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_entry_set_rights ##### -->
+<para>
+
+</para>
+
+@self: 
+@rights: 
+
+

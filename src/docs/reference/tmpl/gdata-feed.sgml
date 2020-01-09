@@ -1,0 +1,229 @@
+<!-- ##### SECTION Title ##### -->
+GDataFeed
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataFeed ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataFeed:etag ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:generator ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:items-per-page ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:logo ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:start-index ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:subtitle ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:title ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:total-results ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:updated ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataFeedClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_feed_get_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_subtitle ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_etag ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_authors ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_categories ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_entries ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_look_up_entry ##### -->
+<para>
+
+</para>
+
+@self: 
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_generator ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_links ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_look_up_link ##### -->
+<para>
+
+</para>
+
+@self: 
+@rel: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_logo ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_updated ##### -->
+<para>
+
+</para>
+
+@self: 
+@updated: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_start_index ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_total_results ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_items_per_page ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

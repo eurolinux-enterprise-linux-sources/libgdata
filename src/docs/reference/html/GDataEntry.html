@@ -1,0 +1,744 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataEntry</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch02.html" title="Core API">
+<link rel="prev" href="GDataFeed.html" title="GDataFeed">
+<link rel="next" href="gdata-GData-Types.html" title="GData Types">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataFeed.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="gdata-GData-Types.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataEntry.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataEntry.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataEntry.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataEntry.derived-interfaces" class="shortcut">Known Derived Interfaces</a>
+                   | 
+                  <a href="#GDataEntry.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataEntry"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataEntry.top_of_page"></a>GDataEntry</span></h2>
+<p>GDataEntry — GData entry object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataEntry.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataEntry.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/gdata-entry.h&gt;
+
+                    <a href="GDataEntry.html#GDataEntry-struct">GDataEntry</a>;
+                    <a href="GDataEntry.html#GDataEntryClass">GDataEntryClass</a>;
+<a href="GDataEntry.html">GDataEntry</a> *        <a href="GDataEntry.html#gdata-entry-new">gdata_entry_new</a>                     (const gchar *id);
+const gchar *       <a href="GDataEntry.html#gdata-entry-get-title">gdata_entry_get_title</a>               (<a href="GDataEntry.html">GDataEntry</a> *self);
+void                <a href="GDataEntry.html#gdata-entry-set-title">gdata_entry_set_title</a>               (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *title);
+const gchar *       <a href="GDataEntry.html#gdata-entry-get-summary">gdata_entry_get_summary</a>             (<a href="GDataEntry.html">GDataEntry</a> *self);
+void                <a href="GDataEntry.html#gdata-entry-set-summary">gdata_entry_set_summary</a>             (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *summary);
+const gchar *       <a href="GDataEntry.html#gdata-entry-get-id">gdata_entry_get_id</a>                  (<a href="GDataEntry.html">GDataEntry</a> *self);
+const gchar *       <a href="GDataEntry.html#gdata-entry-get-etag">gdata_entry_get_etag</a>                (<a href="GDataEntry.html">GDataEntry</a> *self);
+const gchar *       <a href="GDataEntry.html#gdata-entry-get-content">gdata_entry_get_content</a>             (<a href="GDataEntry.html">GDataEntry</a> *self);
+void                <a href="GDataEntry.html#gdata-entry-set-content">gdata_entry_set_content</a>             (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *content);
+void                <a href="GDataEntry.html#gdata-entry-get-published">gdata_entry_get_published</a>           (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         GTimeVal *published);
+void                <a href="GDataEntry.html#gdata-entry-get-updated">gdata_entry_get_updated</a>             (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         GTimeVal *updated);
+void                <a href="GDataEntry.html#gdata-entry-add-author">gdata_entry_add_author</a>              (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         <a href="GDataAuthor.html">GDataAuthor</a> *author);
+void                <a href="GDataEntry.html#gdata-entry-add-category">gdata_entry_add_category</a>            (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         <a href="GDataCategory.html">GDataCategory</a> *category);
+GList *             <a href="GDataEntry.html#gdata-entry-get-categories">gdata_entry_get_categories</a>          (<a href="GDataEntry.html">GDataEntry</a> *self);
+void                <a href="GDataEntry.html#gdata-entry-add-link">gdata_entry_add_link</a>                (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         <a href="GDataLink.html">GDataLink</a> *link);
+<a href="GDataLink.html">GDataLink</a> *         <a href="GDataEntry.html#gdata-entry-look-up-link">gdata_entry_look_up_link</a>            (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *rel);
+GList *             <a href="GDataEntry.html#gdata-entry-look-up-links">gdata_entry_look_up_links</a>           (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *rel);
+gboolean            <a href="GDataEntry.html#gdata-entry-is-inserted">gdata_entry_is_inserted</a>             (<a href="GDataEntry.html">GDataEntry</a> *self);
+const gchar *       <a href="GDataEntry.html#gdata-entry-get-rights">gdata_entry_get_rights</a>              (<a href="GDataEntry.html">GDataEntry</a> *self);
+void                <a href="GDataEntry.html#gdata-entry-set-rights">gdata_entry_set_rights</a>              (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *rights);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataEntry.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----GDataEntry
+               +----<a href="GDataAccessRule.html">GDataAccessRule</a>
+               +----<a href="GDataCalendarCalendar.html">GDataCalendarCalendar</a>
+               +----<a href="GDataCalendarEvent.html">GDataCalendarEvent</a>
+               +----<a href="GDataContactsContact.html">GDataContactsContact</a>
+               +----<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a>
+               +----<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a>
+               +----<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a>
+               +----<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataEntry.derived-interfaces"></a><h2>Known Derived Interfaces</h2>
+<p>
+GDataEntry is required by
+ <a href="GDataAccessHandler.html">GDataAccessHandler</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataEntry.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataEntry.html#GDataEntry--content">content</a>"                  gchar*                : Read / Write
+  "<a href="GDataEntry.html#GDataEntry--etag">etag</a>"                     gchar*                : Read / Write / Construct Only
+  "<a href="GDataEntry.html#GDataEntry--id">id</a>"                       gchar*                : Read / Write / Construct Only
+  "<a href="GDataEntry.html#GDataEntry--is-inserted">is-inserted</a>"              gboolean              : Read
+  "<a href="GDataEntry.html#GDataEntry--published">published</a>"                GTimeVal*             : Read
+  "<a href="GDataEntry.html#GDataEntry--rights">rights</a>"                   gchar*                : Read / Write
+  "<a href="GDataEntry.html#GDataEntry--summary">summary</a>"                  gchar*                : Read / Write
+  "<a href="GDataEntry.html#GDataEntry--title">title</a>"                    gchar*                : Read / Write
+  "<a href="GDataEntry.html#GDataEntry--updated">updated</a>"                  GTimeVal*             : Read
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataEntry.description"></a><h2>Description</h2>
+<p>
+<a href="GDataEntry.html"><span class="type">GDataEntry</span></a> represents a single object on the online service, such as a playlist, video or calendar event. It is a snapshot of the
+state of that object at the time of querying the service, so modifications made to a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> will not be automatically or
+magically propagated to the server.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataEntry.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataEntry-struct"></a><h3>GDataEntry</h3>
+<pre class="programlisting">typedef struct _GDataEntry GDataEntry;</pre>
+<p>
+All the fields in the <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataEntryClass"></a><h3>GDataEntryClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataEntryClass;
+</pre>
+<p>
+All the fields in the <a href="GDataEntry.html#GDataEntryClass"><span class="type">GDataEntryClass</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-new"></a><h3>gdata_entry_new ()</h3>
+<pre class="programlisting"><a href="GDataEntry.html">GDataEntry</a> *        gdata_entry_new                     (const gchar *id);</pre>
+<p>
+Creates a new <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> with the given ID and default properties.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the entry's ID, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>; unref with <code class="function">g_object_unref()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-get-title"></a><h3>gdata_entry_get_title ()</h3>
+<pre class="programlisting">const gchar *       gdata_entry_get_title               (<a href="GDataEntry.html">GDataEntry</a> *self);</pre>
+<p>
+Returns the title of the entry.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the entry's title
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-set-title"></a><h3>gdata_entry_set_title ()</h3>
+<pre class="programlisting">void                gdata_entry_set_title               (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *title);</pre>
+<p>
+Sets the title of the entry.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>title</code></em> :</span></p></td>
+<td> the new entry title, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-get-summary"></a><h3>gdata_entry_get_summary ()</h3>
+<pre class="programlisting">const gchar *       gdata_entry_get_summary             (<a href="GDataEntry.html">GDataEntry</a> *self);</pre>
+<p>
+Returns the summary of the entry.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the entry's summary, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-set-summary"></a><h3>gdata_entry_set_summary ()</h3>
+<pre class="programlisting">void                gdata_entry_set_summary             (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *summary);</pre>
+<p>
+Sets the summary of the entry.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>summary</code></em> :</span></p></td>
+<td> the new entry summary, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-get-id"></a><h3>gdata_entry_get_id ()</h3>
+<pre class="programlisting">const gchar *       gdata_entry_get_id                  (<a href="GDataEntry.html">GDataEntry</a> *self);</pre>
+<p>
+Returns the URN ID of the entry; a unique and permanent identifier for the object the entry represents.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the entry's ID
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-get-etag"></a><h3>gdata_entry_get_etag ()</h3>
+<pre class="programlisting">const gchar *       gdata_entry_get_etag                (<a href="GDataEntry.html">GDataEntry</a> *self);</pre>
+<p>
+Returns the ETag of the entry; a unique identifier for each version of the entry. For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/reference.html#ResourceVersioning" target="_top">online documentation</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the entry's ETag
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-get-content"></a><h3>gdata_entry_get_content ()</h3>
+<pre class="programlisting">const gchar *       gdata_entry_get_content             (<a href="GDataEntry.html">GDataEntry</a> *self);</pre>
+<p>
+Returns the textual content in this entry.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the entry's content, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-set-content"></a><h3>gdata_entry_set_content ()</h3>
+<pre class="programlisting">void                gdata_entry_set_content             (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *content);</pre>
+<p>
+Sets the entry's content to <em class="parameter"><code>content</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>content</code></em> :</span></p></td>
+<td> the new content for the entry
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-get-published"></a><h3>gdata_entry_get_published ()</h3>
+<pre class="programlisting">void                gdata_entry_get_published           (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         GTimeVal *published);</pre>
+<p>
+Puts the time the entry was originally published into <em class="parameter"><code>published</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>published</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-get-updated"></a><h3>gdata_entry_get_updated ()</h3>
+<pre class="programlisting">void                gdata_entry_get_updated             (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         GTimeVal *updated);</pre>
+<p>
+Puts the time the entry was last updated into <em class="parameter"><code>updated</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>updated</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-add-author"></a><h3>gdata_entry_add_author ()</h3>
+<pre class="programlisting">void                gdata_entry_add_author              (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         <a href="GDataAuthor.html">GDataAuthor</a> *author);</pre>
+<p>
+Adds <em class="parameter"><code>author</code></em> to the list of authors in the given <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> and increments its reference count.
+</p>
+<p>
+Duplicate authors will not be added to the list.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>author</code></em> :</span></p></td>
+<td> a <a href="GDataAuthor.html"><span class="type">GDataAuthor</span></a> to add
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-add-category"></a><h3>gdata_entry_add_category ()</h3>
+<pre class="programlisting">void                gdata_entry_add_category            (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         <a href="GDataCategory.html">GDataCategory</a> *category);</pre>
+<p>
+Adds <em class="parameter"><code>category</code></em> to the list of categories in the given <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>, and increments its reference count.
+</p>
+<p>
+Duplicate categories will not be added to the list.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>category</code></em> :</span></p></td>
+<td> a <a href="GDataCategory.html"><span class="type">GDataCategory</span></a> to add
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-get-categories"></a><h3>gdata_entry_get_categories ()</h3>
+<pre class="programlisting">GList *             gdata_entry_get_categories          (<a href="GDataEntry.html">GDataEntry</a> *self);</pre>
+<p>
+Gets a list of the <a href="GDataCategory.html"><span class="type">GDataCategory</span></a>s containing this entry.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataCategory.html"><span class="type">GDataCategory</span></a>s
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-add-link"></a><h3>gdata_entry_add_link ()</h3>
+<pre class="programlisting">void                gdata_entry_add_link                (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         <a href="GDataLink.html">GDataLink</a> *link);</pre>
+<p>
+Adds <em class="parameter"><code>link</code></em> to the list of links in the given <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> and increments its reference count.
+</p>
+<p>
+Duplicate links will not be added to the list.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>link</code></em> :</span></p></td>
+<td> a <a href="GDataLink.html"><span class="type">GDataLink</span></a> to add
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-look-up-link"></a><h3>gdata_entry_look_up_link ()</h3>
+<pre class="programlisting"><a href="GDataLink.html">GDataLink</a> *         gdata_entry_look_up_link            (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *rel);</pre>
+<p>
+Looks up a link by relation type from the list of links in the entry. If the link has one of the standard Atom relation types,
+use one of the defined <em class="parameter"><code>rel</code></em> values, instead of a static string. e.g. <a href="GDataLink.html#GDATA-LINK-EDIT:CAPS"><code class="literal">GDATA_LINK_EDIT</code></a> or <a href="GDataLink.html#GDATA-LINK-SELF:CAPS"><code class="literal">GDATA_LINK_SELF</code></a>.
+</p>
+<p>
+In the rare event of requiring a list of links with the same <em class="parameter"><code>rel</code></em> value, use <a href="GDataEntry.html#gdata-entry-look-up-links"><code class="function">gdata_entry_look_up_links()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rel</code></em> :</span></p></td>
+<td> the value of the <em class="structfield"><code>rel</code></em> attribute of the desired link
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataLink.html"><span class="type">GDataLink</span></a>, or <code class="literal">NULL</code> if one was not found
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.1.1</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-look-up-links"></a><h3>gdata_entry_look_up_links ()</h3>
+<pre class="programlisting">GList *             gdata_entry_look_up_links           (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *rel);</pre>
+<p>
+Looks up a list of links by relation type from the list of links in the entry. If the links have one of the standard Atom
+relation types, use one of the defined <em class="parameter"><code>rel</code></em> values, instead of a static string. e.g. <a href="GDataLink.html#GDATA-LINK-EDIT:CAPS"><code class="literal">GDATA_LINK_EDIT</code></a> or <a href="GDataLink.html#GDATA-LINK-SELF:CAPS"><code class="literal">GDATA_LINK_SELF</code></a>.
+</p>
+<p>
+If you will only use the first link found, consider calling <a href="GDataEntry.html#gdata-entry-look-up-link"><code class="function">gdata_entry_look_up_link()</code></a> instead.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rel</code></em> :</span></p></td>
+<td> the value of the <em class="structfield"><code>rel</code></em> attribute of the desired links
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataLink.html"><span class="type">GDataLink</span></a>s, or <code class="literal">NULL</code> if none were found; free the list with <code class="function">g_list_free()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-is-inserted"></a><h3>gdata_entry_is_inserted ()</h3>
+<pre class="programlisting">gboolean            gdata_entry_is_inserted             (<a href="GDataEntry.html">GDataEntry</a> *self);</pre>
+<p>
+Returns whether the entry is marked as having been inserted on (uploaded to) the server already.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the entry has been inserted already, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-get-rights"></a><h3>gdata_entry_get_rights ()</h3>
+<pre class="programlisting">const gchar *       gdata_entry_get_rights              (<a href="GDataEntry.html">GDataEntry</a> *self);</pre>
+<p>
+Returns the rights pertaining to the entry, or <code class="literal">NULL</code> if not set.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the entry's rights information
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-entry-set-rights"></a><h3>gdata_entry_set_rights ()</h3>
+<pre class="programlisting">void                gdata_entry_set_rights              (<a href="GDataEntry.html">GDataEntry</a> *self,
+                                                         const gchar *rights);</pre>
+<p>
+Sets the rights for this entry.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rights</code></em> :</span></p></td>
+<td> the new rights, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataEntry.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataEntry--content"></a><h3>The <code class="literal">"content"</code> property</h3>
+<pre class="programlisting">  "content"                  gchar*                : Read / Write</pre>
+<p>The textual content of this entry.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataEntry--etag"></a><h3>The <code class="literal">"etag"</code> property</h3>
+<pre class="programlisting">  "etag"                     gchar*                : Read / Write / Construct Only</pre>
+<p>The ETag for this entry.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataEntry--id"></a><h3>The <code class="literal">"id"</code> property</h3>
+<pre class="programlisting">  "id"                       gchar*                : Read / Write / Construct Only</pre>
+<p>The ID for this entry.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataEntry--is-inserted"></a><h3>The <code class="literal">"is-inserted"</code> property</h3>
+<pre class="programlisting">  "is-inserted"              gboolean              : Read</pre>
+<p>Whether the entry has been inserted on the server.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataEntry--published"></a><h3>The <code class="literal">"published"</code> property</h3>
+<pre class="programlisting">  "published"                GTimeVal*             : Read</pre>
+<p>The time this entry was published.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataEntry--rights"></a><h3>The <code class="literal">"rights"</code> property</h3>
+<pre class="programlisting">  "rights"                   gchar*                : Read / Write</pre>
+<p>
+The ownership rights pertaining to this entry.
+</p>
+<p>
+For more information, see the <a class="ulink" href="" target="_top">
+Atom specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataEntry--summary"></a><h3>The <code class="literal">"summary"</code> property</h3>
+<pre class="programlisting">  "summary"                  gchar*                : Read / Write</pre>
+<p>
+A short summary, abstract, or excerpt of the entry.
+</p>
+<p>
+For more information, see the <a class="ulink" href="" target="_top">
+Atom specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataEntry--title"></a><h3>The <code class="literal">"title"</code> property</h3>
+<pre class="programlisting">  "title"                    gchar*                : Read / Write</pre>
+<p>The title for this entry.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataEntry--updated"></a><h3>The <code class="literal">"updated"</code> property</h3>
+<pre class="programlisting">  "updated"                  GTimeVal*             : Read</pre>
+<p>The last update time for this entry.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

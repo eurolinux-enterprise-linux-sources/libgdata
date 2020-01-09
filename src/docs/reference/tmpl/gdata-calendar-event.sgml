@@ -1,0 +1,381 @@
+<!-- ##### SECTION Title ##### -->
+GDataCalendarEvent
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataCalendarEvent ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataCalendarEvent:anyone-can-add-self ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:edited ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:guests-can-invite-others ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:guests-can-modify ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:guests-can-see-guests ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:original-event-id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:original-event-uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:recurrence ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:sequence ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:status ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:transparency ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:uid ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarEvent:visibility ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataCalendarEventClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_calendar_event_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_people ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_add_person ##### -->
+<para>
+
+</para>
+
+@self: 
+@who: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_places ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_add_place ##### -->
+<para>
+
+</para>
+
+@self: 
+@where: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_times ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_primary_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@start_time: 
+@end_time: 
+@when: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_add_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@when: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_recurrence ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_recurrence ##### -->
+<para>
+
+</para>
+
+@self: 
+@recurrence: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_original_event_details ##### -->
+<para>
+
+</para>
+
+@self: 
+@event_id: 
+@event_uri: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_is_exception ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_anyone_can_add_self ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_anyone_can_add_self ##### -->
+<para>
+
+</para>
+
+@self: 
+@anyone_can_add_self: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_guests_can_invite_others ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_guests_can_invite_others ##### -->
+<para>
+
+</para>
+
+@self: 
+@guests_can_invite_others: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_guests_can_modify ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_guests_can_modify ##### -->
+<para>
+
+</para>
+
+@self: 
+@guests_can_modify: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_guests_can_see_guests ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_guests_can_see_guests ##### -->
+<para>
+
+</para>
+
+@self: 
+@guests_can_see_guests: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_sequence ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_sequence ##### -->
+<para>
+
+</para>
+
+@self: 
+@sequence: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_status ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_status ##### -->
+<para>
+
+</para>
+
+@self: 
+@status: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_transparency ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_transparency ##### -->
+<para>
+
+</para>
+
+@self: 
+@transparency: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_uid ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_uid ##### -->
+<para>
+
+</para>
+
+@self: 
+@uid: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_visibility ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_set_visibility ##### -->
+<para>
+
+</para>
+
+@self: 
+@visibility: 
+
+
+<!-- ##### FUNCTION gdata_calendar_event_get_edited ##### -->
+<para>
+
+</para>
+
+@self: 
+@edited: 
+
+

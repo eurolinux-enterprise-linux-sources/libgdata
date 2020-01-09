@@ -1,0 +1,137 @@
+<!-- ##### SECTION Title ##### -->
+GDataGDReminder
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataGDReminder ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataGDReminder:absolute-time ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDReminder:is-absolute-time ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDReminder:method ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDReminder:relative-time ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataGDReminderClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_gd_reminder_new ##### -->
+<para>
+
+</para>
+
+@method: 
+@absolute_time: 
+@relative_time: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_reminder_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_reminder_get_method ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_reminder_set_method ##### -->
+<para>
+
+</para>
+
+@self: 
+@method: 
+
+
+<!-- ##### FUNCTION gdata_gd_reminder_get_absolute_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@absolute_time: 
+
+
+<!-- ##### FUNCTION gdata_gd_reminder_set_absolute_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@absolute_time: 
+
+
+<!-- ##### FUNCTION gdata_gd_reminder_is_absolute_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_reminder_get_relative_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_reminder_set_relative_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@relative_time: 
+
+

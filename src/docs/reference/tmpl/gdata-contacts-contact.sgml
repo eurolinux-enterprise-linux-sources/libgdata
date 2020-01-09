@@ -1,0 +1,368 @@
+<!-- ##### SECTION Title ##### -->
+GDataContactsContact
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataContactsContact ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataContactsContact:deleted ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataContactsContact:edited ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataContactsContact:has-photo ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataContactsContact:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataContactsContactClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_email_addresses ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_primary_email_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_add_email_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@email_address: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_remove_all_email_addresses ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_im_addresses ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_primary_im_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_add_im_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@im_address: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_remove_all_im_addresses ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_postal_addresses ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_primary_postal_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_add_postal_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@postal_address: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_remove_all_postal_addresses ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_phone_numbers ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_primary_phone_number ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_add_phone_number ##### -->
+<para>
+
+</para>
+
+@self: 
+@phone_number: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_remove_all_phone_numbers ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_organizations ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_primary_organization ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_add_organization ##### -->
+<para>
+
+</para>
+
+@self: 
+@organization: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_remove_all_organizations ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_groups ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_add_group ##### -->
+<para>
+
+</para>
+
+@self: 
+@href: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_remove_group ##### -->
+<para>
+
+</para>
+
+@self: 
+@href: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_is_group_deleted ##### -->
+<para>
+
+</para>
+
+@self: 
+@href: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_extended_property ##### -->
+<para>
+
+</para>
+
+@self: 
+@name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_extended_properties ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_set_extended_property ##### -->
+<para>
+
+</para>
+
+@self: 
+@name: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_edited ##### -->
+<para>
+
+</para>
+
+@self: 
+@edited: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_is_deleted ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_has_photo ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_get_photo ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@length: 
+@content_type: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_set_photo ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@data: 
+@length: 
+@cancellable: 
+@error: 
+@Returns: 
+
+

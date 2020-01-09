@@ -1,0 +1,171 @@
+<!-- ##### SECTION Title ##### -->
+GDataGDPhoneNumber
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataGDPhoneNumber ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataGDPhoneNumber:is-primary ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPhoneNumber:label ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPhoneNumber:number ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPhoneNumber:relation-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPhoneNumber:uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataGDPhoneNumberClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_new ##### -->
+<para>
+
+</para>
+
+@number: 
+@relation_type: 
+@label: 
+@uri: 
+@is_primary: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_get_number ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_set_number ##### -->
+<para>
+
+</para>
+
+@self: 
+@number: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_get_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_set_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@uri: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_get_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_set_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@relation_type: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_get_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_set_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@label: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_is_primary ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_phone_number_set_is_primary ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_primary: 
+
+

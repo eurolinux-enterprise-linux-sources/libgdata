@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataUploadStream</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch02.html" title="Core API">
+<link rel="prev" href="GDataDownloadStream.html" title="GDataDownloadStream">
+<link rel="next" href="ch03.html" title="Access Control List API">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataDownloadStream.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="ch03.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataUploadStream.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataUploadStream.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataUploadStream.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataUploadStream.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataUploadStream"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataUploadStream.top_of_page"></a>GDataUploadStream</span></h2>
+<p>GDataUploadStream — GData upload stream object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataUploadStream.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataUploadStream.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/gdata-upload-stream.h&gt;
+
+                    <a href="GDataUploadStream.html#GDataUploadStream-struct">GDataUploadStream</a>;
+                    <a href="GDataUploadStream.html#GDataUploadStreamClass">GDataUploadStreamClass</a>;
+GOutputStream *     <a href="GDataUploadStream.html#gdata-upload-stream-new">gdata_upload_stream_new</a>             (<a href="GDataService.html">GDataService</a> *service,
+                                                         const gchar *method,
+                                                         const gchar *upload_uri,
+                                                         <a href="GDataEntry.html">GDataEntry</a> *entry,
+                                                         const gchar *slug,
+                                                         const gchar *content_type);
+const gchar *       <a href="GDataUploadStream.html#gdata-upload-stream-get-response">gdata_upload_stream_get_response</a>    (<a href="GDataUploadStream.html">GDataUploadStream</a> *self,
+                                                         gssize *length);
+<a href="GDataService.html">GDataService</a> *      <a href="GDataUploadStream.html#gdata-upload-stream-get-service">gdata_upload_stream_get_service</a>     (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);
+const gchar *       <a href="GDataUploadStream.html#gdata-upload-stream-get-upload-uri">gdata_upload_stream_get_upload_uri</a>  (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);
+<a href="GDataEntry.html">GDataEntry</a> *        <a href="GDataUploadStream.html#gdata-upload-stream-get-entry">gdata_upload_stream_get_entry</a>       (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);
+const gchar *       <a href="GDataUploadStream.html#gdata-upload-stream-get-slug">gdata_upload_stream_get_slug</a>        (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);
+const gchar *       <a href="GDataUploadStream.html#gdata-upload-stream-get-content-type">gdata_upload_stream_get_content_type</a>
+                                                        (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataUploadStream.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----GOutputStream
+         +----GDataUploadStream
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataUploadStream.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataUploadStream.html#GDataUploadStream--content-type">content-type</a>"             gchar*                : Read / Write / Construct Only
+  "<a href="GDataUploadStream.html#GDataUploadStream--entry">entry</a>"                    <a href="GDataEntry.html">GDataEntry</a>*           : Read / Write / Construct Only
+  "<a href="GDataUploadStream.html#GDataUploadStream--service">service</a>"                  <a href="GDataService.html">GDataService</a>*         : Read / Write / Construct Only
+  "<a href="GDataUploadStream.html#GDataUploadStream--slug">slug</a>"                     gchar*                : Read / Write / Construct Only
+  "<a href="GDataUploadStream.html#GDataUploadStream--upload-uri">upload-uri</a>"               gchar*                : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataUploadStream.description"></a><h2>Description</h2>
+<p>
+<a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a> is a <span class="type">GOutputStream</span> subclass to allow uploading of files from GData services with authentication from a <a href="GDataService.html"><span class="type">GDataService</span></a>.
+</p>
+<p>
+Once a <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a> is instantiated with <a href="GDataUploadStream.html#gdata-upload-stream-new"><code class="function">gdata_upload_stream_new()</code></a>, the standard <span class="type">GOutputStream</span> API can be used on the stream to upload
+the file. Network communication may not actually begin until the first call to <code class="function">g_output_stream_write()</code>, so having a <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a> around is no
+guarantee that the file is being uploaded.
+</p>
+<p>
+Uploads of a file, or a file with associated metadata (a <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>) may take place, but if you want to simply upload a single <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>,
+use <a href="GDataService.html#gdata-service-insert-entry"><code class="function">gdata_service_insert_entry()</code></a> instead. <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a> is for large streaming uploads.
+</p>
+<p>
+Once an upload is complete, the server's response can be retrieved from the <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a> using <a href="GDataUploadStream.html#gdata-upload-stream-get-response"><code class="function">gdata_upload_stream_get_response()</code></a>. In order
+for network communication to be guaranteed to have stopped (and thus the response definitely available), <code class="function">g_output_stream_close()</code> must be called
+on the <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a> first. Otherwise, <a href="GDataUploadStream.html#gdata-upload-stream-get-response"><code class="function">gdata_upload_stream_get_response()</code></a> may return saying that the operation is still in progress.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataUploadStream.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataUploadStream-struct"></a><h3>GDataUploadStream</h3>
+<pre class="programlisting">typedef struct _GDataUploadStream GDataUploadStream;</pre>
+<p>
+All the fields in the <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataUploadStreamClass"></a><h3>GDataUploadStreamClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataUploadStreamClass;
+</pre>
+<p>
+All the fields in the <a href="GDataUploadStream.html#GDataUploadStreamClass"><span class="type">GDataUploadStreamClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-upload-stream-new"></a><h3>gdata_upload_stream_new ()</h3>
+<pre class="programlisting">GOutputStream *     gdata_upload_stream_new             (<a href="GDataService.html">GDataService</a> *service,
+                                                         const gchar *method,
+                                                         const gchar *upload_uri,
+                                                         <a href="GDataEntry.html">GDataEntry</a> *entry,
+                                                         const gchar *slug,
+                                                         const gchar *content_type);</pre>
+<p>
+Creates a new <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>, allowing a file to be uploaded from a GData service using standard <span class="type">GOutputStream</span> API.
+</p>
+<p>
+The HTTP method to use should be specified in <em class="parameter"><code>method</code></em>, and will typically be either <code class="literal">SOUP_METHOD_POST</code> (for insertions) or <code class="literal">SOUP_METHOD_PUT</code>
+(for updates), according to the server and the <em class="parameter"><code>upload_uri</code></em>.
+</p>
+<p>
+If <em class="parameter"><code>entry</code></em> is specified, it will be attached to the upload as the entry to which the file being uploaded belongs. Otherwise, just the file
+written to the stream will be uploaded, and given a default entry as determined by the server.
+</p>
+<p>
+<em class="parameter"><code>slug</code></em> and <em class="parameter"><code>content_type</code></em> must be specified before the upload begins, as they describe the file being streamed. <em class="parameter"><code>slug</code></em> is the filename given to the
+file, which will typically be stored on the server and made available when downloading the file again. <em class="parameter"><code>content_type</code></em> must be the correct
+content type for the file, and should be in the service's list of acceptable content types.
+</p>
+<p>
+As well as the standard GIO errors, calls to the <span class="type">GOutputStream</span> API on a <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a> can also return any relevant specific error from
+<a href="GDataService.html#GDataServiceError"><span class="type">GDataServiceError</span></a>, or <code class="literal">GDATA_SERVICE_ERROR_WITH_UPLOAD</code> in the general case.
+</p>
+<p>
+Note that network communication won't begin until the first call to <code class="function">g_output_stream_write()</code> on the <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>service</code></em> :</span></p></td>
+<td> a <a href="GDataService.html"><span class="type">GDataService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>method</code></em> :</span></p></td>
+<td> the HTTP method to use
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>upload_uri</code></em> :</span></p></td>
+<td> the URI to upload
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> the entry to upload as metadata, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>slug</code></em> :</span></p></td>
+<td> the file's slug (filename)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>content_type</code></em> :</span></p></td>
+<td> the content type of the file being uploaded
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <span class="type">GOutputStream</span>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-upload-stream-get-response"></a><h3>gdata_upload_stream_get_response ()</h3>
+<pre class="programlisting">const gchar *       gdata_upload_stream_get_response    (<a href="GDataUploadStream.html">GDataUploadStream</a> *self,
+                                                         gssize *length);</pre>
+<p>
+Returns the server's response to the upload operation performed by the <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>. If the operation
+is still underway, or the server's response hasn't been received yet, <code class="literal">NULL</code> is returned and <em class="parameter"><code>length</code></em> is set to <code class="literal">-1</code>.
+</p>
+<p>
+If there was an error during the upload operation (but it is complete), <code class="literal">NULL</code> is returned, and <em class="parameter"><code>length</code></em> is set to <code class="literal">0</code>.
+</p>
+<p>
+While it is safe to call this function from any thread at any time during the network operation, the only way to
+guarantee that the response has been set before calling this function is to have closed the <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>. Once
+the stream has been closed, all network communication is guaranteed to have finished.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> return location for the length of the response, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the server's response to the upload, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-upload-stream-get-service"></a><h3>gdata_upload_stream_get_service ()</h3>
+<pre class="programlisting"><a href="GDataService.html">GDataService</a> *      gdata_upload_stream_get_service     (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);</pre>
+<p>
+Gets the service used to authenticate the upload, as passed to <a href="GDataUploadStream.html#gdata-upload-stream-new"><code class="function">gdata_upload_stream_new()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the <a href="GDataService.html"><span class="type">GDataService</span></a> used to authenticate the upload
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-upload-stream-get-upload-uri"></a><h3>gdata_upload_stream_get_upload_uri ()</h3>
+<pre class="programlisting">const gchar *       gdata_upload_stream_get_upload_uri  (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);</pre>
+<p>
+Gets the URI the file is being uploaded to, as passed to <a href="GDataUploadStream.html#gdata-upload-stream-new"><code class="function">gdata_upload_stream_new()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the URI which the file is being uploaded to
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-upload-stream-get-entry"></a><h3>gdata_upload_stream_get_entry ()</h3>
+<pre class="programlisting"><a href="GDataEntry.html">GDataEntry</a> *        gdata_upload_stream_get_entry       (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);</pre>
+<p>
+Gets the entry being used to upload metadata, if one was passed to <a href="GDataUploadStream.html#gdata-upload-stream-new"><code class="function">gdata_upload_stream_new()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the entry used for metadata, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-upload-stream-get-slug"></a><h3>gdata_upload_stream_get_slug ()</h3>
+<pre class="programlisting">const gchar *       gdata_upload_stream_get_slug        (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);</pre>
+<p>
+Gets the slug (filename) of the file being uploaded.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the slug of the file being uploaded
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-upload-stream-get-content-type"></a><h3>gdata_upload_stream_get_content_type ()</h3>
+<pre class="programlisting">const gchar *       gdata_upload_stream_get_content_type
+                                                        (<a href="GDataUploadStream.html">GDataUploadStream</a> *self);</pre>
+<p>
+Gets the content type of the file being uploaded.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataUploadStream.html"><span class="type">GDataUploadStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the content type of the file being uploaded
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataUploadStream.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataUploadStream--content-type"></a><h3>The <code class="literal">"content-type"</code> property</h3>
+<pre class="programlisting">  "content-type"             gchar*                : Read / Write / Construct Only</pre>
+<p>
+The content type of the file being uploaded.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataUploadStream--entry"></a><h3>The <code class="literal">"entry"</code> property</h3>
+<pre class="programlisting">  "entry"                    <a href="GDataEntry.html">GDataEntry</a>*           : Read / Write / Construct Only</pre>
+<p>
+The entry used for metadata to upload.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataUploadStream--service"></a><h3>The <code class="literal">"service"</code> property</h3>
+<pre class="programlisting">  "service"                  <a href="GDataService.html">GDataService</a>*         : Read / Write / Construct Only</pre>
+<p>
+The service which is used to authenticate the upload, and to which the upload relates.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataUploadStream--slug"></a><h3>The <code class="literal">"slug"</code> property</h3>
+<pre class="programlisting">  "slug"                     gchar*                : Read / Write / Construct Only</pre>
+<p>
+The slug of the file being uploaded.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataUploadStream--upload-uri"></a><h3>The <code class="literal">"upload-uri"</code> property</h3>
+<pre class="programlisting">  "upload-uri"               gchar*                : Read / Write / Construct Only</pre>
+<p>
+The URI of the file to upload.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

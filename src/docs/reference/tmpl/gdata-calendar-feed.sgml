@@ -1,0 +1,61 @@
+<!-- ##### SECTION Title ##### -->
+GDataCalendarFeed
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataCalendarFeed ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataCalendarFeed:times-cleaned ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarFeed:timezone ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataCalendarFeedClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_calendar_feed_get_timezone ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_feed_get_times_cleaned ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

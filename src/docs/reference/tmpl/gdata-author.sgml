@@ -1,0 +1,123 @@
+<!-- ##### SECTION Title ##### -->
+GDataAuthor
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataAuthor ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataAuthor:email-address ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataAuthor:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataAuthor:uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataAuthorClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_author_new ##### -->
+<para>
+
+</para>
+
+@name: 
+@uri: 
+@email_address: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_author_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_author_get_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_author_set_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@name: 
+
+
+<!-- ##### FUNCTION gdata_author_get_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_author_set_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@uri: 
+
+
+<!-- ##### FUNCTION gdata_author_get_email_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_author_set_email_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@email_address: 
+
+

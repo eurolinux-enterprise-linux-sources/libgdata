@@ -1,0 +1,596 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataPicasaWebQuery</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch12.html" title="Google PicasaWeb API">
+<link rel="prev" href="GDataPicasaWebService.html" title="GDataPicasaWebService">
+<link rel="next" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataPicasaWebService.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch12.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataPicasaWebAlbum.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataPicasaWebQuery.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataPicasaWebQuery.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataPicasaWebQuery.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataPicasaWebQuery.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataPicasaWebQuery"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataPicasaWebQuery.top_of_page"></a>GDataPicasaWebQuery</span></h2>
+<p>GDataPicasaWebQuery — GData PicasaWeb query object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebQuery.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataPicasaWebQuery.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/services/picasaweb/gdata-picasaweb-query.h&gt;
+
+                    <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery-struct">GDataPicasaWebQuery</a>;
+                    <a href="GDataPicasaWebQuery.html#GDataPicasaWebQueryClass">GDataPicasaWebQueryClass</a>;
+<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> * <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-new">gdata_picasaweb_query_new</a>         (const gchar *q);
+<a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a>  <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-visibility">gdata_picasaweb_query_get_visibility</a>
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);
+void                <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-visibility">gdata_picasaweb_query_set_visibility</a>
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         <a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a> visibility);
+const gchar *       <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-thumbnail-size">gdata_picasaweb_query_get_thumbnail_size</a>
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);
+void                <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-thumbnail-size">gdata_picasaweb_query_set_thumbnail_size</a>
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         const gchar *thumbnail_size);
+const gchar *       <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-image-size">gdata_picasaweb_query_get_image_size</a>
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);
+void                <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-image-size">gdata_picasaweb_query_set_image_size</a>
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         const gchar *image_size);
+const gchar *       <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-tag">gdata_picasaweb_query_get_tag</a>       (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);
+void                <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-tag">gdata_picasaweb_query_set_tag</a>       (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         const gchar *tag);
+void                <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-bounding-box">gdata_picasaweb_query_get_bounding_box</a>
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         gdouble *north,
+                                                         gdouble *east,
+                                                         gdouble *south,
+                                                         gdouble *west);
+void                <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-bounding-box">gdata_picasaweb_query_set_bounding_box</a>
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         gdouble north,
+                                                         gdouble east,
+                                                         gdouble south,
+                                                         gdouble west);
+const gchar *       <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-location">gdata_picasaweb_query_get_location</a>  (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);
+void                <a href="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-location">gdata_picasaweb_query_set_location</a>  (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         const gchar *location);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataQuery.html">GDataQuery</a>
+         +----GDataPicasaWebQuery
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebQuery.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--image-size">image-size</a>"               gchar*                : Read / Write
+  "<a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--location">location</a>"                 gchar*                : Read / Write
+  "<a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--tag">tag</a>"                      gchar*                : Read / Write
+  "<a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--thumbnail-size">thumbnail-size</a>"           gchar*                : Read / Write
+  "<a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--visibility">visibility</a>"               gint                  : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebQuery.description"></a><h2>Description</h2>
+<p>
+<a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a> represents a collection of query parameters specific to the Google PicasaWeb service, which go above and beyond
+those catered for by <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>.
+</p>
+<p>
+For more information on the custom GData query parameters supported by <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#Parameters" target="_top">online documentation</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebQuery.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataPicasaWebQuery-struct"></a><h3>GDataPicasaWebQuery</h3>
+<pre class="programlisting">typedef struct _GDataPicasaWebQuery GDataPicasaWebQuery;</pre>
+<p>
+All the fields in the <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataPicasaWebQueryClass"></a><h3>GDataPicasaWebQueryClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataPicasaWebQueryClass;
+</pre>
+<p>
+All the fields in the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQueryClass"><span class="type">GDataPicasaWebQueryClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-new"></a><h3>gdata_picasaweb_query_new ()</h3>
+<pre class="programlisting"><a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> * gdata_picasaweb_query_new         (const gchar *q);</pre>
+<p>
+Creates a new <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a> with its <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>.
+</p>
+<p>
+Note that when querying for albums with <a href="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums"><code class="function">gdata_picasaweb_service_query_all_albums()</code></a>, the <em class="parameter"><code>q</code></em> parameter cannot be used.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
+<td> a query string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-get-visibility"></a><h3>gdata_picasaweb_query_get_visibility ()</h3>
+<pre class="programlisting"><a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a>  gdata_picasaweb_query_get_visibility
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--visibility"><span class="type">"visibility"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the visibility of the objects to retrieve, or <code class="literal">0</code> to retrieve all objects
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-set-visibility"></a><h3>gdata_picasaweb_query_set_visibility ()</h3>
+<pre class="programlisting">void                gdata_picasaweb_query_set_visibility
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         <a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a> visibility);</pre>
+<p>
+Sets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--visibility"><span class="type">"visibility"</span></a> property to <em class="parameter"><code>visibility</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>visibility</code></em> :</span></p></td>
+<td> the visibility of the objects to retrieve, or <code class="literal">0</code> to retrieve all objects
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-get-thumbnail-size"></a><h3>gdata_picasaweb_query_get_thumbnail_size ()</h3>
+<pre class="programlisting">const gchar *       gdata_picasaweb_query_get_thumbnail_size
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--thumbnail-size"><span class="type">"thumbnail-size"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a comma-separated list of thumbnail sizes to retrieve, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-set-thumbnail-size"></a><h3>gdata_picasaweb_query_set_thumbnail_size ()</h3>
+<pre class="programlisting">void                gdata_picasaweb_query_set_thumbnail_size
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         const gchar *thumbnail_size);</pre>
+<p>
+Sets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--thumbnail-size"><span class="type">"thumbnail-size"</span></a> property to <em class="parameter"><code>thumbnail_size</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>thumbnail_size</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>thumbnail_size</code></em> :</span></p></td>
+<td> a comma-separated list of thumbnail sizes to retrieve, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-get-image-size"></a><h3>gdata_picasaweb_query_get_image_size ()</h3>
+<pre class="programlisting">const gchar *       gdata_picasaweb_query_get_image_size
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--image-size"><span class="type">"image-size"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a comma-separated list of image sizes to retrieve, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-set-image-size"></a><h3>gdata_picasaweb_query_set_image_size ()</h3>
+<pre class="programlisting">void                gdata_picasaweb_query_set_image_size
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         const gchar *image_size);</pre>
+<p>
+Sets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--image-size"><span class="type">"image-size"</span></a> property to <em class="parameter"><code>image_size</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>image_size</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>image_size</code></em> :</span></p></td>
+<td> a comma-separated list of image sizes to retrieve, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-get-tag"></a><h3>gdata_picasaweb_query_get_tag ()</h3>
+<pre class="programlisting">const gchar *       gdata_picasaweb_query_get_tag       (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--tag"><span class="type">"tag"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a tag which retrieved objects must have, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-set-tag"></a><h3>gdata_picasaweb_query_set_tag ()</h3>
+<pre class="programlisting">void                gdata_picasaweb_query_set_tag       (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         const gchar *tag);</pre>
+<p>
+Sets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--tag"><span class="type">"tag"</span></a> property to <em class="parameter"><code>tag</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>tag</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> a tag which retrieved objects must have, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-get-bounding-box"></a><h3>gdata_picasaweb_query_get_bounding_box ()</h3>
+<pre class="programlisting">void                gdata_picasaweb_query_get_bounding_box
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         gdouble *north,
+                                                         gdouble *east,
+                                                         gdouble *south,
+                                                         gdouble *west);</pre>
+<p>
+Gets the latitudes and longitudes of a bounding box, inside which all the results must lie.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>north</code></em> :</span></p></td>
+<td> return location for the latitude of the top of the box, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>east</code></em> :</span></p></td>
+<td> return location for the longitude of the right of the box, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>south</code></em> :</span></p></td>
+<td> return location for the latitude of the south of the box, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>west</code></em> :</span></p></td>
+<td> return location for the longitude of the left of the box, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-set-bounding-box"></a><h3>gdata_picasaweb_query_set_bounding_box ()</h3>
+<pre class="programlisting">void                gdata_picasaweb_query_set_bounding_box
+                                                        (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         gdouble north,
+                                                         gdouble east,
+                                                         gdouble south,
+                                                         gdouble west);</pre>
+<p>
+Sets a bounding box, inside which all the returned results must lie.
+</p>
+<p>
+Set <em class="parameter"><code>north</code></em>, <em class="parameter"><code>east</code></em>, <em class="parameter"><code>south</code></em> and <em class="parameter"><code>west</code></em> to <code class="literal">0</code> to unset the property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>north</code></em> :</span></p></td>
+<td> latitude of the top of the box
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>east</code></em> :</span></p></td>
+<td> longitude of the right of the box
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>south</code></em> :</span></p></td>
+<td> latitude of the bottom of the box
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>west</code></em> :</span></p></td>
+<td> longitude of the left of the box
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-get-location"></a><h3>gdata_picasaweb_query_get_location ()</h3>
+<pre class="programlisting">const gchar *       gdata_picasaweb_query_get_location  (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--location"><span class="type">"location"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a location which returned objects must be near, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-query-set-location"></a><h3>gdata_picasaweb_query_set_location ()</h3>
+<pre class="programlisting">void                gdata_picasaweb_query_set_location  (<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a> *self,
+                                                         const gchar *location);</pre>
+<p>
+Sets the <a href="GDataPicasaWebQuery.html#GDataPicasaWebQuery--location"><span class="type">"location"</span></a> property to <em class="parameter"><code>location</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>location</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebQuery.html"><span class="type">GDataPicasaWebQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>location</code></em> :</span></p></td>
+<td> a location which returned objects must be near, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebQuery.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataPicasaWebQuery--image-size"></a><h3>The <code class="literal">"image-size"</code> property</h3>
+<pre class="programlisting">  "image-size"               gchar*                : Read / Write</pre>
+<p>
+A comma-separated list of image sizes (width in pixels) to return. Only certain sizes are allowed, and whether the image should be
+cropped or scaled can be specified; for more information, see the
+<a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#Parameters" target="_top">online documentation</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataPicasaWebQuery--location"></a><h3>The <code class="literal">"location"</code> property</h3>
+<pre class="programlisting">  "location"                 gchar*                : Read / Write</pre>
+<p>
+A location to search for photos, e.g. "London".</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataPicasaWebQuery--tag"></a><h3>The <code class="literal">"tag"</code> property</h3>
+<pre class="programlisting">  "tag"                      gchar*                : Read / Write</pre>
+<p>
+A tag which returned results must contain.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataPicasaWebQuery--thumbnail-size"></a><h3>The <code class="literal">"thumbnail-size"</code> property</h3>
+<pre class="programlisting">  "thumbnail-size"           gchar*                : Read / Write</pre>
+<p>
+A comma-separated list of thumbnail sizes (width in pixels) to return. Only certain sizes are allowed, and whether the thumbnail should be
+cropped or scaled can be specified; for more information, see the
+<a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#Parameters" target="_top">online documentation</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataPicasaWebQuery--visibility"></a><h3>The <code class="literal">"visibility"</code> property</h3>
+<pre class="programlisting">  "visibility"               gint                  : Read / Write</pre>
+<p>
+Specifies which albums should be listed, in terms of their visibility (<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility"><span class="type">"visibility"</span></a>).
+</p>
+<p>
+Set the property to <code class="literal">0</code> to list all albums, regardless of their visibility. Otherwise, use values from <a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility"><span class="type">GDataPicasaWebVisibility</span></a>.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#Visibility" target="_top">
+online documentation</a>.</p>
+<p>Allowed values: [0,2]</p>
+<p>Default value: 0</p>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

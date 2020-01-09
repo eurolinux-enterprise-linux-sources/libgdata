@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataAccessRule</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch03.html" title="Access Control List API">
+<link rel="prev" href="GDataAccessHandler.html" title="GDataAccessHandler">
+<link rel="next" href="pt03.html" title="Part III. Namespace API">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataAccessHandler.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="pt03.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataAccessRule.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataAccessRule.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataAccessRule.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataAccessRule.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataAccessRule"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataAccessRule.top_of_page"></a>GDataAccessRule</span></h2>
+<p>GDataAccessRule — GData access rule object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataAccessRule.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataAccessRule.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/gdata-access-rule.h&gt;
+
+                    <a href="GDataAccessRule.html#GDataAccessRule-struct">GDataAccessRule</a>;
+                    <a href="GDataAccessRule.html#GDataAccessRuleClass">GDataAccessRuleClass</a>;
+<a href="GDataAccessRule.html">GDataAccessRule</a> *   <a href="GDataAccessRule.html#gdata-access-rule-new">gdata_access_rule_new</a>               (const gchar *id);
+const gchar *       <a href="GDataAccessRule.html#gdata-access-rule-get-role">gdata_access_rule_get_role</a>          (<a href="GDataAccessRule.html">GDataAccessRule</a> *self);
+void                <a href="GDataAccessRule.html#gdata-access-rule-set-role">gdata_access_rule_set_role</a>          (<a href="GDataAccessRule.html">GDataAccessRule</a> *self,
+                                                         const gchar *role);
+void                <a href="GDataAccessRule.html#gdata-access-rule-get-scope">gdata_access_rule_get_scope</a>         (<a href="GDataAccessRule.html">GDataAccessRule</a> *self,
+                                                         const gchar **type,
+                                                         const gchar **value);
+void                <a href="GDataAccessRule.html#gdata-access-rule-set-scope">gdata_access_rule_set_scope</a>         (<a href="GDataAccessRule.html">GDataAccessRule</a> *self,
+                                                         const gchar *type,
+                                                         const gchar *value);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataAccessRule.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----<a href="GDataEntry.html">GDataEntry</a>
+               +----GDataAccessRule
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataAccessRule.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataAccessRule.html#GDataAccessRule--role">role</a>"                     gchar*                : Read / Write
+  "<a href="GDataAccessRule.html#GDataAccessRule--scope-type">scope-type</a>"               gchar*                : Read / Write
+  "<a href="GDataAccessRule.html#GDataAccessRule--scope-value">scope-value</a>"              gchar*                : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataAccessRule.description"></a><h2>Description</h2>
+<p>
+<a href="GDataAccessRule.html"><span class="type">GDataAccessRule</span></a> is a subclass of <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> to represent a generic access rule from an access control list (ACL).
+It is returned by the ACL methods implemented in the <a href="GDataAccessHandler.html"><span class="type">GDataAccessHandler</span></a> interface.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataAccessRule.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataAccessRule-struct"></a><h3>GDataAccessRule</h3>
+<pre class="programlisting">typedef struct _GDataAccessRule GDataAccessRule;</pre>
+<p>
+All the fields in the <a href="GDataAccessRule.html"><span class="type">GDataAccessRule</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataAccessRuleClass"></a><h3>GDataAccessRuleClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataAccessRuleClass;
+</pre>
+<p>
+All the fields in the <a href="GDataAccessRule.html#GDataAccessRuleClass"><span class="type">GDataAccessRuleClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-access-rule-new"></a><h3>gdata_access_rule_new ()</h3>
+<pre class="programlisting"><a href="GDataAccessRule.html">GDataAccessRule</a> *   gdata_access_rule_new               (const gchar *id);</pre>
+<p>
+Creates a new <a href="GDataAccessRule.html"><span class="type">GDataAccessRule</span></a> with the given ID and default properties.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the access rule's ID, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataAccessRule.html"><span class="type">GDataAccessRule</span></a>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-access-rule-get-role"></a><h3>gdata_access_rule_get_role ()</h3>
+<pre class="programlisting">const gchar *       gdata_access_rule_get_role          (<a href="GDataAccessRule.html">GDataAccessRule</a> *self);</pre>
+<p>
+Gets the <a href="GDataAccessRule.html#GDataAccessRule--role"><span class="type">"role"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataAccessRule.html"><span class="type">GDataAccessRule</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the access rule's role, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-access-rule-set-role"></a><h3>gdata_access_rule_set_role ()</h3>
+<pre class="programlisting">void                gdata_access_rule_set_role          (<a href="GDataAccessRule.html">GDataAccessRule</a> *self,
+                                                         const gchar *role);</pre>
+<p>
+Sets the <a href="GDataAccessRule.html#GDataAccessRule--role"><span class="type">"role"</span></a> property to <em class="parameter"><code>role</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>role</code></em> to <code class="literal">NULL</code> to unset the property in the access rule.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataAccessRule.html"><span class="type">GDataAccessRule</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>role</code></em> :</span></p></td>
+<td> a new role, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-access-rule-get-scope"></a><h3>gdata_access_rule_get_scope ()</h3>
+<pre class="programlisting">void                gdata_access_rule_get_scope         (<a href="GDataAccessRule.html">GDataAccessRule</a> *self,
+                                                         const gchar **type,
+                                                         const gchar **value);</pre>
+<p>
+Gets the <a href="GDataAccessRule.html#GDataAccessRule--scope-type"><span class="type">"scope-type"</span></a> and <a href="GDataAccessRule.html#GDataAccessRule--scope-value"><span class="type">"scope-value"</span></a> properties.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataAccessRule.html"><span class="type">GDataAccessRule</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td> return location for the scope type, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> return location for the scope value, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-access-rule-set-scope"></a><h3>gdata_access_rule_set_scope ()</h3>
+<pre class="programlisting">void                gdata_access_rule_set_scope         (<a href="GDataAccessRule.html">GDataAccessRule</a> *self,
+                                                         const gchar *type,
+                                                         const gchar *value);</pre>
+<p>
+Sets the <a href="GDataAccessRule.html#GDataAccessRule--scope-type"><span class="type">"scope-type"</span></a> property to <em class="parameter"><code>type</code></em> and the <a href="GDataAccessRule.html#GDataAccessRule--scope-value"><span class="type">"scope-value"</span></a> property to <em class="parameter"><code>value</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>scope_value</code></em> to <code class="literal">NULL</code> to unset the <a href="GDataAccessRule.html#GDataAccessRule--scope-value"><span class="type">"scope-value"</span></a> property in the access rule. <em class="parameter"><code>type</code></em> cannot
+be <code class="literal">NULL</code>. <em class="parameter"><code>scope_value</code></em> must be <code class="literal">NULL</code> if <em class="parameter"><code>type</code></em> is <code class="literal">default</code>, and non-<code class="literal">NULL</code> otherwise.
+</p>
+<p>
+See the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html#gacl_reference" target="_top">online documentation</a>
+for more information.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataAccessRule.html"><span class="type">GDataAccessRule</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td> a new scope type
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a new scope value, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataAccessRule.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataAccessRule--role"></a><h3>The <code class="literal">"role"</code> property</h3>
+<pre class="programlisting">  "role"                     gchar*                : Read / Write</pre>
+<p>
+The role of the person concerned by this ACL.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataAccessRule--scope-type"></a><h3>The <code class="literal">"scope-type"</code> property</h3>
+<pre class="programlisting">  "scope-type"               gchar*                : Read / Write</pre>
+<p>
+Specifies to whom this access rule applies.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataAccessRule--scope-value"></a><h3>The <code class="literal">"scope-value"</code> property</h3>
+<pre class="programlisting">  "scope-value"              gchar*                : Read / Write</pre>
+<p>
+A value representing the user who is represented by the access rule, such as an
+e-mail address for users, or a domain name for domains.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.3.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

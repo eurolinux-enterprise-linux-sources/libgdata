@@ -1,0 +1,63 @@
+<!-- ##### SECTION Title ##### -->
+GDataParsable
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataParsable ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GDataParsableClass ##### -->
+<para>
+
+</para>
+
+@parent: 
+@pre_parse_xml: 
+@parse_xml: 
+@post_parse_xml: 
+@pre_get_xml: 
+@get_xml: 
+@get_namespaces: 
+@element_name: 
+@element_namespace: 
+
+<!-- ##### FUNCTION gdata_parsable_new_from_xml ##### -->
+<para>
+
+</para>
+
+@parsable_type: 
+@xml: 
+@length: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_parsable_get_xml ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

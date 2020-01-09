@@ -1,0 +1,771 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataCalendarQuery</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch09.html" title="Google Calendar API">
+<link rel="prev" href="GDataCalendarFeed.html" title="GDataCalendarFeed">
+<link rel="next" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataCalendarFeed.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch09.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataCalendarCalendar.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataCalendarQuery.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataCalendarQuery.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataCalendarQuery.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataCalendarQuery.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataCalendarQuery"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataCalendarQuery.top_of_page"></a>GDataCalendarQuery</span></h2>
+<p>GDataCalendarQuery — GData Calendar query object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarQuery.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataCalendarQuery.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/services/calendar/gdata-calendar-query.h&gt;
+
+                    <a href="GDataCalendarQuery.html#GDataCalendarQuery-struct">GDataCalendarQuery</a>;
+                    <a href="GDataCalendarQuery.html#GDataCalendarQueryClass">GDataCalendarQueryClass</a>;
+<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> * <a href="GDataCalendarQuery.html#gdata-calendar-query-new">gdata_calendar_query_new</a>           (const gchar *q);
+<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> * <a href="GDataCalendarQuery.html#gdata-calendar-query-new-with-limits">gdata_calendar_query_new_with_limits</a>
+                                                        (const gchar *q,
+                                                         GTimeVal *start_min,
+                                                         GTimeVal *start_max);
+gboolean            <a href="GDataCalendarQuery.html#gdata-calendar-query-get-future-events">gdata_calendar_query_get_future_events</a>
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-future-events">gdata_calendar_query_set_future_events</a>
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         gboolean future_events);
+gboolean            <a href="GDataCalendarQuery.html#gdata-calendar-query-get-single-events">gdata_calendar_query_get_single_events</a>
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-single-events">gdata_calendar_query_set_single_events</a>
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         gboolean single_events);
+const gchar *       <a href="GDataCalendarQuery.html#gdata-calendar-query-get-order-by">gdata_calendar_query_get_order_by</a>   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-order-by">gdata_calendar_query_set_order_by</a>   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         const gchar *order_by);
+const gchar *       <a href="GDataCalendarQuery.html#gdata-calendar-query-get-sort-order">gdata_calendar_query_get_sort_order</a> (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-sort-order">gdata_calendar_query_set_sort_order</a> (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         const gchar *sort_order);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-get-start-min">gdata_calendar_query_get_start_min</a>  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start_min);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-start-min">gdata_calendar_query_set_start_min</a>  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start_min);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-get-start-max">gdata_calendar_query_get_start_max</a>  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start_max);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-start-max">gdata_calendar_query_set_start_max</a>  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start_max);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-start">gdata_calendar_query_get_recurrence_expansion_start</a>
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-start">gdata_calendar_query_set_recurrence_expansion_start</a>
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-end">gdata_calendar_query_get_recurrence_expansion_end</a>
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *end);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-end">gdata_calendar_query_set_recurrence_expansion_end</a>
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *end);
+const gchar *       <a href="GDataCalendarQuery.html#gdata-calendar-query-get-timezone">gdata_calendar_query_get_timezone</a>   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
+void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-timezone">gdata_calendar_query_set_timezone</a>   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         const gchar *_timezone);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataQuery.html">GDataQuery</a>
+         +----GDataCalendarQuery
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarQuery.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--future-events">future-events</a>"            gboolean              : Read / Write
+  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--order-by">order-by</a>"                 gchar*                : Read / Write
+  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end">recurrence-expansion-end</a>" GTimeVal*             : Read / Write
+  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start">recurrence-expansion-start</a>" GTimeVal*             : Read / Write
+  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--single-events">single-events</a>"            gboolean              : Read / Write
+  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--sort-order">sort-order</a>"               gchar*                : Read / Write
+  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max">start-max</a>"                GTimeVal*             : Read / Write
+  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min">start-min</a>"                GTimeVal*             : Read / Write
+  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--timezone">timezone</a>"                 gchar*                : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarQuery.description"></a><h2>Description</h2>
+<p>
+<a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> represents a collection of query parameters specific to the Google Calendar service, which go above and beyond
+those catered for by <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>.
+</p>
+<p>
+For more information on the custom GData query parameters supported by <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>, see the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html#Parameters" target="_top">online documentation</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarQuery.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery-struct"></a><h3>GDataCalendarQuery</h3>
+<pre class="programlisting">typedef struct _GDataCalendarQuery GDataCalendarQuery;</pre>
+<p>
+All the fields in the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQueryClass"></a><h3>GDataCalendarQueryClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataCalendarQueryClass;
+</pre>
+<p>
+All the fields in the <a href="GDataCalendarQuery.html#GDataCalendarQueryClass"><span class="type">GDataCalendarQueryClass</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-new"></a><h3>gdata_calendar_query_new ()</h3>
+<pre class="programlisting"><a href="GDataCalendarQuery.html">GDataCalendarQuery</a> * gdata_calendar_query_new           (const gchar *q);</pre>
+<p>
+Creates a new <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> with its <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
+<td> a query string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-new-with-limits"></a><h3>gdata_calendar_query_new_with_limits ()</h3>
+<pre class="programlisting"><a href="GDataCalendarQuery.html">GDataCalendarQuery</a> * gdata_calendar_query_new_with_limits
+                                                        (const gchar *q,
+                                                         GTimeVal *start_min,
+                                                         GTimeVal *start_max);</pre>
+<p>
+Creates a new <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> with its <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>, and the time limits <em class="parameter"><code>start_min</code></em> and <em class="parameter"><code>start_max</code></em>
+applied.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
+<td> a query string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_min</code></em> :</span></p></td>
+<td> a starting time for the event period
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_max</code></em> :</span></p></td>
+<td> an ending time for the event period
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-get-future-events"></a><h3>gdata_calendar_query_get_future_events ()</h3>
+<pre class="programlisting">gboolean            gdata_calendar_query_get_future_events
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--future-events"><span class="type">"future-events"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the future events property
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-set-future-events"></a><h3>gdata_calendar_query_set_future_events ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_set_future_events
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         gboolean future_events);</pre>
+<p>
+Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--future-events"><span class="type">"future-events"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to <em class="parameter"><code>future_events</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>future_events</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> to unconditionally show future events, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-get-single-events"></a><h3>gdata_calendar_query_get_single_events ()</h3>
+<pre class="programlisting">gboolean            gdata_calendar_query_get_single_events
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--single-events"><span class="type">"single-events"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the single events property
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-set-single-events"></a><h3>gdata_calendar_query_set_single_events ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_set_single_events
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         gboolean single_events);</pre>
+<p>
+Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--single-events"><span class="type">"single-events"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to <em class="parameter"><code>single_events</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>single_events</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> to show recurring events as single events, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-get-order-by"></a><h3>gdata_calendar_query_get_order_by ()</h3>
+<pre class="programlisting">const gchar *       gdata_calendar_query_get_order_by   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--order-by"><span class="type">"order-by"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the order by property, or <code class="literal">NULL</code> if it is unset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-set-order-by"></a><h3>gdata_calendar_query_set_order_by ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_set_order_by   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         const gchar *order_by);</pre>
+<p>
+Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--order-by"><span class="type">"order-by"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to the new order by string, <em class="parameter"><code>order_by</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>order_by</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>order_by</code></em> :</span></p></td>
+<td> a new order by string, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-get-sort-order"></a><h3>gdata_calendar_query_get_sort_order ()</h3>
+<pre class="programlisting">const gchar *       gdata_calendar_query_get_sort_order (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--sort-order"><span class="type">"sort-order"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the sort order property, or <code class="literal">NULL</code> if it is unset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-set-sort-order"></a><h3>gdata_calendar_query_set_sort_order ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_set_sort_order (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         const gchar *sort_order);</pre>
+<p>
+Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--sort-order"><span class="type">"sort-order"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to the new sort order string, <em class="parameter"><code>sort_order</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>sort_order</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sort_order</code></em> :</span></p></td>
+<td> a new sort order string, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-get-start-min"></a><h3>gdata_calendar_query_get_start_min ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_get_start_min  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start_min);</pre>
+<p>
+Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> property and puts it
+in <em class="parameter"><code>start_min</code></em>. If the property is unset, both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_min</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-set-start-min"></a><h3>gdata_calendar_query_set_start_min ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_set_start_min  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start_min);</pre>
+<p>
+Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+to the new time/date, <em class="parameter"><code>start_min</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>start_min</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_min</code></em> :</span></p></td>
+<td> a new minimum start time
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-get-start-max"></a><h3>gdata_calendar_query_get_start_max ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_get_start_max  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start_max);</pre>
+<p>
+Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> property and puts it
+in <em class="parameter"><code>start_max</code></em>. If the property is unset, both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_max</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-set-start-max"></a><h3>gdata_calendar_query_set_start_max ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_set_start_max  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start_max);</pre>
+<p>
+Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+to the new time/date, <em class="parameter"><code>start_max</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>start_max</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_max</code></em> :</span></p></td>
+<td> a new maximum start time
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-get-recurrence-expansion-start"></a><h3>gdata_calendar_query_get_recurrence_expansion_start ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_get_recurrence_expansion_start
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start);</pre>
+<p>
+Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start"><span class="type">"recurrence-expansion-start"</span></a> property and puts it
+in <em class="parameter"><code>start</code></em>. If the property is unset, both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-set-recurrence-expansion-start"></a><h3>gdata_calendar_query_set_recurrence_expansion_start ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_set_recurrence_expansion_start
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *start);</pre>
+<p>
+Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start"><span class="type">"recurrence-expansion-start"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+to the new time/date, <em class="parameter"><code>start</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>start</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start</code></em> :</span></p></td>
+<td> a new start time
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-get-recurrence-expansion-end"></a><h3>gdata_calendar_query_get_recurrence_expansion_end ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_get_recurrence_expansion_end
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *end);</pre>
+<p>
+Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end"><span class="type">"recurrence-expansion-end"</span></a> property and puts it
+in <em class="parameter"><code>end</code></em>. If the property is unset, both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>end</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-set-recurrence-expansion-end"></a><h3>gdata_calendar_query_set_recurrence_expansion_end ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_set_recurrence_expansion_end
+                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         GTimeVal *end);</pre>
+<p>
+Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end"><span class="type">"recurrence-expansion-end"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+to the new time/date, <em class="parameter"><code>end</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>end</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>end</code></em> :</span></p></td>
+<td> a new end time
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-get-timezone"></a><h3>gdata_calendar_query_get_timezone ()</h3>
+<pre class="programlisting">const gchar *       gdata_calendar_query_get_timezone   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--timezone"><span class="type">"timezone"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the timezone property, or <code class="literal">NULL</code> if it is unset
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-query-set-timezone"></a><h3>gdata_calendar_query_set_timezone ()</h3>
+<pre class="programlisting">void                gdata_calendar_query_set_timezone   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
+                                                         const gchar *_timezone);</pre>
+<p>
+Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--timezone"><span class="type">"timezone"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to the new timezone string, <em class="parameter"><code>timezone</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>timezone</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>_timezone</code></em> :</span></p></td>
+<td> a new timezone string, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarQuery.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery--future-events"></a><h3>The <code class="literal">"future-events"</code> property</h3>
+<pre class="programlisting">  "future-events"            gboolean              : Read / Write</pre>
+<p>
+A shortcut to request all events that are scheduled for future times. Overrides the
+<a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start"><span class="type">"recurrence-expansion-start"</span></a>, <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end"><span class="type">"recurrence-expansion-end"</span></a>,
+<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> and <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> properties.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery--order-by"></a><h3>The <code class="literal">"order-by"</code> property</h3>
+<pre class="programlisting">  "order-by"                 gchar*                : Read / Write</pre>
+<p>
+Specifies order of entries in a feed. Supported values are <code class="literal">lastmodified</code> and
+<code class="literal">starttime</code>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery--recurrence-expansion-end"></a><h3>The <code class="literal">"recurrence-expansion-end"</code> property</h3>
+<pre class="programlisting">  "recurrence-expansion-end" GTimeVal*             : Read / Write</pre>
+<p>
+Specifies end of time period for which to expand recurring events, exclusive.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery--recurrence-expansion-start"></a><h3>The <code class="literal">"recurrence-expansion-start"</code> property</h3>
+<pre class="programlisting">  "recurrence-expansion-start" GTimeVal*             : Read / Write</pre>
+<p>
+Specifies beginning of time period for which to expand recurring events, inclusive.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery--single-events"></a><h3>The <code class="literal">"single-events"</code> property</h3>
+<pre class="programlisting">  "single-events"            gboolean              : Read / Write</pre>
+<p>
+Indicates whether recurring events should be expanded or represented as a single event.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery--sort-order"></a><h3>The <code class="literal">"sort-order"</code> property</h3>
+<pre class="programlisting">  "sort-order"               gchar*                : Read / Write</pre>
+<p>
+Specifies direction of sorting. Supported values are <code class="literal">ascending</code> and
+<code class="literal">descending</code>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery--start-max"></a><h3>The <code class="literal">"start-max"</code> property</h3>
+<pre class="programlisting">  "start-max"                GTimeVal*             : Read / Write</pre>
+<p>
+Together with <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> creates a timespan such that only events that are within the timespan are returned
+</p>
+<p>
+<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> is inclusive, while <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> is exclusive. Events that overlap the range are
+included.
+</p>
+<p>
+If not specified, the default <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> is <code class="literal">2031-01-01</code>.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery--start-min"></a><h3>The <code class="literal">"start-min"</code> property</h3>
+<pre class="programlisting">  "start-min"                GTimeVal*             : Read / Write</pre>
+<p>
+Together with <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> creates a timespan such that only events that are within the timespan are returned.
+</p>
+<p>
+<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> is inclusive, while <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> is exclusive. Events that overlap the range are
+included.
+</p>
+<p>
+If not specified, the default <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> is <code class="literal">1970-01-01</code>.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarQuery--timezone"></a><h3>The <code class="literal">"timezone"</code> property</h3>
+<pre class="programlisting">  "timezone"                 gchar*                : Read / Write</pre>
+<p>
+The current timezone. If not specified, times are returned in UTC.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.2.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!-- ##### SECTION Title ##### -->
+GDataCalendarCalendar
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataCalendarCalendar ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataCalendarCalendar:access-level ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarCalendar:color ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarCalendar:edited ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarCalendar:is-hidden ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarCalendar:is-selected ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarCalendar:times-cleaned ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarCalendar:timezone ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataCalendarCalendarClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_get_color ##### -->
+<para>
+
+</para>
+
+@self: 
+@color: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_set_color ##### -->
+<para>
+
+</para>
+
+@self: 
+@color: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_is_hidden ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_set_is_hidden ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_hidden: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_is_selected ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_set_is_selected ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_selected: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_get_timezone ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_set_timezone ##### -->
+<para>
+
+</para>
+
+@self: 
+@_timezone: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_get_edited ##### -->
+<para>
+
+</para>
+
+@self: 
+@edited: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_get_times_cleaned ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_calendar_get_access_level ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

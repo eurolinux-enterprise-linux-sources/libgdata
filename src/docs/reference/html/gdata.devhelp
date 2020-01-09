@@ -1,0 +1,1121 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="GData Reference Manual" link="index.html" author="" name="gdata">
+  <chapters>
+    <sub name="GData Overview" link="pt01.html">
+      <sub name="GData Overview" link="gdata-overview.html"/>
+      <sub name="Object Hierarchy" link="ch01.html"/>
+    </sub>
+    <sub name="Core API" link="pt02.html">
+      <sub name="Core API" link="ch02.html">
+        <sub name="GDataService" link="GDataService.html"/>
+        <sub name="GDataQuery" link="GDataQuery.html"/>
+        <sub name="GDataFeed" link="GDataFeed.html"/>
+        <sub name="GDataEntry" link="GDataEntry.html"/>
+        <sub name="GData Types" link="gdata-GData-Types.html"/>
+        <sub name="GDataParsable" link="GDataParsable.html"/>
+        <sub name="GDataDownloadStream" link="GDataDownloadStream.html"/>
+        <sub name="GDataUploadStream" link="GDataUploadStream.html"/>
+      </sub>
+      <sub name="Access Control List API" link="ch03.html">
+        <sub name="GDataAccessHandler" link="GDataAccessHandler.html"/>
+        <sub name="GDataAccessRule" link="GDataAccessRule.html"/>
+      </sub>
+    </sub>
+    <sub name="Namespace API" link="pt03.html">
+      <sub name="Atom API" link="ch04.html">
+        <sub name="GDataAuthor" link="GDataAuthor.html"/>
+        <sub name="GDataCategory" link="GDataCategory.html"/>
+        <sub name="GDataGenerator" link="GDataGenerator.html"/>
+        <sub name="GDataLink" link="GDataLink.html"/>
+      </sub>
+      <sub name="GData API" link="ch05.html">
+        <sub name="GDataGDEmailAddress" link="GDataGDEmailAddress.html"/>
+        <sub name="GDataGDIMAddress" link="GDataGDIMAddress.html"/>
+        <sub name="GDataGDOrganization" link="GDataGDOrganization.html"/>
+        <sub name="GDataGDPhoneNumber" link="GDataGDPhoneNumber.html"/>
+        <sub name="GDataGDPostalAddress" link="GDataGDPostalAddress.html"/>
+        <sub name="GDataGDReminder" link="GDataGDReminder.html"/>
+        <sub name="GDataGDWhen" link="GDataGDWhen.html"/>
+        <sub name="GDataGDWhere" link="GDataGDWhere.html"/>
+        <sub name="GDataGDWho" link="GDataGDWho.html"/>
+      </sub>
+      <sub name="Media RSS API" link="ch06.html">
+        <sub name="GDataMediaCategory" link="GDataMediaCategory.html"/>
+        <sub name="GDataMediaContent" link="GDataMediaContent.html"/>
+        <sub name="GDataMediaCredit" link="GDataMediaCredit.html"/>
+        <sub name="GDataMediaThumbnail" link="GDataMediaThumbnail.html"/>
+      </sub>
+      <sub name="YouTube API" link="ch07.html">
+        <sub name="GDataYouTubeContent" link="GDataYouTubeContent.html"/>
+        <sub name="GDataYouTubeCredit" link="GDataYouTubeCredit.html"/>
+        <sub name="GDataYouTubeState" link="GDataYouTubeState.html"/>
+      </sub>
+    </sub>
+    <sub name="Service APIs" link="pt04.html">
+      <sub name="YouTube API" link="ch08.html">
+        <sub name="GDataYouTubeService" link="GDataYouTubeService.html"/>
+        <sub name="GDataYouTubeQuery" link="GDataYouTubeQuery.html"/>
+        <sub name="GDataYouTubeVideo" link="GDataYouTubeVideo.html"/>
+      </sub>
+      <sub name="Google Calendar API" link="ch09.html">
+        <sub name="GDataCalendarService" link="GDataCalendarService.html"/>
+        <sub name="GDataCalendarFeed" link="GDataCalendarFeed.html"/>
+        <sub name="GDataCalendarQuery" link="GDataCalendarQuery.html"/>
+        <sub name="GDataCalendarCalendar" link="GDataCalendarCalendar.html"/>
+        <sub name="GDataCalendarEvent" link="GDataCalendarEvent.html"/>
+      </sub>
+      <sub name="Google Contacts API" link="ch10.html">
+        <sub name="GDataContactsService" link="GDataContactsService.html"/>
+        <sub name="GDataContactsQuery" link="GDataContactsQuery.html"/>
+        <sub name="GDataContactsContact" link="GDataContactsContact.html"/>
+      </sub>
+      <sub name="Google Documents API" link="ch11.html">
+        <sub name="GDataDocumentsService" link="GDataDocumentsService.html"/>
+        <sub name="GDataDocumentsFeed" link="GDataDocumentsFeed.html"/>
+        <sub name="GDataDocumentsQuery" link="GDataDocumentsQuery.html"/>
+        <sub name="GDataDocumentsEntry" link="GDataDocumentsEntry.html"/>
+        <sub name="GDataDocumentsFolder" link="GDataDocumentsFolder.html"/>
+        <sub name="GDataDocumentsPresentation" link="GDataDocumentsPresentation.html"/>
+        <sub name="GDataDocumentsSpreadsheet" link="GDataDocumentsSpreadsheet.html"/>
+        <sub name="GDataDocumentsText" link="GDataDocumentsText.html"/>
+      </sub>
+      <sub name="Google PicasaWeb API" link="ch12.html">
+        <sub name="GDataPicasaWebService" link="GDataPicasaWebService.html"/>
+        <sub name="GDataPicasaWebQuery" link="GDataPicasaWebQuery.html"/>
+        <sub name="GDataPicasaWebAlbum" link="GDataPicasaWebAlbum.html"/>
+        <sub name="GDataPicasaWebFile" link="GDataPicasaWebFile.html"/>
+      </sub>
+    </sub>
+    <sub name="Appendices" link="pt05.html"/>
+  </chapters>
+  <functions>
+    <function name="Protocol" link="gdata-overview.html#id445392"/>
+    <function name="Structure" link="gdata-overview.html#id474703"/>
+    <function name="GDataService" link="GDataService.html#GDataService-struct"/>
+    <function name="GDataServiceClass" link="GDataService.html#GDataServiceClass"/>
+    <function name="enum GDataServiceError" link="GDataService.html#GDataServiceError"/>
+    <function name="enum GDataAuthenticationError" link="GDataService.html#GDataAuthenticationError"/>
+    <function name="enum GDataParserError" link="GDataService.html#GDataParserError"/>
+    <function name="GDataQueryProgressCallback ()" link="GDataService.html#GDataQueryProgressCallback"/>
+    <function name="gdata_service_authenticate ()" link="GDataService.html#gdata-service-authenticate"/>
+    <function name="gdata_service_authenticate_async ()" link="GDataService.html#gdata-service-authenticate-async"/>
+    <function name="gdata_service_authenticate_finish ()" link="GDataService.html#gdata-service-authenticate-finish"/>
+    <function name="gdata_service_is_authenticated ()" link="GDataService.html#gdata-service-is-authenticated"/>
+    <function name="gdata_service_query ()" link="GDataService.html#gdata-service-query"/>
+    <function name="gdata_service_query_async ()" link="GDataService.html#gdata-service-query-async"/>
+    <function name="gdata_service_query_finish ()" link="GDataService.html#gdata-service-query-finish"/>
+    <function name="gdata_service_insert_entry ()" link="GDataService.html#gdata-service-insert-entry"/>
+    <function name="gdata_service_insert_entry_async ()" link="GDataService.html#gdata-service-insert-entry-async"/>
+    <function name="gdata_service_insert_entry_finish ()" link="GDataService.html#gdata-service-insert-entry-finish"/>
+    <function name="gdata_service_update_entry ()" link="GDataService.html#gdata-service-update-entry"/>
+    <function name="gdata_service_update_entry_async ()" link="GDataService.html#gdata-service-update-entry-async"/>
+    <function name="gdata_service_update_entry_finish ()" link="GDataService.html#gdata-service-update-entry-finish"/>
+    <function name="gdata_service_delete_entry ()" link="GDataService.html#gdata-service-delete-entry"/>
+    <function name="gdata_service_delete_entry_async ()" link="GDataService.html#gdata-service-delete-entry-async"/>
+    <function name="gdata_service_delete_entry_finish ()" link="GDataService.html#gdata-service-delete-entry-finish"/>
+    <function name="gdata_service_get_client_id ()" link="GDataService.html#gdata-service-get-client-id"/>
+    <function name="gdata_service_get_username ()" link="GDataService.html#gdata-service-get-username"/>
+    <function name="gdata_service_get_password ()" link="GDataService.html#gdata-service-get-password"/>
+    <function name="gdata_service_get_proxy_uri ()" link="GDataService.html#gdata-service-get-proxy-uri"/>
+    <function name="gdata_service_set_proxy_uri ()" link="GDataService.html#gdata-service-set-proxy-uri"/>
+    <function name="The &quot;authenticated&quot; property" link="GDataService.html#GDataService--authenticated"/>
+    <function name="The &quot;client-id&quot; property" link="GDataService.html#GDataService--client-id"/>
+    <function name="The &quot;password&quot; property" link="GDataService.html#GDataService--password"/>
+    <function name="The &quot;proxy-uri&quot; property" link="GDataService.html#GDataService--proxy-uri"/>
+    <function name="The &quot;username&quot; property" link="GDataService.html#GDataService--username"/>
+    <function name="The &quot;captcha-challenge&quot; signal" link="GDataService.html#GDataService-captcha-challenge"/>
+    <function name="GDataQuery" link="GDataQuery.html#GDataQuery-struct"/>
+    <function name="GDataQueryClass" link="GDataQuery.html#GDataQueryClass"/>
+    <function name="gdata_query_new ()" link="GDataQuery.html#gdata-query-new"/>
+    <function name="gdata_query_new_with_limits ()" link="GDataQuery.html#gdata-query-new-with-limits"/>
+    <function name="gdata_query_new_for_id ()" link="GDataQuery.html#gdata-query-new-for-id"/>
+    <function name="gdata_query_get_query_uri ()" link="GDataQuery.html#gdata-query-get-query-uri"/>
+    <function name="gdata_query_next_page ()" link="GDataQuery.html#gdata-query-next-page"/>
+    <function name="gdata_query_previous_page ()" link="GDataQuery.html#gdata-query-previous-page"/>
+    <function name="gdata_query_get_q ()" link="GDataQuery.html#gdata-query-get-q"/>
+    <function name="gdata_query_set_q ()" link="GDataQuery.html#gdata-query-set-q"/>
+    <function name="gdata_query_get_entry_id ()" link="GDataQuery.html#gdata-query-get-entry-id"/>
+    <function name="gdata_query_set_entry_id ()" link="GDataQuery.html#gdata-query-set-entry-id"/>
+    <function name="gdata_query_get_etag ()" link="GDataQuery.html#gdata-query-get-etag"/>
+    <function name="gdata_query_set_etag ()" link="GDataQuery.html#gdata-query-set-etag"/>
+    <function name="gdata_query_get_author ()" link="GDataQuery.html#gdata-query-get-author"/>
+    <function name="gdata_query_set_author ()" link="GDataQuery.html#gdata-query-set-author"/>
+    <function name="gdata_query_get_categories ()" link="GDataQuery.html#gdata-query-get-categories"/>
+    <function name="gdata_query_set_categories ()" link="GDataQuery.html#gdata-query-set-categories"/>
+    <function name="gdata_query_get_published_min ()" link="GDataQuery.html#gdata-query-get-published-min"/>
+    <function name="gdata_query_set_published_min ()" link="GDataQuery.html#gdata-query-set-published-min"/>
+    <function name="gdata_query_get_published_max ()" link="GDataQuery.html#gdata-query-get-published-max"/>
+    <function name="gdata_query_set_published_max ()" link="GDataQuery.html#gdata-query-set-published-max"/>
+    <function name="gdata_query_get_updated_min ()" link="GDataQuery.html#gdata-query-get-updated-min"/>
+    <function name="gdata_query_set_updated_min ()" link="GDataQuery.html#gdata-query-set-updated-min"/>
+    <function name="gdata_query_get_updated_max ()" link="GDataQuery.html#gdata-query-get-updated-max"/>
+    <function name="gdata_query_set_updated_max ()" link="GDataQuery.html#gdata-query-set-updated-max"/>
+    <function name="gdata_query_get_start_index ()" link="GDataQuery.html#gdata-query-get-start-index"/>
+    <function name="gdata_query_set_start_index ()" link="GDataQuery.html#gdata-query-set-start-index"/>
+    <function name="gdata_query_get_max_results ()" link="GDataQuery.html#gdata-query-get-max-results"/>
+    <function name="gdata_query_set_max_results ()" link="GDataQuery.html#gdata-query-set-max-results"/>
+    <function name="gdata_query_is_strict ()" link="GDataQuery.html#gdata-query-is-strict"/>
+    <function name="gdata_query_set_is_strict ()" link="GDataQuery.html#gdata-query-set-is-strict"/>
+    <function name="The &quot;author&quot; property" link="GDataQuery.html#GDataQuery--author"/>
+    <function name="The &quot;categories&quot; property" link="GDataQuery.html#GDataQuery--categories"/>
+    <function name="The &quot;entry-id&quot; property" link="GDataQuery.html#GDataQuery--entry-id"/>
+    <function name="The &quot;etag&quot; property" link="GDataQuery.html#GDataQuery--etag"/>
+    <function name="The &quot;is-strict&quot; property" link="GDataQuery.html#GDataQuery--is-strict"/>
+    <function name="The &quot;max-results&quot; property" link="GDataQuery.html#GDataQuery--max-results"/>
+    <function name="The &quot;published-max&quot; property" link="GDataQuery.html#GDataQuery--published-max"/>
+    <function name="The &quot;published-min&quot; property" link="GDataQuery.html#GDataQuery--published-min"/>
+    <function name="The &quot;q&quot; property" link="GDataQuery.html#GDataQuery--q"/>
+    <function name="The &quot;start-index&quot; property" link="GDataQuery.html#GDataQuery--start-index"/>
+    <function name="The &quot;updated-max&quot; property" link="GDataQuery.html#GDataQuery--updated-max"/>
+    <function name="The &quot;updated-min&quot; property" link="GDataQuery.html#GDataQuery--updated-min"/>
+    <function name="GDataFeed" link="GDataFeed.html#GDataFeed-struct"/>
+    <function name="GDataFeedClass" link="GDataFeed.html#GDataFeedClass"/>
+    <function name="gdata_feed_get_title ()" link="GDataFeed.html#gdata-feed-get-title"/>
+    <function name="gdata_feed_get_subtitle ()" link="GDataFeed.html#gdata-feed-get-subtitle"/>
+    <function name="gdata_feed_get_id ()" link="GDataFeed.html#gdata-feed-get-id"/>
+    <function name="gdata_feed_get_etag ()" link="GDataFeed.html#gdata-feed-get-etag"/>
+    <function name="gdata_feed_get_authors ()" link="GDataFeed.html#gdata-feed-get-authors"/>
+    <function name="gdata_feed_get_categories ()" link="GDataFeed.html#gdata-feed-get-categories"/>
+    <function name="gdata_feed_get_entries ()" link="GDataFeed.html#gdata-feed-get-entries"/>
+    <function name="gdata_feed_look_up_entry ()" link="GDataFeed.html#gdata-feed-look-up-entry"/>
+    <function name="gdata_feed_get_generator ()" link="GDataFeed.html#gdata-feed-get-generator"/>
+    <function name="gdata_feed_get_links ()" link="GDataFeed.html#gdata-feed-get-links"/>
+    <function name="gdata_feed_look_up_link ()" link="GDataFeed.html#gdata-feed-look-up-link"/>
+    <function name="gdata_feed_get_logo ()" link="GDataFeed.html#gdata-feed-get-logo"/>
+    <function name="gdata_feed_get_updated ()" link="GDataFeed.html#gdata-feed-get-updated"/>
+    <function name="gdata_feed_get_start_index ()" link="GDataFeed.html#gdata-feed-get-start-index"/>
+    <function name="gdata_feed_get_total_results ()" link="GDataFeed.html#gdata-feed-get-total-results"/>
+    <function name="gdata_feed_get_items_per_page ()" link="GDataFeed.html#gdata-feed-get-items-per-page"/>
+    <function name="The &quot;etag&quot; property" link="GDataFeed.html#GDataFeed--etag"/>
+    <function name="The &quot;generator&quot; property" link="GDataFeed.html#GDataFeed--generator"/>
+    <function name="The &quot;id&quot; property" link="GDataFeed.html#GDataFeed--id"/>
+    <function name="The &quot;items-per-page&quot; property" link="GDataFeed.html#GDataFeed--items-per-page"/>
+    <function name="The &quot;logo&quot; property" link="GDataFeed.html#GDataFeed--logo"/>
+    <function name="The &quot;start-index&quot; property" link="GDataFeed.html#GDataFeed--start-index"/>
+    <function name="The &quot;subtitle&quot; property" link="GDataFeed.html#GDataFeed--subtitle"/>
+    <function name="The &quot;title&quot; property" link="GDataFeed.html#GDataFeed--title"/>
+    <function name="The &quot;total-results&quot; property" link="GDataFeed.html#GDataFeed--total-results"/>
+    <function name="The &quot;updated&quot; property" link="GDataFeed.html#GDataFeed--updated"/>
+    <function name="GDataEntry" link="GDataEntry.html#GDataEntry-struct"/>
+    <function name="GDataEntryClass" link="GDataEntry.html#GDataEntryClass"/>
+    <function name="gdata_entry_new ()" link="GDataEntry.html#gdata-entry-new"/>
+    <function name="gdata_entry_get_title ()" link="GDataEntry.html#gdata-entry-get-title"/>
+    <function name="gdata_entry_set_title ()" link="GDataEntry.html#gdata-entry-set-title"/>
+    <function name="gdata_entry_get_summary ()" link="GDataEntry.html#gdata-entry-get-summary"/>
+    <function name="gdata_entry_set_summary ()" link="GDataEntry.html#gdata-entry-set-summary"/>
+    <function name="gdata_entry_get_id ()" link="GDataEntry.html#gdata-entry-get-id"/>
+    <function name="gdata_entry_get_etag ()" link="GDataEntry.html#gdata-entry-get-etag"/>
+    <function name="gdata_entry_get_content ()" link="GDataEntry.html#gdata-entry-get-content"/>
+    <function name="gdata_entry_set_content ()" link="GDataEntry.html#gdata-entry-set-content"/>
+    <function name="gdata_entry_get_published ()" link="GDataEntry.html#gdata-entry-get-published"/>
+    <function name="gdata_entry_get_updated ()" link="GDataEntry.html#gdata-entry-get-updated"/>
+    <function name="gdata_entry_add_author ()" link="GDataEntry.html#gdata-entry-add-author"/>
+    <function name="gdata_entry_add_category ()" link="GDataEntry.html#gdata-entry-add-category"/>
+    <function name="gdata_entry_get_categories ()" link="GDataEntry.html#gdata-entry-get-categories"/>
+    <function name="gdata_entry_add_link ()" link="GDataEntry.html#gdata-entry-add-link"/>
+    <function name="gdata_entry_look_up_link ()" link="GDataEntry.html#gdata-entry-look-up-link"/>
+    <function name="gdata_entry_look_up_links ()" link="GDataEntry.html#gdata-entry-look-up-links"/>
+    <function name="gdata_entry_is_inserted ()" link="GDataEntry.html#gdata-entry-is-inserted"/>
+    <function name="gdata_entry_get_rights ()" link="GDataEntry.html#gdata-entry-get-rights"/>
+    <function name="gdata_entry_set_rights ()" link="GDataEntry.html#gdata-entry-set-rights"/>
+    <function name="The &quot;content&quot; property" link="GDataEntry.html#GDataEntry--content"/>
+    <function name="The &quot;etag&quot; property" link="GDataEntry.html#GDataEntry--etag"/>
+    <function name="The &quot;id&quot; property" link="GDataEntry.html#GDataEntry--id"/>
+    <function name="The &quot;is-inserted&quot; property" link="GDataEntry.html#GDataEntry--is-inserted"/>
+    <function name="The &quot;published&quot; property" link="GDataEntry.html#GDataEntry--published"/>
+    <function name="The &quot;rights&quot; property" link="GDataEntry.html#GDataEntry--rights"/>
+    <function name="The &quot;summary&quot; property" link="GDataEntry.html#GDataEntry--summary"/>
+    <function name="The &quot;title&quot; property" link="GDataEntry.html#GDataEntry--title"/>
+    <function name="The &quot;updated&quot; property" link="GDataEntry.html#GDataEntry--updated"/>
+    <function name="GDataColor" link="gdata-GData-Types.html#GDataColor"/>
+    <function name="gdata_color_from_hexadecimal ()" link="gdata-GData-Types.html#gdata-color-from-hexadecimal"/>
+    <function name="gdata_color_to_hexadecimal ()" link="gdata-GData-Types.html#gdata-color-to-hexadecimal"/>
+    <function name="GDataParsable" link="GDataParsable.html#GDataParsable-struct"/>
+    <function name="GDataParsableClass" link="GDataParsable.html#GDataParsableClass"/>
+    <function name="gdata_parsable_new_from_xml ()" link="GDataParsable.html#gdata-parsable-new-from-xml"/>
+    <function name="gdata_parsable_get_xml ()" link="GDataParsable.html#gdata-parsable-get-xml"/>
+    <function name="GDataDownloadStream" link="GDataDownloadStream.html#GDataDownloadStream-struct"/>
+    <function name="GDataDownloadStreamClass" link="GDataDownloadStream.html#GDataDownloadStreamClass"/>
+    <function name="gdata_download_stream_new ()" link="GDataDownloadStream.html#gdata-download-stream-new"/>
+    <function name="gdata_download_stream_get_service ()" link="GDataDownloadStream.html#gdata-download-stream-get-service"/>
+    <function name="gdata_download_stream_get_download_uri ()" link="GDataDownloadStream.html#gdata-download-stream-get-download-uri"/>
+    <function name="gdata_download_stream_get_content_type ()" link="GDataDownloadStream.html#gdata-download-stream-get-content-type"/>
+    <function name="gdata_download_stream_get_content_length ()" link="GDataDownloadStream.html#gdata-download-stream-get-content-length"/>
+    <function name="The &quot;content-length&quot; property" link="GDataDownloadStream.html#GDataDownloadStream--content-length"/>
+    <function name="The &quot;content-type&quot; property" link="GDataDownloadStream.html#GDataDownloadStream--content-type"/>
+    <function name="The &quot;download-uri&quot; property" link="GDataDownloadStream.html#GDataDownloadStream--download-uri"/>
+    <function name="The &quot;service&quot; property" link="GDataDownloadStream.html#GDataDownloadStream--service"/>
+    <function name="GDataUploadStream" link="GDataUploadStream.html#GDataUploadStream-struct"/>
+    <function name="GDataUploadStreamClass" link="GDataUploadStream.html#GDataUploadStreamClass"/>
+    <function name="gdata_upload_stream_new ()" link="GDataUploadStream.html#gdata-upload-stream-new"/>
+    <function name="gdata_upload_stream_get_response ()" link="GDataUploadStream.html#gdata-upload-stream-get-response"/>
+    <function name="gdata_upload_stream_get_service ()" link="GDataUploadStream.html#gdata-upload-stream-get-service"/>
+    <function name="gdata_upload_stream_get_upload_uri ()" link="GDataUploadStream.html#gdata-upload-stream-get-upload-uri"/>
+    <function name="gdata_upload_stream_get_entry ()" link="GDataUploadStream.html#gdata-upload-stream-get-entry"/>
+    <function name="gdata_upload_stream_get_slug ()" link="GDataUploadStream.html#gdata-upload-stream-get-slug"/>
+    <function name="gdata_upload_stream_get_content_type ()" link="GDataUploadStream.html#gdata-upload-stream-get-content-type"/>
+    <function name="The &quot;content-type&quot; property" link="GDataUploadStream.html#GDataUploadStream--content-type"/>
+    <function name="The &quot;entry&quot; property" link="GDataUploadStream.html#GDataUploadStream--entry"/>
+    <function name="The &quot;service&quot; property" link="GDataUploadStream.html#GDataUploadStream--service"/>
+    <function name="The &quot;slug&quot; property" link="GDataUploadStream.html#GDataUploadStream--slug"/>
+    <function name="The &quot;upload-uri&quot; property" link="GDataUploadStream.html#GDataUploadStream--upload-uri"/>
+    <function name="GDataAccessHandler" link="GDataAccessHandler.html#GDataAccessHandler-struct"/>
+    <function name="GDataAccessHandlerIface" link="GDataAccessHandler.html#GDataAccessHandlerIface"/>
+    <function name="gdata_access_handler_get_rules ()" link="GDataAccessHandler.html#gdata-access-handler-get-rules"/>
+    <function name="gdata_access_handler_insert_rule ()" link="GDataAccessHandler.html#gdata-access-handler-insert-rule"/>
+    <function name="gdata_access_handler_update_rule ()" link="GDataAccessHandler.html#gdata-access-handler-update-rule"/>
+    <function name="gdata_access_handler_delete_rule ()" link="GDataAccessHandler.html#gdata-access-handler-delete-rule"/>
+    <function name="GDataAccessRule" link="GDataAccessRule.html#GDataAccessRule-struct"/>
+    <function name="GDataAccessRuleClass" link="GDataAccessRule.html#GDataAccessRuleClass"/>
+    <function name="gdata_access_rule_new ()" link="GDataAccessRule.html#gdata-access-rule-new"/>
+    <function name="gdata_access_rule_get_role ()" link="GDataAccessRule.html#gdata-access-rule-get-role"/>
+    <function name="gdata_access_rule_set_role ()" link="GDataAccessRule.html#gdata-access-rule-set-role"/>
+    <function name="gdata_access_rule_get_scope ()" link="GDataAccessRule.html#gdata-access-rule-get-scope"/>
+    <function name="gdata_access_rule_set_scope ()" link="GDataAccessRule.html#gdata-access-rule-set-scope"/>
+    <function name="The &quot;role&quot; property" link="GDataAccessRule.html#GDataAccessRule--role"/>
+    <function name="The &quot;scope-type&quot; property" link="GDataAccessRule.html#GDataAccessRule--scope-type"/>
+    <function name="The &quot;scope-value&quot; property" link="GDataAccessRule.html#GDataAccessRule--scope-value"/>
+    <function name="GDataAuthor" link="GDataAuthor.html#GDataAuthor-struct"/>
+    <function name="GDataAuthorClass" link="GDataAuthor.html#GDataAuthorClass"/>
+    <function name="gdata_author_new ()" link="GDataAuthor.html#gdata-author-new"/>
+    <function name="gdata_author_compare ()" link="GDataAuthor.html#gdata-author-compare"/>
+    <function name="gdata_author_get_name ()" link="GDataAuthor.html#gdata-author-get-name"/>
+    <function name="gdata_author_set_name ()" link="GDataAuthor.html#gdata-author-set-name"/>
+    <function name="gdata_author_get_uri ()" link="GDataAuthor.html#gdata-author-get-uri"/>
+    <function name="gdata_author_set_uri ()" link="GDataAuthor.html#gdata-author-set-uri"/>
+    <function name="gdata_author_get_email_address ()" link="GDataAuthor.html#gdata-author-get-email-address"/>
+    <function name="gdata_author_set_email_address ()" link="GDataAuthor.html#gdata-author-set-email-address"/>
+    <function name="The &quot;email-address&quot; property" link="GDataAuthor.html#GDataAuthor--email-address"/>
+    <function name="The &quot;name&quot; property" link="GDataAuthor.html#GDataAuthor--name"/>
+    <function name="The &quot;uri&quot; property" link="GDataAuthor.html#GDataAuthor--uri"/>
+    <function name="GDataCategory" link="GDataCategory.html#GDataCategory-struct"/>
+    <function name="GDataCategoryClass" link="GDataCategory.html#GDataCategoryClass"/>
+    <function name="gdata_category_new ()" link="GDataCategory.html#gdata-category-new"/>
+    <function name="gdata_category_compare ()" link="GDataCategory.html#gdata-category-compare"/>
+    <function name="gdata_category_get_term ()" link="GDataCategory.html#gdata-category-get-term"/>
+    <function name="gdata_category_set_term ()" link="GDataCategory.html#gdata-category-set-term"/>
+    <function name="gdata_category_get_scheme ()" link="GDataCategory.html#gdata-category-get-scheme"/>
+    <function name="gdata_category_set_scheme ()" link="GDataCategory.html#gdata-category-set-scheme"/>
+    <function name="gdata_category_get_label ()" link="GDataCategory.html#gdata-category-get-label"/>
+    <function name="gdata_category_set_label ()" link="GDataCategory.html#gdata-category-set-label"/>
+    <function name="The &quot;label&quot; property" link="GDataCategory.html#GDataCategory--label"/>
+    <function name="The &quot;scheme&quot; property" link="GDataCategory.html#GDataCategory--scheme"/>
+    <function name="The &quot;term&quot; property" link="GDataCategory.html#GDataCategory--term"/>
+    <function name="GDataGenerator" link="GDataGenerator.html#GDataGenerator-struct"/>
+    <function name="GDataGeneratorClass" link="GDataGenerator.html#GDataGeneratorClass"/>
+    <function name="gdata_generator_compare ()" link="GDataGenerator.html#gdata-generator-compare"/>
+    <function name="gdata_generator_get_name ()" link="GDataGenerator.html#gdata-generator-get-name"/>
+    <function name="gdata_generator_get_uri ()" link="GDataGenerator.html#gdata-generator-get-uri"/>
+    <function name="gdata_generator_get_version ()" link="GDataGenerator.html#gdata-generator-get-version"/>
+    <function name="The &quot;name&quot; property" link="GDataGenerator.html#GDataGenerator--name"/>
+    <function name="The &quot;uri&quot; property" link="GDataGenerator.html#GDataGenerator--uri"/>
+    <function name="The &quot;version&quot; property" link="GDataGenerator.html#GDataGenerator--version"/>
+    <function name="GDataLink" link="GDataLink.html#GDataLink-struct"/>
+    <function name="GDataLinkClass" link="GDataLink.html#GDataLinkClass"/>
+    <function name="gdata_link_new ()" link="GDataLink.html#gdata-link-new"/>
+    <function name="gdata_link_compare ()" link="GDataLink.html#gdata-link-compare"/>
+    <function name="gdata_link_get_uri ()" link="GDataLink.html#gdata-link-get-uri"/>
+    <function name="gdata_link_set_uri ()" link="GDataLink.html#gdata-link-set-uri"/>
+    <function name="gdata_link_get_relation_type ()" link="GDataLink.html#gdata-link-get-relation-type"/>
+    <function name="gdata_link_set_relation_type ()" link="GDataLink.html#gdata-link-set-relation-type"/>
+    <function name="gdata_link_get_content_type ()" link="GDataLink.html#gdata-link-get-content-type"/>
+    <function name="gdata_link_set_content_type ()" link="GDataLink.html#gdata-link-set-content-type"/>
+    <function name="gdata_link_get_language ()" link="GDataLink.html#gdata-link-get-language"/>
+    <function name="gdata_link_set_language ()" link="GDataLink.html#gdata-link-set-language"/>
+    <function name="gdata_link_get_title ()" link="GDataLink.html#gdata-link-get-title"/>
+    <function name="gdata_link_set_title ()" link="GDataLink.html#gdata-link-set-title"/>
+    <function name="gdata_link_get_length ()" link="GDataLink.html#gdata-link-get-length"/>
+    <function name="gdata_link_set_length ()" link="GDataLink.html#gdata-link-set-length"/>
+    <function name="GDATA_LINK_ALTERNATE" link="GDataLink.html#GDATA-LINK-ALTERNATE:CAPS"/>
+    <function name="GDATA_LINK_EDIT" link="GDataLink.html#GDATA-LINK-EDIT:CAPS"/>
+    <function name="GDATA_LINK_EDIT_MEDIA" link="GDataLink.html#GDATA-LINK-EDIT-MEDIA:CAPS"/>
+    <function name="GDATA_LINK_ENCLOSURE" link="GDataLink.html#GDATA-LINK-ENCLOSURE:CAPS"/>
+    <function name="GDATA_LINK_RELATED" link="GDataLink.html#GDATA-LINK-RELATED:CAPS"/>
+    <function name="GDATA_LINK_SELF" link="GDataLink.html#GDATA-LINK-SELF:CAPS"/>
+    <function name="GDATA_LINK_VIA" link="GDataLink.html#GDATA-LINK-VIA:CAPS"/>
+    <function name="The &quot;content-type&quot; property" link="GDataLink.html#GDataLink--content-type"/>
+    <function name="The &quot;language&quot; property" link="GDataLink.html#GDataLink--language"/>
+    <function name="The &quot;length&quot; property" link="GDataLink.html#GDataLink--length"/>
+    <function name="The &quot;relation-type&quot; property" link="GDataLink.html#GDataLink--relation-type"/>
+    <function name="The &quot;title&quot; property" link="GDataLink.html#GDataLink--title"/>
+    <function name="The &quot;uri&quot; property" link="GDataLink.html#GDataLink--uri"/>
+    <function name="GDataGDEmailAddress" link="GDataGDEmailAddress.html#GDataGDEmailAddress-struct"/>
+    <function name="GDataGDEmailAddressClass" link="GDataGDEmailAddress.html#GDataGDEmailAddressClass"/>
+    <function name="gdata_gd_email_address_new ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-new"/>
+    <function name="gdata_gd_email_address_compare ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-compare"/>
+    <function name="gdata_gd_email_address_get_address ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-get-address"/>
+    <function name="gdata_gd_email_address_set_address ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-address"/>
+    <function name="gdata_gd_email_address_get_relation_type ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-get-relation-type"/>
+    <function name="gdata_gd_email_address_set_relation_type ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-relation-type"/>
+    <function name="gdata_gd_email_address_get_label ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-get-label"/>
+    <function name="gdata_gd_email_address_set_label ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-label"/>
+    <function name="gdata_gd_email_address_is_primary ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-is-primary"/>
+    <function name="gdata_gd_email_address_set_is_primary ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-is-primary"/>
+    <function name="The &quot;address&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--address"/>
+    <function name="The &quot;is-primary&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--is-primary"/>
+    <function name="The &quot;label&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--label"/>
+    <function name="The &quot;relation-type&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--relation-type"/>
+    <function name="GDataGDIMAddress" link="GDataGDIMAddress.html#GDataGDIMAddress-struct"/>
+    <function name="GDataGDIMAddressClass" link="GDataGDIMAddress.html#GDataGDIMAddressClass"/>
+    <function name="gdata_gd_im_address_new ()" link="GDataGDIMAddress.html#gdata-gd-im-address-new"/>
+    <function name="gdata_gd_im_address_compare ()" link="GDataGDIMAddress.html#gdata-gd-im-address-compare"/>
+    <function name="gdata_gd_im_address_get_address ()" link="GDataGDIMAddress.html#gdata-gd-im-address-get-address"/>
+    <function name="gdata_gd_im_address_set_address ()" link="GDataGDIMAddress.html#gdata-gd-im-address-set-address"/>
+    <function name="gdata_gd_im_address_get_protocol ()" link="GDataGDIMAddress.html#gdata-gd-im-address-get-protocol"/>
+    <function name="gdata_gd_im_address_set_protocol ()" link="GDataGDIMAddress.html#gdata-gd-im-address-set-protocol"/>
+    <function name="gdata_gd_im_address_get_relation_type ()" link="GDataGDIMAddress.html#gdata-gd-im-address-get-relation-type"/>
+    <function name="gdata_gd_im_address_set_relation_type ()" link="GDataGDIMAddress.html#gdata-gd-im-address-set-relation-type"/>
+    <function name="gdata_gd_im_address_get_label ()" link="GDataGDIMAddress.html#gdata-gd-im-address-get-label"/>
+    <function name="gdata_gd_im_address_set_label ()" link="GDataGDIMAddress.html#gdata-gd-im-address-set-label"/>
+    <function name="gdata_gd_im_address_is_primary ()" link="GDataGDIMAddress.html#gdata-gd-im-address-is-primary"/>
+    <function name="gdata_gd_im_address_set_is_primary ()" link="GDataGDIMAddress.html#gdata-gd-im-address-set-is-primary"/>
+    <function name="The &quot;address&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--address"/>
+    <function name="The &quot;is-primary&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--is-primary"/>
+    <function name="The &quot;label&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--label"/>
+    <function name="The &quot;protocol&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--protocol"/>
+    <function name="The &quot;relation-type&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--relation-type"/>
+    <function name="GDataGDOrganization" link="GDataGDOrganization.html#GDataGDOrganization-struct"/>
+    <function name="GDataGDOrganizationClass" link="GDataGDOrganization.html#GDataGDOrganizationClass"/>
+    <function name="gdata_gd_organization_new ()" link="GDataGDOrganization.html#gdata-gd-organization-new"/>
+    <function name="gdata_gd_organization_compare ()" link="GDataGDOrganization.html#gdata-gd-organization-compare"/>
+    <function name="gdata_gd_organization_get_name ()" link="GDataGDOrganization.html#gdata-gd-organization-get-name"/>
+    <function name="gdata_gd_organization_set_name ()" link="GDataGDOrganization.html#gdata-gd-organization-set-name"/>
+    <function name="gdata_gd_organization_get_title ()" link="GDataGDOrganization.html#gdata-gd-organization-get-title"/>
+    <function name="gdata_gd_organization_set_title ()" link="GDataGDOrganization.html#gdata-gd-organization-set-title"/>
+    <function name="gdata_gd_organization_get_relation_type ()" link="GDataGDOrganization.html#gdata-gd-organization-get-relation-type"/>
+    <function name="gdata_gd_organization_set_relation_type ()" link="GDataGDOrganization.html#gdata-gd-organization-set-relation-type"/>
+    <function name="gdata_gd_organization_get_label ()" link="GDataGDOrganization.html#gdata-gd-organization-get-label"/>
+    <function name="gdata_gd_organization_set_label ()" link="GDataGDOrganization.html#gdata-gd-organization-set-label"/>
+    <function name="gdata_gd_organization_is_primary ()" link="GDataGDOrganization.html#gdata-gd-organization-is-primary"/>
+    <function name="gdata_gd_organization_set_is_primary ()" link="GDataGDOrganization.html#gdata-gd-organization-set-is-primary"/>
+    <function name="gdata_gd_organization_get_department ()" link="GDataGDOrganization.html#gdata-gd-organization-get-department"/>
+    <function name="gdata_gd_organization_set_department ()" link="GDataGDOrganization.html#gdata-gd-organization-set-department"/>
+    <function name="gdata_gd_organization_get_job_description ()" link="GDataGDOrganization.html#gdata-gd-organization-get-job-description"/>
+    <function name="gdata_gd_organization_set_job_description ()" link="GDataGDOrganization.html#gdata-gd-organization-set-job-description"/>
+    <function name="gdata_gd_organization_get_symbol ()" link="GDataGDOrganization.html#gdata-gd-organization-get-symbol"/>
+    <function name="gdata_gd_organization_set_symbol ()" link="GDataGDOrganization.html#gdata-gd-organization-set-symbol"/>
+    <function name="The &quot;department&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--department"/>
+    <function name="The &quot;is-primary&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--is-primary"/>
+    <function name="The &quot;job-description&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--job-description"/>
+    <function name="The &quot;label&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--label"/>
+    <function name="The &quot;name&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--name"/>
+    <function name="The &quot;relation-type&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--relation-type"/>
+    <function name="The &quot;symbol&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--symbol"/>
+    <function name="The &quot;title&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--title"/>
+    <function name="GDataGDPhoneNumber" link="GDataGDPhoneNumber.html#GDataGDPhoneNumber-struct"/>
+    <function name="GDataGDPhoneNumberClass" link="GDataGDPhoneNumber.html#GDataGDPhoneNumberClass"/>
+    <function name="gdata_gd_phone_number_new ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-new"/>
+    <function name="gdata_gd_phone_number_compare ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-compare"/>
+    <function name="gdata_gd_phone_number_get_number ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-get-number"/>
+    <function name="gdata_gd_phone_number_set_number ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-number"/>
+    <function name="gdata_gd_phone_number_get_uri ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-get-uri"/>
+    <function name="gdata_gd_phone_number_set_uri ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-uri"/>
+    <function name="gdata_gd_phone_number_get_relation_type ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-get-relation-type"/>
+    <function name="gdata_gd_phone_number_set_relation_type ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-relation-type"/>
+    <function name="gdata_gd_phone_number_get_label ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-get-label"/>
+    <function name="gdata_gd_phone_number_set_label ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-label"/>
+    <function name="gdata_gd_phone_number_is_primary ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-is-primary"/>
+    <function name="gdata_gd_phone_number_set_is_primary ()" link="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-is-primary"/>
+    <function name="The &quot;is-primary&quot; property" link="GDataGDPhoneNumber.html#GDataGDPhoneNumber--is-primary"/>
+    <function name="The &quot;label&quot; property" link="GDataGDPhoneNumber.html#GDataGDPhoneNumber--label"/>
+    <function name="The &quot;number&quot; property" link="GDataGDPhoneNumber.html#GDataGDPhoneNumber--number"/>
+    <function name="The &quot;relation-type&quot; property" link="GDataGDPhoneNumber.html#GDataGDPhoneNumber--relation-type"/>
+    <function name="The &quot;uri&quot; property" link="GDataGDPhoneNumber.html#GDataGDPhoneNumber--uri"/>
+    <function name="GDataGDPostalAddress" link="GDataGDPostalAddress.html#GDataGDPostalAddress-struct"/>
+    <function name="GDataGDPostalAddressClass" link="GDataGDPostalAddress.html#GDataGDPostalAddressClass"/>
+    <function name="GDATA_GD_ADDRESS_USAGE_GENERAL" link="GDataGDPostalAddress.html#GDATA-GD-ADDRESS-USAGE-GENERAL:CAPS"/>
+    <function name="GDATA_GD_ADDRESS_USAGE_LOCAL" link="GDataGDPostalAddress.html#GDATA-GD-ADDRESS-USAGE-LOCAL:CAPS"/>
+    <function name="GDATA_GD_MAIL_CLASS_BOTH" link="GDataGDPostalAddress.html#GDATA-GD-MAIL-CLASS-BOTH:CAPS"/>
+    <function name="GDATA_GD_MAIL_CLASS_LETTERS" link="GDataGDPostalAddress.html#GDATA-GD-MAIL-CLASS-LETTERS:CAPS"/>
+    <function name="GDATA_GD_MAIL_CLASS_NEITHER" link="GDataGDPostalAddress.html#GDATA-GD-MAIL-CLASS-NEITHER:CAPS"/>
+    <function name="GDATA_GD_MAIL_CLASS_PARCELS" link="GDataGDPostalAddress.html#GDATA-GD-MAIL-CLASS-PARCELS:CAPS"/>
+    <function name="gdata_gd_postal_address_new ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-new"/>
+    <function name="gdata_gd_postal_address_compare ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-compare"/>
+    <function name="gdata_gd_postal_address_get_address ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-address"/>
+    <function name="gdata_gd_postal_address_set_address ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-address"/>
+    <function name="gdata_gd_postal_address_get_relation_type ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-relation-type"/>
+    <function name="gdata_gd_postal_address_set_relation_type ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-relation-type"/>
+    <function name="gdata_gd_postal_address_get_label ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-label"/>
+    <function name="gdata_gd_postal_address_set_label ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-label"/>
+    <function name="gdata_gd_postal_address_is_primary ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-is-primary"/>
+    <function name="gdata_gd_postal_address_set_is_primary ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-is-primary"/>
+    <function name="gdata_gd_postal_address_get_mail_class ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-mail-class"/>
+    <function name="gdata_gd_postal_address_set_mail_class ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-mail-class"/>
+    <function name="gdata_gd_postal_address_get_usage ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-usage"/>
+    <function name="gdata_gd_postal_address_set_usage ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-usage"/>
+    <function name="gdata_gd_postal_address_get_agent ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-agent"/>
+    <function name="gdata_gd_postal_address_set_agent ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-agent"/>
+    <function name="gdata_gd_postal_address_get_house_name ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-house-name"/>
+    <function name="gdata_gd_postal_address_set_house_name ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-house-name"/>
+    <function name="gdata_gd_postal_address_get_street ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-street"/>
+    <function name="gdata_gd_postal_address_set_street ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-street"/>
+    <function name="gdata_gd_postal_address_get_po_box ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-po-box"/>
+    <function name="gdata_gd_postal_address_set_po_box ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-po-box"/>
+    <function name="gdata_gd_postal_address_get_neighborhood ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-neighborhood"/>
+    <function name="gdata_gd_postal_address_set_neighborhood ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-neighborhood"/>
+    <function name="gdata_gd_postal_address_get_city ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-city"/>
+    <function name="gdata_gd_postal_address_set_city ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-city"/>
+    <function name="gdata_gd_postal_address_get_subregion ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-subregion"/>
+    <function name="gdata_gd_postal_address_set_subregion ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-subregion"/>
+    <function name="gdata_gd_postal_address_get_region ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-region"/>
+    <function name="gdata_gd_postal_address_set_region ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-region"/>
+    <function name="gdata_gd_postal_address_get_postcode ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-postcode"/>
+    <function name="gdata_gd_postal_address_set_postcode ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-postcode"/>
+    <function name="gdata_gd_postal_address_get_country ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-country"/>
+    <function name="gdata_gd_postal_address_get_country_code ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-get-country-code"/>
+    <function name="gdata_gd_postal_address_set_country ()" link="GDataGDPostalAddress.html#gdata-gd-postal-address-set-country"/>
+    <function name="The &quot;address&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--address"/>
+    <function name="The &quot;agent&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--agent"/>
+    <function name="The &quot;city&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--city"/>
+    <function name="The &quot;country&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--country"/>
+    <function name="The &quot;country-code&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--country-code"/>
+    <function name="The &quot;house-name&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--house-name"/>
+    <function name="The &quot;is-primary&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--is-primary"/>
+    <function name="The &quot;label&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--label"/>
+    <function name="The &quot;mail-class&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--mail-class"/>
+    <function name="The &quot;neighborhood&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--neighborhood"/>
+    <function name="The &quot;po-box&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--po-box"/>
+    <function name="The &quot;postcode&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--postcode"/>
+    <function name="The &quot;region&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--region"/>
+    <function name="The &quot;relation-type&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--relation-type"/>
+    <function name="The &quot;street&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--street"/>
+    <function name="The &quot;subregion&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--subregion"/>
+    <function name="The &quot;usage&quot; property" link="GDataGDPostalAddress.html#GDataGDPostalAddress--usage"/>
+    <function name="GDataGDReminder" link="GDataGDReminder.html#GDataGDReminder-struct"/>
+    <function name="GDataGDReminderClass" link="GDataGDReminder.html#GDataGDReminderClass"/>
+    <function name="gdata_gd_reminder_new ()" link="GDataGDReminder.html#gdata-gd-reminder-new"/>
+    <function name="gdata_gd_reminder_compare ()" link="GDataGDReminder.html#gdata-gd-reminder-compare"/>
+    <function name="gdata_gd_reminder_get_method ()" link="GDataGDReminder.html#gdata-gd-reminder-get-method"/>
+    <function name="gdata_gd_reminder_set_method ()" link="GDataGDReminder.html#gdata-gd-reminder-set-method"/>
+    <function name="gdata_gd_reminder_get_absolute_time ()" link="GDataGDReminder.html#gdata-gd-reminder-get-absolute-time"/>
+    <function name="gdata_gd_reminder_set_absolute_time ()" link="GDataGDReminder.html#gdata-gd-reminder-set-absolute-time"/>
+    <function name="gdata_gd_reminder_is_absolute_time ()" link="GDataGDReminder.html#gdata-gd-reminder-is-absolute-time"/>
+    <function name="gdata_gd_reminder_get_relative_time ()" link="GDataGDReminder.html#gdata-gd-reminder-get-relative-time"/>
+    <function name="gdata_gd_reminder_set_relative_time ()" link="GDataGDReminder.html#gdata-gd-reminder-set-relative-time"/>
+    <function name="The &quot;absolute-time&quot; property" link="GDataGDReminder.html#GDataGDReminder--absolute-time"/>
+    <function name="The &quot;is-absolute-time&quot; property" link="GDataGDReminder.html#GDataGDReminder--is-absolute-time"/>
+    <function name="The &quot;method&quot; property" link="GDataGDReminder.html#GDataGDReminder--method"/>
+    <function name="The &quot;relative-time&quot; property" link="GDataGDReminder.html#GDataGDReminder--relative-time"/>
+    <function name="GDataGDWhen" link="GDataGDWhen.html#GDataGDWhen-struct"/>
+    <function name="GDataGDWhenClass" link="GDataGDWhen.html#GDataGDWhenClass"/>
+    <function name="gdata_gd_when_new ()" link="GDataGDWhen.html#gdata-gd-when-new"/>
+    <function name="gdata_gd_when_compare ()" link="GDataGDWhen.html#gdata-gd-when-compare"/>
+    <function name="gdata_gd_when_get_start_time ()" link="GDataGDWhen.html#gdata-gd-when-get-start-time"/>
+    <function name="gdata_gd_when_set_start_time ()" link="GDataGDWhen.html#gdata-gd-when-set-start-time"/>
+    <function name="gdata_gd_when_get_end_time ()" link="GDataGDWhen.html#gdata-gd-when-get-end-time"/>
+    <function name="gdata_gd_when_set_end_time ()" link="GDataGDWhen.html#gdata-gd-when-set-end-time"/>
+    <function name="gdata_gd_when_is_date ()" link="GDataGDWhen.html#gdata-gd-when-is-date"/>
+    <function name="gdata_gd_when_set_is_date ()" link="GDataGDWhen.html#gdata-gd-when-set-is-date"/>
+    <function name="gdata_gd_when_get_value_string ()" link="GDataGDWhen.html#gdata-gd-when-get-value-string"/>
+    <function name="gdata_gd_when_set_value_string ()" link="GDataGDWhen.html#gdata-gd-when-set-value-string"/>
+    <function name="gdata_gd_when_get_reminders ()" link="GDataGDWhen.html#gdata-gd-when-get-reminders"/>
+    <function name="The &quot;end-time&quot; property" link="GDataGDWhen.html#GDataGDWhen--end-time"/>
+    <function name="The &quot;is-date&quot; property" link="GDataGDWhen.html#GDataGDWhen--is-date"/>
+    <function name="The &quot;start-time&quot; property" link="GDataGDWhen.html#GDataGDWhen--start-time"/>
+    <function name="The &quot;value-string&quot; property" link="GDataGDWhen.html#GDataGDWhen--value-string"/>
+    <function name="GDataGDWhere" link="GDataGDWhere.html#GDataGDWhere-struct"/>
+    <function name="GDataGDWhereClass" link="GDataGDWhere.html#GDataGDWhereClass"/>
+    <function name="gdata_gd_where_new ()" link="GDataGDWhere.html#gdata-gd-where-new"/>
+    <function name="gdata_gd_where_compare ()" link="GDataGDWhere.html#gdata-gd-where-compare"/>
+    <function name="gdata_gd_where_get_relation_type ()" link="GDataGDWhere.html#gdata-gd-where-get-relation-type"/>
+    <function name="gdata_gd_where_set_relation_type ()" link="GDataGDWhere.html#gdata-gd-where-set-relation-type"/>
+    <function name="gdata_gd_where_get_value_string ()" link="GDataGDWhere.html#gdata-gd-where-get-value-string"/>
+    <function name="gdata_gd_where_set_value_string ()" link="GDataGDWhere.html#gdata-gd-where-set-value-string"/>
+    <function name="gdata_gd_where_get_label ()" link="GDataGDWhere.html#gdata-gd-where-get-label"/>
+    <function name="gdata_gd_where_set_label ()" link="GDataGDWhere.html#gdata-gd-where-set-label"/>
+    <function name="The &quot;label&quot; property" link="GDataGDWhere.html#GDataGDWhere--label"/>
+    <function name="The &quot;relation-type&quot; property" link="GDataGDWhere.html#GDataGDWhere--relation-type"/>
+    <function name="The &quot;value-string&quot; property" link="GDataGDWhere.html#GDataGDWhere--value-string"/>
+    <function name="GDataGDWho" link="GDataGDWho.html#GDataGDWho-struct"/>
+    <function name="GDataGDWhoClass" link="GDataGDWho.html#GDataGDWhoClass"/>
+    <function name="gdata_gd_who_new ()" link="GDataGDWho.html#gdata-gd-who-new"/>
+    <function name="gdata_gd_who_compare ()" link="GDataGDWho.html#gdata-gd-who-compare"/>
+    <function name="gdata_gd_who_get_relation_type ()" link="GDataGDWho.html#gdata-gd-who-get-relation-type"/>
+    <function name="gdata_gd_who_set_relation_type ()" link="GDataGDWho.html#gdata-gd-who-set-relation-type"/>
+    <function name="gdata_gd_who_get_value_string ()" link="GDataGDWho.html#gdata-gd-who-get-value-string"/>
+    <function name="gdata_gd_who_set_value_string ()" link="GDataGDWho.html#gdata-gd-who-set-value-string"/>
+    <function name="gdata_gd_who_get_email_address ()" link="GDataGDWho.html#gdata-gd-who-get-email-address"/>
+    <function name="gdata_gd_who_set_email_address ()" link="GDataGDWho.html#gdata-gd-who-set-email-address"/>
+    <function name="The &quot;email-address&quot; property" link="GDataGDWho.html#GDataGDWho--email-address"/>
+    <function name="The &quot;relation-type&quot; property" link="GDataGDWho.html#GDataGDWho--relation-type"/>
+    <function name="The &quot;value-string&quot; property" link="GDataGDWho.html#GDataGDWho--value-string"/>
+    <function name="GDataMediaCategory" link="GDataMediaCategory.html#GDataMediaCategory-struct"/>
+    <function name="GDataMediaCategoryClass" link="GDataMediaCategory.html#GDataMediaCategoryClass"/>
+    <function name="gdata_media_category_new ()" link="GDataMediaCategory.html#gdata-media-category-new"/>
+    <function name="gdata_media_category_get_category ()" link="GDataMediaCategory.html#gdata-media-category-get-category"/>
+    <function name="gdata_media_category_set_category ()" link="GDataMediaCategory.html#gdata-media-category-set-category"/>
+    <function name="gdata_media_category_get_scheme ()" link="GDataMediaCategory.html#gdata-media-category-get-scheme"/>
+    <function name="gdata_media_category_set_scheme ()" link="GDataMediaCategory.html#gdata-media-category-set-scheme"/>
+    <function name="gdata_media_category_get_label ()" link="GDataMediaCategory.html#gdata-media-category-get-label"/>
+    <function name="gdata_media_category_set_label ()" link="GDataMediaCategory.html#gdata-media-category-set-label"/>
+    <function name="The &quot;category&quot; property" link="GDataMediaCategory.html#GDataMediaCategory--category"/>
+    <function name="The &quot;label&quot; property" link="GDataMediaCategory.html#GDataMediaCategory--label"/>
+    <function name="The &quot;scheme&quot; property" link="GDataMediaCategory.html#GDataMediaCategory--scheme"/>
+    <function name="GDataMediaContent" link="GDataMediaContent.html#GDataMediaContent-struct"/>
+    <function name="GDataMediaContentClass" link="GDataMediaContent.html#GDataMediaContentClass"/>
+    <function name="enum GDataMediaMedium" link="GDataMediaContent.html#GDataMediaMedium"/>
+    <function name="enum GDataMediaExpression" link="GDataMediaContent.html#GDataMediaExpression"/>
+    <function name="gdata_media_content_get_uri ()" link="GDataMediaContent.html#gdata-media-content-get-uri"/>
+    <function name="gdata_media_content_get_filesize ()" link="GDataMediaContent.html#gdata-media-content-get-filesize"/>
+    <function name="gdata_media_content_get_content_type ()" link="GDataMediaContent.html#gdata-media-content-get-content-type"/>
+    <function name="gdata_media_content_get_medium ()" link="GDataMediaContent.html#gdata-media-content-get-medium"/>
+    <function name="gdata_media_content_is_default ()" link="GDataMediaContent.html#gdata-media-content-is-default"/>
+    <function name="gdata_media_content_get_expression ()" link="GDataMediaContent.html#gdata-media-content-get-expression"/>
+    <function name="gdata_media_content_get_duration ()" link="GDataMediaContent.html#gdata-media-content-get-duration"/>
+    <function name="gdata_media_content_get_height ()" link="GDataMediaContent.html#gdata-media-content-get-height"/>
+    <function name="gdata_media_content_get_width ()" link="GDataMediaContent.html#gdata-media-content-get-width"/>
+    <function name="The &quot;content-type&quot; property" link="GDataMediaContent.html#GDataMediaContent--content-type"/>
+    <function name="The &quot;duration&quot; property" link="GDataMediaContent.html#GDataMediaContent--duration"/>
+    <function name="The &quot;expression&quot; property" link="GDataMediaContent.html#GDataMediaContent--expression"/>
+    <function name="The &quot;filesize&quot; property" link="GDataMediaContent.html#GDataMediaContent--filesize"/>
+    <function name="The &quot;height&quot; property" link="GDataMediaContent.html#GDataMediaContent--height"/>
+    <function name="The &quot;is-default&quot; property" link="GDataMediaContent.html#GDataMediaContent--is-default"/>
+    <function name="The &quot;medium&quot; property" link="GDataMediaContent.html#GDataMediaContent--medium"/>
+    <function name="The &quot;uri&quot; property" link="GDataMediaContent.html#GDataMediaContent--uri"/>
+    <function name="The &quot;width&quot; property" link="GDataMediaContent.html#GDataMediaContent--width"/>
+    <function name="GDataMediaCredit" link="GDataMediaCredit.html#GDataMediaCredit-struct"/>
+    <function name="GDataMediaCreditClass" link="GDataMediaCredit.html#GDataMediaCreditClass"/>
+    <function name="gdata_media_credit_get_credit ()" link="GDataMediaCredit.html#gdata-media-credit-get-credit"/>
+    <function name="gdata_media_credit_get_scheme ()" link="GDataMediaCredit.html#gdata-media-credit-get-scheme"/>
+    <function name="gdata_media_credit_get_role ()" link="GDataMediaCredit.html#gdata-media-credit-get-role"/>
+    <function name="The &quot;credit&quot; property" link="GDataMediaCredit.html#GDataMediaCredit--credit"/>
+    <function name="The &quot;role&quot; property" link="GDataMediaCredit.html#GDataMediaCredit--role"/>
+    <function name="The &quot;scheme&quot; property" link="GDataMediaCredit.html#GDataMediaCredit--scheme"/>
+    <function name="GDataMediaThumbnail" link="GDataMediaThumbnail.html#GDataMediaThumbnail-struct"/>
+    <function name="GDataMediaThumbnailClass" link="GDataMediaThumbnail.html#GDataMediaThumbnailClass"/>
+    <function name="gdata_media_thumbnail_get_uri ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-uri"/>
+    <function name="gdata_media_thumbnail_get_height ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-height"/>
+    <function name="gdata_media_thumbnail_get_width ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-width"/>
+    <function name="gdata_media_thumbnail_get_time ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-time"/>
+    <function name="The &quot;height&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--height"/>
+    <function name="The &quot;time&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--time"/>
+    <function name="The &quot;uri&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--uri"/>
+    <function name="The &quot;width&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--width"/>
+    <function name="GDataYouTubeContent" link="GDataYouTubeContent.html#GDataYouTubeContent-struct"/>
+    <function name="GDataYouTubeContentClass" link="GDataYouTubeContent.html#GDataYouTubeContentClass"/>
+    <function name="gdata_youtube_content_get_format ()" link="GDataYouTubeContent.html#gdata-youtube-content-get-format"/>
+    <function name="The &quot;format&quot; property" link="GDataYouTubeContent.html#GDataYouTubeContent--format"/>
+    <function name="GDataYouTubeCredit" link="GDataYouTubeCredit.html#GDataYouTubeCredit-struct"/>
+    <function name="GDataYouTubeCreditClass" link="GDataYouTubeCredit.html#GDataYouTubeCreditClass"/>
+    <function name="gdata_youtube_credit_get_entity_type ()" link="GDataYouTubeCredit.html#gdata-youtube-credit-get-entity-type"/>
+    <function name="The &quot;entity-type&quot; property" link="GDataYouTubeCredit.html#GDataYouTubeCredit--entity-type"/>
+    <function name="GDataYouTubeState" link="GDataYouTubeState.html#GDataYouTubeState-struct"/>
+    <function name="GDataYouTubeStateClass" link="GDataYouTubeState.html#GDataYouTubeStateClass"/>
+    <function name="gdata_youtube_state_get_name ()" link="GDataYouTubeState.html#gdata-youtube-state-get-name"/>
+    <function name="gdata_youtube_state_get_reason_code ()" link="GDataYouTubeState.html#gdata-youtube-state-get-reason-code"/>
+    <function name="gdata_youtube_state_get_help_uri ()" link="GDataYouTubeState.html#gdata-youtube-state-get-help-uri"/>
+    <function name="gdata_youtube_state_get_message ()" link="GDataYouTubeState.html#gdata-youtube-state-get-message"/>
+    <function name="The &quot;help-uri&quot; property" link="GDataYouTubeState.html#GDataYouTubeState--help-uri"/>
+    <function name="The &quot;message&quot; property" link="GDataYouTubeState.html#GDataYouTubeState--message"/>
+    <function name="The &quot;name&quot; property" link="GDataYouTubeState.html#GDataYouTubeState--name"/>
+    <function name="The &quot;reason-code&quot; property" link="GDataYouTubeState.html#GDataYouTubeState--reason-code"/>
+    <function name="GDataYouTubeService" link="GDataYouTubeService.html#GDataYouTubeService-struct"/>
+    <function name="GDataYouTubeServiceClass" link="GDataYouTubeService.html#GDataYouTubeServiceClass"/>
+    <function name="enum GDataYouTubeServiceError" link="GDataYouTubeService.html#GDataYouTubeServiceError"/>
+    <function name="enum GDataYouTubeStandardFeedType" link="GDataYouTubeService.html#GDataYouTubeStandardFeedType"/>
+    <function name="gdata_youtube_service_new ()" link="GDataYouTubeService.html#gdata-youtube-service-new"/>
+    <function name="gdata_youtube_service_query_videos ()" link="GDataYouTubeService.html#gdata-youtube-service-query-videos"/>
+    <function name="gdata_youtube_service_query_videos_async ()" link="GDataYouTubeService.html#gdata-youtube-service-query-videos-async"/>
+    <function name="gdata_youtube_service_query_single_video ()" link="GDataYouTubeService.html#gdata-youtube-service-query-single-video"/>
+    <function name="gdata_youtube_service_query_single_video_async ()" link="GDataYouTubeService.html#gdata-youtube-service-query-single-video-async"/>
+    <function name="gdata_youtube_service_query_single_video_finish ()" link="GDataYouTubeService.html#gdata-youtube-service-query-single-video-finish"/>
+    <function name="gdata_youtube_service_query_related ()" link="GDataYouTubeService.html#gdata-youtube-service-query-related"/>
+    <function name="gdata_youtube_service_query_related_async ()" link="GDataYouTubeService.html#gdata-youtube-service-query-related-async"/>
+    <function name="gdata_youtube_service_query_standard_feed ()" link="GDataYouTubeService.html#gdata-youtube-service-query-standard-feed"/>
+    <function name="gdata_youtube_service_query_standard_feed_async ()" link="GDataYouTubeService.html#gdata-youtube-service-query-standard-feed-async"/>
+    <function name="gdata_youtube_service_upload_video ()" link="GDataYouTubeService.html#gdata-youtube-service-upload-video"/>
+    <function name="gdata_youtube_service_get_developer_key ()" link="GDataYouTubeService.html#gdata-youtube-service-get-developer-key"/>
+    <function name="gdata_youtube_service_get_youtube_user ()" link="GDataYouTubeService.html#gdata-youtube-service-get-youtube-user"/>
+    <function name="The &quot;developer-key&quot; property" link="GDataYouTubeService.html#GDataYouTubeService--developer-key"/>
+    <function name="The &quot;youtube-user&quot; property" link="GDataYouTubeService.html#GDataYouTubeService--youtube-user"/>
+    <function name="GDataYouTubeQuery" link="GDataYouTubeQuery.html#GDataYouTubeQuery-struct"/>
+    <function name="GDataYouTubeQueryClass" link="GDataYouTubeQuery.html#GDataYouTubeQueryClass"/>
+    <function name="enum GDataYouTubeAge" link="GDataYouTubeQuery.html#GDataYouTubeAge"/>
+    <function name="enum GDataYouTubeFormat" link="GDataYouTubeQuery.html#GDataYouTubeFormat"/>
+    <function name="enum GDataYouTubeSafeSearch" link="GDataYouTubeQuery.html#GDataYouTubeSafeSearch"/>
+    <function name="enum GDataYouTubeSortOrder" link="GDataYouTubeQuery.html#GDataYouTubeSortOrder"/>
+    <function name="enum GDataYouTubeUploader" link="GDataYouTubeQuery.html#GDataYouTubeUploader"/>
+    <function name="gdata_youtube_query_new ()" link="GDataYouTubeQuery.html#gdata-youtube-query-new"/>
+    <function name="gdata_youtube_query_get_age ()" link="GDataYouTubeQuery.html#gdata-youtube-query-get-age"/>
+    <function name="gdata_youtube_query_set_age ()" link="GDataYouTubeQuery.html#gdata-youtube-query-set-age"/>
+    <function name="gdata_youtube_query_get_format ()" link="GDataYouTubeQuery.html#gdata-youtube-query-get-format"/>
+    <function name="gdata_youtube_query_set_format ()" link="GDataYouTubeQuery.html#gdata-youtube-query-set-format"/>
+    <function name="gdata_youtube_query_get_language ()" link="GDataYouTubeQuery.html#gdata-youtube-query-get-language"/>
+    <function name="gdata_youtube_query_set_language ()" link="GDataYouTubeQuery.html#gdata-youtube-query-set-language"/>
+    <function name="gdata_youtube_query_get_location ()" link="GDataYouTubeQuery.html#gdata-youtube-query-get-location"/>
+    <function name="gdata_youtube_query_set_location ()" link="GDataYouTubeQuery.html#gdata-youtube-query-set-location"/>
+    <function name="gdata_youtube_query_get_order_by ()" link="GDataYouTubeQuery.html#gdata-youtube-query-get-order-by"/>
+    <function name="gdata_youtube_query_set_order_by ()" link="GDataYouTubeQuery.html#gdata-youtube-query-set-order-by"/>
+    <function name="gdata_youtube_query_get_restriction ()" link="GDataYouTubeQuery.html#gdata-youtube-query-get-restriction"/>
+    <function name="gdata_youtube_query_set_restriction ()" link="GDataYouTubeQuery.html#gdata-youtube-query-set-restriction"/>
+    <function name="gdata_youtube_query_get_safe_search ()" link="GDataYouTubeQuery.html#gdata-youtube-query-get-safe-search"/>
+    <function name="gdata_youtube_query_set_safe_search ()" link="GDataYouTubeQuery.html#gdata-youtube-query-set-safe-search"/>
+    <function name="gdata_youtube_query_get_sort_order ()" link="GDataYouTubeQuery.html#gdata-youtube-query-get-sort-order"/>
+    <function name="gdata_youtube_query_set_sort_order ()" link="GDataYouTubeQuery.html#gdata-youtube-query-set-sort-order"/>
+    <function name="gdata_youtube_query_get_uploader ()" link="GDataYouTubeQuery.html#gdata-youtube-query-get-uploader"/>
+    <function name="gdata_youtube_query_set_uploader ()" link="GDataYouTubeQuery.html#gdata-youtube-query-set-uploader"/>
+    <function name="The &quot;age&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--age"/>
+    <function name="The &quot;format&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--format"/>
+    <function name="The &quot;has-location&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--has-location"/>
+    <function name="The &quot;language&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--language"/>
+    <function name="The &quot;latitude&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude"/>
+    <function name="The &quot;location-radius&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--location-radius"/>
+    <function name="The &quot;longitude&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude"/>
+    <function name="The &quot;order-by&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--order-by"/>
+    <function name="The &quot;restriction&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--restriction"/>
+    <function name="The &quot;safe-search&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--safe-search"/>
+    <function name="The &quot;sort-order&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--sort-order"/>
+    <function name="The &quot;uploader&quot; property" link="GDataYouTubeQuery.html#GDataYouTubeQuery--uploader"/>
+    <function name="GDataYouTubeVideo" link="GDataYouTubeVideo.html#GDataYouTubeVideo-struct"/>
+    <function name="GDataYouTubeVideoClass" link="GDataYouTubeVideo.html#GDataYouTubeVideoClass"/>
+    <function name="enum GDataYouTubeAspectRatio" link="GDataYouTubeVideo.html#GDataYouTubeAspectRatio"/>
+    <function name="gdata_youtube_video_new ()" link="GDataYouTubeVideo.html#gdata-youtube-video-new"/>
+    <function name="gdata_youtube_video_look_up_content ()" link="GDataYouTubeVideo.html#gdata-youtube-video-look-up-content"/>
+    <function name="gdata_youtube_video_get_thumbnails ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-thumbnails"/>
+    <function name="gdata_youtube_video_get_category ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-category"/>
+    <function name="gdata_youtube_video_set_category ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-category"/>
+    <function name="gdata_youtube_video_get_credit ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-credit"/>
+    <function name="gdata_youtube_video_get_description ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-description"/>
+    <function name="gdata_youtube_video_set_description ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-description"/>
+    <function name="gdata_youtube_video_get_duration ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-duration"/>
+    <function name="gdata_youtube_video_get_keywords ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-keywords"/>
+    <function name="gdata_youtube_video_set_keywords ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-keywords"/>
+    <function name="gdata_youtube_video_get_location ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-location"/>
+    <function name="gdata_youtube_video_set_location ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-location"/>
+    <function name="gdata_youtube_video_get_view_count ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-view-count"/>
+    <function name="gdata_youtube_video_get_favorite_count ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-favorite-count"/>
+    <function name="gdata_youtube_video_is_restricted_in_country ()" link="GDataYouTubeVideo.html#gdata-youtube-video-is-restricted-in-country"/>
+    <function name="gdata_youtube_video_get_no_embed ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-no-embed"/>
+    <function name="gdata_youtube_video_set_no_embed ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-no-embed"/>
+    <function name="gdata_youtube_video_get_player_uri ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-player-uri"/>
+    <function name="gdata_youtube_video_is_private ()" link="GDataYouTubeVideo.html#gdata-youtube-video-is-private"/>
+    <function name="gdata_youtube_video_set_is_private ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-is-private"/>
+    <function name="gdata_youtube_video_is_draft ()" link="GDataYouTubeVideo.html#gdata-youtube-video-is-draft"/>
+    <function name="gdata_youtube_video_set_is_draft ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-is-draft"/>
+    <function name="gdata_youtube_video_get_state ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-state"/>
+    <function name="gdata_youtube_video_get_rating ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-rating"/>
+    <function name="gdata_youtube_video_get_title ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-title"/>
+    <function name="gdata_youtube_video_set_title ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-title"/>
+    <function name="gdata_youtube_video_get_uploaded ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-uploaded"/>
+    <function name="gdata_youtube_video_get_recorded ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-recorded"/>
+    <function name="gdata_youtube_video_set_recorded ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-recorded"/>
+    <function name="gdata_youtube_video_get_video_id ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-video-id"/>
+    <function name="gdata_youtube_video_get_video_id_from_uri ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-video-id-from-uri"/>
+    <function name="gdata_youtube_video_get_aspect_ratio ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-aspect-ratio"/>
+    <function name="gdata_youtube_video_set_aspect_ratio ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-aspect-ratio"/>
+    <function name="The &quot;aspect-ratio&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--aspect-ratio"/>
+    <function name="The &quot;average-rating&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--average-rating"/>
+    <function name="The &quot;category&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--category"/>
+    <function name="The &quot;credit&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--credit"/>
+    <function name="The &quot;description&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--description"/>
+    <function name="The &quot;duration&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--duration"/>
+    <function name="The &quot;favorite-count&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--favorite-count"/>
+    <function name="The &quot;is-draft&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--is-draft"/>
+    <function name="The &quot;is-private&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--is-private"/>
+    <function name="The &quot;keywords&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--keywords"/>
+    <function name="The &quot;location&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--location"/>
+    <function name="The &quot;max-rating&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--max-rating"/>
+    <function name="The &quot;min-rating&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--min-rating"/>
+    <function name="The &quot;no-embed&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--no-embed"/>
+    <function name="The &quot;player-uri&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--player-uri"/>
+    <function name="The &quot;rating-count&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--rating-count"/>
+    <function name="The &quot;recorded&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--recorded"/>
+    <function name="The &quot;state&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--state"/>
+    <function name="The &quot;title&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--title"/>
+    <function name="The &quot;uploaded&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--uploaded"/>
+    <function name="The &quot;video-id&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--video-id"/>
+    <function name="The &quot;view-count&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--view-count"/>
+    <function name="GDataCalendarService" link="GDataCalendarService.html#GDataCalendarService-struct"/>
+    <function name="GDataCalendarServiceClass" link="GDataCalendarService.html#GDataCalendarServiceClass"/>
+    <function name="gdata_calendar_service_new ()" link="GDataCalendarService.html#gdata-calendar-service-new"/>
+    <function name="gdata_calendar_service_query_all_calendars ()" link="GDataCalendarService.html#gdata-calendar-service-query-all-calendars"/>
+    <function name="gdata_calendar_service_query_all_calendars_async ()" link="GDataCalendarService.html#gdata-calendar-service-query-all-calendars-async"/>
+    <function name="gdata_calendar_service_query_own_calendars ()" link="GDataCalendarService.html#gdata-calendar-service-query-own-calendars"/>
+    <function name="gdata_calendar_service_query_own_calendars_async ()" link="GDataCalendarService.html#gdata-calendar-service-query-own-calendars-async"/>
+    <function name="gdata_calendar_service_query_events ()" link="GDataCalendarService.html#gdata-calendar-service-query-events"/>
+    <function name="gdata_calendar_service_insert_event ()" link="GDataCalendarService.html#gdata-calendar-service-insert-event"/>
+    <function name="GDataCalendarFeed" link="GDataCalendarFeed.html#GDataCalendarFeed-struct"/>
+    <function name="GDataCalendarFeedClass" link="GDataCalendarFeed.html#GDataCalendarFeedClass"/>
+    <function name="gdata_calendar_feed_get_timezone ()" link="GDataCalendarFeed.html#gdata-calendar-feed-get-timezone"/>
+    <function name="gdata_calendar_feed_get_times_cleaned ()" link="GDataCalendarFeed.html#gdata-calendar-feed-get-times-cleaned"/>
+    <function name="The &quot;times-cleaned&quot; property" link="GDataCalendarFeed.html#GDataCalendarFeed--times-cleaned"/>
+    <function name="The &quot;timezone&quot; property" link="GDataCalendarFeed.html#GDataCalendarFeed--timezone"/>
+    <function name="GDataCalendarQuery" link="GDataCalendarQuery.html#GDataCalendarQuery-struct"/>
+    <function name="GDataCalendarQueryClass" link="GDataCalendarQuery.html#GDataCalendarQueryClass"/>
+    <function name="gdata_calendar_query_new ()" link="GDataCalendarQuery.html#gdata-calendar-query-new"/>
+    <function name="gdata_calendar_query_new_with_limits ()" link="GDataCalendarQuery.html#gdata-calendar-query-new-with-limits"/>
+    <function name="gdata_calendar_query_get_future_events ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-future-events"/>
+    <function name="gdata_calendar_query_set_future_events ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-future-events"/>
+    <function name="gdata_calendar_query_get_single_events ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-single-events"/>
+    <function name="gdata_calendar_query_set_single_events ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-single-events"/>
+    <function name="gdata_calendar_query_get_order_by ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-order-by"/>
+    <function name="gdata_calendar_query_set_order_by ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-order-by"/>
+    <function name="gdata_calendar_query_get_sort_order ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-sort-order"/>
+    <function name="gdata_calendar_query_set_sort_order ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-sort-order"/>
+    <function name="gdata_calendar_query_get_start_min ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-start-min"/>
+    <function name="gdata_calendar_query_set_start_min ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-start-min"/>
+    <function name="gdata_calendar_query_get_start_max ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-start-max"/>
+    <function name="gdata_calendar_query_set_start_max ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-start-max"/>
+    <function name="gdata_calendar_query_get_recurrence_expansion_start ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-start"/>
+    <function name="gdata_calendar_query_set_recurrence_expansion_start ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-start"/>
+    <function name="gdata_calendar_query_get_recurrence_expansion_end ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-end"/>
+    <function name="gdata_calendar_query_set_recurrence_expansion_end ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-end"/>
+    <function name="gdata_calendar_query_get_timezone ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-timezone"/>
+    <function name="gdata_calendar_query_set_timezone ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-timezone"/>
+    <function name="The &quot;future-events&quot; property" link="GDataCalendarQuery.html#GDataCalendarQuery--future-events"/>
+    <function name="The &quot;order-by&quot; property" link="GDataCalendarQuery.html#GDataCalendarQuery--order-by"/>
+    <function name="The &quot;recurrence-expansion-end&quot; property" link="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end"/>
+    <function name="The &quot;recurrence-expansion-start&quot; property" link="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start"/>
+    <function name="The &quot;single-events&quot; property" link="GDataCalendarQuery.html#GDataCalendarQuery--single-events"/>
+    <function name="The &quot;sort-order&quot; property" link="GDataCalendarQuery.html#GDataCalendarQuery--sort-order"/>
+    <function name="The &quot;start-max&quot; property" link="GDataCalendarQuery.html#GDataCalendarQuery--start-max"/>
+    <function name="The &quot;start-min&quot; property" link="GDataCalendarQuery.html#GDataCalendarQuery--start-min"/>
+    <function name="The &quot;timezone&quot; property" link="GDataCalendarQuery.html#GDataCalendarQuery--timezone"/>
+    <function name="GDataCalendarCalendar" link="GDataCalendarCalendar.html#GDataCalendarCalendar-struct"/>
+    <function name="GDataCalendarCalendarClass" link="GDataCalendarCalendar.html#GDataCalendarCalendarClass"/>
+    <function name="gdata_calendar_calendar_new ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-new"/>
+    <function name="gdata_calendar_calendar_get_color ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-color"/>
+    <function name="gdata_calendar_calendar_set_color ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-set-color"/>
+    <function name="gdata_calendar_calendar_is_hidden ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-is-hidden"/>
+    <function name="gdata_calendar_calendar_set_is_hidden ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-set-is-hidden"/>
+    <function name="gdata_calendar_calendar_is_selected ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-is-selected"/>
+    <function name="gdata_calendar_calendar_set_is_selected ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-set-is-selected"/>
+    <function name="gdata_calendar_calendar_get_timezone ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-timezone"/>
+    <function name="gdata_calendar_calendar_set_timezone ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-set-timezone"/>
+    <function name="gdata_calendar_calendar_get_edited ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-edited"/>
+    <function name="gdata_calendar_calendar_get_times_cleaned ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-times-cleaned"/>
+    <function name="gdata_calendar_calendar_get_access_level ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-access-level"/>
+    <function name="The &quot;access-level&quot; property" link="GDataCalendarCalendar.html#GDataCalendarCalendar--access-level"/>
+    <function name="The &quot;color&quot; property" link="GDataCalendarCalendar.html#GDataCalendarCalendar--color"/>
+    <function name="The &quot;edited&quot; property" link="GDataCalendarCalendar.html#GDataCalendarCalendar--edited"/>
+    <function name="The &quot;is-hidden&quot; property" link="GDataCalendarCalendar.html#GDataCalendarCalendar--is-hidden"/>
+    <function name="The &quot;is-selected&quot; property" link="GDataCalendarCalendar.html#GDataCalendarCalendar--is-selected"/>
+    <function name="The &quot;times-cleaned&quot; property" link="GDataCalendarCalendar.html#GDataCalendarCalendar--times-cleaned"/>
+    <function name="The &quot;timezone&quot; property" link="GDataCalendarCalendar.html#GDataCalendarCalendar--timezone"/>
+    <function name="GDataCalendarEvent" link="GDataCalendarEvent.html#GDataCalendarEvent-struct"/>
+    <function name="GDataCalendarEventClass" link="GDataCalendarEvent.html#GDataCalendarEventClass"/>
+    <function name="gdata_calendar_event_new ()" link="GDataCalendarEvent.html#gdata-calendar-event-new"/>
+    <function name="gdata_calendar_event_get_people ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-people"/>
+    <function name="gdata_calendar_event_add_person ()" link="GDataCalendarEvent.html#gdata-calendar-event-add-person"/>
+    <function name="gdata_calendar_event_get_places ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-places"/>
+    <function name="gdata_calendar_event_add_place ()" link="GDataCalendarEvent.html#gdata-calendar-event-add-place"/>
+    <function name="gdata_calendar_event_get_times ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-times"/>
+    <function name="gdata_calendar_event_get_primary_time ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-primary-time"/>
+    <function name="gdata_calendar_event_add_time ()" link="GDataCalendarEvent.html#gdata-calendar-event-add-time"/>
+    <function name="gdata_calendar_event_get_recurrence ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-recurrence"/>
+    <function name="gdata_calendar_event_set_recurrence ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-recurrence"/>
+    <function name="gdata_calendar_event_get_original_event_details ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-original-event-details"/>
+    <function name="gdata_calendar_event_is_exception ()" link="GDataCalendarEvent.html#gdata-calendar-event-is-exception"/>
+    <function name="gdata_calendar_event_get_anyone_can_add_self ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-anyone-can-add-self"/>
+    <function name="gdata_calendar_event_set_anyone_can_add_self ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-anyone-can-add-self"/>
+    <function name="gdata_calendar_event_get_guests_can_invite_others ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-guests-can-invite-others"/>
+    <function name="gdata_calendar_event_set_guests_can_invite_others ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-guests-can-invite-others"/>
+    <function name="gdata_calendar_event_get_guests_can_modify ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-guests-can-modify"/>
+    <function name="gdata_calendar_event_set_guests_can_modify ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-guests-can-modify"/>
+    <function name="gdata_calendar_event_get_guests_can_see_guests ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-guests-can-see-guests"/>
+    <function name="gdata_calendar_event_set_guests_can_see_guests ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-guests-can-see-guests"/>
+    <function name="gdata_calendar_event_get_sequence ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-sequence"/>
+    <function name="gdata_calendar_event_set_sequence ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-sequence"/>
+    <function name="gdata_calendar_event_get_status ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-status"/>
+    <function name="gdata_calendar_event_set_status ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-status"/>
+    <function name="gdata_calendar_event_get_transparency ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-transparency"/>
+    <function name="gdata_calendar_event_set_transparency ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-transparency"/>
+    <function name="gdata_calendar_event_get_uid ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-uid"/>
+    <function name="gdata_calendar_event_set_uid ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-uid"/>
+    <function name="gdata_calendar_event_get_visibility ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-visibility"/>
+    <function name="gdata_calendar_event_set_visibility ()" link="GDataCalendarEvent.html#gdata-calendar-event-set-visibility"/>
+    <function name="gdata_calendar_event_get_edited ()" link="GDataCalendarEvent.html#gdata-calendar-event-get-edited"/>
+    <function name="The &quot;anyone-can-add-self&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--anyone-can-add-self"/>
+    <function name="The &quot;edited&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--edited"/>
+    <function name="The &quot;guests-can-invite-others&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-invite-others"/>
+    <function name="The &quot;guests-can-modify&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-modify"/>
+    <function name="The &quot;guests-can-see-guests&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-see-guests"/>
+    <function name="The &quot;original-event-id&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--original-event-id"/>
+    <function name="The &quot;original-event-uri&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--original-event-uri"/>
+    <function name="The &quot;recurrence&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--recurrence"/>
+    <function name="The &quot;sequence&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--sequence"/>
+    <function name="The &quot;status&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--status"/>
+    <function name="The &quot;transparency&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--transparency"/>
+    <function name="The &quot;uid&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--uid"/>
+    <function name="The &quot;visibility&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--visibility"/>
+    <function name="GDataContactsService" link="GDataContactsService.html#GDataContactsService-struct"/>
+    <function name="GDataContactsServiceClass" link="GDataContactsService.html#GDataContactsServiceClass"/>
+    <function name="gdata_contacts_service_new ()" link="GDataContactsService.html#gdata-contacts-service-new"/>
+    <function name="gdata_contacts_service_query_contacts ()" link="GDataContactsService.html#gdata-contacts-service-query-contacts"/>
+    <function name="gdata_contacts_service_query_contacts_async ()" link="GDataContactsService.html#gdata-contacts-service-query-contacts-async"/>
+    <function name="gdata_contacts_service_insert_contact ()" link="GDataContactsService.html#gdata-contacts-service-insert-contact"/>
+    <function name="gdata_contacts_service_update_contact ()" link="GDataContactsService.html#gdata-contacts-service-update-contact"/>
+    <function name="GDataContactsQuery" link="GDataContactsQuery.html#GDataContactsQuery-struct"/>
+    <function name="GDataContactsQueryClass" link="GDataContactsQuery.html#GDataContactsQueryClass"/>
+    <function name="gdata_contacts_query_new ()" link="GDataContactsQuery.html#gdata-contacts-query-new"/>
+    <function name="gdata_contacts_query_new_with_limits ()" link="GDataContactsQuery.html#gdata-contacts-query-new-with-limits"/>
+    <function name="gdata_contacts_query_get_order_by ()" link="GDataContactsQuery.html#gdata-contacts-query-get-order-by"/>
+    <function name="gdata_contacts_query_set_order_by ()" link="GDataContactsQuery.html#gdata-contacts-query-set-order-by"/>
+    <function name="gdata_contacts_query_get_sort_order ()" link="GDataContactsQuery.html#gdata-contacts-query-get-sort-order"/>
+    <function name="gdata_contacts_query_set_sort_order ()" link="GDataContactsQuery.html#gdata-contacts-query-set-sort-order"/>
+    <function name="gdata_contacts_query_show_deleted ()" link="GDataContactsQuery.html#gdata-contacts-query-show-deleted"/>
+    <function name="gdata_contacts_query_set_show_deleted ()" link="GDataContactsQuery.html#gdata-contacts-query-set-show-deleted"/>
+    <function name="gdata_contacts_query_get_group ()" link="GDataContactsQuery.html#gdata-contacts-query-get-group"/>
+    <function name="gdata_contacts_query_set_group ()" link="GDataContactsQuery.html#gdata-contacts-query-set-group"/>
+    <function name="The &quot;group&quot; property" link="GDataContactsQuery.html#GDataContactsQuery--group"/>
+    <function name="The &quot;order-by&quot; property" link="GDataContactsQuery.html#GDataContactsQuery--order-by"/>
+    <function name="The &quot;show-deleted&quot; property" link="GDataContactsQuery.html#GDataContactsQuery--show-deleted"/>
+    <function name="The &quot;sort-order&quot; property" link="GDataContactsQuery.html#GDataContactsQuery--sort-order"/>
+    <function name="GDataContactsContact" link="GDataContactsContact.html#GDataContactsContact-struct"/>
+    <function name="GDataContactsContactClass" link="GDataContactsContact.html#GDataContactsContactClass"/>
+    <function name="gdata_contacts_contact_new ()" link="GDataContactsContact.html#gdata-contacts-contact-new"/>
+    <function name="gdata_contacts_contact_get_name ()" link="GDataContactsContact.html#gdata-contacts-contact-get-name"/>
+    <function name="gdata_contacts_contact_get_email_addresses ()" link="GDataContactsContact.html#gdata-contacts-contact-get-email-addresses"/>
+    <function name="gdata_contacts_contact_get_primary_email_address ()" link="GDataContactsContact.html#gdata-contacts-contact-get-primary-email-address"/>
+    <function name="gdata_contacts_contact_add_email_address ()" link="GDataContactsContact.html#gdata-contacts-contact-add-email-address"/>
+    <function name="gdata_contacts_contact_remove_all_email_addresses ()" link="GDataContactsContact.html#gdata-contacts-contact-remove-all-email-addresses"/>
+    <function name="gdata_contacts_contact_get_im_addresses ()" link="GDataContactsContact.html#gdata-contacts-contact-get-im-addresses"/>
+    <function name="gdata_contacts_contact_get_primary_im_address ()" link="GDataContactsContact.html#gdata-contacts-contact-get-primary-im-address"/>
+    <function name="gdata_contacts_contact_add_im_address ()" link="GDataContactsContact.html#gdata-contacts-contact-add-im-address"/>
+    <function name="gdata_contacts_contact_remove_all_im_addresses ()" link="GDataContactsContact.html#gdata-contacts-contact-remove-all-im-addresses"/>
+    <function name="gdata_contacts_contact_get_postal_addresses ()" link="GDataContactsContact.html#gdata-contacts-contact-get-postal-addresses"/>
+    <function name="gdata_contacts_contact_get_primary_postal_address ()" link="GDataContactsContact.html#gdata-contacts-contact-get-primary-postal-address"/>
+    <function name="gdata_contacts_contact_add_postal_address ()" link="GDataContactsContact.html#gdata-contacts-contact-add-postal-address"/>
+    <function name="gdata_contacts_contact_remove_all_postal_addresses ()" link="GDataContactsContact.html#gdata-contacts-contact-remove-all-postal-addresses"/>
+    <function name="gdata_contacts_contact_get_phone_numbers ()" link="GDataContactsContact.html#gdata-contacts-contact-get-phone-numbers"/>
+    <function name="gdata_contacts_contact_get_primary_phone_number ()" link="GDataContactsContact.html#gdata-contacts-contact-get-primary-phone-number"/>
+    <function name="gdata_contacts_contact_add_phone_number ()" link="GDataContactsContact.html#gdata-contacts-contact-add-phone-number"/>
+    <function name="gdata_contacts_contact_remove_all_phone_numbers ()" link="GDataContactsContact.html#gdata-contacts-contact-remove-all-phone-numbers"/>
+    <function name="gdata_contacts_contact_get_organizations ()" link="GDataContactsContact.html#gdata-contacts-contact-get-organizations"/>
+    <function name="gdata_contacts_contact_get_primary_organization ()" link="GDataContactsContact.html#gdata-contacts-contact-get-primary-organization"/>
+    <function name="gdata_contacts_contact_add_organization ()" link="GDataContactsContact.html#gdata-contacts-contact-add-organization"/>
+    <function name="gdata_contacts_contact_remove_all_organizations ()" link="GDataContactsContact.html#gdata-contacts-contact-remove-all-organizations"/>
+    <function name="gdata_contacts_contact_get_groups ()" link="GDataContactsContact.html#gdata-contacts-contact-get-groups"/>
+    <function name="gdata_contacts_contact_add_group ()" link="GDataContactsContact.html#gdata-contacts-contact-add-group"/>
+    <function name="gdata_contacts_contact_remove_group ()" link="GDataContactsContact.html#gdata-contacts-contact-remove-group"/>
+    <function name="gdata_contacts_contact_is_group_deleted ()" link="GDataContactsContact.html#gdata-contacts-contact-is-group-deleted"/>
+    <function name="gdata_contacts_contact_get_extended_property ()" link="GDataContactsContact.html#gdata-contacts-contact-get-extended-property"/>
+    <function name="gdata_contacts_contact_get_extended_properties ()" link="GDataContactsContact.html#gdata-contacts-contact-get-extended-properties"/>
+    <function name="gdata_contacts_contact_set_extended_property ()" link="GDataContactsContact.html#gdata-contacts-contact-set-extended-property"/>
+    <function name="gdata_contacts_contact_get_edited ()" link="GDataContactsContact.html#gdata-contacts-contact-get-edited"/>
+    <function name="gdata_contacts_contact_is_deleted ()" link="GDataContactsContact.html#gdata-contacts-contact-is-deleted"/>
+    <function name="gdata_contacts_contact_has_photo ()" link="GDataContactsContact.html#gdata-contacts-contact-has-photo"/>
+    <function name="gdata_contacts_contact_get_photo ()" link="GDataContactsContact.html#gdata-contacts-contact-get-photo"/>
+    <function name="gdata_contacts_contact_set_photo ()" link="GDataContactsContact.html#gdata-contacts-contact-set-photo"/>
+    <function name="The &quot;deleted&quot; property" link="GDataContactsContact.html#GDataContactsContact--deleted"/>
+    <function name="The &quot;edited&quot; property" link="GDataContactsContact.html#GDataContactsContact--edited"/>
+    <function name="The &quot;has-photo&quot; property" link="GDataContactsContact.html#GDataContactsContact--has-photo"/>
+    <function name="The &quot;name&quot; property" link="GDataContactsContact.html#GDataContactsContact--name"/>
+    <function name="GDataDocumentsService" link="GDataDocumentsService.html#GDataDocumentsService-struct"/>
+    <function name="GDataDocumentsServiceClass" link="GDataDocumentsService.html#GDataDocumentsServiceClass"/>
+    <function name="enum GDataDocumentsServiceError" link="GDataDocumentsService.html#GDataDocumentsServiceError"/>
+    <function name="gdata_documents_service_new ()" link="GDataDocumentsService.html#gdata-documents-service-new"/>
+    <function name="gdata_documents_service_query_documents ()" link="GDataDocumentsService.html#gdata-documents-service-query-documents"/>
+    <function name="gdata_documents_service_query_documents_async ()" link="GDataDocumentsService.html#gdata-documents-service-query-documents-async"/>
+    <function name="gdata_documents_service_query_single_document ()" link="GDataDocumentsService.html#gdata-documents-service-query-single-document"/>
+    <function name="gdata_documents_service_upload_document ()" link="GDataDocumentsService.html#gdata-documents-service-upload-document"/>
+    <function name="gdata_documents_service_update_document ()" link="GDataDocumentsService.html#gdata-documents-service-update-document"/>
+    <function name="gdata_documents_service_move_document_to_folder ()" link="GDataDocumentsService.html#gdata-documents-service-move-document-to-folder"/>
+    <function name="gdata_documents_service_remove_document_from_folder ()" link="GDataDocumentsService.html#gdata-documents-service-remove-document-from-folder"/>
+    <function name="gdata_documents_service_get_upload_uri ()" link="GDataDocumentsService.html#gdata-documents-service-get-upload-uri"/>
+    <function name="The &quot;spreadsheet-service&quot; property" link="GDataDocumentsService.html#GDataDocumentsService--spreadsheet-service"/>
+    <function name="GDataDocumentsFeed" link="GDataDocumentsFeed.html#GDataDocumentsFeed-struct"/>
+    <function name="GDataDocumentsFeedClass" link="GDataDocumentsFeed.html#GDataDocumentsFeedClass"/>
+    <function name="GDataDocumentsQuery" link="GDataDocumentsQuery.html#GDataDocumentsQuery-struct"/>
+    <function name="GDataDocumentsQueryClass" link="GDataDocumentsQuery.html#GDataDocumentsQueryClass"/>
+    <function name="gdata_documents_query_new ()" link="GDataDocumentsQuery.html#gdata-documents-query-new"/>
+    <function name="gdata_documents_query_new_with_limits ()" link="GDataDocumentsQuery.html#gdata-documents-query-new-with-limits"/>
+    <function name="gdata_documents_query_show_deleted ()" link="GDataDocumentsQuery.html#gdata-documents-query-show-deleted"/>
+    <function name="gdata_documents_query_set_show_deleted ()" link="GDataDocumentsQuery.html#gdata-documents-query-set-show-deleted"/>
+    <function name="gdata_documents_query_show_folders ()" link="GDataDocumentsQuery.html#gdata-documents-query-show-folders"/>
+    <function name="gdata_documents_query_set_show_folders ()" link="GDataDocumentsQuery.html#gdata-documents-query-set-show-folders"/>
+    <function name="gdata_documents_query_get_folder_id ()" link="GDataDocumentsQuery.html#gdata-documents-query-get-folder-id"/>
+    <function name="gdata_documents_query_set_folder_id ()" link="GDataDocumentsQuery.html#gdata-documents-query-set-folder-id"/>
+    <function name="gdata_documents_query_get_title ()" link="GDataDocumentsQuery.html#gdata-documents-query-get-title"/>
+    <function name="gdata_documents_query_get_exact_title ()" link="GDataDocumentsQuery.html#gdata-documents-query-get-exact-title"/>
+    <function name="gdata_documents_query_set_title ()" link="GDataDocumentsQuery.html#gdata-documents-query-set-title"/>
+    <function name="gdata_documents_query_get_collaborator_addresses ()" link="GDataDocumentsQuery.html#gdata-documents-query-get-collaborator-addresses"/>
+    <function name="gdata_documents_query_add_collaborator ()" link="GDataDocumentsQuery.html#gdata-documents-query-add-collaborator"/>
+    <function name="gdata_documents_query_get_reader_addresses ()" link="GDataDocumentsQuery.html#gdata-documents-query-get-reader-addresses"/>
+    <function name="gdata_documents_query_add_reader ()" link="GDataDocumentsQuery.html#gdata-documents-query-add-reader"/>
+    <function name="The &quot;exact-title&quot; property" link="GDataDocumentsQuery.html#GDataDocumentsQuery--exact-title"/>
+    <function name="The &quot;folder-id&quot; property" link="GDataDocumentsQuery.html#GDataDocumentsQuery--folder-id"/>
+    <function name="The &quot;show-deleted&quot; property" link="GDataDocumentsQuery.html#GDataDocumentsQuery--show-deleted"/>
+    <function name="The &quot;show-folders&quot; property" link="GDataDocumentsQuery.html#GDataDocumentsQuery--show-folders"/>
+    <function name="The &quot;title&quot; property" link="GDataDocumentsQuery.html#GDataDocumentsQuery--title"/>
+    <function name="GDataDocumentsEntry" link="GDataDocumentsEntry.html#GDataDocumentsEntry-struct"/>
+    <function name="GDataDocumentsEntryClass" link="GDataDocumentsEntry.html#GDataDocumentsEntryClass"/>
+    <function name="gdata_documents_entry_get_path ()" link="GDataDocumentsEntry.html#gdata-documents-entry-get-path"/>
+    <function name="gdata_documents_entry_get_document_id ()" link="GDataDocumentsEntry.html#gdata-documents-entry-get-document-id"/>
+    <function name="gdata_documents_entry_get_edited ()" link="GDataDocumentsEntry.html#gdata-documents-entry-get-edited"/>
+    <function name="gdata_documents_entry_get_last_modified_by ()" link="GDataDocumentsEntry.html#gdata-documents-entry-get-last-modified-by"/>
+    <function name="gdata_documents_entry_get_last_viewed ()" link="GDataDocumentsEntry.html#gdata-documents-entry-get-last-viewed"/>
+    <function name="gdata_documents_entry_writers_can_invite ()" link="GDataDocumentsEntry.html#gdata-documents-entry-writers-can-invite"/>
+    <function name="gdata_documents_entry_set_writers_can_invite ()" link="GDataDocumentsEntry.html#gdata-documents-entry-set-writers-can-invite"/>
+    <function name="gdata_documents_entry_is_deleted ()" link="GDataDocumentsEntry.html#gdata-documents-entry-is-deleted"/>
+    <function name="The &quot;document-id&quot; property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--document-id"/>
+    <function name="The &quot;edited&quot; property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--edited"/>
+    <function name="The &quot;is-deleted&quot; property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--is-deleted"/>
+    <function name="The &quot;last-modified-by&quot; property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--last-modified-by"/>
+    <function name="The &quot;last-viewed&quot; property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--last-viewed"/>
+    <function name="The &quot;writers-can-invite&quot; property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--writers-can-invite"/>
+    <function name="GDataDocumentsFolder" link="GDataDocumentsFolder.html#GDataDocumentsFolder-struct"/>
+    <function name="GDataDocumentsFolderClass" link="GDataDocumentsFolder.html#GDataDocumentsFolderClass"/>
+    <function name="gdata_documents_folder_new ()" link="GDataDocumentsFolder.html#gdata-documents-folder-new"/>
+    <function name="GDataDocumentsPresentation" link="GDataDocumentsPresentation.html#GDataDocumentsPresentation-struct"/>
+    <function name="GDataDocumentsPresentationClass" link="GDataDocumentsPresentation.html#GDataDocumentsPresentationClass"/>
+    <function name="enum GDataDocumentsPresentationFormat" link="GDataDocumentsPresentation.html#GDataDocumentsPresentationFormat"/>
+    <function name="gdata_documents_presentation_new ()" link="GDataDocumentsPresentation.html#gdata-documents-presentation-new"/>
+    <function name="gdata_documents_presentation_download_document ()" link="GDataDocumentsPresentation.html#gdata-documents-presentation-download-document"/>
+    <function name="gdata_documents_presentation_get_download_uri ()" link="GDataDocumentsPresentation.html#gdata-documents-presentation-get-download-uri"/>
+    <function name="GDataDocumentsSpreadsheet" link="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheet-struct"/>
+    <function name="GDataDocumentsSpreadsheetClass" link="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetClass"/>
+    <function name="enum GDataDocumentsSpreadsheetFormat" link="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat"/>
+    <function name="gdata_documents_spreadsheet_new ()" link="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-new"/>
+    <function name="gdata_documents_spreadsheet_download_document ()" link="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-download-document"/>
+    <function name="gdata_documents_spreadsheet_get_download_uri ()" link="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-get-download-uri"/>
+    <function name="GDataDocumentsText" link="GDataDocumentsText.html#GDataDocumentsText-struct"/>
+    <function name="GDataDocumentsTextClass" link="GDataDocumentsText.html#GDataDocumentsTextClass"/>
+    <function name="enum GDataDocumentsTextFormat" link="GDataDocumentsText.html#GDataDocumentsTextFormat"/>
+    <function name="gdata_documents_text_new ()" link="GDataDocumentsText.html#gdata-documents-text-new"/>
+    <function name="gdata_documents_text_download_document ()" link="GDataDocumentsText.html#gdata-documents-text-download-document"/>
+    <function name="gdata_documents_text_get_download_uri ()" link="GDataDocumentsText.html#gdata-documents-text-get-download-uri"/>
+    <function name="GDataPicasaWebService" link="GDataPicasaWebService.html#GDataPicasaWebService-struct"/>
+    <function name="GDataPicasaWebServiceClass" link="GDataPicasaWebService.html#GDataPicasaWebServiceClass"/>
+    <function name="gdata_picasaweb_service_new ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-new"/>
+    <function name="gdata_picasaweb_service_query_all_albums ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums"/>
+    <function name="gdata_picasaweb_service_query_all_albums_async ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums-async"/>
+    <function name="gdata_picasaweb_service_query_files ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-query-files"/>
+    <function name="gdata_picasaweb_service_upload_file ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file"/>
+    <function name="GDataPicasaWebQuery" link="GDataPicasaWebQuery.html#GDataPicasaWebQuery-struct"/>
+    <function name="GDataPicasaWebQueryClass" link="GDataPicasaWebQuery.html#GDataPicasaWebQueryClass"/>
+    <function name="gdata_picasaweb_query_new ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-new"/>
+    <function name="gdata_picasaweb_query_get_visibility ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-visibility"/>
+    <function name="gdata_picasaweb_query_set_visibility ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-visibility"/>
+    <function name="gdata_picasaweb_query_get_thumbnail_size ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-thumbnail-size"/>
+    <function name="gdata_picasaweb_query_set_thumbnail_size ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-thumbnail-size"/>
+    <function name="gdata_picasaweb_query_get_image_size ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-image-size"/>
+    <function name="gdata_picasaweb_query_set_image_size ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-image-size"/>
+    <function name="gdata_picasaweb_query_get_tag ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-tag"/>
+    <function name="gdata_picasaweb_query_set_tag ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-tag"/>
+    <function name="gdata_picasaweb_query_get_bounding_box ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-bounding-box"/>
+    <function name="gdata_picasaweb_query_set_bounding_box ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-bounding-box"/>
+    <function name="gdata_picasaweb_query_get_location ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-location"/>
+    <function name="gdata_picasaweb_query_set_location ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-location"/>
+    <function name="The &quot;image-size&quot; property" link="GDataPicasaWebQuery.html#GDataPicasaWebQuery--image-size"/>
+    <function name="The &quot;location&quot; property" link="GDataPicasaWebQuery.html#GDataPicasaWebQuery--location"/>
+    <function name="The &quot;tag&quot; property" link="GDataPicasaWebQuery.html#GDataPicasaWebQuery--tag"/>
+    <function name="The &quot;thumbnail-size&quot; property" link="GDataPicasaWebQuery.html#GDataPicasaWebQuery--thumbnail-size"/>
+    <function name="The &quot;visibility&quot; property" link="GDataPicasaWebQuery.html#GDataPicasaWebQuery--visibility"/>
+    <function name="GDataPicasaWebAlbum" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum-struct"/>
+    <function name="GDataPicasaWebAlbumClass" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbumClass"/>
+    <function name="enum GDataPicasaWebVisibility" link="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility"/>
+    <function name="gdata_picasaweb_album_new ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-new"/>
+    <function name="gdata_picasaweb_album_get_user ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-user"/>
+    <function name="gdata_picasaweb_album_get_nickname ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-nickname"/>
+    <function name="gdata_picasaweb_album_get_edited ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-edited"/>
+    <function name="gdata_picasaweb_album_get_name ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-name"/>
+    <function name="gdata_picasaweb_album_get_location ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-location"/>
+    <function name="gdata_picasaweb_album_set_location ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-location"/>
+    <function name="gdata_picasaweb_album_get_visibility ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-visibility"/>
+    <function name="gdata_picasaweb_album_set_visibility ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-visibility"/>
+    <function name="gdata_picasaweb_album_get_timestamp ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-timestamp"/>
+    <function name="gdata_picasaweb_album_set_timestamp ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-timestamp"/>
+    <function name="gdata_picasaweb_album_get_num_photos ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-num-photos"/>
+    <function name="gdata_picasaweb_album_get_num_photos_remaining ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-num-photos-remaining"/>
+    <function name="gdata_picasaweb_album_get_bytes_used ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-bytes-used"/>
+    <function name="gdata_picasaweb_album_is_commenting_enabled ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-is-commenting-enabled"/>
+    <function name="gdata_picasaweb_album_set_is_commenting_enabled ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-is-commenting-enabled"/>
+    <function name="gdata_picasaweb_album_get_comment_count ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-comment-count"/>
+    <function name="gdata_picasaweb_album_get_tags ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-tags"/>
+    <function name="gdata_picasaweb_album_set_tags ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-tags"/>
+    <function name="gdata_picasaweb_album_get_description ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-description"/>
+    <function name="gdata_picasaweb_album_set_description ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-description"/>
+    <function name="gdata_picasaweb_album_get_contents ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-contents"/>
+    <function name="gdata_picasaweb_album_get_thumbnails ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-thumbnails"/>
+    <function name="gdata_picasaweb_album_get_coordinates ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-coordinates"/>
+    <function name="gdata_picasaweb_album_set_coordinates ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-coordinates"/>
+    <function name="The &quot;bytes-used&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--bytes-used"/>
+    <function name="The &quot;comment-count&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--comment-count"/>
+    <function name="The &quot;description&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--description"/>
+    <function name="The &quot;edited&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--edited"/>
+    <function name="The &quot;is-commenting-enabled&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-enabled"/>
+    <function name="The &quot;latitude&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--latitude"/>
+    <function name="The &quot;location&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location"/>
+    <function name="The &quot;longitude&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--longitude"/>
+    <function name="The &quot;name&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--name"/>
+    <function name="The &quot;nickname&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--nickname"/>
+    <function name="The &quot;num-photos&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos"/>
+    <function name="The &quot;num-photos-remaining&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos-remaining"/>
+    <function name="The &quot;tags&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--tags"/>
+    <function name="The &quot;timestamp&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--timestamp"/>
+    <function name="The &quot;user&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--user"/>
+    <function name="The &quot;visibility&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility"/>
+    <function name="GDataPicasaWebFile" link="GDataPicasaWebFile.html#GDataPicasaWebFile-struct"/>
+    <function name="GDataPicasaWebFileClass" link="GDataPicasaWebFile.html#GDataPicasaWebFileClass"/>
+    <function name="gdata_picasaweb_file_new ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-new"/>
+    <function name="gdata_picasaweb_file_get_edited ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-edited"/>
+    <function name="gdata_picasaweb_file_get_version ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-version"/>
+    <function name="gdata_picasaweb_file_get_position ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-position"/>
+    <function name="gdata_picasaweb_file_set_position ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-position"/>
+    <function name="gdata_picasaweb_file_get_album_id ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-album-id"/>
+    <function name="gdata_picasaweb_file_set_album_id ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-album-id"/>
+    <function name="gdata_picasaweb_file_get_width ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-width"/>
+    <function name="gdata_picasaweb_file_get_height ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-height"/>
+    <function name="gdata_picasaweb_file_get_size ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-size"/>
+    <function name="gdata_picasaweb_file_get_client ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-client"/>
+    <function name="gdata_picasaweb_file_set_client ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-client"/>
+    <function name="gdata_picasaweb_file_get_checksum ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-checksum"/>
+    <function name="gdata_picasaweb_file_set_checksum ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-checksum"/>
+    <function name="gdata_picasaweb_file_get_timestamp ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-timestamp"/>
+    <function name="gdata_picasaweb_file_set_timestamp ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-timestamp"/>
+    <function name="gdata_picasaweb_file_is_commenting_enabled ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-is-commenting-enabled"/>
+    <function name="gdata_picasaweb_file_set_is_commenting_enabled ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-is-commenting-enabled"/>
+    <function name="gdata_picasaweb_file_get_comment_count ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-comment-count"/>
+    <function name="gdata_picasaweb_file_get_rotation ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-rotation"/>
+    <function name="gdata_picasaweb_file_set_rotation ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-rotation"/>
+    <function name="gdata_picasaweb_file_get_video_status ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-video-status"/>
+    <function name="gdata_picasaweb_file_get_tags ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-tags"/>
+    <function name="gdata_picasaweb_file_set_tags ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-tags"/>
+    <function name="gdata_picasaweb_file_get_credit ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-credit"/>
+    <function name="gdata_picasaweb_file_get_caption ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-caption"/>
+    <function name="gdata_picasaweb_file_set_caption ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-caption"/>
+    <function name="gdata_picasaweb_file_get_contents ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-contents"/>
+    <function name="gdata_picasaweb_file_get_thumbnails ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-thumbnails"/>
+    <function name="gdata_picasaweb_file_get_distance ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-distance"/>
+    <function name="gdata_picasaweb_file_get_exposure ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-exposure"/>
+    <function name="gdata_picasaweb_file_get_flash ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-flash"/>
+    <function name="gdata_picasaweb_file_get_focal_length ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-focal-length"/>
+    <function name="gdata_picasaweb_file_get_fstop ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-fstop"/>
+    <function name="gdata_picasaweb_file_get_image_unique_id ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-image-unique-id"/>
+    <function name="gdata_picasaweb_file_get_iso ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-iso"/>
+    <function name="gdata_picasaweb_file_get_make ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-make"/>
+    <function name="gdata_picasaweb_file_get_model ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-model"/>
+    <function name="gdata_picasaweb_file_get_coordinates ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-coordinates"/>
+    <function name="gdata_picasaweb_file_set_coordinates ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-set-coordinates"/>
+    <function name="The &quot;album-id&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--album-id"/>
+    <function name="The &quot;caption&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--caption"/>
+    <function name="The &quot;checksum&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--checksum"/>
+    <function name="The &quot;client&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--client"/>
+    <function name="The &quot;comment-count&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--comment-count"/>
+    <function name="The &quot;credit&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--credit"/>
+    <function name="The &quot;distance&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--distance"/>
+    <function name="The &quot;edited&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--edited"/>
+    <function name="The &quot;exposure&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--exposure"/>
+    <function name="The &quot;flash&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--flash"/>
+    <function name="The &quot;focal-length&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--focal-length"/>
+    <function name="The &quot;fstop&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--fstop"/>
+    <function name="The &quot;height&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--height"/>
+    <function name="The &quot;image-unique-id&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--image-unique-id"/>
+    <function name="The &quot;is-commenting-enabled&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--is-commenting-enabled"/>
+    <function name="The &quot;iso&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--iso"/>
+    <function name="The &quot;latitude&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--latitude"/>
+    <function name="The &quot;longitude&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--longitude"/>
+    <function name="The &quot;make&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--make"/>
+    <function name="The &quot;model&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--model"/>
+    <function name="The &quot;position&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--position"/>
+    <function name="The &quot;rotation&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--rotation"/>
+    <function name="The &quot;size&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--size"/>
+    <function name="The &quot;tags&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--tags"/>
+    <function name="The &quot;timestamp&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--timestamp"/>
+    <function name="The &quot;version&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--version"/>
+    <function name="The &quot;video-status&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--video-status"/>
+    <function name="The &quot;width&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--width"/>
+  </functions>
+</book>

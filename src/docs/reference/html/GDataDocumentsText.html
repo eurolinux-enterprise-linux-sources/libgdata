@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataDocumentsText</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch11.html" title="Google Documents API">
+<link rel="prev" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet">
+<link rel="next" href="ch12.html" title="Google PicasaWeb API">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataDocumentsSpreadsheet.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch11.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="ch12.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataDocumentsText.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataDocumentsText.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataDocumentsText.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataDocumentsText.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataDocumentsText"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataDocumentsText.top_of_page"></a>GDataDocumentsText</span></h2>
+<p>GDataDocumentsText — GData Documents text object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsText.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataDocumentsText.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/services/documents/gdata-documents-text.h&gt;
+
+                    <a href="GDataDocumentsText.html#GDataDocumentsText-struct">GDataDocumentsText</a>;
+                    <a href="GDataDocumentsText.html#GDataDocumentsTextClass">GDataDocumentsTextClass</a>;
+enum                <a href="GDataDocumentsText.html#GDataDocumentsTextFormat">GDataDocumentsTextFormat</a>;
+<a href="GDataDocumentsText.html">GDataDocumentsText</a> * <a href="GDataDocumentsText.html#gdata-documents-text-new">gdata_documents_text_new</a>           (const gchar *id);
+GFile *             <a href="GDataDocumentsText.html#gdata-documents-text-download-document">gdata_documents_text_download_document</a>
+                                                        (<a href="GDataDocumentsText.html">GDataDocumentsText</a> *self,
+                                                         <a href="GDataDocumentsService.html">GDataDocumentsService</a> *service,
+                                                         gchar **content_type,
+                                                         <a href="GDataDocumentsText.html#GDataDocumentsTextFormat">GDataDocumentsTextFormat</a> export_format,
+                                                         GFile *destination_file,
+                                                         gboolean replace_file_if_exists,
+                                                         GCancellable *cancellable,
+                                                         GError **error);
+gchar *             <a href="GDataDocumentsText.html#gdata-documents-text-get-download-uri">gdata_documents_text_get_download_uri</a>
+                                                        (<a href="GDataDocumentsText.html">GDataDocumentsText</a> *self,
+                                                         <a href="GDataDocumentsText.html#GDataDocumentsTextFormat">GDataDocumentsTextFormat</a> export_format);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsText.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----<a href="GDataEntry.html">GDataEntry</a>
+               +----<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a>
+                     +----GDataDocumentsText
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsText.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+GDataDocumentsText implements
+ <a href="GDataAccessHandler.html">GDataAccessHandler</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsText.description"></a><h2>Description</h2>
+<p>
+<a href="GDataDocumentsText.html"><span class="type">GDataDocumentsText</span></a> is a subclass of <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> to represent a text document from Google Documents.
+</p>
+<p>
+For more details of Google Documents' GData API, see the <a class="ulink" href="" target="_top">
+online documentation</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsText.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataDocumentsText-struct"></a><h3>GDataDocumentsText</h3>
+<pre class="programlisting">typedef struct _GDataDocumentsText GDataDocumentsText;</pre>
+<p>
+All the fields in the <a href="GDataDocumentsText.html"><span class="type">GDataDocumentsText</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataDocumentsTextClass"></a><h3>GDataDocumentsTextClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataDocumentsTextClass;
+</pre>
+<p>
+All the fields in the <a href="GDataDocumentsText.html#GDataDocumentsTextClass"><span class="type">GDataDocumentsTextClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataDocumentsTextFormat"></a><h3>enum GDataDocumentsTextFormat</h3>
+<pre class="programlisting">typedef enum {
+	GDATA_DOCUMENTS_TEXT_DOC = 0,
+	GDATA_DOCUMENTS_TEXT_HTML,
+	GDATA_DOCUMENTS_TEXT_ODT,
+	GDATA_DOCUMENTS_TEXT_PDF,
+	GDATA_DOCUMENTS_TEXT_PNG,
+	GDATA_DOCUMENTS_TEXT_RTF,
+	GDATA_DOCUMENTS_TEXT_TXT,
+	GDATA_DOCUMENTS_TEXT_ZIP,
+} GDataDocumentsTextFormat;
+</pre>
+<p>
+The different available download formats for text documents.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDATA-DOCUMENTS-TEXT-DOC:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_TEXT_DOC</code></span></p></td>
+<td> Microsoft Word (DOC) format
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-DOCUMENTS-TEXT-HTML:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_TEXT_HTML</code></span></p></td>
+<td> HyperText Markup Language (HTML) format
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-DOCUMENTS-TEXT-ODT:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_TEXT_ODT</code></span></p></td>
+<td> OpenDocument Text (ODT) format
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-DOCUMENTS-TEXT-PDF:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_TEXT_PDF</code></span></p></td>
+<td> Portable Document Format (PDF)
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-DOCUMENTS-TEXT-PNG:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_TEXT_PNG</code></span></p></td>
+<td> Portable Network Graphics (PNG) image format
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-DOCUMENTS-TEXT-RTF:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_TEXT_RTF</code></span></p></td>
+<td> Rich Text Format (RTF)
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-DOCUMENTS-TEXT-TXT:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_TEXT_TXT</code></span></p></td>
+<td> plain text format
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-DOCUMENTS-TEXT-ZIP:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_TEXT_ZIP</code></span></p></td>
+<td> ZIP archive containing images and exported HTML
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-documents-text-new"></a><h3>gdata_documents_text_new ()</h3>
+<pre class="programlisting"><a href="GDataDocumentsText.html">GDataDocumentsText</a> * gdata_documents_text_new           (const gchar *id);</pre>
+<p>
+Creates a new <a href="GDataDocumentsText.html"><span class="type">GDataDocumentsText</span></a> with the given entry ID (<a href="GDataEntry.html#GDataEntry--id"><span class="type">"id"</span></a>).</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the entry's ID (not the document ID of the text document), or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataDocumentsText.html"><span class="type">GDataDocumentsText</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-documents-text-download-document"></a><h3>gdata_documents_text_download_document ()</h3>
+<pre class="programlisting">GFile *             gdata_documents_text_download_document
+                                                        (<a href="GDataDocumentsText.html">GDataDocumentsText</a> *self,
+                                                         <a href="GDataDocumentsService.html">GDataDocumentsService</a> *service,
+                                                         gchar **content_type,
+                                                         <a href="GDataDocumentsText.html#GDataDocumentsTextFormat">GDataDocumentsTextFormat</a> export_format,
+                                                         GFile *destination_file,
+                                                         gboolean replace_file_if_exists,
+                                                         GCancellable *cancellable,
+                                                         GError **error);</pre>
+<p>
+Downloads and returns the text document file represented by the <a href="GDataDocumentsText.html"><span class="type">GDataDocumentsText</span></a>. If the document doesn't exist,
+<code class="literal">NULL</code> is returned, but no error is set in <em class="parameter"><code>error</code></em>. TODO: What?
+</p>
+<p>
+If <em class="parameter"><code>cancellable</code></em> is not <code class="literal">NULL</code>, then the operation can be cancelled by triggering the <em class="parameter"><code>cancellable</code></em> object from another thread.
+If the operation was cancelled, the error <code class="literal">G_IO_ERROR_CANCELLED</code> will be returned.
+</p>
+<p>
+If <em class="parameter"><code>destination_file</code></em> is a directory, then the file will be downloaded in this directory with the <a href="GDataEntry.html#GDataEntry--title"><span class="type">"title"</span></a> with 
+the apropriate extension as name.
+</p>
+<p>
+If there is an error getting the document, a <code class="literal">GDATA_SERVICE_ERROR_WITH_QUERY</code> error will be returned.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataDocumentsText.html"><span class="type">GDataDocumentsText</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>service</code></em> :</span></p></td>
+<td> a <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>content_type</code></em> :</span></p></td>
+<td> return location for the document's content type, or <code class="literal">NULL</code>; free with <code class="function">g_free()</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>export_format</code></em> :</span></p></td>
+<td> the format in which the text document should be exported
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>destination_file</code></em> :</span></p></td>
+<td> the <span class="type">GFile</span> into which the text file should be saved
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>replace_file_if_exists</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the file should be replaced if it already exists, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the document's data, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-documents-text-get-download-uri"></a><h3>gdata_documents_text_get_download_uri ()</h3>
+<pre class="programlisting">gchar *             gdata_documents_text_get_download_uri
+                                                        (<a href="GDataDocumentsText.html">GDataDocumentsText</a> *self,
+                                                         <a href="GDataDocumentsText.html#GDataDocumentsTextFormat">GDataDocumentsTextFormat</a> export_format);</pre>
+<p>
+Builds and returns the download URI for the given <a href="GDataDocumentsText.html"><span class="type">GDataDocumentsText</span></a> in the desired format. Note that directly downloading
+the document using this URI isn't possible, as authentication is required. You should instead use <a href="GDataDownloadStream.html#gdata-download-stream-new"><code class="function">gdata_download_stream_new()</code></a> with
+the URI, and use the resulting <span class="type">GInputStream</span>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataDocumentsText.html"><span class="type">GDataDocumentsText</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>export_format</code></em> :</span></p></td>
+<td> the format in which the document should be exported when downloaded
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the download URI; free with <code class="function">g_free()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

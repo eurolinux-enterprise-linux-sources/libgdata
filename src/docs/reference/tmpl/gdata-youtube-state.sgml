@@ -1,0 +1,89 @@
+<!-- ##### SECTION Title ##### -->
+GDataYouTubeState
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataYouTubeState ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataYouTubeState:help-uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeState:message ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeState:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeState:reason-code ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataYouTubeStateClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_youtube_state_get_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_state_get_reason_code ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_state_get_help_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_state_get_message ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

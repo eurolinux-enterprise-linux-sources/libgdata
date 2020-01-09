@@ -1,0 +1,1081 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataQuery</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch02.html" title="Core API">
+<link rel="prev" href="GDataService.html" title="GDataService">
+<link rel="next" href="GDataFeed.html" title="GDataFeed">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataService.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataFeed.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataQuery.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataQuery.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataQuery.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataQuery.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataQuery"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataQuery.top_of_page"></a>GDataQuery</span></h2>
+<p>GDataQuery — GData query object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataQuery.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataQuery.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/gdata-query.h&gt;
+
+                    <a href="GDataQuery.html#GDataQuery-struct">GDataQuery</a>;
+                    <a href="GDataQuery.html#GDataQueryClass">GDataQueryClass</a>;
+<a href="GDataQuery.html">GDataQuery</a> *        <a href="GDataQuery.html#gdata-query-new">gdata_query_new</a>                     (const gchar *q);
+<a href="GDataQuery.html">GDataQuery</a> *        <a href="GDataQuery.html#gdata-query-new-with-limits">gdata_query_new_with_limits</a>         (const gchar *q,
+                                                         gint start_index,
+                                                         gint max_results);
+<a href="GDataQuery.html">GDataQuery</a> *        <a href="GDataQuery.html#gdata-query-new-for-id">gdata_query_new_for_id</a>              (const gchar *entry_id);
+gchar *             <a href="GDataQuery.html#gdata-query-get-query-uri">gdata_query_get_query_uri</a>           (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *feed_uri);
+void                <a href="GDataQuery.html#gdata-query-next-page">gdata_query_next_page</a>               (<a href="GDataQuery.html">GDataQuery</a> *self);
+gboolean            <a href="GDataQuery.html#gdata-query-previous-page">gdata_query_previous_page</a>           (<a href="GDataQuery.html">GDataQuery</a> *self);
+const gchar *       <a href="GDataQuery.html#gdata-query-get-q">gdata_query_get_q</a>                   (<a href="GDataQuery.html">GDataQuery</a> *self);
+void                <a href="GDataQuery.html#gdata-query-set-q">gdata_query_set_q</a>                   (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *q);
+const gchar *       <a href="GDataQuery.html#gdata-query-get-entry-id">gdata_query_get_entry_id</a>            (<a href="GDataQuery.html">GDataQuery</a> *self);
+void                <a href="GDataQuery.html#gdata-query-set-entry-id">gdata_query_set_entry_id</a>            (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *entry_id);
+const gchar *       <a href="GDataQuery.html#gdata-query-get-etag">gdata_query_get_etag</a>                (<a href="GDataQuery.html">GDataQuery</a> *self);
+void                <a href="GDataQuery.html#gdata-query-set-etag">gdata_query_set_etag</a>                (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *etag);
+const gchar *       <a href="GDataQuery.html#gdata-query-get-author">gdata_query_get_author</a>              (<a href="GDataQuery.html">GDataQuery</a> *self);
+void                <a href="GDataQuery.html#gdata-query-set-author">gdata_query_set_author</a>              (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *author);
+const gchar *       <a href="GDataQuery.html#gdata-query-get-categories">gdata_query_get_categories</a>          (<a href="GDataQuery.html">GDataQuery</a> *self);
+void                <a href="GDataQuery.html#gdata-query-set-categories">gdata_query_set_categories</a>          (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *categories);
+void                <a href="GDataQuery.html#gdata-query-get-published-min">gdata_query_get_published_min</a>       (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *published_min);
+void                <a href="GDataQuery.html#gdata-query-set-published-min">gdata_query_set_published_min</a>       (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *published_min);
+void                <a href="GDataQuery.html#gdata-query-get-published-max">gdata_query_get_published_max</a>       (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *published_max);
+void                <a href="GDataQuery.html#gdata-query-set-published-max">gdata_query_set_published_max</a>       (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *published_max);
+void                <a href="GDataQuery.html#gdata-query-get-updated-min">gdata_query_get_updated_min</a>         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *updated_min);
+void                <a href="GDataQuery.html#gdata-query-set-updated-min">gdata_query_set_updated_min</a>         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *updated_min);
+void                <a href="GDataQuery.html#gdata-query-get-updated-max">gdata_query_get_updated_max</a>         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *updated_max);
+void                <a href="GDataQuery.html#gdata-query-set-updated-max">gdata_query_set_updated_max</a>         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *updated_max);
+gint                <a href="GDataQuery.html#gdata-query-get-start-index">gdata_query_get_start_index</a>         (<a href="GDataQuery.html">GDataQuery</a> *self);
+void                <a href="GDataQuery.html#gdata-query-set-start-index">gdata_query_set_start_index</a>         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         gint start_index);
+gint                <a href="GDataQuery.html#gdata-query-get-max-results">gdata_query_get_max_results</a>         (<a href="GDataQuery.html">GDataQuery</a> *self);
+void                <a href="GDataQuery.html#gdata-query-set-max-results">gdata_query_set_max_results</a>         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         gint max_results);
+gboolean            <a href="GDataQuery.html#gdata-query-is-strict">gdata_query_is_strict</a>               (<a href="GDataQuery.html">GDataQuery</a> *self);
+void                <a href="GDataQuery.html#gdata-query-set-is-strict">gdata_query_set_is_strict</a>           (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         gboolean is_strict);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----GDataQuery
+         +----<a href="GDataCalendarQuery.html">GDataCalendarQuery</a>
+         +----<a href="GDataContactsQuery.html">GDataContactsQuery</a>
+         +----<a href="GDataDocumentsQuery.html">GDataDocumentsQuery</a>
+         +----<a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a>
+         +----<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataQuery.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataQuery.html#GDataQuery--author">author</a>"                   gchar*                : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--categories">categories</a>"               gchar*                : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--entry-id">entry-id</a>"                 gchar*                : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--etag">etag</a>"                     gchar*                : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--is-strict">is-strict</a>"                gboolean              : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--max-results">max-results</a>"              gint                  : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--published-max">published-max</a>"            GTimeVal*             : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--published-min">published-min</a>"            GTimeVal*             : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--q">q</a>"                        gchar*                : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--start-index">start-index</a>"              gint                  : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--updated-max">updated-max</a>"              GTimeVal*             : Read / Write
+  "<a href="GDataQuery.html#GDataQuery--updated-min">updated-min</a>"              GTimeVal*             : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataQuery.description"></a><h2>Description</h2>
+<p>
+<a href="GDataQuery.html"><span class="type">GDataQuery</span></a> represents a collection of query parameters used in a series of queries on a <a href="GDataService.html"><span class="type">GDataService</span></a>. It allows the query parameters to be
+set, with the aim of building a query URI using <a href="GDataQuery.html#gdata-query-get-query-uri"><code class="function">gdata_query_get_query_uri()</code></a>. Pagination is supported using <a href="GDataQuery.html#gdata-query-next-page"><code class="function">gdata_query_next_page()</code></a> and
+<a href="GDataQuery.html#gdata-query-previous-page"><code class="function">gdata_query_previous_page()</code></a>.
+</p>
+<p>
+For more information on the standard GData query parameters supported by <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>, see the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/reference.html#Queries" target="_top">online documentation</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataQuery.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataQuery-struct"></a><h3>GDataQuery</h3>
+<pre class="programlisting">typedef struct _GDataQuery GDataQuery;</pre>
+<p>
+All the fields in the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQueryClass"></a><h3>GDataQueryClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataQueryClass;
+</pre>
+<p>
+All the fields in the <a href="GDataQuery.html#GDataQueryClass"><span class="type">GDataQueryClass</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-new"></a><h3>gdata_query_new ()</h3>
+<pre class="programlisting"><a href="GDataQuery.html">GDataQuery</a> *        gdata_query_new                     (const gchar *q);</pre>
+<p>
+Creates a new <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with its <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
+<td> a query string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-new-with-limits"></a><h3>gdata_query_new_with_limits ()</h3>
+<pre class="programlisting"><a href="GDataQuery.html">GDataQuery</a> *        gdata_query_new_with_limits         (const gchar *q,
+                                                         gint start_index,
+                                                         gint max_results);</pre>
+<p>
+Creates a new <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with its <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>, and the limits <em class="parameter"><code>start_index</code></em> and <em class="parameter"><code>max_results</code></em>
+applied.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
+<td> a query string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_index</code></em> :</span></p></td>
+<td> a one-based start index for the results
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max_results</code></em> :</span></p></td>
+<td> the maximum number of results to return
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-new-for-id"></a><h3>gdata_query_new_for_id ()</h3>
+<pre class="programlisting"><a href="GDataQuery.html">GDataQuery</a> *        gdata_query_new_for_id              (const gchar *entry_id);</pre>
+<p>
+Creates a new <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to query for <em class="parameter"><code>entry_id</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry_id</code></em> :</span></p></td>
+<td> an entry URN ID
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-query-uri"></a><h3>gdata_query_get_query_uri ()</h3>
+<pre class="programlisting">gchar *             gdata_query_get_query_uri           (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *feed_uri);</pre>
+<p>
+Builds a query URI from the given base feed URI, using the properties of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>. This function will take care
+of all necessary URI escaping, so it should <span class="emphasis"><em>not</em></span> be done beforehand.
+</p>
+<p>
+The query URI is what functions like <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a> use to query the online service.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>feed_uri</code></em> :</span></p></td>
+<td> the feed URI on which to build the query URI
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a query URI; free with <code class="function">g_free()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-next-page"></a><h3>gdata_query_next_page ()</h3>
+<pre class="programlisting">void                gdata_query_next_page               (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Changes the state of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> such that when <a href="GDataQuery.html#gdata-query-get-query-uri"><code class="function">gdata_query_get_query_uri()</code></a> is next called, it will build the
+query URI for the next page in the result set.
+</p>
+<p>
+Ideally, the URI of the next page is retrieved from a feed automatically when <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a> is called, but
+<a href="GDataQuery.html#gdata-query-next-page"><code class="function">gdata_query_next_page()</code></a> will fall back to using <a href="GDataQuery.html#GDataQuery--start-index"><span class="type">"start-index"</span></a> to emulate true pagination if this fails.
+</p>
+<p>
+You <span class="emphasis"><em>should not</em></span> implement pagination manually using <a href="GDataQuery.html#GDataQuery--start-index"><span class="type">"start-index"</span></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-previous-page"></a><h3>gdata_query_previous_page ()</h3>
+<pre class="programlisting">gboolean            gdata_query_previous_page           (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Changes the state of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> such that when <a href="GDataQuery.html#gdata-query-get-query-uri"><code class="function">gdata_query_get_query_uri()</code></a> is next called, it will build the
+query URI for the previous page in the result set.
+</p>
+<p>
+See the documentation for <a href="GDataQuery.html#gdata-query-next-page"><code class="function">gdata_query_next_page()</code></a> for an explanation of how query URIs from the feeds are used to this end.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if there is a previous page and it has been switched to, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-q"></a><h3>gdata_query_get_q ()</h3>
+<pre class="programlisting">const gchar *       gdata_query_get_q                   (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the q property, or <code class="literal">NULL</code> if it is unset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-q"></a><h3>gdata_query_set_q ()</h3>
+<pre class="programlisting">void                gdata_query_set_q                   (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *q);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new query string, <em class="parameter"><code>q</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>q</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
+<td> a new query string, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-entry-id"></a><h3>gdata_query_get_entry_id ()</h3>
+<pre class="programlisting">const gchar *       gdata_query_get_entry_id            (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--entry-id"><span class="type">"entry-id"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the entry ID property, or <code class="literal">NULL</code> if it is unset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-entry-id"></a><h3>gdata_query_set_entry_id ()</h3>
+<pre class="programlisting">void                gdata_query_set_entry_id            (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *entry_id);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--entry-id"><span class="type">"entry-id"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new entry ID string, <em class="parameter"><code>entry_id</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>entry_id</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry_id</code></em> :</span></p></td>
+<td> the new entry ID string
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-etag"></a><h3>gdata_query_get_etag ()</h3>
+<pre class="programlisting">const gchar *       gdata_query_get_etag                (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--etag"><span class="type">"etag"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ETag property, or <code class="literal">NULL</code> if it is unset
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-etag"></a><h3>gdata_query_set_etag ()</h3>
+<pre class="programlisting">void                gdata_query_set_etag                (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *etag);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--etag"><span class="type">"etag"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new ETag, <em class="parameter"><code>etag</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>etag</code></em> to <code class="literal">NULL</code> to not check against the server-side ETag.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>etag</code></em> :</span></p></td>
+<td> the new ETag
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-author"></a><h3>gdata_query_get_author ()</h3>
+<pre class="programlisting">const gchar *       gdata_query_get_author              (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--author"><span class="type">"author"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the author property, or <code class="literal">NULL</code> if it is unset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-author"></a><h3>gdata_query_set_author ()</h3>
+<pre class="programlisting">void                gdata_query_set_author              (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *author);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--author"><span class="type">"author"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new author string, <em class="parameter"><code>author</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>author</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>author</code></em> :</span></p></td>
+<td> the new author string, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-categories"></a><h3>gdata_query_get_categories ()</h3>
+<pre class="programlisting">const gchar *       gdata_query_get_categories          (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--categories"><span class="type">"categories"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the categories property, or <code class="literal">NULL</code> if it is unset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-categories"></a><h3>gdata_query_set_categories ()</h3>
+<pre class="programlisting">void                gdata_query_set_categories          (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         const gchar *categories);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--categories"><span class="type">"categories"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new category string, <em class="parameter"><code>categories</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>categories</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>categories</code></em> :</span></p></td>
+<td> the new category string, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-published-min"></a><h3>gdata_query_get_published_min ()</h3>
+<pre class="programlisting">void                gdata_query_get_published_min       (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *published_min);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--published-min"><span class="type">"published-min"</span></a> property and puts it in <em class="parameter"><code>published_min</code></em>. If the property is unset,
+both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>published_min</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-published-min"></a><h3>gdata_query_set_published_min ()</h3>
+<pre class="programlisting">void                gdata_query_set_published_min       (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *published_min);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--published-min"><span class="type">"published-min"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new minimum publish time, <em class="parameter"><code>published_min</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>published_min</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>published_min</code></em> :</span></p></td>
+<td> the new minimum publish time, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-published-max"></a><h3>gdata_query_get_published_max ()</h3>
+<pre class="programlisting">void                gdata_query_get_published_max       (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *published_max);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--published-max"><span class="type">"published-max"</span></a> property and puts it in <em class="parameter"><code>published_max</code></em>. If the property is unset,
+both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>published_max</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-published-max"></a><h3>gdata_query_set_published_max ()</h3>
+<pre class="programlisting">void                gdata_query_set_published_max       (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *published_max);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--published-max"><span class="type">"published-max"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new maximum publish time, <em class="parameter"><code>published_max</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>published_max</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>published_max</code></em> :</span></p></td>
+<td> the new maximum publish time, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-updated-min"></a><h3>gdata_query_get_updated_min ()</h3>
+<pre class="programlisting">void                gdata_query_get_updated_min         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *updated_min);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--updated-min"><span class="type">"updated-min"</span></a> property and puts it in <em class="parameter"><code>updated_min</code></em>. If the property is unset,
+both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>updated_min</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-updated-min"></a><h3>gdata_query_set_updated_min ()</h3>
+<pre class="programlisting">void                gdata_query_set_updated_min         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *updated_min);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--updated-min"><span class="type">"updated-min"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new minimum update time, <em class="parameter"><code>updated_min</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>updated_min</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>updated_min</code></em> :</span></p></td>
+<td> the new minimum update time, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-updated-max"></a><h3>gdata_query_get_updated_max ()</h3>
+<pre class="programlisting">void                gdata_query_get_updated_max         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *updated_max);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--updated-max"><span class="type">"updated-max"</span></a> property and puts it in <em class="parameter"><code>updated_max</code></em>. If the property is unset,
+both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>updated_max</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-updated-max"></a><h3>gdata_query_set_updated_max ()</h3>
+<pre class="programlisting">void                gdata_query_set_updated_max         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         GTimeVal *updated_max);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--updated-max"><span class="type">"updated-max"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new maximum update time, <em class="parameter"><code>updated_max</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>updated_max</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>updated_max</code></em> :</span></p></td>
+<td> the new maximum update time, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-start-index"></a><h3>gdata_query_get_start_index ()</h3>
+<pre class="programlisting">gint                gdata_query_get_start_index         (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--start-index"><span class="type">"start-index"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the start index property, or <code class="literal">-1</code> if it is unset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-start-index"></a><h3>gdata_query_set_start_index ()</h3>
+<pre class="programlisting">void                gdata_query_set_start_index         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         gint start_index);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--start-index"><span class="type">"start-index"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new one-based start index, <em class="parameter"><code>start_index</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>start_index</code></em> to <code class="literal">-1</code> or <code class="literal">0</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_index</code></em> :</span></p></td>
+<td> the new start index
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-get-max-results"></a><h3>gdata_query_get_max_results ()</h3>
+<pre class="programlisting">gint                gdata_query_get_max_results         (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--max-results"><span class="type">"max-results"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the maximum results property, or <code class="literal">-1</code> if it is unset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-max-results"></a><h3>gdata_query_set_max_results ()</h3>
+<pre class="programlisting">void                gdata_query_set_max_results         (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         gint max_results);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--max-results"><span class="type">"max-results"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new maximum results value, <em class="parameter"><code>max_results</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>max_results</code></em> to <code class="literal">-1</code> to unset the property in the query URI.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max_results</code></em> :</span></p></td>
+<td> the new maximum results value
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-is-strict"></a><h3>gdata_query_is_strict ()</h3>
+<pre class="programlisting">gboolean            gdata_query_is_strict               (<a href="GDataQuery.html">GDataQuery</a> *self);</pre>
+<p>
+Gets the <a href="GDataQuery.html#GDataQuery--is-strict"><span class="type">"is-strict"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the strict property
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-query-set-is-strict"></a><h3>gdata_query_set_is_strict ()</h3>
+<pre class="programlisting">void                gdata_query_set_is_strict           (<a href="GDataQuery.html">GDataQuery</a> *self,
+                                                         gboolean is_strict);</pre>
+<p>
+Sets the <a href="GDataQuery.html#GDataQuery--is-strict"><span class="type">"is-strict"</span></a> property of the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> to the new strict value, <em class="parameter"><code>is_strict</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_strict</code></em> :</span></p></td>
+<td> the new strict value
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataQuery.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--author"></a><h3>The <code class="literal">"author"</code> property</h3>
+<pre class="programlisting">  "author"                   gchar*                : Read / Write</pre>
+<p>
+An entry author. The service returns entries where the author name and/or e-mail address match your query string.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--categories"></a><h3>The <code class="literal">"categories"</code> property</h3>
+<pre class="programlisting">  "categories"               gchar*                : Read / Write</pre>
+<p>
+A category filter.
+</p>
+<p>
+You can query on multiple categories by listing multiple categories separated by slashes. The service returns all entries that match all
+of the categories (like using AND between terms). For example: <strong class="userinput"><code>Fritz/Laurie</code></strong> returns
+entries that match both categories ("Fritz" and "Laurie").
+</p>
+<p>
+To do an OR between terms, use a pipe character (<code class="literal">|</code>). For example: <strong class="userinput"><code>Fritz%<code class="literal">7CLaurie</code></code></strong> returns
+entries that match either category.
+</p>
+<p>
+An entry matches a specified category if the entry is in a category that has a matching term or label, as defined in the Atom specification.
+(Roughly, the "term" is the internal string used by the software to identify the category, while the "label" is the human-readable string
+presented to a user in a user interface.)
+</p>
+<p>
+To exclude entries that match a given category, use the form <strong class="userinput"><code>-categoryname</code></strong>.
+</p>
+<p>
+To query for a category that has a scheme – such as <code class="literal">&lt;category scheme="urn:google.com" term="public"/&gt;</code> – you must
+place the scheme in curly braces before the category name. For example: <strong class="userinput"><code>{urn:google.com}public</code></strong>. To match a category
+that has no scheme, use an empty pair of curly braces. If you don't specify curly braces, then categories in any scheme will match.
+</p>
+<p>
+The above features can be combined. For example: <strong class="userinput"><code>A|-{urn:google.com}B/-C</code></strong> means (A OR (NOT B)) AND (NOT C).</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--entry-id"></a><h3>The <code class="literal">"entry-id"</code> property</h3>
+<pre class="programlisting">  "entry-id"                 gchar*                : Read / Write</pre>
+<p>
+The ID of a specific entry to be retrieved. If you specify an entry ID, you cannot specify any other parameters.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--etag"></a><h3>The <code class="literal">"etag"</code> property</h3>
+<pre class="programlisting">  "etag"                     gchar*                : Read / Write</pre>
+<p>
+The ETag against which to check for updates. If the server-side ETag matches this one, the requested feed hasn't changed, and is not
+returned unnecessarily.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--is-strict"></a><h3>The <code class="literal">"is-strict"</code> property</h3>
+<pre class="programlisting">  "is-strict"                gboolean              : Read / Write</pre>
+<p>
+Strict query parameter checking. If this is enabled, an error will be returned by the online service if a parameter is
+not recognised.</p>
+<p>Default value: FALSE</p>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--max-results"></a><h3>The <code class="literal">"max-results"</code> property</h3>
+<pre class="programlisting">  "max-results"              gint                  : Read / Write</pre>
+<p>
+Maximum number of results to be retrieved. Most services have a default <a href="GDataQuery.html#GDataQuery--max-results"><span class="type">"max-results"</span></a> size imposed by the server; if you wish
+to receive the entire feed, specify a large number such as <code class="literal">G_MAXINT</code> for this property.</p>
+<p>Allowed values: &gt;= G_MAXULONG</p>
+<p>Default value: -1</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--published-max"></a><h3>The <code class="literal">"published-max"</code> property</h3>
+<pre class="programlisting">  "published-max"            GTimeVal*             : Read / Write</pre>
+<p>
+Upper bound on the entry publish date, exclusive.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--published-min"></a><h3>The <code class="literal">"published-min"</code> property</h3>
+<pre class="programlisting">  "published-min"            GTimeVal*             : Read / Write</pre>
+<p>
+Lower bound on the entry publish date, inclusive.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--q"></a><h3>The <code class="literal">"q"</code> property</h3>
+<pre class="programlisting">  "q"                        gchar*                : Read / Write</pre>
+<p>
+A full-text query string.
+</p>
+<p>
+When creating a query, list search terms separated by spaces, in the form <strong class="userinput"><code>term1 term2 term3</code></strong>.
+(As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the
+search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with
+the same stem), not substrings.
+</p>
+<p>
+To search for an exact phrase, enclose the phrase in quotation marks: <strong class="userinput"><code>"exact phrase"</code></strong>.
+</p>
+<p>
+To exclude entries that match a given term, use the form <strong class="userinput"><code>-term</code></strong>.
+</p>
+<p>
+The search is case-insensitive.
+</p>
+<p>
+Example: to search for all entries that contain the exact phrase "Elizabeth Bennet" and the word "Darcy" but don't contain the
+word "Austen", use the following query: <strong class="userinput"><code>"Elizabeth Bennet" Darcy -Austen</code></strong>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--start-index"></a><h3>The <code class="literal">"start-index"</code> property</h3>
+<pre class="programlisting">  "start-index"              gint                  : Read / Write</pre>
+<p>
+The one-based index of the first result to be retrieved. Use <a href="GDataQuery.html#gdata-query-next-page"><code class="function">gdata_query_next_page()</code></a> and <a href="GDataQuery.html#gdata-query-previous-page"><code class="function">gdata_query_previous_page()</code></a> to
+implement pagination, rather than manually changing <a href="GDataQuery.html#GDataQuery--start-index"><span class="type">"start-index"</span></a>.</p>
+<p>Allowed values: &gt;= G_MAXULONG</p>
+<p>Default value: -1</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--updated-max"></a><h3>The <code class="literal">"updated-max"</code> property</h3>
+<pre class="programlisting">  "updated-max"              GTimeVal*             : Read / Write</pre>
+<p>
+Upper bound on the entry update date, exclusive.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataQuery--updated-min"></a><h3>The <code class="literal">"updated-min"</code> property</h3>
+<pre class="programlisting">  "updated-min"              GTimeVal*             : Read / Write</pre>
+<p>
+Lower bound on the entry update date, inclusive.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

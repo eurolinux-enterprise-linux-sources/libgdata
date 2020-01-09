@@ -1,0 +1,1420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataGDPostalAddress</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch05.html" title="GData API">
+<link rel="prev" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber">
+<link rel="next" href="GDataGDReminder.html" title="GDataGDReminder">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataGDPhoneNumber.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataGDReminder.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataGDPostalAddress.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataGDPostalAddress.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataGDPostalAddress.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataGDPostalAddress.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataGDPostalAddress"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataGDPostalAddress.top_of_page"></a>GDataGDPostalAddress</span></h2>
+<p>GDataGDPostalAddress — GData postal address element</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPostalAddress.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataGDPostalAddress.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/gd/gdata-gd-postal-address.h&gt;
+
+                    <a href="GDataGDPostalAddress.html#GDataGDPostalAddress-struct">GDataGDPostalAddress</a>;
+                    <a href="GDataGDPostalAddress.html#GDataGDPostalAddressClass">GDataGDPostalAddressClass</a>;
+#define             <a href="GDataGDPostalAddress.html#GDATA-GD-ADDRESS-USAGE-GENERAL:CAPS">GDATA_GD_ADDRESS_USAGE_GENERAL</a>
+#define             <a href="GDataGDPostalAddress.html#GDATA-GD-ADDRESS-USAGE-LOCAL:CAPS">GDATA_GD_ADDRESS_USAGE_LOCAL</a>
+#define             <a href="GDataGDPostalAddress.html#GDATA-GD-MAIL-CLASS-BOTH:CAPS">GDATA_GD_MAIL_CLASS_BOTH</a>
+#define             <a href="GDataGDPostalAddress.html#GDATA-GD-MAIL-CLASS-LETTERS:CAPS">GDATA_GD_MAIL_CLASS_LETTERS</a>
+#define             <a href="GDataGDPostalAddress.html#GDATA-GD-MAIL-CLASS-NEITHER:CAPS">GDATA_GD_MAIL_CLASS_NEITHER</a>
+#define             <a href="GDataGDPostalAddress.html#GDATA-GD-MAIL-CLASS-PARCELS:CAPS">GDATA_GD_MAIL_CLASS_PARCELS</a>
+<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> * <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-new">gdata_gd_postal_address_new</a>      (const gchar *relation_type,
+                                                         const gchar *label,
+                                                         gboolean is_primary);
+gint                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-compare">gdata_gd_postal_address_compare</a>     (const <a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *a,
+                                                         const <a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *b);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-address">gdata_gd_postal_address_get_address</a> (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-address">gdata_gd_postal_address_set_address</a> (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *address);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-relation-type">gdata_gd_postal_address_get_relation_type</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-relation-type">gdata_gd_postal_address_set_relation_type</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *relation_type);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-label">gdata_gd_postal_address_get_label</a>   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-label">gdata_gd_postal_address_set_label</a>   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *label);
+gboolean            <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-is-primary">gdata_gd_postal_address_is_primary</a>  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-is-primary">gdata_gd_postal_address_set_is_primary</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         gboolean is_primary);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-mail-class">gdata_gd_postal_address_get_mail_class</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-mail-class">gdata_gd_postal_address_set_mail_class</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *mail_class);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-usage">gdata_gd_postal_address_get_usage</a>   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-usage">gdata_gd_postal_address_set_usage</a>   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *usage);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-agent">gdata_gd_postal_address_get_agent</a>   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-agent">gdata_gd_postal_address_set_agent</a>   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *agent);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-house-name">gdata_gd_postal_address_get_house_name</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-house-name">gdata_gd_postal_address_set_house_name</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *house_name);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-street">gdata_gd_postal_address_get_street</a>  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-street">gdata_gd_postal_address_set_street</a>  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *street);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-po-box">gdata_gd_postal_address_get_po_box</a>  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-po-box">gdata_gd_postal_address_set_po_box</a>  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *po_box);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-neighborhood">gdata_gd_postal_address_get_neighborhood</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-neighborhood">gdata_gd_postal_address_set_neighborhood</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *neighborhood);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-city">gdata_gd_postal_address_get_city</a>    (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-city">gdata_gd_postal_address_set_city</a>    (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *city);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-subregion">gdata_gd_postal_address_get_subregion</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-subregion">gdata_gd_postal_address_set_subregion</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *subregion);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-region">gdata_gd_postal_address_get_region</a>  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-region">gdata_gd_postal_address_set_region</a>  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *region);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-postcode">gdata_gd_postal_address_get_postcode</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-postcode">gdata_gd_postal_address_set_postcode</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *postcode);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-country">gdata_gd_postal_address_get_country</a> (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+const gchar *       <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-get-country-code">gdata_gd_postal_address_get_country_code</a>
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);
+void                <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-country">gdata_gd_postal_address_set_country</a> (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *country,
+                                                         const gchar *country_code);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPostalAddress.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----GDataGDPostalAddress
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPostalAddress.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--address">address</a>"                  gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--agent">agent</a>"                    gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--city">city</a>"                     gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--country">country</a>"                  gchar*                : Read
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--country-code">country-code</a>"             gchar*                : Read
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--house-name">house-name</a>"               gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--is-primary">is-primary</a>"               gboolean              : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--label">label</a>"                    gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--mail-class">mail-class</a>"               gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--neighborhood">neighborhood</a>"             gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--po-box">po-box</a>"                   gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--postcode">postcode</a>"                 gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--region">region</a>"                   gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--relation-type">relation-type</a>"            gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--street">street</a>"                   gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--subregion">subregion</a>"                gchar*                : Read / Write
+  "<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--usage">usage</a>"                    gchar*                : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPostalAddress.description"></a><h2>Description</h2>
+<p>
+<a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a> represents an "postal" element from the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPostalAddress" target="_top">GData specification</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPostalAddress.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress-struct"></a><h3>GDataGDPostalAddress</h3>
+<pre class="programlisting">typedef struct _GDataGDPostalAddress GDataGDPostalAddress;</pre>
+<p>
+All the fields in the <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddressClass"></a><h3>GDataGDPostalAddressClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataGDPostalAddressClass;
+</pre>
+<p>
+All the fields in the <a href="GDataGDPostalAddress.html#GDataGDPostalAddressClass"><span class="type">GDataGDPostalAddressClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDATA-GD-ADDRESS-USAGE-GENERAL:CAPS"></a><h3>GDATA_GD_ADDRESS_USAGE_GENERAL</h3>
+<pre class="programlisting">#define GDATA_GD_ADDRESS_USAGE_GENERAL "http://schemas.google.com/g/2005#general"
+</pre>
+<p>
+The address is for general usage. Value for <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--usage"><span class="type">"usage"</span></a>.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDATA-GD-ADDRESS-USAGE-LOCAL:CAPS"></a><h3>GDATA_GD_ADDRESS_USAGE_LOCAL</h3>
+<pre class="programlisting">#define GDATA_GD_ADDRESS_USAGE_LOCAL "http://schemas.google.com/g/2005#local"
+</pre>
+<p>
+The address is for local usage. Value for <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--usage"><span class="type">"usage"</span></a>.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDATA-GD-MAIL-CLASS-BOTH:CAPS"></a><h3>GDATA_GD_MAIL_CLASS_BOTH</h3>
+<pre class="programlisting">#define GDATA_GD_MAIL_CLASS_BOTH "http://schemas.google.com/g/2005#both"
+</pre>
+<p>
+Parcels and letters can be sent to the address. Value for <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--mail-class"><span class="type">"mail-class"</span></a>.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDATA-GD-MAIL-CLASS-LETTERS:CAPS"></a><h3>GDATA_GD_MAIL_CLASS_LETTERS</h3>
+<pre class="programlisting">#define GDATA_GD_MAIL_CLASS_LETTERS "http://schemas.google.com/g/2005#letters"
+</pre>
+<p>
+Only letters can be sent to the address. Value for <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--mail-class"><span class="type">"mail-class"</span></a>.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDATA-GD-MAIL-CLASS-NEITHER:CAPS"></a><h3>GDATA_GD_MAIL_CLASS_NEITHER</h3>
+<pre class="programlisting">#define GDATA_GD_MAIL_CLASS_NEITHER "http://schemas.google.com/g/2005#neither"
+</pre>
+<p>
+Address is purely locational and cannot be used for mail. Value for <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--mail-class"><span class="type">"mail-class"</span></a>.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDATA-GD-MAIL-CLASS-PARCELS:CAPS"></a><h3>GDATA_GD_MAIL_CLASS_PARCELS</h3>
+<pre class="programlisting">#define GDATA_GD_MAIL_CLASS_PARCELS "http://schemas.google.com/g/2005#parcels"
+</pre>
+<p>
+Only parcels can be sent to the address. Value for <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--mail-class"><span class="type">"mail-class"</span></a>.</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-new"></a><h3>gdata_gd_postal_address_new ()</h3>
+<pre class="programlisting"><a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> * gdata_gd_postal_address_new      (const gchar *relation_type,
+                                                         const gchar *label,
+                                                         gboolean is_primary);</pre>
+<p>
+Creates a new <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>. More information is available in the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>relation_type</code></em> :</span></p></td>
+<td> the relationship between the address and its owner, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a human-readable label for the address, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_primary</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if this phone number is its owner's primary number, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-compare"></a><h3>gdata_gd_postal_address_compare ()</h3>
+<pre class="programlisting">gint                gdata_gd_postal_address_compare     (const <a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *a,
+                                                         const <a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *b);</pre>
+<p>
+Compares the two postal addresses in a <code class="function">strcmp()</code> fashion. <code class="literal">NULL</code> values are handled gracefully, with
+<code class="literal">0</code> returned if both <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are <code class="literal">NULL</code>, <code class="literal">-1</code> if <em class="parameter"><code>a</code></em> is <code class="literal">NULL</code> and <code class="literal">1</code> if <em class="parameter"><code>b</code></em> is <code class="literal">NULL</code>.
+</p>
+<p>
+The comparison of non-<code class="literal">NULL</code> values is done on the basis of the <em class="parameter"><code>street</code></em>, <em class="parameter"><code>po_box</code></em>, <em class="parameter"><code>city</code></em> and <em class="parameter"><code>postcode</code></em> properties of
+the <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>es.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td> another <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">0</code> if <em class="parameter"><code>a</code></em> equals <em class="parameter"><code>b</code></em>, <code class="literal">-1</code> or <code class="literal">1</code> as appropriate otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-address"></a><h3>gdata_gd_postal_address_get_address ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_address (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--address"><span class="type">"address"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address itself, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-address"></a><h3>gdata_gd_postal_address_set_address ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_address (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *address);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--address"><span class="type">"address"</span></a> property to <em class="parameter"><code>address</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>address</code></em> :</span></p></td>
+<td> the new postal address
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-relation-type"></a><h3>gdata_gd_postal_address_get_relation_type ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_relation_type
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--relation-type"><span class="type">"relation-type"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' relation type, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-relation-type"></a><h3>gdata_gd_postal_address_set_relation_type ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_relation_type
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *relation_type);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--relation-type"><span class="type">"relation-type"</span></a> property to <em class="parameter"><code>relation_type</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>relation_type</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>relation_type</code></em> :</span></p></td>
+<td> the new relation type for the postal_address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-label"></a><h3>gdata_gd_postal_address_get_label ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_label   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--label"><span class="type">"label"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' label, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-label"></a><h3>gdata_gd_postal_address_set_label ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_label   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *label);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--label"><span class="type">"label"</span></a> property to <em class="parameter"><code>label</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>label</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> the new label for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-is-primary"></a><h3>gdata_gd_postal_address_is_primary ()</h3>
+<pre class="programlisting">gboolean            gdata_gd_postal_address_is_primary  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--is-primary"><span class="type">"is-primary"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if this is the primary postal address, <code class="literal">FALSE</code> otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-is-primary"></a><h3>gdata_gd_postal_address_set_is_primary ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_is_primary
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         gboolean is_primary);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--is-primary"><span class="type">"is-primary"</span></a> property to <em class="parameter"><code>is_primary</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_primary</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if this is the primary postal address, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-mail-class"></a><h3>gdata_gd_postal_address_get_mail_class ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_mail_class
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--mail-class"><span class="type">"mail-class"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' mail class, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-mail-class"></a><h3>gdata_gd_postal_address_set_mail_class ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_mail_class
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *mail_class);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--mail-class"><span class="type">"mail-class"</span></a> property to <em class="parameter"><code>mail_class</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>mail_class</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mail_class</code></em> :</span></p></td>
+<td> the new mail class for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-usage"></a><h3>gdata_gd_postal_address_get_usage ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_usage   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--usage"><span class="type">"usage"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' usage, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-usage"></a><h3>gdata_gd_postal_address_set_usage ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_usage   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *usage);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--usage"><span class="type">"usage"</span></a> property to <em class="parameter"><code>usage</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>usage</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>usage</code></em> :</span></p></td>
+<td> the new usage for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-agent"></a><h3>gdata_gd_postal_address_get_agent ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_agent   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--agent"><span class="type">"agent"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' agent, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-agent"></a><h3>gdata_gd_postal_address_set_agent ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_agent   (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *agent);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--agent"><span class="type">"agent"</span></a> property to <em class="parameter"><code>agent</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>agent</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>agent</code></em> :</span></p></td>
+<td> the new agent for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-house-name"></a><h3>gdata_gd_postal_address_get_house_name ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_house_name
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--house-name"><span class="type">"house-name"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' house name, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-house-name"></a><h3>gdata_gd_postal_address_set_house_name ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_house_name
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *house_name);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--house-name"><span class="type">"house-name"</span></a> property to <em class="parameter"><code>house_name</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>house_name</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>house_name</code></em> :</span></p></td>
+<td> the new house name for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-street"></a><h3>gdata_gd_postal_address_get_street ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_street  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--street"><span class="type">"street"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' street, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-street"></a><h3>gdata_gd_postal_address_set_street ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_street  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *street);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--street"><span class="type">"street"</span></a> property to <em class="parameter"><code>street</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>street</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>street</code></em> :</span></p></td>
+<td> the new street for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-po-box"></a><h3>gdata_gd_postal_address_get_po_box ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_po_box  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--po-box"><span class="type">"po-box"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' P.O. box, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-po-box"></a><h3>gdata_gd_postal_address_set_po_box ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_po_box  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *po_box);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--po-box"><span class="type">"po-box"</span></a> property to <em class="parameter"><code>po_box</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>po_box</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>po_box</code></em> :</span></p></td>
+<td> the new P.O. box for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-neighborhood"></a><h3>gdata_gd_postal_address_get_neighborhood ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_neighborhood
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--neighborhood"><span class="type">"neighborhood"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' neighborhood, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-neighborhood"></a><h3>gdata_gd_postal_address_set_neighborhood ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_neighborhood
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *neighborhood);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--neighborhood"><span class="type">"neighborhood"</span></a> property to <em class="parameter"><code>neighborhood</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>neighborhood</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>neighborhood</code></em> :</span></p></td>
+<td> the new neighborhood for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-city"></a><h3>gdata_gd_postal_address_get_city ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_city    (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--city"><span class="type">"city"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' city, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-city"></a><h3>gdata_gd_postal_address_set_city ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_city    (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *city);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--city"><span class="type">"city"</span></a> property to <em class="parameter"><code>city</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>city</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>city</code></em> :</span></p></td>
+<td> the new city for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-subregion"></a><h3>gdata_gd_postal_address_get_subregion ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_subregion
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--subregion"><span class="type">"subregion"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' subregion, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-subregion"></a><h3>gdata_gd_postal_address_set_subregion ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_subregion
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *subregion);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--subregion"><span class="type">"subregion"</span></a> property to <em class="parameter"><code>subregion</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>subregion</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>subregion</code></em> :</span></p></td>
+<td> the new subregion for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-region"></a><h3>gdata_gd_postal_address_get_region ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_region  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--region"><span class="type">"region"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' region, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-region"></a><h3>gdata_gd_postal_address_set_region ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_region  (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *region);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--region"><span class="type">"region"</span></a> property to <em class="parameter"><code>region</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>region</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>region</code></em> :</span></p></td>
+<td> the new region for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-postcode"></a><h3>gdata_gd_postal_address_get_postcode ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_postcode
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--postcode"><span class="type">"postcode"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' postcode, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-postcode"></a><h3>gdata_gd_postal_address_set_postcode ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_postcode
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *postcode);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--postcode"><span class="type">"postcode"</span></a> property to <em class="parameter"><code>postcode</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>postcode</code></em> to <code class="literal">NULL</code> to unset the property in the postal address.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>postcode</code></em> :</span></p></td>
+<td> the new postcode for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-country"></a><h3>gdata_gd_postal_address_get_country ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_country (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--country"><span class="type">"country"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' country, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-get-country-code"></a><h3>gdata_gd_postal_address_get_country_code ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_postal_address_get_country_code
+                                                        (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--country-code"><span class="type">"country-code"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the postal address' ISO 3166-1 alpha-2 country code, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-postal-address-set-country"></a><h3>gdata_gd_postal_address_set_country ()</h3>
+<pre class="programlisting">void                gdata_gd_postal_address_set_country (<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *self,
+                                                         const gchar *country,
+                                                         const gchar *country_code);</pre>
+<p>
+Sets the <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--country"><span class="type">"country"</span></a> property to <em class="parameter"><code>country</code></em>, and <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--country-code"><span class="type">"country-code"</span></a> to <em class="parameter"><code>country_code</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>country</code></em> or <em class="parameter"><code>country_code</code></em> to <code class="literal">NULL</code> to unset the relevant property in the postal address. If a <em class="parameter"><code>country_code</code></em> is provided, a <em class="parameter"><code>country</code></em> must
+also be provided.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>country</code></em> :</span></p></td>
+<td> the new country for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>country_code</code></em> :</span></p></td>
+<td> the new country code for the postal address, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPostalAddress.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--address"></a><h3>The <code class="literal">"address"</code> property</h3>
+<pre class="programlisting">  "address"                  gchar*                : Read / Write</pre>
+<p>
+The postal address itself, formatted and unstructured. It is preferred to use the other, structured properties rather than this one.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--agent"></a><h3>The <code class="literal">"agent"</code> property</h3>
+<pre class="programlisting">  "agent"                    gchar*                : Read / Write</pre>
+<p>
+The agent who actually receives the mail. Used in work addresses. Also for "in care of" or "c/o".
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--city"></a><h3>The <code class="literal">"city"</code> property</h3>
+<pre class="programlisting">  "city"                     gchar*                : Read / Write</pre>
+<p>
+Can be city, village, town, borough, etc. This is the postal town and not necessarily the place of residence or place of business.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--country"></a><h3>The <code class="literal">"country"</code> property</h3>
+<pre class="programlisting">  "country"                  gchar*                : Read</pre>
+<p>
+The name of the country. Since this is paired with <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--country-code"><span class="type">"country-code"</span></a>, they must both be set with
+<a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-country"><code class="function">gdata_gd_postal_address_set_country()</code></a>.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--country-code"></a><h3>The <code class="literal">"country-code"</code> property</h3>
+<pre class="programlisting">  "country-code"             gchar*                : Read</pre>
+<p>
+The ISO 3166-1 alpha-2 country code for the country in <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--country"><span class="type">"country"</span></a>. Since this is paired with
+<a href="GDataGDPostalAddress.html#GDataGDPostalAddress--country"><span class="type">"country"</span></a>, they must both be set with <a href="GDataGDPostalAddress.html#gdata-gd-postal-address-set-country"><code class="function">gdata_gd_postal_address_set_country()</code></a>.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>
+or <a class="ulink" href="http://www.iso.org/iso/iso-3166-1_decoding_table" target="_top">ISO 3166-1 alpha-2</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--house-name"></a><h3>The <code class="literal">"house-name"</code> property</h3>
+<pre class="programlisting">  "house-name"               gchar*                : Read / Write</pre>
+<p>
+Used in places where houses or buildings have names (and not necessarily numbers).
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--is-primary"></a><h3>The <code class="literal">"is-primary"</code> property</h3>
+<pre class="programlisting">  "is-primary"               gboolean              : Read / Write</pre>
+<p>
+Indicates which postal address out of a group is primary.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: FALSE</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--label"></a><h3>The <code class="literal">"label"</code> property</h3>
+<pre class="programlisting">  "label"                    gchar*                : Read / Write</pre>
+<p>
+A simple string value used to name this postal address. It allows UIs to display a label such as "Work", "Personal", "Preferred", etc.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--mail-class"></a><h3>The <code class="literal">"mail-class"</code> property</h3>
+<pre class="programlisting">  "mail-class"               gchar*                : Read / Write</pre>
+<p>
+Classes of mail accepted at this address.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: "http://schemas.google.com/g/2005#both"</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--neighborhood"></a><h3>The <code class="literal">"neighborhood"</code> property</h3>
+<pre class="programlisting">  "neighborhood"             gchar*                : Read / Write</pre>
+<p>
+This is used to disambiguate a street address when a city contains more than one street with the same name, or to specify a small place
+whose mail is routed through a larger postal town. In China it could be a county or a minor city.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--po-box"></a><h3>The <code class="literal">"po-box"</code> property</h3>
+<pre class="programlisting">  "po-box"                   gchar*                : Read / Write</pre>
+<p>
+Covers actual P.O. boxes, drawers, locked bags, etc. This is usually but not always mutually exclusive with <a href="GDataGDPostalAddress.html#GDataGDPostalAddress--street"><span class="type">"street"</span></a>.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--postcode"></a><h3>The <code class="literal">"postcode"</code> property</h3>
+<pre class="programlisting">  "postcode"                 gchar*                : Read / Write</pre>
+<p>
+Postal code. Usually country-wide, but sometimes specific to the city (e.g. "2" in "Dublin 2, Ireland" addresses).
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--region"></a><h3>The <code class="literal">"region"</code> property</h3>
+<pre class="programlisting">  "region"                   gchar*                : Read / Write</pre>
+<p>
+A state, province, county (in Ireland), Land (in Germany), departement (in France), etc.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--relation-type"></a><h3>The <code class="literal">"relation-type"</code> property</h3>
+<pre class="programlisting">  "relation-type"            gchar*                : Read / Write</pre>
+<p>
+A programmatic value that identifies the type of postal address.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--street"></a><h3>The <code class="literal">"street"</code> property</h3>
+<pre class="programlisting">  "street"                   gchar*                : Read / Write</pre>
+<p>
+Can be street, avenue, road, etc. This element also includes the house number and room/apartment/flat/floor number.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--subregion"></a><h3>The <code class="literal">"subregion"</code> property</h3>
+<pre class="programlisting">  "subregion"                gchar*                : Read / Write</pre>
+<p>
+Handles administrative districts such as U.S. or U.K. counties that are not used for mail addressing purposes.
+Subregion is not intended for delivery addresses.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPostalAddress--usage"></a><h3>The <code class="literal">"usage"</code> property</h3>
+<pre class="programlisting">  "usage"                    gchar*                : Read / Write</pre>
+<p>
+The context in which this addess can be used.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress" target="_top">GData specification</a>.</p>
+<p>Default value: "http://schemas.google.com/g/2005#general"</p>
+<p class="since">Since 0.5.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

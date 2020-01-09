@@ -1,0 +1,82 @@
+<!-- ##### SECTION Title ##### -->
+GDataDocumentsText
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataDocumentsText ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GDataDocumentsTextClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GDataDocumentsTextFormat ##### -->
+<para>
+
+</para>
+
+@GDATA_DOCUMENTS_TEXT_DOC: 
+@GDATA_DOCUMENTS_TEXT_HTML: 
+@GDATA_DOCUMENTS_TEXT_ODT: 
+@GDATA_DOCUMENTS_TEXT_PDF: 
+@GDATA_DOCUMENTS_TEXT_PNG: 
+@GDATA_DOCUMENTS_TEXT_RTF: 
+@GDATA_DOCUMENTS_TEXT_TXT: 
+@GDATA_DOCUMENTS_TEXT_ZIP: 
+
+<!-- ##### FUNCTION gdata_documents_text_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_text_download_document ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@content_type: 
+@export_format: 
+@destination_file: 
+@replace_file_if_exists: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_text_get_download_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@export_format: 
+@Returns: 
+
+

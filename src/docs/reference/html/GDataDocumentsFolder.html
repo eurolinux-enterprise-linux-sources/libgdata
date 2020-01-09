@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataDocumentsFolder</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch11.html" title="Google Documents API">
+<link rel="prev" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry">
+<link rel="next" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataDocumentsEntry.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch11.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataDocumentsPresentation.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataDocumentsFolder.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataDocumentsFolder.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataDocumentsFolder.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataDocumentsFolder.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataDocumentsFolder"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataDocumentsFolder.top_of_page"></a>GDataDocumentsFolder</span></h2>
+<p>GDataDocumentsFolder — GData documents folder object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsFolder.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataDocumentsFolder.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/services/documents/gdata-documents-folder.h&gt;
+
+                    <a href="GDataDocumentsFolder.html#GDataDocumentsFolder-struct">GDataDocumentsFolder</a>;
+                    <a href="GDataDocumentsFolder.html#GDataDocumentsFolderClass">GDataDocumentsFolderClass</a>;
+<a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> * <a href="GDataDocumentsFolder.html#gdata-documents-folder-new">gdata_documents_folder_new</a>       (const gchar *id);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsFolder.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----<a href="GDataEntry.html">GDataEntry</a>
+               +----<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a>
+                     +----GDataDocumentsFolder
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsFolder.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+GDataDocumentsFolder implements
+ <a href="GDataAccessHandler.html">GDataAccessHandler</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsFolder.description"></a><h2>Description</h2>
+<p>
+<a href="GDataDocumentsFolder.html"><span class="type">GDataDocumentsFolder</span></a> is a subclass of <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> to represent a folder from Google Documents.
+</p>
+<p>
+For more details of Google Documents' GData API, see the
+<a class="ulink" href="" target="_top">online documentation</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataDocumentsFolder.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataDocumentsFolder-struct"></a><h3>GDataDocumentsFolder</h3>
+<pre class="programlisting">typedef struct _GDataDocumentsFolder GDataDocumentsFolder;</pre>
+<p>
+All the fields in the <a href="GDataDocumentsFolder.html"><span class="type">GDataDocumentsFolder</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataDocumentsFolderClass"></a><h3>GDataDocumentsFolderClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataDocumentsFolderClass;
+</pre>
+<p>
+All the fields in the <a href="GDataDocumentsFolder.html#GDataDocumentsFolderClass"><span class="type">GDataDocumentsFolderClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-documents-folder-new"></a><h3>gdata_documents_folder_new ()</h3>
+<pre class="programlisting"><a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> * gdata_documents_folder_new       (const gchar *id);</pre>
+<p>
+Creates a new <a href="GDataDocumentsFolder.html"><span class="type">GDataDocumentsFolder</span></a> with the given entry ID (<a href="GDataEntry.html#GDataEntry--id"><span class="type">"id"</span></a>).</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the entry's ID (not the document ID of the folder), or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataDocumentsFolder.html"><span class="type">GDataDocumentsFolder</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

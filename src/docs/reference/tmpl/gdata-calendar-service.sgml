@@ -1,0 +1,125 @@
+<!-- ##### SECTION Title ##### -->
+GDataCalendarService
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataCalendarService ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GDataCalendarServiceClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_calendar_service_new ##### -->
+<para>
+
+</para>
+
+@client_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_service_query_all_calendars ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_service_query_all_calendars_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_calendar_service_query_own_calendars ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_service_query_own_calendars_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_calendar_service_query_events ##### -->
+<para>
+
+</para>
+
+@self: 
+@calendar: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_service_insert_event ##### -->
+<para>
+
+</para>
+
+@self: 
+@event: 
+@cancellable: 
+@error: 
+@Returns: 
+
+

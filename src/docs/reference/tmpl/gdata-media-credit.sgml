@@ -1,0 +1,75 @@
+<!-- ##### SECTION Title ##### -->
+GDataMediaCredit
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataMediaCredit ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataMediaCredit:credit ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataMediaCredit:role ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataMediaCredit:scheme ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataMediaCreditClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_media_credit_get_credit ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_credit_get_scheme ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_credit_get_role ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

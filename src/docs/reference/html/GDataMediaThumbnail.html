@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataMediaThumbnail</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch06.html" title="Media RSS API">
+<link rel="prev" href="GDataMediaCredit.html" title="GDataMediaCredit">
+<link rel="next" href="ch07.html" title="YouTube API">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataMediaCredit.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch06.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="ch07.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataMediaThumbnail.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataMediaThumbnail.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataMediaThumbnail.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataMediaThumbnail.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataMediaThumbnail"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataMediaThumbnail.top_of_page"></a>GDataMediaThumbnail</span></h2>
+<p>GDataMediaThumbnail — Media RSS thumbnail element</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaThumbnail.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataMediaThumbnail.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/media/gdata-media-thumbnail.h&gt;
+
+                    <a href="GDataMediaThumbnail.html#GDataMediaThumbnail-struct">GDataMediaThumbnail</a>;
+                    <a href="GDataMediaThumbnail.html#GDataMediaThumbnailClass">GDataMediaThumbnailClass</a>;
+const gchar *       <a href="GDataMediaThumbnail.html#gdata-media-thumbnail-get-uri">gdata_media_thumbnail_get_uri</a>       (<a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a> *self);
+guint               <a href="GDataMediaThumbnail.html#gdata-media-thumbnail-get-height">gdata_media_thumbnail_get_height</a>    (<a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a> *self);
+guint               <a href="GDataMediaThumbnail.html#gdata-media-thumbnail-get-width">gdata_media_thumbnail_get_width</a>     (<a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a> *self);
+gint64              <a href="GDataMediaThumbnail.html#gdata-media-thumbnail-get-time">gdata_media_thumbnail_get_time</a>      (<a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a> *self);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaThumbnail.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----GDataMediaThumbnail
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaThumbnail.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataMediaThumbnail.html#GDataMediaThumbnail--height">height</a>"                   guint                 : Read
+  "<a href="GDataMediaThumbnail.html#GDataMediaThumbnail--time">time</a>"                     gint64                : Read
+  "<a href="GDataMediaThumbnail.html#GDataMediaThumbnail--uri">uri</a>"                      gchar*                : Read
+  "<a href="GDataMediaThumbnail.html#GDataMediaThumbnail--width">width</a>"                    guint                 : Read
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaThumbnail.description"></a><h2>Description</h2>
+<p>
+<a href="GDataMediaThumbnail.html"><span class="type">GDataMediaThumbnail</span></a> represents a "thumbnail" element from the
+<a class="ulink" href="http://video.search.yahoo.com/mrss" target="_top">Media RSS specification</a>.
+</p>
+<p>
+The class only implements parsing, not XML output, at the moment.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaThumbnail.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataMediaThumbnail-struct"></a><h3>GDataMediaThumbnail</h3>
+<pre class="programlisting">typedef struct _GDataMediaThumbnail GDataMediaThumbnail;</pre>
+<p>
+All the fields in the <a href="GDataMediaThumbnail.html"><span class="type">GDataMediaThumbnail</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataMediaThumbnailClass"></a><h3>GDataMediaThumbnailClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataMediaThumbnailClass;
+</pre>
+<p>
+All the fields in the <a href="GDataMediaThumbnail.html#GDataMediaThumbnailClass"><span class="type">GDataMediaThumbnailClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-thumbnail-get-uri"></a><h3>gdata_media_thumbnail_get_uri ()</h3>
+<pre class="programlisting">const gchar *       gdata_media_thumbnail_get_uri       (<a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a> *self);</pre>
+<p>
+Gets the <a href="GDataMediaThumbnail.html#GDataMediaThumbnail--uri"><span class="type">"uri"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaThumbnail.html"><span class="type">GDataMediaThumbnail</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the thumbnail's URI
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-thumbnail-get-height"></a><h3>gdata_media_thumbnail_get_height ()</h3>
+<pre class="programlisting">guint               gdata_media_thumbnail_get_height    (<a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a> *self);</pre>
+<p>
+Gets the <a href="GDataMediaThumbnail.html#GDataMediaThumbnail--height"><span class="type">"height"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaThumbnail.html"><span class="type">GDataMediaThumbnail</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the thumbnail's height in pixels, or <code class="literal">0</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-thumbnail-get-width"></a><h3>gdata_media_thumbnail_get_width ()</h3>
+<pre class="programlisting">guint               gdata_media_thumbnail_get_width     (<a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a> *self);</pre>
+<p>
+Gets the <a href="GDataMediaThumbnail.html#GDataMediaThumbnail--width"><span class="type">"width"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaThumbnail.html"><span class="type">GDataMediaThumbnail</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the thumbnail's width in pixels, or <code class="literal">0</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-media-thumbnail-get-time"></a><h3>gdata_media_thumbnail_get_time ()</h3>
+<pre class="programlisting">gint64              gdata_media_thumbnail_get_time      (<a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a> *self);</pre>
+<p>
+Gets the <a href="GDataMediaThumbnail.html#GDataMediaThumbnail--time"><span class="type">"time"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataMediaThumbnail.html"><span class="type">GDataMediaThumbnail</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the thumbnail's time offset in the media, or <code class="literal">-1</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataMediaThumbnail.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataMediaThumbnail--height"></a><h3>The <code class="literal">"height"</code> property</h3>
+<pre class="programlisting">  "height"                   guint                 : Read</pre>
+<p>
+The height of the thumbnail, in pixels.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://video.search.yahoo.com/mrss" target="_top">Media RSS specification</a>.</p>
+<p>Default value: 0</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataMediaThumbnail--time"></a><h3>The <code class="literal">"time"</code> property</h3>
+<pre class="programlisting">  "time"                     gint64                : Read</pre>
+<p>
+The time offset of the thumbnail in relation to the media object, in milliseconds.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://video.search.yahoo.com/mrss" target="_top">Media RSS specification</a>.</p>
+<p>Allowed values: &gt;= -1</p>
+<p>Default value: -1</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataMediaThumbnail--uri"></a><h3>The <code class="literal">"uri"</code> property</h3>
+<pre class="programlisting">  "uri"                      gchar*                : Read</pre>
+<p>
+The URI of the thumbnail.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://video.search.yahoo.com/mrss" target="_top">Media RSS specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataMediaThumbnail--width"></a><h3>The <code class="literal">"width"</code> property</h3>
+<pre class="programlisting">  "width"                    guint                 : Read</pre>
+<p>
+The width of the thumbnail, in pixels.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://video.search.yahoo.com/mrss" target="_top">Media RSS specification</a>.</p>
+<p>Default value: 0</p>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

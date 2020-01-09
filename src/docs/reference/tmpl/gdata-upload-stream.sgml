@@ -1,0 +1,127 @@
+<!-- ##### SECTION Title ##### -->
+GDataUploadStream
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataUploadStream ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataUploadStream:content-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataUploadStream:entry ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataUploadStream:service ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataUploadStream:slug ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataUploadStream:upload-uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataUploadStreamClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_upload_stream_new ##### -->
+<para>
+
+</para>
+
+@service: 
+@method: 
+@upload_uri: 
+@entry: 
+@slug: 
+@content_type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_upload_stream_get_response ##### -->
+<para>
+
+</para>
+
+@self: 
+@length: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_upload_stream_get_service ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_upload_stream_get_upload_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_upload_stream_get_entry ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_upload_stream_get_slug ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_upload_stream_get_content_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

@@ -1,0 +1,4695 @@
+commit 9faa7ae4d66e7814399e22fd7ff8da15087e9679
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Sep 21 08:28:40 2009 +0100
+
+    [youtube] Fix potential unref of NULL
+
+    This fixes a crash when querying for a single video without a
+    GDataQuery.
+
+ gdata/services/youtube/gdata-youtube-service.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit fb9db6f6edb1480b54e281a1f4de57e492b0dfd4
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Sep 21 08:25:31 2009 +0100
+
+    [media] Corrected Media RSS namespace
+
+ gdata/media/gdata-media-category.c  |    2 +-
+ gdata/media/gdata-media-content.c   |    2 +-
+ gdata/media/gdata-media-credit.c    |    2 +-
+ gdata/media/gdata-media-group.c     |    2 +-
+ gdata/media/gdata-media-thumbnail.c |    2 +-
+ gdata/tests/general.c               |   28 ++++++++++++++--------------
+ gdata/tests/picasaweb.c             |    4 ++--
+ gdata/tests/youtube.c               |    5 ++---
+ 8 files changed, 23 insertions(+), 24 deletions(-)
+
+commit c7e34540485457acbe1db545ea042ce9c0f796d4
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Sep 21 08:17:04 2009 +0100
+
+    [youtube] Fix test suite
+
+    Includes a change to the upload URI for videos to upload them to the
+    default (i.e. logged in) user, rather than having us worry about
+    whether
+    to send a Google Account username or YouTube username.
+
+ gdata/services/youtube/gdata-youtube-service.c |    6 ++----
+ gdata/tests/youtube.c                          |    8 ++++++--
+ 2 files changed, 8 insertions(+), 6 deletions(-)
+
+commit 23a0b740e6d25bff76497f6e2743e67e0e6845cd
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   Mon Sep 21 00:33:53 2009 +0200
+
+    Updated Swedish translation
+
+ po/sv.po |   43 ++++++++++++++++++++++++-------------------
+ 1 files changed, 24 insertions(+), 19 deletions(-)
+
+commit 371e7789ff3cc7a07bc61c5224bab674d4702541
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Sun Sep 20 22:02:50 2009 +0200
+
+    Updated German translation
+
+ po/de.po |   43 ++++++++++++++++++++++++-------------------
+ 1 files changed, 24 insertions(+), 19 deletions(-)
+
+commit f9b71dd217f973157b66a6de3b37e5424aef4bbc
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Sep 20 19:11:19 2009 +0100
+
+    [media] Added tests for media:category, :content, :credit and
+    :thumbnail
+
+ gdata/media/gdata-media-content.c   |    2 +
+ gdata/media/gdata-media-credit.c    |    2 +
+ gdata/media/gdata-media-thumbnail.c |    2 +
+ gdata/tests/general.c               |  306
+ +++++++++++++++++++++++++++++++++++
+ 4 files changed, 312 insertions(+), 0 deletions(-)
+
+commit 5c4bf2c42063b9a0fcbaabc0802e7162d4155450
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Sep 20 17:28:40 2009 +0100
+
+    [documents] Make upload_update_document() static
+
+ gdata/services/documents/gdata-documents-service.c |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 37d2830af877827a73ae9f68f49422b5c913a67c
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Sep 20 17:20:13 2009 +0100
+
+    Bug 593336 — Query parameter "q=..." isn't valid for album kinds
+
+    Also add checks in gdata_picasaweb_service_query_all_albums*()
+    to ensure
+    the q parameter isn't set, including a corresponding error code and a
+    test in the suite. Closes: bgo#593336
+
+ gdata/gdata-service.h                              |    8 +++++---
+ gdata/services/picasaweb/gdata-picasaweb-service.c |   15 +++++++++++++++
+ gdata/tests/picasaweb.c                            |   20
+ ++++++++++++--------
+ 3 files changed, 32 insertions(+), 11 deletions(-)
+
+commit d499901b4a689db1218beeae693498e947db4025
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Sep 20 17:05:05 2009 +0100
+
+    Bug 593336 — Query parameter "q=..." isn't valid for album kinds
+
+    Add a few notes in the API documentation to say that the q parameter
+    isn't valid for album queries. Closes: bgo#593336
+
+ gdata/services/picasaweb/gdata-picasaweb-query.c   |    2 ++
+ gdata/services/picasaweb/gdata-picasaweb-service.c |    2 ++
+ 2 files changed, 4 insertions(+), 0 deletions(-)
+
+commit d33b3aad55a94d35a6fe9dc31d714da89c57e59d
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Sat Sep 19 02:56:37 2009 +0200
+
+    Added Hungarian translation
+
+ po/hu.po |  339
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 339 insertions(+), 0 deletions(-)
+
+commit d2c64a8ba1293b4a7db37b4e1061e472b8cd6f3d
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Sat Sep 19 02:56:26 2009 +0200
+
+    Added hu to LINGUAS
+
+ po/LINGUAS |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit 5e2f2effe7cae3506602e71e0afc473340a075b2
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Sep 13 13:44:38 2009 +0100
+
+    Updated British English translation
+
+ po/en_GB.po |   74
+ ++++++++++++++++++++++++++++++++++------------------------
+ 1 files changed, 43 insertions(+), 31 deletions(-)
+
+commit 67f09aa52323bc8f5e7c9e5beab44e386d19db1d
+Author: António Lima <amrlima@gmail.com>
+Date:   Wed Sep 9 23:51:20 2009 +0100
+
+    Updated Portuguese translation
+
+ po/LINGUAS |    1 +
+ po/pt.po   |  349
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 350 insertions(+), 0 deletions(-)
+
+commit 80898b2e3addc980dc38d424fd8cdb9a08ba5c49
+Author: Richard Schwarting <aquarichy@gmail.com>
+Date:   Fri Aug 28 16:48:32 2009 +0100
+
+    Bug 593239 — Use GDataUploadStream for uploading files
+
+    Use GDataUploadStream in the PicasaWeb service to upload photos. This
+    also
+    now adds the appropriate kind category to entries when they're
+    uploaded (if
+    it hasn't already been added to the entry), and improves the upload
+    test case
+    so that the current timestamp is added to the description for
+    uploaded files,
+    allowing for easier inspection of files online to see whether
+    the tests
+    were successful. Closes: bgo#593239
+
+ gdata/services/picasaweb/gdata-picasaweb-service.c |  164
+ ++++++--------------
+ gdata/services/picasaweb/gdata-picasaweb-service.h |    4 +-
+ gdata/tests/picasaweb.c                            |   61 ++++----
+ 3 files changed, 87 insertions(+), 142 deletions(-)
+
+commit 9fffe702b9f39a850925e830d55cd2ca1bcfa3b9
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Aug 28 16:45:44 2009 +0100
+
+    [core] Fix race condition when updating authentication details
+
+    If a GDataService is destroyed before the
+    set_authentication_details_cb idle
+    callback is called, it will access freed memory. The authentication
+    process
+    now keeps a reference to the service until it has finished updating
+    the
+    service's authentication details.
+
+ gdata/gdata-service.c |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletions(-)
+
+commit 38026d747eb9e26118885fc6ba83e3806c5cb21e
+Author: Inaki Larranaga <dooteo@zundan.com>
+Date:   Fri Aug 28 16:50:34 2009 +0200
+
+    Added Basque translation
+
+ po/LINGUAS |    1 +
+ po/eu.po   |  341
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 342 insertions(+), 0 deletions(-)
+
+commit 71f5d8c88576ba98aee7b4ae1aa0abe68b42531d
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Aug 28 15:28:03 2009 +0100
+
+    Bug 592845 — Undefined symbol: gdata_picasaweb_query_new_with_limits
+
+    Remove gdata_picasaweb_query_new_with_limits from the symbol file,
+    since it
+    doesn't exist. Closes: bgo#592845
+
+ gdata/gdata.symbols |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+commit d9cc2f8b1c5a517190c758baa7b6c5aca64f045e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Aug 18 16:29:54 2009 +0100
+
+    Bug 592124 — G_LOG_DOMAIN not set for subdirectories
+
+    Patch based on one from Thibault Saunier <saunierthibault@gmail.com>
+    to
+    add G_LOG_DOMAIN to the Makefiles of build subdirectories, to
+    ensure the
+    "libgdata" log domain is set for all messages emitted by the library.
+    Closes: bgo#592124
+
+ gdata/atom/Makefile.am               |    1 +
+ gdata/exif/Makefile.am               |    1 +
+ gdata/gd/Makefile.am                 |    9 +++++----
+ gdata/georss/Makefile.am             |    9 +++++----
+ gdata/media/Makefile.am              |    9 +++++----
+ gdata/services/calendar/Makefile.am  |    1 +
+ gdata/services/contacts/Makefile.am  |    1 +
+ gdata/services/documents/Makefile.am |   13 +++++++------
+ gdata/services/picasaweb/Makefile.am |    1 +
+ gdata/services/youtube/Makefile.am   |    1 +
+ 10 files changed, 28 insertions(+), 18 deletions(-)
+
+commit 90fdd19d607d5b232e5678d50150fc670b208e4c
+Author: Thibault Saunier <saunierthibault@gmail.com>
+Date:   Tue Aug 18 16:17:45 2009 +0100
+
+    Bug 591691 — Getting a feed containing PDF documents returns NULL
+
+ gdata/services/documents/gdata-documents-feed.c |   43
+ +++++++++++++---------
+ 1 files changed, 25 insertions(+), 18 deletions(-)
+
+commit 442d1b58a45ad46416ecdfd64e1a19571402d6b1
+Author: Thibault Saunier <saunierthibault@gmail.com>
+Date:   Mon Aug 17 18:14:29 2009 +0100
+
+    Bug 591974 — remove_document_from_folder moves documents to
+    the trash
+
+ gdata/services/documents/gdata-documents-service.c |   25
+ ++++++++++++++++---
+ 1 files changed, 21 insertions(+), 4 deletions(-)
+
+commit 047e5af9fbfe5b3dbd90a5cb28880cc1710499f2
+Author: Thibault Saunier <saunierthibault@gmail.com>
+Date:   Mon Aug 17 17:58:14 2009 +0100
+
+    Bug 591966 — Can't query single spreadsheets
+
+ gdata/services/documents/gdata-documents-service.c |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit c00fa4b85f81ee572ea1d56941cf015aa3ca5add
+Author: Fran Dieguez <fran.dieguez@glug.es>
+Date:   Mon Aug 17 15:27:16 2009 +0200
+
+    Updated Galician Translation
+
+ po/gl.po |  298
+ ++++++++++++++++++++++++++++++++++++++++++++------------------
+ 1 files changed, 211 insertions(+), 87 deletions(-)
+
+commit f7520786e67bc71ec29d1f5a0691b656026e131f
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   Sat Aug 15 13:31:31 2009 +0200
+
+    Updated Spanish translation
+
+ po/es.po |   64
+ +++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 35 insertions(+), 29 deletions(-)
+
+commit 714222b63b9a7b21ccb335019abc4062ce37cb01
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   Fri Aug 14 10:01:38 2009 +0200
+
+    Updated Swedish translation
+
+ po/sv.po |   72
+ ++++++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 42 insertions(+), 30 deletions(-)
+
+commit 31238b0ce7f199098f9ca40aa1cba94dc9b37dc3
+Author: Leonardo Ferreira Fontenelle <leonardof@gnome.org>
+Date:   Fri Aug 14 00:24:44 2009 -0300
+
+    Fixed typos in the Brazilian Portuguese translation.
+
+    Thanks to Rodolfo Ribeiro Gomes for spoting them.
+
+ po/pt_BR.po |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
+
+commit d75811855d956b62b3d983e59553155c8ec9a071
+Author: Leonardo Ferreira Fontenelle <leonardof@gnome.org>
+Date:   Thu Aug 13 23:29:48 2009 -0300
+
+    Updated Brazilian Portuguese translation.
+
+ po/pt_BR.po |  117
+ ++++++++++++++++++++++-------------------------------------
+ 1 files changed, 43 insertions(+), 74 deletions(-)
+
+commit ad8eb5ad901c1c1ad7ac35b054fd646ed7c768da
+Author: Flamarion Jorge <jorge.flamarion@gmail.com>
+Date:   Thu Aug 13 22:39:46 2009 -0300
+
+    Added Brazilian Portuguese translation.
+
+ po/LINGUAS  |    1 +
+ po/pt_BR.po |  395
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 396 insertions(+), 0 deletions(-)
+
+commit 5fca748b86f46a67daa13e437fa14faf8af506c8
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Thu Aug 13 15:51:48 2009 +0200
+
+    Added Polish translation
+
+ po/LINGUAS |    1 +
+ po/pl.po   |  351
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 352 insertions(+), 0 deletions(-)
+
+commit 3775bb85db79e4f9609a60dac1409a870ba4a0e9
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Tue Aug 11 21:38:00 2009 +0200
+
+    Updated German translation
+
+ po/de.po |   70
+ ++++++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 41 insertions(+), 29 deletions(-)
+
+commit 372610c967ac8bd1e088a290dd62299b5261dd02
+Author: Thibault Saunier <saunierthibault@gmail.com>
+Date:   Mon Aug 10 21:20:25 2009 +0100
+
+    [documents] Added a function to get the document upload URI
+
+ docs/reference/gdata-sections.txt                  |    1 +
+ gdata/gdata.symbols                                |    1 +
+ gdata/services/documents/gdata-documents-service.c |   37
+ +++++++++++++++----
+ gdata/services/documents/gdata-documents-service.h |    1 +
+ 4 files changed, 32 insertions(+), 8 deletions(-)
+
+commit 0a8e11dbbc4208acebbbdbc21588f8cfd06bf4d7
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Aug 10 20:53:06 2009 +0100
+
+    [gd] Updated the GData namespace to version 3
+
+    Added structured name and postal address handling from version 3
+    of the
+    GData namespace, including updated test cases.
+
+ docs/reference/gdata-sections.txt                |   69 ++
+ gdata/gd/Makefile.am                             |    6 +-
+ gdata/gd/gdata-gd-name.c                         |  598 ++++++++++++++
+ gdata/gd/gdata-gd-name.h                         |   88 ++
+ gdata/gd/gdata-gd-organization.c                 |  241 ++++++-
+ gdata/gd/gdata-gd-organization.h                 |    9 +
+ gdata/gd/gdata-gd-postal-address.c               |  929
+ +++++++++++++++++++++-
+ gdata/gd/gdata-gd-postal-address.h               |   94 +++-
+ gdata/gdata-parser.c                             |    2 +-
+ gdata/gdata-service.c                            |    3 +-
+ gdata/gdata-service.h                            |    2 +
+ gdata/gdata.h                                    |    1 +
+ gdata/gdata.symbols                              |   47 ++
+ gdata/services/contacts/gdata-contacts-contact.c |   86 ++-
+ gdata/services/contacts/gdata-contacts-contact.h |    3 +
+ gdata/services/contacts/gdata-contacts-service.c |    1 +
+ gdata/tests/contacts.c                           |   14 +-
+ gdata/tests/general.c                            |  172 ++++-
+ 18 files changed, 2264 insertions(+), 101 deletions(-)
+
+commit 6d5a2712416a2f70e87b47a2efe6f9abfdb1ee36
+Author: Thibault Saunier <saunierthibault@gmail.com>
+Date:   Sat Aug 8 16:29:50 2009 +0100
+
+    Bug 590568 – Crash on querying inside a folder
+
+    Re-fix queries in folders to use the correct URI as per the API
+    change on
+    2009-08-03 (http://code.google.com/apis/documents/changelog.html).
+
+ gdata/services/documents/gdata-documents-service.c |   13 ++++++++++---
+ 1 files changed, 10 insertions(+), 3 deletions(-)
+
+commit caa0947705aad4cbc6b2b8d853772f35752239d8
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Sat Aug 8 21:44:06 2009 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po |  106
+ +++++++++++++++++++++++++++++-----------------------------
+ po/zh_TW.po |  106
+ +++++++++++++++++++++++++++++-----------------------------
+ 2 files changed, 106 insertions(+), 106 deletions(-)
+
+commit da8f20efdb2ddb640c42d2f0ff4f695467ef21c1
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Fri Aug 7 14:06:08 2009 +0200
+
+    Updated Norwegian bokmål translation.
+
+ po/nb.po |  192
+ ++++++++++++++++++++++++++++++++++++++++----------------------
+ 1 files changed, 125 insertions(+), 67 deletions(-)
+
+commit 69a8ef2bffd54fac4bf68dee175293bc47b05fec
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Aug 6 23:30:56 2009 +0100
+
+    [documents] Fix the "remove all" test case so it doesn't fail on
+    old ETags
+
+ gdata/gdata-service.c   |    2 +-
+ gdata/tests/documents.c |   21 ++++++++++++++++++---
+ 2 files changed, 19 insertions(+), 4 deletions(-)
+
+commit e66e42f1637f5ed07efdde31aad5602aa30d2f89
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Aug 6 23:07:20 2009 +0100
+
+    [documents] Re-query the document when removing it from a folder
+
+    This ensures we return the latest version of the document, rather
+    than having
+    to hack around with removing the old folder's links and categories
+    ourselves.
+    See: http://code.google.com/p/gdata-issues/issues/detail?id=1380
+
+ gdata/gdata-upload-stream.c                        |    4 ++--
+ gdata/services/documents/gdata-documents-service.c |    7 ++++---
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+
+commit c6a02abf76fd6c29b2eac61c107c8f4101af11c4
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Aug 6 22:09:16 2009 +0100
+
+    [documents] Test case fixes
+
+    Use the correct HTTP method when updating documents, check more
+    strictly for
+    missing XML responses, use the Google-provided URI for removing
+    documents from
+    folders, and don't try to parse a response to the same request
+    which doesn't
+    exist.
+
+ gdata/gdata-parsable.c                             |    4 +-
+ gdata/gdata-service.c                              |    1 -
+ gdata/gdata-upload-stream.c                        |    9 +++-
+ gdata/gdata-upload-stream.h                        |    2 +-
+ gdata/services/documents/gdata-documents-service.c |   51
+ +++++---------------
+ 5 files changed, 23 insertions(+), 44 deletions(-)
+
+commit d51293735acc3e136374a5d3c0cc589e13936011
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Aug 6 20:07:47 2009 +0100
+
+    [core] Fix some warnings
+
+ gdata/gdata-buffer.c                             |    2 +-
+ gdata/services/picasaweb/gdata-picasaweb-album.c |    2 +-
+ gdata/services/picasaweb/gdata-picasaweb-file.c  |    2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit db45f076ced74e28e6cb45bfd7d618ac71be3857
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Aug 6 20:07:00 2009 +0100
+
+    [build] Added support for AM_SILENT_RULES and updated git.mk
+
+ configure.in                         |    4 +
+ gdata/Makefile.am                    |    8 +-
+ gdata/media/Makefile.am              |    4 +-
+ gdata/services/documents/Makefile.am |    4 +-
+ gdata/services/picasaweb/Makefile.am |   20 +++--
+ gdata/services/youtube/Makefile.am   |   20 +++--
+ git.mk                               |  178
+ +++++++++++++++++-----------------
+ 7 files changed, 127 insertions(+), 111 deletions(-)
+
+commit ef78512a717eb47533ff45c0f6222cef0691fbe3
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Aug 5 22:53:31 2009 +0100
+
+    [core] Fix premature termination of request body on buffer underflow
+
+    EOF and buffer underflow returns from gdata_buffer_pop_data()
+    were getting
+    confused and, if data wasn't pushed to a GDataUploadStream fast
+    enough, would
+    result in premature termination of the request body.
+
+ gdata/gdata-buffer.c          |   23 ++++++++++++++++++-----
+ gdata/gdata-buffer.h          |    4 ++--
+ gdata/gdata-download-stream.c |    2 +-
+ gdata/gdata-upload-stream.c   |    8 ++++----
+ 4 files changed, 25 insertions(+), 12 deletions(-)
+
+commit 7c0cd3d0f1d14cbf7d39cadbc2b1b258351e47f8
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Aug 5 21:58:46 2009 +0100
+
+    [documents] Don't try to insert documents when updating without a
+    new file
+
+ gdata/services/documents/gdata-documents-service.c |   24
+ ++++++++++----------
+ 1 files changed, 12 insertions(+), 12 deletions(-)
+
+commit 68d89ae3953aaaa0741ec3726450275436eada6d
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Aug 5 20:16:20 2009 +0100
+
+    [docs] Added missing image
+
+    Add the data flow diagram to the list of images to be packaged.
+
+ docs/reference/Makefile.am |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+
+commit 4369021250a06320c56654616e8ef20bb6da4e2e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Aug 5 20:14:45 2009 +0100
+
+    [core] Added GDataUploadStream to allow easy uploading of large files
+
+    GDataUploadStream is a subclass of GOutputStream designed to
+    allow easy
+    uploading of files (with or without an associated entry) to a
+    service using
+    streaming I/O.
+
+ docs/reference/gdata-docs.xml                      |    1 +
+ docs/reference/gdata-sections.txt                  |   24 +
+ gdata/Makefile.am                                  |    4 +-
+ gdata/gdata-buffer.c                               |   24 +-
+ gdata/gdata-buffer.h                               |    1 +
+ gdata/gdata-service.c                              |    6 +
+ gdata/gdata-service.h                              |    4 +-
+ gdata/gdata-upload-stream.c                        |  748
+ ++++++++++++++++++++
+ gdata/gdata-upload-stream.h                        |   80 +++
+ gdata/gdata.h                                      |    1 +
+ gdata/gdata.symbols                                |    7 +
+ gdata/services/documents/gdata-documents-service.c |  255 +++-----
+ 12 files changed, 981 insertions(+), 174 deletions(-)
+
+commit 7444c1c6d60332445b4771d813c528702a3e2853
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   Tue Aug 4 20:03:22 2009 +0200
+
+    Updated Spanish translation
+
+ po/es.po |   83
+ +++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 42 insertions(+), 41 deletions(-)
+
+commit da82480d680f9871ca4120b304728170bc7fa3b7
+Author: Claude Paroz <claude@2xlibre.net>
+Date:   Mon Aug 3 21:13:31 2009 +0200
+
+    Updated French translation
+
+    Contributed by Nicolas Repentin and Claude Paroz
+
+ po/fr.po |  180
+ +++++++++++++++++++++++++++++++++++++++----------------------
+ 1 files changed, 115 insertions(+), 65 deletions(-)
+
+commit d35e5400ca860a5ea12c734bd6b4a9f8437cd091
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Aug 3 19:05:27 2009 +0100
+
+    [core] Added GDataDownloadStream to allow easy downloading of
+    large files
+
+    GDataDownloadStream is a subclass of GInputStream which allows large
+    files to
+    be downloaded in a more controlled manner than by just specifying the
+    file to save them to.
+
+ docs/reference/Makefile.am                         |    8 +-
+ docs/reference/gdata-docs.xml                      |    1 +
+ docs/reference/gdata-sections.txt                  |   25 +
+ gdata/Makefile.am                                  |    8 +-
+ gdata/gdata-buffer.c                               |  289 ++++++++++
+ gdata/gdata-buffer.h                               |   58 ++
+ gdata/gdata-download-stream.c                      |  562
+ ++++++++++++++++++++
+ gdata/gdata-download-stream.h                      |   75 +++
+ gdata/gdata-private.h                              |    1 +
+ gdata/gdata-service.c                              |   20 +-
+ gdata/gdata-service.h                              |    4 +-
+ gdata/gdata.h                                      |    1 +
+ gdata/gdata.symbols                                |    9 +
+ gdata/services/documents/gdata-documents-entry.c   |  104 ++---
+ .../documents/gdata-documents-presentation.c       |   57 ++-
+ .../documents/gdata-documents-presentation.h       |    1 +
+ gdata/services/documents/gdata-documents-service.c |    4 +-
+ .../documents/gdata-documents-spreadsheet.c        |   81 ++-
+ .../documents/gdata-documents-spreadsheet.h        |    2 +
+ gdata/services/documents/gdata-documents-text.c    |   59 ++-
+ gdata/services/documents/gdata-documents-text.h    |    1 +
+ 21 files changed, 1222 insertions(+), 148 deletions(-)
+
+commit d61d33f99968e7493afccadd9816a7a3d2f95128
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Aug 3 18:35:59 2009 +0100
+
+    [core] Added a method to escape text and append it to a GString
+
+    This reduces the number of small allocations required when building up
+    an XML output tree by a large number. XML output checks in the test
+    suites can act as a test case.
+
+ gdata/atom/gdata-author.c                         |   19 ++----
+ gdata/atom/gdata-category.c                       |    7 +--
+ gdata/atom/gdata-link.c                           |   14 +---
+ gdata/gd/gdata-gd-email-address.c                 |    7 +--
+ gdata/gd/gdata-gd-im-address.c                    |    7 +--
+ gdata/gd/gdata-gd-organization.c                  |   21 ++-----
+ gdata/gd/gdata-gd-phone-number.c                  |   14 +---
+ gdata/gd/gdata-gd-postal-address.c                |    7 +--
+ gdata/gd/gdata-gd-where.c                         |   14 +---
+ gdata/gd/gdata-gd-who.c                           |    7 +--
+ gdata/gdata-entry.c                               |   26 ++------
+ gdata/gdata-parsable.c                            |    2 +-
+ gdata/gdata-parser.c                              |   68
+ +++++++++++++++++++++
+ gdata/gdata-parser.h                              |    1 +
+ gdata/gdata-private.h                             |    1 +
+ gdata/media/gdata-media-category.c                |   14 +---
+ gdata/media/gdata-media-group.c                   |   21 ++-----
+ gdata/services/calendar/gdata-calendar-calendar.c |    7 +--
+ gdata/services/calendar/gdata-calendar-event.c    |    2 -
+ gdata/services/contacts/gdata-contacts-contact.c  |    2 -
+ gdata/services/picasaweb/gdata-picasaweb-album.c  |    9 +--
+ gdata/services/picasaweb/gdata-picasaweb-file.c   |   16 +----
+ gdata/services/youtube/gdata-youtube-video.c      |    7 +--
+ 23 files changed, 128 insertions(+), 165 deletions(-)
+
+commit 82fa0a20505cc85bfcc0355fbf3f35c7a8a62fba
+Author: Thibault Saunier <saunierthibault@gmail.com>
+Date:   Mon Aug 3 18:01:47 2009 +0100
+
+    Bug 590568 – Crash on querying inside a folder
+
+ gdata/services/documents/gdata-documents-query.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 02488eeb8cf890ec2fd52791edb3153c6d84a4ee
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Aug 2 23:31:58 2009 +0100
+
+    [georss] Add missing files
+
+ gdata/georss/Makefile.am          |   29 +++++
+ gdata/georss/gdata-georss-where.c |  223
+ +++++++++++++++++++++++++++++++++++++
+ gdata/georss/gdata-georss-where.h |   72 ++++++++++++
+ 3 files changed, 324 insertions(+), 0 deletions(-)
+
+commit 3c735026b6b8d587c48139b3c7e504353192aec9
+Author: Richard Schwarting <aquarichy@gmail.com>
+Date:   Sun Aug 2 22:52:16 2009 +0100
+
+    Bug 590132 – Unhandled XML for georss
+
+    Patch to add GeoRSS support to the PicasaWeb backend, with support for
+    getting and setting coordinates of albums and files, including
+    test cases.
+    Closes: bgo#590132
+
+ configure.in                                     |    1 +
+ docs/reference/Makefile.am                       |    4 +-
+ docs/reference/gdata-sections.txt                |    4 +
+ gdata/Makefile.am                                |    5 +-
+ gdata/gdata.symbols                              |    4 +
+ gdata/services/picasaweb/gdata-picasaweb-album.c |  128
+ +++++++++++++++++++-
+ gdata/services/picasaweb/gdata-picasaweb-album.h |    2 +
+ gdata/services/picasaweb/gdata-picasaweb-file.c  |  140
+ +++++++++++++++++++---
+ gdata/services/picasaweb/gdata-picasaweb-file.h  |    2 +
+ gdata/tests/picasaweb.c                          |   70 +++++++++--
+ 10 files changed, 328 insertions(+), 32 deletions(-)
+
+commit 953d0c148e412b45bd7f1d0e8f36309f256d131f
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Aug 2 19:57:28 2009 +0100
+
+    [core] Added error domain
+
+    Added an error domain ("libgdata") and made all "unhandled element"
+    messages
+    into proper messages, rather than warnings. This means that all
+    command line
+    output of libgdata can now be redirected so it doesn't mess up
+    command line
+    applications.
+
+ gdata/Makefile.am                                |    1 +
+ gdata/services/picasaweb/gdata-picasaweb-album.c |    2 +-
+ gdata/services/youtube/gdata-youtube-service.c   |    2 +-
+ 3 files changed, 3 insertions(+), 2 deletions(-)
+
+commit abaa3f0c0eca903206bb81fa28edf4c9213ffb1f
+Author: Thibault Saunier <saunierthibault@gmail.com>
+Date:   Sun Aug 2 19:39:06 2009 +0100
+
+    [documents] Fix GDataDocumentsEntry:is-deleted
+
+    Brown paper bag commit of a fix to the is-deleted property of
+    GDataDocumentsEntry, which apparently doesn't have any attributes.
+    Closes: bgo#590345
+
+ gdata/services/documents/gdata-documents-entry.c |   14 +++-----------
+ 1 files changed, 3 insertions(+), 11 deletions(-)
+
+commit f79e6196edb542911c2fde15756676f7f1753f70
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Aug 2 19:32:48 2009 +0100
+
+    [documents] Warning fixes and extra error checking
+
+ gdata/services/documents/gdata-documents-service.c |   11 +++++++----
+ gdata/tests/documents.c                            |   14 ++++----------
+ 2 files changed, 11 insertions(+), 14 deletions(-)
+
+commit 0f63d2d39d5514bcbd53002a5496a773b2f5cf40
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Aug 2 18:24:01 2009 +0100
+
+    Bug 590341 – Allow querying of single documents
+
+    Patch from Thibault Saunier <saunierthibault@gmail.com> to allow
+    querying of
+    single documents from the Google Documents backend. Closes: bgo#590341
+
+ docs/reference/gdata-sections.txt                  |    1 +
+ gdata/gdata.symbols                                |    1 +
+ gdata/services/documents/gdata-documents-query.c   |   12 ++++-
+ gdata/services/documents/gdata-documents-service.c |   62
+ ++++++++++++++++++++
+ gdata/services/documents/gdata-documents-service.h |    2 +
+ gdata/tests/documents.c                            |   14 ++++-
+ 6 files changed, 88 insertions(+), 4 deletions(-)
+
+commit c04a3fa92d193c2ae1cd68174129dfb3bb56f2be
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Aug 2 17:08:42 2009 +0100
+
+    Bug 589855 – Obsolete <rights> not handled in GDataPicasaWebAlbum
+    parse_xml()
+
+    Changes based on a patch from Richard Schwarting <aquarichy@gmail.com>
+    to
+    handle the Atom <rights> element in GDataEntry. Closes: bgo#589855
+
+ docs/reference/gdata-sections.txt                |    2 +
+ gdata/gdata-entry.c                              |   72
+ +++++++++++++++++++++-
+ gdata/gdata-entry.h                              |    2 +
+ gdata/gdata.symbols                              |    2 +
+ gdata/services/picasaweb/gdata-picasaweb-album.c |   63
+ +++++++++++++++++--
+ gdata/tests/picasaweb.c                          |   27 ++++++++
+ 6 files changed, 160 insertions(+), 8 deletions(-)
+
+commit f500b1b6b8b698a87f3cdfd17dd562f67f9ec659
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Sun Aug 2 16:13:55 2009 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po |  127
+ +++++++++++++++++++++++++++++++++--------------------------
+ po/zh_TW.po |  125
+ ++++++++++++++++++++++++++++++++-------------------------
+ 2 files changed, 141 insertions(+), 111 deletions(-)
+
+commit 68bd454a875f8f1a83791fff1d3db59399e138c9
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat Aug 1 11:23:45 2009 +0100
+
+    Bug 590345 – <gd:deleted> handling in GDataDocumentsEntry
+
+    Patch by Thibault Saunier <saunierthibault@gmail.com> to add handling
+    for <gd:deleted> tags in the Documents service. Closes: bgo#590345
+
+ docs/reference/gdata-sections.txt                |    1 +
+ gdata/gdata.symbols                              |    1 +
+ gdata/services/documents/gdata-documents-entry.c |   54
+ ++++++++++++++++++++--
+ gdata/services/documents/gdata-documents-entry.h |    2 +
+ 4 files changed, 54 insertions(+), 4 deletions(-)
+
+commit 1a02a3574ec4f8864f38c8edbc1a79b2ce586963
+Author: Richard Schwarting <aquarichy@gmail.com>
+Date:   Wed Jul 29 19:37:45 2009 +0100
+
+    Bug 589850 – gdata_picasaweb_album_get_timestamp() returns date
+    in 1970!
+
+    Patch from Richard Schwarting <aquarichy@gmail.com> to fix timestamp
+    parsing
+    re. word size incompatibilities in the PicasaWeb service. Closes:
+    bgo#589850
+
+ gdata/exif/gdata-exif-tags.c                     |    5 ++---
+ gdata/services/picasaweb/gdata-picasaweb-album.c |    7 ++++---
+ gdata/services/picasaweb/gdata-picasaweb-file.c  |    6 +++---
+ gdata/tests/picasaweb.c                          |    4 +---
+ 4 files changed, 10 insertions(+), 12 deletions(-)
+
+commit 1e971a20100097c5cad077dffa5b3e30bb9db2ae
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Jul 28 21:52:35 2009 +0100
+
+    [picasaweb] Added missing EXIF tag files
+
+    I'm an idiot.
+
+ gdata/exif/Makefile.am       |   29 ++++
+ gdata/exif/gdata-exif-tags.c |  350
+ ++++++++++++++++++++++++++++++++++++++++++
+ gdata/exif/gdata-exif-tags.h |   78 ++++++++++
+ 3 files changed, 457 insertions(+), 0 deletions(-)
+
+commit 34b758dea90cfc87dab4f78b151ac597ec62c2c5
+Author: Richard Schwarting <aquarichy@gmail.com>
+Date:   Tue Jul 28 19:44:53 2009 +0100
+
+    Bug 589201 – Add EXIF support for PicasaWeb image files
+
+    Patch from Richard Schwarting <aquarichy@gmail.com> to add support
+    for EXIF
+    attributes to the PicasaWeb service. Closes: bgo#589201
+
+ configure.in                                       |    1 +
+ docs/reference/Makefile.am                         |    4 +-
+ docs/reference/gdata-sections.txt                  |    9 +
+ gdata/Makefile.am                                  |    5 +-
+ gdata/gdata.symbols                                |    9 +
+ gdata/services/picasaweb/gdata-picasaweb-file.c    |  382
+ +++++++++++++++++++-
+ gdata/services/picasaweb/gdata-picasaweb-file.h    |   16 +-
+ gdata/services/picasaweb/gdata-picasaweb-service.c |    1 +
+ gdata/tests/picasaweb.c                            |   27 +-
+ 9 files changed, 421 insertions(+), 33 deletions(-)
+
+commit 88159d6a2c37cf3edd1b80398a020968d6728c39
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jul 27 23:42:34 2009 +0100
+
+    Bug 589545 – *_download_document(): let the client decide where
+    to download
+
+    Patch from Thibault Saunier <saunierthibault@gmail.com> to change the
+    semantics of the *_download_document() functions. Closes: bgo#589545
+
+ gdata/gdata-private.h                              |    2 +-
+ gdata/services/documents/gdata-documents-entry.c   |   60
+ +++++++++++---------
+ .../documents/gdata-documents-presentation.c       |   13 ++--
+ .../documents/gdata-documents-presentation.h       |    2 +-
+ .../documents/gdata-documents-spreadsheet.c        |   16 +++--
+ .../documents/gdata-documents-spreadsheet.h        |    2 +-
+ gdata/services/documents/gdata-documents-text.c    |   13 ++--
+ gdata/services/documents/gdata-documents-text.h    |    2 +-
+ gdata/tests/documents.c                            |   57
+ +++++++++++++++----
+ 9 files changed, 105 insertions(+), 62 deletions(-)
+
+commit c6c5a1c41c2a3f30a61898effaa824bea27c05c1
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat Jul 25 18:48:17 2009 +0100
+
+    [core] Changed error handling to print the response message
+
+    It previously printed the human-readable version of the HTTP status
+    code.
+    This doesn't introduce any string changes.
+
+ gdata/gdata-service.c |   16 ++++++++--------
+ 1 files changed, 8 insertions(+), 8 deletions(-)
+
+commit 96d9d1ba0adb0a3f3d399f45e6432c23819fe453
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Fri Jul 24 17:32:00 2009 +0200
+
+    Updated German translation
+
+ po/de.po |   52 +++++++++++++++++++++++++++++++++++++++++-----------
+ 1 files changed, 41 insertions(+), 11 deletions(-)
+
+commit dbb25d3103466bd205f66572a64982e94109b871
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   Wed Jul 22 23:28:32 2009 +0200
+
+    Updated Swedish translation
+
+ po/sv.po |   36 +++++++++++++++++++++++++++++++++---
+ 1 files changed, 33 insertions(+), 3 deletions(-)
+
+commit 9b67a37d9af5f0200b7da6c49e3ae494ac4a995a
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Jul 21 19:23:54 2009 +0100
+
+    Bug 589265 – Crash on query error
+
+ gdata/gdata-service.c |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+
+commit a2b06cc6c4f01f5cce7838a9af50da93477ecaea
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   Tue Jul 21 19:35:37 2009 +0200
+
+    Updated Spanish translation
+
+ po/es.po |   60
+ ++++++++++++++++++++++++++++++++++++++++++++++--------------
+ 1 files changed, 46 insertions(+), 14 deletions(-)
+
+commit eabbfce26c99bebcd61fd46285266ad95515193d
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jul 20 20:43:42 2009 +0100
+
+    [build] Increment version to 0.5.0
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit cc58afed3ee1003f20fa93c6401020025c25c316
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jul 20 20:40:38 2009 +0100
+
+    Release version 0.4.0
+
+ NEWS                              |   60 +++++++++
+ configure.in                      |    2 +-
+ gdata/tests/Makefile.am           |   11 +-
+ gdata/tests/documents.c           |   18 ++--
+ gdata/tests/test_updated_file.ppt |  Bin 0 -> 72192 bytes
+ po/POTFILES.in                    |    2 +
+ po/en_GB.po                       |  249
+ ++++++++++++++++++++++++++-----------
+ 7 files changed, 253 insertions(+), 89 deletions(-)
+
+commit 28676603a8aec0167662448702d8c9699ba5bc74
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jul 20 19:40:50 2009 +0100
+
+    [picasaweb] Test suite fixes
+
+    Someone went and edited the photos online! They destroyed my test
+    cases!
+
+ gdata/tests/picasaweb.c |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit e2882f3cd445cb2e4fbc9ffd25e5addcb9fa6010
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jul 20 19:27:29 2009 +0100
+
+    [docs] Added some missing YouTube functions to the documentation
+
+ docs/reference/gdata-sections.txt |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+commit a1824d8706439c882f3e6fcb6496120fd4300e78
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jul 20 19:18:16 2009 +0100
+
+    [documents] Fixed gdata_documents_entry_get_path function
+
+    Necessarily also fixed gdata_entry_look_up_links, and added test
+    cases for
+    it. Based on patches by Thibault Saunier <saunierthibault@gmail.com>.
+    Closes: bgo#589067
+
+ gdata/atom/gdata-link.c                          |    4 +-
+ gdata/gdata-entry.c                              |   16 ++---
+ gdata/gdata.symbols                              |    1 +
+ gdata/services/documents/gdata-documents-entry.c |   71
+ ++++++++++++----------
+ gdata/services/documents/gdata-documents-entry.h |    2 +-
+ gdata/tests/general.c                            |   33 ++++++++++-
+ 6 files changed, 84 insertions(+), 43 deletions(-)
+
+commit 8940a0b026bf9b6df9c602430057af5934951c18
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Jul 19 18:50:38 2009 +0100
+
+    [documents] Added missing test files
+
+ gdata/tests/Makefile.am      |   11 +++++++++++
+ gdata/tests/test.doc         |  Bin 0 -> 7680 bytes
+ gdata/tests/test.ods         |  Bin 0 -> 7564 bytes
+ gdata/tests/test.odt         |  Bin 0 -> 8033 bytes
+ gdata/tests/test.ppt         |  Bin 0 -> 71168 bytes
+ gdata/tests/test.xls         |  Bin 0 -> 7680 bytes
+ gdata/tests/test_updated.odt |  Bin 0 -> 8649 bytes
+ 7 files changed, 11 insertions(+), 0 deletions(-)
+
+commit 352a620bff7fd01d5c9e9fd455b42eeecce16786
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Jul 19 18:43:05 2009 +0100
+
+    [contacts] Added methods to remove all (e.g.) phone numbers from
+    a contact
+
+ docs/reference/gdata-sections.txt                |    5 +
+ gdata/gdata.symbols                              |    5 +
+ gdata/services/contacts/gdata-contacts-contact.c |  146
+ +++++++++++++++++-----
+ gdata/services/contacts/gdata-contacts-contact.h |    5 +
+ 4 files changed, 131 insertions(+), 30 deletions(-)
+
+commit 9ab94286da929f3bfa0c04a052963b608a45f956
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Jul 19 12:41:02 2009 +0100
+
+    Bug 588995 – float radix character depends on LC_NUMERIC, but
+    Google wants "."
+
+    Changes based on a patch by Richard Schwarting <aquarichy@gmail.com>
+    to
+    use locale-independent functions to print doubles. Closes: bgo#588995
+
+ gdata/services/picasaweb/gdata-picasaweb-file.c  |    4 +++-
+ gdata/services/picasaweb/gdata-picasaweb-query.c |   10 +++++++---
+ gdata/services/youtube/gdata-youtube-query.c     |   13 +++++++++----
+ gdata/tests/youtube.c                            |    2 +-
+ 4 files changed, 20 insertions(+), 9 deletions(-)
+
+commit 4ee6c030ecdc75086d6317fd0e2e8fa8ae454903
+Author: Thibault Saunier <saunierthibault@gmail.com>
+Date:   Fri Jul 17 19:04:15 2009 +0100
+
+    Bug 587073 – Add Google Documents service
+
+    Added support for Google Documents, from work done by Thibault Saunier
+    <saunierthibault@gmail.com>. Closes bgo#587073 and bgo#588282.
+
+ HACKING                                            |    2 +
+ configure.in                                       |    3 +-
+ docs/reference/gdata-docs.xml                      |   13 +-
+ docs/reference/gdata-sections.txt                  |  188 +++++
+ gdata/Makefile.am                                  |    1 +
+ gdata/atom/gdata-link.c                            |    6 +-
+ gdata/gdata-entry.c                                |   35 +
+ gdata/gdata-entry.h                                |    1 +
+ gdata/gdata-feed.c                                 |  100 ++-
+ gdata/gdata-parsable.c                             |    7 +-
+ gdata/gdata-private.h                              |   13 +
+ gdata/gdata.h                                      |   10 +
+ gdata/gdata.symbols                                |   48 ++
+ gdata/services/Makefile.am                         |    2 +-
+ gdata/services/documents/Makefile.am               |   80 ++
+ gdata/services/documents/gdata-documents-entry.c   |  633
+ ++++++++++++++++
+ gdata/services/documents/gdata-documents-entry.h   |   81 ++
+ gdata/services/documents/gdata-documents-feed.c    |  119 +++
+ gdata/services/documents/gdata-documents-feed.h    |   67 ++
+ gdata/services/documents/gdata-documents-folder.c  |   88 +++
+ gdata/services/documents/gdata-documents-folder.h  |   69 ++
+ .../documents/gdata-documents-presentation.c       |  151 ++++
+ .../documents/gdata-documents-presentation.h       |   96 +++
+ gdata/services/documents/gdata-documents-query.c   |  563 ++++++++++++++
+ gdata/services/documents/gdata-documents-query.h   |   86 +++
+ gdata/services/documents/gdata-documents-service.c |  767
+ ++++++++++++++++++++
+ gdata/services/documents/gdata-documents-service.h |  105 +++
+ .../documents/gdata-documents-spreadsheet.c        |  172 +++++
+ .../documents/gdata-documents-spreadsheet.h        |   99 +++
+ gdata/services/documents/gdata-documents-text.c    |  154 ++++
+ gdata/services/documents/gdata-documents-text.h    |  103 +++
+ gdata/services/youtube/gdata-youtube-video.c       |    2 +
+ gdata/tests/Makefile.am                            |    3 +
+ gdata/tests/common.h                               |    1 +
+ gdata/tests/documents.c                            |  588 +++++++++++++++
+ gdata/tests/picasaweb.c                            |    1 -
+ po/fr.po                                           |    4 +
+ 37 files changed, 4418 insertions(+), 43 deletions(-)
+
+commit 533ad2afe4cb37307dcec180759f0741a5cf39f0
+Author: Víctor Manuel Jáquez Leal <vjaquez@igalia.com>
+Date:   Fri Jul 10 14:55:47 2009 +0200
+
+    Bug 588052 – Parse the yt:aspectratio tag
+
+    Add support for aspect ratios to YouTube videos. Patch by Víctor
+    Manuel
+    Jáquez Leal. Closes bgo#588052.
+
+ gdata/gdata.symbols                          |    3 +
+ gdata/services/youtube/gdata-youtube-group.c |   45 +++++++++++++++++++
+ gdata/services/youtube/gdata-youtube-group.h |    3 +
+ gdata/services/youtube/gdata-youtube-video.c |   61
+ +++++++++++++++++++++++++-
+ gdata/services/youtube/gdata-youtube-video.h |   18 ++++++++
+ gdata/tests/youtube.c                        |    1 -
+ 6 files changed, 129 insertions(+), 2 deletions(-)
+
+commit 31ae4270a735e768901b03e230845713a8a51395
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   Fri Jul 10 17:30:37 2009 +0200
+
+    Updated Swedish translation
+
+ po/sv.po |  292
+ +++++++++++++++++++++++++++++++++++++++++---------------------
+ 1 files changed, 194 insertions(+), 98 deletions(-)
+
+commit 11feedf628437743836ec02bb2ed22bd35672d66
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Jul 8 15:26:18 2009 +0100
+
+    [youtube] Check the hostname when extracting video IDs from URIs
+
+ gdata/services/youtube/gdata-youtube-video.c |    5 ++++-
+ gdata/tests/youtube.c                        |    7 +++++++
+ 2 files changed, 11 insertions(+), 1 deletions(-)
+
+commit 4a7c1d78a04ad6be69705eaf036913ee76e4e3c9
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Mon Jul 6 21:00:59 2009 +0800
+
+    Added Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/LINGUAS  |    2 +
+ po/zh_HK.po |  325
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/zh_TW.po |  325
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 652 insertions(+), 0 deletions(-)
+
+commit fdcfed6f126a622e946532dba12a3cc3596d562a
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Jul 5 23:15:15 2009 +0100
+
+    [youtube] Added a convenience function to extract video IDs from
+    video URIs
+
+ docs/reference/gdata-sections.txt            |    1 +
+ gdata/gdata.symbols                          |    1 +
+ gdata/services/youtube/gdata-youtube-video.c |   43
+ ++++++++++++++++++++++++++
+ gdata/services/youtube/gdata-youtube-video.h |    2 +
+ gdata/tests/youtube.c                        |   14 ++++++++
+ 5 files changed, 61 insertions(+), 0 deletions(-)
+
+commit f8490dd614d953e1d28835d97bc70b6746f4e224
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Jul 5 22:44:19 2009 +0100
+
+    [youtube] Added a query to retrieve the details of a single video
+
+    Added sync and async query functions to retrieve the details of a
+    single video
+    based on its video ID. Test cases and documentation are included.
+
+ docs/reference/gdata-sections.txt              |    3 +
+ gdata/gdata-private.h                          |    5 +
+ gdata/gdata-service.c                          |   99 +++++++++------
+ gdata/gdata.symbols                            |    3 +
+ gdata/services/youtube/gdata-youtube-service.c |  158
+ ++++++++++++++++++++++++
+ gdata/services/youtube/gdata-youtube-service.h |    7 +
+ gdata/tests/youtube.c                          |   52 ++++++++
+ 7 files changed, 286 insertions(+), 41 deletions(-)
+
+commit dfff80454d66075b0ce1dbbd85b823ebe3df9625
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat Jul 4 18:09:39 2009 +0100
+
+    [tests] Rearchitected the test suites to not use global variables
+
+    The global main_loop and service variables are now declared in the
+    scope of
+    the main function, and passed to the appropriate test
+    cases. Individual test
+    cases can now be run without needing to also run the authentication
+    test.
+
+ gdata/tests/calendar.c  |  116
+ +++++++++++++++++++++--------------------------
+ gdata/tests/contacts.c  |   76 ++++++++++++++-----------------
+ gdata/tests/picasaweb.c |   71 +++++++++++++++--------------
+ gdata/tests/youtube.c   |   78 +++++++++++++++----------------
+ 4 files changed, 160 insertions(+), 181 deletions(-)
+
+commit 54a08c31db4c3ab6904f2f52bbb77102b351e459
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat Jul 4 15:11:30 2009 +0100
+
+    [tests] Use better paths for test files in the test suite
+
+ gdata/tests/picasaweb.c |   14 +++++++-------
+ gdata/tests/youtube.c   |    2 +-
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+commit 97355e5cfc3bb12afb30b690aa0e4b185457b931
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Jul 3 10:12:09 2009 +0100
+
+    [core] Made the get_xml functions use a single GString throughout
+
+    Previously, each call to _gdata_parsable_get_xml would create its
+    own GString,
+    then destroy it at the end. Now, the same GString is reused throughout
+    a tree
+    of calls to _gdata_parsable_get_xml, saving quite a few
+    allocations/frees
+    (in exchange for more reallocations).
+
+ gdata/gd/gdata-gd-when.c                         |    7 ++-----
+ gdata/gdata-entry.c                              |   21
+ ++++++---------------
+ gdata/gdata-parsable.c                           |   12 +++++-------
+ gdata/gdata-private.h                            |    2 +-
+ gdata/media/gdata-media-group.c                  |    7 ++-----
+ gdata/services/calendar/gdata-calendar-event.c   |    7 ++-----
+ gdata/services/contacts/gdata-contacts-contact.c |    7 ++-----
+ gdata/services/picasaweb/gdata-picasaweb-album.c |    5 +----
+ gdata/services/picasaweb/gdata-picasaweb-file.c  |    5 +----
+ gdata/services/youtube/gdata-youtube-video.c     |    9 ++-------
+ 10 files changed, 24 insertions(+), 58 deletions(-)
+
+commit 65531a6bae54340722c2cdaa5e156a9ca9a49637
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Jul 2 16:09:37 2009 +0100
+
+    [contacts] Added gdata_contacts_service_update_contact
+
+    Added gdata_contacts_service_update_contact to work around some
+    weirdness
+    with the edit URIs the contacts service gives us, and also fixed
+    some bugs
+    with handling empty extended properties.
+
+ gdata/gdata.symbols                              |    1 +
+ gdata/services/contacts/gdata-contacts-contact.c |    2 +-
+ gdata/services/contacts/gdata-contacts-service.c |   39
+ +++++++++++++++++++++-
+ gdata/services/contacts/gdata-contacts-service.h |    2 +
+ gdata/tests/contacts.c                           |    6 +++
+ 5 files changed, 48 insertions(+), 2 deletions(-)
+
+commit 362a970abd6623d09fc4194d57e840996c9b702c
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Jun 30 18:36:26 2009 +0100
+
+    [atom] Added #defined values for the standard link relation types
+
+ docs/reference/gdata-sections.txt |    7 +++
+ gdata/atom/gdata-link.c           |    7 ++-
+ gdata/atom/gdata-link.h           |   84
+ +++++++++++++++++++++++++++++++++++++
+ gdata/gdata-access-handler.c      |    2 +-
+ gdata/gdata-entry.c               |    3 +-
+ gdata/gdata-service.c             |    4 +-
+ gdata/tests/general.c             |    5 +-
+ 7 files changed, 103 insertions(+), 9 deletions(-)
+
+commit ca7aba560734b3b3a6999e8a869b77ae6492e87a
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Jul 1 14:12:10 2009 +0100
+
+    [picasaweb] Fixed declaration of gdata_picasaweb_file_get_size
+
+ gdata/services/picasaweb/gdata-picasaweb-file.h |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 7b45582cdda4ce176c8106b008448814e81e6409
+Author: Maxim V. Dziumanenko <dziumanenko@gmail.com>
+Date:   Wed Jul 1 15:21:40 2009 +0300
+
+    Updated Ukrainian translation
+
+ po/LINGUAS |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit a5c983cea95e9faea1c42120fd40e7891e22a459
+Author: Maxim V. Dziumanenko <dziumanenko@gmail.com>
+Date:   Wed Jul 1 15:20:54 2009 +0300
+
+    Updated Ukrainian translation
+
+ po/uk.po |  301
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 301 insertions(+), 0 deletions(-)
+
+commit f752236c8dfdbcf1e0e123b70a1e039a4ce6aef8
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jun 29 16:20:57 2009 +0100
+
+    [gd] Added test cases for the GData elements with classes
+
+    Added test cases for all the GData elements represented in gdata/gd. A
+    few
+    bugs (mainly escaping bugs) in the classes were fixed as a result.
+
+ gdata/gd/gdata-gd-email-address.c  |    7 +-
+ gdata/gd/gdata-gd-im-address.c     |   16 +-
+ gdata/gd/gdata-gd-organization.c   |   26 ++-
+ gdata/gd/gdata-gd-phone-number.c   |   34 ++-
+ gdata/gd/gdata-gd-postal-address.c |   28 ++-
+ gdata/gd/gdata-gd-postal-address.h |    2 +-
+ gdata/gd/gdata-gd-when.c           |    4 +-
+ gdata/gd/gdata-gd-where.c          |   23 +-
+ gdata/gd/gdata-gd-who.c            |   14 +-
+ gdata/tests/general.c              |  608
+ ++++++++++++++++++++++++++++++++++++
+ 10 files changed, 715 insertions(+), 47 deletions(-)
+
+commit be8b372b310579d17d042afb0fc6145348cec328
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jun 29 10:44:26 2009 +0100
+
+    Bug 587277 – Some files are GPLv3 but license is LGPLv2.1?
+
+    Fix licencing headers to consistently be LGPLv2.1+.
+
+ gdata/atom/gdata-author.c                      |   18 +++++++++---------
+ gdata/atom/gdata-author.h                      |   18 +++++++++---------
+ gdata/atom/gdata-category.c                    |   18 +++++++++---------
+ gdata/atom/gdata-category.h                    |   18 +++++++++---------
+ gdata/atom/gdata-generator.c                   |   18 +++++++++---------
+ gdata/atom/gdata-generator.h                   |   18 +++++++++---------
+ gdata/atom/gdata-link.c                        |   18 +++++++++---------
+ gdata/atom/gdata-link.h                        |   18 +++++++++---------
+ gdata/gd/gdata-gd-email-address.c              |   18 +++++++++---------
+ gdata/gd/gdata-gd-email-address.h              |   18 +++++++++---------
+ gdata/gd/gdata-gd-im-address.c                 |   18 +++++++++---------
+ gdata/gd/gdata-gd-im-address.h                 |   18 +++++++++---------
+ gdata/gd/gdata-gd-organization.c               |   18 +++++++++---------
+ gdata/gd/gdata-gd-organization.h               |   18 +++++++++---------
+ gdata/gd/gdata-gd-phone-number.c               |   18 +++++++++---------
+ gdata/gd/gdata-gd-phone-number.h               |   18 +++++++++---------
+ gdata/gd/gdata-gd-postal-address.c             |   18 +++++++++---------
+ gdata/gd/gdata-gd-postal-address.h             |   18 +++++++++---------
+ gdata/gd/gdata-gd-reminder.c                   |   18 +++++++++---------
+ gdata/gd/gdata-gd-reminder.h                   |   18 +++++++++---------
+ gdata/gd/gdata-gd-when.c                       |   18 +++++++++---------
+ gdata/gd/gdata-gd-when.h                       |   18 +++++++++---------
+ gdata/gd/gdata-gd-where.c                      |   18 +++++++++---------
+ gdata/gd/gdata-gd-where.h                      |   18 +++++++++---------
+ gdata/gd/gdata-gd-who.c                        |   18 +++++++++---------
+ gdata/gd/gdata-gd-who.h                        |   18 +++++++++---------
+ gdata/gdata-access-handler.c                   |   18 +++++++++---------
+ gdata/gdata-access-handler.h                   |   18 +++++++++---------
+ gdata/gdata-parsable.c                         |   18 +++++++++---------
+ gdata/gdata-parsable.h                         |   18 +++++++++---------
+ gdata/media/gdata-media-category.c             |   18 +++++++++---------
+ gdata/media/gdata-media-category.h             |   18 +++++++++---------
+ gdata/media/gdata-media-content.c              |   18 +++++++++---------
+ gdata/media/gdata-media-content.h              |   18 +++++++++---------
+ gdata/media/gdata-media-credit.c               |   18 +++++++++---------
+ gdata/media/gdata-media-credit.h               |   18 +++++++++---------
+ gdata/media/gdata-media-group.c                |   18 +++++++++---------
+ gdata/media/gdata-media-group.h                |   18 +++++++++---------
+ gdata/media/gdata-media-thumbnail.c            |   18 +++++++++---------
+ gdata/media/gdata-media-thumbnail.h            |   18 +++++++++---------
+ gdata/services/calendar/gdata-calendar-feed.c  |   18 +++++++++---------
+ gdata/services/calendar/gdata-calendar-feed.h  |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-content.c |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-content.h |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-control.c |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-control.h |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-credit.c  |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-credit.h  |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-group.c   |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-group.h   |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-state.c   |   18 +++++++++---------
+ gdata/services/youtube/gdata-youtube-state.h   |   18 +++++++++---------
+ 52 files changed, 468 insertions(+), 468 deletions(-)
+
+commit 33be5a3f48f400611132c3a85e8f1b17fd5f383e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jun 29 01:05:08 2009 +0100
+
+    [atom] Added test cases for the Atom elements with classes
+
+    Added test cases for all the Atom elements represented in
+    gdata/atom. A few
+    bugs in GDataParsable, GDataGenerator and GDataLink were fixed as
+    a result.
+    Most notably, gdata_link_get_uri will now always return a valid IRI.
+
+ HACKING                      |   10 ++-
+ gdata/atom/gdata-generator.c |   21 +++-
+ gdata/atom/gdata-link.c      |   39 +++++--
+ gdata/gdata-parsable.c       |    9 ++-
+ gdata/tests/calendar.c       |    6 +-
+ gdata/tests/contacts.c       |    4 +-
+ gdata/tests/general.c        |  239
+ +++++++++++++++++++++++++++++++++++++++++-
+ gdata/tests/youtube.c        |   20 ++--
+ 8 files changed, 309 insertions(+), 39 deletions(-)
+
+commit 20cad32f52be0505a25305bad7d6167df6ad8de6
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Jun 28 22:31:44 2009 +0100
+
+    [media] Fixed a crasher when trying to free static memory
+
+    Static memory was being inserted into a hash table, then later freed.
+    Also updated the list of allowed commit tags in HACKING.
+
+ gdata/media/gdata-media-group.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 920c0249bd241320abcd15cf3379b66d6c83e2f5
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Jun 28 22:23:55 2009 +0100
+
+    [core] Link element names and namespaces to the relevant classes
+
+    This introduces new element_name and element_namespaces fields to the
+    GDataParsableClass struct, allowing for simpler parsing of XML
+    by linking
+    XML element names to parsable object types. Some of the GDataParsable
+    API
+    is now public, which will allow for a more comprehensive test suite
+    in future.
+
+ docs/reference/gdata-sections.txt                  |   11 +--
+ gdata/atom/gdata-author.c                          |    1 +
+ gdata/atom/gdata-category.c                        |    1 +
+ gdata/atom/gdata-generator.c                       |    1 +
+ gdata/atom/gdata-link.c                            |    1 +
+ gdata/gd/gdata-gd-email-address.c                  |    2 +
+ gdata/gd/gdata-gd-im-address.c                     |    2 +
+ gdata/gd/gdata-gd-organization.c                   |    2 +
+ gdata/gd/gdata-gd-phone-number.c                   |    2 +
+ gdata/gd/gdata-gd-postal-address.c                 |    2 +
+ gdata/gd/gdata-gd-reminder.c                       |    2 +
+ gdata/gd/gdata-gd-when.c                           |   12 ++-
+ gdata/gd/gdata-gd-where.c                          |    2 +
+ gdata/gd/gdata-gd-who.c                            |    2 +
+ gdata/gdata-access-handler.c                       |   12 ++--
+ gdata/gdata-access-rule.c                          |   21 -----
+ gdata/gdata-access-rule.h                          |    1 -
+ gdata/gdata-entry.c                                |   73 ++++-----------
+ gdata/gdata-entry.h                                |    2 -
+ gdata/gdata-feed.c                                 |   13 ++--
+ gdata/gdata-parsable.c                             |   93
+ ++++++++++++++++----
+ gdata/gdata-parsable.h                             |   12 ++-
+ gdata/gdata-private.h                              |    9 +--
+ gdata/gdata-service.c                              |   10 ++-
+ gdata/gdata.symbols                                |   11 +--
+ gdata/media/gdata-media-category.c                 |    2 +
+ gdata/media/gdata-media-content.c                  |    2 +
+ gdata/media/gdata-media-credit.c                   |    2 +
+ gdata/media/gdata-media-group.c                    |   14 ++--
+ gdata/media/gdata-media-thumbnail.c                |    2 +
+ gdata/services/calendar/gdata-calendar-calendar.c  |   19 ----
+ gdata/services/calendar/gdata-calendar-calendar.h  |    1 -
+ gdata/services/calendar/gdata-calendar-event.c     |   49 ++++-------
+ gdata/services/calendar/gdata-calendar-event.h     |    1 -
+ gdata/services/contacts/gdata-contacts-contact.c   |   69 +++++----------
+ gdata/services/contacts/gdata-contacts-contact.h   |    1 -
+ gdata/services/picasaweb/gdata-picasaweb-album.c   |   26 +-----
+ gdata/services/picasaweb/gdata-picasaweb-album.h   |    1 -
+ gdata/services/picasaweb/gdata-picasaweb-file.c    |   26 +-----
+ gdata/services/picasaweb/gdata-picasaweb-file.h    |    1 -
+ gdata/services/picasaweb/gdata-picasaweb-service.c |    5 +-
+ gdata/services/youtube/gdata-youtube-control.c     |    5 +-
+ gdata/services/youtube/gdata-youtube-group.c       |    4 +-
+ gdata/services/youtube/gdata-youtube-service.c     |    5 +-
+ gdata/services/youtube/gdata-youtube-state.c       |    2 +
+ gdata/services/youtube/gdata-youtube-video.c       |   33 ++-----
+ gdata/services/youtube/gdata-youtube-video.h       |    1 -
+ gdata/tests/calendar.c                             |   14 ++--
+ gdata/tests/contacts.c                             |   14 ++--
+ gdata/tests/general.c                              |   10 +-
+ gdata/tests/picasaweb.c                            |    8 +-
+ gdata/tests/youtube.c                              |   18 ++--
+ 52 files changed, 272 insertions(+), 363 deletions(-)
+
+commit dad5356795c230886e11d8a63fbd4fc27596b2f4
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Jun 28 17:34:33 2009 +0100
+
+    [docs] Added data flow diagram and protocol description
+
+ docs/reference/data-flow.dia      |  Bin 0 -> 1657 bytes
+ docs/reference/data-flow.png      |  Bin 0 -> 24681 bytes
+ docs/reference/gdata-overview.xml |   19 +++++++++++++++++++
+ docs/reference/structure.dia      |  Bin 1814 -> 1803 bytes
+ docs/reference/structure.png      |  Bin 17149 -> 22102 bytes
+ 5 files changed, 19 insertions(+), 0 deletions(-)
+
+commit f989a8f8474ad92e8bc43bd6143af0a6d6566300
+Author: Jorge Gonzalez <jorgegonz@svn.gnome.org>
+Date:   Sun Jun 28 12:48:51 2009 +0200
+
+    Updated Spanish translation
+
+ po/es.po |  100
+ +++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 57 insertions(+), 43 deletions(-)
+
+commit 3364795201c16230102a3f9120515d026845bf4a
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Mon Jun 22 22:00:37 2009 +0200
+
+    Updated German translation
+
+ po/de.po |   84
+ ++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 files changed, 52 insertions(+), 32 deletions(-)
+
+commit 0f9d29fdbb87e6bb2a4a0e5d239e6e8a8f8fe3f3
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Jun 21 20:24:34 2009 +0100
+
+    [picasaweb] Added a PicasaWeb service
+
+    Originally written by Richard Schwarting <aquarichy@gmail.com>,
+    the PicasaWeb
+    service has decent test suite coverage, decent documentation, and
+    support for
+    common PicasaWeb operations. Closes: bgo#580375
+
+ configure.in                                       |    1 +
+ docs/reference/Makefile.am                         |    3 +-
+ docs/reference/gdata-docs.xml                      |    8 +
+ docs/reference/gdata-sections.txt                  |  141 +++
+ gdata/Makefile.am                                  |    1 +
+ gdata/gdata-access-rule.c                          |    6 +-
+ gdata/gdata-entry.c                                |   74 ++-
+ gdata/gdata-entry.h                                |    2 +
+ gdata/gdata-feed.c                                 |    3 +-
+ gdata/gdata-parser.c                               |   17 +
+ gdata/gdata-parser.h                               |    1 +
+ gdata/gdata-service.c                              |    1 +
+ gdata/gdata.h                                      |    7 +
+ gdata/gdata.symbols                                |   83 ++
+ gdata/media/gdata-media-content.c                  |   12 +-
+ gdata/media/gdata-media-credit.c                   |    6 +-
+ gdata/media/gdata-media-group.c                    |   21 +-
+ gdata/media/gdata-media-group.h                    |    1 +
+ gdata/services/Makefile.am                         |    2 +-
+ gdata/services/picasaweb/Makefile.am               |   69 +
+ gdata/services/picasaweb/gdata-picasaweb-album.c   | 1097
+ ++++++++++++++++
+ gdata/services/picasaweb/gdata-picasaweb-album.h   |  109 ++
+ gdata/services/picasaweb/gdata-picasaweb-file.c    | 1303
+ ++++++++++++++++++++
+ gdata/services/picasaweb/gdata-picasaweb-file.h    |  110 ++
+ gdata/services/picasaweb/gdata-picasaweb-query.c   |  547 ++++++++
+ gdata/services/picasaweb/gdata-picasaweb-query.h   |   84 ++
+ gdata/services/picasaweb/gdata-picasaweb-service.c |  397 ++++++
+ gdata/services/picasaweb/gdata-picasaweb-service.h |   87 ++
+ gdata/tests/Makefile.am                            |    3 +
+ gdata/tests/picasaweb.c                            |  554 +++++++++
+ po/POTFILES.in                                     |    1 +
+ 31 files changed, 4736 insertions(+), 15 deletions(-)
+
+commit f81049f70f1568f95b3db8ca5ed6d7e8891b0644
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat Jun 13 19:44:17 2009 +0100
+
+    Bug 579170 – Eliminate gdata_parser_error_unhandled_element
+
+    Split parsing of app:control elements in GDataYouTubeVideo out into
+    GDataYouTubeControl, and converted the GDataYouTubeState struct to
+    a GObject.
+
+    All instances of gdata_parser_error_unhandled_element are now
+    banished.
+    Closes: bgo#579170
+
+ docs/reference/Makefile.am                     |    4 +-
+ docs/reference/gdata-docs.xml                  |    6 +-
+ docs/reference/gdata-sections.txt              |   29 ++-
+ gdata/gdata-parser.c                           |   15 --
+ gdata/gdata-parser.h                           |    1 -
+ gdata/gdata.h                                  |    2 +-
+ gdata/gdata.symbols                            |    7 +-
+ gdata/services/youtube/Makefile.am             |   10 +-
+ gdata/services/youtube/gdata-youtube-control.c |  190 +++++++++++++++
+ gdata/services/youtube/gdata-youtube-control.h |   70 ++++++
+ gdata/services/youtube/gdata-youtube-service.c |    5 +-
+ gdata/services/youtube/gdata-youtube-state.c   |  297
+ ++++++++++++++++++++++++
+ gdata/services/youtube/gdata-youtube-state.h   |   70 ++++++
+ gdata/services/youtube/gdata-youtube-video.c   |   91 ++++----
+ gdata/services/youtube/gdata-youtube-video.h   |    2 +-
+ gdata/services/youtube/gdata-youtube.c         |   78 ------
+ gdata/services/youtube/gdata-youtube.h         |   52 ----
+ gdata/tests/youtube.c                          |   12 +-
+ 18 files changed, 721 insertions(+), 220 deletions(-)
+
+commit 0ec119dc1af85ef45ac333c584f6939b7e93bdf9
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat Jun 13 18:14:31 2009 +0100
+
+    [core] Converted Media RSS structs to GObjects
+
+    Converted all the Media RSS structs to GObjects, and moved them to a
+    "media"
+    directory. The documentation for the new objects is mostly complete,
+    but no
+    new test cases have been added.
+    A few of the new classes had to be subclassed to add YouTube-specific
+    properties to them. Helps: bgo#579170
+
+ configure.in                                     |    1 +
+ docs/reference/Makefile.am                       |   15 +-
+ docs/reference/gdata-docs.xml                    |   15 +-
+ docs/reference/gdata-sections.txt                |  158 +++++--
+ gdata/Makefile.am                                |    7 +-
+ gdata/gdata-media-rss.c                          |  349 --------------
+ gdata/gdata-media-rss.h                          |  178 -------
+ gdata/gdata.h                                    |   10 +-
+ gdata/gdata.symbols                              |   48 ++-
+ gdata/media/Makefile.am                          |   74 +++
+ gdata/media/gdata-media-category.c               |  404 ++++++++++++++++
+ gdata/media/gdata-media-category.h               |   76 +++
+ gdata/media/gdata-media-content.c                |  540
+ +++++++++++++++++++++
+ gdata/media/gdata-media-content.h                |  109 +++++
+ gdata/media/gdata-media-credit.c                 |  271 +++++++++++
+ gdata/media/gdata-media-credit.h                 |   69 +++
+ gdata/media/gdata-media-group.c                  |  542
+ +++++++++++++++++++++
+ gdata/media/gdata-media-group.h                  |   84 ++++
+ gdata/media/gdata-media-thumbnail.c              |  358 ++++++++++++++
+ gdata/media/gdata-media-thumbnail.h              |   70 +++
+ gdata/services/contacts/gdata-contacts-contact.c |    2 +-
+ gdata/services/contacts/gdata-contacts-contact.h |    2 +-
+ gdata/services/youtube/Makefile.am               |   14 +-
+ gdata/services/youtube/gdata-youtube-content.c   |  145 ++++++
+ gdata/services/youtube/gdata-youtube-content.h   |   86 ++++
+ gdata/services/youtube/gdata-youtube-credit.c    |  168 +++++++
+ gdata/services/youtube/gdata-youtube-credit.h    |   67 +++
+ gdata/services/youtube/gdata-youtube-group.c     |  250 ++++++++++
+ gdata/services/youtube/gdata-youtube-group.h     |   72 +++
+ gdata/services/youtube/gdata-youtube-query.c     |    9 +-
+ gdata/services/youtube/gdata-youtube-query.h     |   20 +-
+ gdata/services/youtube/gdata-youtube-video.c     |  554
+ ++++------------------
+ gdata/services/youtube/gdata-youtube-video.h     |   11 +-
+ gdata/tests/general.c                            |    8 +-
+ gdata/tests/youtube.c                            |    6 +-
+ 35 files changed, 3711 insertions(+), 1081 deletions(-)
+
+commit a53ecbd393e8eac9b773743bc7963d613deaafa0
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Jun 10 19:43:07 2009 +0100
+
+    [core] Converted GData structs to GObjects
+
+    Converted all the GData structs to GObjects, and moved them to a "gd"
+    directory. The documentation for the new objects is mostly complete,
+    but
+    no new test cases have been added. Helps: bgo#579170
+
+ configure.in                                      |    1 +
+ docs/reference/gdata-docs.xml                     |  160 +++--
+ docs/reference/gdata-sections.txt                 |  295 ++++++--
+ gdata/Makefile.am                                 |    7 +-
+ gdata/atom/gdata-author.c                         |    2 +-
+ gdata/atom/gdata-category.c                       |    2 +-
+ gdata/atom/gdata-generator.c                      |    2 +-
+ gdata/atom/gdata-link.c                           |    2 +-
+ gdata/gd/Makefile.am                              |   46 +
+ gdata/gd/gdata-gd-email-address.c                 |  478 +++++++++++
+ gdata/gd/gdata-gd-email-address.h                 |   81 ++
+ gdata/gd/gdata-gd-im-address.c                    |  555 +++++++++++++
+ gdata/gd/gdata-gd-im-address.h                    |   84 ++
+ gdata/gd/gdata-gd-organization.c                  |  583 +++++++++++++
+ gdata/gd/gdata-gd-organization.h                  |   84 ++
+ gdata/gd/gdata-gd-phone-number.c                  |  573 +++++++++++++
+ gdata/gd/gdata-gd-phone-number.h                  |   84 ++
+ gdata/gd/gdata-gd-postal-address.c                |  504 ++++++++++++
+ gdata/gd/gdata-gd-postal-address.h                |   81 ++
+ gdata/gd/gdata-gd-reminder.c                      |  480 +++++++++++
+ gdata/gd/gdata-gd-reminder.h                      |   78 ++
+ gdata/gd/gdata-gd-when.c                          |  590 ++++++++++++++
+ gdata/gd/gdata-gd-when.h                          |   83 ++
+ gdata/gd/gdata-gd-where.c                         |  420 ++++++++++
+ gdata/gd/gdata-gd-where.h                         |   77 ++
+ gdata/gd/gdata-gd-who.c                           |  427 ++++++++++
+ gdata/gd/gdata-gd-who.h                           |   77 ++
+ gdata/gdata-access-rule.c                         |    1 -
+ gdata/gdata-access-rule.h                         |    1 -
+ gdata/gdata-gdata.c                               |  904
+ ---------------------
+ gdata/gdata-gdata.h                               |  310 -------
+ gdata/gdata-parsable.c                            |   21 +-
+ gdata/gdata.h                                     |   13 +-
+ gdata/gdata.symbols                               |  135 +++-
+ gdata/services/calendar/gdata-calendar-calendar.c |    7 +-
+ gdata/services/calendar/gdata-calendar-calendar.h |    1 -
+ gdata/services/calendar/gdata-calendar-event.c    |  206 ++----
+ gdata/services/calendar/gdata-calendar-event.h    |    4 +-
+ gdata/services/contacts/gdata-contacts-contact.c  |  429 +++--------
+ gdata/services/contacts/gdata-contacts-contact.h  |    6 +-
+ gdata/services/youtube/gdata-youtube-video.c      |  170 +++--
+ gdata/services/youtube/gdata-youtube-video.h      |    4 +-
+ gdata/tests/calendar.c                            |   61 +-
+ gdata/tests/contacts.c                            |    7 +
+ gdata/tests/general.c                             |    9 +
+ gdata/tests/youtube.c                             |   11 +-
+ 46 files changed, 6173 insertions(+), 1983 deletions(-)
+
+commit 05d2280925c8492764b2bdc8d9a2f7957dafc877
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Jun 4 11:34:25 2009 +0100
+
+    [core] Converted Atom structs to GObjects
+
+    Converted all the Atom structs to GObjects, and moved them to an
+    "atom"
+    directory. This entailed moving get_xml and get_namespaces to
+    GDataParsable,
+    which simplifies things anyway. The documentation for the new
+    Atom objects
+    is mostly complete, but no new test cases have been added. Helps:
+    bgo#579170
+
+ configure.in                                      |    1 +
+ docs/reference/Makefile.am                        |    7 +-
+ docs/reference/gdata-docs.xml                     |    5 +-
+ docs/reference/gdata-sections.txt                 |  123 ++++-
+ gdata/Makefile.am                                 |   15 +-
+ gdata/atom/Makefile.am                            |   36 ++
+ gdata/atom/gdata-author.c                         |  422 ++++++++++++++
+ gdata/atom/gdata-author.h                         |   77 +++
+ gdata/atom/gdata-category.c                       |  381 +++++++++++++
+ gdata/atom/gdata-category.h                       |   77 +++
+ gdata/atom/gdata-generator.c                      |  262 +++++++++
+ gdata/atom/gdata-generator.h                      |   71 +++
+ gdata/atom/gdata-link.c                           |  616
+ +++++++++++++++++++++
+ gdata/atom/gdata-link.h                           |   86 +++
+ gdata/gdata-access-handler.c                      |   10 +-
+ gdata/gdata-access-rule.c                         |   26 +-
+ gdata/gdata-atom.c                                |  329 -----------
+ gdata/gdata-atom.h                                |  120 ----
+ gdata/gdata-entry.c                               |  287 +++-------
+ gdata/gdata-entry.h                               |   17 +-
+ gdata/gdata-feed.c                                |  149 ++----
+ gdata/gdata-feed.h                                |    5 +-
+ gdata/gdata-parsable.c                            |   82 +++-
+ gdata/gdata-parsable.h                            |   27 +-
+ gdata/gdata-parser.c                              |    9 +-
+ gdata/gdata-parser.h                              |   25 +-
+ gdata/gdata-private.h                             |   12 +-
+ gdata/gdata-service.c                             |    8 +-
+ gdata/gdata.h                                     |    9 +-
+ gdata/gdata.symbols                               |   51 ++-
+ gdata/services/calendar/gdata-calendar-calendar.c |   20 +-
+ gdata/services/calendar/gdata-calendar-event.c    |   20 +-
+ gdata/services/contacts/gdata-contacts-contact.c  |   26 +-
+ gdata/services/youtube/gdata-youtube-service.c    |    5 +-
+ gdata/services/youtube/gdata-youtube-video.c      |   20 +-
+ gdata/tests/calendar.c                            |    6 +-
+ gdata/tests/general.c                             |   11 +-
+ 37 files changed, 2519 insertions(+), 934 deletions(-)
+
+commit 16e5b361250164b503e4dc84a0ac24391438adb9
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Wed Jun 10 15:31:38 2009 +0200
+
+    Add Norwegian bokmål
+
+ po/LINGUAS |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit 6913ffea72ba5db340821de3ce66f63a6a89bb0d
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Wed Jun 10 15:31:14 2009 +0200
+
+    Updated Norwegian bokmål translation.
+
+ po/nb.po |  281
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 281 insertions(+), 0 deletions(-)
+
+commit 111ba382c2de7ad24424da6de391865057e9bf9f
+Author: Claude Paroz <claude@2xlibre.net>
+Date:   Thu Jun 4 19:24:35 2009 +0200
+
+    Added French translation by Laurent Coudeur and Claude Paroz
+
+ po/LINGUAS |    1 +
+ po/fr.po   |  292
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 293 insertions(+), 0 deletions(-)
+
+commit 0d73821eae07ab62745dec65530e212e1f5ef09e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Jun 3 19:00:35 2009 +0100
+
+    [core] Fix usage of a potentially-NULL object
+
+ gdata/gdata-service.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 1b2292336c6864456ad84ec319f672fb6c0a1463
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Jun 3 17:30:25 2009 +0100
+
+    Bug 584737 – String parsing is locale-sensitive
+
+    Replace some uses of strtod() with g_ascii_strtod() so that string
+    parsing
+    isn't locale-dependent. Add a test case. Closes: bgo#584737
+
+ gdata/gdata-media-rss.c                      |    7 +++----
+ gdata/services/youtube/gdata-youtube-video.c |    2 +-
+ gdata/tests/general.c                        |   20 ++++++++++++++++++++
+ 3 files changed, 24 insertions(+), 5 deletions(-)
+
+commit ccf58327523258335f77eb07ed3162411ddbdce7
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Wed Jun 3 20:21:45 2009 +0200
+
+    Updated German translation
+
+ po/de.po |  195
+ ++++++++++++++++++++++++++++++++++++++++----------------------
+ 1 files changed, 126 insertions(+), 69 deletions(-)
+
+commit bac9dc210a6d344c61c09458a46cdb7a96b28796
+Author: Jorge Gonzalez <jorgegonz@svn.gnome.org>
+Date:   Wed Jun 3 20:04:57 2009 +0200
+
+    Updated Spanish translation
+
+ po/es.po |  202
+ +++++++++++++++++++++++++++++++++++++++++---------------------
+ 1 files changed, 134 insertions(+), 68 deletions(-)
+
+commit e74940e22180cdd8cedd79270c118991d3e96c87
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Jun 3 13:39:48 2009 +0100
+
+    Bug 584417 – Strings are not properly formed for localisation
+
+    Reworded a number of strings to make them (hopefully) easier to
+    translate, and
+    added translator comments to every string which takes
+    parameters. Moved a few
+    existing translator comments so gettext actually picks them up.
+    Closes: bgo#584417
+
+ gdata/gdata-access-rule.c                         |    4 +-
+ gdata/gdata-entry.c                               |    6 +-
+ gdata/gdata-feed.c                                |   28 ++--
+ gdata/gdata-parsable.c                            |    2 +
+ gdata/gdata-parser.c                              |  154
+ ++++++++++++++-------
+ gdata/gdata-private.h                             |   13 +-
+ gdata/gdata-service.c                             |   17 ++-
+ gdata/services/calendar/gdata-calendar-calendar.c |   30 ++--
+ gdata/services/calendar/gdata-calendar-event.c    |   24 ++--
+ gdata/services/calendar/gdata-calendar-feed.c     |    4 +-
+ gdata/services/contacts/gdata-contacts-contact.c  |   33 ++---
+ gdata/services/youtube/gdata-youtube-service.c    |   16 +-
+ gdata/services/youtube/gdata-youtube-video.c      |   39 +++---
+ 13 files changed, 220 insertions(+), 150 deletions(-)
+
+commit ff5ff0632b572fdd01092df9950abbd07c1b23fa
+Author: Joan Duran <jodufi@gmail.com>
+Date:   Tue Jun 2 23:18:56 2009 +0200
+
+    Added Catalan translation
+
+ po/LINGUAS |    1 +
+ po/ca.po   |  243
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 244 insertions(+), 0 deletions(-)
+
+commit 639bb11b26e13935cc6fab741c19f99fa1325f9f
+Author: Jorge Gonzalez <jorgegonz@svn.gnome.org>
+Date:   Tue Jun 2 20:19:05 2009 +0200
+
+    Updated Spanish translation
+
+ po/es.po |   13 ++++++++++---
+ 1 files changed, 10 insertions(+), 3 deletions(-)
+
+commit 59fca6a0a7fc0f68f0767c4260d3c0dd9625b635
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Jun 2 00:15:49 2009 +0100
+
+    [contacts] Add contact photo support
+
+    Add support for getting, setting and removing contact photos. Full
+    test cases
+    and documentation are included.
+
+ docs/reference/gdata-sections.txt                |    3 +
+ gdata/gdata.symbols                              |    3 +
+ gdata/services/contacts/gdata-contacts-contact.c |  245
+ +++++++++++++++++++++-
+ gdata/services/contacts/gdata-contacts-contact.h |    8 +
+ gdata/services/contacts/gdata-contacts-service.h |    3 +-
+ gdata/tests/contacts.c                           |  156 ++++++++++++++
+ gdata/tests/photo.jpg                            |  Bin 0 -> 17659 bytes
+ 7 files changed, 413 insertions(+), 5 deletions(-)
+
+commit 371fceb5a6913e4d4eac69f5e850a76ab4847288
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jun 1 18:06:58 2009 +0100
+
+    [core] Add comparison functions for main Atom and GData structs
+
+    Consequently, add code to *_add_* functions to prevent duplicate
+    structs being
+    added to entries.
+
+ docs/reference/gdata-sections.txt                |   15 +
+ gdata/gdata-atom.c                               |  108 +++++++
+ gdata/gdata-atom.h                               |    4 +
+ gdata/gdata-entry.c                              |   30 ++-
+ gdata/gdata-gdata.c                              |  331
+ ++++++++++++++++++++++
+ gdata/gdata-gdata.h                              |   11 +
+ gdata/gdata.symbols                              |   15 +
+ gdata/services/calendar/gdata-calendar-event.c   |   21 ++-
+ gdata/services/contacts/gdata-contacts-contact.c |   35 ++-
+ 9 files changed, 556 insertions(+), 14 deletions(-)
+
+commit 3684d2e4276c4a98b30e38613114456f20f84c31
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Jun 1 16:46:50 2009 +0100
+
+    [contacts] Add the ability to list all extended properties of
+    a contact
+
+ docs/reference/gdata-sections.txt                |    1 +
+ gdata/gdata.symbols                              |    1 +
+ gdata/services/contacts/gdata-contacts-contact.c |   17 +++++++++++++++++
+ gdata/services/contacts/gdata-contacts-contact.h |   10 +++++++++-
+ 4 files changed, 28 insertions(+), 1 deletions(-)
+
+commit 8a3390b19c25730dba1f578c986911dc3c963aa8
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun May 31 17:01:52 2009 +0100
+
+    [docs] Add the builddir to gtkdoc-mkhtml's path so builddir !=
+    srcdir works
+
+ docs/reference/Makefile.am |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+commit 2e960de884529f63c939e08f80c22c62208e1e6c
+Author: A S Alam <aalam@users.sf.net>
+Date:   Tue May 26 19:16:58 2009 +0530
+
+    Adding Punjabi (Gurmukhi) Language to Project by A S Alam
+
+ po/LINGUAS |    1 +
+ po/pa.po   |  236
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 237 insertions(+), 0 deletions(-)
+
+commit 135312e5a803997e54bbacfbdf198aea187b3d02
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon May 25 11:28:06 2009 +0100
+
+    [build] Increment version to 0.4.0
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 7e684c0fee65c65a6f07c4d458032024072790ea
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon May 25 11:24:55 2009 +0100
+
+    Release version 0.3.0
+
+ Makefile.am           |    1 -
+ NEWS                  |   54
+ +++++++++++++++++++++++++++++++++++++++++++++++++
+ configure.in          |    2 +-
+ gdata/tests/youtube.c |    2 +-
+ po/Makefile.in.in     |    4 +-
+ 5 files changed, 58 insertions(+), 5 deletions(-)
+
+commit 81cea2e1830f2925f865894da0bb0ed0069aa108
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon May 25 10:30:18 2009 +0100
+
+    Updated British English translation
+
+ po/en_GB.po |  162
+ +++++++++++++++++++++++++++++++++++------------------------
+ 1 files changed, 96 insertions(+), 66 deletions(-)
+
+commit e4d91569399a17cea1807087390c01258dc117fa
+Author: Jorge Gonzalez <jorgegonz@svn.gnome.org>
+Date:   Sat May 23 19:58:28 2009 +0200
+
+    Updated Spanish translation
+
+ po/es.po |   34 ++++++++++++++++++----------------
+ 1 files changed, 18 insertions(+), 16 deletions(-)
+
+commit e83e538ba4ecd795206e494615308282f4113503
+Author: Simos Xenitellis <simos@gnome.org>
+Date:   Fri May 22 17:45:34 2009 +0100
+
+    Added el to LINGUAS
+
+ po/LINGUAS |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit 02537937225f29d769c09e1bd64c7237fe1c9e61
+Author: Γιάννης Κατσαμπίρης <juankatsampirhs@gmail.com>
+Date:   Fri May 22 17:44:36 2009 +0100
+
+    Added Greek UI translation
+
+ po/el.po |  254
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 254 insertions(+), 0 deletions(-)
+
+commit bf88dd2c10b6e7228e065791ad5ba7362ab6d6ae
+Author: Jorge Gonzalez <jorgegonz@svn.gnome.org>
+Date:   Fri May 22 07:31:42 2009 +0200
+
+    Updated Spanish translation
+
+ po/es.po |   23 ++++++++++++-----------
+ 1 files changed, 12 insertions(+), 11 deletions(-)
+
+commit 027133b8e96849355a3c38ce6f297a85a4bcd059
+Author: Jorge Gonzalez <jorgegonz@svn.gnome.org>
+Date:   Wed May 20 20:50:59 2009 +0200
+
+    Added es to LINGUAS
+
+ po/LINGUAS |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit f30d9187090faac5d8596318e7a512c87640fd83
+Author: Jorge Gonzalez <jorgegonz@svn.gnome.org>
+Date:   Wed May 20 20:50:40 2009 +0200
+
+    Added initial Spanish translation
+
+ po/es.po |  233
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 233 insertions(+), 0 deletions(-)
+
+commit 93681c6fddf142291b9c2375cc68ceee91214f96
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed May 20 07:07:01 2009 +0100
+
+    [core] Made GDataEntry a prerequisite for GDataAccessHandler
+
+ gdata/gdata-access-handler.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit e48934965085fdf12e58222c573d123a81dbbc89
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Mon May 18 14:47:00 2009 +0200
+
+    Added Galician Translation.
+
+ po/LINGUAS |    1 +
+ po/gl.po   |  236
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 237 insertions(+), 0 deletions(-)
+
+commit be665338dbfc10f935d9efed6d315015e1b2abf7
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Sun May 17 21:03:36 2009 +0200
+
+    Updated German translation
+
+ po/de.po |   71
+ ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 39 insertions(+), 32 deletions(-)
+
+commit 36472b67980073b816a9e3717ccde57b76a43e23
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun May 17 18:53:53 2009 +0100
+
+    [calendar] Added GDataCalendarFeed to parse Calendar-specific feed
+    properties
+
+    GDataCalendarFeed is a subclass of GDataFeed, and implements parsing
+    of two
+    Calendar-specific feed properties. Documentation is included, but
+    there are
+    no test cases.
+
+ docs/reference/gdata-docs.xml                    |    1 +
+ docs/reference/gdata-sections.txt                |   19 +++
+ gdata/gdata-access-handler.c                     |    2 +-
+ gdata/gdata-feed.c                               |    5 +-
+ gdata/gdata-private.h                            |    2 +-
+ gdata/gdata-service.c                            |    3 +-
+ gdata/gdata-service.h                            |    2 +
+ gdata/gdata.h                                    |    1 +
+ gdata/gdata.symbols                              |    3 +
+ gdata/services/calendar/Makefile.am              |    7 +-
+ gdata/services/calendar/gdata-calendar-feed.c    |  189
+ ++++++++++++++++++++++
+ gdata/services/calendar/gdata-calendar-feed.h    |   71 ++++++++
+ gdata/services/calendar/gdata-calendar-service.c |    2 +
+ gdata/tests/calendar.c                           |   12 +-
+ 14 files changed, 306 insertions(+), 13 deletions(-)
+
+commit c1c6885e2cf997175e8a71470e74e2deddcb6c2f
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun May 17 18:03:26 2009 +0100
+
+    [core] Abstract XML parsing from GDataFeed and GDataEntry into
+    GDataParsable
+
+    Adds a new abstract class, GDataParsable, which adds extensible
+    XML parsing
+    functionality to inheriting classes. A little documentation is
+    included, but
+    there is no real public API for the class.
+
+ docs/reference/gdata-docs.xml                     |    1 +
+ docs/reference/gdata-sections.txt                 |   17 +
+ gdata/Makefile.am                                 |    6 +-
+ gdata/gdata-access-rule.c                         |   16 +-
+ gdata/gdata-entry.c                               |  440 ++++++--------
+ gdata/gdata-entry.h                               |    8 +-
+ gdata/gdata-feed.c                                |  692
+ +++++++++------------
+ gdata/gdata-feed.h                                |    5 +-
+ gdata/gdata-parsable.c                            |  210 +++++++
+ gdata/gdata-parsable.h                            |   74 +++
+ gdata/gdata-private.h                             |    9 +-
+ gdata/gdata.h                                     |    1 +
+ gdata/gdata.symbols                               |    1 +
+ gdata/services/calendar/gdata-calendar-calendar.c |   16 +-
+ gdata/services/calendar/gdata-calendar-event.c    |   16 +-
+ gdata/services/contacts/gdata-contacts-contact.c  |   16 +-
+ gdata/services/youtube/gdata-youtube-service.c    |    2 +-
+ gdata/services/youtube/gdata-youtube-video.c      |   16 +-
+ po/POTFILES.in                                    |    1 +
+ 19 files changed, 858 insertions(+), 689 deletions(-)
+
+commit 164c9b9fbd8c9bf35427e088973b0b79a90bca3e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun May 17 12:54:00 2009 +0100
+
+    [core] Fix reference problems and filter out duplicate namespaces
+
+    Fixes reference problems in the error case of
+    gdata_service_delete_entry,
+    and ensures that the extra_namespaces hash table doesn't contain any
+    namespaces which are duplicates of the defined set (when building
+    XML).
+
+ gdata/gdata-entry.c   |   11 +++++++++++
+ gdata/gdata-service.c |   11 ++++++++---
+ 2 files changed, 19 insertions(+), 3 deletions(-)
+
+commit c81b6308a8fbad64618073df83a92d2ff8a5f2c2
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun May 17 12:53:16 2009 +0100
+
+    [calendar] Implement ACL functionality on GDataCalendarCalendar
+
+    GDataCalendarCalendar now implements the GDataAccessHandler
+    interface. A
+    complete set of test cases is included.
+
+ gdata/services/calendar/gdata-calendar-calendar.c |   17 ++-
+ gdata/tests/calendar.c                            |  235
+ +++++++++++++++++++--
+ 2 files changed, 235 insertions(+), 17 deletions(-)
+
+commit 5d853ec5706129ce8af1bc0a2baae3dfed52d8d0
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun May 17 12:50:57 2009 +0100
+
+    Bug 582026 – Access Control List functionality
+
+    This adds a framework for controlling access control lists (ACLs). It
+    includes GDataAccessHandler, an interface to be implemented by
+    any GDataEntry
+    which has an ACL. It also includes GDataAccessRule, a GDataEntry
+    representing
+    a single access control rule, initially written by Thibault Saunier
+    <saunierthibault@gmail.com>.
+
+    Full documentation is included, and test cases will be added
+    per-service.
+
+ docs/reference/gdata-docs.xml     |    6 +
+ docs/reference/gdata-sections.txt |   41 ++++
+ gdata/Makefile.am                 |    6 +-
+ gdata/gdata-access-handler.c      |  415
+ +++++++++++++++++++++++++++++++++++++
+ gdata/gdata-access-handler.h      |   76 +++++++
+ gdata/gdata-access-rule.c         |  397
+ +++++++++++++++++++++++++++++++++++
+ gdata/gdata-access-rule.h         |   77 +++++++
+ gdata/gdata-service.h             |    4 +-
+ gdata/gdata.h                     |    2 +
+ gdata/gdata.symbols               |   12 +
+ po/POTFILES.in                    |    1 +
+ 11 files changed, 1035 insertions(+), 2 deletions(-)
+
+commit 1b9bff25139448bc18f4afd3025d86c5fe942362
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri May 15 07:32:37 2009 +0100
+
+    [contacts] Don't require that queries are GDataContactsQuerys
+
+ gdata/services/contacts/gdata-contacts-service.c |   10 +++++-----
+ gdata/services/contacts/gdata-contacts-service.h |    6 +++---
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+commit 4236f11e671e3e1cb45193b5a5ab6c29252f2b00
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri May 15 07:32:05 2009 +0100
+
+    [calendar] Don't require that queries are GDataCalendarQuerys
+
+ gdata/services/calendar/gdata-calendar-service.c |   32
+ +++++++++++-----------
+ gdata/services/calendar/gdata-calendar-service.h |   13 ++++-----
+ 2 files changed, 22 insertions(+), 23 deletions(-)
+
+commit 480d4ea370cb80930ea6e75fce976643b570ac30
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri May 15 07:26:20 2009 +0100
+
+    Bug 578367 – Add support for YouTube-specific query parameters
+
+    Adds a GDataYouTubeQuery class, implementing the custom query
+    parameters
+    supported by YouTube. A test case is included. Closes: bgo#578367
+
+ docs/reference/gdata-docs.xml                |    1 +
+ docs/reference/gdata-sections.txt            |   51 ++
+ gdata/gdata.h                                |    1 +
+ gdata/gdata.symbols                          |   25 +
+ gdata/services/youtube/Makefile.am           |    9 +-
+ gdata/services/youtube/gdata-youtube-query.c |  862
+ ++++++++++++++++++++++++++
+ gdata/services/youtube/gdata-youtube-query.h |  175 ++++++
+ gdata/tests/youtube.c                        |   80 +++
+ 8 files changed, 1201 insertions(+), 3 deletions(-)
+
+commit b29ff8b0a5efbc44bd3559c1b1e01276b7e10a1f
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed May 13 07:51:40 2009 +0100
+
+    [youtube] Added support for recorded times and comment feed links
+
+    Added tests to the YouTube test suite, and also fixed parsing
+    media:group/category elements.
+
+ docs/reference/gdata-sections.txt            |    3 +
+ gdata/gdata-gdata.c                          |    6 +-
+ gdata/gdata-gdata.h                          |    7 +-
+ gdata/gdata.symbols                          |    3 +
+ gdata/services/youtube/gdata-youtube-video.c |  222
+ ++++++++++++++++----------
+ gdata/services/youtube/gdata-youtube-video.h |    3 +
+ gdata/tests/youtube.c                        |  129 +++++++++++++++
+ 7 files changed, 281 insertions(+), 92 deletions(-)
+
+commit 710d8a8281c341d124e74c8d039253cf8124736c
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue May 12 22:14:41 2009 +0100
+
+    [docs] Add a basic section to the documentation about the class
+    structure
+
+ docs/reference/Makefile.am                     |    6 +-
+ docs/reference/gdata-docs.xml                  |   22 ++++++-
+ docs/reference/gdata-overview.xml              |   74
+ ++++++++++++++++++++++++
+ docs/reference/structure.dia                   |  Bin 0 -> 1814 bytes
+ docs/reference/structure.png                   |  Bin 0 -> 17149 bytes
+ gdata/services/calendar/gdata-calendar-event.c |    2 +-
+ 6 files changed, 97 insertions(+), 7 deletions(-)
+
+commit a777890b44052c1266deb51864444a901511bb1c
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun May 10 23:29:12 2009 +0100
+
+    [calendar] Add the remaining XML output to GDataCalendarCalendar
+
+ docs/reference/gdata-sections.txt                 |    1 +
+ gdata/gdata-types.c                               |   19 +++++++++++++
+ gdata/gdata-types.h                               |    1 +
+ gdata/gdata.symbols                               |    1 +
+ gdata/services/calendar/gdata-calendar-calendar.c |   30
+ ++++++++++++++-------
+ gdata/tests/general.c                             |   25
+ +++++++++++++++++
+ 6 files changed, 67 insertions(+), 10 deletions(-)
+
+commit f7596a72609017537d8ef3cd677369b8db28cd4a
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun May 10 22:27:41 2009 +0100
+
+    [core] Cleaned up a few TODO comments
+
+ gdata/gdata-entry.c |    2 --
+ gdata/gdata-feed.c  |   20 ++++++++++++++++++--
+ 2 files changed, 18 insertions(+), 4 deletions(-)
+
+commit ca6bd816e64e1a3aa28f507e67777742fdf0621f
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Sat May 9 21:16:24 2009 +0200
+
+    Updated German translation
+
+ po/de.po |  100
+ +++++++++++++++++++++++++++++++++++++------------------------
+ 1 files changed, 61 insertions(+), 39 deletions(-)
+
+commit e7cb37bcf253d42e0c568640ce0bc7ff27b8c4b1
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat May 9 17:31:16 2009 +0100
+
+    [core] Added async versions of insert_entry, update_entry and
+    delete_entry
+
+    There aren't currently any test cases for this API, since none of
+    the services
+    implement it yet.
+
+ docs/reference/gdata-sections.txt |    6 +
+ gdata/gdata-service.c             |  298
+ ++++++++++++++++++++++++++++++++++++-
+ gdata/gdata-service.h             |   12 +-
+ gdata/gdata.symbols               |    6 +
+ 4 files changed, 316 insertions(+), 6 deletions(-)
+
+commit 185026570b0887ea94f769f9a53462b237df0ed8
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat May 9 16:51:52 2009 +0100
+
+    [core] Improved default error handling for insertions, updates
+    and deletions
+
+    Wrote a better implementation of real_parse_error_response, which
+    will examine
+    the HTTP status code to choose a more appropriate error
+    message. Failing that,
+    it will fall back to generic error messages for each different action
+    (insertion, update, etc.).
+
+    This has changed the API of GDataServiceClass->parse_error_response.
+
+ gdata/gdata-service.c                          |   82
+ +++++++++++++++++++-----
+ gdata/gdata-service.h                          |   29 +++++----
+ gdata/services/youtube/gdata-youtube-service.c |    9 ++-
+ 3 files changed, 88 insertions(+), 32 deletions(-)
+
+commit 116e74b7b9ab9bd6fc47b47c3e36b5e2a92b5e19
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Sat May 9 12:08:01 2009 +0200
+
+    Updated German translation
+
+ po/de.po |   83
+ ++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 41 insertions(+), 42 deletions(-)
+
+commit 2d3386d6827e524dd103a0bff629c4919398f8a8
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu May 7 21:05:21 2009 +0100
+
+    Bug 581706 – translation issues
+
+    Added more translator comments and corrected minor problems in
+    a couple
+    of error strings. Closes: bgo#581706
+
+ gdata/gdata-parser.c                              |   26
+ +++++++++++++++++++-
+ gdata/services/calendar/gdata-calendar-calendar.c |    8 +++++-
+ 2 files changed, 30 insertions(+), 4 deletions(-)
+
+commit 91d50308d1f8152b9fb4e4f613bbd9a95f442b99
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu May 7 18:52:51 2009 +0100
+
+    Bug 581706 – translation issues
+
+    Added some translator comments and improved a few strings a little.
+
+ gdata/gdata-parser.c                              |    3 +++
+ gdata/gdata-service.c                             |    7 ++++---
+ gdata/services/calendar/gdata-calendar-calendar.c |    3 +++
+ gdata/services/calendar/gdata-calendar-service.c  |    2 +-
+ gdata/services/youtube/gdata-youtube-service.c    |    6 +++---
+ 5 files changed, 14 insertions(+), 7 deletions(-)
+
+commit c712a5ae0e75bfec4db6780237887d4ce45e782f
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu May 7 17:17:42 2009 +0100
+
+    [core] Remove use of a deprecated libsoup symbol, bumping req. to
+    2.26.1
+
+    This bumps the libsoup requirement to 2.26.1.
+
+ README                |    2 +-
+ configure.in          |    2 +-
+ gdata/gdata-service.c |    2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 2404e380873bfce8c60ee8ea43dd19f63489555b
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu May 7 07:37:10 2009 +0100
+
+    [docs] Updated HACKING and README
+
+ HACKING |    2 ++
+ README  |    5 ++++-
+ 2 files changed, 6 insertions(+), 1 deletions(-)
+
+commit 7c7edec310c636cfbe0b91ca2dc2bcc4d1ffa83c
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed May 6 21:19:15 2009 +0100
+
+    [build] Removed generated files which don't belong in git
+
+ config.h.in         |  114 ----
+ intltool-extract.in |  875 ------------------------------
+ intltool-merge.in   | 1506
+ ---------------------------------------------------
+ intltool-update.in  | 1163 ---------------------------------------
+ 4 files changed, 0 insertions(+), 3658 deletions(-)
+
+commit 3cd11c1bbc1e4f6e9ddbb62505f32f012efbd86a
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed May 6 21:16:43 2009 +0100
+
+    [core] Added GNOME support for automagical proxy use
+
+ configure.in          |   13 +++++++++++++
+ gdata/Makefile.am     |    2 ++
+ gdata/gdata-service.c |    8 ++++++++
+ 3 files changed, 23 insertions(+), 0 deletions(-)
+
+commit 219d5c069e3172f374d472f19adb9ae552840fcb
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed May 6 20:45:58 2009 +0100
+
+    [calendar] Added missing documentation about freeing memory
+
+ gdata/services/calendar/gdata-calendar-event.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 54819628cbf2c1a4d1a907dac0d9f3aee6628e88
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Apr 27 19:39:19 2009 +0100
+
+    [core] Corrected uses of deprecated libxml API
+
+ gdata/gdata-entry.c                               |   20 +++++++-------
+ gdata/gdata-feed.c                                |   28
+ ++++++++++----------
+ gdata/services/calendar/gdata-calendar-calendar.c |    2 +-
+ gdata/services/calendar/gdata-calendar-event.c    |    6 ++--
+ gdata/services/contacts/gdata-contacts-contact.c  |   12 ++++----
+ gdata/services/youtube/gdata-youtube-service.c    |   10 +++---
+ gdata/services/youtube/gdata-youtube-video.c      |   26
+ +++++++++---------
+ 7 files changed, 52 insertions(+), 52 deletions(-)
+
+commit 895a3f25756f0a368e6844c6caaf0b80c5612bef
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Apr 27 18:44:26 2009 +0100
+
+    [calendar] Added recurrence support to GDataCalendarEvent
+
+    Added gdata_calendar_event_[get|set]_recurrence,
+    gdata_calendar_event_get_original_event_details and
+    gdata_calendar_event_is_exception. Added a test case too.
+
+ docs/reference/gdata-sections.txt              |    4 +
+ gdata/gdata-entry.c                            |    2 +-
+ gdata/gdata-feed.c                             |    2 +-
+ gdata/gdata.symbols                            |    4 +
+ gdata/services/calendar/gdata-calendar-event.c |  170
+ +++++++++++++++++++++++-
+ gdata/services/calendar/gdata-calendar-event.h |    4 +
+ gdata/tests/calendar.c                         |   64 +++++++++
+ 7 files changed, 245 insertions(+), 5 deletions(-)
+
+commit 1ebf97cb0f45d12f3b1de608ffab00ba11606e2d
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Apr 27 17:46:19 2009 +0100
+
+    [core] Bug 580330 – Rejects empty entry titles
+
+    Empty (but present) entry titles now result in GDataEntry:title
+    being set
+    to an empty string, while non-present titles continue to set it
+    to NULL.
+    A test case has been added.
+
+ gdata/gdata-entry.c    |   11 +++++++----
+ gdata/tests/contacts.c |   34 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 41 insertions(+), 4 deletions(-)
+
+commit ea3f9525d952da1d3302084e587b88a2884337d4
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Mon Apr 27 19:45:31 2009 +0200
+
+    Updated German translation
+
+ po/de.po |  103
+ +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 55 insertions(+), 48 deletions(-)
+
+commit 5ba1e0437e22d9adfe24bb46ddc9af05267af246
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Apr 27 07:20:55 2009 +0100
+
+    [core] Fixed a crasher on oddly-formatted error messages
+
+ gdata/gdata-service.c |    7 +++++--
+ 1 files changed, 5 insertions(+), 2 deletions(-)
+
+commit c32d976cfa735c80c8cc2d90c8527deff61ad36a
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat Apr 25 09:10:42 2009 +0100
+
+    Removed MAINTAINERS file and updated DOAP file
+
+ MAINTAINERS   |    4 ----
+ libgdata.doap |   13 ++++++-------
+ 2 files changed, 6 insertions(+), 11 deletions(-)
+
+commit 45554e6f9272a053d5bc6e07deaf9941a9b4c3b8
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 23:37:56 2009 +0100
+
+    Incremented version number — switching to post-release incrementing
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 15a2192105eaa9fb3cd0492b948ec02949309513
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 23:22:52 2009 +0100
+
+    Release version 0.2.0
+
+ NEWS         |   77
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ configure.in |    9 +++----
+ 2 files changed, 78 insertions(+), 8 deletions(-)
+
+commit fac869e281111e7f937c2b7afe18699ba6b803a5
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 23:17:09 2009 +0100
+
+    Updated British English translation and added missing file to
+    POTFILES.in
+
+ po/POTFILES.in |    1 +
+ po/en_GB.po    |   94
+ +++++++++++++++++++++++++++++--------------------------
+ 2 files changed, 51 insertions(+), 44 deletions(-)
+
+commit 7ad97f6c6df7adb212d0dfd1c1c5d74f97bce0f4
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 23:14:27 2009 +0100
+
+    [core] Renamed gdata_service_[get|set]_proxy to *_proxy_uri
+
+ docs/reference/gdata-sections.txt |    4 ++--
+ gdata/gdata-service.c             |   12 ++++++------
+ gdata/gdata-service.h             |    4 ++--
+ gdata/gdata.symbols               |    4 ++--
+ 4 files changed, 12 insertions(+), 12 deletions(-)
+
+commit 31d0669d49abf1d1b0d605045d57687e12f4dda7
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 22:18:44 2009 +0100
+
+    [youtube] Improved error handling when uploading videos
+
+    Improved error handling when uploading videos so that it didn't
+    set GErrors
+    on top of older GErrors. Also updated the test suite to be in-line
+    with XML
+    changes.
+
+ gdata/services/youtube/gdata-youtube-service.c |   24
+ +++++++++++++++++++++---
+ gdata/tests/youtube.c                          |    6 +++---
+ 2 files changed, 24 insertions(+), 6 deletions(-)
+
+commit 9d40d2f5edfc76c877c7755f9e55edbbbdac4a57
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 22:17:56 2009 +0100
+
+    [calendar] Fixed test suite to run with latest XML changes
+
+ gdata/tests/calendar.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit bf2d1638914db6a028c0d414b3a0e07cffe3a06f
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 22:16:34 2009 +0100
+
+    [core] Fix a race condition crash when authenticating
+
+    Fixed a race condition crash when authenticating asynchronously,
+    where the
+    authentication struct would sometimes get freed before the username
+    and
+    password were saved from it.
+
+    Also removed gdata-marshal.h from gdata.h.
+
+ gdata/gdata-service.c |   19 ++++++++++++++-----
+ gdata/gdata.h         |    1 -
+ 2 files changed, 14 insertions(+), 6 deletions(-)
+
+commit b1c6fc17500fd8fc94ad14665f197dab5196aa48
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 20:30:17 2009 +0100
+
+    [core] Don't install the marshalling functions as public API
+
+ gdata/Makefile.am |    3 +--
+ 1 files changed, 1 insertions(+), 2 deletions(-)
+
+commit 9c00679859d7f5d865185983f9cc34c142035ff6
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 19:15:32 2009 +0100
+
+    [docs] Added "Since" clauses to all relevant documentation
+
+ gdata/gdata-entry.c                               |    7 +++
+ gdata/gdata-feed.c                                |    8 +++
+ gdata/gdata-gdata.c                               |   28 +++++++++++
+ gdata/gdata-query.c                               |   12 +++++
+ gdata/gdata-service.c                             |   12 ++++-
+ gdata/services/calendar/gdata-calendar-calendar.c |   12 +++++
+ gdata/services/calendar/gdata-calendar-event.c    |   16 ++++++
+ gdata/services/calendar/gdata-calendar-query.c    |    6 ++
+ gdata/services/calendar/gdata-calendar-service.c  |    2 +
+ gdata/services/contacts/gdata-contacts-contact.c  |   54
+ +++++++++++++++++++++
+ gdata/services/contacts/gdata-contacts-query.c    |   28 +++++++++++
+ gdata/services/contacts/gdata-contacts-service.c  |   10 +++-
+ 12 files changed, 192 insertions(+), 3 deletions(-)
+
+commit aa27bc07b28b2130263516a6fb59611cced5cefd
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 18:44:58 2009 +0100
+
+    [youtube] Fixed overly-restrictive checks on constructing a
+    GDataYouTubeState
+
+ gdata/services/youtube/gdata-youtube.c |    6 ++----
+ 1 files changed, 2 insertions(+), 4 deletions(-)
+
+commit fe0d4b5ec37fe451e3f76b0952f8eb6afae6622e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 18:40:48 2009 +0100
+
+    [docs] Standardised documentation a little better
+
+ gdata/gdata-atom.c                                |    8 ++--
+ gdata/gdata-feed.c                                |    6 +-
+ gdata/gdata-gdata.c                               |   22 +++++-----
+ gdata/gdata-media-rss.c                           |   50
+ ++++++++++++++++-----
+ gdata/gdata-query.c                               |    8 ++--
+ gdata/services/calendar/gdata-calendar-calendar.c |    2 +-
+ gdata/services/calendar/gdata-calendar-event.c    |    2 +-
+ gdata/services/calendar/gdata-calendar-query.c    |    8 ++--
+ gdata/services/contacts/gdata-contacts-contact.c  |    2 +-
+ gdata/services/youtube/gdata-youtube-video.c      |    2 +-
+ gdata/services/youtube/gdata-youtube.c            |    2 +-
+ 11 files changed, 69 insertions(+), 43 deletions(-)
+
+commit c7458e622d06a584b821a5a855d76559719a56e5
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 18:29:22 2009 +0100
+
+    [docs] Added a HACKING file
+
+ HACKING     |  136
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Makefile.am |    1 +
+ 2 files changed, 137 insertions(+), 0 deletions(-)
+
+commit b8c3977020051059695ed86abde47b01b7aa4dad
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 17:45:12 2009 +0100
+
+    [core] Boolean logic and casting fixes for GDataQuery
+
+ gdata/gdata-query.c |   24 ++++++++++++------------
+ 1 files changed, 12 insertions(+), 12 deletions(-)
+
+commit 45b97b8400af31a21eb5730cadc54d93b925b5f5
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 17:36:12 2009 +0100
+
+    [contacts] Build query URIs for GDataContactsQuery
+
+    GDataContactsQuery can now put its properties into a query URI. A
+    test case
+    for contact query URIs has been added.
+
+ gdata/services/contacts/gdata-contacts-query.c |   42
+ ++++++++++++++++++++++--
+ gdata/tests/calendar.c                         |    2 +
+ gdata/tests/contacts.c                         |   40
+ ++++++++++++++++++++++
+ 3 files changed, 81 insertions(+), 3 deletions(-)
+
+commit 78634a3d84a8f4717e1a5d9d1b5393bb567f0536
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 24 07:31:14 2009 +0100
+
+    Build query URIs for GDataCalendarQuery
+
+    GDataCalendarQuery can now put its properties into a query URI, as the
+    gdata_query_get_query_uri function has been virtualised. A test
+    case for
+    calendar query URIs has been added.
+
+ gdata/gdata-query.c                            |  174
+ +++++++++++++-----------
+ gdata/gdata-query.h                            |    2 +
+ gdata/services/calendar/gdata-calendar-event.c |    8 +-
+ gdata/services/calendar/gdata-calendar-query.c |  104 ++++++++++++++-
+ gdata/tests/calendar.c                         |   70 ++++++++++
+ 5 files changed, 270 insertions(+), 88 deletions(-)
+
+commit 599e39034bd5abdbd2a3b20399193457c2192282
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 23 21:03:08 2009 +0100
+
+    Fixed colour parsing from hexadecimal
+
+    Fixed gdata_color_from_hexadecimal to parse colours properly with
+    needing
+    any memory allocations. Added a test case for it.
+
+ gdata/gdata-types.c   |   46
+ ++++++++++++++++++++++++++++++++--------------
+ gdata/tests/general.c |   25 +++++++++++++++++++++++++
+ 2 files changed, 57 insertions(+), 14 deletions(-)
+
+commit ff36399a92ced3c6a478a5961963d6ac2547d46f
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 23 20:04:37 2009 +0100
+
+    Fixed handling of ISO 8601 dates (not date times) in calendar events
+
+    Pure dates (not including a time) were not being handled at
+    all. Parsing
+    and producing XML for them now works, and a date parsing test case
+    has been
+    added.
+
+ gdata/gdata-gdata.c                            |    4 +-
+ gdata/gdata-gdata.h                            |    6 +-
+ gdata/gdata-parser.c                           |   30 ++++++++
+ gdata/gdata-private.h                          |    2 +
+ gdata/services/calendar/gdata-calendar-event.c |   31 +++++++--
+ gdata/tests/calendar.c                         |   89
+ +++++++++++++++++++++++-
+ 6 files changed, 153 insertions(+), 9 deletions(-)
+
+commit 536d985087eb2a65717ce35fbe0f933c22281fc9
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 23 18:25:56 2009 +0100
+
+    Added a convenience function to get the time of a calendar event
+
+    Added gdata_calendar_event_get_primary_time, allowing the only
+    time period
+    of an event to be easily retrieved.
+
+ docs/reference/gdata-sections.txt              |    1 +
+ gdata/gdata.symbols                            |    1 +
+ gdata/services/calendar/gdata-calendar-event.c |   36
+ ++++++++++++++++++++++++
+ gdata/services/calendar/gdata-calendar-event.h |    1 +
+ 4 files changed, 39 insertions(+), 0 deletions(-)
+
+commit 5cbbe124c9b3659f30bd41ce7128e94639002669
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 23 17:44:14 2009 +0100
+
+    Added the last bits of API documentation
+
+ docs/reference/gdata-docs.xml          |    1 +
+ docs/reference/gdata-sections.txt      |   14 ++++++++++++
+ gdata/gdata-media-rss.c                |   14 ++++++++++--
+ gdata/gdata-types.c                    |   35
+ ++++++++++++++++++++++++++++++-
+ gdata/gdata-types.h                    |    9 ++++++++
+ gdata/services/youtube/Makefile.am     |    6 +++-
+ gdata/services/youtube/gdata-youtube.c |   11 ++++++++++
+ 7 files changed, 83 insertions(+), 7 deletions(-)
+
+commit e41798a2ce893817be1c5f8601c48c7abf9a600b
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 23 07:36:57 2009 +0100
+
+    Added API documentation for structs in the Media RSS and YouTube
+    namespaces
+
+ docs/reference/gdata-docs.xml          |    1 +
+ docs/reference/gdata-sections.txt      |   34 +++++++++
+ gdata/gdata-media-rss.c                |  128
+ +++++++++++++++++++++++++++++++-
+ gdata/gdata-media-rss.h                |   91 ++++++++++++++++++++++-
+ gdata/services/youtube/gdata-youtube.c |   27 +++++++-
+ gdata/services/youtube/gdata-youtube.h |   12 +++
+ 6 files changed, 287 insertions(+), 6 deletions(-)
+
+commit 5c5e31c4b0bf58b5237cd7fb019d1f055bcdbe26
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 22 22:00:51 2009 +0100
+
+    Added API documentation to GDataCalendarEvent
+
+    Added the API documentation to GDataCalendarEvent, renamed
+    GDataCalendarEvent:event-status to :status, removed
+    gdata_calendar_event_set_edited and made the :edited property
+    read-only.
+
+ docs/reference/gdata-docs.xml                  |    1 +
+ docs/reference/gdata-sections.txt              |   44 +++
+ gdata/gdata.symbols                            |    5 +-
+ gdata/services/calendar/gdata-calendar-event.c |  397
+ +++++++++++++++++++++---
+ gdata/services/calendar/gdata-calendar-event.h |   16 +-
+ gdata/tests/calendar.c                         |    2 +-
+ 6 files changed, 409 insertions(+), 56 deletions(-)
+
+commit da63cd5a60953a4e14990be483c29f99d2fd5dbb
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 22 21:18:12 2009 +0100
+
+    Improved time handling for GDataCalendarEvent
+
+    GDataCalendarEvent now fully supports multiple times, with the new
+    GDataGDWhen struct. Reminders are not yet supported, but the fields
+    exist
+    for them in the structs.
+
+ docs/reference/gdata-sections.txt              |    6 +
+ gdata/gdata-gdata.c                            |  112 ++++++++++++++
+ gdata/gdata-gdata.h                            |   50 +++++++
+ gdata/gdata.symbols                            |   12 +-
+ gdata/services/calendar/gdata-calendar-event.c |  188
+ +++++++-----------------
+ gdata/services/calendar/gdata-calendar-event.h |    8 +-
+ gdata/tests/calendar.c                         |    5 +-
+ 7 files changed, 234 insertions(+), 147 deletions(-)
+
+commit 172ac2c22c853841c2edfb405976bc3f962586fb
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 22 17:38:33 2009 +0100
+
+    General API cleanup
+
+    Added gdata_service_get_proxy and a corresponding
+    GDataService:proxy-uri
+    property, which proxies SoupSession's proxy-uri property.
+    Renamed gdata_query_get_strict and gdata_query_set_strict to
+    gdata_query_is_strict and gdata_query_set_is_strict, respectively;
+    also
+    renamed the corresponding :strict property to :is-strict.
+    Renamed the boxed type function for GTimeVal to
+    gdata_g_time_val_get_type,
+    to avoid namespace clashes.
+    Added some functions to the symbols file which were missing.
+
+ docs/reference/gdata-sections.txt                 |    7 ++-
+ gdata/gdata-entry.c                               |    4 +-
+ gdata/gdata-feed.c                                |    2 +-
+ gdata/gdata-query.c                               |   56
+ ++++++++++----------
+ gdata/gdata-query.h                               |    4 +-
+ gdata/gdata-service.c                             |   55
+ +++++++++++++++++++-
+ gdata/gdata-service.h                             |    1 +
+ gdata/gdata-types.c                               |    7 ++-
+ gdata/gdata-types.h                               |    4 +-
+ gdata/gdata.symbols                               |   14 +++--
+ gdata/services/calendar/gdata-calendar-calendar.c |    2 +-
+ gdata/services/calendar/gdata-calendar-calendar.h |    1 -
+ gdata/services/calendar/gdata-calendar-event.c    |    6 +-
+ gdata/services/calendar/gdata-calendar-query.c    |    8 ++--
+ gdata/services/contacts/gdata-contacts-contact.c  |    2 +-
+ gdata/services/youtube/gdata-youtube-video.c      |    2 +-
+ 16 files changed, 116 insertions(+), 59 deletions(-)
+
+commit 4b341005cadd9852087c9cbbab79393cf3ff74ae
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 22 17:22:48 2009 +0100
+
+    Added API documentation for GDataCalendarCalendar
+
+    Added the API documentation to GDataCalendarCalendar, renamed
+    :hidden to
+    :is-hidden and :selected to :is-selected, and removed
+    gdata_calendar_calendar_set_times_cleaned,
+    gdata_calendar_calendar_set_access level and
+    gdata_calendar_calendar_set_edited.
+
+ docs/reference/gdata-docs.xml                     |    1 +
+ docs/reference/gdata-sections.txt                 |   30 ++
+ gdata/gdata.symbols                               |    9 +
+ gdata/services/calendar/gdata-calendar-calendar.c |  305
+ ++++++++++++++-------
+ gdata/services/calendar/gdata-calendar-calendar.h |   21 +-
+ 5 files changed, 264 insertions(+), 102 deletions(-)
+
+commit c41114dd844d9f30ad0e8053085fe4eec3097993
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 22 16:25:54 2009 +0100
+
+    Added API documentation for GDataCalendarService and
+    GDataCalendarQuery
+
+ docs/reference/gdata-docs.xml                    |    6 +
+ docs/reference/gdata-sections.txt                |   65 ++++-
+ gdata/services/calendar/gdata-calendar-query.c   |  342
+ +++++++++++++++++++---
+ gdata/services/calendar/gdata-calendar-query.h   |   15 +-
+ gdata/services/calendar/gdata-calendar-service.c |  123 ++++++++-
+ gdata/services/calendar/gdata-calendar-service.h |   11 +
+ 6 files changed, 516 insertions(+), 46 deletions(-)
+
+commit 3f7a541350d7effb1ab3d9ae26c49bc417ee0ad3
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Tue Apr 21 19:11:30 2009 +0200
+
+    Added German translation
+
+ po/LINGUAS |    1 +
+ po/de.po   |  205
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 206 insertions(+), 0 deletions(-)
+
+commit e5ac4b50e82dbbb87b8b4b5afb1dc6cbd408189c
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Apr 20 22:14:16 2009 +0100
+
+    Bug 579631 – Add G_GNUC_WARN_UNUSED_RESULT to functions
+
+    Added G_GNUC_WARN_UNUSED_RESULT attributes to all functions which
+    return
+    allocated memory, especially the _insert_entry and _update_entry
+    functions,
+    which return the updated entries, which might be missed by some users.
+
+ gdata/gdata-atom.h                                |    9 ++++---
+ gdata/gdata-entry.h                               |    6 ++--
+ gdata/gdata-gdata.h                               |   22
+ ++++++++++++--------
+ gdata/gdata-media-rss.h                           |   17 ++++++++-------
+ gdata/gdata-private.h                             |    9 ++++---
+ gdata/gdata-query.h                               |    8 +++---
+ gdata/gdata-service.h                             |    9 ++++---
+ gdata/services/calendar/gdata-calendar-calendar.h |    4 +-
+ gdata/services/calendar/gdata-calendar-event.h    |    4 +-
+ gdata/services/calendar/gdata-calendar-query.h    |    4 +-
+ gdata/services/calendar/gdata-calendar-service.h  |   12 ++++++----
+ gdata/services/contacts/gdata-contacts-contact.h  |    6 ++--
+ gdata/services/contacts/gdata-contacts-query.h    |    4 +-
+ gdata/services/contacts/gdata-contacts-service.h  |    6 +++-
+ gdata/services/youtube/gdata-youtube-service.h    |   10 ++++----
+ gdata/services/youtube/gdata-youtube-video.h      |    4 +-
+ gdata/services/youtube/gdata-youtube.h            |    3 +-
+ 17 files changed, 75 insertions(+), 62 deletions(-)
+
+commit b187cdcfad632f6657db411643efef5d60a29d99
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Apr 20 21:42:38 2009 +0100
+
+    Added G_GNUC_CONST attributes to all _get_type functions
+
+ gdata/gdata-entry.h                               |    2 +-
+ gdata/gdata-feed.h                                |    2 +-
+ gdata/gdata-parser.h                              |    2 +-
+ gdata/gdata-query.h                               |    2 +-
+ gdata/gdata-service.h                             |    6 +++---
+ gdata/gdata-types.h                               |    4 ++--
+ gdata/services/calendar/gdata-calendar-calendar.h |    2 +-
+ gdata/services/calendar/gdata-calendar-event.h    |    2 +-
+ gdata/services/calendar/gdata-calendar-query.h    |    2 +-
+ gdata/services/calendar/gdata-calendar-service.h  |    2 +-
+ gdata/services/contacts/gdata-contacts-contact.h  |    2 +-
+ gdata/services/contacts/gdata-contacts-query.h    |    2 +-
+ gdata/services/contacts/gdata-contacts-service.h  |    2 +-
+ gdata/services/youtube/gdata-youtube-service.h    |    4 ++--
+ gdata/services/youtube/gdata-youtube-video.h      |    2 +-
+ 15 files changed, 19 insertions(+), 19 deletions(-)
+
+commit 1ff0f89f10419c442ed4a1bb05569501724eae88
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Apr 20 19:21:47 2009 +0100
+
+    Limit handling for gdata_contacts_contact_set_extended_property
+
+    Return FALSE from gdata_contacts_contact_set_extended_property if
+    the user
+    attempts to set more than the allowed number of extended properties
+    (10).
+
+ gdata/services/contacts/gdata-contacts-contact.c |   36
+ +++++++++++++++++----
+ gdata/services/contacts/gdata-contacts-contact.h |    2 +-
+ 2 files changed, 30 insertions(+), 8 deletions(-)
+
+commit 99cabc1aa57eaff4d33818c9b87babda1fd06051
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Apr 20 19:07:40 2009 +0100
+
+    Added API documentation for GDataContactsContact
+
+    Added full API documentation for GDataContactsContact, and removed
+    gdata_contacts_contact_set_edited, since the :edited property is
+    read-only.
+
+ docs/reference/gdata-docs.xml                    |    1 +
+ docs/reference/gdata-sections.txt                |   42 +++
+ gdata/gdata.symbols                              |    1 -
+ gdata/services/contacts/gdata-contacts-contact.c |  293
+ ++++++++++++++++++++--
+ gdata/services/contacts/gdata-contacts-contact.h |   12 +-
+ 5 files changed, 327 insertions(+), 22 deletions(-)
+
+commit cf5e5c5813737e2bd468beb2fdd41ddece3b7089
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Apr 20 07:57:45 2009 +0100
+
+    Added API documentation for GDataContactsQuery and
+    GDataContactsService
+
+ docs/reference/gdata-docs.xml                    |    6 +
+ docs/reference/gdata-sections.txt                |   48 ++++++++
+ gdata/gdata-service.c                            |    2 +-
+ gdata/services/contacts/gdata-contacts-query.c   |  138
+ ++++++++++++++++++++-
+ gdata/services/contacts/gdata-contacts-query.h   |   13 ++-
+ gdata/services/contacts/gdata-contacts-service.c |   67 ++++++++++-
+ gdata/services/contacts/gdata-contacts-service.h |   11 ++
+ 7 files changed, 275 insertions(+), 10 deletions(-)
+
+commit 057d049176c2c56381716134cd6355feb9fe9785
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 19 21:39:37 2009 +0100
+
+    Renamed GDataGDPhoneNumber->phone_number to ->number for consistency
+
+ gdata/gdata-gdata.c                              |   10 +++++-----
+ gdata/gdata-gdata.h                              |    8 ++++----
+ gdata/services/contacts/gdata-contacts-contact.c |    2 +-
+ 3 files changed, 10 insertions(+), 10 deletions(-)
+
+commit ce0ac112bf3a370a2ffd727b8074fd41a54afa80
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 19 21:08:55 2009 +0100
+
+    Added methods to get the primary e-mail address (etc.) from a contact
+
+ gdata/gdata.symbols                              |    5 ++
+ gdata/services/contacts/gdata-contacts-contact.c |   77
+ ++++++++++++++++++++++
+ gdata/services/contacts/gdata-contacts-contact.h |    5 ++
+ 3 files changed, 87 insertions(+), 0 deletions(-)
+
+commit 68676c15218cd44866b6186289f231dad7957cab
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 19 18:30:23 2009 +0100
+
+    Add contact insertion support and test suite
+
+    Added gdata_contacts_service_insert_contact to allow contacts to
+    be inserted,
+    and added a contacts service test suite, testing queries and
+    insertion.
+    Also fixed parsing of contacts without "primary" parameters.
+
+ gdata/gdata.symbols                              |    1 +
+ gdata/services/contacts/gdata-contacts-contact.c |   36 ++--
+ gdata/services/contacts/gdata-contacts-service.c |   18 ++
+ gdata/services/contacts/gdata-contacts-service.h |    2 +
+ gdata/tests/Makefile.am                          |    4 +-
+ gdata/tests/contacts.c                           |  194
+ ++++++++++++++++++++++
+ 6 files changed, 236 insertions(+), 19 deletions(-)
+
+commit 4d8a57133367e40d1c7bc5b17d362f0160f7c98a
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 19 16:31:12 2009 +0100
+
+    Added GDataContactsContact
+
+    Added support for individual contacts in the contacts backend,
+    including
+    full XML parsing and building support. No documentation or test
+    cases yet.
+
+ gdata/Makefile.am                                |    3 +-
+ gdata/gdata.h                                    |    1 +
+ gdata/gdata.symbols                              |   22 +
+ gdata/services/contacts/Makefile.am              |    3 +
+ gdata/services/contacts/gdata-contacts-contact.c |  759
+ ++++++++++++++++++++++
+ gdata/services/contacts/gdata-contacts-contact.h |   76 +++
+ gdata/services/contacts/gdata-contacts-query.c   |    4 +-
+ gdata/services/contacts/gdata-contacts-service.h |    3 +-
+ 8 files changed, 867 insertions(+), 4 deletions(-)
+
+commit 87066f62ecd474423ff00359d27852e67d829e42
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 19 10:54:10 2009 +0100
+
+    Added initial contacts service work
+
+    Added GDataContactsService with skeleton code for querying for
+    contacts.
+    Added the necessary support for more elements in the GData namespace
+    to
+    gdata-gdata.[ch], and also added a GDataContactsQuery with
+    contact-specific
+    query parameters.
+
+ configure.in                                     |    1 +
+ docs/reference/gdata-sections.txt                |   15 ++
+ gdata/gdata-gdata.c                              |  231
+ +++++++++++++++++++++
+ gdata/gdata-gdata.h                              |  120 +++++++++++
+ gdata/gdata.h                                    |    4 +
+ gdata/gdata.symbols                              |   25 +++
+ gdata/services/Makefile.am                       |    2 +-
+ gdata/services/contacts/Makefile.am              |   36 ++++
+ gdata/services/contacts/gdata-contacts-query.c   |  234
+ ++++++++++++++++++++++
+ gdata/services/contacts/gdata-contacts-query.h   |   64 ++++++
+ gdata/services/contacts/gdata-contacts-service.c |   89 ++++++++
+ gdata/services/contacts/gdata-contacts-service.h |   60 ++++++
+ 12 files changed, 880 insertions(+), 1 deletions(-)
+
+commit 725d5fc1d845781645633fd12c5a732cda0a8f3e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 19 18:24:24 2009 +0100
+
+    Fixed typo in previous commit
+
+ gdata/gdata-feed.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit a793b9eda493fe083a0968d1691fa6fa9710193b
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 19 17:17:03 2009 +0100
+
+    Fix a NULL pointer dereference in gdata-feed.c
+
+ gdata/gdata-feed.c |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletions(-)
+
+commit 47def37a7238f9454efd3120e5dbda09c90301d7
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 19 08:08:47 2009 +0100
+
+    Removed redundant parameters from insert and update functions
+
+    Removed the entry_type parameters from _insert_entry and
+    _update_entry, as
+    the entry's type can be acquired from the entry being inserted
+    or updated
+    itself.
+
+ gdata/gdata-service.c                            |   17 ++++++-----------
+ gdata/gdata-service.h                            |    6 ++----
+ gdata/services/calendar/gdata-calendar-service.c |    2 +-
+ 3 files changed, 9 insertions(+), 16 deletions(-)
+
+commit a3ab634d90395ee6a143da96c3c248e9748ed728
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   Sun Apr 19 05:10:06 2009 +0200
+
+    Added sv translation
+
+ po/LINGUAS |    1 +
+ po/sv.po   |  199
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 200 insertions(+), 0 deletions(-)
+
+commit f19d93c7ff15cfeccc7ea089b327945cd89fba4b
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 19 00:22:56 2009 +0100
+
+    Updated ChangeLog code and .gitignore macro file
+
+    Updated ChangeLog Automake code from
+    http://live.gnome.org/Git/ChangeLog,
+    and .gitignore macro file from Pango master.
+
+ Makefile.am |    9 ++++++---
+ git.mk      |   14 +++++++++-----
+ 2 files changed, 15 insertions(+), 8 deletions(-)
+
+commit 08a5db51d3a1d4f796cd9c12c04400a704b57ba3
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat Apr 18 23:58:02 2009 +0100
+
+    Compiler warning fixes
+
+ gdata/gdata-entry.c                               |    8 +++---
+ gdata/gdata-feed.c                                |   16 ++++++------
+ gdata/gdata-media-rss.c                           |   16 ++++++------
+ gdata/gdata-media-rss.h                           |    4 +-
+ gdata/gdata-service.c                             |    8 +++---
+ gdata/services/calendar/gdata-calendar-calendar.c |   17 +++++++------
+ gdata/services/calendar/gdata-calendar-calendar.h |    2 +-
+ gdata/services/calendar/gdata-calendar-event.c    |    6 ++--
+ gdata/services/youtube/gdata-youtube-video.c      |   26
+ ++++++++++----------
+ 9 files changed, 52 insertions(+), 51 deletions(-)
+
+commit 4122109f69a71e49cbe314b0f5f15b4c6e7c4af2
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sat Apr 18 15:46:21 2009 +0100
+
+    Auto-generate .gitignore file using git.mk from Pango
+
+    The .gitignore files are now auto-generated using git.mk. A few
+    cleanups have
+    been made to the Makefiles to ensure everything's cleaned up properly.
+
+ .gitignore                          |   37 --------
+ Makefile.am                         |   28 +++++-
+ docs/Makefile.am                    |    2 +
+ docs/reference/.gitignore           |   16 ---
+ docs/reference/Makefile.am          |   19 ++++
+ gdata/Makefile.am                   |   23 +++--
+ gdata/services/Makefile.am          |    2 +
+ gdata/services/calendar/Makefile.am |    2 +
+ gdata/services/youtube/Makefile.am  |    2 +
+ gdata/tests/Makefile.am             |    2 +
+ git.mk                              |  174
+ +++++++++++++++++++++++++++++++++++
+ 11 files changed, 242 insertions(+), 65 deletions(-)
+
+commit 750f8b0598c8c365b22f8bd5594e7de6f4ad3f8b
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 17 19:11:58 2009 +0100
+
+    Added British English translation
+
+ po/LINGUAS  |    2 +-
+ po/en_GB.po |  203
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 204 insertions(+), 1 deletions(-)
+
+commit b411e37c4728429b6658107bc5e45247d5d69747
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 17 11:48:59 2009 +0100
+
+    Removed po ChangeLog and fixed permissions
+
+    Removed the po ChangeLog too (see previous commit), and removed
+    an extraneous
+    execute permission bit.
+
+ po/ChangeLog                  |    3 ---
+ 1 files changed, 0 insertions(+), 3 deletions(-)
+
+commit b3043e515d0b06d04d640aa0cce14866ba57ff04
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 17 11:40:53 2009 +0100
+
+    Add a DOAP file and auto-generate the ChangeLog
+
+    Add a DOAP file to give cgit a module description, and convert to
+    auto-generating the ChangeLog from the git log.
+
+ ChangeLog     |   63
+ ---------------------------------------------------------
+ Makefile.am   |   26 ++++++++++++++++++++--
+ libgdata.doap |   16 ++++++++++++++
+ 3 files changed, 39 insertions(+), 66 deletions(-)
+
+commit 008e022c0307be0b1e1833266a8a5480c2f979d1
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 16 15:40:53 2009 +0100
+
+    Bug 578661 – ETag support
+
+    Add support for ETags, to allow for versioning when querying, updating
+    and deleting entries. This involved adding new API to GDataQuery to
+    allow the
+    required ETag to be set for queries, as well as new properties in
+    GDataEntry and GDataFeed for the ETags.
+
+ docs/reference/gdata-sections.txt                 |    4 +
+ gdata/gdata-entry.c                               |   66 +++++++++++++---
+ gdata/gdata-entry.h                               |    1 +
+ gdata/gdata-feed.c                                |   45 ++++++++++-
+ gdata/gdata-feed.h                                |    1 +
+ gdata/gdata-query.c                               |   89
+ ++++++++++++++++++---
+ gdata/gdata-query.h                               |    2 +
+ gdata/gdata-service.c                             |   29 ++++++-
+ gdata/gdata.symbols                               |   24 ++++++
+ gdata/services/calendar/gdata-calendar-calendar.c |    3 +
+ gdata/services/calendar/gdata-calendar-event.c    |    3 +
+ gdata/services/calendar/gdata-calendar-service.h  |    2 +-
+ gdata/services/youtube/gdata-youtube-video.c      |    3 +
+ gdata/tests/general.c                             |    8 +-
+ 14 files changed, 250 insertions(+), 30 deletions(-)
+
+commit 290b92c174680472ca75eb07f7fb84902b3248fd
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 16 13:20:01 2009 +0100
+
+    Refactored entry creation a little
+
+    The code to create entries from XML strings was duplicated in several
+    places and has now been refactored out into _gdata_entry_new_from_xml.
+
+ gdata/gdata-entry.c                               |   38 +++++++-----
+ gdata/gdata-private.h                             |    1 +
+ gdata/gdata-service.c                             |   66
+ ++-------------------
+ gdata/services/calendar/gdata-calendar-calendar.c |   38 +------------
+ gdata/services/calendar/gdata-calendar-event.c    |   38 +------------
+ gdata/services/youtube/gdata-youtube-video.c      |   38 +------------
+ 6 files changed, 32 insertions(+), 187 deletions(-)
+
+commit efaa27526a42956ece7a43132f41640bbbcf073c
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 16 12:51:03 2009 +0100
+
+    Improve namespace handling regarding unhandled XML elements
+
+    The namespaces for unhandled XML elements are now appended to the
+    list of namespaces used when updating entries, so that server-side
+    XML validation
+    errors don't occur.
+
+ gdata/gdata-entry.c                               |   49
+ ++++++++++++++++----
+ gdata/gdata-entry.h                               |    2 +-
+ gdata/gdata-feed.c                                |    2 +-
+ gdata/services/calendar/gdata-calendar-calendar.c |    9 ++--
+ gdata/services/calendar/gdata-calendar-event.c    |   10 +++--
+ gdata/services/youtube/gdata-youtube-video.c      |    9 ++--
+ gdata/tests/general.c                             |    2 +-
+ 7 files changed, 58 insertions(+), 25 deletions(-)
+
+commit d7ceecab8c0622947e3cd826b4901fbcf8fca329
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 16 11:47:58 2009 +0100
+
+    Bug 578662 – Support unknown XML elements
+
+    Add support for storing the XML for unknown elements, and including
+    it when updating entries, so that data added by protocol updates
+    isn't lost by
+    older versions of libgdata. Adds a test case.
+
+ docs/reference/gdata-sections.txt                 |    1 -
+ gdata/gdata-entry.c                               |   34 +++++++++++++---
+ gdata/gdata-entry.h                               |   10 ++++-
+ gdata/gdata-feed.c                                |   25 +++++++++---
+ gdata/gdata-private.h                             |   17 +-------
+ gdata/gdata-query.c                               |    1 +
+ gdata/gdata-service.c                             |   34 ++++++++--------
+ gdata/gdata-service.h                             |   22 ++---------
+ gdata/services/calendar/gdata-calendar-calendar.c |   43
+ ++++-----------------
+ gdata/services/calendar/gdata-calendar-event.c    |   43
+ ++++-----------------
+ gdata/services/calendar/gdata-calendar-service.c  |   18 +++------
+ gdata/services/youtube/gdata-youtube-service.c    |   18 +++------
+ gdata/services/youtube/gdata-youtube-video.c      |   43
+ ++++-----------------
+ gdata/tests/general.c                             |   40
+ +++++++++++++++++++
+ 14 files changed, 154 insertions(+), 195 deletions(-)
+
+commit d6daa624389df926bb59b9b288cd20be69d7450d
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 15 23:55:23 2009 +0100
+
+    Improved documentation gdata_service_authenticate
+
+ gdata/gdata-service.c |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
+
+commit 3ac9d496f1a70033db532f213328a88a0e8fd494
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 15 22:25:05 2009 +0100
+
+    Added calendar event insertion support
+
+    GDataCalendarEvents can now be serialised to XML, and a convenience
+    method in GDataCalendarService, gdata_calendar_service_insert_event,
+    has been
+    added to allow events to be inserted. A test case has been added.
+
+ gdata/gdata.symbols                              |    1 +
+ gdata/services/calendar/gdata-calendar-event.c   |   93
+ +++++++++++++++++++++-
+ gdata/services/calendar/gdata-calendar-service.c |   19 +++++
+ gdata/services/calendar/gdata-calendar-service.h |    5 +
+ gdata/tests/calendar.c                           |   68 ++++++++++++++++
+ gdata/tests/common.h                             |    2 +-
+ 6 files changed, 183 insertions(+), 5 deletions(-)
+
+commit f56b50521b0826b3d9210b3e9fb97a0de2249442
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 15 22:23:50 2009 +0100
+
+    Force usernames to be e-mail addresses
+
+    GDataService will now silently correct usernames which are not e-mail
+    addresses such that they are, assuming they're on the gmail.com
+    domain. This is
+    required for the Calendar service.
+
+ gdata/gdata-service.c |   10 +++++++++-
+ 1 files changed, 9 insertions(+), 1 deletions(-)
+
+commit 00880095176e801031c66ad8fc90e17fab2737b6
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 15 22:21:40 2009 +0100
+
+    Added proper redirection handling for insertions, updates and
+    deletions
+
+    Redirects from the server are now handled correctly when inserting,
+    updating or deleting entries. The code to send SoupMessages has
+    been refactored
+    a little, and gdata_service_get_session has consequently been removed.
+
+ docs/reference/gdata-sections.txt              |    1 -
+ gdata/gdata-private.h                          |    2 +
+ gdata/gdata-service.c                          |   70
+ ++++++++++++++++++------
+ gdata/gdata-service.h                          |    1 -
+ gdata/gdata.symbols                            |    9 +++-
+ gdata/services/youtube/gdata-youtube-service.c |    6 ++-
+ 6 files changed, 67 insertions(+), 22 deletions(-)
+
+commit e5369451280a7cfa15ea7756ee204cb2911f5f11
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 15 12:31:22 2009 +0100
+
+    Fixed include in gdata-youtube-enums.c
+
+    Patch by Víctor Manuel Jáquez Leal <vjaquez@igalia.com> (by
+    e-mail) to
+    fix the includes in gdata-youtube-enums.c.
+
+ gdata/services/youtube/Makefile.am |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 88106a366e4539772406a92786ca6ad347e4454d
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 10 23:44:50 2009 +0100
+
+    Fix asynchronous queries without a GDataQuery
+
+    Drop the requirement of having a GDataQuery for asynchronous queries,
+    as has been done for synchronous ones.
+
+ gdata/gdata-service.c |    3 +--
+ 1 files changed, 1 insertions(+), 2 deletions(-)
+
+commit 3a23d80a2068c7285dbca119d1342aa16140b2ea
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 10 21:04:24 2009 +0100
+
+    Bug 578653 – self-test fails to build on glib-2.18.x
+
+    Push the GLib requirement up to 2.19.0, spotted by Daniel Macks.
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 4c528d3e15439d1f297bb3e943f10be8fbe0348d
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Apr 10 20:52:06 2009 +0100
+
+    Bug 578652 — Build failure: missing symbol:
+    gdata_query_param_get_type
+
+    Removed a non-existent symbol from gdata.symbols, spotted by Daniel
+    Macks.
+
+ gdata/gdata.symbols |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+commit 631fb2cdde424a742a1739528e0e62174e17e0b7
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 9 17:49:20 2009 +0100
+
+    Added basic proxy support to GDataService.
+
+ docs/reference/gdata-sections.txt |    1 +
+ gdata/gdata-service.c             |   15 +++++++++++++++
+ gdata/gdata-service.h             |    2 ++
+ gdata/gdata.symbols               |    1 +
+ 4 files changed, 19 insertions(+), 0 deletions(-)
+
+commit 89bfc2ed7c021315cdcd74130da19a0b12fde79f
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 9 17:36:48 2009 +0100
+
+    Added the ability to delete entries from the server.
+    A few small fixes to other service functions.
+
+ docs/reference/gdata-sections.txt |    1 +
+ gdata/gdata-service.c             |   62
+ ++++++++++++++++++++++++++++++++++++-
+ gdata/gdata-service.h             |    5 +++
+ gdata/gdata.symbols               |    1 +
+ 4 files changed, 68 insertions(+), 1 deletions(-)
+
+commit 0beb4016bd4b7628e236aea1e81d40b266a08677
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 9 17:25:00 2009 +0100
+
+    Added functionality to update entries.
+    Fix for previous commit.
+
+ docs/reference/gdata-sections.txt |    3 +-
+ gdata/gdata-feed.c                |    4 +-
+ gdata/gdata-service.c             |  108
+ ++++++++++++++++++++++++++++++++++++-
+ gdata/gdata-service.h             |   10 +++-
+ gdata/gdata.symbols               |    3 +
+ 5 files changed, 122 insertions(+), 6 deletions(-)
+
+commit 0902ab374fa8903d29d5e787fedaa3708d29b080
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 9 16:56:46 2009 +0100
+
+    Added a function to look up an entry from a feed by ID.
+
+ docs/reference/gdata-sections.txt |    1 +
+ gdata/gdata-feed.c                |   29 +++++++++++++++++++++++++++++
+ gdata/gdata-feed.h                |    1 +
+ gdata/gdata.symbols               |    1 +
+ 4 files changed, 32 insertions(+), 0 deletions(-)
+
+commit 41443aa559334b709b0e5d310096455b258cbdc9
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 9 16:24:56 2009 +0100
+
+    Return the updated entry when inserting an entry.
+    A few fixes for previous commits.
+
+ gdata/gdata-entry.c                               |    6 ++-
+ gdata/gdata-service.c                             |   57
+ +++++++++++++++++----
+ gdata/gdata-service.h                             |    3 +-
+ gdata/services/calendar/gdata-calendar-calendar.c |    2 +-
+ gdata/services/calendar/gdata-calendar-event.c    |    2 +-
+ gdata/services/youtube/gdata-youtube-video.c      |    2 +-
+ gdata/tests/general.c                             |    2 +-
+ gdata/tests/youtube.c                             |    2 +-
+ 8 files changed, 58 insertions(+), 18 deletions(-)
+
+commit 5657b4d6013f16700bd205a85963572b98c62522
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 9 10:07:24 2009 +0100
+
+    Allowed IDs to be specified when creating a GDataEntry (or
+    derivative).
+
+ gdata/gdata-entry.c                               |   11 ++++++-----
+ gdata/gdata-entry.h                               |    2 +-
+ gdata/services/calendar/gdata-calendar-calendar.c |    4 ++--
+ gdata/services/calendar/gdata-calendar-calendar.h |    2 +-
+ gdata/services/calendar/gdata-calendar-event.c    |    4 ++--
+ gdata/services/calendar/gdata-calendar-event.h    |    2 +-
+ gdata/services/youtube/gdata-youtube-video.c      |    7 ++++---
+ gdata/services/youtube/gdata-youtube-video.h      |    2 +-
+ 8 files changed, 18 insertions(+), 16 deletions(-)
+
+commit b853a5684397e852485194bc3e3a05462b7b26bc
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Apr 9 10:03:23 2009 +0100
+
+    Added some missing getters for lists of data in the main and calendar
+    services.
+
+ docs/reference/gdata-sections.txt              |    1 +
+ gdata/gdata-entry.c                            |   16 +++++++++++-
+ gdata/gdata-entry.h                            |    1 +
+ gdata/gdata.symbols                            |   33
+ ++++++++++++++++++++++++
+ gdata/services/calendar/gdata-calendar-event.c |   14 ++++++++++
+ gdata/services/calendar/gdata-calendar-event.h |    2 +
+ 6 files changed, 66 insertions(+), 1 deletions(-)
+
+commit 8a69d8bb3c5eb526d75f61ce4ac75836d0da2b2a
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Apr 5 19:38:43 2009 +0100
+
+    Only run the gtk-doc test suite if we're compiling with gtk-doc
+    support
+    enabled.
+
+ docs/reference/Makefile.am |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+commit 058643abbc2fce01ef4f9500b37ca9cfb6364529
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 1 22:03:29 2009 +0100
+
+    Release version 0.1.1.
+    Fix a few missed function call renames.
+
+ NEWS                                           |    5 +++++
+ configure.in                                   |    2 +-
+ docs/reference/Makefile.am                     |    3 ---
+ gdata/gdata-service.c                          |    4 ++--
+ gdata/services/youtube/gdata-youtube-service.c |    4 ++--
+ 5 files changed, 10 insertions(+), 8 deletions(-)
+
+commit 29d12a6695a8622e48cd92c857cfb48294a113c9
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 1 21:43:24 2009 +0100
+
+    Updated the README and added the library's web page.
+
+ README |    8 +++++++-
+ 1 files changed, 7 insertions(+), 1 deletions(-)
+
+commit e5121b48d38ed1b2a06b7ec051b9fce64fa65145
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 1 21:39:47 2009 +0100
+
+    Fixed licence to consistently be LGPLv2.1.
+
+ COPYING.LIB                                       |  211
+ ++++++++++++---------
+ gdata/gdata-atom.c                                |   18 +-
+ gdata/gdata-atom.h                                |   18 +-
+ gdata/gdata-entry.c                               |   18 +-
+ gdata/gdata-entry.h                               |   18 +-
+ gdata/gdata-feed.c                                |   18 +-
+ gdata/gdata-feed.h                                |   18 +-
+ gdata/gdata-gdata.c                               |   18 +-
+ gdata/gdata-gdata.h                               |   18 +-
+ gdata/gdata-media-rss.c                           |   18 +-
+ gdata/gdata-media-rss.h                           |   18 +-
+ gdata/gdata-parser.c                              |   18 +-
+ gdata/gdata-parser.h                              |   18 +-
+ gdata/gdata-private.h                             |   20 +-
+ gdata/gdata-query.c                               |   18 +-
+ gdata/gdata-query.h                               |   18 +-
+ gdata/gdata-service.c                             |   18 +-
+ gdata/gdata-service.h                             |   18 +-
+ gdata/gdata-types.c                               |   20 +-
+ gdata/gdata-types.h                               |   20 +-
+ gdata/gdata.h                                     |   18 +-
+ gdata/services/calendar/gdata-calendar-calendar.c |   18 +-
+ gdata/services/calendar/gdata-calendar-calendar.h |   18 +-
+ gdata/services/calendar/gdata-calendar-event.c    |   18 +-
+ gdata/services/calendar/gdata-calendar-event.h    |   18 +-
+ gdata/services/calendar/gdata-calendar-query.c    |   18 +-
+ gdata/services/calendar/gdata-calendar-query.h    |   18 +-
+ gdata/services/calendar/gdata-calendar-service.c  |   18 +-
+ gdata/services/calendar/gdata-calendar-service.h  |   18 +-
+ gdata/services/youtube/gdata-youtube-service.c    |   18 +-
+ gdata/services/youtube/gdata-youtube-service.h    |   18 +-
+ gdata/services/youtube/gdata-youtube-video.c      |   22 +--
+ gdata/services/youtube/gdata-youtube-video.h      |   18 +-
+ gdata/services/youtube/gdata-youtube.c            |   18 +-
+ gdata/services/youtube/gdata-youtube.h            |   18 +-
+ gdata/tests/calendar.c                            |   18 +-
+ gdata/tests/common.h                              |   18 +-
+ gdata/tests/general.c                             |   20 +-
+ gdata/tests/memory.c                              |   18 +-
+ gdata/tests/youtube.c                             |   20 +-
+ 40 files changed, 474 insertions(+), 453 deletions(-)
+
+commit 48ce93902fc9dd6684e14830c07199ac830c30af
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 1 18:40:55 2009 +0100
+
+    Rename some functions from "lookup" -> "look_up".
+
+ docs/reference/gdata-sections.txt |    4 ++--
+ gdata/gdata-entry.c               |    4 ++--
+ gdata/gdata-entry.h               |    2 +-
+ gdata/gdata-feed.c                |    4 ++--
+ gdata/gdata-feed.h                |    2 +-
+ gdata/gdata.symbols               |    4 ++--
+ 6 files changed, 10 insertions(+), 10 deletions(-)
+
+commit 3694f62b4eb92d16d68561790ce7b209cf86e904
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 1 18:16:53 2009 +0100
+
+    Release version 0.1.0.
+    Fix a few things breaking the build, and temporarily remove the
+    gtk-doc testsuite.
+
+ Makefile.am                                    |    2 +-
+ NEWS                                           |    5 ++
+ README                                         |   19 +++++-
+ configure.in                                   |    4 +-
+ gdata/Makefile.am                              |    2 +-
+ gdata/gdata.h                                  |    5 ++
+ gdata/services/calendar/Makefile.am            |    8 +-
+ gdata/services/calendar/gdata-calendar-event.c |   15 +++--
+ gdata/services/youtube/Makefile.am             |    8 +-
+ gdata/services/youtube/gdata-youtube-video.c   |   33 ++++++----
+ gdata/tests/Makefile.am                        |   77
+ +++++------------------
+ gdata/tests/general.c                          |    2 +-
+ po/POTFILES.in                                 |    9 ++-
+ 13 files changed, 92 insertions(+), 97 deletions(-)
+
+commit cef0a15269e28917531defa7aad03bd4ce193003
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Apr 1 00:17:17 2009 +0100
+
+    Finished documenting GDataYouTubeVideo, and fixed a few small code
+    issues elsewhere.
+    Lots of API was removed from GDataYouTubeVideo, as it involved
+    modifying server-side-only data.
+
+ docs/reference/gdata-sections.txt                 |   23 +-
+ gdata/gdata-entry.c                               |    8 +-
+ gdata/gdata-feed.c                                |    7 +-
+ gdata/gdata-query.c                               |   28 +-
+ gdata/gdata.symbols                               |   13 +-
+ gdata/services/calendar/gdata-calendar-calendar.c |    8 +-
+ gdata/services/calendar/gdata-calendar-event.c    |   23 +-
+ gdata/services/calendar/gdata-calendar-query.c    |   32 +--
+ gdata/services/youtube/gdata-youtube-video.c      |  392
+ ++++++++++-----------
+ gdata/services/youtube/gdata-youtube-video.h      |   17 +-
+ 10 files changed, 226 insertions(+), 325 deletions(-)
+
+commit 40000c0fd519757e24624dbb5a032396a0a8340e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Mar 31 07:52:42 2009 +0100
+
+    More documentation and some API removal for GDataYouTubeVideo.
+
+ docs/reference/gdata-sections.txt            |    2 -
+ gdata/gdata.symbols                          |    2 -
+ gdata/services/youtube/gdata-youtube-video.c |  179
+ +++++++++++++++++++------
+ 3 files changed, 136 insertions(+), 47 deletions(-)
+
+commit 52cb30d80e21348a08a760c5eef213980dd08173
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Mar 30 21:30:02 2009 +0100
+
+    Added the beginnings of documentation for GDataYouTubeVideo.
+
+ docs/reference/Makefile.am                   |    2 +-
+ docs/reference/gdata-docs.xml                |    1 +
+ docs/reference/gdata-sections.txt            |   81 ++++++++-
+ gdata/gdata.symbols                          |    4 +-
+ gdata/services/youtube/gdata-youtube-video.c |  261
+ ++++++++++++++++++++++----
+ gdata/services/youtube/gdata-youtube-video.h |   15 ++-
+ 6 files changed, 323 insertions(+), 41 deletions(-)
+
+commit 252f60c1de6325dd7b2197d8d9a0c46b855df585
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Mar 30 20:44:26 2009 +0100
+
+    Made a few parser functions private and documented the parser
+    error codes.
+
+ docs/reference/Makefile.am                        |    2 +-
+ docs/reference/gdata-sections.txt                 |    4 ++++
+ gdata/gdata-entry.c                               |    4 ++--
+ gdata/gdata-feed.c                                |    2 +-
+ gdata/gdata-parser.c                              |    4 ++--
+ gdata/gdata-parser.h                              |    8 --------
+ gdata/gdata-private.h                             |    9 +++++++++
+ gdata/services/calendar/gdata-calendar-calendar.c |    2 +-
+ gdata/services/calendar/gdata-calendar-event.c    |    6 +++---
+ gdata/services/youtube/gdata-youtube-video.c      |    2 +-
+ 10 files changed, 24 insertions(+), 19 deletions(-)
+
+commit 4d2a7e57506eaeb8e02f3453d8d19cc466f278c1
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Mar 30 20:25:48 2009 +0100
+
+    Added documentation to the GData and Atom namespace structs and
+    functions.
+
+ docs/reference/gdata-docs.xml                  |    6 +
+ docs/reference/gdata-sections.txt              |   34 +++++++
+ gdata/gdata-atom.c                             |  117
+ +++++++++++++++++++++++-
+ gdata/gdata-atom.h                             |   49 ++++++++++-
+ gdata/gdata-gdata.c                            |   95
+ +++++++++++++++++++-
+ gdata/gdata-gdata.h                            |   58 +++++++++++-
+ gdata/services/youtube/gdata-youtube-service.h |    2 +-
+ 7 files changed, 351 insertions(+), 10 deletions(-)
+
+commit 07ce9c743d1756c99aea631358ebcd7f8d463b99
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Mar 27 18:57:10 2009 +0000
+
+    Finished documentation for GDataYouTubeService.
+
+ gdata/services/youtube/gdata-youtube-service.c |  166
+ +++++++++++++++++++++++-
+ 1 files changed, 165 insertions(+), 1 deletions(-)
+
+commit 0429c15711b758762a69734550cbf8751c29eafc
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Mar 26 23:41:32 2009 +0000
+
+    Started documenting GDataYouTube service, and added support for
+    building proper GObject enums for the YouTube backend.
+
+ .gitignore                                     |    8 ++--
+ docs/reference/gdata-docs.xml                  |    2 +-
+ docs/reference/gdata-sections.txt              |   30 +++++++++++++++++++
+ gdata/gdata.symbols                            |    2 +
+ gdata/services/youtube/Makefile.am             |   33
+ ++++++++++++++++++++-
+ gdata/services/youtube/gdata-youtube-service.c |   13 ++++++++
+ gdata/services/youtube/gdata-youtube-service.h |   37
+ ++++++++++++++++++++++-
+ 7 files changed, 117 insertions(+), 8 deletions(-)
+
+commit b62f351ecf1f0f5ee75a61eb26a472ad58d5ad68
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Thu Mar 26 23:12:58 2009 +0000
+
+    Finished GDataQuery documentation and improved some of its API in
+    the process.
+
+ gdata/gdata-query.c   |  377
+ +++++++++++++++++++++++++++++++++++++++----------
+ gdata/gdata-query.h   |   27 +++-
+ gdata/gdata-service.h |   15 ++-
+ 3 files changed, 336 insertions(+), 83 deletions(-)
+
+commit 15dded293df6980731f6fd43d63660030846b896
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Mar 25 23:14:50 2009 +0000
+
+    Added half of the documentation to GDataQuery, and removed a few
+    unnecessary functions.
+
+ docs/reference/gdata-docs.xml                  |    1 +
+ docs/reference/gdata-sections.txt              |   43 ++++
+ gdata/gdata-query.c                            |  279
+ +++++++++++++++++-------
+ gdata/gdata-query.h                            |   26 +--
+ gdata/gdata.symbols                            |    2 -
+ gdata/services/calendar/gdata-calendar-query.c |   10 +-
+ gdata/services/calendar/gdata-calendar-query.h |    6 +-
+ gdata/tests/general.c                          |   40 ++++
+ 8 files changed, 295 insertions(+), 112 deletions(-)
+
+commit 48ca5e98e4ec233f6cd5df3fe061e8afd4a6b50e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Mar 24 23:50:26 2009 +0000
+
+    Added documentation to GDataEntry and removed a few bits of API
+    which shouldn't exist.
+
+ docs/reference/gdata-docs.xml                  |    1 +
+ docs/reference/gdata-sections.txt              |   27 +++
+ gdata/gdata-entry.c                            |  219
+ +++++++++++++++++-------
+ gdata/gdata-entry.h                            |   22 ++-
+ gdata/gdata-service.c                          |    2 +-
+ gdata/gdata-service.h                          |   13 ++
+ gdata/gdata.symbols                            |    5 +-
+ gdata/services/youtube/gdata-youtube-service.c |    2 +-
+ gdata/tests/general.c                          |   18 +-
+ 9 files changed, 225 insertions(+), 84 deletions(-)
+
+commit 4958c840ddff2f432127e5edcefbf8c539b937a5
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Mar 24 20:19:24 2009 +0000
+
+    Started work on the API documentation, adding documentation to
+    GDataService and GDataFeed.
+    Privatised some API in the process.
+
+ docs/reference/.gitignore                      |   16 ++
+ docs/reference/MODULE.types                    |    3 -
+ docs/reference/Makefile.am                     |   15 +-
+ docs/reference/gdata-docs.xml                  |   36 ++++
+ docs/reference/gdata-sections.txt              |  110 ++++++------
+ docs/reference/gdata.sgml                      |   18 --
+ docs/reference/gdata.types                     |    1 -
+ docs/reference/version.xml.in                  |    2 +-
+ gdata/Makefile.am                              |    8 +-
+ gdata/gdata-feed.c                             |  227
+ ++++++++++++++++++++++-
+ gdata/gdata-feed.h                             |   14 ++-
+ gdata/gdata-private.h                          |    3 +
+ gdata/gdata-service.c                          |  232
+ +++++++++++++++++++++++-
+ gdata/gdata-service.h                          |   23 ++-
+ gdata/gdata.symbols                            |   21 ++-
+ gdata/services/youtube/gdata-youtube-service.c |    2 +-
+ 16 files changed, 620 insertions(+), 111 deletions(-)
+
+commit 069df1bd0d77ef9195102e0caa9d63356fcc71a8
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Mar 23 22:55:06 2009 +0000
+
+    Added support for the app:control element.
+    Fixed a crash when executing a query with pagination but without
+    a GDataQuery.
+    Added a testcase for app:control.
+
+ gdata/gdata-query.c                          |    1 +
+ gdata/gdata-service.c                        |   14 ++--
+ gdata/gdata.h                                |    3 +-
+ gdata/gdata.symbols                          |    6 ++
+ gdata/services/youtube/Makefile.am           |    7 ++-
+ gdata/services/youtube/gdata-youtube-video.c |   98
+ +++++++++++++++++++++++++-
+ gdata/services/youtube/gdata-youtube-video.h |    7 ++-
+ gdata/services/youtube/gdata-youtube.c       |   44 ++++++++++++
+ gdata/services/youtube/gdata-youtube.h       |   39 ++++++++++
+ gdata/tests/youtube.c                        |   56 ++++++++++++++-
+ 10 files changed, 263 insertions(+), 12 deletions(-)
+
+commit 914b443a8d2c18858e22502867012308438c54f3
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Mar 22 14:49:06 2009 +0000
+
+    Fix query URI building for feed URIs which already have query
+    parameters
+
+ gdata/gdata-query.c |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+commit b24819a5f0feb30bb92cefe8ec63746078383a3c
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Mar 22 14:25:03 2009 +0000
+
+    Fixed problems with the progress callback for entry parsing, ensuring
+    the total_results is the number of results which will actually be
+    retrieved, rather than the number of results available for the search
+    altogether; also ensuring that the callback's called with an equal
+    priority to the ready callback.
+
+ gdata/gdata-feed.c  |   11 ++++++++---
+ gdata/gdata-query.c |    4 ++--
+ 2 files changed, 10 insertions(+), 5 deletions(-)
+
+commit c3b56e77b05a0f2ccd1f9854ae3d62b11f6c4d94
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Mar 18 18:33:15 2009 +0000
+
+    Added pagination functionality to GDataQuery.
+
+ gdata/gdata-feed.c    |   20 ++++++++++++++++
+ gdata/gdata-feed.h    |    1 +
+ gdata/gdata-private.h |    4 +++
+ gdata/gdata-query.c   |   60
+ +++++++++++++++++++++++++++++++++++++++++++++++++
+ gdata/gdata-query.h   |    2 +
+ gdata/gdata-service.c |    9 +++++++
+ gdata/gdata.symbols   |   12 +++++++++-
+ 7 files changed, 107 insertions(+), 1 deletions(-)
+
+commit 8a8f585051762101d500f15125c4316210b743fc
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Mar 15 23:19:19 2009 +0000
+
+    Some fixes to error handling in the face of no network connection.
+    Addition of a function to get media content from YouTube videos.
+
+ gdata/gdata.symbols                            |    1 +
+ gdata/services/youtube/gdata-youtube-service.c |   27
+ ++++++++++++-----------
+ gdata/services/youtube/gdata-youtube-video.c   |   21 ++++++++++++++++++
+ gdata/services/youtube/gdata-youtube-video.h   |    1 +
+ 4 files changed, 37 insertions(+), 13 deletions(-)
+
+commit 8a09b7931f3e9826e6fd595f1eaa5b8eca519f03
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Mar 15 21:05:21 2009 +0000
+
+    Ensured the feed parsing progress callback is called in the main
+    thread.
+
+ gdata/gdata-feed.c |   31 ++++++++++++++++++++++++++++---
+ 1 files changed, 28 insertions(+), 3 deletions(-)
+
+commit ab7a62b1c166b511ac42d70d9fb5e7e899290862
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Mar 13 22:59:40 2009 +0000
+
+    Fixed some bad NULL checks in the GData element code.
+    Vastly improved default query error handling.
+    Fixed a bug where all requests would fail if you weren't
+    authenticated.
+
+ gdata/gdata-gdata.c                            |   13 +-
+ gdata/gdata-service.c                          |   29 ++-
+ gdata/gdata-service.h                          |    4 +-
+ gdata/services/youtube/gdata-youtube-service.c |  237
+ ++++++++++++------------
+ gdata/services/youtube/gdata-youtube-service.h |    2 -
+ 5 files changed, 153 insertions(+), 132 deletions(-)
+
+commit 0be5c6a09966cbc8a7d72f803e05aacd19a6fb60
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Mar 13 21:44:12 2009 +0000
+
+    Added a function to allow the list of thumbnails for a YouTube video
+    to be retrieved.
+
+ gdata/gdata.symbols                          |   32
+ ++++++++++++++++++++++++-
+ gdata/services/youtube/gdata-youtube-video.c |    7 +++++
+ gdata/services/youtube/gdata-youtube-video.h |    1 +
+ 3 files changed, 38 insertions(+), 2 deletions(-)
+
+commit 6b43de4caf03f89fe6db40b84771da7f0aeab2fd
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Fri Mar 13 19:57:08 2009 +0000
+
+    Added progress callbacks.
+    Rearranged API to use GDataQuerys exclusively, rather than having
+    simple and "full" versions of each and every query function.
+
+ gdata/gdata-feed.c                               |   10 ++-
+ gdata/gdata-private.h                            |    3 +-
+ gdata/gdata-query.h                              |    2 +-
+ gdata/gdata-service.c                            |   28 ++++--
+ gdata/gdata-service.h                            |   10 ++-
+ gdata/services/calendar/gdata-calendar-event.c   |    2 +-
+ gdata/services/calendar/gdata-calendar-query.h   |    3 +-
+ gdata/services/calendar/gdata-calendar-service.c |   73 +++++----------
+ gdata/services/calendar/gdata-calendar-service.h |   29 ++++---
+ gdata/services/youtube/gdata-youtube-service.c   |  107
+ ++++++++--------------
+ gdata/services/youtube/gdata-youtube-service.h   |   38 +++++---
+ gdata/tests/calendar.c                           |   12 +-
+ gdata/tests/memory.c                             |    4 +-
+ gdata/tests/youtube.c                            |   10 +-
+ 14 files changed, 154 insertions(+), 177 deletions(-)
+
+commit 338110cf62c513ca1a9a5b8024df79190f4a9cb2
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Mar 11 23:38:50 2009 +0000
+
+    Fixed includes in public headers.
+    Updated and fixed the pkg-config file.
+
+ .gitignore                                        |    2 +-
+ Makefile.am                                       |    2 +-
+ configure.in                                      |    2 +-
+ gdata.pc.in                                       |   11 -----------
+ gdata/gdata-entry.h                               |    2 +-
+ gdata/gdata-feed.h                                |    4 ++--
+ gdata/gdata-private.h                             |    2 +-
+ gdata/gdata-service.h                             |    2 +-
+ gdata/services/calendar/gdata-calendar-calendar.h |    6 +++---
+ gdata/services/calendar/gdata-calendar-event.h    |    6 +++---
+ gdata/services/calendar/gdata-calendar-query.h    |    6 +++---
+ gdata/services/calendar/gdata-calendar-service.h  |    4 ++--
+ gdata/services/youtube/gdata-youtube-service.h    |    4 ++--
+ gdata/services/youtube/gdata-youtube-video.h      |    6 +++---
+ libgdata.pc.in                                    |   11 +++++++++++
+ 15 files changed, 35 insertions(+), 35 deletions(-)
+
+commit f4984a79e5748a239c2d93edc54d89d359cfb911
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Mar 10 00:02:59 2009 +0000
+
+    Enabled building of enums and tidied up a few TODOs relating to
+    error handling.
+
+ .gitignore                                     |    3 ++
+ gdata/Makefile.am                              |   31
+ ++++++++++++++++++++++-
+ gdata/gdata-parser.h                           |    8 ++++++
+ gdata/gdata-service.h                          |   32
+ +++++++++++++++++++++--
+ gdata/services/youtube/gdata-youtube-service.c |    6 ++--
+ gdata/services/youtube/gdata-youtube-service.h |    2 +-
+ 6 files changed, 74 insertions(+), 8 deletions(-)
+
+commit 7fdc4b68c4929426dca95b131338fde41a2b24b9
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Mon Mar 9 23:17:14 2009 +0000
+
+    Improved error handling for the YouTube service.
+
+ gdata/gdata-service.c                          |    7 ++
+ gdata/gdata-service.h                          |    1 +
+ gdata/services/youtube/gdata-youtube-service.c |  125
+ +++++++++++++++++++++++-
+ gdata/services/youtube/gdata-youtube-service.h |   11 ++
+ 4 files changed, 140 insertions(+), 4 deletions(-)
+
+commit 37a995845cd8d7ee45e2748f6256991cb633f8f8
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Mar 4 21:38:32 2009 +0000
+
+    Refactored some of the test suites to use a common username, password
+    and client ID.
+    Added some memory tests and fixed a few small memory leaks.
+
+ gdata/services/calendar/gdata-calendar-calendar.c |    1 +
+ gdata/tests/Makefile.am                           |   17 +++++
+ gdata/tests/calendar.c                            |   16 ++---
+ gdata/tests/common.h                              |   31 +++++++++
+ gdata/tests/massif                                |    5 ++
+ gdata/tests/memcheck                              |    4 +
+ gdata/tests/memory.c                              |   73
+ +++++++++++++++++++++
+ gdata/tests/youtube.c                             |   22 ++++---
+ 8 files changed, 150 insertions(+), 19 deletions(-)
+
+commit 18b1306943d126cd09ddba5f21c31077ecc92d45
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Mar 4 18:16:10 2009 +0000
+
+    Added the rest of the parsing code to GDataCalendarEvent so that the
+    calendar test suite succeeds.
+
+ gdata/gdata-gdata.c                            |   42 +++++
+ gdata/gdata-gdata.h                            |   20 +++
+ gdata/services/calendar/gdata-calendar-event.c |  198
+ +++++++++++++++++++++++-
+ gdata/services/calendar/gdata-calendar-event.h |   10 ++
+ 4 files changed, 269 insertions(+), 1 deletions(-)
+
+commit 348277440991e68bc6d100b27aa0908204870f67
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Mar 1 00:43:55 2009 +0000
+
+    Fixes and additions to calendar event feed parsing.
+
+ gdata/gdata-feed.c                             |   39 ++-
+ gdata/gdata-feed.h                             |    1 +
+ gdata/gdata-gdata.c                            |    3 +
+ gdata/gdata.symbols                            |    1 +
+ gdata/services/calendar/gdata-calendar-event.c |  440
+ ++++++++++++++++++++++--
+ gdata/services/calendar/gdata-calendar-event.h |   19 +
+ 6 files changed, 463 insertions(+), 40 deletions(-)
+
+commit b33d07bb83d52a0d5dcb38e41941c08d9092a7a6
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Feb 24 22:49:51 2009 +0000
+
+    Added a small note about missing functionality.
+
+ gdata/services/calendar/gdata-calendar-query.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit 9ba26a99e02a3c75dd3261d10022580ce4db52bc
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Feb 24 22:47:56 2009 +0000
+
+    Added the beginnings of support for calendar event feeds, including
+    basic support for Google Calendar-specific query parameters.
+
+ gdata/gdata-entry.c                               |    2 +
+ gdata/gdata-feed.c                                |   11 +-
+ gdata/gdata-feed.h                                |    8 +-
+ gdata/gdata-private.h                             |    4 +
+ gdata/gdata-query.c                               |    4 +-
+ gdata/gdata.symbols                               |    1 +
+ gdata/services/calendar/Makefile.am               |   10 +-
+ gdata/services/calendar/gdata-calendar-calendar.c |   10 +-
+ gdata/services/calendar/gdata-calendar-event.c    |  265 +++++++++++++
+ gdata/services/calendar/gdata-calendar-event.h    |   57 +++
+ gdata/services/calendar/gdata-calendar-query.c    |  415
+ +++++++++++++++++++++
+ gdata/services/calendar/gdata-calendar-query.h    |   76 ++++
+ gdata/services/calendar/gdata-calendar-service.c  |   35 ++
+ gdata/services/calendar/gdata-calendar-service.h  |    5 +-
+ gdata/tests/calendar.c                            |   37 ++
+ 15 files changed, 920 insertions(+), 20 deletions(-)
+
+commit d9936425571b0ea8faeb2fd58071c2b5edede36d
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Feb 24 21:22:53 2009 +0000
+
+    Added "own calendars" query.
+
+ gdata/gdata.symbols                              |    2 +
+ gdata/services/calendar/gdata-calendar-service.c |   43
+ ++++++++++++++++++
+ gdata/services/calendar/gdata-calendar-service.h |    5 ++
+ gdata/tests/calendar.c                           |   51
+ ++++++++++++++++++++++
+ 4 files changed, 101 insertions(+), 0 deletions(-)
+
+commit 26f35eac2fc9c07f24cb6d29b93281aad3e2169e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Feb 24 21:18:40 2009 +0000
+
+    Changed to use g_set_error_literal instead of g_set_error where
+    possible.
+    Changed "log in" terminology to "authenticate" to be more in-line
+    with the specification.
+
+ gdata/gdata-service.c                            |   54
+ +++++++++++-----------
+ gdata/gdata-service.h                            |    2 +-
+ gdata/gdata.symbols                              |    2 +-
+ gdata/services/calendar/gdata-calendar-service.c |   15 ++++++
+ gdata/services/youtube/gdata-youtube-service.c   |   20 ++++----
+ gdata/tests/calendar.c                           |    4 +-
+ gdata/tests/youtube.c                            |    4 +-
+ 7 files changed, 58 insertions(+), 43 deletions(-)
+
+commit 1ea0f3cc26f2abf8788166cf0728b764c19dc1f5
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Feb 22 22:22:52 2009 +0000
+
+    Added support for quite a few gCal elements to GDataCalendarCalendar
+    such that the "all calendars" query now works.
+
+ gdata/gdata-types.c                               |   41 ++++
+ gdata/gdata-types.h                               |   11 +-
+ gdata/services/calendar/gdata-calendar-calendar.c |  251
+ ++++++++++++++++++++-
+ gdata/services/calendar/gdata-calendar-calendar.h |   13 +
+ 4 files changed, 313 insertions(+), 3 deletions(-)
+
+commit da0e1af3b9b408772b094b2abfb37059bdb6734b
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Feb 22 19:51:48 2009 +0000
+
+    Fixed authentication error handling a little, and re-enabled
+    authentication for Google Calendar and YouTube.
+
+ gdata/gdata-service.c  |   28 ++++++++++++++--------------
+ gdata/gdata.symbols    |    3 +++
+ gdata/tests/calendar.c |    8 ++++++--
+ gdata/tests/youtube.c  |    4 ++++
+ 4 files changed, 27 insertions(+), 16 deletions(-)
+
+commit aea5e19e97a80f9b9f694914c36611a27e94ab6d
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Feb 22 18:13:59 2009 +0000
+
+    Added the basic framework for a Google Calendar service.
+
+ configure.in                                      |    1 +
+ gdata/Makefile.am                                 |    3 +-
+ gdata/gdata-private.h                             |   11 +-
+ gdata/gdata.h                                     |    6 +
+ gdata/gdata.symbols                               |    9 +
+ gdata/services/Makefile.am                        |    2 +-
+ gdata/services/calendar/Makefile.am               |   34 +++
+ gdata/services/calendar/gdata-calendar-calendar.c |  264
+ +++++++++++++++++++++
+ gdata/services/calendar/gdata-calendar-calendar.h |   59 +++++
+ gdata/services/calendar/gdata-calendar-service.c  |   84 +++++++
+ gdata/services/calendar/gdata-calendar-service.h  |   59 +++++
+ gdata/tests/Makefile.am                           |   17 ++
+ gdata/tests/calendar.c                            |  158 ++++++++++++
+ 13 files changed, 701 insertions(+), 6 deletions(-)
+
+commit 479fe7e547efea28613a1df123e1b2cc34c3b4b6
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Feb 24 21:00:52 2009 +0000
+
+    Updated git ignore list.
+
+ .gitignore |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+commit d497598bd16f5009b25a204a08954beaedbdbca6
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Feb 22 19:16:02 2009 +0000
+
+    Added proper error handling for authentication, including support
+    for CAPTCHA challenges.
+
+ gdata/gdata-marshal.list |    1 +
+ gdata/gdata-service.c    |  159
+ ++++++++++++++++++++++++++++++++++++++++++----
+ gdata/gdata-service.h    |   17 ++++-
+ 3 files changed, 162 insertions(+), 15 deletions(-)
+
+commit 7cbc1041d643363a7bf7d1d3697483c091f6e824
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Feb 22 11:50:39 2009 +0000
+
+    Moved the YouTube service files to a subdirectory, to be built into
+    their own noinst library.
+
+    Fixed some bugs causing the general test suite to fail.
+
+ configure.in                                   |    1 +
+ gdata/Makefile.am                              |    2 +-
+ gdata/gdata-entry.c                            |    2 +-
+ gdata/gdata-private.h                          |    2 +-
+ gdata/gdata.h                                  |   11 +-
+ gdata/services/Makefile.am                     |   35 +-
+ gdata/services/gdata-youtube-service.c         |  487 ---------
+ gdata/services/gdata-youtube-service.h         |   93 --
+ gdata/services/gdata-youtube-video.c           | 1258
+ ------------------------
+ gdata/services/gdata-youtube-video.h           |   94 --
+ gdata/services/youtube/Makefile.am             |   34 +
+ gdata/services/youtube/gdata-youtube-service.c |  487 +++++++++
+ gdata/services/youtube/gdata-youtube-service.h |   93 ++
+ gdata/services/youtube/gdata-youtube-video.c   | 1258
+ ++++++++++++++++++++++++
+ gdata/services/youtube/gdata-youtube-video.h   |   94 ++
+ gdata/tests/general.c                          |    2 +-
+ 16 files changed, 1980 insertions(+), 1973 deletions(-)
+
+commit 9bf0973ccc444b0598a8e9a8721a463c2f462a2c
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Feb 22 11:37:39 2009 +0000
+
+    Fix the README, and change .bzrignore to .gitignore.
+
+ .bzrignore |   31 -------------------------------
+ .gitignore |   31 +++++++++++++++++++++++++++++++
+ README     |    2 +-
+ 3 files changed, 32 insertions(+), 32 deletions(-)
+
+commit c9eadbe3c6bd99a0d05c677681b80b0c7a428723
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Sun Feb 22 11:29:00 2009 +0000
+
+    2009-02-22  Philip Withnall  <philip@tecnocode.co.uk>
+
+	Improved documentation (README, ChangeLog).
+
+ ChangeLog	   |   58
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ README		   |   10 ++++++++-
+ po/Makefile.in.in |	2 +-
+ 3 files changed, 68 insertions(+), 2 deletions(-)
+
+commit c0e43775ee41bf06e890b2e64d251b1341ef61e2
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Sat Feb 21 14:00:20 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090221140020-bbhqtx4gyh2yxg5e]
+    Added support for querying for related videos and fixed a bug parsing
+    <yt:statistics/>.
+
+ .bzrignore				|    1 +
+ gdata/gdata-entry.c			|   20 +++++
+ gdata/gdata-entry.h			|    1 +
+ gdata/gdata-query.c			|   22 ++++++
+ gdata/gdata-query.h			|    2 +
+ gdata/gdata-service.c			|    3 +
+ gdata/gdata.symbols			|    2 +
+ gdata/services/gdata-youtube-service.c |   73 ++++++++++++++++--
+ gdata/services/gdata-youtube-service.h |   13 +++-
+ gdata/services/gdata-youtube-video.c	|    5 +-
+ gdata/tests/youtube.c			|  131
+ +++++++++++++++++++++++++++++++-
+ 11 files changed, 259 insertions(+), 14 deletions(-)
+
+commit e18cc8aa1376ab406f7a65d2885160056902a828
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Fri Feb 20 00:08:33 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090220000833-9goap90j2b3xbtc0]
+    Completed functionality to upload videos to YouTube. There are a few
+    elements in the response which are still unparsed, but the tests in
+    the suite
+    work.
+
+ gdata/gdata-entry.c			|    9 ++-
+ gdata/gdata-entry.h			|    1 +
+ gdata/gdata-media-rss.c		|    3 +
+ gdata/gdata-service.c			|   21 +++++
+ gdata/gdata-service.h			|    6 +-
+ gdata/gdata.symbols			|   53 ++++++++++++-
+ gdata/services/gdata-youtube-service.c |  133
+ ++++++++++++++++++++++++++++++++
+ gdata/services/gdata-youtube-service.h |    4 +
+ gdata/services/gdata-youtube-video.c	|   63 ++++++++++++++-
+ gdata/services/gdata-youtube-video.h	|    1 +
+ gdata/tests/sample.ogg			|  Bin 0 -> 96839 bytes
+ gdata/tests/youtube.c			|   54 +++++++++++++
+ 12 files changed, 342 insertions(+), 6 deletions(-)
+
+commit a88f19fda5f31941ae43961e012fc927d214d3be
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Wed Feb 11 17:58:53 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090211175853-ecv85loqsylxxl9x]
+    Removed generated file.
+
+ gtk-doc.make |  196
+ ----------------------------------------------------------
+ 1 files changed, 0 insertions(+), 196 deletions(-)
+
+commit 06e337bdbc9e22293113d4775fb50424e822e836
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Sun Jan 25 15:23:26 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090125152326-biwzyqlh333h7ikc]
+    Initial support for inserting entries, mainly adding functionality
+    to serialise GDataEntry and GDataYouTubeVideo to XML.
+
+ gdata/gdata-atom.c			|    7 +-
+ gdata/gdata-atom.h			|    4 +-
+ gdata/gdata-entry.c			|  175
+ +++++++++++++++++++++++++++++++-
+ gdata/gdata-entry.h			|    6 +
+ gdata/gdata-feed.c			|    2 +-
+ gdata/gdata-media-rss.c		|   17 +++
+ gdata/gdata-media-rss.h		|    1 +
+ gdata/gdata-service.c			|  132 +++++++++++++++++-------
+ gdata/gdata-service.h			|    7 +-
+ gdata/gdata.symbols			|   18 ++++
+ gdata/services/gdata-youtube-service.c |    3 +
+ gdata/services/gdata-youtube-video.c	|  163
+ +++++++++++++++++++++++++++++
+ gdata/tests/general.c			|   97 +++++++++++++++++-
+ 13 files changed, 585 insertions(+), 47 deletions(-)
+
+commit b154cde46cafba05efc852c4a9cd7fceeac36e6e
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Sat Jan 24 17:10:09 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090124171009-sk8dkywi1ag24j7v]
+    Converted all async functions to use GAsyncResult, and implemented
+    overridden versions for YouTubeVideo. Added testcases, and generally
+    made sure all
+    current async functionality works nicely.
+
+    Fixed a small bug when parsing <media:credit> elements.
+
+ gdata/gdata-query.c			|   23 --
+ gdata/gdata-query.h			|    1 -
+ gdata/gdata-service.c			|  378
+ +++++++++++++++++++++-----------
+ gdata/gdata-service.h			|   15 +-
+ gdata/gdata.symbols			|    9 +-
+ gdata/services/gdata-youtube-service.c |   92 +++++---
+ gdata/services/gdata-youtube-service.h |    9 +-
+ gdata/services/gdata-youtube-video.c	|    2 +-
+ gdata/tests/youtube.c			|   75 ++++++-
+ 9 files changed, 402 insertions(+), 202 deletions(-)
+
+commit 363fde1acb9f3d7bd12e185b666b7422c9408a75
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Sat Jan 24 12:11:13 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090124121113-it97rcwt39n19riq]
+    Consolidated the MediaGroup classes into YouTubeVideo, since that
+    was the only class which would ever use them.
+
+ gdata/Makefile.am			    |	 2 -
+ gdata/gdata-media-group.c		    |  611
+ ------------------------
+ gdata/gdata-media-group.h		    |	73 ---
+ gdata/gdata-private.h			    |	 6 -
+ gdata/services/Makefile.am		    |	 7 +-
+ gdata/services/gdata-youtube-media-group.c |  335 -------------
+ gdata/services/gdata-youtube-media-group.h |	65 ---
+ gdata/services/gdata-youtube-video.c	    |  706
+ +++++++++++++++++++++++++---
+ gdata/services/gdata-youtube-video.h	    |	30 +-
+ 9 files changed, 680 insertions(+), 1155 deletions(-)
+
+commit 00d0c84dc37da65b98a23d1c593ea189d5fc2dc8
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Fri Jan 23 23:42:49 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090123234249-obzjzy8dvtmkz3hl]
+    Redesigned how feeds are parsed such that there is no longer any
+    need for public setters, and there should be fewer memcpys.
+
+ gdata/gdata-feed.c			    |  624
+ ++++++++++++++--------------
+ gdata/gdata-feed.h			    |	15 +-
+ gdata/gdata-parser.c			    |	27 ++-
+ gdata/gdata-parser.h			    |	11 +
+ gdata/gdata-service.h			    |	 3 +-
+ gdata/gdata.symbols			    |	 3 -
+ gdata/services/gdata-youtube-media-group.c |	 2 +-
+ gdata/services/gdata-youtube-video.c	    |	 4 +-
+ 8 files changed, 355 insertions(+), 334 deletions(-)
+
+commit ec04a065e4ef476ebd656919919751d220b2ef48
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Fri Jan 23 22:40:17 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090123224017-l6p5ji4oqu3e8xxr]
+    Added mostly-complete support for video comments.
+
+ gdata/gdata-gdata.c		      |   18 ++++++++++++++++++
+ gdata/gdata-gdata.h		      |    9 +++++++++
+ gdata/services/gdata-youtube-video.c |   22 +++++++++++++++++++++-
+ 3 files changed, 48 insertions(+), 1 deletions(-)
+
+commit c836518e056bd3b862e12360af5ab53cd2122a12
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Thu Jan 22 19:13:58 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090122191358-5ko4fx27s8hlmpw7]
+    Cleaned up parsing of numbers a little, and cleaned up parsing
+    error handling.
+    Also tidied up feed creation, and removed the now-redundant
+    GDataYouTubeVideoFeed object.
+
+ gdata/Makefile.am			    |	 4 +-
+ gdata/gdata-entry.c			    |	32 ++---
+ gdata/gdata-feed.c			    |  135 ++++++++---------
+ gdata/gdata-media-group.c		    |	69 ++++------
+ gdata/gdata-parser.c			    |	70 +++++++++
+ gdata/gdata-parser.h			    |	35 +++++
+ gdata/gdata-private.h			    |	 8 +-
+ gdata/gdata-service.c			    |	 8 +-
+ gdata/gdata-service.h			    |	 7 +-
+ gdata/gdata.h				    |	 3 +-
+ gdata/services/Makefile.am		    |	 3 -
+ gdata/services/gdata-youtube-media-group.c |	22 ++--
+ gdata/services/gdata-youtube-service.c     |	13 +-
+ gdata/services/gdata-youtube-service.h     |	 5 +-
+ gdata/services/gdata-youtube-video-feed.c  |  220
+ ----------------------------
+ gdata/services/gdata-youtube-video-feed.h  |	52 -------
+ gdata/services/gdata-youtube-video.c	    |	53 +++-----
+ gdata/tests/youtube.c			    |	 4 +-
+ 18 files changed, 263 insertions(+), 480 deletions(-)
+
+commit a02546b08437fe3552c0b2591721953d36aaae79
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Thu Jan 22 18:00:38 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090122180038-32miepaqnljxjtcu]
+    Added basic async support, and greatly expanded the parsing code
+    such that almost all of a typical YouTube GData query is now parsed
+    into data
+    structures.
+
+ .bzrignore				    |	 8 +
+ gdata/Makefile.am			    |	48 ++-
+ gdata/gdata-atom.c			    |  113 +++++
+ gdata/gdata-atom.h			    |	68 +++
+ gdata/gdata-entry.c			    |  326 +++++++++++---
+ gdata/gdata-entry.h			    |	 9 +
+ gdata/gdata-feed.c			    |  372 ++++++++++++++--
+ gdata/gdata-feed.h			    |	14 +
+ gdata/gdata-gdata.c			    |	37 ++
+ gdata/gdata-gdata.h			    |	39 ++
+ gdata/gdata-marshal.list		    |	 1 +
+ gdata/gdata-media-group.c		    |  626
+ ++++++++++++++++++++++++++
+ gdata/gdata-media-group.h		    |	73 +++
+ gdata/gdata-media-rss.c		    |  172 +++++++
+ gdata/gdata-media-rss.h		    |	91 ++++
+ gdata/gdata-private.h			    |	 6 +
+ gdata/gdata-query.c			    |  667
+ ++++++++++++++++++++++++++++
+ gdata/gdata-query.h			    |	98 ++++
+ gdata/gdata-service.c			    |  210 +++++++---
+ gdata/gdata-service.h			    |	13 +-
+ gdata/gdata.symbols			    |	 2 +
+ gdata/services/Makefile.am		    |	 7 +-
+ gdata/services/gdata-youtube-media-group.c |  337 ++++++++++++++
+ gdata/services/gdata-youtube-media-group.h |	65 +++
+ gdata/services/gdata-youtube-service.c     |	47 ++-
+ gdata/services/gdata-youtube-video.c	    |  338 ++++++++++++---
+ gdata/services/gdata-youtube-video.h	    |	15 +
+ 27 files changed, 3549 insertions(+), 253 deletions(-)
+
+commit 3ea04f77323acbd85b95d863dd730e2fd8f009ed
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Sat Jan 3 10:02:43 2009 +0000
+
+    [project @ philip@tecnocode.co.uk-20090103100243-4ge6fir3bu8o3t3d]
+    2009-01-03	Philip Withnall  <philip@tecnocode.co.uk>
+
+	Initial commit, with basic functional queries for YouTube and the
+	generic GData API. No async support, and limited support for lots
+	of the XML elements.
+
+ .bzrignore				   |   22 +
+ AUTHORS				   |	1 +
+ COPYING.LIB				   |  481 +++++++++
+ ChangeLog				   |	5 +
+ INSTALL				   |  236 +++++
+ MAINTAINERS				   |	4 +
+ Makefile.am				   |   21 +
+ Makefile.decl				   |   54 +
+ NEWS					   |	1 +
+ README					   |	1 +
+ autogen.sh				   |   20 +
+ config.h.in				   |  114 +++
+ configure.in				   |   80 ++
+ docs/Makefile.am			   |	1 +
+ docs/reference/MODULE.types		   |	3 +
+ docs/reference/Makefile.am		   |   78 ++
+ docs/reference/gdata-sections.txt	   |   60 ++
+ docs/reference/gdata.sgml		   |   18 +
+ docs/reference/gdata.types		   |	1 +
+ docs/reference/version.xml.in		   |	1 +
+ gdata.pc.in				   |   11 +
+ gdata/Makefile.am			   |   44 +
+ gdata/gdata-entry.c			   |  284 ++++++
+ gdata/gdata-entry.h			   |   60 ++
+ gdata/gdata-feed.c			   |  331 +++++++
+ gdata/gdata-feed.h			   |   62 ++
+ gdata/gdata-private.h			   |   46 +
+ gdata/gdata-service.c			   |  329 +++++++
+ gdata/gdata-service.h			   |   85 ++
+ gdata/gdata-types.c			   |   44 +
+ gdata/gdata-types.h			   |   33 +
+ gdata/gdata.h				   |   34 +
+ gdata/gdata.symbols			   |   34 +
+ gdata/services/Makefile.am		   |   37 +
+ gdata/services/gdata-youtube-service.c    |  264 +++++
+ gdata/services/gdata-youtube-service.h    |   76 ++
+ gdata/services/gdata-youtube-video-feed.c |  220 +++++
+ gdata/services/gdata-youtube-video-feed.h |   52 +
+ gdata/services/gdata-youtube-video.c	   |  210 ++++
+ gdata/services/gdata-youtube-video.h	   |   54 +
+ gdata/tests/Makefile.am		   |   40 +
+ gdata/tests/general.c			   |   36 +
+ gdata/tests/youtube.c			   |   92 ++
+ gtk-doc.make				   |  196 ++++
+ intltool-extract.in			   |  875 +++++++++++++++++
+ intltool-merge.in			   | 1506
+ +++++++++++++++++++++++++++++
+ intltool-update.in			   | 1163 ++++++++++++++++++++++
+ po/ChangeLog				   |	3 +
+ po/LINGUAS				   |	1 +
+ po/Makefile.in.in			   |  217 +++++
+ po/POTFILES.in				   |	9 +
+ 51 files changed, 7650 insertions(+), 0 deletions(-)

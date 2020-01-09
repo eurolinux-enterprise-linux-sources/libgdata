@@ -1,0 +1,260 @@
+<!-- ##### SECTION Title ##### -->
+GDataCalendarQuery
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataCalendarQuery ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataCalendarQuery:future-events ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarQuery:order-by ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarQuery:recurrence-expansion-end ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarQuery:recurrence-expansion-start ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarQuery:single-events ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarQuery:sort-order ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarQuery:start-max ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarQuery:start-min ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataCalendarQuery:timezone ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataCalendarQueryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_calendar_query_new ##### -->
+<para>
+
+</para>
+
+@q: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_new_with_limits ##### -->
+<para>
+
+</para>
+
+@q: 
+@start_min: 
+@start_max: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_get_future_events ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_set_future_events ##### -->
+<para>
+
+</para>
+
+@self: 
+@future_events: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_get_single_events ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_set_single_events ##### -->
+<para>
+
+</para>
+
+@self: 
+@single_events: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_get_order_by ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_set_order_by ##### -->
+<para>
+
+</para>
+
+@self: 
+@order_by: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_get_sort_order ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_set_sort_order ##### -->
+<para>
+
+</para>
+
+@self: 
+@sort_order: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_get_start_min ##### -->
+<para>
+
+</para>
+
+@self: 
+@start_min: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_set_start_min ##### -->
+<para>
+
+</para>
+
+@self: 
+@start_min: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_get_start_max ##### -->
+<para>
+
+</para>
+
+@self: 
+@start_max: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_set_start_max ##### -->
+<para>
+
+</para>
+
+@self: 
+@start_max: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_get_recurrence_expansion_start ##### -->
+<para>
+
+</para>
+
+@self: 
+@start: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_set_recurrence_expansion_start ##### -->
+<para>
+
+</para>
+
+@self: 
+@start: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_get_recurrence_expansion_end ##### -->
+<para>
+
+</para>
+
+@self: 
+@end: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_set_recurrence_expansion_end ##### -->
+<para>
+
+</para>
+
+@self: 
+@end: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_get_timezone ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_calendar_query_set_timezone ##### -->
+<para>
+
+</para>
+
+@self: 
+@_timezone: 
+
+

@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataPicasaWebService</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch12.html" title="Google PicasaWeb API">
+<link rel="prev" href="ch12.html" title="Google PicasaWeb API">
+<link rel="next" href="GDataPicasaWebQuery.html" title="GDataPicasaWebQuery">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch12.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch12.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataPicasaWebQuery.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataPicasaWebService.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataPicasaWebService.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataPicasaWebService.object-hierarchy" class="shortcut">Object Hierarchy</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataPicasaWebService"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataPicasaWebService.top_of_page"></a>GDataPicasaWebService</span></h2>
+<p>GDataPicasaWebService — GData PicasaWeb service object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebService.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataPicasaWebService.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/services/picasaweb/gdata-picasaweb-service.h&gt;
+
+                    <a href="GDataPicasaWebService.html#GDataPicasaWebService-struct">GDataPicasaWebService</a>;
+                    <a href="GDataPicasaWebService.html#GDataPicasaWebServiceClass">GDataPicasaWebServiceClass</a>;
+<a href="GDataPicasaWebService.html">GDataPicasaWebService</a> * <a href="GDataPicasaWebService.html#gdata-picasaweb-service-new">gdata_picasaweb_service_new</a>     (const gchar *client_id);
+<a href="GDataFeed.html">GDataFeed</a> *         <a href="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums">gdata_picasaweb_service_query_all_albums</a>
+                                                        (<a href="GDataPicasaWebService.html">GDataPicasaWebService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         const gchar *username,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);
+void                <a href="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums-async">gdata_picasaweb_service_query_all_albums_async</a>
+                                                        (<a href="GDataPicasaWebService.html">GDataPicasaWebService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         const gchar *username,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);
+<a href="GDataFeed.html">GDataFeed</a> *         <a href="GDataPicasaWebService.html#gdata-picasaweb-service-query-files">gdata_picasaweb_service_query_files</a> (<a href="GDataPicasaWebService.html">GDataPicasaWebService</a> *self,
+                                                         <a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *album,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);
+<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> * <a href="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file">gdata_picasaweb_service_upload_file</a>
+                                                        (<a href="GDataPicasaWebService.html">GDataPicasaWebService</a> *self,
+                                                         <a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *album,
+                                                         <a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *file_entry,
+                                                         GFile *file_data,
+                                                         GCancellable *cancellable,
+                                                         GError **error);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebService.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataService.html">GDataService</a>
+         +----GDataPicasaWebService
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebService.description"></a><h2>Description</h2>
+<p>
+<a href="GDataPicasaWebService.html"><span class="type">GDataPicasaWebService</span></a> is a subclass of <a href="GDataService.html"><span class="type">GDataService</span></a> for communicating with the GData API of Google PicasaWeb. It supports querying for files
+and albums, and uploading files.
+</p>
+<p>
+For more details of PicasaWeb's GData API, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/developers_guide_protocol.html" target="_top">
+online documentation</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataPicasaWebService.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataPicasaWebService-struct"></a><h3>GDataPicasaWebService</h3>
+<pre class="programlisting">typedef struct _GDataPicasaWebService GDataPicasaWebService;</pre>
+<p>
+All the fields in the <a href="GDataPicasaWebService.html"><span class="type">GDataPicasaWebService</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataPicasaWebServiceClass"></a><h3>GDataPicasaWebServiceClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataPicasaWebServiceClass;
+</pre>
+<p>
+All the fields in the <a href="GDataPicasaWebService.html#GDataPicasaWebServiceClass"><span class="type">GDataPicasaWebServiceClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-service-new"></a><h3>gdata_picasaweb_service_new ()</h3>
+<pre class="programlisting"><a href="GDataPicasaWebService.html">GDataPicasaWebService</a> * gdata_picasaweb_service_new     (const gchar *client_id);</pre>
+<p>
+Creates a new <a href="GDataPicasaWebService.html"><span class="type">GDataPicasaWebService</span></a>. The <em class="parameter"><code>client_id</code></em> must be unique for your application, and as registered with Google.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>client_id</code></em> :</span></p></td>
+<td> your application's client ID
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataPicasaWebService.html"><span class="type">GDataPicasaWebService</span></a>, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-service-query-all-albums"></a><h3>gdata_picasaweb_service_query_all_albums ()</h3>
+<pre class="programlisting"><a href="GDataFeed.html">GDataFeed</a> *         gdata_picasaweb_service_query_all_albums
+                                                        (<a href="GDataPicasaWebService.html">GDataPicasaWebService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         const gchar *username,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);</pre>
+<p>
+Queries the service to return a list of all albums belonging to the specified <em class="parameter"><code>username</code></em> which match the given
+<em class="parameter"><code>query</code></em>. If a user is authenticated with the service, <em class="parameter"><code>username</code></em> can be set as <code class="literal">NULL</code> to return a list of albums belonging
+to the currently-authenticated user.
+</p>
+<p>
+Note that the <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> query parameter cannot be set on <em class="parameter"><code>query</code></em> for album queries.
+</p>
+<p>
+For more details, see <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebService.html"><span class="type">GDataPicasaWebService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>username</code></em> :</span></p></td>
+<td> the username of the user whose albums you wish to retrieve, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> of query results; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-service-query-all-albums-async"></a><h3>gdata_picasaweb_service_query_all_albums_async ()</h3>
+<pre class="programlisting">void                gdata_picasaweb_service_query_all_albums_async
+                                                        (<a href="GDataPicasaWebService.html">GDataPicasaWebService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         const gchar *username,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);</pre>
+<p>
+Queries the service to return a list of all albums belonging to the specified <em class="parameter"><code>username</code></em> which match the given
+<em class="parameter"><code>query</code></em>. <em class="parameter"><code>self</code></em>, <em class="parameter"><code>query</code></em> and <em class="parameter"><code>username</code></em> are all reffed/copied when this function is called, so can safely be unreffed/freed after
+this function returns.
+</p>
+<p>
+For more details, see <a href="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums"><code class="function">gdata_picasaweb_service_query_all_albums()</code></a>, which is the synchronous version of
+this function, and <a href="GDataService.html#gdata-service-query-async"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebService.html"><span class="type">GDataPicasaWebService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>username</code></em> :</span></p></td>
+<td> the username of the user whose albums you wish to retrieve, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>callback</code></em> function
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-service-query-files"></a><h3>gdata_picasaweb_service_query_files ()</h3>
+<pre class="programlisting"><a href="GDataFeed.html">GDataFeed</a> *         gdata_picasaweb_service_query_files (<a href="GDataPicasaWebService.html">GDataPicasaWebService</a> *self,
+                                                         <a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *album,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);</pre>
+<p>
+Queries the specified <em class="parameter"><code>album</code></em> for a list of the files which match the given <em class="parameter"><code>query</code></em>. If <em class="parameter"><code>album</code></em> is <code class="literal">NULL</code> and a user is
+authenticated with the service, the user's default album will be queried.
+</p>
+<p>
+For more details, see <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebService.html"><span class="type">GDataPicasaWebService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>album</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a> from which to retrieve the files, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> of query results; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-picasaweb-service-upload-file"></a><h3>gdata_picasaweb_service_upload_file ()</h3>
+<pre class="programlisting"><a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> * gdata_picasaweb_service_upload_file
+                                                        (<a href="GDataPicasaWebService.html">GDataPicasaWebService</a> *self,
+                                                         <a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *album,
+                                                         <a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *file_entry,
+                                                         GFile *file_data,
+                                                         GCancellable *cancellable,
+                                                         GError **error);</pre>
+<p>
+Uploads a file (photo or video) to the given PicasaWeb <em class="parameter"><code>album</code></em>, using the <em class="parameter"><code>actual_file</code></em> from disk and the metadata from <em class="parameter"><code>file</code></em>. If <em class="parameter"><code>album</code></em> is
+<code class="literal">NULL</code>, the file will be uploaded to the currently-authenticated user's "Drop Box" album. A user must be authenticated to use this function.
+</p>
+<p>
+If <em class="parameter"><code>file</code></em> has already been inserted, a <code class="literal">GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED</code> error will be returned. If no user is authenticated
+with the service, <code class="literal">GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED</code> will be returned.
+</p>
+<p>
+If there is a problem reading <em class="parameter"><code>file_data</code></em>, an error from <code class="function">g_output_stream_splice()</code> or <code class="function">g_file_query_info()</code> will be returned. Other errors from
+<a href="GDataService.html#GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebService.html"><span class="type">GDataPicasaWebService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>album</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a> into which to insert the file, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>file_entry</code></em> :</span></p></td>
+<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a> to insert
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>file_data</code></em> :</span></p></td>
+<td> the actual file to upload
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the inserted <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a> with updated properties from <em class="parameter"><code>file_entry</code></em>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

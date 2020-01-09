@@ -1,0 +1,94 @@
+<!-- ##### SECTION Title ##### -->
+GDataContactsService
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataContactsService ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GDataContactsServiceClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_contacts_service_new ##### -->
+<para>
+
+</para>
+
+@client_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_service_query_contacts ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_service_query_contacts_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_contacts_service_insert_contact ##### -->
+<para>
+
+</para>
+
+@self: 
+@contact: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_service_update_contact ##### -->
+<para>
+
+</para>
+
+@self: 
+@contact: 
+@cancellable: 
+@error: 
+@Returns: 
+
+

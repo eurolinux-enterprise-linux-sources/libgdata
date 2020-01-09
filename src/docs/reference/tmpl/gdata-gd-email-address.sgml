@@ -1,0 +1,147 @@
+<!-- ##### SECTION Title ##### -->
+GDataGDEmailAddress
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataGDEmailAddress ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataGDEmailAddress:address ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDEmailAddress:is-primary ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDEmailAddress:label ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDEmailAddress:relation-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataGDEmailAddressClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_new ##### -->
+<para>
+
+</para>
+
+@address: 
+@relation_type: 
+@label: 
+@is_primary: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_get_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_set_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@address: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_get_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_set_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@relation_type: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_get_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_set_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@label: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_is_primary ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_set_is_primary ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_primary: 
+
+

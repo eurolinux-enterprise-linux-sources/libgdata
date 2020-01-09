@@ -1,0 +1,82 @@
+<!-- ##### SECTION Title ##### -->
+GDataDocumentsSpreadsheet
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataDocumentsSpreadsheet ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GDataDocumentsSpreadsheetClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GDataDocumentsSpreadsheetFormat ##### -->
+<para>
+
+</para>
+
+@GDATA_DOCUMENTS_SPREADSHEET_XLS: 
+@GDATA_DOCUMENTS_SPREADSHEET_CSV: 
+@GDATA_DOCUMENTS_SPREADSHEET_PDF: 
+@GDATA_DOCUMENTS_SPREADSHEET_ODS: 
+@GDATA_DOCUMENTS_SPREADSHEET_TSV: 
+@GDATA_DOCUMENTS_SPREADSHEET_HTML: 
+
+<!-- ##### FUNCTION gdata_documents_spreadsheet_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_spreadsheet_download_document ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@content_type: 
+@export_format: 
+@gid: 
+@destination_file: 
+@replace_file_if_exists: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_spreadsheet_get_download_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@export_format: 
+@gid: 
+@Returns: 
+
+

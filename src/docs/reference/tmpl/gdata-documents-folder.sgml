@@ -1,0 +1,42 @@
+<!-- ##### SECTION Title ##### -->
+GDataDocumentsFolder
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataDocumentsFolder ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GDataDocumentsFolderClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_documents_folder_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+

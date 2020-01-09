@@ -1,0 +1,240 @@
+<!-- ##### SECTION Title ##### -->
+GDataLink
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataLink ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataLink:content-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataLink:language ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataLink:length ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataLink:relation-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataLink:title ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataLink:uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataLinkClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_link_new ##### -->
+<para>
+
+</para>
+
+@uri: 
+@relation_type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_link_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_link_get_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_link_set_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@uri: 
+
+
+<!-- ##### FUNCTION gdata_link_get_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_link_set_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@relation_type: 
+
+
+<!-- ##### FUNCTION gdata_link_get_content_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_link_set_content_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@content_type: 
+
+
+<!-- ##### FUNCTION gdata_link_get_language ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_link_set_language ##### -->
+<para>
+
+</para>
+
+@self: 
+@language: 
+
+
+<!-- ##### FUNCTION gdata_link_get_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_link_set_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@title: 
+
+
+<!-- ##### FUNCTION gdata_link_get_length ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_link_set_length ##### -->
+<para>
+
+</para>
+
+@self: 
+@length: 
+
+
+<!-- ##### MACRO GDATA_LINK_ALTERNATE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_LINK_EDIT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_LINK_EDIT_MEDIA ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_LINK_ENCLOSURE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_LINK_RELATED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_LINK_SELF ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_LINK_VIA ##### -->
+<para>
+
+</para>
+
+
+

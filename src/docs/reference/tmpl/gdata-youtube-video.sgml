@@ -1,0 +1,462 @@
+<!-- ##### SECTION Title ##### -->
+GDataYouTubeVideo
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataYouTubeVideo ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataYouTubeVideo:aspect-ratio ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:average-rating ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:category ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:credit ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:description ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:duration ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:favorite-count ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:is-draft ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:is-private ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:keywords ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:location ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:max-rating ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:min-rating ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:no-embed ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:player-uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:rating-count ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:recorded ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:state ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:title ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:uploaded ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:video-id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeVideo:view-count ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataYouTubeVideoClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GDataYouTubeAspectRatio ##### -->
+<para>
+
+</para>
+
+@GDATA_YOUTUBE_ASPECT_RATIO_UNKNOWN: 
+@GDATA_YOUTUBE_ASPECT_RATIO_WIDESCREEN: 
+
+<!-- ##### FUNCTION gdata_youtube_video_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_look_up_content ##### -->
+<para>
+
+</para>
+
+@self: 
+@type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_thumbnails ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_category ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_category ##### -->
+<para>
+
+</para>
+
+@self: 
+@category: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_credit ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_description ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_description ##### -->
+<para>
+
+</para>
+
+@self: 
+@description: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_duration ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_keywords ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_keywords ##### -->
+<para>
+
+</para>
+
+@self: 
+@keywords: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@location: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_view_count ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_favorite_count ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_is_restricted_in_country ##### -->
+<para>
+
+</para>
+
+@self: 
+@country: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_no_embed ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_no_embed ##### -->
+<para>
+
+</para>
+
+@self: 
+@no_embed: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_player_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_is_private ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_is_private ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_private: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_is_draft ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_is_draft ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_draft: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_state ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_rating ##### -->
+<para>
+
+</para>
+
+@self: 
+@min: 
+@max: 
+@count: 
+@average: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@title: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_uploaded ##### -->
+<para>
+
+</para>
+
+@self: 
+@uploaded: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_recorded ##### -->
+<para>
+
+</para>
+
+@self: 
+@recorded: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_recorded ##### -->
+<para>
+
+</para>
+
+@self: 
+@recorded: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_video_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_video_id_from_uri ##### -->
+<para>
+
+</para>
+
+@video_uri: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_get_aspect_ratio ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_video_set_aspect_ratio ##### -->
+<para>
+
+</para>
+
+@self: 
+@aspect_ratio: 
+
+

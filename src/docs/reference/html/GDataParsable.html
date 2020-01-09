@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataParsable</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch02.html" title="Core API">
+<link rel="prev" href="gdata-GData-Types.html" title="GData Types">
+<link rel="next" href="GDataDownloadStream.html" title="GDataDownloadStream">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gdata-GData-Types.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataDownloadStream.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataParsable.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataParsable.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataParsable.object-hierarchy" class="shortcut">Object Hierarchy</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataParsable"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataParsable.top_of_page"></a>GDataParsable</span></h2>
+<p>GDataParsable — GData parsable object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataParsable.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataParsable.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/gdata-parsable.h&gt;
+
+                    <a href="GDataParsable.html#GDataParsable-struct">GDataParsable</a>;
+                    <a href="GDataParsable.html#GDataParsableClass">GDataParsableClass</a>;
+<a href="GDataParsable.html">GDataParsable</a> *     <a href="GDataParsable.html#gdata-parsable-new-from-xml">gdata_parsable_new_from_xml</a>         (GType parsable_type,
+                                                         const gchar *xml,
+                                                         gint length,
+                                                         GError **error);
+gchar *             <a href="GDataParsable.html#gdata-parsable-get-xml">gdata_parsable_get_xml</a>              (<a href="GDataParsable.html">GDataParsable</a> *self);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataParsable.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----GDataParsable
+         +----<a href="GDataEntry.html">GDataEntry</a>
+         +----<a href="GDataAuthor.html">GDataAuthor</a>
+         +----<a href="GDataFeed.html">GDataFeed</a>
+         +----<a href="GDataCategory.html">GDataCategory</a>
+         +----<a href="GDataGDEmailAddress.html">GDataGDEmailAddress</a>
+         +----<a href="GDataGDIMAddress.html">GDataGDIMAddress</a>
+         +----GDataGDName
+         +----<a href="GDataGDOrganization.html">GDataGDOrganization</a>
+         +----<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a>
+         +----<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a>
+         +----<a href="GDataGDReminder.html">GDataGDReminder</a>
+         +----<a href="GDataGDWhen.html">GDataGDWhen</a>
+         +----<a href="GDataGDWhere.html">GDataGDWhere</a>
+         +----<a href="GDataGDWho.html">GDataGDWho</a>
+         +----<a href="GDataGenerator.html">GDataGenerator</a>
+         +----<a href="GDataLink.html">GDataLink</a>
+         +----<a href="GDataMediaCategory.html">GDataMediaCategory</a>
+         +----<a href="GDataMediaContent.html">GDataMediaContent</a>
+         +----<a href="GDataMediaCredit.html">GDataMediaCredit</a>
+         +----<a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a>
+         +----<a href="GDataYouTubeState.html">GDataYouTubeState</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataParsable.description"></a><h2>Description</h2>
+<p>
+<a href="GDataParsable.html"><span class="type">GDataParsable</span></a> is an abstract class allowing easy implementation of an extensible parser. It is primarily extended by <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> and <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>,
+both of which require XML parsing which can be extended by subclassing.
+</p>
+<p>
+It allows methods to be defined for handling the root XML node, each of its child nodes, and a method to be called after parsing is complete.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataParsable.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataParsable-struct"></a><h3>GDataParsable</h3>
+<pre class="programlisting">typedef struct _GDataParsable GDataParsable;</pre>
+<p>
+All the fields in the <a href="GDataParsable.html"><span class="type">GDataParsable</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataParsableClass"></a><h3>GDataParsableClass</h3>
+<pre class="programlisting">typedef struct {
+	GObjectClass parent;
+
+	gboolean (*pre_parse_xml) (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error);
+	gboolean (*parse_xml) (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error);
+	gboolean (*post_parse_xml) (GDataParsable *parsable, gpointer user_data, GError **error);
+
+	void (*pre_get_xml) (GDataParsable *parsable, GString *xml_string);
+	void (*get_xml) (GDataParsable *parsable, GString *xml_string);
+	void (*get_namespaces) (GDataParsable *parsable, GHashTable *namespaces);
+
+	const gchar *element_name;
+	const gchar *element_namespace;
+} GDataParsableClass;
+</pre>
+<p>
+The class structure for the <a href="GDataParsable.html"><span class="type">GDataParsable</span></a> class.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">GObjectClass <em class="structfield"><code><a name="GDataParsableClass.parent"></a>parent</code></em>;</span></p></td>
+<td> the parent class
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.pre_parse_xml"></a>pre_parse_xml</code></em> ()</span></p></td>
+<td> a function called before parsing of an XML tree is started, which allows properties from the root node to be extracted
+and used in <em class="parameter"><code>parsable</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.parse_xml"></a>parse_xml</code></em> ()</span></p></td>
+<td> a function to parse an XML representation of the <a href="GDataParsable.html"><span class="type">GDataParsable</span></a> to set the properties of the <em class="parameter"><code>parsable</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.post_parse_xml"></a>post_parse_xml</code></em> ()</span></p></td>
+<td> a function called after parsing an XML tree, to allow the <em class="parameter"><code>parsable</code></em> to validate the parsed properties
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.pre_get_xml"></a>pre_get_xml</code></em> ()</span></p></td>
+<td> a function called before building the XML representation of the children of the <a href="GDataParsable.html"><span class="type">GDataParsable</span></a>, which allows attributes of the root
+XML node to be added to <em class="parameter"><code>xml_string</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.get_xml"></a>get_xml</code></em> ()</span></p></td>
+<td> a function to build an XML representation of the <a href="GDataParsable.html"><span class="type">GDataParsable</span></a> in its current state, appending it to the provided <span class="type">GString</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.get_namespaces"></a>get_namespaces</code></em> ()</span></p></td>
+<td> a function to return a string containing the namespace declarations used by the <em class="parameter"><code>parsable</code></em> when represented in XML form
+</td>
+</tr>
+<tr>
+<td><p><span class="term">const gchar *<em class="structfield"><code><a name="GDataParsableClass.element_name"></a>element_name</code></em>;</span></p></td>
+<td> the name of the XML element which represents this parsable
+</td>
+</tr>
+<tr>
+<td><p><span class="term">const gchar *<em class="structfield"><code><a name="GDataParsableClass.element_namespace"></a>element_namespace</code></em>;</span></p></td>
+<td> the prefix of the XML namespace used for the parsable
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-parsable-new-from-xml"></a><h3>gdata_parsable_new_from_xml ()</h3>
+<pre class="programlisting"><a href="GDataParsable.html">GDataParsable</a> *     gdata_parsable_new_from_xml         (GType parsable_type,
+                                                         const gchar *xml,
+                                                         gint length,
+                                                         GError **error);</pre>
+<p>
+Creates a new <a href="GDataParsable.html"><span class="type">GDataParsable</span></a> subclass (of the given <em class="parameter"><code>parsable_type</code></em>) from the given <em class="parameter"><code>xml</code></em>.
+</p>
+<p>
+An object of the given <em class="parameter"><code>parsable_type</code></em> is created, and its <code class="function">pre_parse_xml</code>, <code class="function">parse_xml</code> and
+<code class="function">post_parse_xml</code> class functions called on the XML tree obtained from <em class="parameter"><code>xml</code></em>. <code class="function">pre_parse_xml</code> and
+<code class="function">post_parse_xml</code> are called once each on the root node of the tree, while <code class="function">parse_xml</code> is called for each of the
+child nodes of the root node.
+</p>
+<p>
+If <em class="parameter"><code>length</code></em> is -1, <em class="parameter"><code>xml</code></em> will be assumed to be null-terminated.
+</p>
+<p>
+If an error occurs during parsing, a suitable error from <a href="GDataService.html#GDataParserError"><span class="type">GDataParserError</span></a> will be returned.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parsable_type</code></em> :</span></p></td>
+<td> the type of the class represented by the XML
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xml</code></em> :</span></p></td>
+<td> the XML for just the parsable object, with full namespace declarations
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> the length of <em class="parameter"><code>xml</code></em>, or -1
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataParsable.html"><span class="type">GDataParsable</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-parsable-get-xml"></a><h3>gdata_parsable_get_xml ()</h3>
+<pre class="programlisting">gchar *             gdata_parsable_get_xml              (<a href="GDataParsable.html">GDataParsable</a> *self);</pre>
+<p>
+Builds an XML representation of the <a href="GDataParsable.html"><span class="type">GDataParsable</span></a> in its current state, such that it could be inserted on the server. The XML is guaranteed to have
+all its namespaces declared properly in a self-contained fashion, and is valid for stand-alone use.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataParsable.html"><span class="type">GDataParsable</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the object's XML; free with <code class="function">g_free()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

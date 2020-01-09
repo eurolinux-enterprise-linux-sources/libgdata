@@ -1,0 +1,196 @@
+<!-- ##### SECTION Title ##### -->
+GDataDocumentsQuery
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataDocumentsQuery ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataDocumentsQuery:exact-title ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataDocumentsQuery:folder-id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataDocumentsQuery:show-deleted ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataDocumentsQuery:show-folders ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataDocumentsQuery:title ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataDocumentsQueryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_documents_query_new ##### -->
+<para>
+
+</para>
+
+@q: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_new_with_limits ##### -->
+<para>
+
+</para>
+
+@q: 
+@start_index: 
+@max_results: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_show_deleted ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_set_show_deleted ##### -->
+<para>
+
+</para>
+
+@self: 
+@show_deleted: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_show_folders ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_set_show_folders ##### -->
+<para>
+
+</para>
+
+@self: 
+@show_folders: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_get_folder_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_set_folder_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@folder_id: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_get_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_get_exact_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_set_title ##### -->
+<para>
+
+</para>
+
+@self: 
+@title: 
+@exact_title: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_get_collaborator_addresses ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_add_collaborator ##### -->
+<para>
+
+</para>
+
+@self: 
+@email_address: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_get_reader_addresses ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_query_add_reader ##### -->
+<para>
+
+</para>
+
+@self: 
+@email_address: 
+
+

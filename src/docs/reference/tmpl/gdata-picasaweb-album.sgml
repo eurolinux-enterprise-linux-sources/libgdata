@@ -1,0 +1,348 @@
+<!-- ##### SECTION Title ##### -->
+GDataPicasaWebAlbum
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataPicasaWebAlbum ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataPicasaWebAlbum:bytes-used ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:comment-count ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:description ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:edited ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:is-commenting-enabled ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:latitude ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:location ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:longitude ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:nickname ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:num-photos ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:num-photos-remaining ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:tags ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:timestamp ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:user ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebAlbum:visibility ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataPicasaWebAlbumClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GDataPicasaWebVisibility ##### -->
+<para>
+
+</para>
+
+@GDATA_PICASAWEB_PUBLIC: 
+@GDATA_PICASAWEB_PRIVATE: 
+
+<!-- ##### FUNCTION gdata_picasaweb_album_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_user ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_nickname ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_edited ##### -->
+<para>
+
+</para>
+
+@self: 
+@edited: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_set_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@location: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_visibility ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_set_visibility ##### -->
+<para>
+
+</para>
+
+@self: 
+@visibility: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_timestamp ##### -->
+<para>
+
+</para>
+
+@self: 
+@timestamp: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_set_timestamp ##### -->
+<para>
+
+</para>
+
+@self: 
+@timestamp: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_num_photos ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_num_photos_remaining ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_bytes_used ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_is_commenting_enabled ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_set_is_commenting_enabled ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_commenting_enabled: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_comment_count ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_tags ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_set_tags ##### -->
+<para>
+
+</para>
+
+@self: 
+@tags: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_description ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_set_description ##### -->
+<para>
+
+</para>
+
+@self: 
+@description: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_contents ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_thumbnails ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_get_coordinates ##### -->
+<para>
+
+</para>
+
+@self: 
+@latitude: 
+@longitude: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_album_set_coordinates ##### -->
+<para>
+
+</para>
+
+@self: 
+@latitude: 
+@longitude: 
+
+

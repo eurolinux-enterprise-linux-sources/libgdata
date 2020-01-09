@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataFeed</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch02.html" title="Core API">
+<link rel="prev" href="GDataQuery.html" title="GDataQuery">
+<link rel="next" href="GDataEntry.html" title="GDataEntry">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataQuery.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataEntry.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataFeed.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataFeed.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataFeed.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataFeed.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataFeed"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataFeed.top_of_page"></a>GDataFeed</span></h2>
+<p>GDataFeed — GData feed object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataFeed.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataFeed.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/gdata-feed.h&gt;
+
+                    <a href="GDataFeed.html#GDataFeed-struct">GDataFeed</a>;
+                    <a href="GDataFeed.html#GDataFeedClass">GDataFeedClass</a>;
+const gchar *       <a href="GDataFeed.html#gdata-feed-get-title">gdata_feed_get_title</a>                (<a href="GDataFeed.html">GDataFeed</a> *self);
+const gchar *       <a href="GDataFeed.html#gdata-feed-get-subtitle">gdata_feed_get_subtitle</a>             (<a href="GDataFeed.html">GDataFeed</a> *self);
+const gchar *       <a href="GDataFeed.html#gdata-feed-get-id">gdata_feed_get_id</a>                   (<a href="GDataFeed.html">GDataFeed</a> *self);
+const gchar *       <a href="GDataFeed.html#gdata-feed-get-etag">gdata_feed_get_etag</a>                 (<a href="GDataFeed.html">GDataFeed</a> *self);
+GList *             <a href="GDataFeed.html#gdata-feed-get-authors">gdata_feed_get_authors</a>              (<a href="GDataFeed.html">GDataFeed</a> *self);
+GList *             <a href="GDataFeed.html#gdata-feed-get-categories">gdata_feed_get_categories</a>           (<a href="GDataFeed.html">GDataFeed</a> *self);
+GList *             <a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a>              (<a href="GDataFeed.html">GDataFeed</a> *self);
+<a href="GDataEntry.html">GDataEntry</a> *        <a href="GDataFeed.html#gdata-feed-look-up-entry">gdata_feed_look_up_entry</a>            (<a href="GDataFeed.html">GDataFeed</a> *self,
+                                                         const gchar *id);
+<a href="GDataGenerator.html">GDataGenerator</a> *    <a href="GDataFeed.html#gdata-feed-get-generator">gdata_feed_get_generator</a>            (<a href="GDataFeed.html">GDataFeed</a> *self);
+GList *             <a href="GDataFeed.html#gdata-feed-get-links">gdata_feed_get_links</a>                (<a href="GDataFeed.html">GDataFeed</a> *self);
+<a href="GDataLink.html">GDataLink</a> *         <a href="GDataFeed.html#gdata-feed-look-up-link">gdata_feed_look_up_link</a>             (<a href="GDataFeed.html">GDataFeed</a> *self,
+                                                         const gchar *rel);
+const gchar *       <a href="GDataFeed.html#gdata-feed-get-logo">gdata_feed_get_logo</a>                 (<a href="GDataFeed.html">GDataFeed</a> *self);
+void                <a href="GDataFeed.html#gdata-feed-get-updated">gdata_feed_get_updated</a>              (<a href="GDataFeed.html">GDataFeed</a> *self,
+                                                         GTimeVal *updated);
+guint               <a href="GDataFeed.html#gdata-feed-get-start-index">gdata_feed_get_start_index</a>          (<a href="GDataFeed.html">GDataFeed</a> *self);
+guint               <a href="GDataFeed.html#gdata-feed-get-total-results">gdata_feed_get_total_results</a>        (<a href="GDataFeed.html">GDataFeed</a> *self);
+guint               <a href="GDataFeed.html#gdata-feed-get-items-per-page">gdata_feed_get_items_per_page</a>       (<a href="GDataFeed.html">GDataFeed</a> *self);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataFeed.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----GDataFeed
+               +----<a href="GDataCalendarFeed.html">GDataCalendarFeed</a>
+               +----<a href="GDataDocumentsFeed.html">GDataDocumentsFeed</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataFeed.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataFeed.html#GDataFeed--etag">etag</a>"                     gchar*                : Read
+  "<a href="GDataFeed.html#GDataFeed--generator">generator</a>"                <a href="GDataGenerator.html">GDataGenerator</a>*       : Read
+  "<a href="GDataFeed.html#GDataFeed--id">id</a>"                       gchar*                : Read
+  "<a href="GDataFeed.html#GDataFeed--items-per-page">items-per-page</a>"           guint                 : Read
+  "<a href="GDataFeed.html#GDataFeed--logo">logo</a>"                     gchar*                : Read
+  "<a href="GDataFeed.html#GDataFeed--start-index">start-index</a>"              guint                 : Read
+  "<a href="GDataFeed.html#GDataFeed--subtitle">subtitle</a>"                 gchar*                : Read
+  "<a href="GDataFeed.html#GDataFeed--title">title</a>"                    gchar*                : Read
+  "<a href="GDataFeed.html#GDataFeed--total-results">total-results</a>"            guint                 : Read
+  "<a href="GDataFeed.html#GDataFeed--updated">updated</a>"                  GTimeVal*             : Read
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataFeed.description"></a><h2>Description</h2>
+<p>
+<a href="GDataFeed.html"><span class="type">GDataFeed</span></a> is a list of entries (<a href="GDataEntry.html"><span class="type">GDataEntry</span></a>) returned as the result of a query to a <a href="GDataService.html"><span class="type">GDataService</span></a>, or given as the input to another
+operation on the online service. It also has pieces of data associated with the query on the <a href="GDataService.html"><span class="type">GDataService</span></a>, such as the query title
+or timestamp when it was last updated.
+</p>
+<p>
+Each <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> represents a single object on the online service, such as a playlist, video or calendar entry, and the <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+represents a collection of similar objects.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataFeed.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataFeed-struct"></a><h3>GDataFeed</h3>
+<pre class="programlisting">typedef struct _GDataFeed GDataFeed;</pre>
+<p>
+All the fields in the <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeedClass"></a><h3>GDataFeedClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataFeedClass;
+</pre>
+<p>
+All the fields in the <a href="GDataFeed.html#GDataFeedClass"><span class="type">GDataFeedClass</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-title"></a><h3>gdata_feed_get_title ()</h3>
+<pre class="programlisting">const gchar *       gdata_feed_get_title                (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns the title of the feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the feed's title
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-subtitle"></a><h3>gdata_feed_get_subtitle ()</h3>
+<pre class="programlisting">const gchar *       gdata_feed_get_subtitle             (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns the subtitle of the feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the feed's subtitle, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-id"></a><h3>gdata_feed_get_id ()</h3>
+<pre class="programlisting">const gchar *       gdata_feed_get_id                   (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns the feed's unique and permanent URN ID.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the feed's ID
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-etag"></a><h3>gdata_feed_get_etag ()</h3>
+<pre class="programlisting">const gchar *       gdata_feed_get_etag                 (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns the feed's unique ETag for this version.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the feed's ETag
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-authors"></a><h3>gdata_feed_get_authors ()</h3>
+<pre class="programlisting">GList *             gdata_feed_get_authors              (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns a list of the authors listed in this feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataAuthor.html"><span class="type">GDataAuthor</span></a>s
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-categories"></a><h3>gdata_feed_get_categories ()</h3>
+<pre class="programlisting">GList *             gdata_feed_get_categories           (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns a list of the categories listed in this feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataCategory.html"><span class="type">GDataCategory</span></a>s
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-entries"></a><h3>gdata_feed_get_entries ()</h3>
+<pre class="programlisting">GList *             gdata_feed_get_entries              (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns a list of the entries contained in this feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>s
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-look-up-entry"></a><h3>gdata_feed_look_up_entry ()</h3>
+<pre class="programlisting"><a href="GDataEntry.html">GDataEntry</a> *        gdata_feed_look_up_entry            (<a href="GDataFeed.html">GDataFeed</a> *self,
+                                                         const gchar *id);</pre>
+<p>
+Returns the entry in the feed with the given <em class="parameter"><code>id</code></em>, if found.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the entry's ID
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the <a href="GDataEntry.html"><span class="type">GDataEntry</span></a>, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-generator"></a><h3>gdata_feed_get_generator ()</h3>
+<pre class="programlisting"><a href="GDataGenerator.html">GDataGenerator</a> *    gdata_feed_get_generator            (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns details about the software which generated the feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataGenerator.html"><span class="type">GDataGenerator</span></a>, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-links"></a><h3>gdata_feed_get_links ()</h3>
+<pre class="programlisting">GList *             gdata_feed_get_links                (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns a list of the links listed in this feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataLink.html"><span class="type">GDataLink</span></a>s
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-look-up-link"></a><h3>gdata_feed_look_up_link ()</h3>
+<pre class="programlisting"><a href="GDataLink.html">GDataLink</a> *         gdata_feed_look_up_link             (<a href="GDataFeed.html">GDataFeed</a> *self,
+                                                         const gchar *rel);</pre>
+<p>
+Looks up a link by <a href="GDataLink.html#GDataLink--relation-type"><span class="type">"relation-type"</span></a> value from the list of links in the feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rel</code></em> :</span></p></td>
+<td> the value of the <a href="GDataLink.html#GDataLink--relation-type"><span class="type">"relation-type"</span></a> property of the desired link
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataLink.html"><span class="type">GDataLink</span></a>, or <code class="literal">NULL</code> if one was not found
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.1.1</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-logo"></a><h3>gdata_feed_get_logo ()</h3>
+<pre class="programlisting">const gchar *       gdata_feed_get_logo                 (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns the logo URI of the feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the feed's logo URI, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-updated"></a><h3>gdata_feed_get_updated ()</h3>
+<pre class="programlisting">void                gdata_feed_get_updated              (<a href="GDataFeed.html">GDataFeed</a> *self,
+                                                         GTimeVal *updated);</pre>
+<p>
+Puts the time the feed was last updated into <em class="parameter"><code>updated</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>updated</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-start-index"></a><h3>gdata_feed_get_start_index ()</h3>
+<pre class="programlisting">guint               gdata_feed_get_start_index          (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns the one-based start index of the results feed in the result set.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the one-based start index, or <code class="literal">0</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-total-results"></a><h3>gdata_feed_get_total_results ()</h3>
+<pre class="programlisting">guint               gdata_feed_get_total_results        (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns the total number of results in the result set, including results on other
+pages.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the total number of results, or <code class="literal">0</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-feed-get-items-per-page"></a><h3>gdata_feed_get_items_per_page ()</h3>
+<pre class="programlisting">guint               gdata_feed_get_items_per_page       (<a href="GDataFeed.html">GDataFeed</a> *self);</pre>
+<p>
+Returns the number of items per results page feed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of items per results page feed, or <code class="literal">0</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataFeed.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--etag"></a><h3>The <code class="literal">"etag"</code> property</h3>
+<pre class="programlisting">  "etag"                     gchar*                : Read</pre>
+<p>
+The unique ETag for this version of the feed. See the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/reference.html#ResourceVersioning" target="_top">online documentation</a> for
+more information.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--generator"></a><h3>The <code class="literal">"generator"</code> property</h3>
+<pre class="programlisting">  "generator"                <a href="GDataGenerator.html">GDataGenerator</a>*       : Read</pre>
+<p>
+Details of the software used to generate the feed.
+</p>
+<p>
+API reference: <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_generator" target="_top">
+atom:generator</a></p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--id"></a><h3>The <code class="literal">"id"</code> property</h3>
+<pre class="programlisting">  "id"                       gchar*                : Read</pre>
+<p>
+The unique and permanent URN ID for the feed.
+</p>
+<p>
+API reference: <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_id" target="_top">atom:id</a></p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--items-per-page"></a><h3>The <code class="literal">"items-per-page"</code> property</h3>
+<pre class="programlisting">  "items-per-page"           guint                 : Read</pre>
+<p>
+The number of items per results page feed.
+</p>
+<p>
+API reference: <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_openSearch:itemsPerPage" target="_top">
+openSearch:itemsPerPage</a></p>
+<p>Allowed values: &lt;= G_MAXINT</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--logo"></a><h3>The <code class="literal">"logo"</code> property</h3>
+<pre class="programlisting">  "logo"                     gchar*                : Read</pre>
+<p>
+The URI of a logo for the feed.
+</p>
+<p>
+API reference: <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_logo" target="_top">atom:logo</a></p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--start-index"></a><h3>The <code class="literal">"start-index"</code> property</h3>
+<pre class="programlisting">  "start-index"              guint                 : Read</pre>
+<p>
+The one-based index of the first item in the results feed.
+</p>
+<p>
+This should <span class="emphasis"><em>not</em></span> be used manually for pagination. Instead, use a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> and call its <a href="GDataQuery.html#gdata-query-next-page"><code class="function">gdata_query_next_page()</code></a>
+or <a href="GDataQuery.html#gdata-query-previous-page"><code class="function">gdata_query_previous_page()</code></a> functions before making the query to the service.
+</p>
+<p>
+API reference: <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_openSearch:startIndex" target="_top">
+openSearch:startIndex</a></p>
+<p>Allowed values: [1,G_MAXINT]</p>
+<p>Default value: 1</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--subtitle"></a><h3>The <code class="literal">"subtitle"</code> property</h3>
+<pre class="programlisting">  "subtitle"                 gchar*                : Read</pre>
+<p>
+The subtitle of the feed.
+</p>
+<p>
+API reference: <a class="ulink" href="http://atomenabled.org/developers/syndication/" target="_top">atom:subtitle</a></p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--title"></a><h3>The <code class="literal">"title"</code> property</h3>
+<pre class="programlisting">  "title"                    gchar*                : Read</pre>
+<p>
+The title of the feed.
+</p>
+<p>
+API reference: <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_title" target="_top">atom:title</a></p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--total-results"></a><h3>The <code class="literal">"total-results"</code> property</h3>
+<pre class="programlisting">  "total-results"            guint                 : Read</pre>
+<p>
+The number of items in the result set for the feed, including those on other pages.
+</p>
+<p>
+This should <span class="emphasis"><em>not</em></span> be used manually for pagination. Instead, use a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> and call its <a href="GDataQuery.html#gdata-query-next-page"><code class="function">gdata_query_next_page()</code></a>
+or <a href="GDataQuery.html#gdata-query-previous-page"><code class="function">gdata_query_previous_page()</code></a> functions before making the query to the service.
+</p>
+<p>
+API reference: <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_openSearch:totalResults" target="_top">
+openSearch:totalResults</a></p>
+<p>Allowed values: &lt;= 1000000</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataFeed--updated"></a><h3>The <code class="literal">"updated"</code> property</h3>
+<pre class="programlisting">  "updated"                  GTimeVal*             : Read</pre>
+<p>
+The time the feed was last updated.
+</p>
+<p>
+API reference: <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_updated" target="_top">
+atom:updated</a></p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

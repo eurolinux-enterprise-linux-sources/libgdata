@@ -1,0 +1,88 @@
+<!-- ##### SECTION Title ##### -->
+GDataAccessHandler
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataAccessHandler ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GDataAccessHandlerIface ##### -->
+<para>
+
+</para>
+
+@parent: 
+@is_owner_rule: 
+
+<!-- ##### FUNCTION gdata_access_handler_get_rules ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_access_handler_insert_rule ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@rule: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_access_handler_update_rule ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@rule: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_access_handler_delete_rule ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@rule: 
+@cancellable: 
+@error: 
+@Returns: 
+
+

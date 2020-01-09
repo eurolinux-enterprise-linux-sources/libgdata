@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Object Hierarchy</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="pt01.html" title="Part I. GData Overview">
+<link rel="prev" href="gdata-overview.html" title="GData Overview">
+<link rel="next" href="pt02.html" title="Part II. Core API">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="gdata-overview.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="pt01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="pt02.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="id477222"></a>Object Hierarchy</h2></div></div></div>
+<pre class="screen">
+    GObject
+        <a href="GDataParsable.html">GDataParsable</a>
+            <a href="GDataEntry.html">GDataEntry</a>
+                <a href="GDataAccessRule.html">GDataAccessRule</a>
+                <a href="GDataCalendarCalendar.html">GDataCalendarCalendar</a>
+                <a href="GDataCalendarEvent.html">GDataCalendarEvent</a>
+                <a href="GDataContactsContact.html">GDataContactsContact</a>
+                <a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a>
+                    <a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a>
+                    <a href="GDataDocumentsPresentation.html">GDataDocumentsPresentation</a>
+                    <a href="GDataDocumentsSpreadsheet.html">GDataDocumentsSpreadsheet</a>
+                    <a href="GDataDocumentsText.html">GDataDocumentsText</a>
+                <a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a>
+                <a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a>
+                <a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a>
+            <a href="GDataAuthor.html">GDataAuthor</a>
+            <a href="GDataFeed.html">GDataFeed</a>
+                <a href="GDataCalendarFeed.html">GDataCalendarFeed</a>
+                <a href="GDataDocumentsFeed.html">GDataDocumentsFeed</a>
+            <a href="GDataCategory.html">GDataCategory</a>
+            <a href="GDataGDEmailAddress.html">GDataGDEmailAddress</a>
+            <a href="GDataGDIMAddress.html">GDataGDIMAddress</a>
+            GDataGDName
+            <a href="GDataGDOrganization.html">GDataGDOrganization</a>
+            <a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a>
+            <a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a>
+            <a href="GDataGDReminder.html">GDataGDReminder</a>
+            <a href="GDataGDWhen.html">GDataGDWhen</a>
+            <a href="GDataGDWhere.html">GDataGDWhere</a>
+            <a href="GDataGDWho.html">GDataGDWho</a>
+            <a href="GDataGenerator.html">GDataGenerator</a>
+            <a href="GDataLink.html">GDataLink</a>
+            <a href="GDataMediaCategory.html">GDataMediaCategory</a>
+            <a href="GDataMediaContent.html">GDataMediaContent</a>
+                <a href="GDataYouTubeContent.html">GDataYouTubeContent</a>
+            <a href="GDataMediaCredit.html">GDataMediaCredit</a>
+                <a href="GDataYouTubeCredit.html">GDataYouTubeCredit</a>
+            <a href="GDataMediaThumbnail.html">GDataMediaThumbnail</a>
+            <a href="GDataYouTubeState.html">GDataYouTubeState</a>
+        <a href="GDataQuery.html">GDataQuery</a>
+            <a href="GDataCalendarQuery.html">GDataCalendarQuery</a>
+            <a href="GDataContactsQuery.html">GDataContactsQuery</a>
+            <a href="GDataDocumentsQuery.html">GDataDocumentsQuery</a>
+            <a href="GDataPicasaWebQuery.html">GDataPicasaWebQuery</a>
+            <a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a>
+        <a href="GDataService.html">GDataService</a>
+            <a href="GDataCalendarService.html">GDataCalendarService</a>
+            <a href="GDataContactsService.html">GDataContactsService</a>
+            <a href="GDataDocumentsService.html">GDataDocumentsService</a>
+            <a href="GDataPicasaWebService.html">GDataPicasaWebService</a>
+            <a href="GDataYouTubeService.html">GDataYouTubeService</a>
+        GInputStream
+            <a href="GDataDownloadStream.html">GDataDownloadStream</a>
+        GOutputStream
+            <a href="GDataUploadStream.html">GDataUploadStream</a>
+    GInterface
+        <a href="GDataAccessHandler.html">GDataAccessHandler</a>
+</pre>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

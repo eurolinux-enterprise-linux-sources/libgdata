@@ -1,0 +1,101 @@
+<!-- ##### SECTION Title ##### -->
+GDataPicasaWebService
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataPicasaWebService ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GDataPicasaWebServiceClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_picasaweb_service_new ##### -->
+<para>
+
+</para>
+
+@client_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_service_query_all_albums ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@username: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_service_query_all_albums_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@username: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_service_query_files ##### -->
+<para>
+
+</para>
+
+@self: 
+@album: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_service_upload_file ##### -->
+<para>
+
+</para>
+
+@self: 
+@album: 
+@file_entry: 
+@file_data: 
+@cancellable: 
+@error: 
+@Returns: 
+
+

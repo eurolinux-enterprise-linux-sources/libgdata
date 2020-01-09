@@ -1,0 +1,85 @@
+<!-- ##### SECTION Title ##### -->
+GDataGenerator
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataGenerator ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataGenerator:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGenerator:uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGenerator:version ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataGeneratorClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_generator_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_generator_get_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_generator_get_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_generator_get_version ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

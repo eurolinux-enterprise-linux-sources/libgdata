@@ -1,0 +1,1327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataYouTubeVideo</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch08.html" title="YouTube API">
+<link rel="prev" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery">
+<link rel="next" href="ch09.html" title="Google Calendar API">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataYouTubeQuery.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch08.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="ch09.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataYouTubeVideo.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataYouTubeVideo.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataYouTubeVideo.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataYouTubeVideo.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataYouTubeVideo"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataYouTubeVideo.top_of_page"></a>GDataYouTubeVideo</span></h2>
+<p>GDataYouTubeVideo — GData YouTube video object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeVideo.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataYouTubeVideo.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/services/youtube/gdata-youtube-video.h&gt;
+
+                    <a href="GDataYouTubeVideo.html#GDataYouTubeVideo-struct">GDataYouTubeVideo</a>;
+                    <a href="GDataYouTubeVideo.html#GDataYouTubeVideoClass">GDataYouTubeVideoClass</a>;
+enum                <a href="GDataYouTubeVideo.html#GDataYouTubeAspectRatio">GDataYouTubeAspectRatio</a>;
+<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> * <a href="GDataYouTubeVideo.html#gdata-youtube-video-new">gdata_youtube_video_new</a>             (const gchar *id);
+<a href="GDataYouTubeContent.html">GDataYouTubeContent</a> * <a href="GDataYouTubeVideo.html#gdata-youtube-video-look-up-content">gdata_youtube_video_look_up_content</a>
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *type);
+GList *             <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-thumbnails">gdata_youtube_video_get_thumbnails</a>  (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+<a href="GDataMediaCategory.html">GDataMediaCategory</a> * <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-category">gdata_youtube_video_get_category</a>   (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-category">gdata_youtube_video_set_category</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         <a href="GDataMediaCategory.html">GDataMediaCategory</a> *category);
+<a href="GDataYouTubeCredit.html">GDataYouTubeCredit</a> * <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-credit">gdata_youtube_video_get_credit</a>     (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+const gchar *       <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-description">gdata_youtube_video_get_description</a> (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-description">gdata_youtube_video_set_description</a> (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *description);
+guint               <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-duration">gdata_youtube_video_get_duration</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+const gchar *       <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-keywords">gdata_youtube_video_get_keywords</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-keywords">gdata_youtube_video_set_keywords</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *keywords);
+const gchar *       <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-location">gdata_youtube_video_get_location</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-location">gdata_youtube_video_set_location</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *location);
+guint               <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-view-count">gdata_youtube_video_get_view_count</a>  (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+guint               <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-favorite-count">gdata_youtube_video_get_favorite_count</a>
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+gboolean            <a href="GDataYouTubeVideo.html#gdata-youtube-video-is-restricted-in-country">gdata_youtube_video_is_restricted_in_country</a>
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *country);
+gboolean            <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-no-embed">gdata_youtube_video_get_no_embed</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-no-embed">gdata_youtube_video_set_no_embed</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         gboolean no_embed);
+const gchar *       <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-player-uri">gdata_youtube_video_get_player_uri</a>  (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+gboolean            <a href="GDataYouTubeVideo.html#gdata-youtube-video-is-private">gdata_youtube_video_is_private</a>      (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-is-private">gdata_youtube_video_set_is_private</a>  (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         gboolean is_private);
+gboolean            <a href="GDataYouTubeVideo.html#gdata-youtube-video-is-draft">gdata_youtube_video_is_draft</a>        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-is-draft">gdata_youtube_video_set_is_draft</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         gboolean is_draft);
+<a href="GDataYouTubeState.html">GDataYouTubeState</a> * <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-state">gdata_youtube_video_get_state</a>       (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-rating">gdata_youtube_video_get_rating</a>      (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         guint *min,
+                                                         guint *max,
+                                                         guint *count,
+                                                         gdouble *average);
+const gchar *       <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-title">gdata_youtube_video_get_title</a>       (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-title">gdata_youtube_video_set_title</a>       (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *title);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-uploaded">gdata_youtube_video_get_uploaded</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         GTimeVal *uploaded);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-recorded">gdata_youtube_video_get_recorded</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         GTimeVal *recorded);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-recorded">gdata_youtube_video_set_recorded</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         GTimeVal *recorded);
+const gchar *       <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-video-id">gdata_youtube_video_get_video_id</a>    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+gchar *             <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-video-id-from-uri">gdata_youtube_video_get_video_id_from_uri</a>
+                                                        (const gchar *video_uri);
+<a href="GDataYouTubeVideo.html#GDataYouTubeAspectRatio">GDataYouTubeAspectRatio</a>  <a href="GDataYouTubeVideo.html#gdata-youtube-video-get-aspect-ratio">gdata_youtube_video_get_aspect_ratio</a>
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);
+void                <a href="GDataYouTubeVideo.html#gdata-youtube-video-set-aspect-ratio">gdata_youtube_video_set_aspect_ratio</a>
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         <a href="GDataYouTubeVideo.html#GDataYouTubeAspectRatio">GDataYouTubeAspectRatio</a> aspect_ratio);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeVideo.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----<a href="GDataEntry.html">GDataEntry</a>
+               +----GDataYouTubeVideo
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeVideo.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--aspect-ratio">aspect-ratio</a>"             <a href="GDataYouTubeVideo.html#GDataYouTubeAspectRatio">GDataYouTubeAspectRatio</a>  : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--average-rating">average-rating</a>"           gdouble               : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--category">category</a>"                 <a href="GDataMediaCategory.html">GDataMediaCategory</a>*   : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--credit">credit</a>"                   <a href="GDataYouTubeCredit.html">GDataYouTubeCredit</a>*   : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--description">description</a>"              gchar*                : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--duration">duration</a>"                 guint                 : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--favorite-count">favorite-count</a>"           guint                 : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--is-draft">is-draft</a>"                 gboolean              : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--is-private">is-private</a>"               gboolean              : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--keywords">keywords</a>"                 gchar*                : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--location">location</a>"                 gchar*                : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--max-rating">max-rating</a>"               guint                 : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--min-rating">min-rating</a>"               guint                 : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--no-embed">no-embed</a>"                 gboolean              : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--player-uri">player-uri</a>"               gchar*                : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--rating-count">rating-count</a>"             guint                 : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--recorded">recorded</a>"                 GTimeVal*             : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--state">state</a>"                    <a href="GDataYouTubeState.html">GDataYouTubeState</a>*    : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--title">title</a>"                    gchar*                : Read / Write
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--uploaded">uploaded</a>"                 GTimeVal*             : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--video-id">video-id</a>"                 gchar*                : Read
+  "<a href="GDataYouTubeVideo.html#GDataYouTubeVideo--view-count">view-count</a>"               guint                 : Read
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeVideo.description"></a><h2>Description</h2>
+<p>
+<a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a> is a subclass of <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> to represent a single video on YouTube, either when uploading or querying.
+</p>
+<p>
+For more details of YouTube's GData API, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html" target="_top">
+online documentation</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeVideo.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo-struct"></a><h3>GDataYouTubeVideo</h3>
+<pre class="programlisting">typedef struct _GDataYouTubeVideo GDataYouTubeVideo;</pre>
+<p>
+All the fields in the <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideoClass"></a><h3>GDataYouTubeVideoClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataYouTubeVideoClass;
+</pre>
+<p>
+All the fields in the <a href="GDataYouTubeVideo.html#GDataYouTubeVideoClass"><span class="type">GDataYouTubeVideoClass</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeAspectRatio"></a><h3>enum GDataYouTubeAspectRatio</h3>
+<pre class="programlisting">typedef enum {
+	GDATA_YOUTUBE_ASPECT_RATIO_UNKNOWN = 0,
+	GDATA_YOUTUBE_ASPECT_RATIO_WIDESCREEN
+} GDataYouTubeAspectRatio;
+</pre>
+<p>
+The aspect ratio of a video. See the
+<a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:aspectratio" target="_top">online documentation</a>
+for more information.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-ASPECT-RATIO-UNKNOWN:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_ASPECT_RATIO_UNKNOWN</code></span></p></td>
+<td> unknown aspect ratio
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-ASPECT-RATIO-WIDESCREEN:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_ASPECT_RATIO_WIDESCREEN</code></span></p></td>
+<td> widescreen (16:9) video
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-new"></a><h3>gdata_youtube_video_new ()</h3>
+<pre class="programlisting"><a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> * gdata_youtube_video_new             (const gchar *id);</pre>
+<p>
+Creates a new <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a> with the given ID and default properties.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the video's ID, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>; unref with <code class="function">g_object_unref()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-look-up-content"></a><h3>gdata_youtube_video_look_up_content ()</h3>
+<pre class="programlisting"><a href="GDataYouTubeContent.html">GDataYouTubeContent</a> * gdata_youtube_video_look_up_content
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *type);</pre>
+<p>
+Looks up a <a href="GDataYouTubeContent.html"><span class="type">GDataYouTubeContent</span></a> from the video with the given MIME type. The video's list of contents is
+a list of URIs to various formats of the video itself, such as its SWF URI or RTSP stream.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td> the MIME type of the content desired
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataYouTubeContent.html"><span class="type">GDataYouTubeContent</span></a> matching <em class="parameter"><code>type</code></em>, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-thumbnails"></a><h3>gdata_youtube_video_get_thumbnails ()</h3>
+<pre class="programlisting">GList *             gdata_youtube_video_get_thumbnails  (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets a list of the thumbnails available for the video.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataMediaThumbnail.html"><span class="type">GDataMediaThumbnail</span></a>s, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-category"></a><h3>gdata_youtube_video_get_category ()</h3>
+<pre class="programlisting"><a href="GDataMediaCategory.html">GDataMediaCategory</a> * gdata_youtube_video_get_category   (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--category"><span class="type">"category"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a> giving the video's single and mandatory category
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-category"></a><h3>gdata_youtube_video_set_category ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_category    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         <a href="GDataMediaCategory.html">GDataMediaCategory</a> *category);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--category"><span class="type">"category"</span></a> property to the new category, <em class="parameter"><code>category</code></em>, and increments its reference count.
+</p>
+<p>
+<em class="parameter"><code>category</code></em> must not be <code class="literal">NULL</code>. For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:category" target="_top">online documentation</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>category</code></em> :</span></p></td>
+<td> a new <a href="GDataMediaCategory.html"><span class="type">GDataMediaCategory</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-credit"></a><h3>gdata_youtube_video_get_credit ()</h3>
+<pre class="programlisting"><a href="GDataYouTubeCredit.html">GDataYouTubeCredit</a> * gdata_youtube_video_get_credit     (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--credit"><span class="type">"credit"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataMediaCredit.html"><span class="type">GDataMediaCredit</span></a> giving information on whom to credit for the video, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-description"></a><h3>gdata_youtube_video_get_description ()</h3>
+<pre class="programlisting">const gchar *       gdata_youtube_video_get_description (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--description"><span class="type">"description"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the video's long text description, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-description"></a><h3>gdata_youtube_video_set_description ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_description (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *description);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--description"><span class="type">"description"</span></a> property to the new description, <em class="parameter"><code>description</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>description</code></em> to <code class="literal">NULL</code> to unset the video's description.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>description</code></em> :</span></p></td>
+<td> the video's new description
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-duration"></a><h3>gdata_youtube_video_get_duration ()</h3>
+<pre class="programlisting">guint               gdata_youtube_video_get_duration    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--duration"><span class="type">"duration"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the video duration in seconds, or <code class="literal">0</code> if unknown
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-keywords"></a><h3>gdata_youtube_video_get_keywords ()</h3>
+<pre class="programlisting">const gchar *       gdata_youtube_video_get_keywords    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--keywords"><span class="type">"keywords"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a comma-separated list of words associated with the video
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-keywords"></a><h3>gdata_youtube_video_set_keywords ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_keywords    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *keywords);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--keywords"><span class="type">"keywords"</span></a> property to the new keyword list, <em class="parameter"><code>keywords</code></em>.
+</p>
+<p>
+<em class="parameter"><code>keywords</code></em> must not be <code class="literal">NULL</code>. For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:keywords" target="_top">online documentation</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>keywords</code></em> :</span></p></td>
+<td> a new comma-separated list of keywords
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-location"></a><h3>gdata_youtube_video_get_location ()</h3>
+<pre class="programlisting">const gchar *       gdata_youtube_video_get_location    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--location"><span class="type">"location"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a string describing the video's location, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-location"></a><h3>gdata_youtube_video_set_location ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_location    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *location);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--location"><span class="type">"location"</span></a> property to the new location string, <em class="parameter"><code>location</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>location</code></em> to <code class="literal">NULL</code> to unset the property in the video.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>location</code></em> :</span></p></td>
+<td> a new location, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-view-count"></a><h3>gdata_youtube_video_get_view_count ()</h3>
+<pre class="programlisting">guint               gdata_youtube_video_get_view_count  (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--view-count"><span class="type">"view-count"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of times the video has been viewed
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-favorite-count"></a><h3>gdata_youtube_video_get_favorite_count ()</h3>
+<pre class="programlisting">guint               gdata_youtube_video_get_favorite_count
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--favorite-count"><span class="type">"favorite-count"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of users who have added the video to their favorites list
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-is-restricted-in-country"></a><h3>gdata_youtube_video_is_restricted_in_country ()</h3>
+<pre class="programlisting">gboolean            gdata_youtube_video_is_restricted_in_country
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *country);</pre>
+<p>
+Checks whether viewing of the video is restricted in <em class="parameter"><code>country</code></em>, either by its content rating, or by the request of the producer.
+The return value from this function is purely informational, and no obligation is assumed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>country</code></em> :</span></p></td>
+<td> an ISO 3166 two-letter country code to check
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the video is restricted in <em class="parameter"><code>country</code></em>, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-no-embed"></a><h3>gdata_youtube_video_get_no_embed ()</h3>
+<pre class="programlisting">gboolean            gdata_youtube_video_get_no_embed    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--no-embed"><span class="type">"no-embed"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the video cannot be embedded on web pages, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-no-embed"></a><h3>gdata_youtube_video_set_no_embed ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_no_embed    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         gboolean no_embed);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--no-embed"><span class="type">"no-embed"</span></a> property to <em class="parameter"><code>no_embed</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>no_embed</code></em> :</span></p></td>
+<td> whether the video can be embedded 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-player-uri"></a><h3>gdata_youtube_video_get_player_uri ()</h3>
+<pre class="programlisting">const gchar *       gdata_youtube_video_get_player_uri  (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--player-uri"><span class="type">"player-uri"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a URI where the video is playable in a web browser, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-is-private"></a><h3>gdata_youtube_video_is_private ()</h3>
+<pre class="programlisting">gboolean            gdata_youtube_video_is_private      (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--is-private"><span class="type">"is-private"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the video is private, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-is-private"></a><h3>gdata_youtube_video_set_is_private ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_is_private  (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         gboolean is_private);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--is-private"><span class="type">"is-private"</span></a> property to decide whether the video is publicly viewable.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_private</code></em> :</span></p></td>
+<td> whether the video is private
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-is-draft"></a><h3>gdata_youtube_video_is_draft ()</h3>
+<pre class="programlisting">gboolean            gdata_youtube_video_is_draft        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--is-draft"><span class="type">"is-draft"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the video is a draft, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-is-draft"></a><h3>gdata_youtube_video_set_is_draft ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_is_draft    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         gboolean is_draft);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--is-draft"><span class="type">"is-draft"</span></a> property to decide whether the video is a draft.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_draft</code></em> :</span></p></td>
+<td> whether the video is a draft
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-state"></a><h3>gdata_youtube_video_get_state ()</h3>
+<pre class="programlisting"><a href="GDataYouTubeState.html">GDataYouTubeState</a> * gdata_youtube_video_get_state       (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--state"><span class="type">"state"</span></a> property.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:state" target="_top">online documentation</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataYouTubeState.html"><span class="type">GDataYouTubeState</span></a> showing the state of the video, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-rating"></a><h3>gdata_youtube_video_get_rating ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_get_rating      (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         guint *min,
+                                                         guint *max,
+                                                         guint *count,
+                                                         gdouble *average);</pre>
+<p>
+Gets various properties of the ratings on the video.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>min</code></em> :</span></p></td>
+<td> return location for the minimum rating value, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max</code></em> :</span></p></td>
+<td> return location for the maximum rating value, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>count</code></em> :</span></p></td>
+<td> return location for the number of ratings, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>average</code></em> :</span></p></td>
+<td> return location for the average rating value, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-title"></a><h3>gdata_youtube_video_get_title ()</h3>
+<pre class="programlisting">const gchar *       gdata_youtube_video_get_title       (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--title"><span class="type">"title"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the video's title, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-title"></a><h3>gdata_youtube_video_set_title ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_title       (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         const gchar *title);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--title"><span class="type">"title"</span></a> property to the new title, <em class="parameter"><code>title</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>title</code></em> to <code class="literal">NULL</code> to unset the video's title.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>title</code></em> :</span></p></td>
+<td> the new video title
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-uploaded"></a><h3>gdata_youtube_video_get_uploaded ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_get_uploaded    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         GTimeVal *uploaded);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--uploaded"><span class="type">"uploaded"</span></a> property and puts it in <em class="parameter"><code>uploaded</code></em>. If the property is unset,
+both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uploaded</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-recorded"></a><h3>gdata_youtube_video_get_recorded ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_get_recorded    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         GTimeVal *recorded);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--recorded"><span class="type">"recorded"</span></a> property and puts it in <em class="parameter"><code>recorded</code></em>. If the property is unset,
+both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>recorded</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-recorded"></a><h3>gdata_youtube_video_set_recorded ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_recorded    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         GTimeVal *recorded);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--recorded"><span class="type">"recorded"</span></a> property to the new recorded time, <em class="parameter"><code>recorded</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>recorded</code></em> to <code class="literal">NULL</code> to unset the video's recorded time.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>recorded</code></em> :</span></p></td>
+<td> the video's new recorded time
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-video-id"></a><h3>gdata_youtube_video_get_video_id ()</h3>
+<pre class="programlisting">const gchar *       gdata_youtube_video_get_video_id    (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--video-id"><span class="type">"video-id"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the video's unique and permanent ID
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-video-id-from-uri"></a><h3>gdata_youtube_video_get_video_id_from_uri ()</h3>
+<pre class="programlisting">gchar *             gdata_youtube_video_get_video_id_from_uri
+                                                        (const gchar *video_uri);</pre>
+<p>
+Extracts a video ID from a YouTube video player URI. The video ID is in the same form as returned by
+<a href="GDataYouTubeVideo.html#gdata-youtube-video-get-video-id"><code class="function">gdata_youtube_video_get_video_id()</code></a>, and the <em class="parameter"><code>video_uri</code></em> should be in the same form as returned by
+<a href="GDataYouTubeVideo.html#gdata-youtube-video-get-player-uri"><code class="function">gdata_youtube_video_get_player_uri()</code></a>.
+</p>
+<p>
+The function will validate whether the URI actually points to a hostname containing <code class="literal">youtube</code>
+(e.g. <code class="literal">youtube.com</code>), and will return <code class="literal">NULL</code> if it doesn't.
+</p>
+<p>
+For example:
+</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting">video_id = gdata_youtube_video_get_video_id_from_uri (<span class="number">&quot;<a href="http://www.youtube.com/watch?v=BH_vwsyCrTc&amp;feature=featured">http://www.youtube.com/watch?v=BH_vwsyCrTc&amp;feature=featured</a>&quot;</span>);
+g_message (<span class="number">&quot;Video ID: </span><span class="symbol">%s</span><span class="number">&quot;</span>, video_id); /\* Should print: BH_vwsyCrTc *\/
+g_free (video_id);</pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>video_uri</code></em> :</span></p></td>
+<td> a YouTube video player URI
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the video ID, or <code class="literal">NULL</code>; free with <code class="function">g_free()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-get-aspect-ratio"></a><h3>gdata_youtube_video_get_aspect_ratio ()</h3>
+<pre class="programlisting"><a href="GDataYouTubeVideo.html#GDataYouTubeAspectRatio">GDataYouTubeAspectRatio</a>  gdata_youtube_video_get_aspect_ratio
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--aspect-ratio"><span class="type">"aspect-ratio"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the aspect ratio property
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-video-set-aspect-ratio"></a><h3>gdata_youtube_video_set_aspect_ratio ()</h3>
+<pre class="programlisting">void                gdata_youtube_video_set_aspect_ratio
+                                                        (<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *self,
+                                                         <a href="GDataYouTubeVideo.html#GDataYouTubeAspectRatio">GDataYouTubeAspectRatio</a> aspect_ratio);</pre>
+<p>
+Sets the <a href="GDataYouTubeVideo.html#GDataYouTubeVideo--aspect-ratio"><span class="type">"aspect-ratio"</span></a> property to specify the video's aspect ratio.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>aspect_ratio</code></em> :</span></p></td>
+<td> the aspect ratio property
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeVideo.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--aspect-ratio"></a><h3>The <code class="literal">"aspect-ratio"</code> property</h3>
+<pre class="programlisting">  "aspect-ratio"             <a href="GDataYouTubeVideo.html#GDataYouTubeAspectRatio">GDataYouTubeAspectRatio</a>  : Read / Write</pre>
+<p>
+The aspect ratio of the video.
+</p>
+<p>
+For more information see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:aspectratio" target="_top">online documentation</a>.</p>
+<p>Default value: GDATA_YOUTUBE_ASPECT_RATIO_UNKNOWN</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--average-rating"></a><h3>The <code class="literal">"average-rating"</code> property</h3>
+<pre class="programlisting">  "average-rating"           gdouble               : Read</pre>
+<p>
+The average rating of the video, over all the ratings it's received.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdRating" target="_top">online documentation</a>.</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--category"></a><h3>The <code class="literal">"category"</code> property</h3>
+<pre class="programlisting">  "category"                 <a href="GDataMediaCategory.html">GDataMediaCategory</a>*   : Read / Write</pre>
+<p>
+Specifies a genre or developer tag that describes the video.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:category" target="_top">online documentation</a>.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--credit"></a><h3>The <code class="literal">"credit"</code> property</h3>
+<pre class="programlisting">  "credit"                   <a href="GDataYouTubeCredit.html">GDataYouTubeCredit</a>*   : Read</pre>
+<p>
+Identifies the owner of the video.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:credit" target="_top">online documentation</a>.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--description"></a><h3>The <code class="literal">"description"</code> property</h3>
+<pre class="programlisting">  "description"              gchar*                : Read / Write</pre>
+<p>
+A summary or description of the video.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:description" target="_top">online documentation</a>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--duration"></a><h3>The <code class="literal">"duration"</code> property</h3>
+<pre class="programlisting">  "duration"                 guint                 : Read</pre>
+<p>
+The duration of the video in seconds.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:duration" target="_top">online documentation</a>.</p>
+<p>Allowed values: &lt;= G_MAXINT</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--favorite-count"></a><h3>The <code class="literal">"favorite-count"</code> property</h3>
+<pre class="programlisting">  "favorite-count"           guint                 : Read</pre>
+<p>
+The number of YouTube users who have added the video to their list of favorite videos.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:statistics" target="_top">online documentation</a>.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--is-draft"></a><h3>The <code class="literal">"is-draft"</code> property</h3>
+<pre class="programlisting">  "is-draft"                 gboolean              : Read / Write</pre>
+<p>
+Indicates whether the video is in draft, or unpublished, status.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_app:draft" target="_top">online documentation</a>.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--is-private"></a><h3>The <code class="literal">"is-private"</code> property</h3>
+<pre class="programlisting">  "is-private"               gboolean              : Read / Write</pre>
+<p>Indicates whether the video is private.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--keywords"></a><h3>The <code class="literal">"keywords"</code> property</h3>
+<pre class="programlisting">  "keywords"                 gchar*                : Read / Write</pre>
+<p>
+A comma-separated list of words associated with the video.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:keywords" target="_top">online documentation</a>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--location"></a><h3>The <code class="literal">"location"</code> property</h3>
+<pre class="programlisting">  "location"                 gchar*                : Read / Write</pre>
+<p>
+Descriptive text about the location where the video was taken.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:location" target="_top">online documentation</a>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--max-rating"></a><h3>The <code class="literal">"max-rating"</code> property</h3>
+<pre class="programlisting">  "max-rating"               guint                 : Read</pre>
+<p>
+The maximum allowed rating for the video.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdRating" target="_top">online documentation</a>.</p>
+<p>Default value: 5</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--min-rating"></a><h3>The <code class="literal">"min-rating"</code> property</h3>
+<pre class="programlisting">  "min-rating"               guint                 : Read</pre>
+<p>
+The minimum allowed rating for the video.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdRating" target="_top">online documentation</a>.</p>
+<p>Default value: 1</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--no-embed"></a><h3>The <code class="literal">"no-embed"</code> property</h3>
+<pre class="programlisting">  "no-embed"                 gboolean              : Read / Write</pre>
+<p>
+Specifies whether the video may not be embedded on other websites.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:noembed" target="_top">online documentation</a>.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--player-uri"></a><h3>The <code class="literal">"player-uri"</code> property</h3>
+<pre class="programlisting">  "player-uri"               gchar*                : Read</pre>
+<p>
+Specifies a URI where the full-length video is available through a media player that runs inside a web browser
+(i.e. the video's page on YouTube).
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:player" target="_top">online documentation</a>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--rating-count"></a><h3>The <code class="literal">"rating-count"</code> property</h3>
+<pre class="programlisting">  "rating-count"             guint                 : Read</pre>
+<p>
+The number of times the video has been rated.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdRating" target="_top">online documentation</a>.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--recorded"></a><h3>The <code class="literal">"recorded"</code> property</h3>
+<pre class="programlisting">  "recorded"                 GTimeVal*             : Read / Write</pre>
+<p>
+Specifies the time the video was originally recorded.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:recorded" target="_top">online documentation</a>.</p>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--state"></a><h3>The <code class="literal">"state"</code> property</h3>
+<pre class="programlisting">  "state"                    <a href="GDataYouTubeState.html">GDataYouTubeState</a>*    : Read</pre>
+<p>
+Information describing the state of the video. If this is non-<code class="literal">NULL</code>, the video is not playable.
+It points to a <a href="GDataYouTubeState.html"><span class="type">GDataYouTubeState</span></a>.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:state" target="_top">online documentation</a>.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--title"></a><h3>The <code class="literal">"title"</code> property</h3>
+<pre class="programlisting">  "title"                    gchar*                : Read / Write</pre>
+<p>
+Identifies the title of the video. This field has a maximum length of 60 characters or 100 bytes, whichever is reached first.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:title" target="_top">online documentation</a>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--uploaded"></a><h3>The <code class="literal">"uploaded"</code> property</h3>
+<pre class="programlisting">  "uploaded"                 GTimeVal*             : Read</pre>
+<p>
+Specifies the time the video was originally uploaded to YouTube.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:uploaded" target="_top">online documentation</a>.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--video-id"></a><h3>The <code class="literal">"video-id"</code> property</h3>
+<pre class="programlisting">  "video-id"                 gchar*                : Read</pre>
+<p>
+Specifies a unique ID which YouTube uses to identify the video. For example: <code class="literal">qz8EfkS4KK0</code>.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:videoid" target="_top">online documentation</a>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeVideo--view-count"></a><h3>The <code class="literal">"view-count"</code> property</h3>
+<pre class="programlisting">  "view-count"               guint                 : Read</pre>
+<p>
+The number of times the video has been viewed.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_yt:statistics" target="_top">online documentation</a>.</p>
+<p>Default value: 0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

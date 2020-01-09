@@ -1,0 +1,171 @@
+<!-- ##### SECTION Title ##### -->
+GDataGDIMAddress
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataGDIMAddress ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataGDIMAddress:address ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDIMAddress:is-primary ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDIMAddress:label ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDIMAddress:protocol ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDIMAddress:relation-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataGDIMAddressClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_new ##### -->
+<para>
+
+</para>
+
+@address: 
+@protocol: 
+@relation_type: 
+@label: 
+@is_primary: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_get_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_set_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@address: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_get_protocol ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_set_protocol ##### -->
+<para>
+
+</para>
+
+@self: 
+@protocol: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_get_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_set_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@relation_type: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_get_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_set_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@label: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_is_primary ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_im_address_set_is_primary ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_primary: 
+
+

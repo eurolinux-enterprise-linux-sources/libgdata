@@ -1,0 +1,316 @@
+<!-- ##### SECTION Title ##### -->
+GDataYouTubeQuery
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataYouTubeQuery ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataYouTubeQuery:age ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:format ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:has-location ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:language ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:latitude ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:location-radius ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:longitude ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:order-by ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:restriction ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:safe-search ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:sort-order ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeQuery:uploader ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataYouTubeQueryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GDataYouTubeAge ##### -->
+<para>
+
+</para>
+
+@GDATA_YOUTUBE_AGE_ALL_TIME: 
+@GDATA_YOUTUBE_AGE_TODAY: 
+@GDATA_YOUTUBE_AGE_THIS_WEEK: 
+@GDATA_YOUTUBE_AGE_THIS_MONTH: 
+
+<!-- ##### ENUM GDataYouTubeFormat ##### -->
+<para>
+
+</para>
+
+@GDATA_YOUTUBE_FORMAT_UNKNOWN: 
+@GDATA_YOUTUBE_FORMAT_RTSP_H263_AMR: 
+@GDATA_YOUTUBE_FORMAT_HTTP_SWF: 
+@GDATA_YOUTUBE_FORMAT_RTSP_MPEG4_AAC: 
+
+<!-- ##### ENUM GDataYouTubeSafeSearch ##### -->
+<para>
+
+</para>
+
+@GDATA_YOUTUBE_SAFE_SEARCH_NONE: 
+@GDATA_YOUTUBE_SAFE_SEARCH_MODERATE: 
+@GDATA_YOUTUBE_SAFE_SEARCH_STRICT: 
+
+<!-- ##### ENUM GDataYouTubeSortOrder ##### -->
+<para>
+
+</para>
+
+@GDATA_YOUTUBE_SORT_NONE: 
+@GDATA_YOUTUBE_SORT_ASCENDING: 
+@GDATA_YOUTUBE_SORT_DESCENDING: 
+
+<!-- ##### ENUM GDataYouTubeUploader ##### -->
+<para>
+
+</para>
+
+@GDATA_YOUTUBE_UPLOADER_ALL: 
+@GDATA_YOUTUBE_UPLOADER_PARTNER: 
+
+<!-- ##### FUNCTION gdata_youtube_query_new ##### -->
+<para>
+
+</para>
+
+@q: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_get_age ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_set_age ##### -->
+<para>
+
+</para>
+
+@self: 
+@age: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_get_format ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_set_format ##### -->
+<para>
+
+</para>
+
+@self: 
+@format: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_get_language ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_set_language ##### -->
+<para>
+
+</para>
+
+@self: 
+@language: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_get_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@latitude: 
+@longitude: 
+@radius: 
+@has_location: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_set_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@latitude: 
+@longitude: 
+@radius: 
+@has_location: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_get_order_by ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_set_order_by ##### -->
+<para>
+
+</para>
+
+@self: 
+@order_by: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_get_restriction ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_set_restriction ##### -->
+<para>
+
+</para>
+
+@self: 
+@restriction: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_get_safe_search ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_set_safe_search ##### -->
+<para>
+
+</para>
+
+@self: 
+@safe_search: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_get_sort_order ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_set_sort_order ##### -->
+<para>
+
+</para>
+
+@self: 
+@sort_order: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_get_uploader ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_query_set_uploader ##### -->
+<para>
+
+</para>
+
+@self: 
+@uploader: 
+
+

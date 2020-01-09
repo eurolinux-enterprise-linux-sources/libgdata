@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataGDWhen</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch05.html" title="GData API">
+<link rel="prev" href="GDataGDReminder.html" title="GDataGDReminder">
+<link rel="next" href="GDataGDWhere.html" title="GDataGDWhere">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataGDReminder.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataGDWhere.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataGDWhen.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataGDWhen.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataGDWhen.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataGDWhen.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataGDWhen"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataGDWhen.top_of_page"></a>GDataGDWhen</span></h2>
+<p>GDataGDWhen — GData when element</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataGDWhen.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataGDWhen.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/gd/gdata-gd-when.h&gt;
+
+                    <a href="GDataGDWhen.html#GDataGDWhen-struct">GDataGDWhen</a>;
+                    <a href="GDataGDWhen.html#GDataGDWhenClass">GDataGDWhenClass</a>;
+<a href="GDataGDWhen.html">GDataGDWhen</a> *       <a href="GDataGDWhen.html#gdata-gd-when-new">gdata_gd_when_new</a>                   (GTimeVal *start_time,
+                                                         GTimeVal *end_time,
+                                                         gboolean is_date);
+gint                <a href="GDataGDWhen.html#gdata-gd-when-compare">gdata_gd_when_compare</a>               (const <a href="GDataGDWhen.html">GDataGDWhen</a> *a,
+                                                         const <a href="GDataGDWhen.html">GDataGDWhen</a> *b);
+void                <a href="GDataGDWhen.html#gdata-gd-when-get-start-time">gdata_gd_when_get_start_time</a>        (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         GTimeVal *start_time);
+void                <a href="GDataGDWhen.html#gdata-gd-when-set-start-time">gdata_gd_when_set_start_time</a>        (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         GTimeVal *start_time);
+void                <a href="GDataGDWhen.html#gdata-gd-when-get-end-time">gdata_gd_when_get_end_time</a>          (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         GTimeVal *end_time);
+void                <a href="GDataGDWhen.html#gdata-gd-when-set-end-time">gdata_gd_when_set_end_time</a>          (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         GTimeVal *end_time);
+gboolean            <a href="GDataGDWhen.html#gdata-gd-when-is-date">gdata_gd_when_is_date</a>               (<a href="GDataGDWhen.html">GDataGDWhen</a> *self);
+void                <a href="GDataGDWhen.html#gdata-gd-when-set-is-date">gdata_gd_when_set_is_date</a>           (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         gboolean is_date);
+const gchar *       <a href="GDataGDWhen.html#gdata-gd-when-get-value-string">gdata_gd_when_get_value_string</a>      (<a href="GDataGDWhen.html">GDataGDWhen</a> *self);
+void                <a href="GDataGDWhen.html#gdata-gd-when-set-value-string">gdata_gd_when_set_value_string</a>      (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         const gchar *value_string);
+GList *             <a href="GDataGDWhen.html#gdata-gd-when-get-reminders">gdata_gd_when_get_reminders</a>         (<a href="GDataGDWhen.html">GDataGDWhen</a> *self);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDWhen.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----GDataGDWhen
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDWhen.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataGDWhen.html#GDataGDWhen--end-time">end-time</a>"                 GTimeVal*             : Read / Write
+  "<a href="GDataGDWhen.html#GDataGDWhen--is-date">is-date</a>"                  gboolean              : Read / Write
+  "<a href="GDataGDWhen.html#GDataGDWhen--start-time">start-time</a>"               GTimeVal*             : Read / Write
+  "<a href="GDataGDWhen.html#GDataGDWhen--value-string">value-string</a>"             gchar*                : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDWhen.description"></a><h2>Description</h2>
+<p>
+<a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a> represents a "when" element from the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen" target="_top">GData specification</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDWhen.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataGDWhen-struct"></a><h3>GDataGDWhen</h3>
+<pre class="programlisting">typedef struct _GDataGDWhen GDataGDWhen;</pre>
+<p>
+All the fields in the <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDWhenClass"></a><h3>GDataGDWhenClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataGDWhenClass;
+</pre>
+<p>
+All the fields in the <a href="GDataGDWhen.html#GDataGDWhenClass"><span class="type">GDataGDWhenClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-new"></a><h3>gdata_gd_when_new ()</h3>
+<pre class="programlisting"><a href="GDataGDWhen.html">GDataGDWhen</a> *       gdata_gd_when_new                   (GTimeVal *start_time,
+                                                         GTimeVal *end_time,
+                                                         gboolean is_date);</pre>
+<p>
+Creates a new <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>. More information is available in the <a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen" target="_top">GData specification</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_time</code></em> :</span></p></td>
+<td> when the event starts or (for zero-duration events) when it occurs
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>end_time</code></em> :</span></p></td>
+<td> when the event ends, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_date</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if <em class="parameter"><code>start_time</code></em> and <em class="parameter"><code>end_time</code></em> specify dates rather than times, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-compare"></a><h3>gdata_gd_when_compare ()</h3>
+<pre class="programlisting">gint                gdata_gd_when_compare               (const <a href="GDataGDWhen.html">GDataGDWhen</a> *a,
+                                                         const <a href="GDataGDWhen.html">GDataGDWhen</a> *b);</pre>
+<p>
+Compares the two times in a <code class="function">strcmp()</code> fashion. <code class="literal">NULL</code> values are handled gracefully, with
+<code class="literal">0</code> returned if both <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are <code class="literal">NULL</code>, <code class="literal">-1</code> if <em class="parameter"><code>a</code></em> is <code class="literal">NULL</code> and <code class="literal">1</code> if <em class="parameter"><code>b</code></em> is <code class="literal">NULL</code>.
+</p>
+<p>
+The comparison of non-<code class="literal">NULL</code> values is done on the basis of the <em class="parameter"><code>start_time</code></em>, <em class="parameter"><code>end_time</code></em> and <em class="parameter"><code>is_date</code></em> properties of the <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>s.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td> another <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">0</code> if <em class="parameter"><code>a</code></em> equals <em class="parameter"><code>b</code></em>, <code class="literal">-1</code> or <code class="literal">1</code> as appropriate otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-get-start-time"></a><h3>gdata_gd_when_get_start_time ()</h3>
+<pre class="programlisting">void                gdata_gd_when_get_start_time        (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         GTimeVal *start_time);</pre>
+<p>
+Gets the <a href="GDataGDWhen.html#GDataGDWhen--start-time"><span class="type">"start-time"</span></a> property and returns it in <em class="parameter"><code>start_time</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_time</code></em> :</span></p></td>
+<td> return location for the start time
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-set-start-time"></a><h3>gdata_gd_when_set_start_time ()</h3>
+<pre class="programlisting">void                gdata_gd_when_set_start_time        (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         GTimeVal *start_time);</pre>
+<p>
+Sets the <a href="GDataGDWhen.html#GDataGDWhen--start-time"><span class="type">"start-time"</span></a> property to <em class="parameter"><code>start_time</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_time</code></em> :</span></p></td>
+<td> the new start time
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-get-end-time"></a><h3>gdata_gd_when_get_end_time ()</h3>
+<pre class="programlisting">void                gdata_gd_when_get_end_time          (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         GTimeVal *end_time);</pre>
+<p>
+Gets the <a href="GDataGDWhen.html#GDataGDWhen--end-time"><span class="type">"end-time"</span></a> property and returns it in <em class="parameter"><code>end_time</code></em>.
+</p>
+<p>
+If the end time is unset, both fields of the <span class="type">GTimeVal</span> will be <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>end_time</code></em> :</span></p></td>
+<td> return location for the end time
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-set-end-time"></a><h3>gdata_gd_when_set_end_time ()</h3>
+<pre class="programlisting">void                gdata_gd_when_set_end_time          (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         GTimeVal *end_time);</pre>
+<p>
+Sets the <a href="GDataGDWhen.html#GDataGDWhen--end-time"><span class="type">"end-time"</span></a> property to <em class="parameter"><code>end_time</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>end_time</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>end_time</code></em> :</span></p></td>
+<td> the new end time, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-is-date"></a><h3>gdata_gd_when_is_date ()</h3>
+<pre class="programlisting">gboolean            gdata_gd_when_is_date               (<a href="GDataGDWhen.html">GDataGDWhen</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDWhen.html#GDataGDWhen--is-date"><span class="type">"is-date"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if <a href="GDataGDWhen.html#GDataGDWhen--start-time"><span class="type">"start-time"</span></a> and <a href="GDataGDWhen.html#GDataGDWhen--end-time"><span class="type">"end-time"</span></a> are dates rather than times, <code class="literal">FALSE</code> otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-set-is-date"></a><h3>gdata_gd_when_set_is_date ()</h3>
+<pre class="programlisting">void                gdata_gd_when_set_is_date           (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         gboolean is_date);</pre>
+<p>
+Sets the <a href="GDataGDWhen.html#GDataGDWhen--is-date"><span class="type">"is-date"</span></a> property to <em class="parameter"><code>is_date</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_date</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if <a href="GDataGDWhen.html#GDataGDWhen--start-time"><span class="type">"start-time"</span></a> and <a href="GDataGDWhen.html#GDataGDWhen--end-time"><span class="type">"end-time"</span></a> should be dates rather than times, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-get-value-string"></a><h3>gdata_gd_when_get_value_string ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_when_get_value_string      (<a href="GDataGDWhen.html">GDataGDWhen</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDWhen.html#GDataGDWhen--value-string"><span class="type">"value-string"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the value string, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-set-value-string"></a><h3>gdata_gd_when_set_value_string ()</h3>
+<pre class="programlisting">void                gdata_gd_when_set_value_string      (<a href="GDataGDWhen.html">GDataGDWhen</a> *self,
+                                                         const gchar *value_string);</pre>
+<p>
+Sets the <a href="GDataGDWhen.html#GDataGDWhen--value-string"><span class="type">"value-string"</span></a> property to <em class="parameter"><code>value_string</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>value_string</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value_string</code></em> :</span></p></td>
+<td> the new value string, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-when-get-reminders"></a><h3>gdata_gd_when_get_reminders ()</h3>
+<pre class="programlisting">GList *             gdata_gd_when_get_reminders         (<a href="GDataGDWhen.html">GDataGDWhen</a> *self);</pre>
+<p>
+Returns a list of the <a href="GDataGDReminder.html"><span class="type">GDataGDReminder</span></a>s which are associated with this <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataGDReminder.html"><span class="type">GDataGDReminder</span></a>s, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDWhen.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataGDWhen--end-time"></a><h3>The <code class="literal">"end-time"</code> property</h3>
+<pre class="programlisting">  "end-time"                 GTimeVal*             : Read / Write</pre>
+<p>
+The title of a person within the when.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen" target="_top">GData specification</a>.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDWhen--is-date"></a><h3>The <code class="literal">"is-date"</code> property</h3>
+<pre class="programlisting">  "is-date"                  gboolean              : Read / Write</pre>
+<p>
+A programmatic value that identifies the type of when.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen" target="_top">GData specification</a>.</p>
+<p>Default value: FALSE</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDWhen--start-time"></a><h3>The <code class="literal">"start-time"</code> property</h3>
+<pre class="programlisting">  "start-time"               GTimeVal*             : Read / Write</pre>
+<p>
+The name of the when.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen" target="_top">GData specification</a>.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDWhen--value-string"></a><h3>The <code class="literal">"value-string"</code> property</h3>
+<pre class="programlisting">  "value-string"             gchar*                : Read / Write</pre>
+<p>
+A simple string value used to name this when. It allows UIs to display a label such as "Work", "Volunteer",
+"Professional Society", etc.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

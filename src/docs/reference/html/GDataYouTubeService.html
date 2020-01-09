@@ -1,0 +1,981 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataYouTubeService</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch08.html" title="YouTube API">
+<link rel="prev" href="ch08.html" title="YouTube API">
+<link rel="next" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch08.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch08.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataYouTubeQuery.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataYouTubeService.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataYouTubeService.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataYouTubeService.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataYouTubeService.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataYouTubeService"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataYouTubeService.top_of_page"></a>GDataYouTubeService</span></h2>
+<p>GDataYouTubeService — GData YouTube service object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeService.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataYouTubeService.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/services/youtube/gdata-youtube-service.h&gt;
+
+                    <a href="GDataYouTubeService.html#GDataYouTubeService-struct">GDataYouTubeService</a>;
+                    <a href="GDataYouTubeService.html#GDataYouTubeServiceClass">GDataYouTubeServiceClass</a>;
+enum                <a href="GDataYouTubeService.html#GDataYouTubeServiceError">GDataYouTubeServiceError</a>;
+enum                <a href="GDataYouTubeService.html#GDataYouTubeStandardFeedType">GDataYouTubeStandardFeedType</a>;
+<a href="GDataYouTubeService.html">GDataYouTubeService</a> * <a href="GDataYouTubeService.html#gdata-youtube-service-new">gdata_youtube_service_new</a>         (const gchar *developer_key,
+                                                         const gchar *client_id);
+<a href="GDataFeed.html">GDataFeed</a> *         <a href="GDataYouTubeService.html#gdata-youtube-service-query-videos">gdata_youtube_service_query_videos</a>  (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);
+void                <a href="GDataYouTubeService.html#gdata-youtube-service-query-videos-async">gdata_youtube_service_query_videos_async</a>
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);
+<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> * <a href="GDataYouTubeService.html#gdata-youtube-service-query-single-video">gdata_youtube_service_query_single_video</a>
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         const gchar *video_id,
+                                                         GCancellable *cancellable,
+                                                         GError **error);
+void                <a href="GDataYouTubeService.html#gdata-youtube-service-query-single-video-async">gdata_youtube_service_query_single_video_async</a>
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         const gchar *video_id,
+                                                         GCancellable *cancellable,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);
+<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> * <a href="GDataYouTubeService.html#gdata-youtube-service-query-single-video-finish">gdata_youtube_service_query_single_video_finish</a>
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         GAsyncResult *async_result,
+                                                         GError **error);
+<a href="GDataFeed.html">GDataFeed</a> *         <a href="GDataYouTubeService.html#gdata-youtube-service-query-related">gdata_youtube_service_query_related</a> (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *video,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);
+void                <a href="GDataYouTubeService.html#gdata-youtube-service-query-related-async">gdata_youtube_service_query_related_async</a>
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *video,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);
+<a href="GDataFeed.html">GDataFeed</a> *         <a href="GDataYouTubeService.html#gdata-youtube-service-query-standard-feed">gdata_youtube_service_query_standard_feed</a>
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeService.html#GDataYouTubeStandardFeedType">GDataYouTubeStandardFeedType</a> feed_type,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);
+void                <a href="GDataYouTubeService.html#gdata-youtube-service-query-standard-feed-async">gdata_youtube_service_query_standard_feed_async</a>
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeService.html#GDataYouTubeStandardFeedType">GDataYouTubeStandardFeedType</a> feed_type,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);
+<a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> * <a href="GDataYouTubeService.html#gdata-youtube-service-upload-video">gdata_youtube_service_upload_video</a>  (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *video,
+                                                         GFile *video_file,
+                                                         GCancellable *cancellable,
+                                                         GError **error);
+const gchar *       <a href="GDataYouTubeService.html#gdata-youtube-service-get-developer-key">gdata_youtube_service_get_developer_key</a>
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self);
+const gchar *       <a href="GDataYouTubeService.html#gdata-youtube-service-get-youtube-user">gdata_youtube_service_get_youtube_user</a>
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeService.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataService.html">GDataService</a>
+         +----GDataYouTubeService
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeService.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataYouTubeService.html#GDataYouTubeService--developer-key">developer-key</a>"            gchar*                : Read / Write / Construct Only
+  "<a href="GDataYouTubeService.html#GDataYouTubeService--youtube-user">youtube-user</a>"             gchar*                : Read
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeService.description"></a><h2>Description</h2>
+<p>
+<a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a> is a subclass of <a href="GDataService.html"><span class="type">GDataService</span></a> for communicating with the GData API of YouTube. It supports querying for and
+uploading videos.
+</p>
+<p>
+For more details of YouTube's GData API, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html" target="_top">
+online documentation</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeService.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeService-struct"></a><h3>GDataYouTubeService</h3>
+<pre class="programlisting">typedef struct _GDataYouTubeService GDataYouTubeService;</pre>
+<p>
+All the fields in the <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeServiceClass"></a><h3>GDataYouTubeServiceClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataYouTubeServiceClass;
+</pre>
+<p>
+All the fields in the <a href="GDataYouTubeService.html#GDataYouTubeServiceClass"><span class="type">GDataYouTubeServiceClass</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeServiceError"></a><h3>enum GDataYouTubeServiceError</h3>
+<pre class="programlisting">typedef enum {
+	GDATA_YOUTUBE_SERVICE_ERROR_API_QUOTA_EXCEEDED,
+	GDATA_YOUTUBE_SERVICE_ERROR_ENTRY_QUOTA_EXCEEDED
+} GDataYouTubeServiceError;
+</pre>
+<p>
+Error codes for <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a> operations.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-SERVICE-ERROR-API-QUOTA-EXCEEDED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_SERVICE_ERROR_API_QUOTA_EXCEEDED</code></span></p></td>
+<td> the API request quota for this developer account has been exceeded
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-SERVICE-ERROR-ENTRY-QUOTA-EXCEEDED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_SERVICE_ERROR_ENTRY_QUOTA_EXCEEDED</code></span></p></td>
+<td> the entry (e.g. video) quota for this user account has been exceeded
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeStandardFeedType"></a><h3>enum GDataYouTubeStandardFeedType</h3>
+<pre class="programlisting">typedef enum {
+	GDATA_YOUTUBE_TOP_RATED_FEED,
+	GDATA_YOUTUBE_TOP_FAVORITES_FEED,
+	GDATA_YOUTUBE_MOST_VIEWED_FEED,
+	GDATA_YOUTUBE_MOST_POPULAR_FEED,
+	GDATA_YOUTUBE_MOST_RECENT_FEED,
+	GDATA_YOUTUBE_MOST_DISCUSSED_FEED,
+	GDATA_YOUTUBE_MOST_LINKED_FEED,
+	GDATA_YOUTUBE_MOST_RESPONDED_FEED,
+	GDATA_YOUTUBE_RECENTLY_FEATURED_FEED,
+	GDATA_YOUTUBE_WATCH_ON_MOBILE_FEED
+} GDataYouTubeStandardFeedType;
+</pre>
+<p>
+Standard feed types for standard feed queries with <code class="function">gata_youtube_service_query_standard_feed()</code>. For more information, see
+the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/developers_guide_protocol.html#Standard_feeds" target="_top">online documentation</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-TOP-RATED-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_TOP_RATED_FEED</code></span></p></td>
+<td> This feed contains the most highly rated YouTube videos.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-TOP-FAVORITES-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_TOP_FAVORITES_FEED</code></span></p></td>
+<td> This feed contains videos most frequently flagged as favorite videos.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-MOST-VIEWED-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_MOST_VIEWED_FEED</code></span></p></td>
+<td> This feed contains the most frequently watched YouTube videos.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-MOST-POPULAR-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_MOST_POPULAR_FEED</code></span></p></td>
+<td> This feed contains the most popular YouTube videos, selected using an algorithm that combines many
+different signals to determine overall popularity.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-MOST-RECENT-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_MOST_RECENT_FEED</code></span></p></td>
+<td> This feed contains the videos most recently submitted to YouTube.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-MOST-DISCUSSED-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_MOST_DISCUSSED_FEED</code></span></p></td>
+<td> This feed contains the YouTube videos that have received the most comments.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-MOST-LINKED-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_MOST_LINKED_FEED</code></span></p></td>
+<td> This feed contains the YouTube videos that receive the most links from other websites.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-MOST-RESPONDED-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_MOST_RESPONDED_FEED</code></span></p></td>
+<td> This feed contains YouTube videos that receive the most video responses.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-RECENTLY-FEATURED-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_RECENTLY_FEATURED_FEED</code></span></p></td>
+<td> This feed contains videos recently featured on the YouTube home page or featured videos tab.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDATA-YOUTUBE-WATCH-ON-MOBILE-FEED:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_WATCH_ON_MOBILE_FEED</code></span></p></td>
+<td> This feed contains videos suitable for playback on mobile devices.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-new"></a><h3>gdata_youtube_service_new ()</h3>
+<pre class="programlisting"><a href="GDataYouTubeService.html">GDataYouTubeService</a> * gdata_youtube_service_new         (const gchar *developer_key,
+                                                         const gchar *client_id);</pre>
+<p>
+Creates a new <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>. The <em class="parameter"><code>developer_key</code></em> and <em class="parameter"><code>client_id</code></em> must be unique for your application, and as
+<a class="ulink" href="http://code.google.com/apis/youtube/2.0/developers_guide_protocol.html#Developer_Key" target="_top">registered with Google</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>developer_key</code></em> :</span></p></td>
+<td> your application's developer API key
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>client_id</code></em> :</span></p></td>
+<td> your application's client ID
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-query-videos"></a><h3>gdata_youtube_service_query_videos ()</h3>
+<pre class="programlisting"><a href="GDataFeed.html">GDataFeed</a> *         gdata_youtube_service_query_videos  (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);</pre>
+<p>
+Queries the service for videos matching the parameters set on the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>. This searches site-wide, and imposes no other restrictions or
+parameters on the query.
+</p>
+<p>
+Parameters and errors are as for <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> of query results; unref with <code class="function">g_object_unref()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-query-videos-async"></a><h3>gdata_youtube_service_query_videos_async ()</h3>
+<pre class="programlisting">void                gdata_youtube_service_query_videos_async
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);</pre>
+<p>
+Queries the service for videos matching the parameters set on the <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>. This searches site-wide, and imposes no other restrictions or
+parameters on the query. <em class="parameter"><code>self</code></em> and <em class="parameter"><code>query</code></em> are both reffed when this function is called, so can safely be freed after this function returns.
+</p>
+<p>
+For more details, see <a href="GDataYouTubeService.html#gdata-youtube-service-query-videos"><code class="function">gdata_youtube_service_query_videos()</code></a>, which is the synchronous version of this function.
+</p>
+<p>
+When the operation is finished, <em class="parameter"><code>callback</code></em> will be called. You can then call <a href="GDataService.html#gdata-service-query-finish"><code class="function">gdata_service_query_finish()</code></a>
+to get the results of the operation.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataService.html"><span class="type">GDataService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>callback</code></em> function
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-query-single-video"></a><h3>gdata_youtube_service_query_single_video ()</h3>
+<pre class="programlisting"><a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> * gdata_youtube_service_query_single_video
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         const gchar *video_id,
+                                                         GCancellable *cancellable,
+                                                         GError **error);</pre>
+<p>
+Retrieves information about the single video with the given <em class="parameter"><code>video_id</code></em>. <em class="parameter"><code>video_id</code></em> should be as returned by
+<a href="GDataYouTubeVideo.html#gdata-youtube-video-get-video-id"><code class="function">gdata_youtube_video_get_video_id()</code></a> or as extracted from a YouTube URI.
+</p>
+<p>
+Parameters and errors are as for <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>video_id</code></em> :</span></p></td>
+<td> the video ID of the desired video
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> a <span class="type">GCancellable</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-query-single-video-async"></a><h3>gdata_youtube_service_query_single_video_async ()</h3>
+<pre class="programlisting">void                gdata_youtube_service_query_single_video_async
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         const gchar *video_id,
+                                                         GCancellable *cancellable,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);</pre>
+<p>
+Retrieves information about the single video with the given <em class="parameter"><code>video_id</code></em>. <em class="parameter"><code>video_id</code></em> should be as returned by
+<a href="GDataYouTubeVideo.html#gdata-youtube-video-get-video-id"><code class="function">gdata_youtube_video_get_video_id()</code></a> or as extracted from a YouTube URI. <em class="parameter"><code>self</code></em>, <em class="parameter"><code>query</code></em> and <em class="parameter"><code>video_id</code></em> are reffed/copied when this
+function is called, so can safely be freed after this function returns.
+</p>
+<p>
+For more details, see <a href="GDataYouTubeService.html#gdata-youtube-service-query-single-video"><code class="function">gdata_youtube_service_query_single_video()</code></a>, which is the synchronous version of this function.
+</p>
+<p>
+When the operation is finished, <em class="parameter"><code>callback</code></em> will be called. You can then call <a href="GDataYouTubeService.html#gdata-youtube-service-query-single-video-finish"><code class="function">gdata_youtube_service_query_single_video_finish()</code></a>
+to get the results of the operation.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataService.html"><span class="type">GDataService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>video_id</code></em> :</span></p></td>
+<td> the video ID of the desired video
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>callback</code></em> function
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-query-single-video-finish"></a><h3>gdata_youtube_service_query_single_video_finish ()</h3>
+<pre class="programlisting"><a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> * gdata_youtube_service_query_single_video_finish
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         GAsyncResult *async_result,
+                                                         GError **error);</pre>
+<p>
+Finishes an asynchronous query operation for a single video, as started with <a href="GDataYouTubeService.html#gdata-youtube-service-query-single-video-async"><code class="function">gdata_youtube_service_query_single_video_async()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>async_result</code></em> :</span></p></td>
+<td> a <span class="type">GAsyncResult</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-query-related"></a><h3>gdata_youtube_service_query_related ()</h3>
+<pre class="programlisting"><a href="GDataFeed.html">GDataFeed</a> *         gdata_youtube_service_query_related (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *video,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);</pre>
+<p>
+Queries the service for videos related to <em class="parameter"><code>video</code></em>. The algorithm determining which videos are related is on the server side.
+</p>
+<p>
+If <em class="parameter"><code>video</code></em> does not have a link with rel value <code class="literal">http://gdata.youtube.com/schemas/2007<span class="type">video.related</span></code>, a
+<code class="literal">GDATA_SERVICE_ERROR_PROTOCOL_ERROR</code> error will be thrown. Parameters and other errors are as for <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>video</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a> for which to find related videos
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> of query results; unref with <code class="function">g_object_unref()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-query-related-async"></a><h3>gdata_youtube_service_query_related_async ()</h3>
+<pre class="programlisting">void                gdata_youtube_service_query_related_async
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *video,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);</pre>
+<p>
+Queries the service for videos related to <em class="parameter"><code>video</code></em>. The algorithm determining which videos are related is on the server side.
+<em class="parameter"><code>self</code></em> and <em class="parameter"><code>query</code></em> are both reffed when this function is called, so can safely be freed after this function returns.
+</p>
+<p>
+For more details, see <a href="GDataYouTubeService.html#gdata-youtube-service-query-related"><code class="function">gdata_youtube_service_query_related()</code></a>, which is the synchronous version of this function.
+</p>
+<p>
+When the operation is finished, <em class="parameter"><code>callback</code></em> will be called. You can then call <a href="GDataService.html#gdata-service-query-finish"><code class="function">gdata_service_query_finish()</code></a>
+to get the results of the operation.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataService.html"><span class="type">GDataService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>video</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a> for which to find related videos
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>callback</code></em> function
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-query-standard-feed"></a><h3>gdata_youtube_service_query_standard_feed ()</h3>
+<pre class="programlisting"><a href="GDataFeed.html">GDataFeed</a> *         gdata_youtube_service_query_standard_feed
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeService.html#GDataYouTubeStandardFeedType">GDataYouTubeStandardFeedType</a> feed_type,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GError **error);</pre>
+<p>
+Queries the service's standard <em class="parameter"><code>feed_type</code></em> feed to build a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>.
+</p>
+<p>
+Parameters and errors are as for <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>feed_type</code></em> :</span></p></td>
+<td> the feed type to query, from <a href="GDataYouTubeService.html#GDataYouTubeStandardFeedType"><span class="type">GDataYouTubeStandardFeedType</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> of query results; unref with <code class="function">g_object_unref()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-query-standard-feed-async"></a><h3>gdata_youtube_service_query_standard_feed_async ()</h3>
+<pre class="programlisting">void                gdata_youtube_service_query_standard_feed_async
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeService.html#GDataYouTubeStandardFeedType">GDataYouTubeStandardFeedType</a> feed_type,
+                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
+                                                         GCancellable *cancellable,
+                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
+                                                         gpointer progress_user_data,
+                                                         GAsyncReadyCallback callback,
+                                                         gpointer user_data);</pre>
+<p>
+Queries the service's standard <em class="parameter"><code>feed_type</code></em> feed to build a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a>. <em class="parameter"><code>self</code></em> and
+<em class="parameter"><code>query</code></em> are both reffed when this function is called, so can safely be freed after this function returns.
+</p>
+<p>
+For more details, see <a href="GDataYouTubeService.html#gdata-youtube-service-query-standard-feed"><code class="function">gdata_youtube_service_query_standard_feed()</code></a>, which is the synchronous version of this function.
+</p>
+<p>
+When the operation is finished, <em class="parameter"><code>callback</code></em> will be called. You can then call <a href="GDataService.html#gdata-service-query-finish"><code class="function">gdata_service_query_finish()</code></a>
+to get the results of the operation.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataService.html"><span class="type">GDataService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>feed_type</code></em> :</span></p></td>
+<td> the feed type to query, from <a href="GDataYouTubeService.html#GDataYouTubeStandardFeedType"><span class="type">GDataYouTubeStandardFeedType</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data to pass to the <em class="parameter"><code>callback</code></em> function
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-upload-video"></a><h3>gdata_youtube_service_upload_video ()</h3>
+<pre class="programlisting"><a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> * gdata_youtube_service_upload_video  (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self,
+                                                         <a href="GDataYouTubeVideo.html">GDataYouTubeVideo</a> *video,
+                                                         GFile *video_file,
+                                                         GCancellable *cancellable,
+                                                         GError **error);</pre>
+<p>
+Uploads a video to YouTube, using the properties from <em class="parameter"><code>video</code></em> and the video file pointed to by <em class="parameter"><code>video_file</code></em>.
+</p>
+<p>
+If <em class="parameter"><code>video</code></em> has already been inserted, a <code class="literal">GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED</code> error will be returned. If no user is authenticated
+with the service, <code class="literal">GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED</code> will be returned.
+</p>
+<p>
+If there is a problem reading <em class="parameter"><code>video_file</code></em>, an error from <code class="function">g_file_load_contents()</code> or <code class="function">g_file_query_info()</code> will be returned. Other errors from
+<a href="GDataService.html#GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>video</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a> to insert
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>video_file</code></em> :</span></p></td>
+<td> the video file to upload
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the inserted <a href="GDataYouTubeVideo.html"><span class="type">GDataYouTubeVideo</span></a> with updated properties from <em class="parameter"><code>video</code></em>; unref with <code class="function">g_object_unref()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-get-developer-key"></a><h3>gdata_youtube_service_get_developer_key ()</h3>
+<pre class="programlisting">const gchar *       gdata_youtube_service_get_developer_key
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeService.html#GDataYouTubeService--developer-key"><span class="type">"developer-key"</span></a> property from the <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the developer key property
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-youtube-service-get-youtube-user"></a><h3>gdata_youtube_service_get_youtube_user ()</h3>
+<pre class="programlisting">const gchar *       gdata_youtube_service_get_youtube_user
+                                                        (<a href="GDataYouTubeService.html">GDataYouTubeService</a> *self);</pre>
+<p>
+Gets the <a href="GDataYouTubeService.html#GDataYouTubeService--youtube-user"><span class="type">"youtube-user"</span></a> property from the <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataYouTubeService.html"><span class="type">GDataYouTubeService</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the YouTube username property
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataYouTubeService.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeService--developer-key"></a><h3>The <code class="literal">"developer-key"</code> property</h3>
+<pre class="programlisting">  "developer-key"            gchar*                : Read / Write / Construct Only</pre>
+<p>
+The developer key your application has registered with the YouTube API. For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/developers_guide_protocol.html#Developer_Key" target="_top">online documentation</a>.
+</p>
+<p>
+The matching <a href="GDataService.html#GDataService--client-id"><span class="type">"client-id"</span></a> property belongs to <a href="GDataService.html"><span class="type">GDataService</span></a>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataYouTubeService--youtube-user"></a><h3>The <code class="literal">"youtube-user"</code> property</h3>
+<pre class="programlisting">  "youtube-user"             gchar*                : Read</pre>
+<p>
+The YouTube username of the authenticated user, or <code class="literal">NULL</code>. This may differ from <a href="GDataService.html#GDataService--username"><span class="type">"username"</span></a>, due to the work done when
+YouTube was converted to use Google's centralised login system.</p>
+<p>Default value: NULL</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

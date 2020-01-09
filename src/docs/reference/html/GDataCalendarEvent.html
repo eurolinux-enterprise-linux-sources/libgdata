@@ -1,0 +1,1131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataCalendarEvent</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch09.html" title="Google Calendar API">
+<link rel="prev" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar">
+<link rel="next" href="ch10.html" title="Google Contacts API">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataCalendarCalendar.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch09.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="ch10.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataCalendarEvent.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataCalendarEvent.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataCalendarEvent.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataCalendarEvent.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataCalendarEvent"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataCalendarEvent.top_of_page"></a>GDataCalendarEvent</span></h2>
+<p>GDataCalendarEvent — GData Calendar event object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarEvent.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataCalendarEvent.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/services/calendar/gdata-calendar-event.h&gt;
+
+                    <a href="GDataCalendarEvent.html#GDataCalendarEvent-struct">GDataCalendarEvent</a>;
+                    <a href="GDataCalendarEvent.html#GDataCalendarEventClass">GDataCalendarEventClass</a>;
+<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> * <a href="GDataCalendarEvent.html#gdata-calendar-event-new">gdata_calendar_event_new</a>           (const gchar *id);
+GList *             <a href="GDataCalendarEvent.html#gdata-calendar-event-get-people">gdata_calendar_event_get_people</a>     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-add-person">gdata_calendar_event_add_person</a>     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         <a href="GDataGDWho.html">GDataGDWho</a> *who);
+GList *             <a href="GDataCalendarEvent.html#gdata-calendar-event-get-places">gdata_calendar_event_get_places</a>     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-add-place">gdata_calendar_event_add_place</a>      (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         <a href="GDataGDWhere.html">GDataGDWhere</a> *where);
+GList *             <a href="GDataCalendarEvent.html#gdata-calendar-event-get-times">gdata_calendar_event_get_times</a>      (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+gboolean            <a href="GDataCalendarEvent.html#gdata-calendar-event-get-primary-time">gdata_calendar_event_get_primary_time</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         GTimeVal *start_time,
+                                                         GTimeVal *end_time,
+                                                         <a href="GDataGDWhen.html">GDataGDWhen</a> **when);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-add-time">gdata_calendar_event_add_time</a>       (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         <a href="GDataGDWhen.html">GDataGDWhen</a> *when);
+const gchar *       <a href="GDataCalendarEvent.html#gdata-calendar-event-get-recurrence">gdata_calendar_event_get_recurrence</a> (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-recurrence">gdata_calendar_event_set_recurrence</a> (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *recurrence);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-get-original-event-details">gdata_calendar_event_get_original_event_details</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gchar **event_id,
+                                                         gchar **event_uri);
+gboolean            <a href="GDataCalendarEvent.html#gdata-calendar-event-is-exception">gdata_calendar_event_is_exception</a>   (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+gboolean            <a href="GDataCalendarEvent.html#gdata-calendar-event-get-anyone-can-add-self">gdata_calendar_event_get_anyone_can_add_self</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-anyone-can-add-self">gdata_calendar_event_set_anyone_can_add_self</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gboolean anyone_can_add_self);
+gboolean            <a href="GDataCalendarEvent.html#gdata-calendar-event-get-guests-can-invite-others">gdata_calendar_event_get_guests_can_invite_others</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-guests-can-invite-others">gdata_calendar_event_set_guests_can_invite_others</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gboolean guests_can_invite_others);
+gboolean            <a href="GDataCalendarEvent.html#gdata-calendar-event-get-guests-can-modify">gdata_calendar_event_get_guests_can_modify</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-guests-can-modify">gdata_calendar_event_set_guests_can_modify</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gboolean guests_can_modify);
+gboolean            <a href="GDataCalendarEvent.html#gdata-calendar-event-get-guests-can-see-guests">gdata_calendar_event_get_guests_can_see_guests</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-guests-can-see-guests">gdata_calendar_event_set_guests_can_see_guests</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gboolean guests_can_see_guests);
+guint               <a href="GDataCalendarEvent.html#gdata-calendar-event-get-sequence">gdata_calendar_event_get_sequence</a>   (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-sequence">gdata_calendar_event_set_sequence</a>   (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         guint sequence);
+const gchar *       <a href="GDataCalendarEvent.html#gdata-calendar-event-get-status">gdata_calendar_event_get_status</a>     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-status">gdata_calendar_event_set_status</a>     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *status);
+const gchar *       <a href="GDataCalendarEvent.html#gdata-calendar-event-get-transparency">gdata_calendar_event_get_transparency</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-transparency">gdata_calendar_event_set_transparency</a>
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *transparency);
+const gchar *       <a href="GDataCalendarEvent.html#gdata-calendar-event-get-uid">gdata_calendar_event_get_uid</a>        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-uid">gdata_calendar_event_set_uid</a>        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *uid);
+const gchar *       <a href="GDataCalendarEvent.html#gdata-calendar-event-get-visibility">gdata_calendar_event_get_visibility</a> (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-set-visibility">gdata_calendar_event_set_visibility</a> (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *visibility);
+void                <a href="GDataCalendarEvent.html#gdata-calendar-event-get-edited">gdata_calendar_event_get_edited</a>     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         GTimeVal *edited);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarEvent.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----<a href="GDataEntry.html">GDataEntry</a>
+               +----GDataCalendarEvent
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarEvent.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--anyone-can-add-self">anyone-can-add-self</a>"      gboolean              : Read / Write
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--edited">edited</a>"                   GTimeVal*             : Read
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-invite-others">guests-can-invite-others</a>" gboolean              : Read / Write
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-modify">guests-can-modify</a>"        gboolean              : Read / Write
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-see-guests">guests-can-see-guests</a>"    gboolean              : Read / Write
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--original-event-id">original-event-id</a>"        gchar*                : Read
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--original-event-uri">original-event-uri</a>"       gchar*                : Read
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--recurrence">recurrence</a>"               gchar*                : Read / Write
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--sequence">sequence</a>"                 guint                 : Read / Write
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--status">status</a>"                   gchar*                : Read / Write
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--transparency">transparency</a>"             gchar*                : Read / Write
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--uid">uid</a>"                      gchar*                : Read / Write
+  "<a href="GDataCalendarEvent.html#GDataCalendarEvent--visibility">visibility</a>"               gchar*                : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarEvent.description"></a><h2>Description</h2>
+<p>
+<a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a> is a subclass of <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> to represent an event on a calendar from Google Calendar.
+</p>
+<p>
+For more details of Google Calendar's GData API, see the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html" target="_top">
+online documentation</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarEvent.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent-struct"></a><h3>GDataCalendarEvent</h3>
+<pre class="programlisting">typedef struct _GDataCalendarEvent GDataCalendarEvent;</pre>
+<p>
+All the fields in the <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEventClass"></a><h3>GDataCalendarEventClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataCalendarEventClass;
+</pre>
+<p>
+All the fields in the <a href="GDataCalendarEvent.html#GDataCalendarEventClass"><span class="type">GDataCalendarEventClass</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-new"></a><h3>gdata_calendar_event_new ()</h3>
+<pre class="programlisting"><a href="GDataCalendarEvent.html">GDataCalendarEvent</a> * gdata_calendar_event_new           (const gchar *id);</pre>
+<p>
+Creates a new <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a> with the given ID and default properties.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the event's ID, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>; unref with <code class="function">g_object_unref()</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-people"></a><h3>gdata_calendar_event_get_people ()</h3>
+<pre class="programlisting">GList *             gdata_calendar_event_get_people     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets a list of the people attending the event.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataGDWho.html"><span class="type">GDataGDWho</span></a>s, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-add-person"></a><h3>gdata_calendar_event_add_person ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_add_person     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         <a href="GDataGDWho.html">GDataGDWho</a> *who);</pre>
+<p>
+Adds the person <em class="parameter"><code>who</code></em> to the event as a guest (attendee, organiser, performer, etc.), and increments its reference count.
+</p>
+<p>
+Duplicate people will not be added to the list.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>who</code></em> :</span></p></td>
+<td> a <a href="GDataGDWho.html"><span class="type">GDataGDWho</span></a> to add
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-places"></a><h3>gdata_calendar_event_get_places ()</h3>
+<pre class="programlisting">GList *             gdata_calendar_event_get_places     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets a list of the locations associated with the event.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataGDWhere.html"><span class="type">GDataGDWhere</span></a>s, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-add-place"></a><h3>gdata_calendar_event_add_place ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_add_place      (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         <a href="GDataGDWhere.html">GDataGDWhere</a> *where);</pre>
+<p>
+Adds the place <em class="parameter"><code>where</code></em> to the event as a location and increments its reference count.
+</p>
+<p>
+Duplicate places will not be added to the list.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>where</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhere.html"><span class="type">GDataGDWhere</span></a> to add
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-times"></a><h3>gdata_calendar_event_get_times ()</h3>
+<pre class="programlisting">GList *             gdata_calendar_event_get_times      (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets a list of the time periods associated with the event.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">GList</span> of <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a>s, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-primary-time"></a><h3>gdata_calendar_event_get_primary_time ()</h3>
+<pre class="programlisting">gboolean            gdata_calendar_event_get_primary_time
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         GTimeVal *start_time,
+                                                         GTimeVal *end_time,
+                                                         <a href="GDataGDWhen.html">GDataGDWhen</a> **when);</pre>
+<p>
+Gets the first time period associated with the event, conveniently returning just its start and
+end times if required.
+</p>
+<p>
+If there are no time periods, or more than one time period, associated with the event, <code class="literal">FALSE</code> will
+be returned, and the parameters will remain unmodified.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_time</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span> for the start time, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>end_time</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span> for the end time, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>when</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a> for the primary time structure, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if there is only one time period associated with the event, <code class="literal">FALSE</code> otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-add-time"></a><h3>gdata_calendar_event_add_time ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_add_time       (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         <a href="GDataGDWhen.html">GDataGDWhen</a> *when);</pre>
+<p>
+Adds <em class="parameter"><code>when</code></em> to the event as a time period when the event happens, and increments its reference count.
+</p>
+<p>
+Duplicate times will not be added to the list.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>when</code></em> :</span></p></td>
+<td> a <a href="GDataGDWhen.html"><span class="type">GDataGDWhen</span></a> to add
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-recurrence"></a><h3>gdata_calendar_event_get_recurrence ()</h3>
+<pre class="programlisting">const gchar *       gdata_calendar_event_get_recurrence (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--recurrence"><span class="type">"recurrence"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the event recurrence patterns, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-recurrence"></a><h3>gdata_calendar_event_set_recurrence ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_recurrence (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *recurrence);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--recurrence"><span class="type">"recurrence"</span></a> property to the new recurrence, <em class="parameter"><code>recurrence</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>recurrence</code></em> to <code class="literal">NULL</code> to unset the property in the event.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>recurrence</code></em> :</span></p></td>
+<td> a new event recurrence, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-original-event-details"></a><h3>gdata_calendar_event_get_original_event_details ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_get_original_event_details
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gchar **event_id,
+                                                         gchar **event_uri);</pre>
+<p>
+Gets details of the original event, if this event is an exception to a recurring event. The original
+event's ID and the URI of the event's XML are returned in <em class="parameter"><code>event_id</code></em> and <em class="parameter"><code>event_uri</code></em>, respectively.
+</p>
+<p>
+If this event is not an exception to a recurring event, <em class="parameter"><code>event_id</code></em> and <em class="parameter"><code>event_uri</code></em> will be set to <code class="literal">NULL</code>.
+See <a href="GDataCalendarEvent.html#gdata-calendar-event-is-exception"><code class="function">gdata_calendar_event_is_exception()</code></a> to determine more simply whether an event is an exception to a
+recurring event.
+</p>
+<p>
+If both <em class="parameter"><code>event_id</code></em> and <em class="parameter"><code>event_uri</code></em> are <code class="literal">NULL</code>, this function is a no-op. Otherwise, they should both be
+freed with <code class="function">g_free()</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>event_id</code></em> :</span></p></td>
+<td> return location for the original event's ID, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>event_uri</code></em> :</span></p></td>
+<td> return location for the original event's URI, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-is-exception"></a><h3>gdata_calendar_event_is_exception ()</h3>
+<pre class="programlisting">gboolean            gdata_calendar_event_is_exception   (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Determines whether the event is an exception to a recurring event. If it is, details of the original event
+can be retrieved using <a href="GDataCalendarEvent.html#gdata-calendar-event-get-original-event-details"><code class="function">gdata_calendar_event_get_original_event_details()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the event is an exception, <code class="literal">FALSE</code> otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-anyone-can-add-self"></a><h3>gdata_calendar_event_get_anyone_can_add_self ()</h3>
+<pre class="programlisting">gboolean            gdata_calendar_event_get_anyone_can_add_self
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--anyone-can-add-self"><span class="type">"anyone-can-add-self"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if anyone can add themselves as an attendee to the event, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-anyone-can-add-self"></a><h3>gdata_calendar_event_set_anyone_can_add_self ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_anyone_can_add_self
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gboolean anyone_can_add_self);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--anyone-can-add-self"><span class="type">"anyone-can-add-self"</span></a> property to <em class="parameter"><code>anyone_can_add_self</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>anyone_can_add_self</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if anyone can add themselves as an attendee to the event, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-guests-can-invite-others"></a><h3>gdata_calendar_event_get_guests_can_invite_others ()</h3>
+<pre class="programlisting">gboolean            gdata_calendar_event_get_guests_can_invite_others
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-invite-others"><span class="type">"guests-can-invite-others"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if attendees can invite others to the event, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-guests-can-invite-others"></a><h3>gdata_calendar_event_set_guests_can_invite_others ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_guests_can_invite_others
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gboolean guests_can_invite_others);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-invite-others"><span class="type">"guests-can-invite-others"</span></a> property to <em class="parameter"><code>guests_can_invite_others</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>guests_can_invite_others</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if attendees can invite others to the event, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-guests-can-modify"></a><h3>gdata_calendar_event_get_guests_can_modify ()</h3>
+<pre class="programlisting">gboolean            gdata_calendar_event_get_guests_can_modify
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-modify"><span class="type">"guests-can-modify"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if attendees can modify the original event, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-guests-can-modify"></a><h3>gdata_calendar_event_set_guests_can_modify ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_guests_can_modify
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gboolean guests_can_modify);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-modify"><span class="type">"guests-can-modify"</span></a> property to <em class="parameter"><code>guests_can_modify</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>guests_can_modify</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if attendees can modify the original event, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-guests-can-see-guests"></a><h3>gdata_calendar_event_get_guests_can_see_guests ()</h3>
+<pre class="programlisting">gboolean            gdata_calendar_event_get_guests_can_see_guests
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-see-guests"><span class="type">"guests-can-see-guests"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if attendees can see who's attending the event, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-guests-can-see-guests"></a><h3>gdata_calendar_event_set_guests_can_see_guests ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_guests_can_see_guests
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         gboolean guests_can_see_guests);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--guests-can-see-guests"><span class="type">"guests-can-see-guests"</span></a> property to <em class="parameter"><code>guests_can_see_guests</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>guests_can_see_guests</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if attendees can see who's attending the event, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-sequence"></a><h3>gdata_calendar_event_get_sequence ()</h3>
+<pre class="programlisting">guint               gdata_calendar_event_get_sequence   (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--sequence"><span class="type">"sequence"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the event's sequence number
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-sequence"></a><h3>gdata_calendar_event_set_sequence ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_sequence   (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         guint sequence);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--sequence"><span class="type">"sequence"</span></a> property to the new sequence number, <em class="parameter"><code>sequence</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sequence</code></em> :</span></p></td>
+<td> a new sequence number, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-status"></a><h3>gdata_calendar_event_get_status ()</h3>
+<pre class="programlisting">const gchar *       gdata_calendar_event_get_status     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--status"><span class="type">"status"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the event status, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-status"></a><h3>gdata_calendar_event_set_status ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_status     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *status);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--status"><span class="type">"status"</span></a> property to the new status, <em class="parameter"><code>status</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>status</code></em> to <code class="literal">NULL</code> to unset the property in the event.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>status</code></em> :</span></p></td>
+<td> a new event status, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-transparency"></a><h3>gdata_calendar_event_get_transparency ()</h3>
+<pre class="programlisting">const gchar *       gdata_calendar_event_get_transparency
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--transparency"><span class="type">"transparency"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the event transparency, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-transparency"></a><h3>gdata_calendar_event_set_transparency ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_transparency
+                                                        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *transparency);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--transparency"><span class="type">"transparency"</span></a> property to the new transparency, <em class="parameter"><code>transparency</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>transparency</code></em> to <code class="literal">NULL</code> to unset the property in the event.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>transparency</code></em> :</span></p></td>
+<td> a new event transparency, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-uid"></a><h3>gdata_calendar_event_get_uid ()</h3>
+<pre class="programlisting">const gchar *       gdata_calendar_event_get_uid        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--uid"><span class="type">"uid"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the event's UID, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-uid"></a><h3>gdata_calendar_event_set_uid ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_uid        (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *uid);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--uid"><span class="type">"uid"</span></a> property to the new UID, <em class="parameter"><code>uid</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>uid</code></em> to <code class="literal">NULL</code> to unset the property in the event.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uid</code></em> :</span></p></td>
+<td> a new event UID, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-visibility"></a><h3>gdata_calendar_event_get_visibility ()</h3>
+<pre class="programlisting">const gchar *       gdata_calendar_event_get_visibility (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--visibility"><span class="type">"visibility"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the event visibility, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-set-visibility"></a><h3>gdata_calendar_event_set_visibility ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_set_visibility (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         const gchar *visibility);</pre>
+<p>
+Sets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--visibility"><span class="type">"visibility"</span></a> property to the new visibility, <em class="parameter"><code>visibility</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>visibility</code></em> to <code class="literal">NULL</code> to unset the property in the event.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>visibility</code></em> :</span></p></td>
+<td> a new event visibility, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-calendar-event-get-edited"></a><h3>gdata_calendar_event_get_edited ()</h3>
+<pre class="programlisting">void                gdata_calendar_event_get_edited     (<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *self,
+                                                         GTimeVal *edited);</pre>
+<p>
+Gets the <a href="GDataCalendarEvent.html#GDataCalendarEvent--edited"><span class="type">"edited"</span></a> property and puts it in <em class="parameter"><code>edited</code></em>. If the property is unset,
+both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>edited</code></em> :</span></p></td>
+<td> a <span class="type">GTimeVal</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataCalendarEvent.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--anyone-can-add-self"></a><h3>The <code class="literal">"anyone-can-add-self"</code> property</h3>
+<pre class="programlisting">  "anyone-can-add-self"      gboolean              : Read / Write</pre>
+<p>
+Indicates whether anyone can add themselves to the attendee list of the event.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--edited"></a><h3>The <code class="literal">"edited"</code> property</h3>
+<pre class="programlisting">  "edited"                   GTimeVal*             : Read</pre>
+<p>
+The last time the event was edited. If the event has not been edited yet, the content indicates the time it was created.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://www.atomenabled.org/developers/protocol/#appEdited" target="_top">
+Atom Publishing Protocol specification</a>.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--guests-can-invite-others"></a><h3>The <code class="literal">"guests-can-invite-others"</code> property</h3>
+<pre class="programlisting">  "guests-can-invite-others" gboolean              : Read / Write</pre>
+<p>
+Indicates whether event attendees may invite other people to the event.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html#gCalguestsCanInviteOthers" target="_top">GData specification</a>.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--guests-can-modify"></a><h3>The <code class="literal">"guests-can-modify"</code> property</h3>
+<pre class="programlisting">  "guests-can-modify"        gboolean              : Read / Write</pre>
+<p>
+Indicates whether event attendees may modify the original event, so that changes are visible to organizer and other attendees.
+Otherwise, any changes made by attendees will be restricted to that attendee's calendar.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html#gCalguestsCanModify" target="_top">
+GData specification</a>.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--guests-can-see-guests"></a><h3>The <code class="literal">"guests-can-see-guests"</code> property</h3>
+<pre class="programlisting">  "guests-can-see-guests"    gboolean              : Read / Write</pre>
+<p>
+Indicates whether event attendees can see other people invited to the event.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html#gCalguestsCanSeeGuests" target="_top">
+GData specification</a>.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--original-event-id"></a><h3>The <code class="literal">"original-event-id"</code> property</h3>
+<pre class="programlisting">  "original-event-id"        gchar*                : Read</pre>
+<p>
+The event ID for the original event, if this event is an exception to a recurring event.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--original-event-uri"></a><h3>The <code class="literal">"original-event-uri"</code> property</h3>
+<pre class="programlisting">  "original-event-uri"       gchar*                : Read</pre>
+<p>
+The event URI for the original event, if this event is an exception to a recurring event.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--recurrence"></a><h3>The <code class="literal">"recurrence"</code> property</h3>
+<pre class="programlisting">  "recurrence"               gchar*                : Read / Write</pre>
+<p>
+Represents the dates and times when a recurring event takes place. The returned string is in iCal format, as a list of properties.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/gdata/elements.html#gdRecurrence" target="_top">
+GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.3.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--sequence"></a><h3>The <code class="literal">"sequence"</code> property</h3>
+<pre class="programlisting">  "sequence"                 guint                 : Read / Write</pre>
+<p>
+The revision sequence number of the event as defined in Section 4.8.7.4 of <a class="ulink" href="http://www.ietf.org/rfc/rfc2445.txt" target="_top">RFC 2445</a>.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--status"></a><h3>The <code class="literal">"status"</code> property</h3>
+<pre class="programlisting">  "status"                   gchar*                : Read / Write</pre>
+<p>
+The scheduling status of the event.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/gdata/elements.html#gdEventStatus" target="_top">
+GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--transparency"></a><h3>The <code class="literal">"transparency"</code> property</h3>
+<pre class="programlisting">  "transparency"             gchar*                : Read / Write</pre>
+<p>
+How the event is marked as consuming time on a calendar.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/gdata/elements.html#gdTransparency" target="_top">
+GData specification</a>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--uid"></a><h3>The <code class="literal">"uid"</code> property</h3>
+<pre class="programlisting">  "uid"                      gchar*                : Read / Write</pre>
+<p>
+The globally unique identifier (UID) of the event as defined in Section 4.8.4.7 of <a class="ulink" href="http://www.ietf.org/rfc/rfc2445.txt" target="_top">RFC 2445</a>.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataCalendarEvent--visibility"></a><h3>The <code class="literal">"visibility"</code> property</h3>
+<pre class="programlisting">  "visibility"               gchar*                : Read / Write</pre>
+<p>
+The event's visibility to calendar users.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/gdata/elements.html#gdVisibility" target="_top">
+GData specification</a>.</p>
+<p>Default value: NULL</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

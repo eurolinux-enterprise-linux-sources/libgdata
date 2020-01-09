@@ -1,0 +1,155 @@
+<!-- ##### SECTION Title ##### -->
+GDataGDWhen
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataGDWhen ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataGDWhen:end-time ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDWhen:is-date ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDWhen:start-time ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDWhen:value-string ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataGDWhenClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_gd_when_new ##### -->
+<para>
+
+</para>
+
+@start_time: 
+@end_time: 
+@is_date: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_get_start_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@start_time: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_set_start_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@start_time: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_get_end_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@end_time: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_set_end_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@end_time: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_is_date ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_set_is_date ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_date: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_get_value_string ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_set_value_string ##### -->
+<para>
+
+</para>
+
+@self: 
+@value_string: 
+
+
+<!-- ##### FUNCTION gdata_gd_when_get_reminders ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

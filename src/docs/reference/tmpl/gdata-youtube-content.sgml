@@ -1,0 +1,47 @@
+<!-- ##### SECTION Title ##### -->
+GDataYouTubeContent
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataYouTubeContent ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataYouTubeContent:format ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataYouTubeContentClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_youtube_content_get_format ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

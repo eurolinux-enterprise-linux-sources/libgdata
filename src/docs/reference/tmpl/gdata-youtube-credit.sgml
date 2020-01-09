@@ -1,0 +1,47 @@
+<!-- ##### SECTION Title ##### -->
+GDataYouTubeCredit
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataYouTubeCredit ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataYouTubeCredit:entity-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataYouTubeCreditClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_youtube_credit_get_entity_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

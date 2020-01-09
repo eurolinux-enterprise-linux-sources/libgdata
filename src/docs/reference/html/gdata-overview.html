@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GData Overview</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="pt01.html" title="Part I. GData Overview">
+<link rel="prev" href="pt01.html" title="Part I. GData Overview">
+<link rel="next" href="ch01.html" title="Object Hierarchy">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="pt01.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="pt01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="ch01.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gdata-overview"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gdata-overview.top_of_page"></a>GData Overview</span></h2>
+<p>GData Overview — overview of libgdata's architecture</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="id450270"></a><h2>Introduction</h2>
+<p>libgdata is a library to allow access to web services using the GData protocol from the desktop. The <a class="ulink" href="http://code.google.com/apis/gdata/overview.html" target="_top">GData protocol</a> is a simple protocol for reading and writing
+			data on the web, designed by Google.</p>
+<div class="refsect2" lang="en">
+<a name="id445392"></a><h3>Protocol</h3>
+<p>The GData protocol is designed by Google to allow interaction with their web services. It is based on the Atom Publishing
+				protocol, with namespaced XML additions. Communication between the client and server is broadly achieved through HTTP
+				requests with query parameters, and Atom feeds being returned with result entries. Each <em class="firstterm">service</em>
+				has its own namespaced additions to the GData protocol; for example, the Google Calendar service's API has
+				specialisations for addresses and time periods.
+				</p>
+<div class="figure">
+<a name="id468750"></a><p class="title"><b>Figure 1. </b></p>
+<div class="figure-contents">
+<div class="mediaobject" align="center"><img src="data-flow.png" align="middle"></div>
+<span>An overview of the data flow when making a request of a GData service.</span>
+</div>
+</div>
+<p><br class="figure-break">
+			</p>
+<p>Results are always returned in the form of result <em class="firstterm">feeds</em>, containing multiple
+				<em class="firstterm">entries</em>. How the entries are interpreted depends on what was queried of the service, but when
+				using libgdata, this is all taken care of transparently.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id474703"></a><h3>Structure</h3>
+<p>The basic design of libgdata mirrors the protocol's structure quite closely:
+				</p>
+<div class="figure">
+<a name="id457413"></a><p class="title"><b>Figure 2. </b></p>
+<div class="figure-contents">
+<div class="mediaobject" align="center"><img src="structure.png" align="middle"></div>
+<span>An overview of the libgdata class structure.</span>
+</div>
+</div>
+<p><br class="figure-break">
+			</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><span class="type"><a href="GDataService.html">GDataService</a></span></span></p></td>
+<td>
+<p>Subclassed for each different web service implemented, this class represents a single client's
+						connection to the relevant web service, holding their authentication state, and making the necessary
+						requests to read and write data to and from the service. All top-level actions, such as creating a new
+						object on the server, are carried out through a service.</p>
+<p>There should be one <span class="type"><a href="GDataService.html">GDataService</a></span> subclass for each
+						of the services listed <a class="ulink" href="http://code.google.com/apis/gdata/" target="_top">in the GData
+						documentation</a>.</p>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type"><a href="GDataQuery.html">GDataQuery</a></span></span></p></td>
+<td>
+<p>For queries to have multiple individual parameters, a
+						<span class="type"><a href="GDataQuery.html">GDataQuery</a></span> can be used to specify the parameters.</p>
+<p>Query objects are optional, and can only be used with queries (not with entry insertions, updates
+						or deletions). The query object builds the query URI used by the
+						<span class="type"><a href="GDataService.html">GDataService</a></span> when sending the query to the server.</p>
+<p>Services can subclass <span class="type"><a href="GDataQuery.html">GDataQuery</a></span> if the service
+						supports non-standard query parameters.</p>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type"><a href="GDataFeed.html">GDataFeed</a></span></span></p></td>
+<td>
+<p>Effectively a list of <span class="type"><a href="GDataEntry.html">GDataEntry</a></span>s, the
+						<span class="type"><a href="GDataFeed.html">GDataFeed</a></span> class is a direct counterpart of the root
+						<span class="type">&lt;feed&gt;</span> element in the Atom feeds which form the GData protocol. It contains the
+						elements in a query response, as well as general information about the response, such as links to
+						related feeds and the categories under which the query response falls.</p>
+<p><span class="type"><a href="GDataFeed.html">GDataFeed</a></span> is usually not subclassed by services,
+						as there are rarely service-specific elements in a feed itself.</p>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type"><a href="GDataEntry.html">GDataEntry</a></span></span></p></td>
+<td><p>A <span class="type"><a href="GDataEntry.html">GDataEntry</a></span> is a direct counterpart of the
+						<span class="type">&lt;entry&gt;</span> element in the Atom feeds which form the GData protocol. It represents a
+						single object of unspecified semantics; an entry could be anything from a calendar event to a video
+						comment or access control rule. Semantics are given to entries by subclassing
+						<span class="type"><a href="GDataEntry.html">GDataEntry</a></span> for the various types of entries returned
+						by queries to a service. Such subclasses implement useful, relevant and query-specific properties
+						on the entry (such as the duration of a video, or the recurrence rules of a calendar event).</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

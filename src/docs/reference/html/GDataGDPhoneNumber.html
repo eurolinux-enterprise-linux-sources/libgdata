@@ -1,0 +1,552 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataGDPhoneNumber</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch05.html" title="GData API">
+<link rel="prev" href="GDataGDOrganization.html" title="GDataGDOrganization">
+<link rel="next" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress">
+<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. GData Overview">
+<link rel="chapter" href="ch01.html" title="Object Hierarchy">
+<link rel="part" href="pt02.html" title="Part II. Core API">
+<link rel="chapter" href="ch02.html" title="Core API">
+<link rel="chapter" href="ch03.html" title="Access Control List API">
+<link rel="part" href="pt03.html" title="Part III. Namespace API">
+<link rel="chapter" href="ch04.html" title="Atom API">
+<link rel="chapter" href="ch05.html" title="GData API">
+<link rel="chapter" href="ch06.html" title="Media RSS API">
+<link rel="chapter" href="ch07.html" title="YouTube API">
+<link rel="part" href="pt04.html" title="Part IV. Service APIs">
+<link rel="chapter" href="ch08.html" title="YouTube API">
+<link rel="chapter" href="ch09.html" title="Google Calendar API">
+<link rel="chapter" href="ch10.html" title="Google Contacts API">
+<link rel="chapter" href="ch11.html" title="Google Documents API">
+<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
+<link rel="part" href="pt05.html" title="Part V. Appendices">
+<link rel="index" href="api-index-full.html" title="API Index">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GDataGDOrganization.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GData Reference Manual</th>
+<td><a accesskey="n" href="GDataGDPostalAddress.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GDataGDPhoneNumber.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GDataGDPhoneNumber.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GDataGDPhoneNumber.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GDataGDPhoneNumber.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GDataGDPhoneNumber"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataGDPhoneNumber.top_of_page"></a>GDataGDPhoneNumber</span></h2>
+<p>GDataGDPhoneNumber — GData phone number element</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPhoneNumber.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GDataGDPhoneNumber.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;gdata/gd/gdata-gd-phone-number.h&gt;
+
+                    <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber-struct">GDataGDPhoneNumber</a>;
+                    <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumberClass">GDataGDPhoneNumberClass</a>;
+<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> * <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-new">gdata_gd_phone_number_new</a>          (const gchar *number,
+                                                         const gchar *relation_type,
+                                                         const gchar *label,
+                                                         const gchar *uri,
+                                                         gboolean is_primary);
+gint                <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-compare">gdata_gd_phone_number_compare</a>       (const <a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *a,
+                                                         const <a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *b);
+const gchar *       <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-get-number">gdata_gd_phone_number_get_number</a>    (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);
+void                <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-number">gdata_gd_phone_number_set_number</a>    (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         const gchar *number);
+const gchar *       <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-get-uri">gdata_gd_phone_number_get_uri</a>       (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);
+void                <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-uri">gdata_gd_phone_number_set_uri</a>       (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         const gchar *uri);
+const gchar *       <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-get-relation-type">gdata_gd_phone_number_get_relation_type</a>
+                                                        (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);
+void                <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-relation-type">gdata_gd_phone_number_set_relation_type</a>
+                                                        (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         const gchar *relation_type);
+const gchar *       <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-get-label">gdata_gd_phone_number_get_label</a>     (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);
+void                <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-label">gdata_gd_phone_number_set_label</a>     (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         const gchar *label);
+gboolean            <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-is-primary">gdata_gd_phone_number_is_primary</a>    (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);
+void                <a href="GDataGDPhoneNumber.html#gdata-gd-phone-number-set-is-primary">gdata_gd_phone_number_set_is_primary</a>
+                                                        (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         gboolean is_primary);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPhoneNumber.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----<a href="GDataParsable.html">GDataParsable</a>
+         +----GDataGDPhoneNumber
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPhoneNumber.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--is-primary">is-primary</a>"               gboolean              : Read / Write
+  "<a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--label">label</a>"                    gchar*                : Read / Write
+  "<a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--number">number</a>"                   gchar*                : Read / Write
+  "<a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--relation-type">relation-type</a>"            gchar*                : Read / Write
+  "<a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--uri">uri</a>"                      gchar*                : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPhoneNumber.description"></a><h2>Description</h2>
+<p>
+<a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a> represents a "phoneNumber" element from the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber" target="_top">GData specification</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPhoneNumber.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataGDPhoneNumber-struct"></a><h3>GDataGDPhoneNumber</h3>
+<pre class="programlisting">typedef struct _GDataGDPhoneNumber GDataGDPhoneNumber;</pre>
+<p>
+All the fields in the <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a> structure are private and should never be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPhoneNumberClass"></a><h3>GDataGDPhoneNumberClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataGDPhoneNumberClass;
+</pre>
+<p>
+All the fields in the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumberClass"><span class="type">GDataGDPhoneNumberClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-new"></a><h3>gdata_gd_phone_number_new ()</h3>
+<pre class="programlisting"><a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> * gdata_gd_phone_number_new          (const gchar *number,
+                                                         const gchar *relation_type,
+                                                         const gchar *label,
+                                                         const gchar *uri,
+                                                         gboolean is_primary);</pre>
+<p>
+Creates a new <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>. More information is available in the <a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber" target="_top">GData specification</a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>number</code></em> :</span></p></td>
+<td> the phone number, in human-readable format
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>relation_type</code></em> :</span></p></td>
+<td> the relationship between the phone number and its owner, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a human-readable label for the phone number, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td> a "tel URI" to represent the number formally (see
+<a class="ulink" href="http://www.ietf.org/rfc/rfc3966.txt" target="_top">RFC 3966</a>), or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_primary</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if this phone number is its owner's primary number, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-compare"></a><h3>gdata_gd_phone_number_compare ()</h3>
+<pre class="programlisting">gint                gdata_gd_phone_number_compare       (const <a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *a,
+                                                         const <a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *b);</pre>
+<p>
+Compares the two phone numbers in a <code class="function">strcmp()</code> fashion. <code class="literal">NULL</code> values are handled gracefully, with
+<code class="literal">0</code> returned if both <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are <code class="literal">NULL</code>, <code class="literal">-1</code> if <em class="parameter"><code>a</code></em> is <code class="literal">NULL</code> and <code class="literal">1</code> if <em class="parameter"><code>b</code></em> is <code class="literal">NULL</code>.
+</p>
+<p>
+The comparison of non-<code class="literal">NULL</code> values is done on the basis of the <em class="parameter"><code>number</code></em> property of the <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>s.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td> another <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>, or <code class="literal">NULL</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">0</code> if <em class="parameter"><code>a</code></em> equals <em class="parameter"><code>b</code></em>, <code class="literal">-1</code> or <code class="literal">1</code> as appropriate otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-get-number"></a><h3>gdata_gd_phone_number_get_number ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_phone_number_get_number    (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--number"><span class="type">"number"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the phone number itself
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-set-number"></a><h3>gdata_gd_phone_number_set_number ()</h3>
+<pre class="programlisting">void                gdata_gd_phone_number_set_number    (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         const gchar *number);</pre>
+<p>
+Sets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--number"><span class="type">"number"</span></a> property to <em class="parameter"><code>number</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>number</code></em> :</span></p></td>
+<td> the new phone number
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-get-uri"></a><h3>gdata_gd_phone_number_get_uri ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_phone_number_get_uri       (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--uri"><span class="type">"uri"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the phone number's URI, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-set-uri"></a><h3>gdata_gd_phone_number_set_uri ()</h3>
+<pre class="programlisting">void                gdata_gd_phone_number_set_uri       (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         const gchar *uri);</pre>
+<p>
+Sets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--uri"><span class="type">"uri"</span></a> property to <em class="parameter"><code>uri</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>uri</code></em> to <code class="literal">NULL</code> to unset the property in the phone number.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td> the new URI for the phone number, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-get-relation-type"></a><h3>gdata_gd_phone_number_get_relation_type ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_phone_number_get_relation_type
+                                                        (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--relation-type"><span class="type">"relation-type"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the phone number's relation type, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-set-relation-type"></a><h3>gdata_gd_phone_number_set_relation_type ()</h3>
+<pre class="programlisting">void                gdata_gd_phone_number_set_relation_type
+                                                        (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         const gchar *relation_type);</pre>
+<p>
+Sets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--relation-type"><span class="type">"relation-type"</span></a> property to <em class="parameter"><code>relation_type</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>relation_type</code></em> to <code class="literal">NULL</code> to unset the property in the phone number.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>relation_type</code></em> :</span></p></td>
+<td> the new relation type for the phone number, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-get-label"></a><h3>gdata_gd_phone_number_get_label ()</h3>
+<pre class="programlisting">const gchar *       gdata_gd_phone_number_get_label     (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--label"><span class="type">"label"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the phone number's label, or <code class="literal">NULL</code>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-set-label"></a><h3>gdata_gd_phone_number_set_label ()</h3>
+<pre class="programlisting">void                gdata_gd_phone_number_set_label     (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         const gchar *label);</pre>
+<p>
+Sets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--label"><span class="type">"label"</span></a> property to <em class="parameter"><code>label</code></em>.
+</p>
+<p>
+Set <em class="parameter"><code>label</code></em> to <code class="literal">NULL</code> to unset the property in the phone number.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> the new label for the phone number, or <code class="literal">NULL</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-is-primary"></a><h3>gdata_gd_phone_number_is_primary ()</h3>
+<pre class="programlisting">gboolean            gdata_gd_phone_number_is_primary    (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self);</pre>
+<p>
+Gets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--is-primary"><span class="type">"is-primary"</span></a> property.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if this is the primary phone number, <code class="literal">FALSE</code> otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdata-gd-phone-number-set-is-primary"></a><h3>gdata_gd_phone_number_set_is_primary ()</h3>
+<pre class="programlisting">void                gdata_gd_phone_number_set_is_primary
+                                                        (<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *self,
+                                                         gboolean is_primary);</pre>
+<p>
+Sets the <a href="GDataGDPhoneNumber.html#GDataGDPhoneNumber--is-primary"><span class="type">"is-primary"</span></a> property to <em class="parameter"><code>is_primary</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_primary</code></em> :</span></p></td>
+<td> <code class="literal">TRUE</code> if this is the primary phone number, <code class="literal">FALSE</code> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="GDataGDPhoneNumber.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GDataGDPhoneNumber--is-primary"></a><h3>The <code class="literal">"is-primary"</code> property</h3>
+<pre class="programlisting">  "is-primary"               gboolean              : Read / Write</pre>
+<p>
+Indicates which phone number out of a group is primary.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber" target="_top">GData specification</a>.</p>
+<p>Default value: FALSE</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPhoneNumber--label"></a><h3>The <code class="literal">"label"</code> property</h3>
+<pre class="programlisting">  "label"                    gchar*                : Read / Write</pre>
+<p>
+A simple string value used to name this phone number. It allows UIs to display a label such as "Mobile", "Home", "Work", etc.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPhoneNumber--number"></a><h3>The <code class="literal">"number"</code> property</h3>
+<pre class="programlisting">  "number"                   gchar*                : Read / Write</pre>
+<p>
+Human-readable phone number; may be in any telephone number format.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPhoneNumber--relation-type"></a><h3>The <code class="literal">"relation-type"</code> property</h3>
+<pre class="programlisting">  "relation-type"            gchar*                : Read / Write</pre>
+<p>
+A programmatic value that identifies the type of phone number.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDataGDPhoneNumber--uri"></a><h3>The <code class="literal">"uri"</code> property</h3>
+<pre class="programlisting">  "uri"                      gchar*                : Read / Write</pre>
+<p>
+An optional "tel URI" used to represent the number in a formal way, useful for programmatic access, such as a VoIP/PSTN bridge.
+</p>
+<p>
+For more information, see the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber" target="_top">GData specification</a>.</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.12</div>
+</body>
+</html>

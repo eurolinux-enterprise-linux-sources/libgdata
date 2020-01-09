@@ -1,0 +1,233 @@
+<!-- ##### SECTION Title ##### -->
+GDataYouTubeService
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataYouTubeService ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataYouTubeService:developer-key ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataYouTubeService:youtube-user ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataYouTubeServiceClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GDataYouTubeServiceError ##### -->
+<para>
+
+</para>
+
+@GDATA_YOUTUBE_SERVICE_ERROR_API_QUOTA_EXCEEDED: 
+@GDATA_YOUTUBE_SERVICE_ERROR_ENTRY_QUOTA_EXCEEDED: 
+
+<!-- ##### ENUM GDataYouTubeStandardFeedType ##### -->
+<para>
+
+</para>
+
+@GDATA_YOUTUBE_TOP_RATED_FEED: 
+@GDATA_YOUTUBE_TOP_FAVORITES_FEED: 
+@GDATA_YOUTUBE_MOST_VIEWED_FEED: 
+@GDATA_YOUTUBE_MOST_POPULAR_FEED: 
+@GDATA_YOUTUBE_MOST_RECENT_FEED: 
+@GDATA_YOUTUBE_MOST_DISCUSSED_FEED: 
+@GDATA_YOUTUBE_MOST_LINKED_FEED: 
+@GDATA_YOUTUBE_MOST_RESPONDED_FEED: 
+@GDATA_YOUTUBE_RECENTLY_FEATURED_FEED: 
+@GDATA_YOUTUBE_WATCH_ON_MOBILE_FEED: 
+
+<!-- ##### FUNCTION gdata_youtube_service_new ##### -->
+<para>
+
+</para>
+
+@developer_key: 
+@client_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_query_videos ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_query_videos_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_query_single_video ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@video_id: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_query_single_video_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@video_id: 
+@cancellable: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_query_single_video_finish ##### -->
+<para>
+
+</para>
+
+@self: 
+@async_result: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_query_related ##### -->
+<para>
+
+</para>
+
+@self: 
+@video: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_query_related_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@video: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_query_standard_feed ##### -->
+<para>
+
+</para>
+
+@self: 
+@feed_type: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_query_standard_feed_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@feed_type: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_upload_video ##### -->
+<para>
+
+</para>
+
+@self: 
+@video: 
+@video_file: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_get_developer_key ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_youtube_service_get_youtube_user ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

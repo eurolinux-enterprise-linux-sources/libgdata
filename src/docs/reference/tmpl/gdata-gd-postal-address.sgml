@@ -1,0 +1,479 @@
+<!-- ##### SECTION Title ##### -->
+GDataGDPostalAddress
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataGDPostalAddress ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataGDPostalAddress:address ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:agent ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:city ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:country ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:country-code ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:house-name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:is-primary ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:label ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:mail-class ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:neighborhood ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:po-box ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:postcode ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:region ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:relation-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:street ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:subregion ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDPostalAddress:usage ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataGDPostalAddressClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO GDATA_GD_ADDRESS_USAGE_GENERAL ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_GD_ADDRESS_USAGE_LOCAL ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_GD_MAIL_CLASS_BOTH ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_GD_MAIL_CLASS_LETTERS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_GD_MAIL_CLASS_NEITHER ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDATA_GD_MAIL_CLASS_PARCELS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_new ##### -->
+<para>
+
+</para>
+
+@relation_type: 
+@label: 
+@is_primary: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_address ##### -->
+<para>
+
+</para>
+
+@self: 
+@address: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_relation_type ##### -->
+<para>
+
+</para>
+
+@self: 
+@relation_type: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@label: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_is_primary ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_is_primary ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_primary: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_mail_class ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_mail_class ##### -->
+<para>
+
+</para>
+
+@self: 
+@mail_class: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_usage ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_usage ##### -->
+<para>
+
+</para>
+
+@self: 
+@usage: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_agent ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_agent ##### -->
+<para>
+
+</para>
+
+@self: 
+@agent: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_house_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_house_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@house_name: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_street ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_street ##### -->
+<para>
+
+</para>
+
+@self: 
+@street: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_po_box ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_po_box ##### -->
+<para>
+
+</para>
+
+@self: 
+@po_box: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_neighborhood ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_neighborhood ##### -->
+<para>
+
+</para>
+
+@self: 
+@neighborhood: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_city ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_city ##### -->
+<para>
+
+</para>
+
+@self: 
+@city: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_subregion ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_subregion ##### -->
+<para>
+
+</para>
+
+@self: 
+@subregion: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_region ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_region ##### -->
+<para>
+
+</para>
+
+@self: 
+@region: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_postcode ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_postcode ##### -->
+<para>
+
+</para>
+
+@self: 
+@postcode: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_country ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_get_country_code ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_postal_address_set_country ##### -->
+<para>
+
+</para>
+
+@self: 
+@country: 
+@country_code: 
+
+

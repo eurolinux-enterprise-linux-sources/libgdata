@@ -1,0 +1,157 @@
+<!-- ##### SECTION Title ##### -->
+GDataDocumentsService
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataDocumentsService ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataDocumentsService:spreadsheet-service ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataDocumentsServiceClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GDataDocumentsServiceError ##### -->
+<para>
+
+</para>
+
+@GDATA_DOCUMENTS_SERVICE_ERROR_INVALID_CONTENT_TYPE: 
+
+<!-- ##### FUNCTION gdata_documents_service_new ##### -->
+<para>
+
+</para>
+
+@client_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_service_query_documents ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_service_query_documents_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@query: 
+@cancellable: 
+@progress_callback: 
+@progress_user_data: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_documents_service_query_single_document ##### -->
+<para>
+
+</para>
+
+@self: 
+@document_type: 
+@document_id: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_service_upload_document ##### -->
+<para>
+
+</para>
+
+@self: 
+@document: 
+@document_file: 
+@folder: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_service_update_document ##### -->
+<para>
+
+</para>
+
+@self: 
+@document: 
+@document_file: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_service_move_document_to_folder ##### -->
+<para>
+
+</para>
+
+@self: 
+@document: 
+@folder: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_service_remove_document_from_folder ##### -->
+<para>
+
+</para>
+
+@self: 
+@document: 
+@folder: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_service_get_upload_uri ##### -->
+<para>
+
+</para>
+
+@folder: 
+@Returns: 
+
+

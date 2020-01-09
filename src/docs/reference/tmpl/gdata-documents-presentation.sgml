@@ -1,0 +1,79 @@
+<!-- ##### SECTION Title ##### -->
+GDataDocumentsPresentation
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataDocumentsPresentation ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GDataDocumentsPresentationClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GDataDocumentsPresentationFormat ##### -->
+<para>
+
+</para>
+
+@GDATA_DOCUMENTS_PRESENTATION_PDF: 
+@GDATA_DOCUMENTS_PRESENTATION_PNG: 
+@GDATA_DOCUMENTS_PRESENTATION_PPT: 
+@GDATA_DOCUMENTS_PRESENTATION_SWF: 
+@GDATA_DOCUMENTS_PRESENTATION_TXT: 
+
+<!-- ##### FUNCTION gdata_documents_presentation_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_presentation_download_document ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@content_type: 
+@export_format: 
+@destination_file: 
+@replace_file_if_exists: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_presentation_get_download_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@export_format: 
+@Returns: 
+
+

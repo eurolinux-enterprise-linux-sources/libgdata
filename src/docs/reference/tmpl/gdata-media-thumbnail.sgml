@@ -1,0 +1,89 @@
+<!-- ##### SECTION Title ##### -->
+GDataMediaThumbnail
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataMediaThumbnail ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataMediaThumbnail:height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataMediaThumbnail:time ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataMediaThumbnail:uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataMediaThumbnail:width ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataMediaThumbnailClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_media_thumbnail_get_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_thumbnail_get_height ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_thumbnail_get_width ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_thumbnail_get_time ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

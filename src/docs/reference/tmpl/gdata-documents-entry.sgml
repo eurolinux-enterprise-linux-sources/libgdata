@@ -1,0 +1,135 @@
+<!-- ##### SECTION Title ##### -->
+GDataDocumentsEntry
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataDocumentsEntry ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataDocumentsEntry:document-id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataDocumentsEntry:edited ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataDocumentsEntry:is-deleted ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataDocumentsEntry:last-modified-by ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataDocumentsEntry:last-viewed ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataDocumentsEntry:writers-can-invite ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataDocumentsEntryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_documents_entry_get_path ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_entry_get_document_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_entry_get_edited ##### -->
+<para>
+
+</para>
+
+@self: 
+@edited: 
+
+
+<!-- ##### FUNCTION gdata_documents_entry_get_last_modified_by ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_entry_get_last_viewed ##### -->
+<para>
+
+</para>
+
+@self: 
+@last_viewed: 
+
+
+<!-- ##### FUNCTION gdata_documents_entry_writers_can_invite ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_documents_entry_set_writers_can_invite ##### -->
+<para>
+
+</para>
+
+@self: 
+@writers_can_invite: 
+
+
+<!-- ##### FUNCTION gdata_documents_entry_is_deleted ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

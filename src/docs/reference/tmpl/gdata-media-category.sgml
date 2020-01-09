@@ -1,0 +1,113 @@
+<!-- ##### SECTION Title ##### -->
+GDataMediaCategory
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataMediaCategory ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataMediaCategory:category ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataMediaCategory:label ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataMediaCategory:scheme ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataMediaCategoryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_media_category_new ##### -->
+<para>
+
+</para>
+
+@category: 
+@scheme: 
+@label: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_category_get_category ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_category_set_category ##### -->
+<para>
+
+</para>
+
+@self: 
+@category: 
+
+
+<!-- ##### FUNCTION gdata_media_category_get_scheme ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_category_set_scheme ##### -->
+<para>
+
+</para>
+
+@self: 
+@scheme: 
+
+
+<!-- ##### FUNCTION gdata_media_category_get_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_category_set_label ##### -->
+<para>
+
+</para>
+
+@self: 
+@label: 
+
+

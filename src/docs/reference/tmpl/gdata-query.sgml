@@ -1,0 +1,365 @@
+<!-- ##### SECTION Title ##### -->
+GDataQuery
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataQuery ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataQuery:author ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:categories ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:entry-id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:etag ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:is-strict ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:max-results ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:published-max ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:published-min ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:q ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:start-index ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:updated-max ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataQuery:updated-min ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataQueryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_query_new ##### -->
+<para>
+
+</para>
+
+@q: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_new_with_limits ##### -->
+<para>
+
+</para>
+
+@q: 
+@start_index: 
+@max_results: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_new_for_id ##### -->
+<para>
+
+</para>
+
+@entry_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_get_query_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@feed_uri: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_next_page ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION gdata_query_previous_page ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_get_q ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_set_q ##### -->
+<para>
+
+</para>
+
+@self: 
+@q: 
+
+
+<!-- ##### FUNCTION gdata_query_get_entry_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_set_entry_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@entry_id: 
+
+
+<!-- ##### FUNCTION gdata_query_get_etag ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_set_etag ##### -->
+<para>
+
+</para>
+
+@self: 
+@etag: 
+
+
+<!-- ##### FUNCTION gdata_query_get_author ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_set_author ##### -->
+<para>
+
+</para>
+
+@self: 
+@author: 
+
+
+<!-- ##### FUNCTION gdata_query_get_categories ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_set_categories ##### -->
+<para>
+
+</para>
+
+@self: 
+@categories: 
+
+
+<!-- ##### FUNCTION gdata_query_get_published_min ##### -->
+<para>
+
+</para>
+
+@self: 
+@published_min: 
+
+
+<!-- ##### FUNCTION gdata_query_set_published_min ##### -->
+<para>
+
+</para>
+
+@self: 
+@published_min: 
+
+
+<!-- ##### FUNCTION gdata_query_get_published_max ##### -->
+<para>
+
+</para>
+
+@self: 
+@published_max: 
+
+
+<!-- ##### FUNCTION gdata_query_set_published_max ##### -->
+<para>
+
+</para>
+
+@self: 
+@published_max: 
+
+
+<!-- ##### FUNCTION gdata_query_get_updated_min ##### -->
+<para>
+
+</para>
+
+@self: 
+@updated_min: 
+
+
+<!-- ##### FUNCTION gdata_query_set_updated_min ##### -->
+<para>
+
+</para>
+
+@self: 
+@updated_min: 
+
+
+<!-- ##### FUNCTION gdata_query_get_updated_max ##### -->
+<para>
+
+</para>
+
+@self: 
+@updated_max: 
+
+
+<!-- ##### FUNCTION gdata_query_set_updated_max ##### -->
+<para>
+
+</para>
+
+@self: 
+@updated_max: 
+
+
+<!-- ##### FUNCTION gdata_query_get_start_index ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_set_start_index ##### -->
+<para>
+
+</para>
+
+@self: 
+@start_index: 
+
+
+<!-- ##### FUNCTION gdata_query_get_max_results ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_set_max_results ##### -->
+<para>
+
+</para>
+
+@self: 
+@max_results: 
+
+
+<!-- ##### FUNCTION gdata_query_is_strict ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_query_set_is_strict ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_strict: 
+
+

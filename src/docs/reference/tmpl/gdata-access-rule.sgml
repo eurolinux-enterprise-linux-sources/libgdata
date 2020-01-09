@@ -1,0 +1,95 @@
+<!-- ##### SECTION Title ##### -->
+GDataAccessRule
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataAccessRule ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataAccessRule:role ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataAccessRule:scope-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataAccessRule:scope-value ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataAccessRuleClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_access_rule_new ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_access_rule_get_role ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_access_rule_set_role ##### -->
+<para>
+
+</para>
+
+@self: 
+@role: 
+
+
+<!-- ##### FUNCTION gdata_access_rule_get_scope ##### -->
+<para>
+
+</para>
+
+@self: 
+@type: 
+@value: 
+
+
+<!-- ##### FUNCTION gdata_access_rule_set_scope ##### -->
+<para>
+
+</para>
+
+@self: 
+@type: 
+@value: 
+
+

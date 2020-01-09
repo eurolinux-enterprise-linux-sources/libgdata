@@ -1,0 +1,181 @@
+<!-- ##### SECTION Title ##### -->
+GDataPicasaWebQuery
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GDataPicasaWebQuery ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataPicasaWebQuery:image-size ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebQuery:location ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebQuery:tag ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebQuery:thumbnail-size ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebQuery:visibility ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataPicasaWebQueryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_new ##### -->
+<para>
+
+</para>
+
+@q: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_get_visibility ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_set_visibility ##### -->
+<para>
+
+</para>
+
+@self: 
+@visibility: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_get_thumbnail_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_set_thumbnail_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@thumbnail_size: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_get_image_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_set_image_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@image_size: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_get_tag ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_set_tag ##### -->
+<para>
+
+</para>
+
+@self: 
+@tag: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_get_bounding_box ##### -->
+<para>
+
+</para>
+
+@self: 
+@north: 
+@east: 
+@south: 
+@west: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_set_bounding_box ##### -->
+<para>
+
+</para>
+
+@self: 
+@north: 
+@east: 
+@south: 
+@west: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_get_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_set_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@location: 
+
+
