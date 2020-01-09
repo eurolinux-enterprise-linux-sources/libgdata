@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataDocumentsService</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch11.html" title="Google Documents API">
 <link rel="prev" href="ch11.html" title="Google Documents API">
 <link rel="next" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -52,7 +30,7 @@
                   <a href="#GDataDocumentsService.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataDocumentsService">
 <a name="GDataDocumentsService"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -61,87 +39,87 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataDocumentsService.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataDocumentsService.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/services/documents/gdata-documents-service.h&gt;
 
-                    <a href="GDataDocumentsService.html#GDataDocumentsService-struct">GDataDocumentsService</a>;
-                    <a href="GDataDocumentsService.html#GDataDocumentsServiceClass">GDataDocumentsServiceClass</a>;
-enum                <a href="GDataDocumentsService.html#GDataDocumentsServiceError">GDataDocumentsServiceError</a>;
-<a href="GDataDocumentsService.html">GDataDocumentsService</a> * <a href="GDataDocumentsService.html#gdata-documents-service-new">gdata_documents_service_new</a>     (const gchar *client_id);
-<a href="GDataDocumentsFeed.html">GDataDocumentsFeed</a> * <a href="GDataDocumentsService.html#gdata-documents-service-query-documents">gdata_documents_service_query_documents</a>
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsQuery.html">GDataDocumentsQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GError **error);
-void                <a href="GDataDocumentsService.html#gdata-documents-service-query-documents-async">gdata_documents_service_query_documents_async</a>
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsQuery.html">GDataDocumentsQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GAsyncReadyCallback callback,
-                                                         gpointer user_data);
-<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * <a href="GDataDocumentsService.html#gdata-documents-service-query-single-document">gdata_documents_service_query_single_document</a>
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         GType document_type,
-                                                         const gchar *document_id,
-                                                         GCancellable *cancellable,
-                                                         GError **error);
-<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * <a href="GDataDocumentsService.html#gdata-documents-service-upload-document">gdata_documents_service_upload_document</a>
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *document,
-                                                         GFile *document_file,
-                                                         <a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> *folder,
-                                                         GCancellable *cancellable,
-                                                         GError **error);
-<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * <a href="GDataDocumentsService.html#gdata-documents-service-update-document">gdata_documents_service_update_document</a>
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *document,
-                                                         GFile *document_file,
-                                                         GCancellable *cancellable,
-                                                         GError **error);
-<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * <a href="GDataDocumentsService.html#gdata-documents-service-move-document-to-folder">gdata_documents_service_move_document_to_folder</a>
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *document,
-                                                         <a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> *folder,
-                                                         GCancellable *cancellable,
-                                                         GError **error);
-<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * <a href="GDataDocumentsService.html#gdata-documents-service-remove-document-from-folder">gdata_documents_service_remove_document_from_folder</a>
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *document,
-                                                         <a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> *folder,
-                                                         GCancellable *cancellable,
-                                                         GError **error);
-gchar *             <a href="GDataDocumentsService.html#gdata-documents-service-get-upload-uri">gdata_documents_service_get_upload_uri</a>
-                                                        (<a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> *folder);
+                    <a class="link" href="GDataDocumentsService.html#GDataDocumentsService-struct" title="GDataDocumentsService">GDataDocumentsService</a>;
+                    <a class="link" href="GDataDocumentsService.html#GDataDocumentsServiceClass" title="GDataDocumentsServiceClass">GDataDocumentsServiceClass</a>;
+enum                <a class="link" href="GDataDocumentsService.html#GDataDocumentsServiceError" title="enum GDataDocumentsServiceError">GDataDocumentsServiceError</a>;
+<a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="returnvalue">GDataDocumentsService</span></a> * <a class="link" href="GDataDocumentsService.html#gdata-documents-service-new" title="gdata_documents_service_new ()">gdata_documents_service_new</a>     (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client_id</code></em>);
+<a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="returnvalue">GDataDocumentsFeed</span></a> * <a class="link" href="GDataDocumentsService.html#gdata-documents-service-query-documents" title="gdata_documents_service_query_documents ()">gdata_documents_service_query_documents</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsService.html#gdata-documents-service-query-documents-async" title="gdata_documents_service_query_documents_async ()">gdata_documents_service_query_documents_async</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * <a class="link" href="GDataDocumentsService.html#gdata-documents-service-query-single-document" title="gdata_documents_service_query_single_document ()">gdata_documents_service_query_single_document</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> document_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *document_id</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * <a class="link" href="GDataDocumentsService.html#gdata-documents-service-upload-document" title="gdata_documents_service_upload_document ()">gdata_documents_service_upload_document</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *document</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *document_file</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * <a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document" title="gdata_documents_service_update_document ()">gdata_documents_service_update_document</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *document</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *document_file</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * <a class="link" href="GDataDocumentsService.html#gdata-documents-service-move-document-to-folder" title="gdata_documents_service_move_document_to_folder ()">gdata_documents_service_move_document_to_folder</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *document</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * <a class="link" href="GDataDocumentsService.html#gdata-documents-service-remove-document-from-folder" title="gdata_documents_service_remove_document_from_folder ()">gdata_documents_service_remove_document_from_folder</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *document</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="GDataDocumentsService.html#gdata-documents-service-get-upload-uri" title="gdata_documents_service_get_upload_uri ()">gdata_documents_service_get_upload_uri</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataDocumentsService.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataService.html">GDataService</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataService.html" title="GDataService">GDataService</a>
          +----GDataDocumentsService
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataDocumentsService.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataDocumentsService.html#GDataDocumentsService--spreadsheet-service">spreadsheet-service</a>"      <a href="GDataService.html">GDataService</a>*         : Read
+  "<a class="link" href="GDataDocumentsService.html#GDataDocumentsService--spreadsheet-service" title='The "spreadsheet-service" property'>spreadsheet-service</a>"      <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>*         : Read
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataDocumentsService.description"></a><h2>Description</h2>
 <p>
-<a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a> is a subclass of <a href="GDataService.html"><span class="type">GDataService</span></a> for communicating with the GData API of Google Documents. It supports querying
+<a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> is a subclass of <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> for communicating with the GData API of Google Documents. It supports querying
 for, inserting, editing and deleting documents, as well as a folder hierarchy.
 </p>
 <p>
@@ -151,63 +129,68 @@ online documentation</a>.
 <p>
 Fore more details about the spreadsheet downloads handling, see the
 <a class="ulink" href="http://groups.google.com/group/Google-Docs-Data-APIs/browse_thread/thread/bfc50e94e303a29a?pli=1" target="_top">
-online explanation about the problem</a>.</p>
+online explanation about the problem</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataDocumentsService.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataDocumentsService">
 <a name="GDataDocumentsService-struct"></a><h3>GDataDocumentsService</h3>
 <pre class="programlisting">typedef struct _GDataDocumentsService GDataDocumentsService;</pre>
 <p>
-All the fields in the <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataDocumentsServiceClass">
 <a name="GDataDocumentsServiceClass"></a><h3>GDataDocumentsServiceClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataDocumentsServiceClass;
 </pre>
 <p>
-All the fields in the <a href="GDataDocumentsService.html#GDataDocumentsServiceClass"><span class="type">GDataDocumentsServiceClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataDocumentsService.html#GDataDocumentsServiceClass" title="GDataDocumentsServiceClass"><span class="type">GDataDocumentsServiceClass</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GDataDocumentsServiceError">
 <a name="GDataDocumentsServiceError"></a><h3>enum GDataDocumentsServiceError</h3>
 <pre class="programlisting">typedef enum {
 	GDATA_DOCUMENTS_SERVICE_ERROR_INVALID_CONTENT_TYPE
 } GDataDocumentsServiceError;
 </pre>
 <p>
-Error codes for <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a> operations.</p>
+Error codes for <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> operations.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><a name="GDATA-DOCUMENTS-SERVICE-ERROR-INVALID-CONTENT-TYPE:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_SERVICE_ERROR_INVALID_CONTENT_TYPE</code></span></p></td>
-<td> the content type of a provided file was invalid
+<td>the content type of a provided file was invalid
 </td>
 </tr></tbody>
 </table></div>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_service_new ()">
 <a name="gdata-documents-service-new"></a><h3>gdata_documents_service_new ()</h3>
-<pre class="programlisting"><a href="GDataDocumentsService.html">GDataDocumentsService</a> * gdata_documents_service_new     (const gchar *client_id);</pre>
+<pre class="programlisting"><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="returnvalue">GDataDocumentsService</span></a> * gdata_documents_service_new     (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client_id</code></em>);</pre>
 <p>
-Creates a new <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>. The <em class="parameter"><code>client_id</code></em> must be unique for your application, and as registered with Google.</p>
+Creates a new <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>. The <em class="parameter"><code>client_id</code></em> must be unique for your application, and as registered with Google.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>client_id</code></em> :</span></p></td>
-<td> your application's client ID
+<td>your application's client ID
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> a new <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -216,56 +199,57 @@ Creates a new <a href="GDataDocumentsService.html"><span class="type">GDataDocum
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_service_query_documents ()">
 <a name="gdata-documents-service-query-documents"></a><h3>gdata_documents_service_query_documents ()</h3>
-<pre class="programlisting"><a href="GDataDocumentsFeed.html">GDataDocumentsFeed</a> * gdata_documents_service_query_documents
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsQuery.html">GDataDocumentsQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="returnvalue">GDataDocumentsFeed</span></a> * gdata_documents_service_query_documents
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Queries the service to return a list of documents matching the given <em class="parameter"><code>query</code></em>.
 </p>
 <p>
-For more details, see <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>
+<td>a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
-<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
-<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>progress_callback</code></em> function
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataDocumentsFeed.html"><span class="type">GDataDocumentsFeed</span></a> of query results; unref with <code class="function">g_object_unref()</code>
+<td> a <a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="type">GDataDocumentsFeed</span></a> of query results; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -274,59 +258,60 @@ For more details, see <a href="GDataService.html#gdata-service-query"><code clas
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_service_query_documents_async ()">
 <a name="gdata-documents-service-query-documents-async"></a><h3>gdata_documents_service_query_documents_async ()</h3>
-<pre class="programlisting">void                gdata_documents_service_query_documents_async
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsQuery.html">GDataDocumentsQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GAsyncReadyCallback callback,
-                                                         gpointer user_data);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_service_query_documents_async
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Queries the service to return a list of documents matching the given <em class="parameter"><code>query</code></em>. <em class="parameter"><code>self</code></em> and
 <em class="parameter"><code>query</code></em> are both reffed when this function is called, so can safely be unreffed after this function returns.
 </p>
 <p>
-For more details, see <a href="GDataDocumentsService.html#gdata-documents-service-query-documents"><code class="function">gdata_documents_service_query_documents()</code></a>, which is the synchronous version of this function,
-and <a href="GDataService.html#gdata-service-query-async"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.</p>
+For more details, see <a class="link" href="GDataDocumentsService.html#gdata-documents-service-query-documents" title="gdata_documents_service_query_documents ()"><code class="function">gdata_documents_service_query_documents()</code></a>, which is the synchronous version of this function,
+and <a class="link" href="GDataService.html#gdata-service-query-async" title="gdata_service_query_async ()"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>
+<td>a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
-<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
-<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>progress_callback</code></em> function
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td> a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when authentication is finished
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>callback</code></em> function
 </td>
 </tr>
 </tbody>
@@ -334,14 +319,14 @@ and <a href="GDataService.html#gdata-service-query-async"><code class="function"
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_service_query_single_document ()">
 <a name="gdata-documents-service-query-single-document"></a><h3>gdata_documents_service_query_single_document ()</h3>
-<pre class="programlisting"><a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * gdata_documents_service_query_single_document
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         GType document_type,
-                                                         const gchar *document_id,
-                                                         GCancellable *cancellable,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * gdata_documents_service_query_single_document
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> document_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *document_id</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Retrieves information about a single document with the given document ID.
 </p>
@@ -350,41 +335,42 @@ Retrieves information about a single document with the given document ID.
 for a spreadsheet.
 </p>
 <p>
-<em class="parameter"><code>document_id</code></em> should be the ID of the document as returned by <code class="function">gdata_document_entry_get_document_id()</code>.
+<em class="parameter"><code>document_id</code></em> should be the ID of the document as returned by <a class="link" href="GDataDocumentsEntry.html#gdata-documents-entry-get-document-id" title="gdata_documents_entry_get_document_id ()"><code class="function">gdata_documents_entry_get_document_id()</code></a>.
 </p>
 <p>
-Parameters and errors are as for <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+Parameters and errors are as for <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>
+<td>a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>document_type</code></em> :</span></p></td>
-<td> the expected <span class="type">GType</span> of the queried entry
+<td>the expected <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> of the queried entry
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>document_id</code></em> :</span></p></td>
-<td> the document ID of the queried document
+<td>the document ID of the queried document
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> a <span class="type">GCancellable</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -393,68 +379,69 @@ Parameters and errors are as for <a href="GDataService.html#gdata-service-query"
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_service_upload_document ()">
 <a name="gdata-documents-service-upload-document"></a><h3>gdata_documents_service_upload_document ()</h3>
-<pre class="programlisting"><a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * gdata_documents_service_upload_document
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *document,
-                                                         GFile *document_file,
-                                                         <a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> *folder,
-                                                         GCancellable *cancellable,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * gdata_documents_service_upload_document
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *document</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *document_file</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Uploads a document to Google Documents, using the properties from <em class="parameter"><code>document</code></em> and the document file pointed to by <em class="parameter"><code>document_file</code></em>.
 </p>
 <p>
-If <em class="parameter"><code>document</code></em> is <code class="literal">NULL</code>, only the document file will be uploaded. The new document entry will be named after the document file's name,
+If <em class="parameter"><code>document</code></em> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, only the document file will be uploaded. The new document entry will be named after the document file's name,
 and will have default metadata.
 </p>
 <p>
-If <em class="parameter"><code>document_file</code></em> is <code class="literal">NULL</code>, only the document metadata will be uploaded. A blank document file will be created with the name
-<code class="literal">new document</code> and the specified metadata. <em class="parameter"><code>document</code></em> and <em class="parameter"><code>document_file</code></em> cannot both be <code class="literal">NULL</code>, but can both have values.
+If <em class="parameter"><code>document_file</code></em> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, only the document metadata will be uploaded. A blank document file will be created with the name
+<code class="literal">new document</code> and the specified metadata. <em class="parameter"><code>document</code></em> and <em class="parameter"><code>document_file</code></em> cannot both be <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, but can both have values.
 </p>
 <p>
 The updated <em class="parameter"><code>document_entry</code></em> will be returned on success, containing updated metadata.
 </p>
 <p>
-If there is a problem reading <em class="parameter"><code>document_file</code></em>, an error from <code class="function">g_file_load_contents()</code> or <code class="function">g_file_query_info()</code> will be returned. Other errors from
-<a href="GDataService.html#GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.</p>
+If there is a problem reading <em class="parameter"><code>document_file</code></em>, an error from <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html#g-file-load-contents"><code class="function">g_file_load_contents()</code></a> or <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html#g-file-query-info"><code class="function">g_file_query_info()</code></a> will be returned. Other errors from
+<a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> an authenticated <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>
+<td>an authenticated <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>document</code></em> :</span></p></td>
-<td> the <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> to insert, or <code class="literal">NULL</code>
+<td>the <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> to insert, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>document_file</code></em> :</span></p></td>
-<td> the document to upload, or <code class="literal">NULL</code>
+<td>the document to upload, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>folder</code></em> :</span></p></td>
-<td> the folder to which the document should be uploaded, or <code class="literal">NULL</code>
+<td>the folder to which the document should be uploaded, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> an updated <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -463,55 +450,56 @@ If there is a problem reading <em class="parameter"><code>document_file</code></
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_service_update_document ()">
 <a name="gdata-documents-service-update-document"></a><h3>gdata_documents_service_update_document ()</h3>
-<pre class="programlisting"><a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * gdata_documents_service_update_document
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *document,
-                                                         GFile *document_file,
-                                                         GCancellable *cancellable,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * gdata_documents_service_update_document
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *document</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *document_file</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Update the document using the properties from <em class="parameter"><code>document</code></em> and the document file pointed to by <em class="parameter"><code>document_file</code></em>. If the document file does not
-need to be changed, <em class="parameter"><code>document_file</code></em> can be <code class="literal">NULL</code>.
+need to be changed, <em class="parameter"><code>document_file</code></em> can be <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </p>
 <p>
-If there is a problem reading <em class="parameter"><code>document_file</code></em>, an error from <code class="function">g_file_load_contents()</code> or <code class="function">g_file_query_info()</code> will be returned. Other errors from
-<a href="GDataService.html#GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.
+If there is a problem reading <em class="parameter"><code>document_file</code></em>, an error from <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html#g-file-load-contents"><code class="function">g_file_load_contents()</code></a> or <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html#g-file-query-info"><code class="function">g_file_query_info()</code></a> will be returned. Other errors from
+<a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.
 </p>
 <p>
-For more details, see <a href="GDataService.html#gdata-service-insert-entry"><code class="function">gdata_service_insert_entry()</code></a>.</p>
+For more details, see <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>
+<td>a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>document</code></em> :</span></p></td>
-<td> the <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> to update
+<td>the <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> to update
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>document_file</code></em> :</span></p></td>
-<td> the local document file containing the new data, or <code class="literal">NULL</code>
+<td>the local document file containing the new data, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> an updated <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -520,51 +508,52 @@ For more details, see <a href="GDataService.html#gdata-service-insert-entry"><co
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_service_move_document_to_folder ()">
 <a name="gdata-documents-service-move-document-to-folder"></a><h3>gdata_documents_service_move_document_to_folder ()</h3>
-<pre class="programlisting"><a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * gdata_documents_service_move_document_to_folder
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *document,
-                                                         <a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> *folder,
-                                                         GCancellable *cancellable,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * gdata_documents_service_move_document_to_folder
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *document</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Move the given <em class="parameter"><code>document</code></em> to the specified <em class="parameter"><code>folder</code></em>. If the document is already in another folder, it will be added to
 the new folder, but will also remain in any previous folders.
 </p>
 <p>
-Errors from <a href="GDataService.html#GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.</p>
+Errors from <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> an authenticated <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>
+<td>an authenticated <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>document</code></em> :</span></p></td>
-<td> the <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> to move
+<td>the <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> to move
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>folder</code></em> :</span></p></td>
-<td> the <a href="GDataDocumentsFolder.html"><span class="type">GDataDocumentsFolder</span></a> to move <em class="parameter"><code>document</code></em> into
+<td>the <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> to move <em class="parameter"><code>document</code></em> into
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> an updated <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -573,50 +562,51 @@ Errors from <a href="GDataService.html#GDataServiceError"><span class="type">GDa
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_service_remove_document_from_folder ()">
 <a name="gdata-documents-service-remove-document-from-folder"></a><h3>gdata_documents_service_remove_document_from_folder ()</h3>
-<pre class="programlisting"><a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> * gdata_documents_service_remove_document_from_folder
-                                                        (<a href="GDataDocumentsService.html">GDataDocumentsService</a> *self,
-                                                         <a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *document,
-                                                         <a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> *folder,
-                                                         GCancellable *cancellable,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> * gdata_documents_service_remove_document_from_folder
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *document</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
-Remove the <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> <em class="parameter"><code>document</code></em> from the GDataDocumentsFolder <em class="parameter"><code>folder</code></em>, and updates the document entry <em class="parameter"><code>document</code></em>.
+Remove the <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> <em class="parameter"><code>document</code></em> from the GDataDocumentsFolder <em class="parameter"><code>folder</code></em>, and updates the document entry <em class="parameter"><code>document</code></em>.
 </p>
 <p>
-Errors from <a href="GDataService.html#GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.</p>
+Errors from <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for other exceptional conditions, as determined by the server.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>
+<td>a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>document</code></em> :</span></p></td>
-<td> the <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> to remove
+<td>the <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> to remove
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>folder</code></em> :</span></p></td>
-<td> the <a href="GDataDocumentsFolder.html"><span class="type">GDataDocumentsFolder</span></a> from wich we should remove <em class="parameter"><code>document</code></em>
+<td>the <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> from wich we should remove <em class="parameter"><code>document</code></em>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> an updated <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -625,26 +615,27 @@ Errors from <a href="GDataService.html#GDataServiceError"><span class="type">GDa
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_service_get_upload_uri ()">
 <a name="gdata-documents-service-get-upload-uri"></a><h3>gdata_documents_service_get_upload_uri ()</h3>
-<pre class="programlisting">gchar *             gdata_documents_service_get_upload_uri
-                                                        (<a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a> *folder);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdata_documents_service_get_upload_uri
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>);</pre>
 <p>
 Gets the upload URI for documents for the service.
 </p>
 <p>
-If <em class="parameter"><code>folder</code></em> is <code class="literal">NULL</code>, the URI will be the one to upload documents to the "root" folder.</p>
+If <em class="parameter"><code>folder</code></em> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the URI will be the one to upload documents to the "root" folder.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>folder</code></em> :</span></p></td>
-<td> the <a href="GDataDocumentsFolder.html"><span class="type">GDataDocumentsFolder</span></a> into which to upload the document, or <code class="literal">NULL</code>
+<td>the <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> into which to upload the document, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the URI permitting the upload of documents to <em class="parameter"><code>folder</code></em>, or <code class="literal">NULL</code>; free with <code class="function">g_free()</code>
+<td> the URI permitting the upload of documents to <em class="parameter"><code>folder</code></em>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; free with <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>
 
 </td>
 </tr>
@@ -653,17 +644,17 @@ If <em class="parameter"><code>folder</code></em> is <code class="literal">NULL<
 <p class="since">Since 0.5.0</p>
 </div>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Property Details">
 <a name="GDataDocumentsService.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "spreadsheet-service" property'>
 <a name="GDataDocumentsService--spreadsheet-service"></a><h3>The <code class="literal">"spreadsheet-service"</code> property</h3>
-<pre class="programlisting">  "spreadsheet-service"      <a href="GDataService.html">GDataService</a>*         : Read</pre>
+<pre class="programlisting">  "spreadsheet-service"      <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>*         : Read</pre>
 <p>Another service for spreadsheets.</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

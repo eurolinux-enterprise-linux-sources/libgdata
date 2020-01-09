@@ -17,7 +17,7 @@
  * License along with GData Client.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
+/*
  * SECTION:gdata-exif-tags
  * @short_description: EXIF tags element
  * @stability: Unstable
@@ -37,7 +37,7 @@
  * For these reasons, properties have not been implemented on #GDataExifTags (yet).
  *
  * Since: 0.5.0
- **/
+ */
 
 #include <glib.h>
 #include <libxml/parser.h>
@@ -95,9 +95,9 @@ gdata_exif_tags_finalize (GObject *object)
 {
 	GDataExifTagsPrivate *priv = GDATA_EXIF_TAGS (object)->priv;
 
-	xmlFree ((xmlChar*) priv->make);
-	xmlFree ((xmlChar*) priv->model);
-	xmlFree ((xmlChar*) priv->image_unique_id);
+	g_free (priv->make);
+	g_free (priv->model);
+	g_free (priv->image_unique_id);
 
 	/* Chain up to the parent class */
 	G_OBJECT_CLASS (gdata_exif_tags_parent_class)->finalize (object);
@@ -107,6 +107,9 @@ static gboolean
 parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error)
 {
 	GDataExifTags *self = GDATA_EXIF_TAGS (parsable);
+
+	if (gdata_parser_is_namespace (node, "http://schemas.google.com/photos/exif/2007") == FALSE)
+		return GDATA_PARSABLE_CLASS (gdata_exif_tags_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 
 	if (xmlStrcmp (node->name, (xmlChar*) "distance") == 0 ) {
 		/* exif:distance */
@@ -120,11 +123,11 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 		xmlFree (fstop);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "make") == 0) {
 		/* exif:make */
-		xmlFree ((xmlChar*) self->priv->make);
+		g_free (self->priv->make);
 		self->priv->make = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "model") == 0) {
 		/* exif:model */
-		xmlFree ((xmlChar*) self->priv->model);
+		g_free (self->priv->model);
 		self->priv->model = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "exposure") == 0) {
 		/* exif:exposure */
@@ -161,7 +164,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 		self->priv->_time.tv_usec = (glong) ((milliseconds % 1000) * 1000);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "imageUniqueID") == 0) {
 		/* exif:imageUniqueID */
-		xmlFree ((xmlChar*) self->priv->image_unique_id);
+		g_free (self->priv->image_unique_id);
 		self->priv->image_unique_id = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
 	} else if (GDATA_PARSABLE_CLASS (gdata_exif_tags_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
 		/* Error! */
@@ -183,7 +186,7 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
  *
  * Gets the #GDataExifTags:distance property.
  *
- * Return value: the distance value, or %-1 if unknown
+ * Return value: the distance value, or <code class="literal">-1</code> if unknown
  *
  * Since: 0.5.0
  **/
@@ -200,7 +203,7 @@ gdata_exif_tags_get_distance (GDataExifTags *self)
  *
  * Gets the #GDataExifTags:exposure property.
  *
- * Return value: the exposure value, or %0 if unknown
+ * Return value: the exposure value, or <code class="literal">0</code> if unknown
  *
  * Since: 0.5.0
  **/
@@ -234,7 +237,7 @@ gdata_exif_tags_get_flash (GDataExifTags *self)
  *
  * Gets the #GDataExifTags:focal-length property.
  *
- * Return value: the focal-length value, or %-1 if unknown
+ * Return value: the focal-length value, or <code class="literal">-1</code> if unknown
  *
  * Since: 0.5.0
  **/
@@ -251,7 +254,7 @@ gdata_exif_tags_get_focal_length (GDataExifTags *self)
  *
  * Gets the #GDataExifTags:fstop property.
  *
- * Return value: the F-stop value, or %0 if unknown
+ * Return value: the F-stop value, or <code class="literal">0</code> if unknown
  *
  * Since: 0.5.0
  **/
@@ -285,7 +288,7 @@ gdata_exif_tags_get_image_unique_id (GDataExifTags *self)
  *
  * Gets the #GDataExifTags:iso property.
  *
- * Return value: the ISO speed, or %-1 if unknown
+ * Return value: the ISO speed, or <code class="literal">-1</code> if unknown
  *
  * Since: 0.5.0
  **/
@@ -336,7 +339,7 @@ gdata_exif_tags_get_model (GDataExifTags *self)
  * @_time: a #GTimeVal
  *
  * Gets the #GDataExifTags:time property and puts it in @_time. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  *
  * Since: 0.5.0
  **/

@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,8 @@
  * added, modified and deleted, with immediate effect.
  *
  * When implementing the interface, classes must implement an <function>is_owner_rule</function> function.
+ *
+ * Since: 0.3.0
  **/
 
 #include <config.h>
@@ -69,7 +71,7 @@ gdata_access_handler_get_type (void)
  * If @cancellable is not %NULL, then the operation can be cancelled by triggering the @cancellable object from another thread.
  * If the operation was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
  *
- * A %GDATA_SERVICE_ERROR_WITH_QUERY will be returned if the server indicates there is a problem with the query.
+ * A %GDATA_SERVICE_ERROR_PROTOCOL_ERROR will be returned if the server indicates there is a problem with the query.
  *
  * For each rule in the response feed, @progress_callback will be called in the main thread. If there was an error parsing the XML response,
  * a #GDataParserError will be returned.
@@ -118,8 +120,8 @@ gdata_access_handler_get_rules (GDataAccessHandler *self, GDataService *service,
 	if (status != 200) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (service, GDATA_SERVICE_ERROR_WITH_QUERY, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (service, GDATA_OPERATION_QUERY, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
@@ -127,7 +129,7 @@ gdata_access_handler_get_rules (GDataAccessHandler *self, GDataService *service,
 	g_assert (message->response_body->data != NULL);
 
 	feed = _gdata_feed_new_from_xml (GDATA_TYPE_FEED, message->response_body->data, message->response_body->length, GDATA_TYPE_ACCESS_RULE,
-					 progress_callback, progress_user_data, error);
+	                                 progress_callback, progress_user_data, error);
 	g_object_unref (message);
 
 	return feed;
@@ -151,7 +153,7 @@ gdata_access_handler_get_rules (GDataAccessHandler *self, GDataService *service,
  * If the rule is marked as already having been inserted a %GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED error will be returned immediately
  * (there will be no network requests).
  *
- * If there is an error inserting the rule, a %GDATA_SERVICE_ERROR_WITH_INSERTION error will be returned.
+ * If there is an error inserting the rule, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned.
  *
  * Return value: an updated #GDataAccessRule, or %NULL
  *
@@ -207,8 +209,8 @@ gdata_access_handler_insert_rule (GDataAccessHandler *self, GDataService *servic
 	if (status != 201) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (service, GDATA_SERVICE_ERROR_WITH_INSERTION, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (service, GDATA_OPERATION_INSERTION, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
@@ -245,10 +247,10 @@ get_soup_message (GDataAccessHandler *access_handler, GDataAccessRule *rule, con
 
 	uri_string = g_string_sized_new (strlen (gdata_link_get_uri (link)) + 30);
 	g_string_append_printf (uri_string, "%s/", gdata_link_get_uri (link));
-	g_string_append_uri_escaped (uri_string, scope_type, NULL, TRUE);
+	g_string_append_uri_escaped (uri_string, scope_type, NULL, FALSE);
 	if (scope_value != NULL) {
 		g_string_append (uri_string, "%3A");
-		g_string_append_uri_escaped (uri_string, scope_value, NULL, TRUE);
+		g_string_append_uri_escaped (uri_string, scope_value, NULL, FALSE);
 	}
 
 	uri = g_string_free (uri_string, FALSE);
@@ -273,7 +275,7 @@ get_soup_message (GDataAccessHandler *access_handler, GDataAccessRule *rule, con
  * If @cancellable is not %NULL, then the operation can be cancelled by triggering the @cancellable object from another thread.
  * If the operation was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
  *
- * If there is an error updating the rule, a %GDATA_SERVICE_ERROR_WITH_UPDATE error will be returned.
+ * If there is an error updating the rule, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned.
  *
  * Return value: an updated #GDataAccessRule, or %NULL
  *
@@ -321,8 +323,8 @@ gdata_access_handler_update_rule (GDataAccessHandler *self, GDataService *servic
 	if (status != 200) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (service, GDATA_SERVICE_ERROR_WITH_UPDATE, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (service, GDATA_OPERATION_UPDATE, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
@@ -351,7 +353,7 @@ gdata_access_handler_update_rule (GDataAccessHandler *self, GDataService *servic
  * If @cancellable is not %NULL, then the operation can be cancelled by triggering the @cancellable object from another thread.
  * If the operation was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
  *
- * If there is an error deleting the rule, a %GDATA_SERVICE_ERROR_WITH_DELETION error will be returned, unless the @rule was the owner's
+ * If there is an error deleting the rule, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned, unless the @rule was the owner's
  * rule; in which case, %GDATA_SERVICE_ERROR_FORBIDDEN will be returned without any network activity.
  *
  * Return value: %TRUE on success, %FALSE otherwise
@@ -404,8 +406,8 @@ gdata_access_handler_delete_rule (GDataAccessHandler *self, GDataService *servic
 	if (status != 200) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (service, GDATA_SERVICE_ERROR_WITH_DELETION, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (service, GDATA_OPERATION_DELETION, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return FALSE;
 	}

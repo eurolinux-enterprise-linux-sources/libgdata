@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataPicasaWebFile</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch12.html" title="Google PicasaWeb API">
 <link rel="prev" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum">
 <link rel="next" href="pt05.html" title="Part V. Appendices">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -52,7 +30,7 @@
                   <a href="#GDataPicasaWebFile.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataPicasaWebFile">
 <a name="GDataPicasaWebFile"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -61,169 +39,175 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataPicasaWebFile.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataPicasaWebFile.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/services/picasaweb/gdata-picasaweb-file.h&gt;
 
-                    <a href="GDataPicasaWebFile.html#GDataPicasaWebFile-struct">GDataPicasaWebFile</a>;
-                    <a href="GDataPicasaWebFile.html#GDataPicasaWebFileClass">GDataPicasaWebFileClass</a>;
-<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> * <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-new">gdata_picasaweb_file_new</a>           (const gchar *id);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-edited">gdata_picasaweb_file_get_edited</a>     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         GTimeVal *edited);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-version">gdata_picasaweb_file_get_version</a>    (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-gdouble             <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-position">gdata_picasaweb_file_get_position</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-position">gdata_picasaweb_file_set_position</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         gdouble position);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-album-id">gdata_picasaweb_file_get_album_id</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-album-id">gdata_picasaweb_file_set_album_id</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *album_id);
-guint               <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-width">gdata_picasaweb_file_get_width</a>      (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-guint               <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-height">gdata_picasaweb_file_get_height</a>     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-gsize               <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-size">gdata_picasaweb_file_get_size</a>       (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-client">gdata_picasaweb_file_get_client</a>     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-client">gdata_picasaweb_file_set_client</a>     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *client);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-checksum">gdata_picasaweb_file_get_checksum</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-checksum">gdata_picasaweb_file_set_checksum</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *checksum);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-timestamp">gdata_picasaweb_file_get_timestamp</a>  (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         GTimeVal *timestamp);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-timestamp">gdata_picasaweb_file_set_timestamp</a>  (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         GTimeVal *timestamp);
-gboolean            <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-is-commenting-enabled">gdata_picasaweb_file_is_commenting_enabled</a>
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-is-commenting-enabled">gdata_picasaweb_file_set_is_commenting_enabled</a>
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         gboolean is_commenting_enabled);
-guint               <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-comment-count">gdata_picasaweb_file_get_comment_count</a>
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-guint               <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-rotation">gdata_picasaweb_file_get_rotation</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-rotation">gdata_picasaweb_file_set_rotation</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         guint rotation);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-video-status">gdata_picasaweb_file_get_video_status</a>
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-tags">gdata_picasaweb_file_get_tags</a>       (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-tags">gdata_picasaweb_file_set_tags</a>       (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *tags);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-credit">gdata_picasaweb_file_get_credit</a>     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-caption">gdata_picasaweb_file_get_caption</a>    (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-caption">gdata_picasaweb_file_set_caption</a>    (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *caption);
-GList *             <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-contents">gdata_picasaweb_file_get_contents</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-GList *             <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-thumbnails">gdata_picasaweb_file_get_thumbnails</a> (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-gdouble             <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-distance">gdata_picasaweb_file_get_distance</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-gdouble             <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-exposure">gdata_picasaweb_file_get_exposure</a>   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-gboolean            <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-flash">gdata_picasaweb_file_get_flash</a>      (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-gdouble             <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-focal-length">gdata_picasaweb_file_get_focal_length</a>
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-gdouble             <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-fstop">gdata_picasaweb_file_get_fstop</a>      (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-image-unique-id">gdata_picasaweb_file_get_image_unique_id</a>
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-gint                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-iso">gdata_picasaweb_file_get_iso</a>        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-make">gdata_picasaweb_file_get_make</a>       (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-const gchar *       <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-model">gdata_picasaweb_file_get_model</a>      (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-coordinates">gdata_picasaweb_file_get_coordinates</a>
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         gdouble *latitude,
-                                                         gdouble *longitude);
-void                <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-coordinates">gdata_picasaweb_file_set_coordinates</a>
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         gdouble latitude,
-                                                         gdouble longitude);
+                    <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile-struct" title="GDataPicasaWebFile">GDataPicasaWebFile</a>;
+                    <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFileClass" title="GDataPicasaWebFileClass">GDataPicasaWebFileClass</a>;
+<a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="returnvalue">GDataPicasaWebFile</span></a> * <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-new" title="gdata_picasaweb_file_new ()">gdata_picasaweb_file_new</a>           (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-id" title="gdata_picasaweb_file_get_id ()">gdata_picasaweb_file_get_id</a>         (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-edited" title="gdata_picasaweb_file_get_edited ()">gdata_picasaweb_file_get_edited</a>     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *edited</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-version" title="gdata_picasaweb_file_get_version ()">gdata_picasaweb_file_get_version</a>    (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-position" title="gdata_picasaweb_file_get_position ()">gdata_picasaweb_file_get_position</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-position" title="gdata_picasaweb_file_set_position ()">gdata_picasaweb_file_set_position</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> position</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-album-id" title="gdata_picasaweb_file_get_album_id ()">gdata_picasaweb_file_get_album_id</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-album-id" title="gdata_picasaweb_file_set_album_id ()">gdata_picasaweb_file_set_album_id</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *album_id</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-width" title="gdata_picasaweb_file_get_width ()">gdata_picasaweb_file_get_width</a>      (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-height" title="gdata_picasaweb_file_get_height ()">gdata_picasaweb_file_get_height</a>     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"><span class="returnvalue">gsize</span></a>               <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-size" title="gdata_picasaweb_file_get_size ()">gdata_picasaweb_file_get_size</a>       (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-client" title="gdata_picasaweb_file_get_client ()">gdata_picasaweb_file_get_client</a>     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-client" title="gdata_picasaweb_file_set_client ()">gdata_picasaweb_file_set_client</a>     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-checksum" title="gdata_picasaweb_file_get_checksum ()">gdata_picasaweb_file_get_checksum</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-checksum" title="gdata_picasaweb_file_set_checksum ()">gdata_picasaweb_file_set_checksum</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *checksum</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-timestamp" title="gdata_picasaweb_file_get_timestamp ()">gdata_picasaweb_file_get_timestamp</a>  (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *timestamp</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-timestamp" title="gdata_picasaweb_file_set_timestamp ()">gdata_picasaweb_file_set_timestamp</a>  (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *timestamp</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-is-commenting-enabled" title="gdata_picasaweb_file_is_commenting_enabled ()">gdata_picasaweb_file_is_commenting_enabled</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-is-commenting-enabled" title="gdata_picasaweb_file_set_is_commenting_enabled ()">gdata_picasaweb_file_set_is_commenting_enabled</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_commenting_enabled</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-comment-count" title="gdata_picasaweb_file_get_comment_count ()">gdata_picasaweb_file_get_comment_count</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-rotation" title="gdata_picasaweb_file_get_rotation ()">gdata_picasaweb_file_get_rotation</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-rotation" title="gdata_picasaweb_file_set_rotation ()">gdata_picasaweb_file_set_rotation</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a> rotation</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-video-status" title="gdata_picasaweb_file_get_video_status ()">gdata_picasaweb_file_get_video_status</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-tags" title="gdata_picasaweb_file_get_tags ()">gdata_picasaweb_file_get_tags</a>       (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-tags" title="gdata_picasaweb_file_set_tags ()">gdata_picasaweb_file_set_tags</a>       (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *tags</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-credit" title="gdata_picasaweb_file_get_credit ()">gdata_picasaweb_file_get_credit</a>     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-caption" title="gdata_picasaweb_file_get_caption ()">gdata_picasaweb_file_get_caption</a>    (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-caption" title="gdata_picasaweb_file_set_caption ()">gdata_picasaweb_file_set_caption</a>    (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *caption</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-contents" title="gdata_picasaweb_file_get_contents ()">gdata_picasaweb_file_get_contents</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-thumbnails" title="gdata_picasaweb_file_get_thumbnails ()">gdata_picasaweb_file_get_thumbnails</a> (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-distance" title="gdata_picasaweb_file_get_distance ()">gdata_picasaweb_file_get_distance</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-exposure" title="gdata_picasaweb_file_get_exposure ()">gdata_picasaweb_file_get_exposure</a>   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-flash" title="gdata_picasaweb_file_get_flash ()">gdata_picasaweb_file_get_flash</a>      (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-focal-length" title="gdata_picasaweb_file_get_focal_length ()">gdata_picasaweb_file_get_focal_length</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-fstop" title="gdata_picasaweb_file_get_fstop ()">gdata_picasaweb_file_get_fstop</a>      (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-image-unique-id" title="gdata_picasaweb_file_get_image_unique_id ()">gdata_picasaweb_file_get_image_unique_id</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-iso" title="gdata_picasaweb_file_get_iso ()">gdata_picasaweb_file_get_iso</a>        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-make" title="gdata_picasaweb_file_get_make ()">gdata_picasaweb_file_get_make</a>       (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-model" title="gdata_picasaweb_file_get_model ()">gdata_picasaweb_file_get_model</a>      (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-get-coordinates" title="gdata_picasaweb_file_get_coordinates ()">gdata_picasaweb_file_get_coordinates</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *longitude</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-coordinates" title="gdata_picasaweb_file_set_coordinates ()">gdata_picasaweb_file_set_coordinates</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> longitude</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataPicasaWebFile.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataParsable.html">GDataParsable</a>
-         +----<a href="GDataEntry.html">GDataEntry</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+         +----<a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
                +----GDataPicasaWebFile
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataPicasaWebFile.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--album-id">album-id</a>"                 gchar*                : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--caption">caption</a>"                  gchar*                : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--checksum">checksum</a>"                 gchar*                : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--client">client</a>"                   gchar*                : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--comment-count">comment-count</a>"            guint                 : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--credit">credit</a>"                   gchar*                : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--distance">distance</a>"                 gdouble               : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--edited">edited</a>"                   GTimeVal*             : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--exposure">exposure</a>"                 gdouble               : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--flash">flash</a>"                    gboolean              : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--focal-length">focal-length</a>"             gdouble               : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--fstop">fstop</a>"                    gdouble               : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--height">height</a>"                   guint                 : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--image-unique-id">image-unique-id</a>"          gchar*                : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--is-commenting-enabled">is-commenting-enabled</a>"    gboolean              : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--iso">iso</a>"                      glong                 : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--latitude">latitude</a>"                 gdouble               : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--longitude">longitude</a>"                gdouble               : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--make">make</a>"                     gchar*                : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--model">model</a>"                    gchar*                : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--position">position</a>"                 gdouble               : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--rotation">rotation</a>"                 guint                 : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--size">size</a>"                     gulong                : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--tags">tags</a>"                     gchar*                : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--timestamp">timestamp</a>"                GTimeVal*             : Read / Write
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--version">version</a>"                  gchar*                : Read / Write / Construct Only
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--video-status">video-status</a>"             gchar*                : Read
-  "<a href="GDataPicasaWebFile.html#GDataPicasaWebFile--width">width</a>"                    guint                 : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--album-id" title='The "album-id" property'>album-id</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--caption" title='The "caption" property'>caption</a>"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--checksum" title='The "checksum" property'>checksum</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--client" title='The "client" property'>client</a>"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--comment-count" title='The "comment-count" property'>comment-count</a>"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--credit" title='The "credit" property'>credit</a>"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--distance" title='The "distance" property'>distance</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--edited" title='The "edited" property'>edited</a>"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--exposure" title='The "exposure" property'>exposure</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--file-id" title='The "file-id" property'>file-id</a>"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--flash" title='The "flash" property'>flash</a>"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--focal-length" title='The "focal-length" property'>focal-length</a>"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--fstop" title='The "fstop" property'>fstop</a>"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--height" title='The "height" property'>height</a>"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--image-unique-id" title='The "image-unique-id" property'>image-unique-id</a>"          <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--is-commenting-enabled" title='The "is-commenting-enabled" property'>is-commenting-enabled</a>"    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--iso" title='The "iso" property'>iso</a>"                      <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"><span class="type">glong</span></a>                 : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--latitude" title='The "latitude" property'>latitude</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--longitude" title='The "longitude" property'>longitude</a>"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--make" title='The "make" property'>make</a>"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--model" title='The "model" property'>model</a>"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--position" title='The "position" property'>position</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--rotation" title='The "rotation" property'>rotation</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--size" title='The "size" property'>size</a>"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"><span class="type">gulong</span></a>                : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--tags" title='The "tags" property'>tags</a>"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--timestamp" title='The "timestamp" property'>timestamp</a>"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--version" title='The "version" property'>version</a>"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--video-status" title='The "video-status" property'>video-status</a>"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--width" title='The "width" property'>width</a>"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataPicasaWebFile.description"></a><h2>Description</h2>
 <p>
-<a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a> is a subclass of <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> to represent a file in an album on Google PicasaWeb.
+<a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> is a subclass of <a class="link" href="GDataEntry.html" title="GDataEntry"><span class="type">GDataEntry</span></a> to represent a file in an album on Google PicasaWeb.
 </p>
 <p>
 For more details of Google PicasaWeb's GData API, see the
-<a class="ulink" href="http://code.google.com/apis/picasaweb/developers_guide_protocol.html" target="_top">online documentation</a>.</p>
+<a class="ulink" href="http://code.google.com/apis/picasaweb/developers_guide_protocol.html" target="_top">online documentation</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataPicasaWebFile.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataPicasaWebFile">
 <a name="GDataPicasaWebFile-struct"></a><h3>GDataPicasaWebFile</h3>
 <pre class="programlisting">typedef struct _GDataPicasaWebFile GDataPicasaWebFile;</pre>
 <p>
-All the fields in the <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataPicasaWebFileClass">
 <a name="GDataPicasaWebFileClass"></a><h3>GDataPicasaWebFileClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataPicasaWebFileClass;
 </pre>
 <p>
-All the fields in the <a href="GDataPicasaWebFile.html#GDataPicasaWebFileClass"><span class="type">GDataPicasaWebFileClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFileClass" title="GDataPicasaWebFileClass"><span class="type">GDataPicasaWebFileClass</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_new ()">
 <a name="gdata-picasaweb-file-new"></a><h3>gdata_picasaweb_file_new ()</h3>
-<pre class="programlisting"><a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> * gdata_picasaweb_file_new           (const gchar *id);</pre>
+<pre class="programlisting"><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="returnvalue">GDataPicasaWebFile</span></a> * gdata_picasaweb_file_new           (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
 <p>
-Creates a new <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a> with the given ID and default properties.</p>
+Creates a new <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> with the given ID and default properties.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
-<td> the file's ID, or <code class="literal">NULL</code>
+<td>the file's ID, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>; unref with <code class="function">g_object_unref()</code>
+<td> a new <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -232,24 +216,50 @@ Creates a new <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWe
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
-<a name="gdata-picasaweb-file-get-edited"></a><h3>gdata_picasaweb_file_get_edited ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_get_edited     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         GTimeVal *edited);</pre>
+<div class="refsect2" title="gdata_picasaweb_file_get_id ()">
+<a name="gdata-picasaweb-file-get-id"></a><h3>gdata_picasaweb_file_get_id ()</h3>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_id         (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--edited"><span class="type">"edited"</span></a> property and puts it in <em class="parameter"><code>edited</code></em>. If the property is unset,
-both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--file-id" title='The "file-id" property'><span class="type">"file-id"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the file's ID
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.6.4</p>
+</div>
+<hr>
+<div class="refsect2" title="gdata_picasaweb_file_get_edited ()">
+<a name="gdata-picasaweb-file-get-edited"></a><h3>gdata_picasaweb_file_get_edited ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_get_edited     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *edited</code></em>);</pre>
+<p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--edited" title='The "edited" property'><span class="type">"edited"</span></a> property and puts it in <em class="parameter"><code>edited</code></em>. If the property is unset,
+both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>edited</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
@@ -257,22 +267,23 @@ both fields in the <span class="type">GTimeVal</span> will be set to <code class
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_version ()">
 <a name="gdata-picasaweb-file-get-version"></a><h3>gdata_picasaweb_file_get_version ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_version    (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_version    (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--version"><span class="type">"version"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--version" title='The "version" property'><span class="type">"version"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the file's version number, or <code class="literal">NULL</code>
+<td> the file's version number, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -281,17 +292,18 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--version"><span cla
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_position ()">
 <a name="gdata-picasaweb-file-get-position"></a><h3>gdata_picasaweb_file_get_position ()</h3>
-<pre class="programlisting">gdouble             gdata_picasaweb_file_get_position   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             gdata_picasaweb_file_get_position   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--position"><span class="type">"position"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--position" title='The "position" property'><span class="type">"position"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
@@ -305,23 +317,24 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--position"><span cl
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_position ()">
 <a name="gdata-picasaweb-file-set-position"></a><h3>gdata_picasaweb_file_set_position ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_position   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         gdouble position);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_position   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> position</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--position"><span class="type">"position"</span></a> property.</p>
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--position" title='The "position" property'><span class="type">"position"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>position</code></em> :</span></p></td>
-<td> the file's new position in the album
+<td>the file's new position in the album
 </td>
 </tr>
 </tbody>
@@ -329,22 +342,23 @@ Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--position"><span cl
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_album_id ()">
 <a name="gdata-picasaweb-file-get-album-id"></a><h3>gdata_picasaweb_file_get_album_id ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_album_id   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_album_id   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--album-id"><span class="type">"album-id"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--album-id" title='The "album-id" property'><span class="type">"album-id"</span></a> property. This is in the same form as returned by <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-id" title="gdata_picasaweb_album_get_id ()"><code class="function">gdata_picasaweb_album_get_id()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the ID of the album containing the <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td> the ID of the album containing the <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 
 </td>
 </tr>
@@ -353,23 +367,24 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--album-id"><span cl
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_album_id ()">
 <a name="gdata-picasaweb-file-set-album-id"></a><h3>gdata_picasaweb_file_set_album_id ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_album_id   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *album_id);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_album_id   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *album_id</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--album-id"><span class="type">"album-id"</span></a> property, effectively moving the file to the album.</p>
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--album-id" title='The "album-id" property'><span class="type">"album-id"</span></a> property, effectively moving the file to the album.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>album_id</code></em> :</span></p></td>
-<td> the ID of the new album for this file
+<td>the ID of the new album for this file
 </td>
 </tr>
 </tbody>
@@ -377,17 +392,18 @@ Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--album-id"><span cl
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_width ()">
 <a name="gdata-picasaweb-file-get-width"></a><h3>gdata_picasaweb_file_get_width ()</h3>
-<pre class="programlisting">guint               gdata_picasaweb_file_get_width      (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               gdata_picasaweb_file_get_width      (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--width"><span class="type">"width"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--width" title='The "width" property'><span class="type">"width"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
@@ -401,17 +417,18 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--width"><span class
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_height ()">
 <a name="gdata-picasaweb-file-get-height"></a><h3>gdata_picasaweb_file_get_height ()</h3>
-<pre class="programlisting">guint               gdata_picasaweb_file_get_height     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               gdata_picasaweb_file_get_height     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--height"><span class="type">"height"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--height" title='The "height" property'><span class="type">"height"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
@@ -425,17 +442,18 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--height"><span clas
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_size ()">
 <a name="gdata-picasaweb-file-get-size"></a><h3>gdata_picasaweb_file_get_size ()</h3>
-<pre class="programlisting">gsize               gdata_picasaweb_file_get_size       (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"><span class="returnvalue">gsize</span></a>               gdata_picasaweb_file_get_size       (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--size"><span class="type">"size"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--size" title='The "size" property'><span class="type">"size"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
@@ -449,22 +467,23 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--size"><span class=
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_client ()">
 <a name="gdata-picasaweb-file-get-client"></a><h3>gdata_picasaweb_file_get_client ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_client     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_client     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--client"><span class="type">"client"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--client" title='The "client" property'><span class="type">"client"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the name of the software which created the photo, or <code class="literal">NULL</code>
+<td> the name of the software which created the photo, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -473,26 +492,27 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--client"><span clas
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_client ()">
 <a name="gdata-picasaweb-file-set-client"></a><h3>gdata_picasaweb_file_set_client ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_client     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *client);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_client     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--client"><span class="type">"client"</span></a> property to <em class="parameter"><code>client</code></em>.
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--client" title='The "client" property'><span class="type">"client"</span></a> property to <em class="parameter"><code>client</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>client</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+Set <em class="parameter"><code>client</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>client</code></em> :</span></p></td>
-<td> the name of the software which created or modified the photo, or <code class="literal">NULL</code>
+<td>the name of the software which created or modified the photo, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -500,22 +520,23 @@ Set <em class="parameter"><code>client</code></em> to <code class="literal">NULL
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_checksum ()">
 <a name="gdata-picasaweb-file-get-checksum"></a><h3>gdata_picasaweb_file_get_checksum ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_checksum   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_checksum   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--checksum"><span class="type">"checksum"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--checksum" title='The "checksum" property'><span class="type">"checksum"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the checksum assigned to this file, or <code class="literal">NULL</code>
+<td> the checksum assigned to this file, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -524,26 +545,27 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--checksum"><span cl
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_checksum ()">
 <a name="gdata-picasaweb-file-set-checksum"></a><h3>gdata_picasaweb_file_set_checksum ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_checksum   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *checksum);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_checksum   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *checksum</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--checksum"><span class="type">"checksum"</span></a> property to <em class="parameter"><code>checksum</code></em>.
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--checksum" title='The "checksum" property'><span class="type">"checksum"</span></a> property to <em class="parameter"><code>checksum</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>checksum</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+Set <em class="parameter"><code>checksum</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>checksum</code></em> :</span></p></td>
-<td> the new checksum for this file, or <code class="literal">NULL</code>
+<td>the new checksum for this file, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -551,24 +573,25 @@ Set <em class="parameter"><code>checksum</code></em> to <code class="literal">NU
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_timestamp ()">
 <a name="gdata-picasaweb-file-get-timestamp"></a><h3>gdata_picasaweb_file_get_timestamp ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_get_timestamp  (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         GTimeVal *timestamp);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_get_timestamp  (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *timestamp</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--timestamp"><span class="type">"timestamp"</span></a> property and puts it in <em class="parameter"><code>timestamp</code></em>. If the property is unset,
-both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--timestamp" title='The "timestamp" property'><span class="type">"timestamp"</span></a> property and puts it in <em class="parameter"><code>timestamp</code></em>. If the property is unset,
+both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>timestamp</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
@@ -576,24 +599,25 @@ both fields in the <span class="type">GTimeVal</span> will be set to <code class
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_timestamp ()">
 <a name="gdata-picasaweb-file-set-timestamp"></a><h3>gdata_picasaweb_file_set_timestamp ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_timestamp  (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         GTimeVal *timestamp);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_timestamp  (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *timestamp</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--timestamp"><span class="type">"timestamp"</span></a> property from values supplied by <em class="parameter"><code>timestamp</code></em>. If <em class="parameter"><code>timestamp</code></em> is <code class="literal">NULL</code>,
-the property will be unset.</p>
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--timestamp" title='The "timestamp" property'><span class="type">"timestamp"</span></a> property from values supplied by <em class="parameter"><code>timestamp</code></em>. If <em class="parameter"><code>timestamp</code></em> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>,
+the property will be unset.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>timestamp</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -601,23 +625,24 @@ the property will be unset.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_is_commenting_enabled ()">
 <a name="gdata-picasaweb-file-is-commenting-enabled"></a><h3>gdata_picasaweb_file_is_commenting_enabled ()</h3>
-<pre class="programlisting">gboolean            gdata_picasaweb_file_is_commenting_enabled
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_picasaweb_file_is_commenting_enabled
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--is-commenting-enabled"><span class="type">"is-commenting-enabled"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--is-commenting-enabled" title='The "is-commenting-enabled" property'><span class="type">"is-commenting-enabled"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if commenting is enabled, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if commenting is enabled, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -626,24 +651,26 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--is-commenting-enab
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_is_commenting_enabled ()">
 <a name="gdata-picasaweb-file-set-is-commenting-enabled"></a><h3>gdata_picasaweb_file_set_is_commenting_enabled ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_is_commenting_enabled
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         gboolean is_commenting_enabled);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_is_commenting_enabled
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_commenting_enabled</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--is-commenting-enabled"><span class="type">"is-commenting-enabled"</span></a> property to <em class="parameter"><code>is_commenting_enabled</code></em>.</p>
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--is-commenting-enabled" title='The "is-commenting-enabled" property'><span class="type">"is-commenting-enabled"</span></a> property to <em class="parameter"><code>is_commenting_enabled</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>is_commenting_enabled</code></em> :</span></p></td>
-<td> <code class="literal">TRUE</code> if commenting should be enabled for the file, <code class="literal">FALSE</code> otherwise
+<td>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if commenting should be enabled for the file, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 </tbody>
@@ -651,18 +678,19 @@ Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--is-commenting-enab
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_comment_count ()">
 <a name="gdata-picasaweb-file-get-comment-count"></a><h3>gdata_picasaweb_file_get_comment_count ()</h3>
-<pre class="programlisting">guint               gdata_picasaweb_file_get_comment_count
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               gdata_picasaweb_file_get_comment_count
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--comment-count"><span class="type">"comment-count"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--comment-count" title='The "comment-count" property'><span class="type">"comment-count"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
@@ -676,17 +704,18 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--comment-count"><sp
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_rotation ()">
 <a name="gdata-picasaweb-file-get-rotation"></a><h3>gdata_picasaweb_file_get_rotation ()</h3>
-<pre class="programlisting">guint               gdata_picasaweb_file_get_rotation   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               gdata_picasaweb_file_get_rotation   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--rotation"><span class="type">"rotation"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--rotation" title='The "rotation" property'><span class="type">"rotation"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
@@ -700,27 +729,28 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--rotation"><span cl
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_rotation ()">
 <a name="gdata-picasaweb-file-set-rotation"></a><h3>gdata_picasaweb_file_set_rotation ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_rotation   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         guint rotation);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_rotation   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a> rotation</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--rotation"><span class="type">"rotation"</span></a> property to <em class="parameter"><code>rotation</code></em>.
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--rotation" title='The "rotation" property'><span class="type">"rotation"</span></a> property to <em class="parameter"><code>rotation</code></em>.
 </p>
 <p>
-The rotation is absolute, rather than cumulative, through successive calls to <a href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-rotation"><code class="function">gdata_picasaweb_file_set_rotation()</code></a>,
-so calling it with 90° then 20° will result in a final rotation of 20°.</p>
+The rotation is absolute, rather than cumulative, through successive calls to <a class="link" href="GDataPicasaWebFile.html#gdata-picasaweb-file-set-rotation" title="gdata_picasaweb_file_set_rotation ()"><code class="function">gdata_picasaweb_file_set_rotation()</code></a>,
+so calling it with 90° then 20° will result in a final rotation of 20°.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>rotation</code></em> :</span></p></td>
-<td> the new rotation for the image, in degrees
+<td>the new rotation for the image, in degrees
 </td>
 </tr>
 </tbody>
@@ -728,23 +758,24 @@ so calling it with 90° then 20° will result in a final rotation of 20°.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_video_status ()">
 <a name="gdata-picasaweb-file-get-video-status"></a><h3>gdata_picasaweb_file_get_video_status ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_video_status
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_video_status
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--video-status"><span class="type">"video-status"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--video-status" title='The "video-status" property'><span class="type">"video-status"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the status of this video ("pending", "ready", "final" or "failed"), or <code class="literal">NULL</code>
+<td> the status of this video ("pending", "ready", "final" or "failed"), or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -753,22 +784,23 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--video-status"><spa
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_tags ()">
 <a name="gdata-picasaweb-file-get-tags"></a><h3>gdata_picasaweb_file_get_tags ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_tags       (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_tags       (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--tags"><span class="type">"tags"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--tags" title='The "tags" property'><span class="type">"tags"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a comma-separated list of tags associated with the file, or <code class="literal">NULL</code>
+<td> a comma-separated list of tags associated with the file, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -777,26 +809,27 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--tags"><span class=
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_tags ()">
 <a name="gdata-picasaweb-file-set-tags"></a><h3>gdata_picasaweb_file_set_tags ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_tags       (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *tags);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_tags       (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *tags</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--tags"><span class="type">"tags"</span></a> property to <em class="parameter"><code>tags</code></em>.
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--tags" title='The "tags" property'><span class="type">"tags"</span></a> property to <em class="parameter"><code>tags</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>tags</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+Set <em class="parameter"><code>tags</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>tags</code></em> :</span></p></td>
-<td> a new comma-separated list of tags, or <code class="literal">NULL</code>
+<td>a new comma-separated list of tags, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -804,17 +837,18 @@ Set <em class="parameter"><code>tags</code></em> to <code class="literal">NULL</
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_credit ()">
 <a name="gdata-picasaweb-file-get-credit"></a><h3>gdata_picasaweb_file_get_credit ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_credit     (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_credit     (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--credit"><span class="type">"credit"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--credit" title='The "credit" property'><span class="type">"credit"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
@@ -828,22 +862,23 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--credit"><span clas
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_caption ()">
 <a name="gdata-picasaweb-file-get-caption"></a><h3>gdata_picasaweb_file_get_caption ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_caption    (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_caption    (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--caption"><span class="type">"caption"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--caption" title='The "caption" property'><span class="type">"caption"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the file's descriptive caption, or <code class="literal">NULL</code>
+<td> the file's descriptive caption, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -852,26 +887,27 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--caption"><span cla
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_caption ()">
 <a name="gdata-picasaweb-file-set-caption"></a><h3>gdata_picasaweb_file_set_caption ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_caption    (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         const gchar *caption);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_caption    (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *caption</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--caption"><span class="type">"caption"</span></a> property to <em class="parameter"><code>caption</code></em>.
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--caption" title='The "caption" property'><span class="type">"caption"</span></a> property to <em class="parameter"><code>caption</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>caption</code></em> to <code class="literal">NULL</code> to unset the file's caption.</p>
+Set <em class="parameter"><code>caption</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the file's caption.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>caption</code></em> :</span></p></td>
-<td> the file's new caption, or <code class="literal">NULL</code>
+<td>the file's new caption, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -879,22 +915,23 @@ Set <em class="parameter"><code>caption</code></em> to <code class="literal">NUL
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_contents ()">
 <a name="gdata-picasaweb-file-get-contents"></a><h3>gdata_picasaweb_file_get_contents ()</h3>
-<pre class="programlisting">GList *             gdata_picasaweb_file_get_contents   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_picasaweb_file_get_contents   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Returns a list of media content, e.g. the actual photo or video.</p>
+Returns a list of media content, e.g. the actual photo or video.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of <a href="GDataMediaContent.html"><span class="type">GDataMediaContent</span></a> items
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="GDataMediaContent.html" title="GDataMediaContent"><span class="type">GDataMediaContent</span></a> items
 
 </td>
 </tr>
@@ -903,22 +940,27 @@ Returns a list of media content, e.g. the actual photo or video.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_thumbnails ()">
 <a name="gdata-picasaweb-file-get-thumbnails"></a><h3>gdata_picasaweb_file_get_thumbnails ()</h3>
-<pre class="programlisting">GList *             gdata_picasaweb_file_get_thumbnails (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_picasaweb_file_get_thumbnails (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Returns a list of thumbnails, often at different sizes, for this file.</p>
+Returns a list of thumbnails, often at different sizes, for this
+file.  Currently, PicasaWeb usually returns three thumbnails, with
+widths in pixels of 72, 144, and 288.  However, the thumbnail will
+not be larger than the actual image, so thumbnails may be smaller
+than the widths listed above.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of <a href="GDataMediaThumbnail.html"><span class="type">GDataMediaThumbnail</span></a>s, or <code class="literal">NULL</code>
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="GDataMediaThumbnail.html" title="GDataMediaThumbnail"><span class="type">GDataMediaThumbnail</span></a>s, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -927,22 +969,23 @@ Returns a list of thumbnails, often at different sizes, for this file.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_distance ()">
 <a name="gdata-picasaweb-file-get-distance"></a><h3>gdata_picasaweb_file_get_distance ()</h3>
-<pre class="programlisting">gdouble             gdata_picasaweb_file_get_distance   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             gdata_picasaweb_file_get_distance   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--distance"><span class="type">"distance"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--distance" title='The "distance" property'><span class="type">"distance"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the distance recorded in the photo's EXIF, or <code class="literal">-1</code> if unknown
+<td> the distance recorded in the photo's EXIF, or <code class="code">-1</code> if unknown
 
 </td>
 </tr>
@@ -951,22 +994,23 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--distance"><span cl
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_exposure ()">
 <a name="gdata-picasaweb-file-get-exposure"></a><h3>gdata_picasaweb_file_get_exposure ()</h3>
-<pre class="programlisting">gdouble             gdata_picasaweb_file_get_exposure   (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             gdata_picasaweb_file_get_exposure   (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--exposure"><span class="type">"exposure"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--exposure" title='The "exposure" property'><span class="type">"exposure"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the exposure value, or <code class="literal">0</code> if unknown
+<td> the exposure value, or <code class="code">0</code> if unknown
 
 </td>
 </tr>
@@ -975,22 +1019,23 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--exposure"><span cl
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_flash ()">
 <a name="gdata-picasaweb-file-get-flash"></a><h3>gdata_picasaweb_file_get_flash ()</h3>
-<pre class="programlisting">gboolean            gdata_picasaweb_file_get_flash      (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_picasaweb_file_get_flash      (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--flash"><span class="type">"flash"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--flash" title='The "flash" property'><span class="type">"flash"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if flash was used, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if flash was used, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -999,23 +1044,24 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--flash"><span class
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_focal_length ()">
 <a name="gdata-picasaweb-file-get-focal-length"></a><h3>gdata_picasaweb_file_get_focal_length ()</h3>
-<pre class="programlisting">gdouble             gdata_picasaweb_file_get_focal_length
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             gdata_picasaweb_file_get_focal_length
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--focal-length"><span class="type">"focal-length"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--focal-length" title='The "focal-length" property'><span class="type">"focal-length"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the focal-length value, or <code class="literal">-1</code> if unknown
+<td> the focal-length value, or <code class="code">-1</code> if unknown
 
 </td>
 </tr>
@@ -1024,22 +1070,23 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--focal-length"><spa
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_fstop ()">
 <a name="gdata-picasaweb-file-get-fstop"></a><h3>gdata_picasaweb_file_get_fstop ()</h3>
-<pre class="programlisting">gdouble             gdata_picasaweb_file_get_fstop      (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             gdata_picasaweb_file_get_fstop      (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--fstop"><span class="type">"fstop"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--fstop" title='The "fstop" property'><span class="type">"fstop"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the F-stop value, or <code class="literal">0</code> if unknown
+<td> the F-stop value, or <code class="code">0</code> if unknown
 
 </td>
 </tr>
@@ -1048,23 +1095,24 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--fstop"><span class
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_image_unique_id ()">
 <a name="gdata-picasaweb-file-get-image-unique-id"></a><h3>gdata_picasaweb_file_get_image_unique_id ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_image_unique_id
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_image_unique_id
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--image-unique-id"><span class="type">"image-unique-id"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--image-unique-id" title='The "image-unique-id" property'><span class="type">"image-unique-id"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the photo's unique EXIF identifier, or <code class="literal">NULL</code>
+<td> the photo's unique EXIF identifier, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -1073,22 +1121,23 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--image-unique-id"><
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_iso ()">
 <a name="gdata-picasaweb-file-get-iso"></a><h3>gdata_picasaweb_file_get_iso ()</h3>
-<pre class="programlisting">gint                gdata_picasaweb_file_get_iso        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                gdata_picasaweb_file_get_iso        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--iso"><span class="type">"iso"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--iso" title='The "iso" property'><span class="type">"iso"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the ISO speed, or <code class="literal">-1</code> if unknown
+<td> the ISO speed, or <code class="code">-1</code> if unknown
 
 </td>
 </tr>
@@ -1097,22 +1146,23 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--iso"><span class="
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_make ()">
 <a name="gdata-picasaweb-file-get-make"></a><h3>gdata_picasaweb_file_get_make ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_make       (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_make       (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--make"><span class="type">"make"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--make" title='The "make" property'><span class="type">"make"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the name of the manufacturer of the camera, or <code class="literal">NULL</code> if unknown
+<td> the name of the manufacturer of the camera, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if unknown
 
 </td>
 </tr>
@@ -1121,22 +1171,23 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--make"><span class=
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_model ()">
 <a name="gdata-picasaweb-file-get-model"></a><h3>gdata_picasaweb_file_get_model ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_file_get_model      (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_file_get_model      (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--model"><span class="type">"model"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--model" title='The "model" property'><span class="type">"model"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the model name of the camera, or <code class="literal">NULL</code> if unknown
+<td> the model name of the camera, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if unknown
 
 </td>
 </tr>
@@ -1145,32 +1196,33 @@ Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--model"><span class
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_get_coordinates ()">
 <a name="gdata-picasaweb-file-get-coordinates"></a><h3>gdata_picasaweb_file_get_coordinates ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_get_coordinates
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         gdouble *latitude,
-                                                         gdouble *longitude);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_get_coordinates
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *longitude</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--latitude"><span class="type">"latitude"</span></a> and <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--longitude"><span class="type">"longitude"</span></a> properties, setting the out parameters to them.
-If either latitude or longitude is <code class="literal">NULL</code>, that parameter will not be set. If the coordinates are unset,
-<em class="parameter"><code>latitude</code></em> and <em class="parameter"><code>longitude</code></em> will be set to <code class="literal">G_MAXDOUBLE</code>.</p>
+Gets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a> and <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--longitude" title='The "longitude" property'><span class="type">"longitude"</span></a> properties, setting the out parameters to them.
+If either latitude or longitude is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, that parameter will not be set. If the coordinates are unset,
+<em class="parameter"><code>latitude</code></em> and <em class="parameter"><code>longitude</code></em> will be set to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Limits-of-Basic-Types.html#G-MAXDOUBLE:CAPS"><code class="literal">G_MAXDOUBLE</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>latitude</code></em> :</span></p></td>
-<td> return location for the latitude, or <code class="literal">NULL</code>
+<td>return location for the latitude, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>longitude</code></em> :</span></p></td>
-<td> return location for the longitude, or <code class="literal">NULL</code>
+<td>return location for the longitude, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -1178,31 +1230,32 @@ If either latitude or longitude is <code class="literal">NULL</code>, that param
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_file_set_coordinates ()">
 <a name="gdata-picasaweb-file-set-coordinates"></a><h3>gdata_picasaweb_file_set_coordinates ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_file_set_coordinates
-                                                        (<a href="GDataPicasaWebFile.html">GDataPicasaWebFile</a> *self,
-                                                         gdouble latitude,
-                                                         gdouble longitude);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_file_set_coordinates
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> longitude</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--latitude"><span class="type">"latitude"</span></a> and <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--longitude"><span class="type">"longitude"</span></a> properties to
-<em class="parameter"><code>latitude</code></em> and <em class="parameter"><code>longitude</code></em> respectively.</p>
+Sets the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a> and <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--longitude" title='The "longitude" property'><span class="type">"longitude"</span></a> properties to
+<em class="parameter"><code>latitude</code></em> and <em class="parameter"><code>longitude</code></em> respectively.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebFile.html"><span class="type">GDataPicasaWebFile</span></a>
+<td>a <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>latitude</code></em> :</span></p></td>
-<td> the file's new latitude coordinate, or <code class="literal">G_MAXDOUBLE</code>
+<td>the file's new latitude coordinate, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Limits-of-Basic-Types.html#G-MAXDOUBLE:CAPS"><code class="literal">G_MAXDOUBLE</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>longitude</code></em> :</span></p></td>
-<td> the file's new longitude coordinate, or <code class="literal">G_MAXDOUBLE</code>
+<td>the file's new longitude coordinate, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Limits-of-Basic-Types.html#G-MAXDOUBLE:CAPS"><code class="literal">G_MAXDOUBLE</code></a>
 </td>
 </tr>
 </tbody>
@@ -1210,348 +1263,393 @@ Sets the <a href="GDataPicasaWebFile.html#GDataPicasaWebFile--latitude"><span cl
 <p class="since">Since 0.5.0</p>
 </div>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Property Details">
 <a name="GDataPicasaWebFile.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "album-id" property'>
 <a name="GDataPicasaWebFile--album-id"></a><h3>The <code class="literal">"album-id"</code> property</h3>
-<pre class="programlisting">  "album-id"                 gchar*                : Read / Write</pre>
+<pre class="programlisting">  "album-id"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
-The ID for the file's album.
+The ID for the file's album. This is in the same form as returned by <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-id" title="gdata_picasaweb_album_get_id ()"><code class="function">gdata_picasaweb_album_get_id()</code></a>.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_albumid" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "caption" property'>
 <a name="GDataPicasaWebFile--caption"></a><h3>The <code class="literal">"caption"</code> property</h3>
-<pre class="programlisting">  "caption"                  gchar*                : Read / Write</pre>
+<pre class="programlisting">  "caption"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
-The file's descriptive caption.</p>
+The file's descriptive caption.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "checksum" property'>
 <a name="GDataPicasaWebFile--checksum"></a><h3>The <code class="literal">"checksum"</code> property</h3>
-<pre class="programlisting">  "checksum"                 gchar*                : Read / Write</pre>
+<pre class="programlisting">  "checksum"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 A checksum of the file, useful for duplicate detection.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_checksum" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "client" property'>
 <a name="GDataPicasaWebFile--client"></a><h3>The <code class="literal">"client"</code> property</h3>
-<pre class="programlisting">  "client"                   gchar*                : Read / Write</pre>
+<pre class="programlisting">  "client"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 The name of the software which created or last modified the file.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_client" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "comment-count" property'>
 <a name="GDataPicasaWebFile--comment-count"></a><h3>The <code class="literal">"comment-count"</code> property</h3>
-<pre class="programlisting">  "comment-count"            guint                 : Read</pre>
+<pre class="programlisting">  "comment-count"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read</pre>
 <p>
 The number of comments on the file.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_commentCount" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "credit" property'>
 <a name="GDataPicasaWebFile--credit"></a><h3>The <code class="literal">"credit"</code> property</h3>
-<pre class="programlisting">  "credit"                   gchar*                : Read</pre>
+<pre class="programlisting">  "credit"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 The nickname of the user credited with this file.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#media_credit" target="_top">Media RSS
-specification</a>.</p>
+specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "distance" property'>
 <a name="GDataPicasaWebFile--distance"></a><h3>The <code class="literal">"distance"</code> property</h3>
-<pre class="programlisting">  "distance"                 gdouble               : Read</pre>
+<pre class="programlisting">  "distance"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read</pre>
 <p>
 The distance to the subject reported in the image's EXIF.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#exif_reference" target="_top">
-EXIF element reference</a>.</p>
+EXIF element reference</a>.
+</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "edited" property'>
 <a name="GDataPicasaWebFile--edited"></a><h3>The <code class="literal">"edited"</code> property</h3>
-<pre class="programlisting">  "edited"                   GTimeVal*             : Read</pre>
+<pre class="programlisting">  "edited"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read</pre>
 <p>
 The time this file was last edited. If the file has not been edited yet, the content indicates the time it was created.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://www.atomenabled.org/developers/protocol/#appEdited" target="_top">
-Atom Publishing Protocol specification</a>.</p>
+Atom Publishing Protocol specification</a>.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "exposure" property'>
 <a name="GDataPicasaWebFile--exposure"></a><h3>The <code class="literal">"exposure"</code> property</h3>
-<pre class="programlisting">  "exposure"                 gdouble               : Read</pre>
+<pre class="programlisting">  "exposure"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read</pre>
 <p>
 The exposure time.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#exif_reference" target="_top">
-EXIF element reference</a>.</p>
+EXIF element reference</a>.
+</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "file-id" property'>
+<a name="GDataPicasaWebFile--file-id"></a><h3>The <code class="literal">"file-id"</code> property</h3>
+<pre class="programlisting">  "file-id"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>
+The ID of the file. This is a substring of the ID returned by <a class="link" href="GDataEntry.html#gdata-entry-get-id" title="gdata_entry_get_id ()"><code class="function">gdata_entry_get_id()</code></a> for <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>s; for example,
+if <a class="link" href="GDataEntry.html#gdata-entry-get-id" title="gdata_entry_get_id ()"><code class="function">gdata_entry_get_id()</code></a> returned
+"http://picasaweb.google.com/data/entry/user/libgdata.picasaweb/albumid/5328889949261497249/photoid/5328890138794566386" for a
+particular <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>, the <a class="link" href="GDataPicasaWebFile.html#GDataPicasaWebFile--file-id" title='The "file-id" property'><span class="type">"file-id"</span></a> property would be "5328890138794566386".
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_id" target="_top">
+gphoto specification</a>.
+</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.6.4</p>
+</div>
+<hr>
+<div class="refsect2" title='The "flash" property'>
 <a name="GDataPicasaWebFile--flash"></a><h3>The <code class="literal">"flash"</code> property</h3>
-<pre class="programlisting">  "flash"                    gboolean              : Read</pre>
+<pre class="programlisting">  "flash"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read</pre>
 <p>
 Indicates whether the flash was used.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#exif_reference" target="_top">
-EXIF element reference</a>.</p>
+EXIF element reference</a>.
+</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "focal-length" property'>
 <a name="GDataPicasaWebFile--focal-length"></a><h3>The <code class="literal">"focal-length"</code> property</h3>
-<pre class="programlisting">  "focal-length"             gdouble               : Read</pre>
+<pre class="programlisting">  "focal-length"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read</pre>
 <p>
 The focal length for the shot.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#exif_reference" target="_top">
-EXIF element reference</a>.</p>
+EXIF element reference</a>.
+</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "fstop" property'>
 <a name="GDataPicasaWebFile--fstop"></a><h3>The <code class="literal">"fstop"</code> property</h3>
-<pre class="programlisting">  "fstop"                    gdouble               : Read</pre>
+<pre class="programlisting">  "fstop"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read</pre>
 <p>
 The F-stop value.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#exif_reference" target="_top">
-EXIF element reference</a>.</p>
+EXIF element reference</a>.
+</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "height" property'>
 <a name="GDataPicasaWebFile--height"></a><h3>The <code class="literal">"height"</code> property</h3>
-<pre class="programlisting">  "height"                   guint                 : Read</pre>
+<pre class="programlisting">  "height"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read</pre>
 <p>
 The height of the photo or video, in pixels.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_height" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "image-unique-id" property'>
 <a name="GDataPicasaWebFile--image-unique-id"></a><h3>The <code class="literal">"image-unique-id"</code> property</h3>
-<pre class="programlisting">  "image-unique-id"          gchar*                : Read</pre>
+<pre class="programlisting">  "image-unique-id"          <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 An unique ID for the image found in the EXIF.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#exif_reference" target="_top">
-EXIF element reference</a>.</p>
+EXIF element reference</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "is-commenting-enabled" property'>
 <a name="GDataPicasaWebFile--is-commenting-enabled"></a><h3>The <code class="literal">"is-commenting-enabled"</code> property</h3>
-<pre class="programlisting">  "is-commenting-enabled"    gboolean              : Read / Write</pre>
+<pre class="programlisting">  "is-commenting-enabled"    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
 <p>
-Whether commenting is enabled for this file.</p>
+Whether commenting is enabled for this file.
+</p>
 <p>Default value: TRUE</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "iso" property'>
 <a name="GDataPicasaWebFile--iso"></a><h3>The <code class="literal">"iso"</code> property</h3>
-<pre class="programlisting">  "iso"                      glong                 : Read</pre>
+<pre class="programlisting">  "iso"                      <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"><span class="type">glong</span></a>                 : Read</pre>
 <p>
 The ISO speed.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#exif_reference" target="_top">
-EXIF element reference</a> and ISO 5800:1987.</p>
+EXIF element reference</a> and ISO 5800:1987.
+</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "latitude" property'>
 <a name="GDataPicasaWebFile--latitude"></a><h3>The <code class="literal">"latitude"</code> property</h3>
-<pre class="programlisting">  "latitude"                 gdouble               : Read / Write</pre>
+<pre class="programlisting">  "latitude"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write</pre>
 <p>
-The location as a latitude coordinate associated with this file. Valid latitudes range from <code class="literal">-90</code>.0 to <code class="literal">90</code>.0 inclusive.
+The location as a latitude coordinate associated with this file. Valid latitudes range from <code class="code">-90.0</code>
+to <code class="code">90.0</code> inclusive.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/docs/2.0/reference.html#georss_where" target="_top">
-GeoRSS specification</a>.</p>
+GeoRSS specification</a>.
+</p>
 <p>Allowed values: [-90,90]</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "longitude" property'>
 <a name="GDataPicasaWebFile--longitude"></a><h3>The <code class="literal">"longitude"</code> property</h3>
-<pre class="programlisting">  "longitude"                gdouble               : Read / Write</pre>
+<pre class="programlisting">  "longitude"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write</pre>
 <p>
-The location as a longitude coordinate associated with this file. Valid longitudes range from <code class="literal">-180</code>.0 to <code class="literal">180</code>.0 inclusive.
+The location as a longitude coordinate associated with this file. Valid longitudes range from <code class="code">-180.0</code>
+to <code class="code">180.0</code> inclusive.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/docs/2.0/reference.html#georss_where" target="_top">
-GeoRSS specification</a>.</p>
+GeoRSS specification</a>.
+</p>
 <p>Allowed values: [-180,180]</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "make" property'>
 <a name="GDataPicasaWebFile--make"></a><h3>The <code class="literal">"make"</code> property</h3>
-<pre class="programlisting">  "make"                     gchar*                : Read</pre>
+<pre class="programlisting">  "make"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 The name of the manufacturer of the camera.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#exif_reference" target="_top">
-EXIF element reference</a>.</p>
+EXIF element reference</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "model" property'>
 <a name="GDataPicasaWebFile--model"></a><h3>The <code class="literal">"model"</code> property</h3>
-<pre class="programlisting">  "model"                    gchar*                : Read</pre>
+<pre class="programlisting">  "model"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 The model of the camera.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#exif_reference" target="_top">
-EXIF element reference</a>.</p>
+EXIF element reference</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "position" property'>
 <a name="GDataPicasaWebFile--position"></a><h3>The <code class="literal">"position"</code> property</h3>
-<pre class="programlisting">  "position"                 gdouble               : Read / Write</pre>
+<pre class="programlisting">  "position"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write</pre>
 <p>
 The ordinal position of the file within the album. Lower values mean the file will be closer to the start of the album.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_position" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Allowed values: [0,G_MAXFLOAT]</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "rotation" property'>
 <a name="GDataPicasaWebFile--rotation"></a><h3>The <code class="literal">"rotation"</code> property</h3>
-<pre class="programlisting">  "rotation"                 guint                 : Read / Write</pre>
+<pre class="programlisting">  "rotation"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read / Write</pre>
 <p>
 The rotation of the photo, in degrees. This will only be non-zero for files which are pending rotation, and haven't yet been
-permanently modified. For files which have already been rotated, this will be <code class="literal">0</code>.
+permanently modified. For files which have already been rotated, this will be <code class="code">0</code>.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_rotation" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Allowed values: &lt;= 359</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "size" property'>
 <a name="GDataPicasaWebFile--size"></a><h3>The <code class="literal">"size"</code> property</h3>
-<pre class="programlisting">  "size"                     gulong                : Read</pre>
+<pre class="programlisting">  "size"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"><span class="type">gulong</span></a>                : Read</pre>
 <p>
 The size of the file, in bytes.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_size" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "tags" property'>
 <a name="GDataPicasaWebFile--tags"></a><h3>The <code class="literal">"tags"</code> property</h3>
-<pre class="programlisting">  "tags"                     gchar*                : Read / Write</pre>
+<pre class="programlisting">  "tags"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 A comma-separated list of tags associated with the file.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#media_keywords" target="_top">
-Media RSS specification</a>.</p>
+Media RSS specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "timestamp" property'>
 <a name="GDataPicasaWebFile--timestamp"></a><h3>The <code class="literal">"timestamp"</code> property</h3>
-<pre class="programlisting">  "timestamp"                GTimeVal*             : Read / Write</pre>
+<pre class="programlisting">  "timestamp"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write</pre>
 <p>
 The time the file was purportedly taken.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_timestamp" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "version" property'>
 <a name="GDataPicasaWebFile--version"></a><h3>The <code class="literal">"version"</code> property</h3>
-<pre class="programlisting">  "version"                  gchar*                : Read / Write / Construct Only</pre>
+<pre class="programlisting">  "version"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
 <p>
 The version number of the file. Version numbers are based on modification time, so they don't increment linearly.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_version" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "video-status" property'>
 <a name="GDataPicasaWebFile--video-status"></a><h3>The <code class="literal">"video-status"</code> property</h3>
-<pre class="programlisting">  "video-status"             gchar*                : Read</pre>
+<pre class="programlisting">  "video-status"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 The status of the file, if it is a video.
 </p>
@@ -1560,20 +1658,22 @@ Possible values include "pending", "ready", "final", and "failed".
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_videostatus" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "width" property'>
 <a name="GDataPicasaWebFile--width"></a><h3>The <code class="literal">"width"</code> property</h3>
-<pre class="programlisting">  "width"                    guint                 : Read</pre>
+<pre class="programlisting">  "width"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read</pre>
 <p>
 The width of the photo or video, in pixels.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_width" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.4.0</p>
 </div>
@@ -1581,6 +1681,6 @@ gphoto specification</a>.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,9 @@
  * @include: gdata/gd/gdata-gd-organization.h
  *
  * #GDataGDOrganization represents an "organization" element from the
- * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdOrganization">GData specification</ulink>.
+ * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdOrganization">GData specification</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -33,7 +35,10 @@
 #include "gdata-gd-organization.h"
 #include "gdata-parsable.h"
 #include "gdata-parser.h"
+#include "gdata-gd-where.h"
+#include "gdata-private.h"
 
+static void gdata_gd_organization_dispose (GObject *object);
 static void gdata_gd_organization_finalize (GObject *object);
 static void gdata_gd_organization_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void gdata_gd_organization_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
@@ -52,6 +57,7 @@ struct _GDataGDOrganizationPrivate {
 	gchar *department;
 	gchar *job_description;
 	gchar *symbol;
+	GDataGDWhere *location;
 };
 
 enum {
@@ -62,7 +68,8 @@ enum {
 	PROP_IS_PRIMARY,
 	PROP_DEPARTMENT,
 	PROP_JOB_DESCRIPTION,
-	PROP_SYMBOL
+	PROP_SYMBOL,
+	PROP_LOCATION
 };
 
 G_DEFINE_TYPE (GDataGDOrganization, gdata_gd_organization, GDATA_TYPE_PARSABLE)
@@ -78,6 +85,7 @@ gdata_gd_organization_class_init (GDataGDOrganizationClass *klass)
 
 	gobject_class->get_property = gdata_gd_organization_get_property;
 	gobject_class->set_property = gdata_gd_organization_set_property;
+	gobject_class->dispose = gdata_gd_organization_dispose;
 	gobject_class->finalize = gdata_gd_organization_finalize;
 
 	parsable_class->pre_parse_xml = pre_parse_xml;
@@ -216,12 +224,40 @@ gdata_gd_organization_class_init (GDataGDOrganizationClass *klass)
 					"Symbol", "Symbol of the organization.",
 					NULL,
 					G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GDataGDOrganization:location:
+	 *
+	 * A place associated with the organization, e.g. office location.
+	 *
+	 * For more information, see the
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdOrganization">GData specification</ulink>.
+	 *
+	 * Since: 0.6.0
+	 **/
+	g_object_class_install_property (gobject_class, PROP_LOCATION,
+				g_param_spec_object ("location",
+					"Location", "A place associated with the organization, e.g. office location.",
+					GDATA_TYPE_GD_WHERE,
+					G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void
 gdata_gd_organization_init (GDataGDOrganization *self)
 {
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_GD_ORGANIZATION, GDataGDOrganizationPrivate);
+}
+
+static void
+gdata_gd_organization_dispose (GObject *object)
+{
+	GDataGDOrganizationPrivate *priv = GDATA_GD_ORGANIZATION (object)->priv;
+
+	if (priv->location != NULL)
+		g_object_unref (priv->location);
+
+	/* Chain up to the parent class */
+	G_OBJECT_CLASS (gdata_gd_organization_parent_class)->dispose (object);
 }
 
 static void
@@ -271,6 +307,9 @@ gdata_gd_organization_get_property (GObject *object, guint property_id, GValue *
 		case PROP_SYMBOL:
 			g_value_set_string (value, priv->symbol);
 			break;
+		case PROP_LOCATION:
+			g_value_set_object (value, priv->location);
+			break;
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -308,6 +347,9 @@ gdata_gd_organization_set_property (GObject *object, guint property_id, const GV
 		case PROP_SYMBOL:
 			gdata_gd_organization_set_symbol (self, g_value_get_string (value));
 			break;
+		case PROP_LOCATION:
+			gdata_gd_organization_set_location (self, g_value_get_object (value));
+			break;
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -318,7 +360,7 @@ gdata_gd_organization_set_property (GObject *object, guint property_id, const GV
 static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
-	xmlChar *rel, *label, *primary;
+	xmlChar *rel, *primary;
 	gboolean primary_bool;
 	GDataGDOrganizationPrivate *priv = GDATA_GD_ORGANIZATION (parsable)->priv;
 
@@ -342,15 +384,9 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 	}
 	xmlFree (primary);
 
-	/* Other properties */
-	label = xmlGetProp (root_node, (xmlChar*) "label");
-
-	priv->relation_type = g_strdup ((gchar*) rel);
-	priv->label = g_strdup ((gchar*) label);
+	priv->relation_type = (gchar*) rel;
+	priv->label = (gchar*) xmlGetProp (root_node, (xmlChar*) "label");
 	priv->is_primary = primary_bool;
-
-	xmlFree (rel);
-	xmlFree (label);
 
 	return TRUE;
 }
@@ -360,59 +396,48 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataGDOrganizationPrivate *priv = GDATA_GD_ORGANIZATION (parsable)->priv;
 
+	if (gdata_parser_is_namespace (node, "http://schemas.google.com/g/2005") == FALSE)
+		return GDATA_PARSABLE_CLASS (gdata_gd_organization_parent_class)->parse_xml (parsable, doc, node, user_data, error);
+
 	if (xmlStrcmp (node->name, (xmlChar*) "orgName") == 0) {
 		/* gd:orgName */
-		xmlChar *name;
-
 		if (priv->name != NULL)
 			return gdata_parser_error_duplicate_element (node, error);
-
-		name = xmlNodeListGetString (doc, node->children, TRUE);
-		priv->name = g_strdup ((gchar*) name);
-		xmlFree (name);
+		priv->name = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "orgTitle") == 0) {
 		/* gd:orgTitle */
-		xmlChar *title;
-
 		if (priv->title != NULL)
 			return gdata_parser_error_duplicate_element (node, error);
-
-		title = xmlNodeListGetString (doc, node->children, TRUE);
-		priv->title = g_strdup ((gchar*) title);
-		xmlFree (title);
+		priv->title = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "orgDepartment") == 0) {
 		/* gd:orgDepartment */
-		xmlChar *department;
-
 		if (priv->department != NULL)
 			return gdata_parser_error_duplicate_element (node, error);
-
-		department = xmlNodeListGetString (doc, node->children, TRUE);
-		priv->department = g_strdup ((gchar*) department);
-		xmlFree (department);
+		priv->department = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "orgJobDescription") == 0) {
 		/* gd:orgJobDescription */
-		xmlChar *job_description;
-
 		if (priv->job_description != NULL)
 			return gdata_parser_error_duplicate_element (node, error);
-
-		job_description = xmlNodeListGetString (doc, node->children, TRUE);
-		priv->job_description = g_strdup ((gchar*) job_description);
-		xmlFree (job_description);
+		priv->job_description = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "orgSymbol") == 0) {
 		/* gd:orgSymbol */
-		xmlChar *symbol;
-
 		if (priv->symbol != NULL)
 			return gdata_parser_error_duplicate_element (node, error);
+		priv->symbol = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+	} else if (xmlStrcmp (node->name, (xmlChar*) "where") == 0) {
+		/* gd:where */
+		GDataGDWhere *location = GDATA_GD_WHERE (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_WHERE, doc, node, NULL, error));
+		if (location == NULL)
+			return FALSE;
 
-		symbol = xmlNodeListGetString (doc, node->children, TRUE);
-		priv->symbol = g_strdup ((gchar*) symbol);
-		xmlFree (symbol);
-	} else if (GDATA_PARSABLE_CLASS (gdata_gd_organization_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+		if (priv->location != NULL) {
+			g_object_unref (location);
+			return gdata_parser_error_duplicate_element (node, error);
+		}
+
+		priv->location = location;
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_gd_organization_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -449,6 +474,8 @@ get_xml (GDataParsable *parsable, GString *xml_string)
 		gdata_parser_string_append_escaped (xml_string, "<gd:orgJobDescription>", priv->job_description, "</gd:orgJobDescription>");
 	if (priv->symbol != NULL)
 		gdata_parser_string_append_escaped (xml_string, "<gd:orgSymbol>", priv->symbol, "</gd:orgSymbol>");
+	if (priv->location != NULL)
+		_gdata_parsable_get_xml (GDATA_PARSABLE (priv->location), xml_string, FALSE);
 }
 
 static void
@@ -466,7 +493,7 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
  * @is_primary: %TRUE if this organization is its owner's primary organization, %FALSE otherwise
  *
  * Creates a new #GDataGDOrganization. More information is available in the <ulink type="http"
- * url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdOrganization">GData specification</ulink>.
+ * url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdOrganization">GData specification</ulink>.
  *
  * Return value: a new #GDataGDOrganization, or %NULL; unref with g_object_unref()
  *
@@ -486,11 +513,13 @@ gdata_gd_organization_new (const gchar *name, const gchar *title, const gchar *r
  * @b: another #GDataGDOrganization, or %NULL
  *
  * Compares the two organizations in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @name property of the #GDataGDOrganization<!-- -->s.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
@@ -499,7 +528,7 @@ gdata_gd_organization_compare (const GDataGDOrganization *a, const GDataGDOrgani
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)
@@ -810,4 +839,44 @@ gdata_gd_organization_set_symbol (GDataGDOrganization *self, const gchar *symbol
 	g_free (self->priv->symbol);
 	self->priv->symbol = g_strdup (symbol);
 	g_object_notify (G_OBJECT (self), "symbol");
+}
+
+/**
+ * gdata_gd_organization_get_location:
+ * @self: a #GDataGDOrganization
+ *
+ * Gets the #GDataGDOrganization:location property.
+ *
+ * Return value: the organization's location, or %NULL
+ *
+ * Since: 0.6.0
+ **/
+GDataGDWhere *
+gdata_gd_organization_get_location (GDataGDOrganization *self)
+{
+	g_return_val_if_fail (GDATA_IS_GD_ORGANIZATION (self), NULL);
+	return self->priv->location;
+}
+
+/**
+ * gdata_gd_organization_set_location:
+ * @self: a #GDataGDOrganization
+ * @location: the new location for the organization, or %NULL
+ *
+ * Sets the #GDataGDOrganization:location property to @location.
+ *
+ * Set @location to %NULL to unset the property in the organization.
+ *
+ * Since: 0.6.0
+ **/
+void
+gdata_gd_organization_set_location (GDataGDOrganization *self, GDataGDWhere *location)
+{
+	g_return_if_fail (GDATA_IS_GD_ORGANIZATION (self));
+	g_return_if_fail (location == NULL || GDATA_IS_GD_WHERE (location));
+
+	if (self->priv->location != NULL)
+		g_object_unref (self->priv->location);
+	self->priv->location = (location != NULL) ? g_object_ref (location) : NULL;
+	g_object_notify (G_OBJECT (self), "location");
 }

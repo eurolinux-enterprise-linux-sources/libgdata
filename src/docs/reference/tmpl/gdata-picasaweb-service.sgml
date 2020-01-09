@@ -19,6 +19,9 @@ GDataPicasaWebService
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataPicasaWebService ##### -->
 <para>
 
@@ -37,6 +40,18 @@ GDataPicasaWebService
 </para>
 
 @client_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_service_get_user ##### -->
+<para>
+
+</para>
+
+@self: 
+@username: 
+@cancellable: 
+@error: 
 @Returns: 
 
 
@@ -94,6 +109,43 @@ GDataPicasaWebService
 @album: 
 @file_entry: 
 @file_data: 
+@cancellable: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_service_upload_file_async ##### -->
+<para>
+
+</para>
+
+@self: 
+@album: 
+@file_entry: 
+@file_data: 
+@cancellable: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_service_upload_file_finish ##### -->
+<para>
+
+</para>
+
+@self: 
+@result: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_service_insert_album ##### -->
+<para>
+
+</para>
+
+@self: 
+@album: 
 @cancellable: 
 @error: 
 @Returns: 

@@ -19,6 +19,9 @@ GDataContactsContact
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataContactsContact ##### -->
 <para>
 
@@ -67,6 +70,15 @@ GDataContactsContact
 
 @self: 
 @Returns: 
+
+
+<!-- ##### FUNCTION gdata_contacts_contact_set_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@name: 
 
 
 <!-- ##### FUNCTION gdata_contacts_contact_get_email_addresses ##### -->

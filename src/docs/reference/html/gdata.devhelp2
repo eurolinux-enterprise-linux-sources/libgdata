@@ -32,6 +32,7 @@
       <sub name="GData API" link="ch05.html">
         <sub name="GDataGDEmailAddress" link="GDataGDEmailAddress.html"/>
         <sub name="GDataGDIMAddress" link="GDataGDIMAddress.html"/>
+        <sub name="GDataGDName" link="GDataGDName.html"/>
         <sub name="GDataGDOrganization" link="GDataGDOrganization.html"/>
         <sub name="GDataGDPhoneNumber" link="GDataGDPhoneNumber.html"/>
         <sub name="GDataGDPostalAddress" link="GDataGDPostalAddress.html"/>
@@ -87,16 +88,27 @@
         <sub name="GDataPicasaWebFile" link="GDataPicasaWebFile.html"/>
       </sub>
     </sub>
-    <sub name="Appendices" link="pt05.html"/>
+    <sub name="Appendices" link="pt05.html">
+      <sub name="API Index" link="api-index-full.html"/>
+      <sub name="Index of new symbols in 0.1.1" link="ix02.html"/>
+      <sub name="Index of new symbols in 0.2.0" link="ix03.html"/>
+      <sub name="Index of new symbols in 0.3.0" link="ix04.html"/>
+      <sub name="Index of new symbols in 0.4.0" link="ix05.html"/>
+      <sub name="Index of new symbols in 0.5.0" link="ix06.html"/>
+      <sub name="Index of new symbols in 0.6.0" link="ix07.html"/>
+      <sub name="Index of new symbols in 0.6.3" link="ix08.html"/>
+      <sub name="Index of new symbols in 0.6.4" link="ix09.html"/>
+    </sub>
   </chapters>
   <functions>
-    <keyword type="" name="Protocol" link="gdata-overview.html#id445392"/>
-    <keyword type="" name="Structure" link="gdata-overview.html#id474703"/>
+    <keyword type="" name="Protocol" link="gdata-overview.html#id607674"/>
+    <keyword type="" name="Structure" link="gdata-overview.html#id620938"/>
     <keyword type="struct" name="GDataService" link="GDataService.html#GDataService-struct"/>
     <keyword type="struct" name="GDataServiceClass" link="GDataService.html#GDataServiceClass"/>
     <keyword type="enum" name="enum GDataServiceError" link="GDataService.html#GDataServiceError"/>
     <keyword type="enum" name="enum GDataAuthenticationError" link="GDataService.html#GDataAuthenticationError"/>
     <keyword type="enum" name="enum GDataParserError" link="GDataService.html#GDataParserError"/>
+    <keyword type="enum" name="enum GDataOperationType" link="GDataService.html#GDataOperationType" since="0.6.0"/>
     <keyword type="function" name="GDataQueryProgressCallback ()" link="GDataService.html#GDataQueryProgressCallback"/>
     <keyword type="function" name="gdata_service_authenticate ()" link="GDataService.html#gdata-service-authenticate"/>
     <keyword type="function" name="gdata_service_authenticate_async ()" link="GDataService.html#gdata-service-authenticate-async"/>
@@ -183,12 +195,14 @@
     <keyword type="function" name="gdata_feed_get_links ()" link="GDataFeed.html#gdata-feed-get-links"/>
     <keyword type="function" name="gdata_feed_look_up_link ()" link="GDataFeed.html#gdata-feed-look-up-link" since="0.1.1"/>
     <keyword type="function" name="gdata_feed_get_logo ()" link="GDataFeed.html#gdata-feed-get-logo"/>
+    <keyword type="function" name="gdata_feed_get_icon ()" link="GDataFeed.html#gdata-feed-get-icon" since="0.6.0"/>
     <keyword type="function" name="gdata_feed_get_updated ()" link="GDataFeed.html#gdata-feed-get-updated"/>
     <keyword type="function" name="gdata_feed_get_start_index ()" link="GDataFeed.html#gdata-feed-get-start-index"/>
     <keyword type="function" name="gdata_feed_get_total_results ()" link="GDataFeed.html#gdata-feed-get-total-results"/>
     <keyword type="function" name="gdata_feed_get_items_per_page ()" link="GDataFeed.html#gdata-feed-get-items-per-page"/>
     <keyword type="property" name="The &quot;etag&quot; property" link="GDataFeed.html#GDataFeed--etag"/>
     <keyword type="property" name="The &quot;generator&quot; property" link="GDataFeed.html#GDataFeed--generator"/>
+    <keyword type="property" name="The &quot;icon&quot; property" link="GDataFeed.html#GDataFeed--icon"/>
     <keyword type="property" name="The &quot;id&quot; property" link="GDataFeed.html#GDataFeed--id"/>
     <keyword type="property" name="The &quot;items-per-page&quot; property" link="GDataFeed.html#GDataFeed--items-per-page"/>
     <keyword type="property" name="The &quot;logo&quot; property" link="GDataFeed.html#GDataFeed--logo"/>
@@ -233,8 +247,8 @@
     <keyword type="function" name="gdata_color_to_hexadecimal ()" link="gdata-GData-Types.html#gdata-color-to-hexadecimal" since="0.3.0"/>
     <keyword type="struct" name="GDataParsable" link="GDataParsable.html#GDataParsable-struct"/>
     <keyword type="struct" name="GDataParsableClass" link="GDataParsable.html#GDataParsableClass" since="0.3.0"/>
-    <keyword type="function" name="gdata_parsable_new_from_xml ()" link="GDataParsable.html#gdata-parsable-new-from-xml"/>
-    <keyword type="function" name="gdata_parsable_get_xml ()" link="GDataParsable.html#gdata-parsable-get-xml"/>
+    <keyword type="function" name="gdata_parsable_new_from_xml ()" link="GDataParsable.html#gdata-parsable-new-from-xml" since="0.4.0"/>
+    <keyword type="function" name="gdata_parsable_get_xml ()" link="GDataParsable.html#gdata-parsable-get-xml" since="0.4.0"/>
     <keyword type="struct" name="GDataDownloadStream" link="GDataDownloadStream.html#GDataDownloadStream-struct"/>
     <keyword type="struct" name="GDataDownloadStreamClass" link="GDataDownloadStream.html#GDataDownloadStreamClass" since="0.5.0"/>
     <keyword type="function" name="gdata_download_stream_new ()" link="GDataDownloadStream.html#gdata-download-stream-new" since="0.5.0"/>
@@ -352,7 +366,10 @@
     <keyword type="function" name="gdata_gd_email_address_set_label ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-label" since="0.4.0"/>
     <keyword type="function" name="gdata_gd_email_address_is_primary ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-is-primary" since="0.4.0"/>
     <keyword type="function" name="gdata_gd_email_address_set_is_primary ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-is-primary" since="0.4.0"/>
+    <keyword type="function" name="gdata_gd_email_address_get_display_name ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-get-display-name" since="0.6.0"/>
+    <keyword type="function" name="gdata_gd_email_address_set_display_name ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-display-name" since="0.6.0"/>
     <keyword type="property" name="The &quot;address&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--address"/>
+    <keyword type="property" name="The &quot;display-name&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--display-name"/>
     <keyword type="property" name="The &quot;is-primary&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--is-primary"/>
     <keyword type="property" name="The &quot;label&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--label"/>
     <keyword type="property" name="The &quot;relation-type&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--relation-type"/>
@@ -375,6 +392,28 @@
     <keyword type="property" name="The &quot;label&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--label"/>
     <keyword type="property" name="The &quot;protocol&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--protocol"/>
     <keyword type="property" name="The &quot;relation-type&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--relation-type"/>
+    <keyword type="struct" name="GDataGDName" link="GDataGDName.html#GDataGDName-struct"/>
+    <keyword type="struct" name="GDataGDNameClass" link="GDataGDName.html#GDataGDNameClass" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_new ()" link="GDataGDName.html#gdata-gd-name-new" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_compare ()" link="GDataGDName.html#gdata-gd-name-compare" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_get_given_name ()" link="GDataGDName.html#gdata-gd-name-get-given-name" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_set_given_name ()" link="GDataGDName.html#gdata-gd-name-set-given-name" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_get_additional_name ()" link="GDataGDName.html#gdata-gd-name-get-additional-name" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_set_additional_name ()" link="GDataGDName.html#gdata-gd-name-set-additional-name" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_get_family_name ()" link="GDataGDName.html#gdata-gd-name-get-family-name" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_set_family_name ()" link="GDataGDName.html#gdata-gd-name-set-family-name" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_get_prefix ()" link="GDataGDName.html#gdata-gd-name-get-prefix" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_set_prefix ()" link="GDataGDName.html#gdata-gd-name-set-prefix" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_get_suffix ()" link="GDataGDName.html#gdata-gd-name-get-suffix" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_set_suffix ()" link="GDataGDName.html#gdata-gd-name-set-suffix" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_get_full_name ()" link="GDataGDName.html#gdata-gd-name-get-full-name" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_name_set_full_name ()" link="GDataGDName.html#gdata-gd-name-set-full-name" since="0.5.0"/>
+    <keyword type="property" name="The &quot;additional-name&quot; property" link="GDataGDName.html#GDataGDName--additional-name"/>
+    <keyword type="property" name="The &quot;family-name&quot; property" link="GDataGDName.html#GDataGDName--family-name"/>
+    <keyword type="property" name="The &quot;full-name&quot; property" link="GDataGDName.html#GDataGDName--full-name"/>
+    <keyword type="property" name="The &quot;given-name&quot; property" link="GDataGDName.html#GDataGDName--given-name"/>
+    <keyword type="property" name="The &quot;prefix&quot; property" link="GDataGDName.html#GDataGDName--prefix"/>
+    <keyword type="property" name="The &quot;suffix&quot; property" link="GDataGDName.html#GDataGDName--suffix"/>
     <keyword type="struct" name="GDataGDOrganization" link="GDataGDOrganization.html#GDataGDOrganization-struct"/>
     <keyword type="struct" name="GDataGDOrganizationClass" link="GDataGDOrganization.html#GDataGDOrganizationClass" since="0.4.0"/>
     <keyword type="function" name="gdata_gd_organization_new ()" link="GDataGDOrganization.html#gdata-gd-organization-new" since="0.2.0"/>
@@ -395,10 +434,13 @@
     <keyword type="function" name="gdata_gd_organization_set_job_description ()" link="GDataGDOrganization.html#gdata-gd-organization-set-job-description" since="0.5.0"/>
     <keyword type="function" name="gdata_gd_organization_get_symbol ()" link="GDataGDOrganization.html#gdata-gd-organization-get-symbol" since="0.5.0"/>
     <keyword type="function" name="gdata_gd_organization_set_symbol ()" link="GDataGDOrganization.html#gdata-gd-organization-set-symbol" since="0.5.0"/>
+    <keyword type="function" name="gdata_gd_organization_get_location ()" link="GDataGDOrganization.html#gdata-gd-organization-get-location" since="0.6.0"/>
+    <keyword type="function" name="gdata_gd_organization_set_location ()" link="GDataGDOrganization.html#gdata-gd-organization-set-location" since="0.6.0"/>
     <keyword type="property" name="The &quot;department&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--department"/>
     <keyword type="property" name="The &quot;is-primary&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--is-primary"/>
     <keyword type="property" name="The &quot;job-description&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--job-description"/>
     <keyword type="property" name="The &quot;label&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--label"/>
+    <keyword type="property" name="The &quot;location&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--location"/>
     <keyword type="property" name="The &quot;name&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--name"/>
     <keyword type="property" name="The &quot;relation-type&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--relation-type"/>
     <keyword type="property" name="The &quot;symbol&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--symbol"/>
@@ -516,7 +558,7 @@
     <keyword type="property" name="The &quot;value-string&quot; property" link="GDataGDWhen.html#GDataGDWhen--value-string"/>
     <keyword type="struct" name="GDataGDWhere" link="GDataGDWhere.html#GDataGDWhere-struct"/>
     <keyword type="struct" name="GDataGDWhereClass" link="GDataGDWhere.html#GDataGDWhereClass" since="0.4.0"/>
-    <keyword type="function" name="gdata_gd_where_new ()" link="GDataGDWhere.html#gdata-gd-where-new"/>
+    <keyword type="function" name="gdata_gd_where_new ()" link="GDataGDWhere.html#gdata-gd-where-new" since="0.2.0"/>
     <keyword type="function" name="gdata_gd_where_compare ()" link="GDataGDWhere.html#gdata-gd-where-compare" since="0.4.0"/>
     <keyword type="function" name="gdata_gd_where_get_relation_type ()" link="GDataGDWhere.html#gdata-gd-where-get-relation-type" since="0.4.0"/>
     <keyword type="function" name="gdata_gd_where_set_relation_type ()" link="GDataGDWhere.html#gdata-gd-where-set-relation-type" since="0.4.0"/>
@@ -529,7 +571,7 @@
     <keyword type="property" name="The &quot;value-string&quot; property" link="GDataGDWhere.html#GDataGDWhere--value-string"/>
     <keyword type="struct" name="GDataGDWho" link="GDataGDWho.html#GDataGDWho-struct"/>
     <keyword type="struct" name="GDataGDWhoClass" link="GDataGDWho.html#GDataGDWhoClass" since="0.4.0"/>
-    <keyword type="function" name="gdata_gd_who_new ()" link="GDataGDWho.html#gdata-gd-who-new"/>
+    <keyword type="function" name="gdata_gd_who_new ()" link="GDataGDWho.html#gdata-gd-who-new" since="0.2.0"/>
     <keyword type="function" name="gdata_gd_who_compare ()" link="GDataGDWho.html#gdata-gd-who-compare" since="0.4.0"/>
     <keyword type="function" name="gdata_gd_who_get_relation_type ()" link="GDataGDWho.html#gdata-gd-who-get-relation-type" since="0.4.0"/>
     <keyword type="function" name="gdata_gd_who_set_relation_type ()" link="GDataGDWho.html#gdata-gd-who-set-relation-type" since="0.4.0"/>
@@ -554,7 +596,7 @@
     <keyword type="property" name="The &quot;scheme&quot; property" link="GDataMediaCategory.html#GDataMediaCategory--scheme"/>
     <keyword type="struct" name="GDataMediaContent" link="GDataMediaContent.html#GDataMediaContent-struct"/>
     <keyword type="struct" name="GDataMediaContentClass" link="GDataMediaContent.html#GDataMediaContentClass" since="0.4.0"/>
-    <keyword type="enum" name="enum GDataMediaMedium" link="GDataMediaContent.html#GDataMediaMedium"/>
+    <keyword type="enum" name="enum GDataMediaMedium" link="GDataMediaContent.html#GDataMediaMedium" since="0.4.0"/>
     <keyword type="enum" name="enum GDataMediaExpression" link="GDataMediaContent.html#GDataMediaExpression"/>
     <keyword type="function" name="gdata_media_content_get_uri ()" link="GDataMediaContent.html#gdata-media-content-get-uri" since="0.4.0"/>
     <keyword type="function" name="gdata_media_content_get_filesize ()" link="GDataMediaContent.html#gdata-media-content-get-filesize" since="0.4.0"/>
@@ -565,6 +607,7 @@
     <keyword type="function" name="gdata_media_content_get_duration ()" link="GDataMediaContent.html#gdata-media-content-get-duration" since="0.4.0"/>
     <keyword type="function" name="gdata_media_content_get_height ()" link="GDataMediaContent.html#gdata-media-content-get-height" since="0.4.0"/>
     <keyword type="function" name="gdata_media_content_get_width ()" link="GDataMediaContent.html#gdata-media-content-get-width" since="0.4.0"/>
+    <keyword type="function" name="gdata_media_content_download ()" link="GDataMediaContent.html#gdata-media-content-download" since="0.6.0"/>
     <keyword type="property" name="The &quot;content-type&quot; property" link="GDataMediaContent.html#GDataMediaContent--content-type"/>
     <keyword type="property" name="The &quot;duration&quot; property" link="GDataMediaContent.html#GDataMediaContent--duration"/>
     <keyword type="property" name="The &quot;expression&quot; property" link="GDataMediaContent.html#GDataMediaContent--expression"/>
@@ -588,6 +631,7 @@
     <keyword type="function" name="gdata_media_thumbnail_get_height ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-height" since="0.4.0"/>
     <keyword type="function" name="gdata_media_thumbnail_get_width ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-width" since="0.4.0"/>
     <keyword type="function" name="gdata_media_thumbnail_get_time ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-time" since="0.4.0"/>
+    <keyword type="function" name="gdata_media_thumbnail_download ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-download" since="0.6.0"/>
     <keyword type="property" name="The &quot;height&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--height"/>
     <keyword type="property" name="The &quot;time&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--time"/>
     <keyword type="property" name="The &quot;uri&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--uri"/>
@@ -685,7 +729,7 @@
     <keyword type="function" name="gdata_youtube_video_set_location ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-location"/>
     <keyword type="function" name="gdata_youtube_video_get_view_count ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-view-count"/>
     <keyword type="function" name="gdata_youtube_video_get_favorite_count ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-favorite-count"/>
-    <keyword type="function" name="gdata_youtube_video_is_restricted_in_country ()" link="GDataYouTubeVideo.html#gdata-youtube-video-is-restricted-in-country"/>
+    <keyword type="function" name="gdata_youtube_video_is_restricted_in_country ()" link="GDataYouTubeVideo.html#gdata-youtube-video-is-restricted-in-country" since="0.4.0"/>
     <keyword type="function" name="gdata_youtube_video_get_no_embed ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-no-embed"/>
     <keyword type="function" name="gdata_youtube_video_set_no_embed ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-no-embed"/>
     <keyword type="function" name="gdata_youtube_video_get_player_uri ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-player-uri"/>
@@ -695,8 +739,6 @@
     <keyword type="function" name="gdata_youtube_video_set_is_draft ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-is-draft"/>
     <keyword type="function" name="gdata_youtube_video_get_state ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-state"/>
     <keyword type="function" name="gdata_youtube_video_get_rating ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-rating"/>
-    <keyword type="function" name="gdata_youtube_video_get_title ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-title"/>
-    <keyword type="function" name="gdata_youtube_video_set_title ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-title"/>
     <keyword type="function" name="gdata_youtube_video_get_uploaded ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-uploaded"/>
     <keyword type="function" name="gdata_youtube_video_get_recorded ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-recorded" since="0.3.0"/>
     <keyword type="function" name="gdata_youtube_video_set_recorded ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-recorded" since="0.3.0"/>
@@ -722,7 +764,6 @@
     <keyword type="property" name="The &quot;rating-count&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--rating-count"/>
     <keyword type="property" name="The &quot;recorded&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--recorded"/>
     <keyword type="property" name="The &quot;state&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--state"/>
-    <keyword type="property" name="The &quot;title&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--title"/>
     <keyword type="property" name="The &quot;uploaded&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--uploaded"/>
     <keyword type="property" name="The &quot;video-id&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--video-id"/>
     <keyword type="property" name="The &quot;view-count&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--view-count"/>
@@ -840,14 +881,14 @@
     <keyword type="property" name="The &quot;uid&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--uid"/>
     <keyword type="property" name="The &quot;visibility&quot; property" link="GDataCalendarEvent.html#GDataCalendarEvent--visibility"/>
     <keyword type="struct" name="GDataContactsService" link="GDataContactsService.html#GDataContactsService-struct"/>
-    <keyword type="struct" name="GDataContactsServiceClass" link="GDataContactsService.html#GDataContactsServiceClass"/>
+    <keyword type="struct" name="GDataContactsServiceClass" link="GDataContactsService.html#GDataContactsServiceClass" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_service_new ()" link="GDataContactsService.html#gdata-contacts-service-new" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_service_query_contacts ()" link="GDataContactsService.html#gdata-contacts-service-query-contacts" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_service_query_contacts_async ()" link="GDataContactsService.html#gdata-contacts-service-query-contacts-async" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_service_insert_contact ()" link="GDataContactsService.html#gdata-contacts-service-insert-contact" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_service_update_contact ()" link="GDataContactsService.html#gdata-contacts-service-update-contact" since="0.4.0"/>
     <keyword type="struct" name="GDataContactsQuery" link="GDataContactsQuery.html#GDataContactsQuery-struct"/>
-    <keyword type="struct" name="GDataContactsQueryClass" link="GDataContactsQuery.html#GDataContactsQueryClass"/>
+    <keyword type="struct" name="GDataContactsQueryClass" link="GDataContactsQuery.html#GDataContactsQueryClass" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_query_new ()" link="GDataContactsQuery.html#gdata-contacts-query-new" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_query_new_with_limits ()" link="GDataContactsQuery.html#gdata-contacts-query-new-with-limits" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_query_get_order_by ()" link="GDataContactsQuery.html#gdata-contacts-query-get-order-by" since="0.2.0"/>
@@ -863,9 +904,10 @@
     <keyword type="property" name="The &quot;show-deleted&quot; property" link="GDataContactsQuery.html#GDataContactsQuery--show-deleted"/>
     <keyword type="property" name="The &quot;sort-order&quot; property" link="GDataContactsQuery.html#GDataContactsQuery--sort-order"/>
     <keyword type="struct" name="GDataContactsContact" link="GDataContactsContact.html#GDataContactsContact-struct"/>
-    <keyword type="struct" name="GDataContactsContactClass" link="GDataContactsContact.html#GDataContactsContactClass"/>
+    <keyword type="struct" name="GDataContactsContactClass" link="GDataContactsContact.html#GDataContactsContactClass" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_contact_new ()" link="GDataContactsContact.html#gdata-contacts-contact-new" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_contact_get_name ()" link="GDataContactsContact.html#gdata-contacts-contact-get-name" since="0.5.0"/>
+    <keyword type="function" name="gdata_contacts_contact_set_name ()" link="GDataContactsContact.html#gdata-contacts-contact-set-name" since="0.6.3"/>
     <keyword type="function" name="gdata_contacts_contact_get_email_addresses ()" link="GDataContactsContact.html#gdata-contacts-contact-get-email-addresses" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_contact_get_primary_email_address ()" link="GDataContactsContact.html#gdata-contacts-contact-get-primary-email-address" since="0.2.0"/>
     <keyword type="function" name="gdata_contacts_contact_add_email_address ()" link="GDataContactsContact.html#gdata-contacts-contact-add-email-address" since="0.2.0"/>
@@ -979,13 +1021,18 @@
     <keyword type="struct" name="GDataPicasaWebService" link="GDataPicasaWebService.html#GDataPicasaWebService-struct"/>
     <keyword type="struct" name="GDataPicasaWebServiceClass" link="GDataPicasaWebService.html#GDataPicasaWebServiceClass" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_service_new ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-new" since="0.4.0"/>
+    <keyword type="function" name="gdata_picasaweb_service_get_user ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-get-user" since="0.6.0"/>
     <keyword type="function" name="gdata_picasaweb_service_query_all_albums ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_service_query_all_albums_async ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums-async" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_service_query_files ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-query-files" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_service_upload_file ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file" since="0.4.0"/>
+    <keyword type="function" name="gdata_picasaweb_service_upload_file_async ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file-async" since="0.6.0"/>
+    <keyword type="function" name="gdata_picasaweb_service_upload_file_finish ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file-finish" since="0.6.0"/>
+    <keyword type="function" name="gdata_picasaweb_service_insert_album ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-insert-album" since="0.6.0"/>
     <keyword type="struct" name="GDataPicasaWebQuery" link="GDataPicasaWebQuery.html#GDataPicasaWebQuery-struct"/>
     <keyword type="struct" name="GDataPicasaWebQueryClass" link="GDataPicasaWebQuery.html#GDataPicasaWebQueryClass" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_query_new ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-new" since="0.4.0"/>
+    <keyword type="function" name="gdata_picasaweb_query_new_with_limits ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-new-with-limits" since="0.6.0"/>
     <keyword type="function" name="gdata_picasaweb_query_get_visibility ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-visibility" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_query_set_visibility ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-visibility" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_query_get_thumbnail_size ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-thumbnail-size" since="0.4.0"/>
@@ -1007,10 +1054,10 @@
     <keyword type="struct" name="GDataPicasaWebAlbumClass" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbumClass" since="0.4.0"/>
     <keyword type="enum" name="enum GDataPicasaWebVisibility" link="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_new ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-new" since="0.4.0"/>
+    <keyword type="function" name="gdata_picasaweb_album_get_id ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-id" since="0.6.4"/>
     <keyword type="function" name="gdata_picasaweb_album_get_user ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-user" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_get_nickname ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-nickname" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_get_edited ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-edited" since="0.4.0"/>
-    <keyword type="function" name="gdata_picasaweb_album_get_name ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-name" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_get_location ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-location" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_set_location ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-location" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_get_visibility ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-visibility" since="0.4.0"/>
@@ -1025,21 +1072,18 @@
     <keyword type="function" name="gdata_picasaweb_album_get_comment_count ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-comment-count" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_get_tags ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-tags" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_set_tags ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-tags" since="0.4.0"/>
-    <keyword type="function" name="gdata_picasaweb_album_get_description ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-description" since="0.4.0"/>
-    <keyword type="function" name="gdata_picasaweb_album_set_description ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-description" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_get_contents ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-contents" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_get_thumbnails ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-thumbnails" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_album_get_coordinates ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-coordinates" since="0.5.0"/>
     <keyword type="function" name="gdata_picasaweb_album_set_coordinates ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-coordinates" since="0.5.0"/>
+    <keyword type="property" name="The &quot;album-id&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--album-id"/>
     <keyword type="property" name="The &quot;bytes-used&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--bytes-used"/>
     <keyword type="property" name="The &quot;comment-count&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--comment-count"/>
-    <keyword type="property" name="The &quot;description&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--description"/>
     <keyword type="property" name="The &quot;edited&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--edited"/>
     <keyword type="property" name="The &quot;is-commenting-enabled&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-enabled"/>
     <keyword type="property" name="The &quot;latitude&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--latitude"/>
     <keyword type="property" name="The &quot;location&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location"/>
     <keyword type="property" name="The &quot;longitude&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--longitude"/>
-    <keyword type="property" name="The &quot;name&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--name"/>
     <keyword type="property" name="The &quot;nickname&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--nickname"/>
     <keyword type="property" name="The &quot;num-photos&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos"/>
     <keyword type="property" name="The &quot;num-photos-remaining&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos-remaining"/>
@@ -1050,6 +1094,7 @@
     <keyword type="struct" name="GDataPicasaWebFile" link="GDataPicasaWebFile.html#GDataPicasaWebFile-struct"/>
     <keyword type="struct" name="GDataPicasaWebFileClass" link="GDataPicasaWebFile.html#GDataPicasaWebFileClass" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_file_new ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-new" since="0.4.0"/>
+    <keyword type="function" name="gdata_picasaweb_file_get_id ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-id" since="0.6.4"/>
     <keyword type="function" name="gdata_picasaweb_file_get_edited ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-edited" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_file_get_version ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-version" since="0.4.0"/>
     <keyword type="function" name="gdata_picasaweb_file_get_position ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-position" since="0.4.0"/>
@@ -1098,6 +1143,7 @@
     <keyword type="property" name="The &quot;distance&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--distance"/>
     <keyword type="property" name="The &quot;edited&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--edited"/>
     <keyword type="property" name="The &quot;exposure&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--exposure"/>
+    <keyword type="property" name="The &quot;file-id&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--file-id"/>
     <keyword type="property" name="The &quot;flash&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--flash"/>
     <keyword type="property" name="The &quot;focal-length&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--focal-length"/>
     <keyword type="property" name="The &quot;fstop&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--fstop"/>
@@ -1119,18 +1165,14 @@
     <keyword type="property" name="The &quot;width&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--width"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_UNAVAILABLE" link="GDataService.html#GDATA-SERVICE-ERROR-UNAVAILABLE:CAPS"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_PROTOCOL_ERROR" link="GDataService.html#GDATA-SERVICE-ERROR-PROTOCOL-ERROR:CAPS"/>
-    <keyword type="constant" name="GDATA_SERVICE_ERROR_WITH_QUERY" link="GDataService.html#GDATA-SERVICE-ERROR-WITH-QUERY:CAPS"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED" link="GDataService.html#GDATA-SERVICE-ERROR-ENTRY-ALREADY-INSERTED:CAPS"/>
-    <keyword type="constant" name="GDATA_SERVICE_ERROR_WITH_INSERTION" link="GDataService.html#GDATA-SERVICE-ERROR-WITH-INSERTION:CAPS"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED" link="GDataService.html#GDATA-SERVICE-ERROR-AUTHENTICATION-REQUIRED:CAPS"/>
-    <keyword type="constant" name="GDATA_SERVICE_ERROR_WITH_UPDATE" link="GDataService.html#GDATA-SERVICE-ERROR-WITH-UPDATE:CAPS"/>
-    <keyword type="constant" name="GDATA_SERVICE_ERROR_WITH_DELETION" link="GDataService.html#GDATA-SERVICE-ERROR-WITH-DELETION:CAPS"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_NOT_FOUND" link="GDataService.html#GDATA-SERVICE-ERROR-NOT-FOUND:CAPS"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_CONFLICT" link="GDataService.html#GDATA-SERVICE-ERROR-CONFLICT:CAPS"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_FORBIDDEN" link="GDataService.html#GDATA-SERVICE-ERROR-FORBIDDEN:CAPS"/>
-    <keyword type="constant" name="GDATA_SERVICE_ERROR_WITH_DOWNLOAD" link="GDataService.html#GDATA-SERVICE-ERROR-WITH-DOWNLOAD:CAPS"/>
-    <keyword type="constant" name="GDATA_SERVICE_ERROR_WITH_UPLOAD" link="GDataService.html#GDATA-SERVICE-ERROR-WITH-UPLOAD:CAPS"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_BAD_QUERY_PARAMETER" link="GDataService.html#GDATA-SERVICE-ERROR-BAD-QUERY-PARAMETER:CAPS"/>
+    <keyword type="constant" name="GDATA_SERVICE_ERROR_NETWORK_ERROR" link="GDataService.html#GDATA-SERVICE-ERROR-NETWORK-ERROR:CAPS"/>
+    <keyword type="constant" name="GDATA_SERVICE_ERROR_PROXY_ERROR" link="GDataService.html#GDATA-SERVICE-ERROR-PROXY-ERROR:CAPS"/>
     <keyword type="constant" name="GDATA_AUTHENTICATION_ERROR_BAD_AUTHENTICATION" link="GDataService.html#GDATA-AUTHENTICATION-ERROR-BAD-AUTHENTICATION:CAPS"/>
     <keyword type="constant" name="GDATA_AUTHENTICATION_ERROR_NOT_VERIFIED" link="GDataService.html#GDATA-AUTHENTICATION-ERROR-NOT-VERIFIED:CAPS"/>
     <keyword type="constant" name="GDATA_AUTHENTICATION_ERROR_TERMS_NOT_AGREED" link="GDataService.html#GDATA-AUTHENTICATION-ERROR-TERMS-NOT-AGREED:CAPS"/>
@@ -1140,6 +1182,13 @@
     <keyword type="constant" name="GDATA_AUTHENTICATION_ERROR_SERVICE_DISABLED" link="GDataService.html#GDATA-AUTHENTICATION-ERROR-SERVICE-DISABLED:CAPS"/>
     <keyword type="constant" name="GDATA_PARSER_ERROR_PARSING_STRING" link="GDataService.html#GDATA-PARSER-ERROR-PARSING-STRING:CAPS"/>
     <keyword type="constant" name="GDATA_PARSER_ERROR_EMPTY_DOCUMENT" link="GDataService.html#GDATA-PARSER-ERROR-EMPTY-DOCUMENT:CAPS"/>
+    <keyword type="constant" name="GDATA_OPERATION_QUERY" link="GDataService.html#GDATA-OPERATION-QUERY:CAPS"/>
+    <keyword type="constant" name="GDATA_OPERATION_INSERTION" link="GDataService.html#GDATA-OPERATION-INSERTION:CAPS"/>
+    <keyword type="constant" name="GDATA_OPERATION_UPDATE" link="GDataService.html#GDATA-OPERATION-UPDATE:CAPS"/>
+    <keyword type="constant" name="GDATA_OPERATION_DELETION" link="GDataService.html#GDATA-OPERATION-DELETION:CAPS"/>
+    <keyword type="constant" name="GDATA_OPERATION_DOWNLOAD" link="GDataService.html#GDATA-OPERATION-DOWNLOAD:CAPS"/>
+    <keyword type="constant" name="GDATA_OPERATION_UPLOAD" link="GDataService.html#GDATA-OPERATION-UPLOAD:CAPS"/>
+    <keyword type="constant" name="GDATA_OPERATION_AUTHENTICATION" link="GDataService.html#GDATA-OPERATION-AUTHENTICATION:CAPS"/>
     <keyword type="constant" name="GDATA_MEDIA_UNKNOWN" link="GDataMediaContent.html#GDATA-MEDIA-UNKNOWN:CAPS"/>
     <keyword type="constant" name="GDATA_MEDIA_IMAGE" link="GDataMediaContent.html#GDATA-MEDIA-IMAGE:CAPS"/>
     <keyword type="constant" name="GDATA_MEDIA_AUDIO" link="GDataMediaContent.html#GDATA-MEDIA-AUDIO:CAPS"/>

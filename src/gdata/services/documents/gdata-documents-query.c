@@ -2,6 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
+ * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,6 +29,8 @@
  *
  * For more information on the custom GData query parameters supported by #GDataDocumentsQuery, see the <ulink type="http"
  * url="http://code.google.com/apis/documents/docs/2.0/reference.html#Parameters">online documentation</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <config.h>
@@ -234,7 +237,7 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 
 	if (entry_id == NULL && priv->folder_id != NULL) {
 		g_string_append (query_uri, "/folder%3A");
-		g_string_append_uri_escaped (query_uri, priv->folder_id, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->folder_id, NULL, FALSE);
 	}
 
 	/* Chain up to the parent class */
@@ -250,10 +253,10 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 		collaborator_address = priv->collaborator_addresses;
 
 		g_string_append (query_uri, "writer=");
-		g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (collaborator_address->data), NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (collaborator_address->data), NULL, FALSE);
 		for (collaborator_address = collaborator_address->next; collaborator_address != NULL; collaborator_address = collaborator_address->next) {
 			g_string_append_c (query_uri, ';');
-			g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (collaborator_address->data), NULL, TRUE);
+			g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (collaborator_address->data), NULL, FALSE);
 		}
 	}
 
@@ -263,17 +266,17 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 		reader_address = priv->reader_addresses;
 
 		g_string_append (query_uri, "reader=");
-		g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (reader_address->data), NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (reader_address->data), NULL, FALSE);
 		for (reader_address = reader_address->next; reader_address != NULL; reader_address = reader_address->next) {
 			g_string_append_c (query_uri, ';');
-			g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (reader_address->data), NULL, TRUE);
+			g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (reader_address->data), NULL, FALSE);
 		}
 	}
 
 	if (priv->title != NULL) {
 		APPEND_SEP
 		g_string_append (query_uri, "title=");
-		g_string_append_uri_escaped (query_uri, priv->title, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->title, NULL, FALSE);
 		if (priv->exact_title == TRUE)
 			g_string_append (query_uri, "&title-exact=true");
 	}
@@ -361,6 +364,9 @@ gdata_documents_query_set_show_deleted (GDataDocumentsQuery *self, gboolean show
 	g_return_if_fail (GDATA_IS_DOCUMENTS_QUERY (self));
 	self->priv->show_deleted = show_deleted;
 	g_object_notify (G_OBJECT (self), "show-deleted");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -395,6 +401,9 @@ gdata_documents_query_set_show_folders (GDataDocumentsQuery *self, gboolean show
 	g_return_if_fail (GDATA_IS_DOCUMENTS_QUERY (self));
 	self->priv->show_folders = show_folders;
 	g_object_notify (G_OBJECT (self), "show-folders");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -433,6 +442,9 @@ gdata_documents_query_set_folder_id (GDataDocumentsQuery *self, const gchar *fol
 	g_free (self->priv->folder_id);
 	self->priv->folder_id = g_strdup (folder_id);
 	g_object_notify (G_OBJECT (self), "folder-id");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -494,6 +506,9 @@ gdata_documents_query_set_title (GDataDocumentsQuery *self, const gchar *title, 
 	g_object_notify (G_OBJECT (self), "exact-title");
 	g_object_notify (G_OBJECT (self), "title");
 	g_object_thaw_notify (G_OBJECT (self));
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -549,6 +564,9 @@ gdata_documents_query_add_reader (GDataDocumentsQuery *self, const gchar *email_
 
 	address = gdata_gd_email_address_new (email_address, "reader", NULL, FALSE);
 	self->priv->reader_addresses = g_list_append (self->priv->reader_addresses, address);
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -570,4 +588,7 @@ gdata_documents_query_add_collaborator (GDataDocumentsQuery *self, const gchar *
 
 	address = gdata_gd_email_address_new (email_address, "collaborator", NULL, FALSE);
 	self->priv->collaborator_addresses = g_list_append (self->priv->collaborator_addresses, address);
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }

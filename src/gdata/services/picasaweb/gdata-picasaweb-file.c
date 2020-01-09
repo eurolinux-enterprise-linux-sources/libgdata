@@ -2,7 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Richard Schwarting 2009 <aquarichy@gmail.com>
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,8 @@
  *
  * For more details of Google PicasaWeb's GData API, see the
  * <ulink type="http" url="http://code.google.com/apis/picasaweb/developers_guide_protocol.html">online documentation</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <config.h>
@@ -54,6 +56,7 @@ static gboolean parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, 
 static void get_namespaces (GDataParsable *parsable, GHashTable *namespaces);
 
 struct _GDataPicasaWebFilePrivate {
+	gchar *file_id;
 	GTimeVal edited;
 	gchar *version;
 	gdouble position;
@@ -105,7 +108,8 @@ enum {
 	PROP_MAKE,
 	PROP_MODEL,
 	PROP_LATITUDE,
-	PROP_LONGITUDE
+	PROP_LONGITUDE,
+	PROP_FILE_ID
 };
 
 G_DEFINE_TYPE (GDataPicasaWebFile, gdata_picasaweb_file, GDATA_TYPE_ENTRY)
@@ -129,6 +133,25 @@ gdata_picasaweb_file_class_init (GDataPicasaWebFileClass *klass)
 	parsable_class->get_namespaces = get_namespaces;
 
 	/**
+	 * GDataPicasaWebFile:file-id:
+	 *
+	 * The ID of the file. This is a substring of the ID returned by gdata_entry_get_id() for #GDataPicasaWebFile<!-- -->s; for example,
+	 * if gdata_entry_get_id() returned
+	 * "http://picasaweb.google.com/data/entry/user/libgdata.picasaweb/albumid/5328889949261497249/photoid/5328890138794566386" for a
+	 * particular #GDataPicasaWebFile, the #GDataPicasaWebFile:file-id property would be "5328890138794566386".
+	 *
+	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#gphoto_id">
+	 * gphoto specification</ulink>.
+	 *
+	 * Since: 0.6.4
+	 **/
+	g_object_class_install_property (gobject_class, PROP_FILE_ID,
+					 g_param_spec_string ("file-id",
+							      "File ID", "The ID of the file.",
+							      NULL,
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+	/**
 	 * GDataPicasaWebFile:version:
 	 *
 	 * The version number of the file. Version numbers are based on modification time, so they don't increment linearly.
@@ -147,7 +170,7 @@ gdata_picasaweb_file_class_init (GDataPicasaWebFileClass *klass)
 	/**
 	 * GDataPicasaWebFile:album-id:
 	 *
-	 * The ID for the file's album.
+	 * The ID for the file's album. This is in the same form as returned by gdata_picasaweb_album_get_id().
 	 *
 	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#gphoto_albumid">
 	 * gphoto specification</ulink>.
@@ -318,7 +341,7 @@ gdata_picasaweb_file_class_init (GDataPicasaWebFileClass *klass)
 	 * GDataPicasaWebFile:rotation:
 	 *
 	 * The rotation of the photo, in degrees. This will only be non-zero for files which are pending rotation, and haven't yet been
-	 * permanently modified. For files which have already been rotated, this will be %0.
+	 * permanently modified. For files which have already been rotated, this will be <code class="literal">0</code>.
 	 *
 	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#gphoto_rotation">
 	 * gphoto specification</ulink>.
@@ -535,7 +558,8 @@ gdata_picasaweb_file_class_init (GDataPicasaWebFileClass *klass)
 	/**
 	 * GDataPicasaWebFile:latitude:
 	 *
-	 * The location as a latitude coordinate associated with this file. Valid latitudes range from %-90.0 to %90.0 inclusive.
+	 * The location as a latitude coordinate associated with this file. Valid latitudes range from <code class="literal">-90.0</code>
+	 * to <code class="literal">90.0</code> inclusive.
 	 *
 	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/docs/2.0/reference.html#georss_where">
 	 * GeoRSS specification</ulink>.
@@ -551,7 +575,8 @@ gdata_picasaweb_file_class_init (GDataPicasaWebFileClass *klass)
 	/**
 	 * GDataPicasaWebFile:longitude:
 	 *
-	 * The location as a longitude coordinate associated with this file. Valid longitudes range from %-180.0 to %180.0 inclusive.
+	 * The location as a longitude coordinate associated with this file. Valid longitudes range from <code class="literal">-180.0</code>
+	 * to <code class="literal">180.0</code> inclusive.
 	 *
 	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/docs/2.0/reference.html#georss_where">
 	 * GeoRSS specification</ulink>.
@@ -590,6 +615,10 @@ gdata_picasaweb_file_init (GDataPicasaWebFile *self)
 	self->priv->georss_where = g_object_new (GDATA_TYPE_GEORSS_WHERE, NULL);
 	self->priv->is_commenting_enabled = TRUE;
 
+	/* Initialise the timestamp and edited properties to the current time (bgo#599140) */
+	g_get_current_time (&(self->priv->timestamp));
+	g_get_current_time (&(self->priv->edited));
+
 	/* We need to keep atom:title (the canonical title for the file) in sync with media:group/media:title */
 	g_signal_connect (self, "notify::title", G_CALLBACK (notify_title_cb), NULL);
 	/* atom:summary (the canonical summary/caption for the file) in sync with media:group/media:description */
@@ -622,11 +651,12 @@ gdata_picasaweb_file_finalize (GObject *object)
 {
 	GDataPicasaWebFilePrivate *priv = GDATA_PICASAWEB_FILE_GET_PRIVATE (object);
 
+	g_free (priv->file_id);
 	g_free (priv->version);
 	g_free (priv->album_id);
 	g_free (priv->client);
 	g_free (priv->checksum);
-	xmlFree (priv->video_status);
+	g_free (priv->video_status);
 
 	/* Chain up to the parent class */
 	G_OBJECT_CLASS (gdata_picasaweb_file_parent_class)->finalize (object);
@@ -638,6 +668,9 @@ gdata_picasaweb_file_get_property (GObject *object, guint property_id, GValue *v
 	GDataPicasaWebFilePrivate *priv = GDATA_PICASAWEB_FILE_GET_PRIVATE (object);
 
 	switch (property_id) {
+		case PROP_FILE_ID:
+			g_value_set_string (value, priv->file_id);
+			break;
 		case PROP_EDITED:
 			g_value_set_boxed (value, &(priv->edited));
 			break;
@@ -736,6 +769,11 @@ gdata_picasaweb_file_set_property (GObject *object, guint property_id, const GVa
 	GDataPicasaWebFile *self = GDATA_PICASAWEB_FILE (object);
 
 	switch (property_id) {
+		case PROP_FILE_ID:
+			/* Construct only */
+			g_free (self->priv->file_id);
+			self->priv->file_id = g_value_dup_string (value);
+			break;
 		case PROP_VERSION:
 			/* Construct only */
 			g_free (self->priv->version);
@@ -789,7 +827,19 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataPicasaWebFile *self = GDATA_PICASAWEB_FILE (parsable);
 
-	if (xmlStrcmp (node->name, (xmlChar*) "group") == 0) {
+	if (gdata_parser_is_namespace (node, "http://www.w3.org/2007/app") == TRUE &&
+	    xmlStrcmp (node->name, (xmlChar*) "edited") == 0) {
+		/* app:edited */
+		xmlChar *edited = xmlNodeListGetString (doc, node->children, TRUE);
+		if (g_time_val_from_iso8601 ((gchar*) edited, &(self->priv->edited)) == FALSE) {
+			/* Error */
+			gdata_parser_error_not_iso8601_format (node, (gchar*) edited, error);
+			xmlFree (edited);
+			return FALSE;
+		}
+		xmlFree (edited);
+	} else if (gdata_parser_is_namespace (node, "http://search.yahoo.com/mrss/") == TRUE &&
+	           xmlStrcmp (node->name, (xmlChar*) "group") == 0) {
 		/* media:group */
 		GDataMediaGroup *group = GDATA_MEDIA_GROUP (_gdata_parsable_new_from_xml_node (GDATA_TYPE_MEDIA_GROUP, doc, node, NULL, error));
 		if (group == NULL)
@@ -801,7 +851,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			g_object_unref (self->priv->media_group);
 
 		self->priv->media_group = group;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "where") == 0) {
+	} else if (gdata_parser_is_namespace (node, "http://www.georss.org/georss") == TRUE &&
+	           xmlStrcmp (node->name, (xmlChar*) "where") == 0) {
 		/* georss:where */
 		GDataGeoRSSWhere *where = GDATA_GEORSS_WHERE (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GEORSS_WHERE, doc, node, NULL, error));
 		if (where == NULL)
@@ -811,7 +862,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			g_object_unref (self->priv->georss_where);
 
 		self->priv->georss_where = where;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "tags") == 0) {
+	} else if (gdata_parser_is_namespace (node, "http://schemas.google.com/photos/exif/2007") == TRUE &&
+	           xmlStrcmp (node->name, (xmlChar*) "tags") == 0) {
 		/* exif:tags */
 		GDataExifTags *tags = GDATA_EXIF_TAGS (_gdata_parsable_new_from_xml_node (GDATA_TYPE_EXIF_TAGS, doc, node, NULL, error));
 		if (tags == NULL)
@@ -821,99 +873,96 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			g_object_unref (self->priv->exif_tags);
 
 		self->priv->exif_tags = tags;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "edited") == 0) {
-		/* app:edited */
-		xmlChar *edited = xmlNodeListGetString (doc, node->children, TRUE);
-		if (g_time_val_from_iso8601 ((gchar*) edited, &(self->priv->edited)) == FALSE) {
-			/* Error */
-			gdata_parser_error_not_iso8601_format (node, (gchar*) edited, error);
-			xmlFree (edited);
-			return FALSE;
+	} else if (gdata_parser_is_namespace (node, "http://schemas.google.com/photos/2007") == TRUE) {
+		if (xmlStrcmp (node->name, (xmlChar*) "imageVersion") == 0) {
+			/* gphoto:imageVersion */
+			g_free (self->priv->version);
+			self->priv->version = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "id") == 0) {
+			/* gphoto:id */
+			xmlChar *id = xmlNodeListGetString (doc, node->children, TRUE);
+			if (id == NULL || *id == '\0')
+				return gdata_parser_error_required_content_missing (node, error);
+			g_free (self->priv->file_id);
+			self->priv->file_id = (gchar*) id;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "position") == 0) {
+			/* gphoto:position */
+			xmlChar *position_str = xmlNodeListGetString (doc, node->children, TRUE);
+			gdata_picasaweb_file_set_position (self, g_ascii_strtod ((gchar*) position_str, NULL));
+			xmlFree (position_str);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "albumid") == 0) {
+			/* gphoto:albumid */
+			self->priv->album_id = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "width") == 0) {
+			/* gphoto:width */
+			xmlChar *width = xmlNodeListGetString (doc, node->children, TRUE);
+			self->priv->width = strtoul ((gchar*) width, NULL, 10);
+			xmlFree (width);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "height") == 0) {
+			/* gphoto:height */
+			xmlChar *height = xmlNodeListGetString (doc, node->children, TRUE);
+			self->priv->height = strtoul ((gchar*) height, NULL, 10);
+			xmlFree (height);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "size") == 0) {
+			/* gphoto:size */
+			xmlChar *size = xmlNodeListGetString (doc, node->children, TRUE);
+			self->priv->size = strtoul ((gchar*) size, NULL, 10);
+			xmlFree (size);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "client") == 0) {
+			/* gphoto:client */
+			self->priv->client = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "checksum") == 0) {
+			/* gphoto:checksum */
+			self->priv->checksum = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "timestamp") == 0) {
+			/* gphoto:timestamp */
+			xmlChar *timestamp_str;
+			guint64 milliseconds;
+			GTimeVal timestamp;
+
+			timestamp_str = xmlNodeListGetString (doc, node->children, TRUE);
+			milliseconds = g_ascii_strtoull ((gchar*) timestamp_str, NULL, 10);
+			xmlFree (timestamp_str);
+
+			timestamp.tv_sec = (glong) (milliseconds / 1000);
+			timestamp.tv_usec = (glong) ((milliseconds % 1000) * 1000);
+
+			gdata_picasaweb_file_set_timestamp (self, &timestamp);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "commentingEnabled") == 0) {
+			/* gphoto:commentingEnabled */
+			xmlChar *is_commenting_enabled = xmlNodeListGetString (doc, node->children, TRUE);
+			if (is_commenting_enabled == NULL)
+				return gdata_parser_error_required_content_missing (node, error);
+			self->priv->is_commenting_enabled = (xmlStrcmp (is_commenting_enabled, (xmlChar*) "true") == 0 ? TRUE : FALSE);
+			xmlFree (is_commenting_enabled);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "commentCount") == 0) {
+			/* gphoto:commentCount */
+			xmlChar *comment_count = xmlNodeListGetString (doc, node->children, TRUE);
+			self->priv->comment_count = strtoul ((gchar*) comment_count, NULL, 10);
+			xmlFree (comment_count);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "videostatus") == 0) {
+			/* gphoto:videostatus */
+			xmlChar *video_status = xmlNodeListGetString (doc, node->children, TRUE);
+			if (self->priv->video_status != NULL) {
+				xmlFree (video_status);
+				return gdata_parser_error_duplicate_element (node, error);
+			}
+			self->priv->video_status = (gchar*) video_status;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "access") == 0) {
+			/* gphoto:access */
+			/* Visibility is already obtained through the album. When PicasaWeb supports per-file access restrictions,
+			   we'll expose this property. Until then, we'll catch this to suppress the Unhandled XML warning.
+			   See https://bugzilla.gnome.org/show_bug.cgi?id=589858 */
+		} else if (xmlStrcmp (node->name, (xmlChar*) "rotation") == 0) {
+			/* gphoto:rotation */
+			xmlChar *rotation = xmlNodeListGetString (doc, node->children, TRUE);
+			gdata_picasaweb_file_set_rotation (self, strtoul ((gchar*) rotation, NULL, 10));
+			xmlFree (rotation);
+		} else {
+			return GDATA_PARSABLE_CLASS (gdata_picasaweb_file_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 		}
-		xmlFree (edited);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "imageVersion") == 0) {
-		/* gphoto:imageVersion */
-		xmlChar *version = xmlNodeListGetString (doc, node->children, TRUE);
-		g_free (self->priv->version);
-		self->priv->version = g_strdup ((gchar*) version);
-		xmlFree (version);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "position") == 0) {
-		/* gphoto:position */
-		xmlChar *position_str = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_picasaweb_file_set_position (self, g_ascii_strtod ((gchar*) position_str, NULL));
-		xmlFree (position_str);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "albumid") == 0) {
-		/* gphoto:album_id */
-		xmlChar *album_id = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_picasaweb_file_set_album_id (self, (gchar*) album_id);
-		xmlFree (album_id);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "width") == 0) {
-		/* gphoto:width */
-		xmlChar *width = xmlNodeListGetString (doc, node->children, TRUE);
-		self->priv->width = strtoul ((gchar*) width, NULL, 10);
-		xmlFree (width);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "height") == 0) {
-		/* gphoto:height */
-		xmlChar *height = xmlNodeListGetString (doc, node->children, TRUE);
-		self->priv->height = strtoul ((gchar*) height, NULL, 10);
-		xmlFree (height);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "size") == 0) {
-		/* gphoto:size */
-		xmlChar *size = xmlNodeListGetString (doc, node->children, TRUE);
-		self->priv->size = strtoul ((gchar*) size, NULL, 10);
-		xmlFree (size);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "client") == 0) {
-		/* gphoto:client */
-		xmlChar *client = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_picasaweb_file_set_client (self, (gchar*) client);
-		xmlFree (client);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "checksum") == 0) {
-		/* gphoto:checksum */
-		xmlChar *checksum = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_picasaweb_file_set_checksum (self, (gchar*) checksum);
-		xmlFree (checksum);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "timestamp") == 0) {
-		/* gphoto:timestamp */
-		xmlChar *timestamp_str;
-		guint64 milliseconds;
-		GTimeVal timestamp;
-
-		timestamp_str = xmlNodeListGetString (doc, node->children, TRUE);
-		milliseconds = g_ascii_strtoull ((gchar*) timestamp_str, NULL, 10);
-		xmlFree (timestamp_str);
-
-		timestamp.tv_sec = (glong) (milliseconds / 1000);
-		timestamp.tv_usec = (glong) ((milliseconds % 1000) * 1000);
-
-		gdata_picasaweb_file_set_timestamp (self, &timestamp);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "commentingEnabled") == 0) {
-		/* gphoto:commentingEnabled */
-		xmlChar *is_commenting_enabled = xmlNodeListGetString (doc, node->children, TRUE);
-		if (is_commenting_enabled == NULL)
-			return gdata_parser_error_required_content_missing (node, error);
-		self->priv->is_commenting_enabled = (xmlStrcmp (is_commenting_enabled, (xmlChar*) "true") == 0 ? TRUE : FALSE);
-		xmlFree (is_commenting_enabled);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "commentCount") == 0) {
-		/* gphoto:commentCount */
-		xmlChar *comment_count = xmlNodeListGetString (doc, node->children, TRUE);
-		self->priv->comment_count = strtoul ((gchar*) comment_count, NULL, 10);
-		xmlFree (comment_count);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "videostatus") == 0) {
-		/* gphoto:videostatus */
-		xmlChar *video_status = xmlNodeListGetString (doc, node->children, TRUE);
-		if (self->priv->video_status != NULL) {
-			xmlFree (video_status);
-			return gdata_parser_error_duplicate_element (node, error);
-		}
-		self->priv->video_status = (gchar*) video_status;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "rotation") == 0) {
-		/* gphoto:rotation */
-		xmlChar *rotation = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_picasaweb_file_set_rotation (self, strtoul ((gchar*) rotation, NULL, 10));
-		xmlFree (rotation);
-	} else if (GDATA_PARSABLE_CLASS (gdata_picasaweb_file_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_picasaweb_file_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -929,6 +978,9 @@ get_xml (GDataParsable *parsable, GString *xml_string)
 	GDATA_PARSABLE_CLASS (gdata_picasaweb_file_parent_class)->get_xml (parsable, xml_string);
 
 	/* Add all the PicasaWeb-specific XML */
+	if (priv->file_id != NULL)
+		g_string_append_printf (xml_string, "<gphoto:id>%s</gphoto:id>", priv->file_id);
+
 	if (priv->version != NULL)
 		g_string_append_printf (xml_string, "<gphoto:version>%s</gphoto:version>", priv->version);
 
@@ -947,9 +999,7 @@ get_xml (GDataParsable *parsable, GString *xml_string)
 	if (priv->timestamp.tv_sec != 0 || priv->timestamp.tv_usec != 0) {
 		/* timestamp is in milliseconds */
 		g_string_append_printf (xml_string, "<gphoto:timestamp>%" G_GUINT64_FORMAT "</gphoto:timestamp>",
-					(guint64) (priv->timestamp.tv_sec * 1000 + priv->timestamp.tv_usec));
-		/* RHSTODO: test that different timestamps are being set in this XML correctly and are
-		   in fact just being ignored by Google */
+					((guint64) priv->timestamp.tv_sec) * 1000 + priv->timestamp.tv_usec / 1000);
 	}
 
 	if (priv->is_commenting_enabled == TRUE)
@@ -1008,7 +1058,39 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
 GDataPicasaWebFile *
 gdata_picasaweb_file_new (const gchar *id)
 {
-	return g_object_new (GDATA_TYPE_PICASAWEB_FILE, "id", id, NULL);
+	const gchar *file_id = NULL, *i;
+
+	if (id != NULL) {
+		file_id = g_strrstr (id, "/");
+		if (file_id == NULL)
+			return NULL;
+		file_id++; /* skip the slash */
+
+		/* Ensure the @file_id is entirely numeric */
+		for (i = file_id; *i != '\0'; i = g_utf8_next_char (i)) {
+			if (g_unichar_isdigit (g_utf8_get_char (i)) == FALSE)
+				return NULL;
+		}
+	}
+
+	return GDATA_PICASAWEB_FILE (g_object_new (GDATA_TYPE_PICASAWEB_FILE, "id", id, "file-id", file_id, NULL));
+}
+
+/**
+ * gdata_picasaweb_file_get_id:
+ * @self: a #GDataPicasaWebFile
+ *
+ * Gets the #GDataPicasaWebFile:file-id property.
+ *
+ * Return value: the file's ID
+ *
+ * Since: 0.6.4
+ **/
+const gchar *
+gdata_picasaweb_file_get_id (GDataPicasaWebFile *self)
+{
+	g_return_val_if_fail (GDATA_IS_PICASAWEB_FILE (self), NULL);
+	return self->priv->file_id;
 }
 
 /**
@@ -1017,7 +1099,7 @@ gdata_picasaweb_file_new (const gchar *id)
  * @edited: a #GTimeVal
  *
  * Gets the #GDataPicasaWebFile:edited property and puts it in @edited. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  *
  * Since: 0.4.0
  **/
@@ -1084,7 +1166,7 @@ gdata_picasaweb_file_set_position (GDataPicasaWebFile *self, gdouble position)
  * gdata_picasaweb_file_get_album_id:
  * @self: a #GDataPicasaWebFile
  *
- * Gets the #GDataPicasaWebFile:album-id property.
+ * Gets the #GDataPicasaWebFile:album-id property. This is in the same form as returned by gdata_picasaweb_album_get_id().
  *
  * Return value: the ID of the album containing the #GDataPicasaWebFile
  *
@@ -1250,7 +1332,7 @@ gdata_picasaweb_file_set_checksum (GDataPicasaWebFile *self, const gchar *checks
  * @timestamp: a #GTimeVal
  *
  * Gets the #GDataPicasaWebFile:timestamp property and puts it in @timestamp. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  *
  * Since: 0.4.0
  **/
@@ -1511,7 +1593,11 @@ gdata_picasaweb_file_get_contents (GDataPicasaWebFile *self)
  * gdata_picasaweb_file_get_thumbnails:
  * @self: a #GDataPicasaWebFile
  *
- * Returns a list of thumbnails, often at different sizes, for this file.
+ * Returns a list of thumbnails, often at different sizes, for this
+ * file.  Currently, PicasaWeb usually returns three thumbnails, with
+ * widths in pixels of 72, 144, and 288.  However, the thumbnail will
+ * not be larger than the actual image, so thumbnails may be smaller
+ * than the widths listed above.
  *
  * Return value: a #GList of #GDataMediaThumbnail<!-- -->s, or %NULL
  *
@@ -1530,7 +1616,7 @@ gdata_picasaweb_file_get_thumbnails (GDataPicasaWebFile *self)
  *
  * Gets the #GDataPicasaWebFile:distance property.
  *
- * Return value: the distance recorded in the photo's EXIF, or %-1 if unknown
+ * Return value: the distance recorded in the photo's EXIF, or <code class="literal">-1</code> if unknown
  *
  * Since: 0.5.0
  **/
@@ -1547,7 +1633,7 @@ gdata_picasaweb_file_get_distance (GDataPicasaWebFile *self)
  *
  * Gets the #GDataPicasaWebFile:exposure property.
  *
- * Return value: the exposure value, or %0 if unknown
+ * Return value: the exposure value, or <code class="literal">0</code> if unknown
  *
  * Since: 0.5.0
  **/
@@ -1581,7 +1667,7 @@ gdata_picasaweb_file_get_flash (GDataPicasaWebFile *self)
  *
  * Gets the #GDataPicasaWebFile:focal-length property.
  *
- * Return value: the focal-length value, or %-1 if unknown
+ * Return value: the focal-length value, or <code class="literal">-1</code> if unknown
  *
  * Since: 0.5.0
  **/
@@ -1598,7 +1684,7 @@ gdata_picasaweb_file_get_focal_length (GDataPicasaWebFile *self)
  *
  * Gets the #GDataPicasaWebFile:fstop property.
  *
- * Return value: the F-stop value, or %0 if unknown
+ * Return value: the F-stop value, or <code class="literal">0</code> if unknown
  *
  * Since: 0.5.0
  **/
@@ -1632,7 +1718,7 @@ gdata_picasaweb_file_get_image_unique_id (GDataPicasaWebFile *self)
  *
  * Gets the #GDataPicasaWebFile:iso property.
  *
- * Return value: the ISO speed, or %-1 if unknown
+ * Return value: the ISO speed, or <code class="literal">-1</code> if unknown
  *
  * Since: 0.5.0
  **/

@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,8 +23,11 @@
  * @stability: Unstable
  * @include: gdata/gd/gdata-gd-postal-address.h
  *
- * #GDataGDPostalAddress represents an "postal" element from the
- * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPostalAddress">GData specification</ulink>.
+ * #GDataGDPostalAddress represents a "structuredPostalAddress" element from the
+ * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdStructuredPostalAddress">GData specification</ulink>.
+ * Note that it does not represent a simple "postalAddress" element, as "structuredPostalAddress" is now used wherever possible in the GData API.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -366,7 +369,6 @@ gdata_gd_postal_address_class_init (GDataGDPostalAddressClass *klass)
 					NULL,
 					G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
-	/* TODO: Should be an enum? */
 	/**
 	 * GDataGDPostalAddress:country-code:
 	 *
@@ -543,7 +545,7 @@ gdata_gd_postal_address_set_property (GObject *object, guint property_id, const 
 static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
-	xmlChar *rel, *label, *primary, *mail_class, *usage;
+	xmlChar *rel, *primary;
 	gboolean primary_bool;
 	GDataGDPostalAddressPrivate *priv = GDATA_GD_POSTAL_ADDRESS (parsable)->priv;
 
@@ -565,21 +567,11 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 	}
 	xmlFree (primary);
 
-	/* Other properties */
-	label = xmlGetProp (root_node, (xmlChar*) "label");
-	mail_class = xmlGetProp (root_node, (xmlChar*) "mailClass");
-	usage = xmlGetProp (root_node, (xmlChar*) "usage");
-
-	priv->relation_type = g_strdup ((gchar*) rel);
-	priv->label = g_strdup ((gchar*) label);
-	priv->mail_class = g_strdup ((gchar*) mail_class);
-	priv->usage = g_strdup ((gchar*) usage);
+	priv->relation_type = (gchar*) rel;
+	priv->label = (gchar*) xmlGetProp (root_node, (xmlChar*) "label");
+	priv->mail_class = (gchar*) xmlGetProp (root_node, (xmlChar*) "mailClass");
+	priv->usage = (gchar*) xmlGetProp (root_node, (xmlChar*) "usage");
 	priv->is_primary = primary_bool;
-
-	xmlFree (rel);
-	xmlFree (label);
-	xmlFree (mail_class);
-	xmlFree (usage);
 
 	return TRUE;
 }
@@ -587,14 +579,9 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 #define PARSE_STRING_ELEMENT(E,F)							\
 	if (xmlStrcmp (node->name, (xmlChar*) (E)) == 0) {				\
 		/* gd:##E */								\
-		xmlChar *name;								\
-											\
 		if (priv->F != NULL)							\
 			return gdata_parser_error_duplicate_element (node, error);	\
-											\
-		name = xmlNodeListGetString (doc, node->children, TRUE);		\
-		priv->F = g_strdup ((gchar*) name);					\
-		xmlFree (name);								\
+		priv->F = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);	\
 	}
 
 static gboolean
@@ -602,20 +589,21 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataGDPostalAddressPrivate *priv = GDATA_GD_POSTAL_ADDRESS (parsable)->priv;
 
-	PARSE_STRING_ELEMENT ("agent", agent)
-	else PARSE_STRING_ELEMENT ("housename", house_name)
-	else PARSE_STRING_ELEMENT ("pobox", po_box)
-	else PARSE_STRING_ELEMENT ("street", street)
-	else PARSE_STRING_ELEMENT ("neighborhood", neighborhood)
-	else PARSE_STRING_ELEMENT ("city", city)
-	else PARSE_STRING_ELEMENT ("subregion", subregion)
-	else PARSE_STRING_ELEMENT ("region", region)
-	else PARSE_STRING_ELEMENT ("postcode", postcode)
-	else PARSE_STRING_ELEMENT ("country", country)
-	else PARSE_STRING_ELEMENT ("formattedAddress", formatted_address)
-	else if (GDATA_PARSABLE_CLASS (gdata_gd_postal_address_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+	if (gdata_parser_is_namespace (node, "http://schemas.google.com/g/2005") == TRUE) {
+		PARSE_STRING_ELEMENT ("agent", agent)
+		else PARSE_STRING_ELEMENT ("housename", house_name)
+		else PARSE_STRING_ELEMENT ("pobox", po_box)
+		else PARSE_STRING_ELEMENT ("street", street)
+		else PARSE_STRING_ELEMENT ("neighborhood", neighborhood)
+		else PARSE_STRING_ELEMENT ("city", city)
+		else PARSE_STRING_ELEMENT ("subregion", subregion)
+		else PARSE_STRING_ELEMENT ("region", region)
+		else PARSE_STRING_ELEMENT ("postcode", postcode)
+		else PARSE_STRING_ELEMENT ("country", country)
+		else PARSE_STRING_ELEMENT ("formattedAddress", formatted_address)
+		else return GDATA_PARSABLE_CLASS (gdata_gd_postal_address_parent_class)->parse_xml (parsable, doc, node, user_data, error);
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_gd_postal_address_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -695,12 +683,14 @@ gdata_gd_postal_address_new (const gchar *relation_type, const gchar *label, gbo
  * @b: another #GDataGDPostalAddress, or %NULL
  *
  * Compares the two postal addresses in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @street, @po_box, @city and @postcode properties of
  * the #GDataGDPostalAddress<!-- -->es.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
@@ -709,7 +699,7 @@ gdata_gd_postal_address_compare (const GDataGDPostalAddress *a, const GDataGDPos
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)
@@ -749,23 +739,13 @@ gdata_gd_postal_address_get_address (GDataGDPostalAddress *self)
 void
 gdata_gd_postal_address_set_address (GDataGDPostalAddress *self, const gchar *address)
 {
-	gint len;
-
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
 	g_return_if_fail (address != NULL && *address != '\0');
 
-	g_free (self->priv->formatted_address);
-
 	/* Trim leading and trailing whitespace from the address.
 	 * See here: http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPostalAddress */
-	while (*address != '\0' && g_ascii_isspace (*address))
-		address++;
-
-	len = strlen (address);
-	while (len > 0 && g_ascii_isspace (address[len - 1]))
-		len--;
-
-	self->priv->formatted_address = g_strndup (address, len);
+	g_free (self->priv->formatted_address);
+	self->priv->formatted_address = gdata_parser_utf8_trim_whitespace (address);
 	g_object_notify (G_OBJECT (self), "address");
 }
 
@@ -913,6 +893,7 @@ void
 gdata_gd_postal_address_set_mail_class (GDataGDPostalAddress *self, const gchar *mail_class)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (mail_class == NULL || *mail_class != '\0');
 
 	g_free (self->priv->mail_class);
 	self->priv->mail_class = g_strdup (mail_class);
@@ -951,6 +932,7 @@ void
 gdata_gd_postal_address_set_usage (GDataGDPostalAddress *self, const gchar *usage)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (usage == NULL || *usage != '\0');
 
 	g_free (self->priv->usage);
 	self->priv->usage = g_strdup (usage);
@@ -989,6 +971,7 @@ void
 gdata_gd_postal_address_set_agent (GDataGDPostalAddress *self, const gchar *agent)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (agent == NULL || *agent != '\0');
 
 	g_free (self->priv->agent);
 	self->priv->agent = g_strdup (agent);
@@ -1027,6 +1010,7 @@ void
 gdata_gd_postal_address_set_house_name (GDataGDPostalAddress *self, const gchar *house_name)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (house_name == NULL || *house_name != '\0');
 
 	g_free (self->priv->house_name);
 	self->priv->house_name = g_strdup (house_name);
@@ -1065,6 +1049,7 @@ void
 gdata_gd_postal_address_set_street (GDataGDPostalAddress *self, const gchar *street)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (street == NULL || *street != '\0');
 
 	g_free (self->priv->street);
 	self->priv->street = g_strdup (street);
@@ -1103,6 +1088,7 @@ void
 gdata_gd_postal_address_set_po_box (GDataGDPostalAddress *self, const gchar *po_box)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (po_box == NULL || *po_box != '\0');
 
 	g_free (self->priv->po_box);
 	self->priv->po_box = g_strdup (po_box);
@@ -1141,6 +1127,7 @@ void
 gdata_gd_postal_address_set_neighborhood (GDataGDPostalAddress *self, const gchar *neighborhood)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (neighborhood == NULL || *neighborhood != '\0');
 
 	g_free (self->priv->neighborhood);
 	self->priv->neighborhood = g_strdup (neighborhood);
@@ -1179,6 +1166,7 @@ void
 gdata_gd_postal_address_set_city (GDataGDPostalAddress *self, const gchar *city)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (city == NULL || *city != '\0');
 
 	g_free (self->priv->city);
 	self->priv->city = g_strdup (city);
@@ -1217,6 +1205,7 @@ void
 gdata_gd_postal_address_set_subregion (GDataGDPostalAddress *self, const gchar *subregion)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (subregion == NULL || *subregion != '\0');
 
 	g_free (self->priv->subregion);
 	self->priv->subregion = g_strdup (subregion);
@@ -1255,6 +1244,7 @@ void
 gdata_gd_postal_address_set_region (GDataGDPostalAddress *self, const gchar *region)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (region == NULL || *region != '\0');
 
 	g_free (self->priv->region);
 	self->priv->region = g_strdup (region);
@@ -1293,6 +1283,7 @@ void
 gdata_gd_postal_address_set_postcode (GDataGDPostalAddress *self, const gchar *postcode)
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
+	g_return_if_fail (postcode == NULL || *postcode != '\0');
 
 	g_free (self->priv->postcode);
 	self->priv->postcode = g_strdup (postcode);
@@ -1351,6 +1342,8 @@ gdata_gd_postal_address_set_country (GDataGDPostalAddress *self, const gchar *co
 {
 	g_return_if_fail (GDATA_IS_GD_POSTAL_ADDRESS (self));
 	g_return_if_fail (country != NULL || country_code == NULL);
+	g_return_if_fail (country == NULL || *country != '\0');
+	g_return_if_fail (country_code == NULL || *country_code != '\0');
 
 	g_free (self->priv->country);
 	g_free (self->priv->country_code);

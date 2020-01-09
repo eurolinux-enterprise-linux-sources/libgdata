@@ -19,6 +19,9 @@ GDataYouTubeVideo
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataYouTubeVideo ##### -->
 <para>
 
@@ -111,11 +114,6 @@ GDataYouTubeVideo
 </para>
 
 <!-- ##### ARG GDataYouTubeVideo:state ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GDataYouTubeVideo:title ##### -->
 <para>
 
 </para>
@@ -377,24 +375,6 @@ GDataYouTubeVideo
 @max: 
 @count: 
 @average: 
-
-
-<!-- ##### FUNCTION gdata_youtube_video_get_title ##### -->
-<para>
-
-</para>
-
-@self: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdata_youtube_video_set_title ##### -->
-<para>
-
-</para>
-
-@self: 
-@title: 
 
 
 <!-- ##### FUNCTION gdata_youtube_video_get_uploaded ##### -->

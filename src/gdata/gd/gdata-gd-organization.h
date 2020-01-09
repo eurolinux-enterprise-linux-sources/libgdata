@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,6 +24,7 @@
 #include <glib-object.h>
 
 #include <gdata/gdata-parsable.h>
+#include <gdata/gd/gdata-gd-where.h>
 
 G_BEGIN_DECLS
 
@@ -40,6 +41,8 @@ typedef struct _GDataGDOrganizationPrivate	GDataGDOrganizationPrivate;
  * GDataGDOrganization:
  *
  * All the fields in the #GDataGDOrganization structure are private and should never be accessed directly.
+ *
+ * Since: 0.2.0
  **/
 typedef struct {
 	GDataParsable parent;
@@ -87,6 +90,9 @@ void gdata_gd_organization_set_job_description (GDataGDOrganization *self, const
 
 const gchar *gdata_gd_organization_get_symbol (GDataGDOrganization *self);
 void gdata_gd_organization_set_symbol (GDataGDOrganization *self, const gchar *symbol);
+
+GDataGDWhere *gdata_gd_organization_get_location (GDataGDOrganization *self);
+void gdata_gd_organization_set_location (GDataGDOrganization *self, GDataGDWhere *location);
 
 G_END_DECLS
 

@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,6 +27,8 @@
  *
  * For more details of Google Contacts' GData API, see the <ulink type="http" url="http://code.google.com/apis/contacts/docs/2.0/reference.html">
  * online documentation</ulink>.
+ *
+ * Since: 0.2.0
  **/
 
 #include <config.h>
@@ -49,6 +51,7 @@
 static void gdata_contacts_contact_dispose (GObject *object);
 static void gdata_contacts_contact_finalize (GObject *object);
 static void gdata_contacts_contact_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
+static void gdata_contacts_contact_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 static void get_xml (GDataParsable *parsable, GString *xml_string);
 static gboolean parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error);
 static void get_namespaces (GDataParsable *parsable, GHashTable *namespaces);
@@ -86,6 +89,7 @@ gdata_contacts_contact_class_init (GDataContactsContactClass *klass)
 	g_type_class_add_private (klass, sizeof (GDataContactsContactPrivate));
 
 	gobject_class->get_property = gdata_contacts_contact_get_property;
+	gobject_class->set_property = gdata_contacts_contact_set_property;
 	gobject_class->dispose = gdata_contacts_contact_dispose;
 	gobject_class->finalize = gdata_contacts_contact_finalize;
 
@@ -146,7 +150,7 @@ gdata_contacts_contact_class_init (GDataContactsContactClass *klass)
 				g_param_spec_object ("name",
 					"Name", "The contact's name in a structured representation.",
 					GDATA_TYPE_GD_NAME,
-					G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+					G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void notify_full_name_cb (GObject *gobject, GParamSpec *pspec, GDataContactsContact *self);
@@ -172,6 +176,8 @@ notify_full_name_cb (GObject *gobject, GParamSpec *pspec, GDataContactsContact *
 static void
 gdata_contacts_contact_init (GDataContactsContact *self)
 {
+	GDataCategory *category;
+
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_CONTACTS_CONTACT, GDataContactsContactPrivate);
 	self->priv->extended_properties = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 	self->priv->groups = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
@@ -179,9 +185,17 @@ gdata_contacts_contact_init (GDataContactsContact *self)
 	/* Create a default name, so the name's properties can be set for a blank contact */
 	self->priv->name = gdata_gd_name_new (NULL, NULL);
 
-	/* Listen to change notifications for the entry's title, since it's linked to GDataGDName:fullName */
+	/* Listen to change notifications for the entry's title, since it's linked to GDataGDName:full-name */
 	g_signal_connect (self, "notify::title", (GCallback) notify_title_cb, self);
-	g_signal_connect (self->priv->name, "notify::fullName", (GCallback) notify_full_name_cb, self);
+	g_signal_connect (self->priv->name, "notify::full-name", (GCallback) notify_full_name_cb, self);
+
+	/* Set the edited property to the current time (creation time) */
+	g_get_current_time (&(self->priv->edited));
+
+	/* Add the "contact" kind category */
+	category = gdata_category_new ("http://schemas.google.com/contact/2008#contact", "http://schemas.google.com/g/2005#kind", NULL);
+	gdata_entry_add_category (GDATA_ENTRY (self), category);
+	g_object_unref (category);
 }
 
 static void
@@ -241,6 +255,22 @@ gdata_contacts_contact_get_property (GObject *object, guint property_id, GValue 
 	}
 }
 
+static void
+gdata_contacts_contact_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
+{
+	GDataContactsContact *self = GDATA_CONTACTS_CONTACT (object);
+
+	switch (property_id) {
+		case PROP_NAME:
+			gdata_contacts_contact_set_name (self, g_value_get_object (value));
+			break;
+		default:
+			/* We don't have any other property... */
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
 /**
  * gdata_contacts_contact_new:
  * @id: the contact's ID, or %NULL
@@ -260,99 +290,104 @@ gdata_contacts_contact_new (const gchar *id)
 static gboolean
 parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error)
 {
-	GDataContactsContact *self;
+	GDataContactsContact *self = GDATA_CONTACTS_CONTACT (parsable);
 
-	g_return_val_if_fail (GDATA_IS_CONTACTS_CONTACT (parsable), FALSE);
-	g_return_val_if_fail (doc != NULL, FALSE);
-	g_return_val_if_fail (node != NULL, FALSE);
-
-	self = GDATA_CONTACTS_CONTACT (parsable);
-
-	if (xmlStrcmp (node->name, (xmlChar*) "edited") == 0) {
+	if (gdata_parser_is_namespace (node, "http://www.w3.org/2007/app") == TRUE &&
+	    xmlStrcmp (node->name, (xmlChar*) "edited") == 0) {
 		/* app:edited */
 		/* TODO: Should be in GDataEntry? */
 		xmlChar *edited = xmlNodeListGetString (doc, node->children, TRUE);
 		if (g_time_val_from_iso8601 ((gchar*) edited, &(self->priv->edited)) == FALSE) {
 			/* Error */
 			gdata_parser_error_not_iso8601_format (node, (gchar*) edited, error);
-			xmlFree (edited);
+			g_free (edited);
 			return FALSE;
 		}
-		xmlFree (edited);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "name") == 0) {
-		/* gd:name */
-		GDataGDName *name = GDATA_GD_NAME (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_NAME, doc, node, NULL, error));
+		g_free (edited);
+	} else if (gdata_parser_is_namespace (node, "http://schemas.google.com/g/2005") == TRUE) {
+		if (xmlStrcmp (node->name, (xmlChar*) "name") == 0) {
+			/* gd:name */
+			GDataGDName *name = GDATA_GD_NAME (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_NAME, doc, node, NULL, error));
+			if (name == NULL)
+				return FALSE;
 
-		if (name == NULL)
-			return FALSE;
+			if (self->priv->name != NULL)
+				g_object_unref (self->priv->name);
+			self->priv->name = name;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "email") == 0) {
+			/* gd:email */
+			GDataGDEmailAddress *email = GDATA_GD_EMAIL_ADDRESS (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_EMAIL_ADDRESS, doc,
+														node, NULL, error));
+			if (email == NULL)
+				return FALSE;
 
-		if (self->priv->name != NULL)
-			g_object_unref (self->priv->name);
-		self->priv->name = name;
-		g_object_notify (G_OBJECT (self), "name");
-	} else if (xmlStrcmp (node->name, (xmlChar*) "email") == 0) {
-		/* gd:email */
-		GDataGDEmailAddress *email = GDATA_GD_EMAIL_ADDRESS (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_EMAIL_ADDRESS, doc,
-													node, NULL, error));
-		if (email == NULL)
-			return FALSE;
+			gdata_contacts_contact_add_email_address (self, email);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "im") == 0) {
+			/* gd:im */
+			GDataGDIMAddress *im = GDATA_GD_IM_ADDRESS (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_IM_ADDRESS, doc, node, NULL, error));
+			if (im == NULL)
+				return FALSE;
 
-		gdata_contacts_contact_add_email_address (self, email);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "im") == 0) {
-		/* gd:im */
-		GDataGDIMAddress *im = GDATA_GD_IM_ADDRESS (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_IM_ADDRESS, doc, node, NULL, error));
-		if (im == NULL)
-			return FALSE;
+			gdata_contacts_contact_add_im_address (self, im);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "phoneNumber") == 0) {
+			/* gd:phoneNumber */
+			GDataGDPhoneNumber *number = GDATA_GD_PHONE_NUMBER (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_PHONE_NUMBER, doc,
+													       node, NULL, error));
+			if (number == NULL)
+				return FALSE;
 
-		gdata_contacts_contact_add_im_address (self, im);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "phoneNumber") == 0) {
-		/* gd:phoneNumber */
-		GDataGDPhoneNumber *number = GDATA_GD_PHONE_NUMBER (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_PHONE_NUMBER, doc,
-												       node, NULL, error));
-		if (number == NULL)
-			return FALSE;
+			gdata_contacts_contact_add_phone_number (self, number);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "structuredPostalAddress") == 0) {
+			/* gd:structuredPostalAddress — deprecates gd:postalAddress */
+			GDataGDPostalAddress *address = GDATA_GD_POSTAL_ADDRESS (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_POSTAL_ADDRESS,
+														    doc, node, NULL, error));
+			if (address == NULL)
+				return FALSE;
 
-		gdata_contacts_contact_add_phone_number (self, number);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "structuredPostalAddress") == 0) {
-		/* gd:structuredPostalAddress — deprecates gd:postalAddress */
-		GDataGDPostalAddress *address = GDATA_GD_POSTAL_ADDRESS (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_POSTAL_ADDRESS,
-													    doc, node, NULL, error));
-		if (address == NULL)
-			return FALSE;
+			gdata_contacts_contact_add_postal_address (self, address);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "organization") == 0) {
+			/* gd:organization */
+			GDataGDOrganization *organization = GDATA_GD_ORGANIZATION (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_ORGANIZATION,
+														      doc, node, NULL, error));
+			if (organization == NULL)
+				return FALSE;
 
-		gdata_contacts_contact_add_postal_address (self, address);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "organization") == 0) {
-		/* gd:organization */
-		GDataGDOrganization *organization = GDATA_GD_ORGANIZATION (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_ORGANIZATION,
-													      doc, node, NULL, error));
-		if (organization == NULL)
-			return FALSE;
+			gdata_contacts_contact_add_organization (self, organization);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "extendedProperty") == 0) {
+			/* gd:extendedProperty */
+			xmlChar *name, *value;
+			xmlBuffer *buffer = NULL;
 
-		gdata_contacts_contact_add_organization (self, organization);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "extendedProperty") == 0) {
-		/* gd:extendedProperty */
-		xmlChar *name, *value;
-		xmlBuffer *buffer = NULL;
+			name = xmlGetProp (node, (xmlChar*) "name");
+			if (name == NULL)
+				return gdata_parser_error_required_property_missing (node, "name", error);
 
-		name = xmlGetProp (node, (xmlChar*) "name");
-		if (name == NULL)
-			return gdata_parser_error_required_property_missing (node, "name", error);
+			/* Get either the value property, or the element's content */
+			value = xmlGetProp (node, (xmlChar*) "value");
+			if (value == NULL) {
+				xmlNode *child_node;
 
-		/* Get either the value property, or the element's content */
-		value = xmlGetProp (node, (xmlChar*) "value");
-		if (value == NULL) {
-			/* Use the element's content instead (arbitrary XML) */
-			buffer = xmlBufferCreate ();
-			xmlNodeDump (buffer, doc, node, 0, 0);
-			value = (xmlChar*) xmlBufferContent (buffer);
-			xmlBufferFree (buffer);
+				/* Use the element's content instead (arbitrary XML) */
+				buffer = xmlBufferCreate ();
+				for (child_node = node->children; child_node != NULL; child_node = child_node->next)
+					xmlNodeDump (buffer, doc, child_node, 0, 0);
+				value = (xmlChar*) xmlBufferContent (buffer);
+			}
+
+			gdata_contacts_contact_set_extended_property (self, (gchar*) name, (gchar*) value);
+
+			if (buffer != NULL)
+				xmlBufferFree (buffer);
+			else
+				g_free (value);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "deleted") == 0) {
+			/* gd:deleted */
+			self->priv->deleted = TRUE;
+		} else {
+			return GDATA_PARSABLE_CLASS (gdata_contacts_contact_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 		}
-
-		gdata_contacts_contact_set_extended_property (self, (gchar*) name, (gchar*) value);
-
-		if (buffer == NULL)
-			xmlFree (value);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "groupMembershipInfo") == 0) {
+	} else if (gdata_parser_is_namespace (node, "http://schemas.google.com/contact/2008") == TRUE &&
+	           xmlStrcmp (node->name, (xmlChar*) "groupMembershipInfo") == 0) {
 		/* gContact:groupMembershipInfo */
 		xmlChar *href, *deleted;
 		gboolean deleted_bool;
@@ -369,37 +404,26 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			deleted_bool = TRUE;
 		else {
 			gdata_parser_error_unknown_property_value (node, "deleted", (gchar*) deleted, error);
-			xmlFree (deleted);
+			g_free (deleted);
 			return FALSE;
 		}
-		xmlFree (deleted);
+		g_free (deleted);
 
 		/* Insert it into the hash table */
-		g_hash_table_insert (self->priv->groups, g_strdup ((gchar*) href), GUINT_TO_POINTER (deleted_bool));
-		xmlFree (href);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "deleted") == 0) {
-		/* gd:deleted */
-		self->priv->deleted = TRUE;
+		g_hash_table_insert (self->priv->groups, (gchar*) href, GUINT_TO_POINTER (deleted_bool));
 	} else {
 		/* If we haven't yet found a photo, check to see if it's a photo <link> element */
 		if (self->priv->photo_etag == NULL && xmlStrcmp (node->name, (xmlChar*) "link") == 0) {
 			xmlChar *rel = xmlGetProp (node, (xmlChar*) "rel");
 			if (xmlStrcmp (rel, (xmlChar*) "http://schemas.google.com/contacts/2008/rel#photo") == 0) {
-				xmlChar *etag;
-
 				/* It's the photo link (http://code.google.com/apis/contacts/docs/2.0/reference.html#Photos), whose ETag we should
 				 * note down, then pass onto the parent class to parse properly */
-				etag = xmlGetProp (node, (xmlChar*) "etag");
-				self->priv->photo_etag = g_strdup ((gchar*) etag);
-				xmlFree (etag);
+				self->priv->photo_etag = (gchar*) xmlGetProp (node, (xmlChar*) "etag");
 			}
 			xmlFree (rel);
 		}
 
-		if (GDATA_PARSABLE_CLASS (gdata_contacts_contact_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-			/* Error! */
-			return FALSE;
-		}
+		return GDATA_PARSABLE_CLASS (gdata_contacts_contact_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -473,7 +497,7 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
  * @edited: a #GTimeVal
  *
  * Gets the #GDataContactsContact:edited property and puts it in @edited. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  *
  * Since: 0.2.0
  **/
@@ -500,6 +524,32 @@ gdata_contacts_contact_get_name (GDataContactsContact *self)
 {
 	g_return_val_if_fail (GDATA_IS_CONTACTS_CONTACT (self), NULL);
 	return self->priv->name;
+}
+
+/**
+ * gdata_contacts_contact_set_name:
+ * @self: a #GDataContactsContact
+ * @name: the new #GDataGDName
+ *
+ * Sets the #GDataContactsContact:name property to @name, and increments its reference count.
+ *
+ * @name must not be %NULL, though all its properties may be %NULL.
+ *
+ * Since: 0.6.3
+ **/
+void
+gdata_contacts_contact_set_name (GDataContactsContact *self, GDataGDName *name)
+{
+	g_return_if_fail (GDATA_IS_CONTACTS_CONTACT (self));
+	g_return_if_fail (GDATA_IS_GD_NAME (name));
+
+	if (self->priv->name != NULL)
+		g_object_unref (self->priv->name);
+	self->priv->name = g_object_ref (name);
+	g_object_notify (G_OBJECT (self), "name");
+
+	/* Notify the change in #GDataGDName:full-name explicitly, so that our #GDataEntry:title gets updated */
+	notify_full_name_cb (G_OBJECT (name), NULL, self);
 }
 
 /**
@@ -1170,7 +1220,7 @@ gdata_contacts_contact_has_photo (GDataContactsContact *self)
  * If @cancellable is not %NULL, then the operation can be cancelled by triggering the @cancellable object from another thread.
  * If the operation was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
  *
- * If there is an error getting the photo, a %GDATA_SERVICE_ERROR_WITH_QUERY error will be returned.
+ * If there is an error getting the photo, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned.
  *
  * Return value: the image data, or %NULL; free with g_free()
  *
@@ -1221,8 +1271,8 @@ gdata_contacts_contact_get_photo (GDataContactsContact *self, GDataContactsServi
 	if (status != 200) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (GDATA_SERVICE (service), GDATA_SERVICE_ERROR_WITH_QUERY, status, message->reason_phrase,
-					     message->response_body->data, message->response_body->length, error);
+		klass->parse_error_response (GDATA_SERVICE (service), GDATA_OPERATION_DOWNLOAD, status, message->reason_phrase,
+		                             message->response_body->data, message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
@@ -1248,7 +1298,7 @@ gdata_contacts_contact_get_photo (GDataContactsContact *self, GDataContactsServi
  * @self: a #GDataContactsContact
  * @service: a #GDataService
  * @data: the image data, or %NULL
- * @length: the image length, in bytes, or %0
+ * @length: the image length, in bytes, or <code class="literal">0</code>
  * @cancellable: optional #GCancellable object, or %NULL
  * @error: a #GError, or %NULL
  *
@@ -1257,7 +1307,7 @@ gdata_contacts_contact_get_photo (GDataContactsContact *self, GDataContactsServi
  * If @cancellable is not %NULL, then the operation can be cancelled by triggering the @cancellable object from another thread.
  * If the operation was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
  *
- * If there is an error setting the photo, a %GDATA_SERVICE_ERROR_WITH_UPDATE error will be returned.
+ * If there is an error setting the photo, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned.
  *
  * Return value: %TRUE on success, %FALSE otherwise
  *
@@ -1320,8 +1370,8 @@ gdata_contacts_contact_set_photo (GDataContactsContact *self, GDataService *serv
 	if (status != 200) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (service, GDATA_SERVICE_ERROR_WITH_UPDATE, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (service, GDATA_OPERATION_UPLOAD, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return FALSE;
 	}

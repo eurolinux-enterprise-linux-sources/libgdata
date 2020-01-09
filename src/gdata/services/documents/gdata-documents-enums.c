@@ -7,7 +7,7 @@
 #include "gdata-documents-presentation.h"
 #include "gdata-documents-enums.h"
 
-/* enumerations from "gdata-documents-service.h" */
+/* enumerations from "./gdata/services/documents/gdata-documents-service.h" */
 GType
 gdata_documents_service_error_get_type (void)
 {
@@ -22,7 +22,7 @@ gdata_documents_service_error_get_type (void)
   return etype;
 }
 
-/* enumerations from "gdata-documents-text.h" */
+/* enumerations from "./gdata/services/documents/gdata-documents-text.h" */
 GType
 gdata_documents_text_format_get_type (void)
 {
@@ -44,7 +44,7 @@ gdata_documents_text_format_get_type (void)
   return etype;
 }
 
-/* enumerations from "gdata-documents-presentation.h" */
+/* enumerations from "./gdata/services/documents/gdata-documents-presentation.h" */
 GType
 gdata_documents_presentation_format_get_type (void)
 {
@@ -63,7 +63,7 @@ gdata_documents_presentation_format_get_type (void)
   return etype;
 }
 
-/* enumerations from "gdata-documents-spreadsheet.h" */
+/* enumerations from "./gdata/services/documents/gdata-documents-spreadsheet.h" */
 GType
 gdata_documents_spreadsheet_format_get_type (void)
 {

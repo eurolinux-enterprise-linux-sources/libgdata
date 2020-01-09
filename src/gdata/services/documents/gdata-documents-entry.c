@@ -181,6 +181,9 @@ static void
 gdata_documents_entry_init (GDataDocumentsEntry *self)
 {
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_DOCUMENTS_ENTRY, GDataDocumentsEntryPrivate);
+
+	/* Initialise the edited properties to the current time */
+	g_get_current_time (&(self->priv->edited));
 }
 
 static gboolean
@@ -200,7 +203,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataDocumentsEntry *self = GDATA_DOCUMENTS_ENTRY (parsable);
 
-	if (xmlStrcmp (node->name, (xmlChar*) "edited") == 0) {
+	if (gdata_parser_is_namespace (node, "http://www.w3.org/2007/app") == TRUE &&
+	    xmlStrcmp (node->name, (xmlChar*) "edited") == 0) {
 		xmlChar *edited = xmlNodeListGetString (doc, node->children, TRUE);
 		if (g_time_val_from_iso8601 ((gchar*) edited, &(self->priv->edited)) == FALSE) {
 			gdata_parser_error_not_iso8601_format (node, (gchar*) edited, error);
@@ -208,15 +212,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			return FALSE;
 		}
 		xmlFree (edited);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "lastViewed") == 0) {
-		xmlChar *last_viewed = xmlNodeListGetString (doc, node->children, TRUE);
-		if (g_time_val_from_iso8601 ((gchar*) last_viewed, &(self->priv->last_viewed)) == FALSE) {
-			gdata_parser_error_not_iso8601_format (node, (gchar*) last_viewed, error);
-			xmlFree (last_viewed);
-			return FALSE;
-		}
-		xmlFree (last_viewed);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "writersCanInvite") ==  0) {
+	} else if (gdata_parser_is_namespace (node, "http://schemas.google.com/docs/2007") == TRUE &&
+	           xmlStrcmp (node->name, (xmlChar*) "writersCanInvite") ==  0) {
 		xmlChar *writers_can_invite = xmlGetProp (node, (xmlChar*) "value");
 		if (xmlStrcmp (writers_can_invite, (xmlChar*) "true") == 0) {
 			self->priv->writers_can_invite = TRUE;
@@ -228,47 +225,58 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			return FALSE;
 		}
 		xmlFree (writers_can_invite);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "deleted") ==  0) {
-		/* <gd:deleted> */
-		/* Note that it doesn't have any parameters, so we unconditionally set priv->is_deleted to TRUE */
-		self->priv->is_deleted = TRUE;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "resourceId") ==  0) {
-		gchar **document_id_parts;
-		xmlChar *resource_id;
+	} else if (gdata_parser_is_namespace (node, "http://schemas.google.com/g/2005") == TRUE) {
+		if (xmlStrcmp (node->name, (xmlChar*) "lastViewed") == 0) {
+			xmlChar *last_viewed = xmlNodeListGetString (doc, node->children, TRUE);
+			if (g_time_val_from_iso8601 ((gchar*) last_viewed, &(self->priv->last_viewed)) == FALSE) {
+				gdata_parser_error_not_iso8601_format (node, (gchar*) last_viewed, error);
+				xmlFree (last_viewed);
+				return FALSE;
+			}
+			xmlFree (last_viewed);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "deleted") ==  0) {
+			/* <gd:deleted> */
+			/* Note that it doesn't have any parameters, so we unconditionally set priv->is_deleted to TRUE */
+			self->priv->is_deleted = TRUE;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "resourceId") ==  0) {
+			gchar **document_id_parts;
+			xmlChar *resource_id;
 
-		if (self->priv->document_id != NULL)
-			return gdata_parser_error_duplicate_element (node, error);
+			if (self->priv->document_id != NULL)
+				return gdata_parser_error_duplicate_element (node, error);
 
-		resource_id = xmlNodeListGetString (doc, node->children, TRUE);
-		if (resource_id == NULL || *resource_id == '\0') {
+			resource_id = xmlNodeListGetString (doc, node->children, TRUE);
+			if (resource_id == NULL || *resource_id == '\0') {
+				xmlFree (resource_id);
+				return gdata_parser_error_required_content_missing (node, error);
+			}
+
+			document_id_parts = g_strsplit ((gchar*) resource_id, ":", 2);
+			if (document_id_parts == NULL) {
+				gdata_parser_error_unknown_content (node, (gchar*) resource_id, error);
+				xmlFree (resource_id);
+				return FALSE;
+			}
 			xmlFree (resource_id);
-			return gdata_parser_error_required_content_missing (node, error);
-		}
 
-		document_id_parts = g_strsplit ((gchar*) resource_id, ":", 2);
-		if (document_id_parts == NULL) {
-			gdata_parser_error_unknown_content (node, (gchar*) resource_id, error);
-			xmlFree (resource_id);
-			return FALSE;
+			self->priv->document_id = g_strdup (document_id_parts[1]);
+			g_strfreev (document_id_parts);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "feedLink") ==  0) {
+			GDataLink *link = GDATA_LINK (_gdata_parsable_new_from_xml_node (GDATA_TYPE_LINK, doc, node, NULL, error));
+			if (link == NULL)
+				return FALSE;
+			gdata_entry_add_link (GDATA_ENTRY (self), link);
+			g_object_unref (link);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "lastModifiedBy") ==  0) {
+			GDataAuthor *last_modified_by = GDATA_AUTHOR (_gdata_parsable_new_from_xml_node (GDATA_TYPE_AUTHOR, doc, node, NULL, error));
+			if (last_modified_by == NULL)
+				return FALSE;
+			self->priv->last_modified_by = last_modified_by;
+		} else {
+			return GDATA_PARSABLE_CLASS (gdata_documents_entry_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 		}
-		xmlFree (resource_id);
-
-		self->priv->document_id = g_strdup (document_id_parts[1]);
-		g_strfreev (document_id_parts);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "feedLink") ==  0) {
-		GDataLink *link = GDATA_LINK (_gdata_parsable_new_from_xml_node (GDATA_TYPE_LINK, doc, node, NULL, error));
-		if (link == NULL)
-			return FALSE;
-		gdata_entry_add_link (GDATA_ENTRY (self), link);
-		g_object_unref (link);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "lastModifiedBy") ==  0) {
-		GDataAuthor *last_modified_by = GDATA_AUTHOR (_gdata_parsable_new_from_xml_node (GDATA_TYPE_AUTHOR, doc, node, NULL, error));
-		if (last_modified_by == NULL)
-			return FALSE;
-		self->priv->last_modified_by = last_modified_by;
-	} else if (GDATA_PARSABLE_CLASS (gdata_documents_entry_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_documents_entry_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -376,7 +384,7 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
  * @edited: a #GTimeVal
  *
  * Gets the #GDataDocumentsEntry:edited property and puts it in @edited. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  *
  * Since: 0.4.0
  **/
@@ -394,7 +402,7 @@ gdata_documents_entry_get_edited (GDataDocumentsEntry *self, GTimeVal *edited)
  * @last_viewed: a #GTimeVal
  *
  * Gets the #GDataDocumentsEntry:last-viewed property and puts it in @last_viewed. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  *
  * Since: 0.4.0
  **/
@@ -410,11 +418,15 @@ gdata_documents_entry_get_last_viewed (GDataDocumentsEntry *self, GTimeVal *last
  * gdata_documents_entry_get_path:
  * @self: a #GDataDocumentsEntry
  *
- * Gets the #GDataDocumentsEntry:path property.
+ * Builds a path for the #GDataDocumentsEntry, starting from a root node and traversing the folders containing the document, then
+ * ending with the document's ID.
  *
- * Note: the path is based on the entry ID, and not the entry human readable name (#GDataEntry::title).
+ * An example path would be: "/folder_id1/folder_id2/document_id".
  *
- * Return value: the folder hierarchy path containing the entry, or %NULL; free with g_free()
+ * Note: the path is based on the entry/document IDs of the folders (#GDataEntry:id) and document (#GDataDocumentsEntry:document-id),
+ * and not the entries' human-readable names (#GDataEntry:title).
+ *
+ * Return value: the folder hierarchy path containing the document, or %NULL; free with g_free()
  *
  * Since: 0.4.0
  **/
@@ -435,6 +447,9 @@ gdata_documents_entry_get_path (GDataDocumentsEntry *self)
 		gchar *folder_id = NULL;
 		gchar **link_href_cut = g_strsplit (gdata_link_get_uri (GDATA_LINK (element->data)), "/", 0);
 
+		/* Extract the folder ID from the folder URI, which is of the form:
+		 *   http://docs.google.com/feeds/documents/private/full/folder%3Afolder_id
+		 * We want the "folder_id" bit. */
 		for (i = 0;; i++) {
 			gchar **path_cut = NULL;
 
@@ -454,6 +469,7 @@ gdata_documents_entry_get_path (GDataDocumentsEntry *self)
 		g_strfreev (link_href_cut);
 		g_assert (folder_id != NULL);
 
+		/* Append the folder ID to our path */
 		g_string_append (path, folder_id);
 		g_string_append_c (path, '/');
 		g_free (folder_id);
@@ -579,7 +595,7 @@ notify_content_type_cb (GDataDownloadStream *download_stream, GParamSpec *pspec,
  *
  * If @service isn't authenticated, a %GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED is returned.
  *
- * If there is an error downloading the document, a %GDATA_SERVICE_ERROR_WITH_QUERY error will be returned.
+ * If there is an error downloading the document, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned.
  *
  * If @destination_file is a directory, the file will be downloaded to this directory with the #GDataEntry:title and 
  * the appropriate extension as its filename.
@@ -589,22 +605,25 @@ notify_content_type_cb (GDataDownloadStream *download_stream, GParamSpec *pspec,
  * Since: 0.4.0
  */
 GFile *
-_gdata_documents_entry_download_document (GDataDocumentsEntry *self, GDataService *service, gchar **content_type, const gchar *download_uri,
+_gdata_documents_entry_download_document (GDataDocumentsEntry *self, GDataService *service, gchar **content_type, const gchar *src_uri,
 					  GFile *destination_file, const gchar *file_extension, gboolean replace_file_if_exists,
 					  GCancellable *cancellable, GError **error)
 {
+	const gchar *document_title;
+	gchar *default_filename;
+	GFileOutputStream *dest_stream;
+	GInputStream *src_stream;
+	GFile *actual_file = NULL;
 	GError *child_error = NULL;
-	GFile *output_file;
-	GFileOutputStream *file_stream;
-	GInputStream *download_stream;
 
 	/* TODO: async version */
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_ENTRY (self), NULL);
 	g_return_val_if_fail (GDATA_IS_SERVICE (service), NULL);
-	g_return_val_if_fail (download_uri != NULL, NULL);
+	g_return_val_if_fail (src_uri != NULL, NULL);
 	g_return_val_if_fail (G_IS_FILE (destination_file), NULL);
 	g_return_val_if_fail (file_extension != NULL, NULL);
 	g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), NULL);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
 	/* Ensure we're authenticated first */
 	if (gdata_service_is_authenticated (GDATA_SERVICE (service)) == FALSE) {
@@ -613,48 +632,28 @@ _gdata_documents_entry_download_document (GDataDocumentsEntry *self, GDataServic
 		return NULL;
 	}
 
-	/* Create a new file */
-	file_stream = g_file_create (destination_file, G_FILE_CREATE_NONE, cancellable, &child_error);
-	if (g_error_matches (child_error, G_IO_ERROR, G_IO_ERROR_EXISTS)) {
-		if (replace_file_if_exists == TRUE) {
-			g_error_free (child_error);
-			child_error = NULL;
+	/* Determine a default filename based on the document's title */
+	document_title = gdata_entry_get_title (GDATA_ENTRY (self));
+	default_filename = g_strdup_printf ("%s.%s", document_title, file_extension);
 
-			/* Replace a pre-existing file */
-			file_stream = g_file_replace (destination_file, NULL, TRUE, G_FILE_CREATE_REPLACE_DESTINATION, cancellable, &child_error);
+	dest_stream = _gdata_download_stream_find_destination (default_filename, destination_file, &actual_file, replace_file_if_exists, cancellable, error);
+	g_free (default_filename);
 
-			if (g_error_matches (child_error, G_IO_ERROR, G_IO_ERROR_IS_DIRECTORY)) {
-				GFile *new_destination_file;
-				const gchar *document_title;
-				gchar *filename;
+	if (dest_stream == NULL)
+		return NULL;
 
-				g_error_free (child_error);
-
-				/* Prepare a new GFile */
-				document_title = gdata_entry_get_title (GDATA_ENTRY (self));
-				filename = g_strdup_printf ("%s.%s", document_title, file_extension);
-				new_destination_file = g_file_get_child (destination_file, filename);
-				g_free (filename);
-
-				file_stream = g_file_replace (new_destination_file, NULL, TRUE, G_FILE_CREATE_REPLACE_DESTINATION, cancellable, error);
-				output_file = new_destination_file;
-			} else {
-				output_file = g_object_ref (destination_file);
-			}
-		} else {
-			g_propagate_error (error, child_error);
-			return NULL;
-		}
-	} else {
-		output_file = g_object_ref (destination_file);
+	/* Synchronously splice the data from the download stream to the file stream (network -> disk) */
+	src_stream = gdata_download_stream_new (GDATA_SERVICE (service), src_uri);
+	g_signal_connect (src_stream, "notify::content-type", (GCallback) notify_content_type_cb, content_type);
+	g_output_stream_splice (G_OUTPUT_STREAM (dest_stream), src_stream,
+				G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE | G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET, cancellable, &child_error);
+	g_object_unref (src_stream);
+	g_object_unref (dest_stream);
+	if (child_error != NULL) {
+		g_object_unref (actual_file);
+		g_propagate_error (error, child_error);
+		return NULL;
 	}
 
-	download_stream = gdata_download_stream_new (GDATA_SERVICE (service), download_uri);
-	g_signal_connect (download_stream, "notify::content-type", (GCallback) notify_content_type_cb, content_type);
-	g_output_stream_splice (G_OUTPUT_STREAM (file_stream), download_stream, G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE | G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET,
-				cancellable, error);
-	g_object_unref (download_stream);
-	g_object_unref (file_stream);
-
-	return output_file;
+	return actual_file;
 }

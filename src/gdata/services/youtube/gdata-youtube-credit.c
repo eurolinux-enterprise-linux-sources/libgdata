@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -26,6 +26,8 @@
  * #GDataYouTubeCredit represents the YouTube-specific customizations to #GDataMediaCredit. For more information,
  * see the <ulink type="http" url="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:credit">
  * online documentation</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -96,7 +98,7 @@ gdata_youtube_credit_finalize (GObject *object)
 {
 	GDataYouTubeCreditPrivate *priv = GDATA_YOUTUBE_CREDIT (object)->priv;
 
-	xmlFree (priv->entity_type);
+	g_free (priv->entity_type);
 
 	/* Chain up to the parent class */
 	G_OBJECT_CLASS (gdata_youtube_credit_parent_class)->finalize (object);

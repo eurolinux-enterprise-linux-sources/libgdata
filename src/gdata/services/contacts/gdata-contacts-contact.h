@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -46,6 +46,8 @@ typedef struct _GDataContactsContactPrivate	GDataContactsContactPrivate;
  * GDataContactsContact:
  *
  * All the fields in the #GDataContactsContact structure are private and should never be accessed directly.
+ *
+ * Since: 0.2.0
  **/
 typedef struct {
 	GDataEntry parent;
@@ -56,6 +58,8 @@ typedef struct {
  * GDataContactsContactClass:
  *
  * All the fields in the #GDataContactsContactClass structure are private and should never be accessed directly.
+ *
+ * Since: 0.2.0
  **/
 typedef struct {
 	/*< private >*/
@@ -70,6 +74,7 @@ void gdata_contacts_contact_get_edited (GDataContactsContact *self, GTimeVal *ed
 gboolean gdata_contacts_contact_is_deleted (GDataContactsContact *self);
 
 GDataGDName *gdata_contacts_contact_get_name (GDataContactsContact *self);
+void gdata_contacts_contact_set_name (GDataContactsContact *self, GDataGDName *name);
 
 void gdata_contacts_contact_add_email_address (GDataContactsContact *self, GDataGDEmailAddress *email_address);
 GList *gdata_contacts_contact_get_email_addresses (GDataContactsContact *self);

@@ -1,0 +1,120 @@
+<!-- ##### SECTION Title ##### -->
+GDataPicasaWebUser
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### STRUCT GDataPicasaWebUser ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GDataPicasaWebUser:max-photos-per-album ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebUser:nickname ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebUser:quota-current ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebUser:quota-limit ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebUser:thumbnail-uri ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebUser:user ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GDataPicasaWebUserClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdata_picasaweb_user_get_user ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_user_get_nickname ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_user_get_quota_limit ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_user_get_quota_current ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_user_get_max_photos_per_album ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_user_get_thumbnail_uri ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

@@ -1,4 +1,4 @@
-# generated automatically by aclocal 1.11 -*- Autoconf -*-
+# generated automatically by aclocal 1.11.1 -*- Autoconf -*-
 
 # Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004,
 # 2005, 2006, 2007, 2008, 2009  Free Software Foundation, Inc.
@@ -34,7 +34,7 @@ AC_DEFUN([AM_AUTOMAKE_VERSION],
 [am__api_version='1.11'
 dnl Some users find AM_AUTOMAKE_VERSION and mistake it for a way to
 dnl require some minimum version.  Point them to the right macro.
-m4_if([$1], [1.11], [],
+m4_if([$1], [1.11.1], [],
       [AC_FATAL([Do not call $0, use AM_INIT_AUTOMAKE([$1]).])])dnl
 ])
 
@@ -50,7 +50,7 @@ m4_define([_AM_AUTOCONF_VERSION], [])
 # Call AM_AUTOMAKE_VERSION and AM_AUTOMAKE_VERSION so they can be traced.
 # This function is AC_REQUIREd by AM_INIT_AUTOMAKE.
 AC_DEFUN([AM_SET_CURRENT_AUTOMAKE_VERSION],
-[AM_AUTOMAKE_VERSION([1.11])dnl
+[AM_AUTOMAKE_VERSION([1.11.1])dnl
 m4_ifndef([AC_AUTOCONF_VERSION],
   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
 _AM_AUTOCONF_VERSION(m4_defn([AC_AUTOCONF_VERSION]))])
@@ -880,33 +880,6 @@ else
 Check your system clock])
 fi
 AC_MSG_RESULT(yes)])
-
-# Copyright (C) 2009  Free Software Foundation, Inc.
-#
-# This file is free software; the Free Software Foundation
-# gives unlimited permission to copy and/or distribute it,
-# with or without modifications, as long as this notice is preserved.
-
-# serial 1
-
-# AM_SILENT_RULES([DEFAULT])
-# --------------------------
-# Enable less verbose build rules; with the default set to DEFAULT
-# (`yes' being less verbose, `no' or empty being verbose).
-AC_DEFUN([AM_SILENT_RULES],
-[AC_ARG_ENABLE([silent-rules],
-[  --enable-silent-rules          less verbose build output (undo: `make V=1')
-  --disable-silent-rules         verbose build output (undo: `make V=0')])
-case $enable_silent_rules in
-yes) AM_DEFAULT_VERBOSITY=0;;
-no)  AM_DEFAULT_VERBOSITY=1;;
-*)   AM_DEFAULT_VERBOSITY=m4_if([$1], [yes], [0], [1]);;
-esac
-AC_SUBST([AM_DEFAULT_VERBOSITY])dnl
-AM_BACKSLASH='\'
-AC_SUBST([AM_BACKSLASH])dnl
-_AM_SUBST_NOTMAKE([AM_BACKSLASH])dnl
-])
 
 # Copyright (C) 2001, 2003, 2005  Free Software Foundation, Inc.
 #
@@ -1932,6 +1905,101 @@ AU_ALIAS([AC_PROG_INTLTOOL], [IT_PROG_INTLTOOL])
 # A hint is needed for aclocal from Automake <= 1.9.4:
 # AC_DEFUN([AC_PROG_INTLTOOL], ...)
 
+
+dnl -*- mode: autoconf -*-
+dnl Copyright 2009 Johan Dahlin
+dnl
+dnl This file is free software; the author(s) gives unlimited
+dnl permission to copy and/or distribute it, with or without
+dnl modifications, as long as this notice is preserved.
+dnl
+
+# serial 1
+
+m4_define([_GOBJECT_INTROSPECTION_CHECK_INTERNAL],
+[
+    AC_BEFORE([AC_PROG_LIBTOOL],[$0])dnl setup libtool first
+    AC_BEFORE([AM_PROG_LIBTOOL],[$0])dnl setup libtool first
+    AC_BEFORE([LT_INIT],[$0])dnl setup libtool first
+
+    dnl enable/disable introspection
+    m4_if([$2], [require],
+    [dnl
+        enable_introspection=yes
+    ],[dnl
+        AC_ARG_ENABLE(introspection,
+                  AS_HELP_STRING([--enable-introspection[=@<:@no/auto/yes@:>@]],
+                                 [Enable introspection for this build]),, 
+                                 [enable_introspection=auto])
+    ])dnl
+
+    AC_MSG_CHECKING([for gobject-introspection])
+
+    dnl presence/version checking
+    AS_CASE([$enable_introspection],
+    [no], [dnl
+        found_introspection="no (disabled, use --enable-introspection to enable)"
+    ],dnl
+    [yes],[dnl
+        PKG_CHECK_EXISTS([gobject-introspection-1.0],,
+                         AC_MSG_ERROR([gobject-introspection-1.0 is not installed]))
+        PKG_CHECK_EXISTS([gobject-introspection-1.0 >= $1],
+                         found_introspection=yes,
+                         AC_MSG_ERROR([You need to have gobject-introspection >= $1 installed to build AC_PACKAGE_NAME]))
+    ],dnl
+    [auto],[dnl
+        PKG_CHECK_EXISTS([gobject-introspection-1.0 >= $1], found_introspection=yes, found_introspection=no)
+    ],dnl
+    [dnl	
+        AC_MSG_ERROR([invalid argument passed to --enable-introspection, should be one of @<:@no/auto/yes@:>@])
+    ])dnl
+
+    AC_MSG_RESULT([$found_introspection])
+
+    INTROSPECTION_SCANNER=
+    INTROSPECTION_COMPILER=
+    INTROSPECTION_GENERATE=
+    INTROSPECTION_GIRDIR=
+    INTROSPECTION_TYPELIBDIR=
+    if test "x$found_introspection" = "xyes"; then
+       INTROSPECTION_SCANNER=`$PKG_CONFIG --variable=g_ir_scanner gobject-introspection-1.0`
+       INTROSPECTION_COMPILER=`$PKG_CONFIG --variable=g_ir_compiler gobject-introspection-1.0`
+       INTROSPECTION_GENERATE=`$PKG_CONFIG --variable=g_ir_generate gobject-introspection-1.0`
+       INTROSPECTION_GIRDIR=`$PKG_CONFIG --variable=girdir gobject-introspection-1.0`
+       INTROSPECTION_TYPELIBDIR="$($PKG_CONFIG --variable=typelibdir gobject-introspection-1.0)"
+       INTROSPECTION_CFLAGS=`$PKG_CONFIG --cflags gobject-introspection-1.0`
+       INTROSPECTION_LIBS=`$PKG_CONFIG --libs gobject-introspection-1.0`
+       INTROSPECTION_MAKEFILE=`$PKG_CONFIG --variable=datadir gobject-introspection-1.0`/gobject-introspection-1.0/Makefile.introspection
+    fi
+    AC_SUBST(INTROSPECTION_SCANNER)
+    AC_SUBST(INTROSPECTION_COMPILER)
+    AC_SUBST(INTROSPECTION_GENERATE)
+    AC_SUBST(INTROSPECTION_GIRDIR)
+    AC_SUBST(INTROSPECTION_TYPELIBDIR)
+    AC_SUBST(INTROSPECTION_CFLAGS)
+    AC_SUBST(INTROSPECTION_LIBS)
+    AC_SUBST(INTROSPECTION_MAKEFILE)
+
+    AM_CONDITIONAL(HAVE_INTROSPECTION, test "x$found_introspection" = "xyes")
+])
+
+
+dnl Usage:
+dnl   GOBJECT_INTROSPECTION_CHECK([minimum-g-i-version])
+
+AC_DEFUN([GOBJECT_INTROSPECTION_CHECK],
+[
+  _GOBJECT_INTROSPECTION_CHECK_INTERNAL([$1])
+])
+
+dnl Usage:
+dnl   GOBJECT_INTROSPECTION_REQUIRE([minimum-g-i-version])
+
+
+AC_DEFUN([GOBJECT_INTROSPECTION_REQUIRE],
+[
+  _GOBJECT_INTROSPECTION_CHECK_INTERNAL([$1], [require])
+])
 
 # libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
 #
@@ -4399,10 +4467,13 @@ linux* | k*bsd*-gnu)
   # before this can be enabled.
   hardcode_into_libs=yes
 
+  # Add ABI-specific directories to the system library path.
+  sys_lib_dlsearch_path_spec="/lib64 /usr/lib64 /lib /usr/lib"
+
   # Append ld.so.conf contents to the search path
   if test -f /etc/ld.so.conf; then
     lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \[$]2)); skip = 1; } { if (!skip) print \[$]0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;/^[	 ]*hwcap[	 ]/d;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
-    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
+    sys_lib_dlsearch_path_spec="$sys_lib_dlsearch_path_spec $lt_ld_extra"
   fi
 
   # We used to test for /lib/ld.so.1 and disable shared libraries on
@@ -9773,15 +9844,15 @@ m4_define([lt_dict_filter],
 
 # Generated from ltversion.in.
 
-# serial 3012 ltversion.m4
+# serial 3017 ltversion.m4
 # This file is part of GNU Libtool
 
-m4_define([LT_PACKAGE_VERSION], [2.2.6])
-m4_define([LT_PACKAGE_REVISION], [1.3012])
+m4_define([LT_PACKAGE_VERSION], [2.2.6b])
+m4_define([LT_PACKAGE_REVISION], [1.3017])
 
 AC_DEFUN([LTVERSION_VERSION],
-[macro_version='2.2.6'
-macro_revision='1.3012'
+[macro_version='2.2.6b'
+macro_revision='1.3017'
 _LT_DECL(, macro_version, 0, [Which release of libtool.m4 was used?])
 _LT_DECL(, macro_revision, 0)
 ])
@@ -10066,4 +10137,31 @@ else
 	ifelse([$3], , :, [$3])
 fi[]dnl
 ])# PKG_CHECK_MODULES
+
+# Copyright (C) 2009  Free Software Foundation, Inc.
+#
+# This file is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# serial 1
+
+# AM_SILENT_RULES([DEFAULT])
+# --------------------------
+# Enable less verbose build rules; with the default set to DEFAULT
+# (`yes' being less verbose, `no' or empty being verbose).
+AC_DEFUN([AM_SILENT_RULES],
+[AC_ARG_ENABLE([silent-rules],
+[  --enable-silent-rules          less verbose build output (undo: `make V=1')
+  --disable-silent-rules         verbose build output (undo: `make V=0')])
+case $enable_silent_rules in
+yes) AM_DEFAULT_VERBOSITY=0;;
+no)  AM_DEFAULT_VERBOSITY=1;;
+*)   AM_DEFAULT_VERBOSITY=m4_if([$1], [yes], [0], [1]);;
+esac
+AC_SUBST([AM_DEFAULT_VERBOSITY])dnl
+AM_BACKSLASH='\'
+AC_SUBST([AM_BACKSLASH])dnl
+_AM_SUBST_NOTMAKE([AM_BACKSLASH])dnl
+])
 

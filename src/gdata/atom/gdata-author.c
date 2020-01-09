@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -25,6 +25,8 @@
  *
  * #GDataAuthor represents a "author" element from the
  * <ulink type="http" url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php">Atom specification</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -190,41 +192,37 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataAuthorPrivate *priv = GDATA_AUTHOR (parsable)->priv;
 
-	if (xmlStrcmp (node->name, (xmlChar*) "name") == 0) {
-		/* atom:name */
-		xmlChar *name;
+	if (gdata_parser_is_namespace (node, "http://www.w3.org/2005/Atom") == TRUE) {
+		if (xmlStrcmp (node->name, (xmlChar*) "name") == 0) {
+			/* atom:name */
+			xmlChar *name;
 
-		if (priv->name != NULL)
-			return gdata_parser_error_duplicate_element (node, error);
+			if (priv->name != NULL)
+				return gdata_parser_error_duplicate_element (node, error);
 
-		name = xmlNodeListGetString (doc, node->children, TRUE);
-		if (name == NULL || *name == '\0')
-			return gdata_parser_error_required_content_missing (node, error);
-		priv->name = g_strdup ((gchar*) name);
-		xmlFree (name);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "uri") == 0) {
-		/* atom:uri */
-		xmlChar *uri;
+			name = xmlNodeListGetString (doc, node->children, TRUE);
+			if (name == NULL || *name == '\0') {
+				xmlFree (name);
+				return gdata_parser_error_required_content_missing (node, error);
+			}
+			priv->name = (gchar*) name;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "uri") == 0) {
+			/* atom:uri */
+			if (priv->uri != NULL)
+				return gdata_parser_error_duplicate_element (node, error);
 
-		if (priv->uri != NULL)
-			return gdata_parser_error_duplicate_element (node, error);
+			priv->uri = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "email") == 0) {
+			/* atom:email */
+			if (priv->email_address != NULL)
+				return gdata_parser_error_duplicate_element (node, error);
 
-		uri = xmlNodeListGetString (doc, node->children, TRUE);
-		priv->uri = g_strdup ((gchar*) uri);
-		xmlFree (uri);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "email") == 0) {
-		/* atom:email */
-		xmlChar *email_address;
-
-		if (priv->email_address != NULL)
-			return gdata_parser_error_duplicate_element (node, error);
-
-		email_address = xmlNodeListGetString (doc, node->children, TRUE);
-		priv->email_address = g_strdup ((gchar*) email_address);
-		xmlFree (email_address);
-	} else if (GDATA_PARSABLE_CLASS (gdata_author_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+			priv->email_address = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else {
+			return GDATA_PARSABLE_CLASS (gdata_author_parent_class)->parse_xml (parsable, doc, node, user_data, error);
+		}
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_author_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -279,11 +277,13 @@ gdata_author_new (const gchar *name, const gchar *uri, const gchar *email_addres
  * @b: another #GDataAuthor, or %NULL
  *
  * Compares the two authors in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @name property of the #GDataAuthor<!-- -->s.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
@@ -292,7 +292,7 @@ gdata_author_compare (const GDataAuthor *a, const GDataAuthor *b)
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)

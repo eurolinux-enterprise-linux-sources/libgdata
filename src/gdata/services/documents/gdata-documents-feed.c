@@ -2,6 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
+ * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,6 +29,8 @@
  *
  * Each #GDataDocumentsEntry represents a single object on the Google Documents online service, such as a text document, presentation document,
  * spreadsheet document or a folder, and the #GDataDocumentsFeed represents a collection of those objects.
+ *
+ * Since: 0.4.0
  **/
 
 #include <config.h>
@@ -64,8 +67,9 @@ gdata_documents_feed_init (GDataDocumentsFeed *self)
 	/* Why am I writing it? */
 }
 
-/* NOTE: Should be freed with xmlFree(), not g_free() */
-static xmlChar *
+/* NOTE: Cast from (xmlChar*) to (gchar*) (and corresponding change in memory management functions) is safe because we've changed
+ * libxml's memory functions. */
+static gchar *
 get_kind (xmlDoc *doc, xmlNode *node)
 {
 	xmlNode *entry_node;
@@ -76,7 +80,7 @@ get_kind (xmlDoc *doc, xmlNode *node)
 
 			if (xmlStrcmp (scheme, (xmlChar*) "http://schemas.google.com/g/2005#kind") == 0) {
 				xmlFree (scheme);
-				return xmlGetProp (entry_node, (xmlChar*) "term");
+				return (gchar*) xmlGetProp (entry_node, (xmlChar*) "term");
 			}
 			xmlFree (scheme);
 		}
@@ -90,11 +94,10 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataDocumentsFeed *self = GDATA_DOCUMENTS_FEED (parsable);
 
-	if (xmlStrcmp (node->name, (xmlChar*) "entry") == 0) {
+	if (gdata_parser_is_namespace (node, "http://www.w3.org/2005/Atom") == TRUE &&
+	    xmlStrcmp (node->name, (xmlChar*) "entry") == 0) {
 		GDataEntry *entry = NULL;
-		gchar *kind;
-
-		kind = (gchar*) get_kind (doc, node);
+		gchar *kind = get_kind (doc, node);
 
 		if (g_strcmp0 (kind, "http://schemas.google.com/docs/2007#spreadsheet") == 0)
 			entry = GDATA_ENTRY (_gdata_parsable_new_from_xml_node (GDATA_TYPE_DOCUMENTS_SPREADSHEET, doc, node, NULL, error));
@@ -106,10 +109,10 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			entry = GDATA_ENTRY (_gdata_parsable_new_from_xml_node (GDATA_TYPE_DOCUMENTS_FOLDER, doc, node, NULL, error));
 		else {
 			g_message ("%s documents are not handled yet", kind);
-			xmlFree (kind);
+			g_free (kind);
 			return TRUE;
 		}
-		xmlFree (kind);
+		g_free (kind);
 
 		if (entry == NULL)
 			return FALSE;
@@ -117,10 +120,9 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 		/* Call the progress callback in the main thread */
 		_gdata_feed_call_progress_callback (GDATA_FEED (self), user_data, entry);
 		_gdata_feed_add_entry (GDATA_FEED (self), entry);
-	} else if (GDATA_PARSABLE_CLASS (gdata_documents_feed_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+
+		return TRUE;
 	}
 
-	return TRUE;
+	return GDATA_PARSABLE_CLASS (gdata_documents_feed_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 }

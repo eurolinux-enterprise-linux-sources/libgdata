@@ -80,10 +80,12 @@
 
 /* Google PicasaWeb */
 #include <gdata/services/picasaweb/gdata-picasaweb-service.h>
+#include <gdata/services/picasaweb/gdata-picasaweb-feed.h>
 #include <gdata/services/picasaweb/gdata-picasaweb-query.h>
 #include <gdata/services/picasaweb/gdata-picasaweb-album.h>
 #include <gdata/services/picasaweb/gdata-picasaweb-file.h>
 #include <gdata/services/picasaweb/gdata-picasaweb-enums.h>
+#include <gdata/services/picasaweb/gdata-picasaweb-user.h>
 
 /* Google Contacts */
 #include <gdata/services/contacts/gdata-contacts-service.h>
@@ -99,5 +101,6 @@
 #include <gdata/services/documents/gdata-documents-query.h>
 #include <gdata/services/documents/gdata-documents-service.h>
 #include <gdata/services/documents/gdata-documents-feed.h>
+#include <gdata/services/documents/gdata-documents-enums.h>
 
 #endif /* !GDATA_H */

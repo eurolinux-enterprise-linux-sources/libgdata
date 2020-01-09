@@ -19,6 +19,9 @@ GDataPicasaWebFile
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataPicasaWebFile ##### -->
 <para>
 
@@ -66,6 +69,11 @@ GDataPicasaWebFile
 </para>
 
 <!-- ##### ARG GDataPicasaWebFile:exposure ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataPicasaWebFile:file-id ##### -->
 <para>
 
 </para>
@@ -177,6 +185,15 @@ GDataPicasaWebFile
 </para>
 
 @id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_file_get_id ##### -->
+<para>
+
+</para>
+
+@self: 
 @Returns: 
 
 

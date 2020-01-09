@@ -19,6 +19,9 @@ GDataFeed
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataFeed ##### -->
 <para>
 
@@ -31,6 +34,11 @@ GDataFeed
 </para>
 
 <!-- ##### ARG GDataFeed:generator ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataFeed:icon ##### -->
 <para>
 
 </para>
@@ -183,6 +191,15 @@ GDataFeed
 
 
 <!-- ##### FUNCTION gdata_feed_get_logo ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_feed_get_icon ##### -->
 <para>
 
 </para>

@@ -19,6 +19,9 @@ GDataPicasaWebQuery
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataPicasaWebQuery ##### -->
 <para>
 
@@ -62,6 +65,17 @@ GDataPicasaWebQuery
 </para>
 
 @q: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_picasaweb_query_new_with_limits ##### -->
+<para>
+
+</para>
+
+@q: 
+@start_index: 
+@max_results: 
 @Returns: 
 
 

@@ -19,6 +19,9 @@ GDataGDEmailAddress
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataGDEmailAddress ##### -->
 <para>
 
@@ -26,6 +29,11 @@ GDataGDEmailAddress
 
 
 <!-- ##### ARG GDataGDEmailAddress:address ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDEmailAddress:display-name ##### -->
 <para>
 
 </para>
@@ -143,5 +151,23 @@ GDataGDEmailAddress
 
 @self: 
 @is_primary: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_get_display_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_email_address_set_display_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@display_name: 
 
 

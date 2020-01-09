@@ -7,16 +7,16 @@
 #include <glib-object.h>
 
 G_BEGIN_DECLS
-/* enumerations from "gdata-documents-service.h" */
+/* enumerations from "./gdata/services/documents/gdata-documents-service.h" */
 GType gdata_documents_service_error_get_type (void) G_GNUC_CONST;
 #define GDATA_TYPE_DATA_DOCUMENTS_SERVICE_ERROR (gdata_documents_service_error_get_type())
-/* enumerations from "gdata-documents-text.h" */
+/* enumerations from "./gdata/services/documents/gdata-documents-text.h" */
 GType gdata_documents_text_format_get_type (void) G_GNUC_CONST;
 #define GDATA_TYPE_DATA_DOCUMENTS_TEXT_FORMAT (gdata_documents_text_format_get_type())
-/* enumerations from "gdata-documents-presentation.h" */
+/* enumerations from "./gdata/services/documents/gdata-documents-presentation.h" */
 GType gdata_documents_presentation_format_get_type (void) G_GNUC_CONST;
 #define GDATA_TYPE_DATA_DOCUMENTS_PRESENTATION_FORMAT (gdata_documents_presentation_format_get_type())
-/* enumerations from "gdata-documents-spreadsheet.h" */
+/* enumerations from "./gdata/services/documents/gdata-documents-spreadsheet.h" */
 GType gdata_documents_spreadsheet_format_get_type (void) G_GNUC_CONST;
 #define GDATA_TYPE_DATA_DOCUMENTS_SPREADSHEET_FORMAT (gdata_documents_spreadsheet_format_get_type())
 G_END_DECLS

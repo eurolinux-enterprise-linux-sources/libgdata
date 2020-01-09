@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: libgdata.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=libgdata&component=general\n"
-"POT-Creation-Date: 2009-08-05 19:16+0000\n"
-"PO-Revision-Date: 2009-08-15 13:26+0200\n"
+"POT-Creation-Date: 2009-12-06 05:12+0000\n"
+"PO-Revision-Date: 2009-12-12 12:27+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "Un elemento necesario (%s) no estaba presente."
 msgid "A singleton element (%s) was duplicated."
 msgstr "Un elemento (%s) estaba duplicado."
 
-#: ../gdata/gdata-service.c:308 ../gdata/gdata-service.c:748
+#: ../gdata/gdata-service.c:309 ../gdata/gdata-service.c:751
 #: ../gdata/services/youtube/gdata-youtube-service.c:202
 msgid "The server returned a malformed response."
 msgstr "El servidor devolvió una respuesta mal formada."
@@ -165,63 +165,62 @@ msgstr "Código de error %u al descargar: %s"
 #. Translators: the first parameter is an HTTP status, and the second is an error message returned by the server.
 #: ../gdata/gdata-service.c:394
 #, c-format
-#| msgid "Error code %u when downloading: %s"
 msgid "Error code %u when uploading: %s"
 msgstr "Código de error %u al subir: %s"
 
-#: ../gdata/gdata-service.c:636
+#: ../gdata/gdata-service.c:639
 msgid "A CAPTCHA must be filled out to log in."
 msgstr "Se debe rellenar un CAPTCHA para iniciar sesión."
 
-#: ../gdata/gdata-service.c:660
+#: ../gdata/gdata-service.c:663
 msgid "Your username or password were incorrect."
 msgstr "Su nombre de usuario o contraseña fueron incorrectas."
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-service.c:679
+#: ../gdata/gdata-service.c:682
 #, c-format
 msgid "Your account's e-mail address has not been verified. (%s)"
 msgstr "Su dirección de correo-e no se ha verificado. (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-service.c:684
+#: ../gdata/gdata-service.c:687
 #, c-format
 msgid "You have not agreed to the service's terms and conditions. (%s)"
 msgstr "No ha aceptado los términos del servicio y sus condiciones (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-service.c:689
+#: ../gdata/gdata-service.c:692
 #, c-format
 msgid "This account has been deleted. (%s)"
 msgstr "Esta cuenta se ha borrado. (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-service.c:694
+#: ../gdata/gdata-service.c:697
 #, c-format
 msgid "This account has been disabled. (%s)"
 msgstr "Esta cuenta se ha desactivado. (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-service.c:699
+#: ../gdata/gdata-service.c:702
 #, c-format
 msgid "This account's access to this service has been disabled. (%s)"
 msgstr "El acceso a este servicio de esta cuenta se ha desactivado. (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-service.c:704
+#: ../gdata/gdata-service.c:707
 #, c-format
 msgid "This service is not available at the moment. (%s)"
 msgstr "El servicio no está disponible por el momento. (%s)"
 
 #. Translators: the parameter is the URI which is invalid.
-#: ../gdata/gdata-service.c:818
+#: ../gdata/gdata-service.c:821
 #, c-format
 msgid "Invalid redirect URI: %s"
 msgstr "URI de redirección no válida: %s"
 
-#: ../gdata/gdata-service.c:1236
-#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:278
-#: ../gdata/services/youtube/gdata-youtube-service.c:784
+#: ../gdata/gdata-service.c:1239
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:340
+#: ../gdata/services/youtube/gdata-youtube-service.c:785
 msgid "The entry has already been inserted."
 msgstr "La entrada ya se ha introducido."
 
@@ -251,8 +250,8 @@ msgstr "Debe estar autenticado para consultar sus propios calendarios."
 msgid "The calendar did not have a content source."
 msgstr "El calendario no tenía una fuente de contenido."
 
-#: ../gdata/services/contacts/gdata-contacts-service.c:104
-#: ../gdata/services/contacts/gdata-contacts-service.c:139
+#: ../gdata/services/contacts/gdata-contacts-service.c:105
+#: ../gdata/services/contacts/gdata-contacts-service.c:140
 msgid "You must be authenticated to query contacts."
 msgstr "Debe estar autenticado para consultar sus contactos."
 
@@ -261,45 +260,66 @@ msgid "You must be authenticated to download documents."
 msgstr "Debe estar autenticado para descargar documentos."
 
 #: ../gdata/services/documents/gdata-documents-service.c:188
-#: ../gdata/services/documents/gdata-documents-service.c:288
+#: ../gdata/services/documents/gdata-documents-service.c:296
 msgid "You must be authenticated to query documents."
 msgstr "Debe estar autenticado para consultar sus documentos."
 
-#: ../gdata/services/documents/gdata-documents-service.c:379
+#: ../gdata/services/documents/gdata-documents-service.c:387
 msgid "The supplied document had an invalid content type."
 msgstr "El tipo de contenido del documento proporcionado no era válido."
 
-#: ../gdata/services/documents/gdata-documents-service.c:470
+#: ../gdata/services/documents/gdata-documents-service.c:472
 msgid "You must be authenticated to upload documents."
 msgstr "Debe estar autenticado para subir documentos."
 
-#: ../gdata/services/documents/gdata-documents-service.c:476
+#: ../gdata/services/documents/gdata-documents-service.c:478
 msgid "The document has already been uploaded."
 msgstr "El documento ya se ha subido."
 
-#: ../gdata/services/documents/gdata-documents-service.c:527
+#: ../gdata/services/documents/gdata-documents-service.c:528
 msgid "You must be authenticated to update documents."
 msgstr "Debe estar autenticado para actualizar documentos."
 
-#: ../gdata/services/documents/gdata-documents-service.c:575
+#: ../gdata/services/documents/gdata-documents-service.c:576
 #: ../gdata/services/documents/gdata-documents-service.c:672
 msgid "You must be authenticated to move documents."
 msgstr "Debe estar autenticado para mover documentos."
 
 #: ../gdata/services/picasaweb/gdata-picasaweb-service.c:132
-#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:179
+msgid "You must specify a username or be authenticated to query a user."
+msgstr ""
+"Debe especificar un nombre de usuario o estar autenticado para consultar "
+"todos los álbumes."
+
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:181
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:235
+msgid "Query parameter not allowed for albums."
+msgstr "El parámetro de la consulta no está permitido para álbumes."
+
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:188
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:243
 msgid "You must specify a username or be authenticated to query all albums."
 msgstr ""
 "Debe especificar un nombre de usuario o estar autenticado para consultar "
 "todos los álbumes."
 
-#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:220
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:284
 msgid "The album did not have a feed link."
 msgstr "El álbum no tenía ningún enlace para proveedor."
 
-#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:284
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:346
 msgid "You must be authenticated to upload a file."
 msgstr "Debe estar autenticado para cargar un archivo."
+
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:431
+#| msgid "The rule has already been inserted."
+msgid "The album has already been inserted."
+msgstr "El álbum ya se ha introducido."
+
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:437
+#| msgid "You must be authenticated to query all calendars."
+msgid "You must be authenticated to insert an album."
+msgstr "Debe estar autenticado para introducir el álbum."
 
 #: ../gdata/services/youtube/gdata-youtube-service.c:303
 #, c-format
@@ -340,12 +360,12 @@ msgstr ""
 "Código de error «%s» desconocido en el dominio «%s», recibido con la ubicación "
 "«%s»."
 
-#: ../gdata/services/youtube/gdata-youtube-service.c:697
-#: ../gdata/services/youtube/gdata-youtube-service.c:738
+#: ../gdata/services/youtube/gdata-youtube-service.c:698
+#: ../gdata/services/youtube/gdata-youtube-service.c:739
 msgid "The video did not have a related videos <link>."
 msgstr "El vídeo no tenía ningún vídeo relacionado <link>."
 
-#: ../gdata/services/youtube/gdata-youtube-service.c:790
+#: ../gdata/services/youtube/gdata-youtube-service.c:791
 msgid "You must be authenticated to upload a video."
 msgstr "Debe estar autenticado para cargar un vídeo."
 

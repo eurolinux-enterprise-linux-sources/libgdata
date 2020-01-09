@@ -19,6 +19,9 @@ GDataMediaThumbnail
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataMediaThumbnail ##### -->
 <para>
 
@@ -84,6 +87,21 @@ GDataMediaThumbnail
 </para>
 
 @self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_thumbnail_download ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@default_filename: 
+@target_dest_file: 
+@replace_file_if_exists: 
+@cancellable: 
+@error: 
 @Returns: 
 
 

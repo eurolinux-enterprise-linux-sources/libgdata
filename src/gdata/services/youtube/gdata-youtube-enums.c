@@ -5,7 +5,7 @@
 #include "gdata-youtube-query.h"
 #include "gdata-youtube-enums.h"
 
-/* enumerations from "gdata-youtube-service.h" */
+/* enumerations from "./gdata/services/youtube/gdata-youtube-service.h" */
 GType
 gdata_youtube_standard_feed_type_get_type (void)
 {
@@ -43,7 +43,7 @@ gdata_youtube_service_error_get_type (void)
   return etype;
 }
 
-/* enumerations from "gdata-youtube-video.h" */
+/* enumerations from "./gdata/services/youtube/gdata-youtube-video.h" */
 GType
 gdata_youtube_aspect_ratio_get_type (void)
 {
@@ -59,7 +59,7 @@ gdata_youtube_aspect_ratio_get_type (void)
   return etype;
 }
 
-/* enumerations from "gdata-youtube-content.h" */
+/* enumerations from "./gdata/services/youtube/gdata-youtube-content.h" */
 GType
 gdata_youtube_format_get_type (void)
 {
@@ -77,7 +77,7 @@ gdata_youtube_format_get_type (void)
   return etype;
 }
 
-/* enumerations from "gdata-youtube-query.h" */
+/* enumerations from "./gdata/services/youtube/gdata-youtube-query.h" */
 GType
 gdata_youtube_safe_search_get_type (void)
 {

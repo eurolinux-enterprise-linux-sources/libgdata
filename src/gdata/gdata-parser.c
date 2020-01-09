@@ -41,7 +41,7 @@ print_element (xmlNode *node)
 			return g_strdup_printf ("<%s>", node->name);
 	} else {
 		/* We have a parent node, which makes things a lot more complex */
-		gboolean parent_has_ns = (node->parent->ns == NULL || node->parent->ns->prefix == NULL ||
+		gboolean parent_has_ns = (node->parent->type == XML_DOCUMENT_NODE || node->parent->ns == NULL || node->parent->ns->prefix == NULL ||
 					  xmlStrcmp (node->parent->ns->href, (xmlChar*) "http://www.w3.org/2005/Atom") == 0) ? FALSE : TRUE;
 
 		if (parent_has_ns == TRUE && node_has_ns == TRUE)
@@ -136,7 +136,7 @@ gdata_parser_error_required_property_missing (xmlNode *element, const gchar *pro
 		      *
 		      * For example:
 		      *  A required property of a <entry/gAcl:role> element (@value) was not present. */
-		     _("A required property of a %s element (%s) was not present."), property_string, element_string);
+		     _("A required property of a %s element (%s) was not present."), element_string, property_string);
 	g_free (property_string);
 	g_free (element_string);
 
@@ -201,7 +201,28 @@ gdata_parser_date_from_time_val (GTimeVal *_time)
 	tm = gmtime (&secs);
 
 	/* Note: This doesn't need translating, as it's outputting an ISO 8601 date string */
-	return g_strdup_printf ("%4d-%02d-%02d", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday);
+	return g_strdup_printf ("%04d-%02d-%02d", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday);
+}
+
+/*
+ * gdata_parser_is_namespace:
+ * @element: the element to check
+ * @namespace_uri: the URI of the desired namespace
+ *
+ * Checks whether @element is in the namespace identified by @namespace_uri. If @element isn't in a namespace,
+ * %FALSE is returned.
+ *
+ * Return value: %TRUE if @element is in @namespace_uri; %FALSE otherwise
+ *
+ * Since: 0.6.4
+ */
+gboolean
+gdata_parser_is_namespace (xmlNode *element, const gchar *namespace_uri)
+{
+	if ((element->ns != NULL && xmlStrcmp (element->ns->href, (const xmlChar*) namespace_uri) == 0) ||
+	    (element->ns == NULL && strcmp (namespace_uri, "http://www.w3.org/2005/Atom") == 0))
+		return TRUE;
+	return FALSE;
 }
 
 void
@@ -270,4 +291,26 @@ gdata_parser_string_append_escaped (GString *xml_string, const gchar *pre, const
 	/* Append the post content */
 	if (post != NULL)
 		g_string_append (xml_string, post);
+}
+
+gchar *
+gdata_parser_utf8_trim_whitespace (const gchar *s)
+{
+	glong len;
+	const gchar *_s;
+
+	/* Skip the leading whitespace */
+	while (*s != '\0' && g_unichar_isspace (g_utf8_get_char (s)))
+		s = g_utf8_next_char (s);
+
+	/* Find the end of the string and backtrack until we've passed all the whitespace */
+	len = g_utf8_strlen (s, -1);
+	_s = g_utf8_offset_to_pointer (s, len - 1);
+	while (len > 0 && g_unichar_isspace (g_utf8_get_char (_s))) {
+		_s = g_utf8_prev_char (_s);
+		len--;
+	}
+	_s = g_utf8_next_char (_s);
+
+	return g_strndup (s, _s - s);
 }

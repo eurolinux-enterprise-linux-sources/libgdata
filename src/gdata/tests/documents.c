@@ -2,6 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
+ * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,13 +24,11 @@
 #include "gdata.h"
 #include "common.h"
 
-/* TODO: probably a better way to do this; some kind of data associated with the test suite? */
-static GDataDocumentsService *service = NULL;
-
 static void
 test_authentication (void)
 {
 	gboolean retval;
+	GDataDocumentsService *service;
 	GError *error = NULL;
 
 	/* Create a service */
@@ -52,7 +51,7 @@ test_authentication (void)
 }
 
 static void
-test_remove_all_documents_and_folders (GDataService *service)
+test_remove_all_documents_and_folders (gconstpointer service)
 {
 	GDataDocumentsFeed *feed;
 	GDataDocumentsQuery *query;
@@ -95,7 +94,7 @@ test_remove_all_documents_and_folders (GDataService *service)
 }
 
 static void
-test_query_all_documents_with_folder (GDataService *service)
+test_query_all_documents_with_folder (gconstpointer service)
 {
 	GDataDocumentsFeed *feed;
 	GDataDocumentsQuery *query;
@@ -115,7 +114,7 @@ test_query_all_documents_with_folder (GDataService *service)
 }
 
 static void
-test_query_all_documents (GDataService *service)
+test_query_all_documents (gconstpointer service)
 {
 	GDataDocumentsFeed *feed;
 	GError *error = NULL;
@@ -149,7 +148,7 @@ test_query_all_documents_async_cb (GDataService *service, GAsyncResult *async_re
 }
 
 static void
-test_query_all_documents_async (GDataService *service)
+test_query_all_documents_async (gconstpointer service)
 {
 	GMainLoop *main_loop = g_main_loop_new (NULL, TRUE);
 
@@ -163,7 +162,7 @@ test_query_all_documents_async (GDataService *service)
 }
 
 static void
-test_upload_metadata (GDataService *service)
+test_upload_metadata (gconstpointer service)
 {
 	GDataDocumentsEntry *document, *new_document;
 	GDataCategory *category;
@@ -188,7 +187,7 @@ test_upload_metadata (GDataService *service)
 }
 
 static void
-test_upload_metadata_file (GDataService *service)
+test_upload_metadata_file (gconstpointer service)
 {
 	GDataDocumentsEntry *document, *new_document;
 	GFile *document_file;
@@ -216,7 +215,7 @@ test_upload_metadata_file (GDataService *service)
 }
 
 static void
-test_upload_file_get_entry (GDataService *service)
+test_upload_file_get_entry (gconstpointer service)
 {
 	GDataDocumentsEntry *new_document, *newly_created_presentation;
 	GFile *document_file;
@@ -246,7 +245,7 @@ test_upload_file_get_entry (GDataService *service)
 }
 
 static void
-test_add_remove_file_from_folder (GDataService *service)
+test_add_remove_file_from_folder (gconstpointer service)
 {
 	GDataDocumentsEntry *document, *new_document, *new_document2;
 	GDataDocumentsFolder *folder, *new_folder;
@@ -292,7 +291,7 @@ test_add_remove_file_from_folder (GDataService *service)
 }
 
 static void
-test_add_file_folder_and_move (GDataService *service)
+test_add_file_folder_and_move (gconstpointer service)
 {
 	GDataDocumentsEntry *document, *new_document, *new_document2;
 	GDataDocumentsFolder *folder, *new_folder;
@@ -338,7 +337,7 @@ test_add_file_folder_and_move (GDataService *service)
 }
 
 static void
-test_upload_file_metadata_in_new_folder (GDataService *service)
+test_upload_file_metadata_in_new_folder (gconstpointer service)
 {
 	GDataDocumentsEntry *document, *new_document;
 	GDataDocumentsFolder *folder, *new_folder;
@@ -380,7 +379,7 @@ test_upload_file_metadata_in_new_folder (GDataService *service)
 }
 
 static void
-test_update_metadata (GDataService *service)
+test_update_metadata (gconstpointer service)
 {
 	GDataDocumentsEntry *document, *new_document, *updated_document;
 	GDataCategory *category;
@@ -413,7 +412,7 @@ test_update_metadata (GDataService *service)
 }
 
 static void
-test_update_metadata_file (GDataService *service)
+test_update_metadata_file (gconstpointer service)
 {
 	GDataDocumentsEntry *document, *new_document, *updated_document;
 	GFile *document_file, *updated_document_file;
@@ -451,7 +450,7 @@ test_update_metadata_file (GDataService *service)
 }
 
 static void
-test_update_file (GDataService *service)
+test_update_file (gconstpointer service)
 {
 	GDataDocumentsEntry *new_document, *updated_document;
 	GFile *document_file, *updated_document_file;
@@ -480,7 +479,7 @@ test_update_file (GDataService *service)
 }
 
 static void
-test_download_all_documents (GDataService *service)
+test_download_all_documents (gconstpointer service)
 {
 	GDataDocumentsFeed *feed;
 	GError *error = NULL;
@@ -551,7 +550,7 @@ test_download_all_documents (GDataService *service)
 }
 
 static void
-test_new_document_with_collaborator (GDataService *service)
+test_new_document_with_collaborator (gconstpointer service)
 {
 	GDataDocumentsEntry *document, *new_document;
 	GDataAccessRule *access_rule, *new_access_rule;
@@ -589,6 +588,31 @@ test_new_document_with_collaborator (GDataService *service)
 	g_object_unref (new_access_rule);
 }
 
+static void
+test_query_etag (void)
+{
+	GDataDocumentsQuery *query = gdata_documents_query_new (NULL);
+
+	/* Test that setting any property will unset the ETag */
+	g_test_bug ("613529");
+
+#define CHECK_ETAG(C) \
+	gdata_query_set_etag (GDATA_QUERY (query), "foobar");		\
+	(C);								\
+	g_assert (gdata_query_get_etag (GDATA_QUERY (query)) == NULL);
+
+	CHECK_ETAG (gdata_documents_query_set_show_deleted (query, FALSE))
+	CHECK_ETAG (gdata_documents_query_set_show_folders (query, TRUE))
+	CHECK_ETAG (gdata_documents_query_set_folder_id (query, "this-is-an-id"))
+	CHECK_ETAG (gdata_documents_query_set_title (query, "Title", FALSE))
+	CHECK_ETAG (gdata_documents_query_add_reader (query, "foo@example.com"))
+	CHECK_ETAG (gdata_documents_query_add_collaborator (query, "foo@example.com"))
+
+#undef CHECK_ETAG
+
+	g_object_unref (query);
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -616,8 +640,7 @@ main (int argc, char *argv[])
 	g_test_add_data_func ("/documents/update/only_file", service, test_update_file);
 	g_test_add_data_func ("/documents/update/metadata_file", service, test_update_metadata_file);
 
-	g_test_add_data_func ("/documents/access_rules/add_document_with_a_collaborator", service,
-			      test_new_document_with_collaborator);
+	g_test_add_data_func ("/documents/access_rules/add_document_with_a_collaborator", service, test_new_document_with_collaborator);
 
 	g_test_add_data_func ("/documents/query/all_documents_with_folder", service, test_query_all_documents_with_folder);
 	g_test_add_data_func ("/documents/query/all_documents", service, test_query_all_documents);
@@ -625,10 +648,10 @@ main (int argc, char *argv[])
 		g_test_add_data_func ("/documents/query/all_documents_async", service, test_query_all_documents_async);
 
 	g_test_add_data_func ("/documents/move/move_to_folder", service, test_add_file_folder_and_move);
-
 	g_test_add_data_func ("/documents/move/remove_from_folder", service, test_add_remove_file_from_folder);
+	/*g_test_add_data_func ("/documents/remove/all", service, test_remove_all_documents_and_folders);*/
 
-	g_test_add_data_func ("/documents/remove/all", service, test_remove_all_documents_and_folders);
+	g_test_add_func ("/documents/query/etag", test_query_etag);
 
 	retval = g_test_run ();
 

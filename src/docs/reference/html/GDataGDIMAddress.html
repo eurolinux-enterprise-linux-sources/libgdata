@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataGDIMAddress</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch05.html" title="GData API">
 <link rel="prev" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress">
-<link rel="next" href="GDataGDOrganization.html" title="GDataGDOrganization">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<link rel="next" href="GDataGDName.html" title="GDataGDName">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -40,7 +18,7 @@
 <td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="GDataGDOrganization.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="GDataGDName.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#GDataGDIMAddress.synopsis" class="shortcut">Top</a>
@@ -52,7 +30,7 @@
                   <a href="#GDataGDIMAddress.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataGDIMAddress">
 <a name="GDataGDIMAddress"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -61,126 +39,132 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataGDIMAddress.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataGDIMAddress.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/gd/gdata-gd-im-address.h&gt;
 
-                    <a href="GDataGDIMAddress.html#GDataGDIMAddress-struct">GDataGDIMAddress</a>;
-                    <a href="GDataGDIMAddress.html#GDataGDIMAddressClass">GDataGDIMAddressClass</a>;
-<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *  <a href="GDataGDIMAddress.html#gdata-gd-im-address-new">gdata_gd_im_address_new</a>             (const gchar *address,
-                                                         const gchar *protocol,
-                                                         const gchar *relation_type,
-                                                         const gchar *label,
-                                                         gboolean is_primary);
-gint                <a href="GDataGDIMAddress.html#gdata-gd-im-address-compare">gdata_gd_im_address_compare</a>         (const <a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *a,
-                                                         const <a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *b);
-const gchar *       <a href="GDataGDIMAddress.html#gdata-gd-im-address-get-address">gdata_gd_im_address_get_address</a>     (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);
-void                <a href="GDataGDIMAddress.html#gdata-gd-im-address-set-address">gdata_gd_im_address_set_address</a>     (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         const gchar *address);
-const gchar *       <a href="GDataGDIMAddress.html#gdata-gd-im-address-get-protocol">gdata_gd_im_address_get_protocol</a>    (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);
-void                <a href="GDataGDIMAddress.html#gdata-gd-im-address-set-protocol">gdata_gd_im_address_set_protocol</a>    (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         const gchar *protocol);
-const gchar *       <a href="GDataGDIMAddress.html#gdata-gd-im-address-get-relation-type">gdata_gd_im_address_get_relation_type</a>
-                                                        (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);
-void                <a href="GDataGDIMAddress.html#gdata-gd-im-address-set-relation-type">gdata_gd_im_address_set_relation_type</a>
-                                                        (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         const gchar *relation_type);
-const gchar *       <a href="GDataGDIMAddress.html#gdata-gd-im-address-get-label">gdata_gd_im_address_get_label</a>       (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);
-void                <a href="GDataGDIMAddress.html#gdata-gd-im-address-set-label">gdata_gd_im_address_set_label</a>       (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         const gchar *label);
-gboolean            <a href="GDataGDIMAddress.html#gdata-gd-im-address-is-primary">gdata_gd_im_address_is_primary</a>      (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);
-void                <a href="GDataGDIMAddress.html#gdata-gd-im-address-set-is-primary">gdata_gd_im_address_set_is_primary</a>  (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         gboolean is_primary);
+                    <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress-struct" title="GDataGDIMAddress">GDataGDIMAddress</a>;
+                    <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddressClass" title="GDataGDIMAddressClass">GDataGDIMAddressClass</a>;
+<a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="returnvalue">GDataGDIMAddress</span></a> *  <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-new" title="gdata_gd_im_address_new ()">gdata_gd_im_address_new</a>             (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *address</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *protocol</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *label</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_primary</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-compare" title="gdata_gd_im_address_compare ()">gdata_gd_im_address_compare</a>         (<em class="parameter"><code>const <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *a</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *b</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-get-address" title="gdata_gd_im_address_get_address ()">gdata_gd_im_address_get_address</a>     (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-set-address" title="gdata_gd_im_address_set_address ()">gdata_gd_im_address_set_address</a>     (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *address</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-get-protocol" title="gdata_gd_im_address_get_protocol ()">gdata_gd_im_address_get_protocol</a>    (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-set-protocol" title="gdata_gd_im_address_set_protocol ()">gdata_gd_im_address_set_protocol</a>    (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *protocol</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-get-relation-type" title="gdata_gd_im_address_get_relation_type ()">gdata_gd_im_address_get_relation_type</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-set-relation-type" title="gdata_gd_im_address_set_relation_type ()">gdata_gd_im_address_set_relation_type</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-get-label" title="gdata_gd_im_address_get_label ()">gdata_gd_im_address_get_label</a>       (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-set-label" title="gdata_gd_im_address_set_label ()">gdata_gd_im_address_set_label</a>       (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *label</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-is-primary" title="gdata_gd_im_address_is_primary ()">gdata_gd_im_address_is_primary</a>      (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataGDIMAddress.html#gdata-gd-im-address-set-is-primary" title="gdata_gd_im_address_set_is_primary ()">gdata_gd_im_address_set_is_primary</a>  (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_primary</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataGDIMAddress.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataParsable.html">GDataParsable</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
          +----GDataGDIMAddress
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataGDIMAddress.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataGDIMAddress.html#GDataGDIMAddress--address">address</a>"                  gchar*                : Read / Write
-  "<a href="GDataGDIMAddress.html#GDataGDIMAddress--is-primary">is-primary</a>"               gboolean              : Read / Write
-  "<a href="GDataGDIMAddress.html#GDataGDIMAddress--label">label</a>"                    gchar*                : Read / Write
-  "<a href="GDataGDIMAddress.html#GDataGDIMAddress--protocol">protocol</a>"                 gchar*                : Read / Write
-  "<a href="GDataGDIMAddress.html#GDataGDIMAddress--relation-type">relation-type</a>"            gchar*                : Read / Write
+  "<a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--address" title='The "address" property'>address</a>"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--is-primary" title='The "is-primary" property'>is-primary</a>"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--label" title='The "label" property'>label</a>"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--protocol" title='The "protocol" property'>protocol</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--relation-type" title='The "relation-type" property'>relation-type</a>"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataGDIMAddress.description"></a><h2>Description</h2>
 <p>
-<a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a> represents an "im" element from the
-<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm" target="_top">GData specification</a>.</p>
+<a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> represents an "im" element from the
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm" target="_top">GData specification</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataGDIMAddress.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataGDIMAddress">
 <a name="GDataGDIMAddress-struct"></a><h3>GDataGDIMAddress</h3>
 <pre class="programlisting">typedef struct _GDataGDIMAddress GDataGDIMAddress;</pre>
 <p>
-All the fields in the <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> structure are private and should never be accessed directly.
+</p>
+<p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataGDIMAddressClass">
 <a name="GDataGDIMAddressClass"></a><h3>GDataGDIMAddressClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataGDIMAddressClass;
 </pre>
 <p>
-All the fields in the <a href="GDataGDIMAddress.html#GDataGDIMAddressClass"><span class="type">GDataGDIMAddressClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddressClass" title="GDataGDIMAddressClass"><span class="type">GDataGDIMAddressClass</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_new ()">
 <a name="gdata-gd-im-address-new"></a><h3>gdata_gd_im_address_new ()</h3>
-<pre class="programlisting"><a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *  gdata_gd_im_address_new             (const gchar *address,
-                                                         const gchar *protocol,
-                                                         const gchar *relation_type,
-                                                         const gchar *label,
-                                                         gboolean is_primary);</pre>
+<pre class="programlisting"><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="returnvalue">GDataGDIMAddress</span></a> *  gdata_gd_im_address_new             (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *address</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *protocol</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *label</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_primary</code></em>);</pre>
 <p>
-Creates a new <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>. More information is available in the <a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm" target="_top">GData specification</a>.</p>
+Creates a new <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>. More information is available in the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm" target="_top">GData specification</a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>address</code></em> :</span></p></td>
-<td> the IM address
+<td>the IM address
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>protocol</code></em> :</span></p></td>
-<td> a URI identifying the IM protocol, or <code class="literal">NULL</code>
+<td>a URI identifying the IM protocol, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>relation_type</code></em> :</span></p></td>
-<td> the relationship between the IM address and its owner, or <code class="literal">NULL</code>
+<td>the relationship between the IM address and its owner, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
-<td> a human-readable label for the IM address, or <code class="literal">NULL</code>
+<td>a human-readable label for the IM address, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>is_primary</code></em> :</span></p></td>
-<td> <code class="literal">TRUE</code> if this IM address is its owner's primary address, <code class="literal">FALSE</code> otherwise
+<td>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if this IM address is its owner's primary address, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> a new <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -189,32 +173,35 @@ Creates a new <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddres
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_compare ()">
 <a name="gdata-gd-im-address-compare"></a><h3>gdata_gd_im_address_compare ()</h3>
-<pre class="programlisting">gint                gdata_gd_im_address_compare         (const <a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *a,
-                                                         const <a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *b);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                gdata_gd_im_address_compare         (<em class="parameter"><code>const <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *a</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *b</code></em>);</pre>
 <p>
-Compares the two IM addresses in a <code class="function">strcmp()</code> fashion. <code class="literal">NULL</code> values are handled gracefully, with
-<code class="literal">0</code> returned if both <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are <code class="literal">NULL</code>, <code class="literal">-1</code> if <em class="parameter"><code>a</code></em> is <code class="literal">NULL</code> and <code class="literal">1</code> if <em class="parameter"><code>b</code></em> is <code class="literal">NULL</code>.
+Compares the two IM addresses in a <code class="function">strcmp()</code> fashion. <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> values are handled gracefully, with
+<code class="code">0</code> returned if both <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, <code class="code">-1</code> if <em class="parameter"><code>a</code></em> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+and <code class="code">1</code> if <em class="parameter"><code>b</code></em> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </p>
 <p>
-The comparison of non-<code class="literal">NULL</code> values is done on the basis of the <em class="parameter"><code>address</code></em> and <em class="parameter"><code>protocol</code></em> properties of the <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>es.</p>
+The comparison of non-<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> values is done on the basis of the <em class="parameter"><code>address</code></em> and <em class="parameter"><code>protocol</code></em> properties of the <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>es.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
-<td> another <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>, or <code class="literal">NULL</code>
+<td>another <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">0</code> if <em class="parameter"><code>a</code></em> equals <em class="parameter"><code>b</code></em>, <code class="literal">-1</code> or <code class="literal">1</code> as appropriate otherwise
+<td> <code class="code">0</code> if <em class="parameter"><code>a</code></em> equals <em class="parameter"><code>b</code></em>, <code class="code">-1</code> or <code class="code">1</code> as
+appropriate otherwise
 
 </td>
 </tr>
@@ -223,22 +210,23 @@ The comparison of non-<code class="literal">NULL</code> values is done on the ba
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_get_address ()">
 <a name="gdata-gd-im-address-get-address"></a><h3>gdata_gd_im_address_get_address ()</h3>
-<pre class="programlisting">const gchar *       gdata_gd_im_address_get_address     (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_gd_im_address_get_address     (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--address"><span class="type">"address"</span></a> property.</p>
+Gets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--address" title='The "address" property'><span class="type">"address"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the IM address itself, or <code class="literal">NULL</code>
+<td> the IM address itself, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -247,23 +235,24 @@ Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--address"><span class="
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_set_address ()">
 <a name="gdata-gd-im-address-set-address"></a><h3>gdata_gd_im_address_set_address ()</h3>
-<pre class="programlisting">void                gdata_gd_im_address_set_address     (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         const gchar *address);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_gd_im_address_set_address     (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *address</code></em>);</pre>
 <p>
-Sets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--address"><span class="type">"address"</span></a> property to <em class="parameter"><code>address</code></em>.</p>
+Sets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--address" title='The "address" property'><span class="type">"address"</span></a> property to <em class="parameter"><code>address</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>address</code></em> :</span></p></td>
-<td> the new IM address
+<td>the new IM address
 </td>
 </tr>
 </tbody>
@@ -271,22 +260,23 @@ Sets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--address"><span class="
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_get_protocol ()">
 <a name="gdata-gd-im-address-get-protocol"></a><h3>gdata_gd_im_address_get_protocol ()</h3>
-<pre class="programlisting">const gchar *       gdata_gd_im_address_get_protocol    (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_gd_im_address_get_protocol    (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--protocol"><span class="type">"protocol"</span></a> property.</p>
+Gets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--protocol" title='The "protocol" property'><span class="type">"protocol"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the IM address' protocol, or <code class="literal">NULL</code>
+<td> the IM address' protocol, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -295,23 +285,24 @@ Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--protocol"><span class=
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_set_protocol ()">
 <a name="gdata-gd-im-address-set-protocol"></a><h3>gdata_gd_im_address_set_protocol ()</h3>
-<pre class="programlisting">void                gdata_gd_im_address_set_protocol    (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         const gchar *protocol);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_gd_im_address_set_protocol    (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *protocol</code></em>);</pre>
 <p>
-Sets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--protocol"><span class="type">"protocol"</span></a> property to <em class="parameter"><code>protocol</code></em>.</p>
+Sets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--protocol" title='The "protocol" property'><span class="type">"protocol"</span></a> property to <em class="parameter"><code>protocol</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>protocol</code></em> :</span></p></td>
-<td> the new IM protocol
+<td>the new IM protocol
 </td>
 </tr>
 </tbody>
@@ -319,23 +310,24 @@ Sets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--protocol"><span class=
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_get_relation_type ()">
 <a name="gdata-gd-im-address-get-relation-type"></a><h3>gdata_gd_im_address_get_relation_type ()</h3>
-<pre class="programlisting">const gchar *       gdata_gd_im_address_get_relation_type
-                                                        (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_gd_im_address_get_relation_type
+                                                        (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--relation-type"><span class="type">"relation-type"</span></a> property.</p>
+Gets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--relation-type" title='The "relation-type" property'><span class="type">"relation-type"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the IM address' relation type, or <code class="literal">NULL</code>
+<td> the IM address' relation type, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -344,27 +336,28 @@ Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--relation-type"><span c
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_set_relation_type ()">
 <a name="gdata-gd-im-address-set-relation-type"></a><h3>gdata_gd_im_address_set_relation_type ()</h3>
-<pre class="programlisting">void                gdata_gd_im_address_set_relation_type
-                                                        (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         const gchar *relation_type);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_gd_im_address_set_relation_type
+                                                        (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>);</pre>
 <p>
-Sets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--relation-type"><span class="type">"relation-type"</span></a> property to <em class="parameter"><code>relation_type</code></em>.
+Sets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--relation-type" title='The "relation-type" property'><span class="type">"relation-type"</span></a> property to <em class="parameter"><code>relation_type</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>relation_type</code></em> to <code class="literal">NULL</code> to unset the property in the IM address.</p>
+Set <em class="parameter"><code>relation_type</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the IM address.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>relation_type</code></em> :</span></p></td>
-<td> the new relation type for the im_address, or <code class="literal">NULL</code>
+<td>the new relation type for the im_address, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -372,22 +365,23 @@ Set <em class="parameter"><code>relation_type</code></em> to <code class="litera
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_get_label ()">
 <a name="gdata-gd-im-address-get-label"></a><h3>gdata_gd_im_address_get_label ()</h3>
-<pre class="programlisting">const gchar *       gdata_gd_im_address_get_label       (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_gd_im_address_get_label       (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--label"><span class="type">"label"</span></a> property.</p>
+Gets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--label" title='The "label" property'><span class="type">"label"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the IM address' label, or <code class="literal">NULL</code>
+<td> the IM address' label, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -396,26 +390,27 @@ Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--label"><span class="ty
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_set_label ()">
 <a name="gdata-gd-im-address-set-label"></a><h3>gdata_gd_im_address_set_label ()</h3>
-<pre class="programlisting">void                gdata_gd_im_address_set_label       (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         const gchar *label);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_gd_im_address_set_label       (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *label</code></em>);</pre>
 <p>
-Sets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--label"><span class="type">"label"</span></a> property to <em class="parameter"><code>label</code></em>.
+Sets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--label" title='The "label" property'><span class="type">"label"</span></a> property to <em class="parameter"><code>label</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>label</code></em> to <code class="literal">NULL</code> to unset the property in the IM address.</p>
+Set <em class="parameter"><code>label</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the IM address.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
-<td> the new label for the IM address, or <code class="literal">NULL</code>
+<td>the new label for the IM address, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -423,22 +418,23 @@ Set <em class="parameter"><code>label</code></em> to <code class="literal">NULL<
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_is_primary ()">
 <a name="gdata-gd-im-address-is-primary"></a><h3>gdata_gd_im_address_is_primary ()</h3>
-<pre class="programlisting">gboolean            gdata_gd_im_address_is_primary      (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_gd_im_address_is_primary      (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--is-primary"><span class="type">"is-primary"</span></a> property.</p>
+Gets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--is-primary" title='The "is-primary" property'><span class="type">"is-primary"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if this is the primary IM address, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if this is the primary IM address, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -447,23 +443,25 @@ Gets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--is-primary"><span clas
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_gd_im_address_set_is_primary ()">
 <a name="gdata-gd-im-address-set-is-primary"></a><h3>gdata_gd_im_address_set_is_primary ()</h3>
-<pre class="programlisting">void                gdata_gd_im_address_set_is_primary  (<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *self,
-                                                         gboolean is_primary);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_gd_im_address_set_is_primary  (<em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_primary</code></em>);</pre>
 <p>
-Sets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--is-primary"><span class="type">"is-primary"</span></a> property to <em class="parameter"><code>is_primary</code></em>.</p>
+Sets the <a class="link" href="GDataGDIMAddress.html#GDataGDIMAddress--is-primary" title='The "is-primary" property'><span class="type">"is-primary"</span></a> property to <em class="parameter"><code>is_primary</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>is_primary</code></em> :</span></p></td>
-<td> <code class="literal">TRUE</code> if this is the primary IM address, <code class="literal">FALSE</code> otherwise
+<td>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if this is the primary IM address, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 </tbody>
@@ -471,69 +469,74 @@ Sets the <a href="GDataGDIMAddress.html#GDataGDIMAddress--is-primary"><span clas
 <p class="since">Since 0.4.0</p>
 </div>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Property Details">
 <a name="GDataGDIMAddress.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "address" property'>
 <a name="GDataGDIMAddress--address"></a><h3>The <code class="literal">"address"</code> property</h3>
-<pre class="programlisting">  "address"                  gchar*                : Read / Write</pre>
+<pre class="programlisting">  "address"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 The IM address itself.
 </p>
 <p>
 For more information, see the
-<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm" target="_top">GData specification</a>.</p>
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm" target="_top">GData specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "is-primary" property'>
 <a name="GDataGDIMAddress--is-primary"></a><h3>The <code class="literal">"is-primary"</code> property</h3>
-<pre class="programlisting">  "is-primary"               gboolean              : Read / Write</pre>
+<pre class="programlisting">  "is-primary"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
 <p>
 Indicates which IM address out of a group is primary.
 </p>
 <p>
 For more information, see the
-<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm" target="_top">GData specification</a>.</p>
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm" target="_top">GData specification</a>.
+</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "label" property'>
 <a name="GDataGDIMAddress--label"></a><h3>The <code class="literal">"label"</code> property</h3>
-<pre class="programlisting">  "label"                    gchar*                : Read / Write</pre>
+<pre class="programlisting">  "label"                    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 A simple string value used to name this IM address. It allows UIs to display a label such as "Work", "Personal", "Preferred", etc.
 </p>
 <p>
 For more information, see the
-<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm" target="_top">GData specification</a>.</p>
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm" target="_top">GData specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "protocol" property'>
 <a name="GDataGDIMAddress--protocol"></a><h3>The <code class="literal">"protocol"</code> property</h3>
-<pre class="programlisting">  "protocol"                 gchar*                : Read / Write</pre>
+<pre class="programlisting">  "protocol"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 Identifies the IM network.
 </p>
 <p>
 For more information, see the
-<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm" target="_top">GData specification</a>.</p>
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm" target="_top">GData specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "relation-type" property'>
 <a name="GDataGDIMAddress--relation-type"></a><h3>The <code class="literal">"relation-type"</code> property</h3>
-<pre class="programlisting">  "relation-type"            gchar*                : Read / Write</pre>
+<pre class="programlisting">  "relation-type"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 A programmatic value that identifies the type of IM address.
 </p>
 <p>
 For more information, see the
-<a class="ulink" href="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm" target="_top">GData specification</a>.</p>
+<a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm" target="_top">GData specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
@@ -541,6 +544,6 @@ For more information, see the
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

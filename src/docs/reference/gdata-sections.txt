@@ -6,6 +6,7 @@ GDataServiceClass
 GDataServiceError
 GDataAuthenticationError
 GDataParserError
+GDataOperationType
 GDataQueryProgressCallback
 gdata_service_authenticate
 gdata_service_authenticate_async
@@ -110,6 +111,7 @@ gdata_feed_get_generator
 gdata_feed_get_links
 gdata_feed_look_up_link
 gdata_feed_get_logo
+gdata_feed_get_icon
 gdata_feed_get_updated
 gdata_feed_get_start_index
 gdata_feed_get_total_results
@@ -232,8 +234,6 @@ gdata_youtube_video_is_draft
 gdata_youtube_video_set_is_draft
 gdata_youtube_video_get_state
 gdata_youtube_video_get_rating
-gdata_youtube_video_get_title
-gdata_youtube_video_set_title
 gdata_youtube_video_get_uploaded
 gdata_youtube_video_get_recorded
 gdata_youtube_video_set_recorded
@@ -311,6 +311,7 @@ GDataContactsContact
 GDataContactsContactClass
 gdata_contacts_contact_new
 gdata_contacts_contact_get_name
+gdata_contacts_contact_set_name
 gdata_contacts_contact_get_email_addresses
 gdata_contacts_contact_get_primary_email_address
 gdata_contacts_contact_add_email_address
@@ -767,6 +768,8 @@ gdata_gd_organization_get_job_description
 gdata_gd_organization_set_job_description
 gdata_gd_organization_get_symbol
 gdata_gd_organization_set_symbol
+gdata_gd_organization_get_location
+gdata_gd_organization_set_location
 <SUBSECTION Standard>
 gdata_gd_organization_get_type
 GDATA_GD_ORGANIZATION
@@ -872,6 +875,8 @@ gdata_gd_email_address_get_label
 gdata_gd_email_address_set_label
 gdata_gd_email_address_is_primary
 gdata_gd_email_address_set_is_primary
+gdata_gd_email_address_get_display_name
+gdata_gd_email_address_set_display_name
 <SUBSECTION Standard>
 gdata_gd_email_address_get_type
 GDATA_GD_EMAIL_ADDRESS
@@ -1104,6 +1109,7 @@ gdata_media_content_get_expression
 gdata_media_content_get_duration
 gdata_media_content_get_height
 gdata_media_content_get_width
+gdata_media_content_download
 <SUBSECTION Standard>
 gdata_media_content_get_type
 GDATA_MEDIA_CONTENT
@@ -1143,6 +1149,7 @@ gdata_media_thumbnail_get_uri
 gdata_media_thumbnail_get_height
 gdata_media_thumbnail_get_width
 gdata_media_thumbnail_get_time
+gdata_media_thumbnail_download
 <SUBSECTION Standard>
 gdata_media_thumbnail_get_type
 GDATA_MEDIA_THUMBNAIL
@@ -1182,10 +1189,14 @@ GDataYouTubeStatePrivate
 GDataPicasaWebService
 GDataPicasaWebServiceClass
 gdata_picasaweb_service_new
+gdata_picasaweb_service_get_user
 gdata_picasaweb_service_query_all_albums
 gdata_picasaweb_service_query_all_albums_async
 gdata_picasaweb_service_query_files
 gdata_picasaweb_service_upload_file
+gdata_picasaweb_service_upload_file_async
+gdata_picasaweb_service_upload_file_finish
+gdata_picasaweb_service_insert_album
 <SUBSECTION Standard>
 gdata_picasaweb_service_get_type
 GDATA_IS_PICASAWEB_SERVICE
@@ -1197,11 +1208,50 @@ GDATA_TYPE_PICASAWEB_SERVICE
 </SECTION>
 
 <SECTION>
+<FILE>gdata-picasaweb-feed</FILE>
+<TITLE>GDataPicasaWebFeed</TITLE>
+GDataPicasaWebFeed
+GDataPicasaWebFeedClass
+<SUBSECTION Standard>
+gdata_picasaweb_feed_get_type
+GDATA_PICASAWEB_FEED
+GDATA_PICASAWEB_FEED_CLASS
+GDATA_PICASAWEB_FEED_GET_CLASS
+GDATA_IS_PICASAWEB_FEED
+GDATA_IS_PICASAWEB_FEED_CLASS
+GDATA_TYPE_PICASAWEB_FEED
+</SECTION>
+
+<SECTION>
+<FILE>gdata-picasaweb-user</FILE>
+<TITLE>GDataPicasaWebUser</TITLE>
+GDataPicasaWebUser
+GDataPicasaWebUserClass
+gdata_picasaweb_user_get_user
+gdata_picasaweb_user_get_nickname
+gdata_picasaweb_user_get_quota_limit
+gdata_picasaweb_user_get_quota_current
+gdata_picasaweb_user_get_max_photos_per_album
+gdata_picasaweb_user_get_thumbnail_uri
+<SUBSECTION Standard>
+gdata_picasaweb_user_get_type
+GDATA_PICASAWEB_USER
+GDATA_PICASAWEB_USER_CLASS
+GDATA_PICASAWEB_USER_GET_CLASS
+GDATA_IS_PICASAWEB_USER
+GDATA_IS_PICASAWEB_USER_CLASS
+GDATA_TYPE_PICASAWEB_USER
+<SUBSECTION Private>
+GDataPicasaWebUserPrivate
+</SECTION>
+
+<SECTION>
 <FILE>gdata-picasaweb-query</FILE>
 <TITLE>GDataPicasaWebQuery</TITLE>
 GDataPicasaWebQuery
 GDataPicasaWebQueryClass
 gdata_picasaweb_query_new
+gdata_picasaweb_query_new_with_limits
 gdata_picasaweb_query_get_visibility
 gdata_picasaweb_query_set_visibility
 gdata_picasaweb_query_get_thumbnail_size
@@ -1233,10 +1283,10 @@ GDataPicasaWebAlbum
 GDataPicasaWebAlbumClass
 GDataPicasaWebVisibility
 gdata_picasaweb_album_new
+gdata_picasaweb_album_get_id
 gdata_picasaweb_album_get_user
 gdata_picasaweb_album_get_nickname
 gdata_picasaweb_album_get_edited
-gdata_picasaweb_album_get_name
 gdata_picasaweb_album_get_location
 gdata_picasaweb_album_set_location
 gdata_picasaweb_album_get_visibility
@@ -1251,8 +1301,6 @@ gdata_picasaweb_album_set_is_commenting_enabled
 gdata_picasaweb_album_get_comment_count
 gdata_picasaweb_album_get_tags
 gdata_picasaweb_album_set_tags
-gdata_picasaweb_album_get_description
-gdata_picasaweb_album_set_description
 gdata_picasaweb_album_get_contents
 gdata_picasaweb_album_get_thumbnails
 gdata_picasaweb_album_get_coordinates
@@ -1275,6 +1323,7 @@ GDataPicasaWebAlbumPrivate
 GDataPicasaWebFile
 GDataPicasaWebFileClass
 gdata_picasaweb_file_new
+gdata_picasaweb_file_get_id
 gdata_picasaweb_file_get_edited
 gdata_picasaweb_file_get_version
 gdata_picasaweb_file_get_position

@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataYouTubeQuery</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch08.html" title="YouTube API">
 <link rel="prev" href="GDataYouTubeService.html" title="GDataYouTubeService">
 <link rel="next" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -52,7 +30,7 @@
                   <a href="#GDataYouTubeQuery.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataYouTubeQuery">
 <a name="GDataYouTubeQuery"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -61,116 +39,119 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataYouTubeQuery.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataYouTubeQuery.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/services/youtube/gdata-youtube-query.h&gt;
 
-                    <a href="GDataYouTubeQuery.html#GDataYouTubeQuery-struct">GDataYouTubeQuery</a>;
-                    <a href="GDataYouTubeQuery.html#GDataYouTubeQueryClass">GDataYouTubeQueryClass</a>;
-enum                <a href="GDataYouTubeQuery.html#GDataYouTubeAge">GDataYouTubeAge</a>;
-enum                <a href="GDataYouTubeQuery.html#GDataYouTubeFormat">GDataYouTubeFormat</a>;
-enum                <a href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch">GDataYouTubeSafeSearch</a>;
-enum                <a href="GDataYouTubeQuery.html#GDataYouTubeSortOrder">GDataYouTubeSortOrder</a>;
-enum                <a href="GDataYouTubeQuery.html#GDataYouTubeUploader">GDataYouTubeUploader</a>;
-<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> * <a href="GDataYouTubeQuery.html#gdata-youtube-query-new">gdata_youtube_query_new</a>             (const gchar *q);
-<a href="GDataYouTubeQuery.html#GDataYouTubeAge">GDataYouTubeAge</a>     <a href="GDataYouTubeQuery.html#gdata-youtube-query-get-age">gdata_youtube_query_get_age</a>         (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-set-age">gdata_youtube_query_set_age</a>         (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeAge">GDataYouTubeAge</a> age);
-<a href="GDataYouTubeQuery.html#GDataYouTubeFormat">GDataYouTubeFormat</a>  <a href="GDataYouTubeQuery.html#gdata-youtube-query-get-format">gdata_youtube_query_get_format</a>      (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-set-format">gdata_youtube_query_set_format</a>      (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeFormat">GDataYouTubeFormat</a> format);
-const gchar *       <a href="GDataYouTubeQuery.html#gdata-youtube-query-get-language">gdata_youtube_query_get_language</a>    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-set-language">gdata_youtube_query_set_language</a>    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         const gchar *language);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-get-location">gdata_youtube_query_get_location</a>    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         gdouble *latitude,
-                                                         gdouble *longitude,
-                                                         gdouble *radius,
-                                                         gboolean *has_location);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-set-location">gdata_youtube_query_set_location</a>    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         gdouble latitude,
-                                                         gdouble longitude,
-                                                         gdouble radius,
-                                                         gboolean has_location);
-const gchar *       <a href="GDataYouTubeQuery.html#gdata-youtube-query-get-order-by">gdata_youtube_query_get_order_by</a>    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-set-order-by">gdata_youtube_query_set_order_by</a>    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         const gchar *order_by);
-const gchar *       <a href="GDataYouTubeQuery.html#gdata-youtube-query-get-restriction">gdata_youtube_query_get_restriction</a> (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-set-restriction">gdata_youtube_query_set_restriction</a> (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         const gchar *restriction);
-<a href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch">GDataYouTubeSafeSearch</a>  <a href="GDataYouTubeQuery.html#gdata-youtube-query-get-safe-search">gdata_youtube_query_get_safe_search</a>
-                                                        (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-set-safe-search">gdata_youtube_query_set_safe_search</a> (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch">GDataYouTubeSafeSearch</a> safe_search);
-<a href="GDataYouTubeQuery.html#GDataYouTubeSortOrder">GDataYouTubeSortOrder</a>  <a href="GDataYouTubeQuery.html#gdata-youtube-query-get-sort-order">gdata_youtube_query_get_sort_order</a>
-                                                        (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-set-sort-order">gdata_youtube_query_set_sort_order</a>  (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeSortOrder">GDataYouTubeSortOrder</a> sort_order);
-<a href="GDataYouTubeQuery.html#GDataYouTubeUploader">GDataYouTubeUploader</a>  <a href="GDataYouTubeQuery.html#gdata-youtube-query-get-uploader">gdata_youtube_query_get_uploader</a>  (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);
-void                <a href="GDataYouTubeQuery.html#gdata-youtube-query-set-uploader">gdata_youtube_query_set_uploader</a>    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeUploader">GDataYouTubeUploader</a> uploader);
+                    <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery-struct" title="GDataYouTubeQuery">GDataYouTubeQuery</a>;
+                    <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQueryClass" title="GDataYouTubeQueryClass">GDataYouTubeQueryClass</a>;
+enum                <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeAge" title="enum GDataYouTubeAge">GDataYouTubeAge</a>;
+enum                <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat">GDataYouTubeFormat</a>;
+enum                <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch" title="enum GDataYouTubeSafeSearch">GDataYouTubeSafeSearch</a>;
+enum                <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSortOrder" title="enum GDataYouTubeSortOrder">GDataYouTubeSortOrder</a>;
+enum                <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeUploader" title="enum GDataYouTubeUploader">GDataYouTubeUploader</a>;
+<a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="returnvalue">GDataYouTubeQuery</span></a> * <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-new" title="gdata_youtube_query_new ()">gdata_youtube_query_new</a>             (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>);
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeAge" title="enum GDataYouTubeAge"><span class="returnvalue">GDataYouTubeAge</span></a>     <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-get-age" title="gdata_youtube_query_get_age ()">gdata_youtube_query_get_age</a>         (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-set-age" title="gdata_youtube_query_set_age ()">gdata_youtube_query_set_age</a>         (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeAge" title="enum GDataYouTubeAge"><span class="type">GDataYouTubeAge</span></a> age</code></em>);
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="returnvalue">GDataYouTubeFormat</span></a>  <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-get-format" title="gdata_youtube_query_get_format ()">gdata_youtube_query_get_format</a>      (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-set-format" title="gdata_youtube_query_set_format ()">gdata_youtube_query_set_format</a>      (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="type">GDataYouTubeFormat</span></a> format</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-get-language" title="gdata_youtube_query_get_language ()">gdata_youtube_query_get_language</a>    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-set-language" title="gdata_youtube_query_set_language ()">gdata_youtube_query_set_language</a>    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *language</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-get-location" title="gdata_youtube_query_get_location ()">gdata_youtube_query_get_location</a>    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *longitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *radius</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> *has_location</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-set-location" title="gdata_youtube_query_set_location ()">gdata_youtube_query_set_location</a>    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> longitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> radius</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> has_location</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-get-order-by" title="gdata_youtube_query_get_order_by ()">gdata_youtube_query_get_order_by</a>    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-set-order-by" title="gdata_youtube_query_set_order_by ()">gdata_youtube_query_set_order_by</a>    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *order_by</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-get-restriction" title="gdata_youtube_query_get_restriction ()">gdata_youtube_query_get_restriction</a> (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-set-restriction" title="gdata_youtube_query_set_restriction ()">gdata_youtube_query_set_restriction</a> (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *restriction</code></em>);
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch" title="enum GDataYouTubeSafeSearch"><span class="returnvalue">GDataYouTubeSafeSearch</span></a>  <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-get-safe-search" title="gdata_youtube_query_get_safe_search ()">gdata_youtube_query_get_safe_search</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-set-safe-search" title="gdata_youtube_query_set_safe_search ()">gdata_youtube_query_set_safe_search</a> (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch" title="enum GDataYouTubeSafeSearch"><span class="type">GDataYouTubeSafeSearch</span></a> safe_search</code></em>);
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSortOrder" title="enum GDataYouTubeSortOrder"><span class="returnvalue">GDataYouTubeSortOrder</span></a>  <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-get-sort-order" title="gdata_youtube_query_get_sort_order ()">gdata_youtube_query_get_sort_order</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-set-sort-order" title="gdata_youtube_query_set_sort_order ()">gdata_youtube_query_set_sort_order</a>  (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSortOrder" title="enum GDataYouTubeSortOrder"><span class="type">GDataYouTubeSortOrder</span></a> sort_order</code></em>);
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeUploader" title="enum GDataYouTubeUploader"><span class="returnvalue">GDataYouTubeUploader</span></a>  <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-get-uploader" title="gdata_youtube_query_get_uploader ()">gdata_youtube_query_get_uploader</a>  (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataYouTubeQuery.html#gdata-youtube-query-set-uploader" title="gdata_youtube_query_set_uploader ()">gdata_youtube_query_set_uploader</a>    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeUploader" title="enum GDataYouTubeUploader"><span class="type">GDataYouTubeUploader</span></a> uploader</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataYouTubeQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataQuery.html">GDataQuery</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataQuery.html" title="GDataQuery">GDataQuery</a>
          +----GDataYouTubeQuery
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataYouTubeQuery.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--age">age</a>"                      <a href="GDataYouTubeQuery.html#GDataYouTubeAge">GDataYouTubeAge</a>       : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--format">format</a>"                   <a href="GDataYouTubeQuery.html#GDataYouTubeFormat">GDataYouTubeFormat</a>    : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--has-location">has-location</a>"             gboolean              : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--language">language</a>"                 gchar*                : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude">latitude</a>"                 gdouble               : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--location-radius">location-radius</a>"          gdouble               : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude">longitude</a>"                gdouble               : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--order-by">order-by</a>"                 gchar*                : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--restriction">restriction</a>"              gchar*                : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--safe-search">safe-search</a>"              <a href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch">GDataYouTubeSafeSearch</a>  : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--sort-order">sort-order</a>"               <a href="GDataYouTubeQuery.html#GDataYouTubeSortOrder">GDataYouTubeSortOrder</a>  : Read / Write
-  "<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--uploader">uploader</a>"                 <a href="GDataYouTubeQuery.html#GDataYouTubeUploader">GDataYouTubeUploader</a>  : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--age" title='The "age" property'>age</a>"                      <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeAge" title="enum GDataYouTubeAge"><span class="type">GDataYouTubeAge</span></a>       : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--format" title='The "format" property'>format</a>"                   <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="type">GDataYouTubeFormat</span></a>    : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--has-location" title='The "has-location" property'>has-location</a>"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--language" title='The "language" property'>language</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude" title='The "latitude" property'>latitude</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--location-radius" title='The "location-radius" property'>location-radius</a>"          <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude" title='The "longitude" property'>longitude</a>"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--order-by" title='The "order-by" property'>order-by</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--restriction" title='The "restriction" property'>restriction</a>"              <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--safe-search" title='The "safe-search" property'>safe-search</a>"              <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch" title="enum GDataYouTubeSafeSearch"><span class="type">GDataYouTubeSafeSearch</span></a>  : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--sort-order" title='The "sort-order" property'>sort-order</a>"               <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSortOrder" title="enum GDataYouTubeSortOrder"><span class="type">GDataYouTubeSortOrder</span></a>  : Read / Write
+  "<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--uploader" title='The "uploader" property'>uploader</a>"                 <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeUploader" title="enum GDataYouTubeUploader"><span class="type">GDataYouTubeUploader</span></a>  : Read / Write
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataYouTubeQuery.description"></a><h2>Description</h2>
 <p>
-<a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> represents a collection of query parameters specific to the YouTube service, which go above and beyond
-those catered for by <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>.
+<a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> represents a collection of query parameters specific to the YouTube service, which go above and beyond
+those catered for by <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a>.
 </p>
 <p>
-For more information on the custom GData query parameters supported by <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#Custom_parameters" target="_top">online documentation</a>.</p>
+For more information on the custom GData query parameters supported by <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#Custom_parameters" target="_top">online documentation</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataYouTubeQuery.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataYouTubeQuery">
 <a name="GDataYouTubeQuery-struct"></a><h3>GDataYouTubeQuery</h3>
 <pre class="programlisting">typedef struct _GDataYouTubeQuery GDataYouTubeQuery;</pre>
 <p>
-All the fields in the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataYouTubeQueryClass">
 <a name="GDataYouTubeQueryClass"></a><h3>GDataYouTubeQueryClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataYouTubeQueryClass;
 </pre>
 <p>
-All the fields in the <a href="GDataYouTubeQuery.html#GDataYouTubeQueryClass"><span class="type">GDataYouTubeQueryClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQueryClass" title="GDataYouTubeQueryClass"><span class="type">GDataYouTubeQueryClass</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GDataYouTubeAge">
 <a name="GDataYouTubeAge"></a><h3>enum GDataYouTubeAge</h3>
 <pre class="programlisting">typedef enum {
 	GDATA_YOUTUBE_AGE_ALL_TIME = 0,
@@ -180,28 +161,29 @@ All the fields in the <a href="GDataYouTubeQuery.html#GDataYouTubeQueryClass"><s
 } GDataYouTubeAge;
 </pre>
 <p>
-Video ages, allowing queries to be limited to videos uploaded in a recent time period.</p>
+Video ages, allowing queries to be limited to videos uploaded in a recent time period.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-AGE-ALL-TIME:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_AGE_ALL_TIME</code></span></p></td>
-<td> retrieve all videos, regardless of the date they were uploaded
+<td>retrieve all videos, regardless of the date they were uploaded
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-AGE-TODAY:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_AGE_TODAY</code></span></p></td>
-<td> retrieve only videos uploaded in the past day
+<td>retrieve only videos uploaded in the past day
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-AGE-THIS-WEEK:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_AGE_THIS_WEEK</code></span></p></td>
-<td> retrieve only videos uploaded in the past week
+<td>retrieve only videos uploaded in the past week
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-AGE-THIS-MONTH:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_AGE_THIS_MONTH</code></span></p></td>
-<td> retrieve only videos uploaded in the past month
+<td>retrieve only videos uploaded in the past month
 </td>
 </tr>
 </tbody>
@@ -209,7 +191,7 @@ Video ages, allowing queries to be limited to videos uploaded in a recent time p
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GDataYouTubeFormat">
 <a name="GDataYouTubeFormat"></a><h3>enum GDataYouTubeFormat</h3>
 <pre class="programlisting">typedef enum {
 	GDATA_YOUTUBE_FORMAT_UNKNOWN = 0,
@@ -220,28 +202,29 @@ Video ages, allowing queries to be limited to videos uploaded in a recent time p
 </pre>
 <p>
 Video formats available on YouTube. For more information, see the
-<a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#formatsp" target="_top">online documentation</a>.</p>
+<a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#formatsp" target="_top">online documentation</a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-FORMAT-UNKNOWN:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_FORMAT_UNKNOWN</code></span></p></td>
-<td> retrieve videos in all formats when querying the service
+<td>retrieve videos in all formats when querying the service
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-FORMAT-RTSP-H263-AMR:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_FORMAT_RTSP_H263_AMR</code></span></p></td>
-<td> RTSP streaming URI for mobile video playback; H.263 video (up to 176×144) and AMR audio
+<td>RTSP streaming URI for mobile video playback; H.263 video (up to 176×144) and AMR audio
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-FORMAT-HTTP-SWF:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_FORMAT_HTTP_SWF</code></span></p></td>
-<td> HTTP URI to the embeddable player (SWF) for this video
+<td>HTTP URI to the embeddable player (SWF) for this video
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-FORMAT-RTSP-MPEG4-AAC:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_FORMAT_RTSP_MPEG4_AAC</code></span></p></td>
-<td> RTSP streaming URI for mobile video playback; MPEG-4 SP video (up to 176×144) and AAC audio
+<td>RTSP streaming URI for mobile video playback; MPEG-4 SP video (up to 176×144) and AAC audio
 </td>
 </tr>
 </tbody>
@@ -249,7 +232,7 @@ Video formats available on YouTube. For more information, see the
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GDataYouTubeSafeSearch">
 <a name="GDataYouTubeSafeSearch"></a><h3>enum GDataYouTubeSafeSearch</h3>
 <pre class="programlisting">typedef enum {
 	GDATA_YOUTUBE_SAFE_SEARCH_NONE = 0,
@@ -259,24 +242,25 @@ Video formats available on YouTube. For more information, see the
 </pre>
 <p>
 Safe search levels for removing restricted entries from query results. For more information, see the
-<a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#safeSearchsp" target="_top">online documentation</a>.</p>
+<a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#safeSearchsp" target="_top">online documentation</a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-SAFE-SEARCH-NONE:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_SAFE_SEARCH_NONE</code></span></p></td>
-<td> YouTube will not perform any filtering on the search result set
+<td>YouTube will not perform any filtering on the search result set
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-SAFE-SEARCH-MODERATE:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_SAFE_SEARCH_MODERATE</code></span></p></td>
-<td> YouTube will filter some content from search results and, at the least,
+<td>YouTube will filter some content from search results and, at the least,
 will filter content that is restricted in your locale
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-SAFE-SEARCH-STRICT:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_SAFE_SEARCH_STRICT</code></span></p></td>
-<td> YouTube will try to exclude all restricted content from the search result set
+<td>YouTube will try to exclude all restricted content from the search result set
 </td>
 </tr>
 </tbody>
@@ -284,7 +268,7 @@ will filter content that is restricted in your locale
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GDataYouTubeSortOrder">
 <a name="GDataYouTubeSortOrder"></a><h3>enum GDataYouTubeSortOrder</h3>
 <pre class="programlisting">typedef enum {
 	GDATA_YOUTUBE_SORT_NONE = 0,
@@ -293,23 +277,24 @@ will filter content that is restricted in your locale
 } GDataYouTubeSortOrder;
 </pre>
 <p>
-Sort orders for the search results from queries. They specify the order of the designated order field.</p>
+Sort orders for the search results from queries. They specify the order of the designated order field.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-SORT-NONE:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_SORT_NONE</code></span></p></td>
-<td> do not explicitly sort in any sense
+<td>do not explicitly sort in any sense
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-SORT-ASCENDING:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_SORT_ASCENDING</code></span></p></td>
-<td> sort results in ascending order of the order field
+<td>sort results in ascending order of the order field
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-SORT-DESCENDING:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_SORT_DESCENDING</code></span></p></td>
-<td> sort results in descending order of the order field
+<td>sort results in descending order of the order field
 </td>
 </tr>
 </tbody>
@@ -317,7 +302,7 @@ Sort orders for the search results from queries. They specify the order of the d
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GDataYouTubeUploader">
 <a name="GDataYouTubeUploader"></a><h3>enum GDataYouTubeUploader</h3>
 <pre class="programlisting">typedef enum {
 	GDATA_YOUTUBE_UPLOADER_ALL = 0,
@@ -325,18 +310,19 @@ Sort orders for the search results from queries. They specify the order of the d
 } GDataYouTubeUploader;
 </pre>
 <p>
-Video uploaders, allowing queries to be limited to returning videos uploaded by YouTube partners.</p>
+Video uploaders, allowing queries to be limited to returning videos uploaded by YouTube partners.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-UPLOADER-ALL:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_UPLOADER_ALL</code></span></p></td>
-<td> retrieve all videos, regardless of who uploaded them
+<td>retrieve all videos, regardless of who uploaded them
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-YOUTUBE-UPLOADER-PARTNER:CAPS"></a><span class="term"><code class="literal">GDATA_YOUTUBE_UPLOADER_PARTNER</code></span></p></td>
-<td> retrieve only videos uploaded by YouTube partners
+<td>retrieve only videos uploaded by YouTube partners
 </td>
 </tr>
 </tbody>
@@ -344,22 +330,23 @@ Video uploaders, allowing queries to be limited to returning videos uploaded by 
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_new ()">
 <a name="gdata-youtube-query-new"></a><h3>gdata_youtube_query_new ()</h3>
-<pre class="programlisting"><a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> * gdata_youtube_query_new             (const gchar *q);</pre>
+<pre class="programlisting"><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="returnvalue">GDataYouTubeQuery</span></a> * gdata_youtube_query_new             (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>);</pre>
 <p>
-Creates a new <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> with its <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>.</p>
+Creates a new <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> with its <a class="link" href="GDataQuery.html#GDataQuery--q" title='The "q" property'><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
-<td> a query string
+<td>a query string
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td> a new <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 
 </td>
 </tr>
@@ -368,17 +355,18 @@ Creates a new <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQu
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_get_age ()">
 <a name="gdata-youtube-query-get-age"></a><h3>gdata_youtube_query_get_age ()</h3>
-<pre class="programlisting"><a href="GDataYouTubeQuery.html#GDataYouTubeAge">GDataYouTubeAge</a>     gdata_youtube_query_get_age         (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeAge" title="enum GDataYouTubeAge"><span class="returnvalue">GDataYouTubeAge</span></a>     gdata_youtube_query_get_age         (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--age"><span class="type">"age"</span></a> property.</p>
+Gets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--age" title='The "age" property'><span class="type">"age"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
@@ -392,23 +380,24 @@ Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--age"><span class="ty
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_set_age ()">
 <a name="gdata-youtube-query-set-age"></a><h3>gdata_youtube_query_set_age ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_set_age         (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeAge">GDataYouTubeAge</a> age);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_set_age         (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeAge" title="enum GDataYouTubeAge"><span class="type">GDataYouTubeAge</span></a> age</code></em>);</pre>
 <p>
-Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--age"><span class="type">"age"</span></a> property of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>age</code></em>.</p>
+Sets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--age" title='The "age" property'><span class="type">"age"</span></a> property of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>age</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>age</code></em> :</span></p></td>
-<td> the new age
+<td>the new age
 </td>
 </tr>
 </tbody>
@@ -416,17 +405,18 @@ Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--age"><span class="ty
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_get_format ()">
 <a name="gdata-youtube-query-get-format"></a><h3>gdata_youtube_query_get_format ()</h3>
-<pre class="programlisting"><a href="GDataYouTubeQuery.html#GDataYouTubeFormat">GDataYouTubeFormat</a>  gdata_youtube_query_get_format      (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="returnvalue">GDataYouTubeFormat</span></a>  gdata_youtube_query_get_format      (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--format"><span class="type">"format"</span></a> property.</p>
+Gets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--format" title='The "format" property'><span class="type">"format"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
@@ -440,23 +430,24 @@ Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--format"><span class=
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_set_format ()">
 <a name="gdata-youtube-query-set-format"></a><h3>gdata_youtube_query_set_format ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_set_format      (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeFormat">GDataYouTubeFormat</a> format);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_set_format      (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="type">GDataYouTubeFormat</span></a> format</code></em>);</pre>
 <p>
-Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--format"><span class="type">"format"</span></a> property of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>format</code></em>.</p>
+Sets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--format" title='The "format" property'><span class="type">"format"</span></a> property of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>format</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
-<td> the requested video format
+<td>the requested video format
 </td>
 </tr>
 </tbody>
@@ -464,22 +455,23 @@ Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--format"><span class=
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_get_language ()">
 <a name="gdata-youtube-query-get-language"></a><h3>gdata_youtube_query_get_language ()</h3>
-<pre class="programlisting">const gchar *       gdata_youtube_query_get_language    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_youtube_query_get_language    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--language"><span class="type">"language"</span></a> property.</p>
+Gets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--language" title='The "language" property'><span class="type">"language"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the language property, or <code class="literal">NULL</code> if it is unset
+<td> the language property, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if it is unset
 
 </td>
 </tr>
@@ -488,26 +480,27 @@ Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--language"><span clas
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_set_language ()">
 <a name="gdata-youtube-query-set-language"></a><h3>gdata_youtube_query_set_language ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_set_language    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         const gchar *language);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_set_language    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *language</code></em>);</pre>
 <p>
-Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--language"><span class="type">"language"</span></a> property of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> to the new language, <em class="parameter"><code>language</code></em>.
+Sets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--language" title='The "language" property'><span class="type">"language"</span></a> property of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> to the new language, <em class="parameter"><code>language</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>language</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>language</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>language</code></em> :</span></p></td>
-<td> a new language name, or <code class="literal">NULL</code>
+<td>a new language name, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -515,42 +508,43 @@ Set <em class="parameter"><code>language</code></em> to <code class="literal">NU
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_get_location ()">
 <a name="gdata-youtube-query-get-location"></a><h3>gdata_youtube_query_get_location ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_get_location    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         gdouble *latitude,
-                                                         gdouble *longitude,
-                                                         gdouble *radius,
-                                                         gboolean *has_location);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_get_location    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *longitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *radius</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> *has_location</code></em>);</pre>
 <p>
-Gets the location-based properties of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>: <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude"><span class="type">"latitude"</span></a>, <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude"><span class="type">"longitude"</span></a>,
-<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--location-radius"><span class="type">"location-radius"</span></a> and <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--has-location"><span class="type">"has-location"</span></a>.</p>
+Gets the location-based properties of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>: <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a>, <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude" title='The "longitude" property'><span class="type">"longitude"</span></a>,
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--location-radius" title='The "location-radius" property'><span class="type">"location-radius"</span></a> and <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--has-location" title='The "has-location" property'><span class="type">"has-location"</span></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>latitude</code></em> :</span></p></td>
-<td> a location in which to return the latitude, or <code class="literal">NULL</code>
+<td>a location in which to return the latitude, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>longitude</code></em> :</span></p></td>
-<td> a location in which to return the longitude, or <code class="literal">NULL</code>
+<td>a location in which to return the longitude, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>radius</code></em> :</span></p></td>
-<td> a location in which to return the location radius, or <code class="literal">NULL</code>
+<td>a location in which to return the location radius, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>has_location</code></em> :</span></p></td>
-<td> a location in which to return <code class="literal">TRUE</code> if the query is searching for videos with a specific location, <code class="literal">FALSE</code> otherwise, or <code class="literal">NULL</code>
+<td>a location in which to return <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the query is searching for videos with a specific location, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -558,42 +552,44 @@ Gets the location-based properties of the <a href="GDataYouTubeQuery.html"><span
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_set_location ()">
 <a name="gdata-youtube-query-set-location"></a><h3>gdata_youtube_query_set_location ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_set_location    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         gdouble latitude,
-                                                         gdouble longitude,
-                                                         gdouble radius,
-                                                         gboolean has_location);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_set_location    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> longitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> radius</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> has_location</code></em>);</pre>
 <p>
-Sets the location-based properties of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>: <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude"><span class="type">"latitude"</span></a>, <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude"><span class="type">"longitude"</span></a>,
-<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--location-radius"><span class="type">"location-radius"</span></a> and <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--has-location"><span class="type">"has-location"</span></a>.</p>
+Sets the location-based properties of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>: <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a>, <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude" title='The "longitude" property'><span class="type">"longitude"</span></a>,
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--location-radius" title='The "location-radius" property'><span class="type">"location-radius"</span></a> and <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--has-location" title='The "has-location" property'><span class="type">"has-location"</span></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>latitude</code></em> :</span></p></td>
-<td> the new latitude, or <code class="literal">G_MAXDOUBLE</code>
+<td>the new latitude, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Limits-of-Basic-Types.html#G-MAXDOUBLE:CAPS"><code class="literal">G_MAXDOUBLE</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>longitude</code></em> :</span></p></td>
-<td> the new longitude, or <code class="literal">G_MAXDOUBLE</code>
+<td>the new longitude, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Limits-of-Basic-Types.html#G-MAXDOUBLE:CAPS"><code class="literal">G_MAXDOUBLE</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>radius</code></em> :</span></p></td>
-<td> the new location radius, or <code class="literal">0</code>
+<td>the new location radius, or <code class="code">0</code>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>has_location</code></em> :</span></p></td>
-<td> <code class="literal">TRUE</code> if the query is for videos with a specific location, <code class="literal">FALSE</code> otherwise
+<td>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the query is for videos with a specific location, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 </tbody>
@@ -601,22 +597,23 @@ Sets the location-based properties of the <a href="GDataYouTubeQuery.html"><span
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_get_order_by ()">
 <a name="gdata-youtube-query-get-order-by"></a><h3>gdata_youtube_query_get_order_by ()</h3>
-<pre class="programlisting">const gchar *       gdata_youtube_query_get_order_by    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_youtube_query_get_order_by    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--order-by"><span class="type">"order-by"</span></a> property.</p>
+Gets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--order-by" title='The "order-by" property'><span class="type">"order-by"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the order by property, or <code class="literal">NULL</code> if it is unset
+<td> the order by property, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if it is unset
 
 </td>
 </tr>
@@ -625,26 +622,27 @@ Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--order-by"><span clas
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_set_order_by ()">
 <a name="gdata-youtube-query-set-order-by"></a><h3>gdata_youtube_query_set_order_by ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_set_order_by    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         const gchar *order_by);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_set_order_by    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *order_by</code></em>);</pre>
 <p>
-Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--order-by"><span class="type">"order-by"</span></a> property of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> to the new order by string, <em class="parameter"><code>order_by</code></em>.
+Sets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--order-by" title='The "order-by" property'><span class="type">"order-by"</span></a> property of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> to the new order by string, <em class="parameter"><code>order_by</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>order_by</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>order_by</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>order_by</code></em> :</span></p></td>
-<td> a new order by string, or <code class="literal">NULL</code>
+<td>a new order by string, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -652,22 +650,23 @@ Set <em class="parameter"><code>order_by</code></em> to <code class="literal">NU
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_get_restriction ()">
 <a name="gdata-youtube-query-get-restriction"></a><h3>gdata_youtube_query_get_restriction ()</h3>
-<pre class="programlisting">const gchar *       gdata_youtube_query_get_restriction (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_youtube_query_get_restriction (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--restriction"><span class="type">"restriction"</span></a> property.</p>
+Gets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--restriction" title='The "restriction" property'><span class="type">"restriction"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the restriction property, or <code class="literal">NULL</code> if it is unset
+<td> the restriction property, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if it is unset
 
 </td>
 </tr>
@@ -676,26 +675,27 @@ Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--restriction"><span c
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_set_restriction ()">
 <a name="gdata-youtube-query-set-restriction"></a><h3>gdata_youtube_query_set_restriction ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_set_restriction (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         const gchar *restriction);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_set_restriction (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *restriction</code></em>);</pre>
 <p>
-Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--restriction"><span class="type">"restriction"</span></a> property of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> to the new restriction string, <em class="parameter"><code>restriction</code></em>.
+Sets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--restriction" title='The "restriction" property'><span class="type">"restriction"</span></a> property of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> to the new restriction string, <em class="parameter"><code>restriction</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>restriction</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>restriction</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>restriction</code></em> :</span></p></td>
-<td> a new restriction string, or <code class="literal">NULL</code>
+<td>a new restriction string, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -703,18 +703,19 @@ Set <em class="parameter"><code>restriction</code></em> to <code class="literal"
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_get_safe_search ()">
 <a name="gdata-youtube-query-get-safe-search"></a><h3>gdata_youtube_query_get_safe_search ()</h3>
-<pre class="programlisting"><a href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch">GDataYouTubeSafeSearch</a>  gdata_youtube_query_get_safe_search
-                                                        (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch" title="enum GDataYouTubeSafeSearch"><span class="returnvalue">GDataYouTubeSafeSearch</span></a>  gdata_youtube_query_get_safe_search
+                                                        (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--safe-search"><span class="type">"safe-search"</span></a> property.</p>
+Gets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--safe-search" title='The "safe-search" property'><span class="type">"safe-search"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
@@ -728,23 +729,24 @@ Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--safe-search"><span c
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_set_safe_search ()">
 <a name="gdata-youtube-query-set-safe-search"></a><h3>gdata_youtube_query_set_safe_search ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_set_safe_search (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch">GDataYouTubeSafeSearch</a> safe_search);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_set_safe_search (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch" title="enum GDataYouTubeSafeSearch"><span class="type">GDataYouTubeSafeSearch</span></a> safe_search</code></em>);</pre>
 <p>
-Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--safe-search"><span class="type">"safe-search"</span></a> property of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>safe_search</code></em>.</p>
+Sets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--safe-search" title='The "safe-search" property'><span class="type">"safe-search"</span></a> property of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>safe_search</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>safe_search</code></em> :</span></p></td>
-<td> a new safe search level
+<td>a new safe search level
 </td>
 </tr>
 </tbody>
@@ -752,18 +754,19 @@ Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--safe-search"><span c
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_get_sort_order ()">
 <a name="gdata-youtube-query-get-sort-order"></a><h3>gdata_youtube_query_get_sort_order ()</h3>
-<pre class="programlisting"><a href="GDataYouTubeQuery.html#GDataYouTubeSortOrder">GDataYouTubeSortOrder</a>  gdata_youtube_query_get_sort_order
-                                                        (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSortOrder" title="enum GDataYouTubeSortOrder"><span class="returnvalue">GDataYouTubeSortOrder</span></a>  gdata_youtube_query_get_sort_order
+                                                        (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--sort-order"><span class="type">"sort-order"</span></a> property.</p>
+Gets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--sort-order" title='The "sort-order" property'><span class="type">"sort-order"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
@@ -777,26 +780,27 @@ Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--sort-order"><span cl
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_set_sort_order ()">
 <a name="gdata-youtube-query-set-sort-order"></a><h3>gdata_youtube_query_set_sort_order ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_set_sort_order  (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeSortOrder">GDataYouTubeSortOrder</a> sort_order);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_set_sort_order  (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSortOrder" title="enum GDataYouTubeSortOrder"><span class="type">GDataYouTubeSortOrder</span></a> sort_order</code></em>);</pre>
 <p>
-Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--sort-order"><span class="type">"sort-order"</span></a> property of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>sort_order</code></em>.
+Sets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--sort-order" title='The "sort-order" property'><span class="type">"sort-order"</span></a> property of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>sort_order</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>sort_order</code></em> to <code class="literal">GDATA_YOUTUBE_SORT_NONE</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>sort_order</code></em> to <a class="link" href="GDataYouTubeQuery.html#GDATA-YOUTUBE-SORT-NONE:CAPS"><code class="literal">GDATA_YOUTUBE_SORT_NONE</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>sort_order</code></em> :</span></p></td>
-<td> the new sort order
+<td>the new sort order
 </td>
 </tr>
 </tbody>
@@ -804,17 +808,18 @@ Set <em class="parameter"><code>sort_order</code></em> to <code class="literal">
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_get_uploader ()">
 <a name="gdata-youtube-query-get-uploader"></a><h3>gdata_youtube_query_get_uploader ()</h3>
-<pre class="programlisting"><a href="GDataYouTubeQuery.html#GDataYouTubeUploader">GDataYouTubeUploader</a>  gdata_youtube_query_get_uploader  (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeUploader" title="enum GDataYouTubeUploader"><span class="returnvalue">GDataYouTubeUploader</span></a>  gdata_youtube_query_get_uploader  (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--uploader"><span class="type">"uploader"</span></a> property.</p>
+Gets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--uploader" title='The "uploader" property'><span class="type">"uploader"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
@@ -828,23 +833,24 @@ Gets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--uploader"><span clas
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_youtube_query_set_uploader ()">
 <a name="gdata-youtube-query-set-uploader"></a><h3>gdata_youtube_query_set_uploader ()</h3>
-<pre class="programlisting">void                gdata_youtube_query_set_uploader    (<a href="GDataYouTubeQuery.html">GDataYouTubeQuery</a> *self,
-                                                         <a href="GDataYouTubeQuery.html#GDataYouTubeUploader">GDataYouTubeUploader</a> uploader);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_youtube_query_set_uploader    (<em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeUploader" title="enum GDataYouTubeUploader"><span class="type">GDataYouTubeUploader</span></a> uploader</code></em>);</pre>
 <p>
-Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--uploader"><span class="type">"uploader"</span></a> property of the <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>uploader</code></em>.</p>
+Sets the <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--uploader" title='The "uploader" property'><span class="type">"uploader"</span></a> property of the <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a> to <em class="parameter"><code>uploader</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataYouTubeQuery.html"><span class="type">GDataYouTubeQuery</span></a>
+<td>a <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery"><span class="type">GDataYouTubeQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>uploader</code></em> :</span></p></td>
-<td> the new uploader
+<td>the new uploader
 </td>
 </tr>
 </tbody>
@@ -852,115 +858,123 @@ Sets the <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--uploader"><span clas
 <p class="since">Since 0.3.0</p>
 </div>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Property Details">
 <a name="GDataYouTubeQuery.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "age" property'>
 <a name="GDataYouTubeQuery--age"></a><h3>The <code class="literal">"age"</code> property</h3>
-<pre class="programlisting">  "age"                      <a href="GDataYouTubeQuery.html#GDataYouTubeAge">GDataYouTubeAge</a>       : Read / Write</pre>
+<pre class="programlisting">  "age"                      <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeAge" title="enum GDataYouTubeAge"><span class="type">GDataYouTubeAge</span></a>       : Read / Write</pre>
 <p>
 Restricts the search to videos uploaded within the specified time period. To retrieve videos irrespective of their
-age, set the property to <code class="literal">GDATA_YOUTUBE_AGE_ALL_TIME</code>.</p>
+age, set the property to <a class="link" href="GDataYouTubeQuery.html#GDATA-YOUTUBE-AGE-ALL-TIME:CAPS"><code class="literal">GDATA_YOUTUBE_AGE_ALL_TIME</code></a>.
+</p>
 <p>Default value: GDATA_YOUTUBE_AGE_ALL_TIME</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "format" property'>
 <a name="GDataYouTubeQuery--format"></a><h3>The <code class="literal">"format"</code> property</h3>
-<pre class="programlisting">  "format"                   <a href="GDataYouTubeQuery.html#GDataYouTubeFormat">GDataYouTubeFormat</a>    : Read / Write</pre>
+<pre class="programlisting">  "format"                   <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="type">GDataYouTubeFormat</span></a>    : Read / Write</pre>
 <p>
-Specifies that videos must be available in a particular video format. Use <code class="literal">GDATA_YOUTUBE_FORMAT_UNKNOWN</code> to
-retrieve videos irrespective of their format availability.</p>
+Specifies that videos must be available in a particular video format. Use <a class="link" href="GDataYouTubeQuery.html#GDATA-YOUTUBE-FORMAT-UNKNOWN:CAPS"><code class="literal">GDATA_YOUTUBE_FORMAT_UNKNOWN</code></a> to
+retrieve videos irrespective of their format availability.
+</p>
 <p>Default value: GDATA_YOUTUBE_FORMAT_UNKNOWN</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "has-location" property'>
 <a name="GDataYouTubeQuery--has-location"></a><h3>The <code class="literal">"has-location"</code> property</h3>
-<pre class="programlisting">  "has-location"             gboolean              : Read / Write</pre>
+<pre class="programlisting">  "has-location"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
 <p>
 Whether to restrict search results to videos with specific coordinates associated with them. If used with a given
-<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude"><span class="type">"latitude"</span></a> and <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude"><span class="type">"longitude"</span></a>, only videos with specific coordinates (not those with merely
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a> and <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude" title='The "longitude" property'><span class="type">"longitude"</span></a>, only videos with specific coordinates (not those with merely
 a descriptive address) will be returned. If used without a latitude and longitude set, only videos with specific coordinates
 (regardless of those coordinates) will be returned.
 </p>
 <p>
-For more information, see the documentation for <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude"><span class="type">"latitude"</span></a>.</p>
+For more information, see the documentation for <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a>.
+</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "language" property'>
 <a name="GDataYouTubeQuery--language"></a><h3>The <code class="literal">"language"</code> property</h3>
-<pre class="programlisting">  "language"                 gchar*                : Read / Write</pre>
+<pre class="programlisting">  "language"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 Restricts the search to videos that have a title, description or keywords in a specified language. The language code should
 be a two-letter ISO 639-1 code; or you can use <code class="literal">zh-Hans</code> for simplified Chinese and <code class="literal">zh-Hant</code>
 for traditional Chinese.
 </p>
 <p>
-For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#lrsp" target="_top">online documentation</a>.</p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#lrsp" target="_top">online documentation</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "latitude" property'>
 <a name="GDataYouTubeQuery--latitude"></a><h3>The <code class="literal">"latitude"</code> property</h3>
-<pre class="programlisting">  "latitude"                 gdouble               : Read / Write</pre>
+<pre class="programlisting">  "latitude"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write</pre>
 <p>
 The latitude of a particular location of which videos should be found. This should be used in conjunction with
-<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude"><span class="type">"longitude"</span></a>; if either property is outside the valid range, neither will be used. Valid latitudes
-are between <code class="literal">-90</code> and <code class="literal">90</code> degrees; any values of this property outside that range will unset the property in the
-query URI.
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude" title='The "longitude" property'><span class="type">"longitude"</span></a>; if either property is outside the valid range, neither will be used. Valid latitudes
+are between <code class="code">-90</code> and <code class="code">90</code>0 degrees; any values of this property outside that range
+will unset the property in the query URI.
 </p>
 <p>
-If <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--location-radius"><span class="type">"location-radius"</span></a> is a non-<code class="literal">0</code> value, this will define a circle from which videos should be found.
+If <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--location-radius" title='The "location-radius" property'><span class="type">"location-radius"</span></a> is a non-<code class="code">0</code> value, this will define a circle from which videos should be
+found.
 </p>
 <p>
-If <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--has-location"><span class="type">"has-location"</span></a> is <code class="literal">TRUE</code>, only videos which are associated with specific coordinates in the search
+If <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--has-location" title='The "has-location" property'><span class="type">"has-location"</span></a> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>, only videos which are associated with specific coordinates in the search
 circle will be returned. Otherwise, videos which have a relevant descriptive address (but no specific coordinates) will
 also be returned.
 </p>
 <p>
-For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#locationsp" target="_top">online documentation</a>.</p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#locationsp" target="_top">online documentation</a>.
+</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "location-radius" property'>
 <a name="GDataYouTubeQuery--location-radius"></a><h3>The <code class="literal">"location-radius"</code> property</h3>
-<pre class="programlisting">  "location-radius"          gdouble               : Read / Write</pre>
+<pre class="programlisting">  "location-radius"          <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write</pre>
 <p>
 The radius, in metres, of a circle from within which videos should be returned. The circle is centred on the latitude and
-longitude given in <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude"><span class="type">"latitude"</span></a> and <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude"><span class="type">"longitude"</span></a>.
+longitude given in <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a> and <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--longitude" title='The "longitude" property'><span class="type">"longitude"</span></a>.
 </p>
 <p>
-Set this property to <code class="literal">0</code> to search for specific coordinates, rather than within a given radius.
+Set this property to <code class="code">0</code> to search for specific coordinates, rather than within a given radius.
 </p>
 <p>
-For more information, see the documentation for <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude"><span class="type">"latitude"</span></a>.</p>
+For more information, see the documentation for <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a>.
+</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "longitude" property'>
 <a name="GDataYouTubeQuery--longitude"></a><h3>The <code class="literal">"longitude"</code> property</h3>
-<pre class="programlisting">  "longitude"                gdouble               : Read / Write</pre>
+<pre class="programlisting">  "longitude"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write</pre>
 <p>
 The longitude of a particular location of which videos should be found. This should be used in conjunction with
-<a href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude"><span class="type">"latitude"</span></a>; if either property is outside the valid range, neither will be used. Valid longitudes
-are between <code class="literal">-180</code> and <code class="literal">180</code> degrees; any values of this property outside that range will unset the property in the
-query URI.
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a>; if either property is outside the valid range, neither will be used. Valid longitudes
+are between <code class="code">-180</code> and <code class="code">180</code> degrees; any values of this property outside that
+range will unset the property in the query URI.
 </p>
 <p>
-For more information, see the documentation for <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude"><span class="type">"latitude"</span></a>.</p>
+For more information, see the documentation for <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a>.
+</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "order-by" property'>
 <a name="GDataYouTubeQuery--order-by"></a><h3>The <code class="literal">"order-by"</code> property</h3>
-<pre class="programlisting">  "order-by"                 gchar*                : Read / Write</pre>
+<pre class="programlisting">  "order-by"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 Specifies the order of entries in a feed. Supported values are <code class="literal">relevance</code>,
 <code class="literal">published</code>, <code class="literal">viewCount</code> and <code class="literal">rating</code>.
@@ -968,55 +982,60 @@ Specifies the order of entries in a feed. Supported values are <code class="lite
 <p>
 Additionally, results most relevant to a specific language can be returned by setting the property
 to <code class="literal">relevance_lang_<em class="replaceable"><code>languageCode</code></em></code>, where
-<em class="replaceable"><code>languageCode</code></em> is an ISO 639-1 language code, as used in <a href="GDataYouTubeQuery.html#GDataYouTubeQuery--language"><span class="type">"language"</span></a>.
+<em class="replaceable"><code>languageCode</code></em> is an ISO 639-1 language code, as used in <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeQuery--language" title='The "language" property'><span class="type">"language"</span></a>.
 </p>
 <p>
-For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#orderbysp" target="_top">online documentation</a>.</p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#orderbysp" target="_top">online documentation</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "restriction" property'>
 <a name="GDataYouTubeQuery--restriction"></a><h3>The <code class="literal">"restriction"</code> property</h3>
-<pre class="programlisting">  "restriction"              gchar*                : Read / Write</pre>
+<pre class="programlisting">  "restriction"              <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 The IP address that should be used to filter videos playable only in specific countries. This should be the
 IP address of the client, if different to the IP address in use by the library. Alternatively, it can be an ISO 3166
 two-letter country code.
 </p>
 <p>
-For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#restrictionsp" target="_top">online documentation</a>.</p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#restrictionsp" target="_top">online documentation</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "safe-search" property'>
 <a name="GDataYouTubeQuery--safe-search"></a><h3>The <code class="literal">"safe-search"</code> property</h3>
-<pre class="programlisting">  "safe-search"              <a href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch">GDataYouTubeSafeSearch</a>  : Read / Write</pre>
+<pre class="programlisting">  "safe-search"              <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSafeSearch" title="enum GDataYouTubeSafeSearch"><span class="type">GDataYouTubeSafeSearch</span></a>  : Read / Write</pre>
 <p>
 Whether the search results should include restricted content as well as standard content.
 </p>
 <p>
-For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#safeSearchsp" target="_top">online documentation</a>.</p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#safeSearchsp" target="_top">online documentation</a>.
+</p>
 <p>Default value: GDATA_YOUTUBE_SAFE_SEARCH_MODERATE</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "sort-order" property'>
 <a name="GDataYouTubeQuery--sort-order"></a><h3>The <code class="literal">"sort-order"</code> property</h3>
-<pre class="programlisting">  "sort-order"               <a href="GDataYouTubeQuery.html#GDataYouTubeSortOrder">GDataYouTubeSortOrder</a>  : Read / Write</pre>
+<pre class="programlisting">  "sort-order"               <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeSortOrder" title="enum GDataYouTubeSortOrder"><span class="type">GDataYouTubeSortOrder</span></a>  : Read / Write</pre>
 <p>
-Specifies the direction of sorting. To use the default sort order, set the property to <code class="literal">GDATA_YOUTUBE_SORT_NONE</code>.</p>
+Specifies the direction of sorting. To use the default sort order, set the property to <a class="link" href="GDataYouTubeQuery.html#GDATA-YOUTUBE-SORT-NONE:CAPS"><code class="literal">GDATA_YOUTUBE_SORT_NONE</code></a>.
+</p>
 <p>Default value: GDATA_YOUTUBE_SORT_NONE</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "uploader" property'>
 <a name="GDataYouTubeQuery--uploader"></a><h3>The <code class="literal">"uploader"</code> property</h3>
-<pre class="programlisting">  "uploader"                 <a href="GDataYouTubeQuery.html#GDataYouTubeUploader">GDataYouTubeUploader</a>  : Read / Write</pre>
+<pre class="programlisting">  "uploader"                 <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeUploader" title="enum GDataYouTubeUploader"><span class="type">GDataYouTubeUploader</span></a>  : Read / Write</pre>
 <p>
 Restricts the search to videos from the specified type of uploader. Currently, this can only be used to restrict
-searches to videos from YouTube partners.</p>
+searches to videos from YouTube partners.
+</p>
 <p>Default value: GDATA_YOUTUBE_UPLOADER_ALL</p>
 <p class="since">Since 0.3.0</p>
 </div>
@@ -1024,6 +1043,6 @@ searches to videos from YouTube partners.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

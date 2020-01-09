@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,15 +27,19 @@
  * <ulink type="http" url="http://video.search.yahoo.com/mrss">Media RSS specification</ulink>.
  *
  * The class only implements parsing, not XML output, at the moment.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
 #include <libxml/parser.h>
 
 #include "gdata-media-content.h"
+#include "gdata-download-stream.h"
 #include "gdata-parsable.h"
 #include "gdata-parser.h"
 #include "gdata-media-enums.h"
+#include "gdata-private.h"
 
 static void gdata_media_content_finalize (GObject *object);
 static void gdata_media_content_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
@@ -285,7 +289,7 @@ static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
 	GDataMediaContentPrivate *priv = GDATA_MEDIA_CONTENT (parsable)->priv;
-	xmlChar *uri, *content_type, *is_default, *expression, *medium, *duration, *filesize, *height, *width;
+	xmlChar *uri, *is_default, *expression, *medium, *duration, *filesize, *height, *width;
 	gboolean is_default_bool;
 	GDataMediaExpression expression_enum;
 	GDataMediaMedium medium_enum;
@@ -368,20 +372,15 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 		return gdata_parser_error_required_property_missing (root_node, "url", error);
 	}
 
-	content_type = xmlGetProp (root_node, (xmlChar*) "type");
-
-	priv->uri = g_strdup ((gchar*) uri);
+	priv->uri = (gchar*) uri;
 	priv->filesize = filesize_ulong;
-	priv->content_type = g_strdup ((gchar*) content_type);
+	priv->content_type = (gchar*) xmlGetProp (root_node, (xmlChar*) "type");
 	priv->medium = medium_enum;
 	priv->is_default = is_default_bool;
 	priv->expression = expression_enum;
 	priv->duration = duration_int64;
 	priv->height = height_uint;
 	priv->width = width_uint;
-
-	xmlFree (uri);
-	xmlFree (content_type);
 
 	return TRUE;
 }
@@ -415,7 +414,7 @@ gdata_media_content_get_uri (GDataMediaContent *self)
  *
  * Gets the #GDataMediaContent:filesize property.
  *
- * Return value: the number of bytes in the content, or %0
+ * Return value: the number of bytes in the content, or <code class="literal">0</code>
  *
  * Since: 0.4.0
  **/
@@ -500,7 +499,7 @@ gdata_media_content_get_expression (GDataMediaContent *self)
  *
  * Gets the #GDataMediaContent:duration property.
  *
- * Return value: the content's duration in seconds, or %0
+ * Return value: the content's duration in seconds, or <code class="literal">0</code>
  *
  * Since: 0.4.0
  **/
@@ -517,7 +516,7 @@ gdata_media_content_get_duration (GDataMediaContent *self)
  *
  * Gets the #GDataMediaContent:height property.
  *
- * Return value: the content's height in pixels, or %0
+ * Return value: the content's height in pixels, or <code class="literal">0</code>
  *
  * Since: 0.4.0
  **/
@@ -534,7 +533,7 @@ gdata_media_content_get_height (GDataMediaContent *self)
  *
  * Gets the #GDataMediaContent:width property.
  *
- * Return value: the content's width in pixels, or %0
+ * Return value: the content's width in pixels, or <code class="literal">0</code>
  *
  * Since: 0.4.0
  **/
@@ -544,3 +543,61 @@ gdata_media_content_get_width (GDataMediaContent *self)
 	g_return_val_if_fail (GDATA_IS_MEDIA_CONTENT (self), 0);
 	return self->priv->width;
 }
+
+/**
+ * gdata_media_content_download:
+ * @self: a #GDataMediaContent
+ * @service: the #GDataService
+ * @default_filename: an optional default filename used if the user selects a directory as the destination
+ * @target_dest_file: the destination file or directory to download to
+ * @replace_file_if_exists: whether to replace already existing files at the download location
+ * @cancellable: optional #GCancellable object, or %NULL
+ * @error: a #GError, or %NULL
+ *
+ * Downloads and returns a #GFile of the content represented by @self.
+ *
+ * If @target_dest_file is a directory, then the file will be
+ * downloaded into this directory with the default filename specified
+ * in @default_filename.
+ *
+ * Return value: the content's data, or %NULL; unref with g_object_unref()
+ *
+ * Since: 0.6.0
+ **/
+GFile *
+gdata_media_content_download (GDataMediaContent *self, GDataService *service, const gchar *default_filename, GFile *target_dest_file, gboolean replace_file_if_exists, GCancellable *cancellable, GError **error)
+{
+	GFileOutputStream *dest_stream;
+	const gchar *src_uri;
+	GInputStream *src_stream;
+	GFile *actual_file = NULL;
+	GError *child_error = NULL;
+
+	g_return_val_if_fail (GDATA_IS_MEDIA_CONTENT (self), NULL);
+	g_return_val_if_fail (GDATA_IS_SERVICE (service), NULL);
+	g_return_val_if_fail (default_filename != NULL, NULL);
+	g_return_val_if_fail (G_IS_FILE (target_dest_file), NULL);
+	g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), NULL);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+	dest_stream = _gdata_download_stream_find_destination (default_filename, target_dest_file, &actual_file, replace_file_if_exists, cancellable, error);
+	if (dest_stream == NULL)
+		return NULL;
+
+	src_uri = gdata_media_content_get_uri (self);
+
+	/* Synchronously splice the data from the download stream to the file stream (network -> disk) */
+	src_stream = gdata_download_stream_new (GDATA_SERVICE (service), src_uri);
+	g_output_stream_splice (G_OUTPUT_STREAM (dest_stream), src_stream,
+				G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE | G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET, cancellable, &child_error);
+	g_object_unref (src_stream);
+	g_object_unref (dest_stream);
+	if (child_error != NULL) {
+		g_object_unref (actual_file);
+		g_propagate_error (error, child_error);
+		return NULL;
+	}
+
+	return actual_file;
+}
+

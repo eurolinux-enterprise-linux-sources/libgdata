@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,6 +24,7 @@
 #include <glib-object.h>
 
 #include <gdata/gdata-parsable.h>
+#include <gdata/gdata-service.h>
 
 G_BEGIN_DECLS
 
@@ -51,6 +52,8 @@ typedef enum {
  * @GDATA_MEDIA_EXECUTABLE: the media is an executable file
  *
  * An enum representing the possible values of #GDataMediaContent:medium.
+ *
+ * Since: 0.4.0
  **/
 typedef enum {
 	GDATA_MEDIA_UNKNOWN,
@@ -103,6 +106,7 @@ GDataMediaExpression gdata_media_content_get_expression (GDataMediaContent *self
 gint64 gdata_media_content_get_duration (GDataMediaContent *self);
 guint gdata_media_content_get_height (GDataMediaContent *self);
 guint gdata_media_content_get_width (GDataMediaContent *self);
+GFile *gdata_media_content_download (GDataMediaContent *self, GDataService *service, const gchar *default_filename, GFile *target_dest_file, gboolean replace_file_if_exists, GCancellable *cancellable, GError **error) G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS
 

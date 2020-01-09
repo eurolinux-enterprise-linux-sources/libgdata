@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -102,7 +102,7 @@ gdata_calendar_feed_finalize (GObject *object)
 {
 	GDataCalendarFeedPrivate *priv = GDATA_CALENDAR_FEED_GET_PRIVATE (object);
 
-	xmlFree (priv->timezone);
+	g_free (priv->timezone);
 
 	/* Chain up to the parent class */
 	G_OBJECT_CLASS (gdata_calendar_feed_parent_class)->finalize (object);
@@ -132,12 +132,15 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataCalendarFeed *self = GDATA_CALENDAR_FEED (parsable);
 
+	if (gdata_parser_is_namespace (node, "http://schemas.google.com/gCal/2005") == FALSE)
+		return GDATA_PARSABLE_CLASS (gdata_calendar_feed_parent_class)->parse_xml (parsable, doc, node, user_data, error);
+
 	if (xmlStrcmp (node->name, (xmlChar*) "timezone") == 0) {
 		/* gCal:timezone */
 		xmlChar *_timezone = xmlGetProp (node, (xmlChar*) "value");
 		if (_timezone == NULL)
 			return gdata_parser_error_required_property_missing (node, "value", error);
-		xmlFree (self->priv->timezone);
+		g_free (self->priv->timezone);
 		self->priv->timezone = (gchar*) _timezone;
 	} else if (xmlStrcmp (node->name, (xmlChar*) "timesCleaned") == 0) {
 		/* gCal:timesCleaned */
@@ -146,9 +149,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			return gdata_parser_error_required_property_missing (node, "value", error);
 		self->priv->times_cleaned = strtoul ((gchar*) times_cleaned, NULL, 10);
 		xmlFree (times_cleaned);
-	} else if (GDATA_PARSABLE_CLASS (gdata_calendar_feed_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_calendar_feed_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;

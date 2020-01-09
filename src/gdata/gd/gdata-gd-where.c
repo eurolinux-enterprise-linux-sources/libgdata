@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,9 @@
  * @include: gdata/gd/gdata-gd-where.h
  *
  * #GDataGDWhere represents a "where" element from the
- * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhere">GData specification</ulink>.
+ * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhere">GData specification</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -38,9 +40,9 @@ static void gdata_gd_where_finalize (GObject *object);
 static void gdata_gd_where_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void gdata_gd_where_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 static gboolean pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error);
-static gboolean parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error);
+/*static gboolean parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error);*/
 static void pre_get_xml (GDataParsable *parsable, GString *xml_string);
-static void get_xml (GDataParsable *parsable, GString *xml_string);
+/*static void get_xml (GDataParsable *parsable, GString *xml_string);*/
 static void get_namespaces (GDataParsable *parsable, GHashTable *namespaces);
 
 struct _GDataGDWherePrivate {
@@ -71,9 +73,9 @@ gdata_gd_where_class_init (GDataGDWhereClass *klass)
 	gobject_class->finalize = gdata_gd_where_finalize;
 
 	parsable_class->pre_parse_xml = pre_parse_xml;
-	parsable_class->parse_xml = parse_xml;
+	/*parsable_class->parse_xml = parse_xml;*/
 	parsable_class->pre_get_xml = pre_get_xml;
-	parsable_class->get_xml = get_xml;
+	/*parsable_class->get_xml = get_xml;*/
 	parsable_class->get_namespaces = get_namespaces;
 	parsable_class->element_name = "where";
 	parsable_class->element_namespace = "gd";
@@ -84,7 +86,7 @@ gdata_gd_where_class_init (GDataGDWhereClass *klass)
 	 * Specifies the relationship between the containing entity and the contained location.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhere">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhere">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -100,7 +102,7 @@ gdata_gd_where_class_init (GDataGDWhereClass *klass)
 	 * A simple string value that can be used as a representation of this location.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhere">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhere">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -116,7 +118,7 @@ gdata_gd_where_class_init (GDataGDWhereClass *klass)
 	 * Specifies a user-readable label to distinguish this location from other locations.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhere">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhere">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -193,7 +195,7 @@ gdata_gd_where_set_property (GObject *object, guint property_id, const GValue *v
 static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
-	xmlChar *rel, *value_string, *label;
+	xmlChar *rel;
 	GDataGDWherePrivate *priv = GDATA_GD_WHERE (parsable)->priv;
 
 	rel = xmlGetProp (root_node, (xmlChar*) "rel");
@@ -202,29 +204,22 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 		return gdata_parser_error_required_property_missing (root_node, "rel", error);
 	}
 
-	label = xmlGetProp (root_node, (xmlChar*) "label");
-	value_string = xmlGetProp (root_node, (xmlChar*) "valueString");
-
-	priv->relation_type = g_strdup ((gchar*) rel);
-	priv->value_string = g_strdup ((gchar*) value_string);
-	priv->label = g_strdup ((gchar*) label);
-
-	xmlFree (rel);
-	xmlFree (value_string);
-	xmlFree (label);
+	priv->relation_type = (gchar*) rel;
+	priv->value_string = (gchar*) xmlGetProp (root_node, (xmlChar*) "valueString");
+	priv->label = (gchar*) xmlGetProp (root_node, (xmlChar*) "label");
 
 	return TRUE;
 }
 
-static gboolean
+/*static gboolean
 parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error)
 {
 	GDataGDWherePrivate *priv = GDATA_GD_WHERE (parsable)->priv;
 
-	/* TODO: deal with the entryLink */
+	TODO: deal with the entryLink
 
 	return TRUE;
-}
+}*/
 
 static void
 pre_get_xml (GDataParsable *parsable, GString *xml_string)
@@ -241,13 +236,13 @@ pre_get_xml (GDataParsable *parsable, GString *xml_string)
 		gdata_parser_string_append_escaped (xml_string, " valueString='", priv->value_string, "'");
 }
 
-static void
+/*static void
 get_xml (GDataParsable *parsable, GString *xml_string)
 {
 	GDataGDWherePrivate *priv = GDATA_GD_WHERE (parsable)->priv;
 
-	/* TODO: deal with the entryLink */
-}
+	TODO: deal with the entryLink
+}*/
 
 static void
 get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
@@ -262,11 +257,13 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
  * @label: a human-readable label for the place, or %NULL
  *
  * Creates a new #GDataGDWhere. More information is available in the <ulink type="http"
- * url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhere">GData specification</ulink>.
+ * url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhere">GData specification</ulink>.
  *
  * Currently, entryLink functionality is not implemented in #GDataGDWhere.
  *
  * Return value: a new #GDataGDWhere; unref with g_object_unref()
+ *
+ * Since: 0.2.0
  **/
 GDataGDWhere *
 gdata_gd_where_new (const gchar *relation_type, const gchar *value_string, const gchar *label)
@@ -281,11 +278,13 @@ gdata_gd_where_new (const gchar *relation_type, const gchar *value_string, const
  * @b: another #GDataGDWhere, or %NULL
  *
  * Compares the two places in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @label and @value_string properties of the #GDataGDWhere<!-- -->s.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
@@ -294,7 +293,7 @@ gdata_gd_where_compare (const GDataGDWhere *a, const GDataGDWhere *b)
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)

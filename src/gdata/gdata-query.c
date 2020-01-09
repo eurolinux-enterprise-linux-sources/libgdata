@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -26,6 +26,16 @@
  * #GDataQuery represents a collection of query parameters used in a series of queries on a #GDataService. It allows the query parameters to be
  * set, with the aim of building a query URI using gdata_query_get_query_uri(). Pagination is supported using gdata_query_next_page() and
  * gdata_query_previous_page().
+ *
+ * Each query can have an ETag associated with it, which is a unique identifier for the set of query results produced by the query.
+ * Each time a query is made, gdata_service_query() will set the #GDataQuery:etag property of the accompanying query to a value returned by the
+ * server. If the same query is made again (using the same #GDataQuery instance), the server can skip returning the resulting #GDataFeed if its
+ * contents haven't changed (in this case, gdata_service_query() will return %NULL with an empty error).
+ *
+ * For this reason, code using #GDataQuery should be careful when reusing #GDataQuery instances: the code should either unset #GDataQuery:etag after
+ * every query or (preferably) gracefully handle the case where gdata_service_query() returns %NULL to signify unchanged results.
+ *
+ * Every time a property of a #GDataQuery instance is changed, the instance's ETag will be unset.
  *
  * For more information on the standard GData query parameters supported by #GDataQuery, see the <ulink type="http"
  * url="http://code.google.com/apis/gdata/docs/2.0/reference.html#Queries">online documentation</ulink>.
@@ -147,7 +157,7 @@ gdata_query_class_init (GDataQueryClass *klass)
 	 * of the categories (like using AND between terms). For example: <userinput>Fritz/Laurie</userinput> returns
 	 * entries that match both categories ("Fritz" and "Laurie").
 	 *
-	 * To do an OR between terms, use a pipe character (<literal>|</literal>). For example: <userinput>Fritz%%7CLaurie</userinput> returns
+	 * To do an OR between terms, use a pipe character (<literal>|</literal>). For example: <userinput>Fritz\%7CLaurie</userinput> returns
 	 * entries that match either category.
 	 *
 	 * An entry matches a specified category if the entry is in a category that has a matching term or label, as defined in the Atom specification.
@@ -277,6 +287,9 @@ gdata_query_class_init (GDataQueryClass *klass)
 	 *
 	 * The ETag against which to check for updates. If the server-side ETag matches this one, the requested feed hasn't changed, and is not
 	 * returned unnecessarily.
+	 *
+	 * Setting any of the other query properties will unset the ETag, as ETags match against entire queries. If the ETag should be used in a
+	 * query, it must be set again using gdata_query_set_etag() after setting any other properties.
 	 *
 	 * Since: 0.2.0
 	 **/
@@ -426,13 +439,13 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 	/* If we've been provided with an entry ID, only append that */
 	if (priv->entry_id != NULL) {
 		g_string_append_c (query_uri, '/');
-		g_string_append_uri_escaped (query_uri, priv->entry_id, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->entry_id, NULL, FALSE);
 		return;
 	}
 
 	if (priv->categories != NULL) {
 		g_string_append (query_uri, "/-/");
-		g_string_append_uri_escaped (query_uri, priv->categories, "/", TRUE);
+		g_string_append_uri_escaped (query_uri, priv->categories, "/", FALSE);
 	}
 
 	/* If that's it, return */
@@ -443,13 +456,13 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 	if (priv->q != NULL) {
 		APPEND_SEP
 		g_string_append (query_uri, "q=");
-		g_string_append_uri_escaped (query_uri, priv->q, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->q, NULL, FALSE);
 	}
 
 	if (priv->author != NULL) {
 		APPEND_SEP
 		g_string_append (query_uri, "author=");
-		g_string_append_uri_escaped (query_uri, priv->author, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->author, NULL, FALSE);
 	}
 
 	if (priv->updated_min.tv_sec != 0 || priv->updated_min.tv_usec != 0) {
@@ -633,6 +646,9 @@ gdata_query_set_q (GDataQuery *self, const gchar *q)
 		self->priv->parameter_mask |= GDATA_QUERY_PARAM_Q;
 
 	g_object_notify (G_OBJECT (self), "q");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -673,6 +689,9 @@ gdata_query_set_categories (GDataQuery *self, const gchar *categories)
 		self->priv->parameter_mask |= GDATA_QUERY_PARAM_CATEGORIES;
 
 	g_object_notify (G_OBJECT (self), "categories");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -713,6 +732,9 @@ gdata_query_set_author (GDataQuery *self, const gchar *author)
 		self->priv->parameter_mask |= GDATA_QUERY_PARAM_AUTHOR;
 
 	g_object_notify (G_OBJECT (self), "author");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -721,7 +743,7 @@ gdata_query_set_author (GDataQuery *self, const gchar *author)
  * @updated_min: a #GTimeVal
  *
  * Gets the #GDataQuery:updated-min property and puts it in @updated_min. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  **/
 void
 gdata_query_get_updated_min (GDataQuery *self, GTimeVal *updated_min)
@@ -755,6 +777,9 @@ gdata_query_set_updated_min (GDataQuery *self, GTimeVal *updated_min)
 	}
 
 	g_object_notify (G_OBJECT (self), "updated-min");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -763,7 +788,7 @@ gdata_query_set_updated_min (GDataQuery *self, GTimeVal *updated_min)
  * @updated_max: a #GTimeVal
  *
  * Gets the #GDataQuery:updated-max property and puts it in @updated_max. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  **/
 void
 gdata_query_get_updated_max (GDataQuery *self, GTimeVal *updated_max)
@@ -797,6 +822,9 @@ gdata_query_set_updated_max (GDataQuery *self, GTimeVal *updated_max)
 	}
 
 	g_object_notify (G_OBJECT (self), "updated-max");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -805,7 +833,7 @@ gdata_query_set_updated_max (GDataQuery *self, GTimeVal *updated_max)
  * @published_min: a #GTimeVal
  *
  * Gets the #GDataQuery:published-min property and puts it in @published_min. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  **/
 void
 gdata_query_get_published_min (GDataQuery *self, GTimeVal *published_min)
@@ -839,6 +867,9 @@ gdata_query_set_published_min (GDataQuery *self, GTimeVal *published_min)
 	}
 
 	g_object_notify (G_OBJECT (self), "published-min");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -847,7 +878,7 @@ gdata_query_set_published_min (GDataQuery *self, GTimeVal *published_min)
  * @published_max: a #GTimeVal
  *
  * Gets the #GDataQuery:published-max property and puts it in @published_max. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  **/
 void
 gdata_query_get_published_max (GDataQuery *self, GTimeVal *published_max)
@@ -881,6 +912,9 @@ gdata_query_set_published_max (GDataQuery *self, GTimeVal *published_max)
 	}
 
 	g_object_notify (G_OBJECT (self), "published-max");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -889,7 +923,7 @@ gdata_query_set_published_max (GDataQuery *self, GTimeVal *published_max)
  *
  * Gets the #GDataQuery:start-index property.
  *
- * Return value: the start index property, or %-1 if it is unset
+ * Return value: the start index property, or <code class="literal">-1</code> if it is unset
  **/
 gint
 gdata_query_get_start_index (GDataQuery *self)
@@ -905,7 +939,7 @@ gdata_query_get_start_index (GDataQuery *self)
  *
  * Sets the #GDataQuery:start-index property of the #GDataQuery to the new one-based start index, @start_index.
  *
- * Set @start_index to %-1 or %0 to unset the property in the query URI.
+ * Set @start_index to <code class="literal">-1</code> or <code class="literal">0</code> to unset the property in the query URI.
  **/
 void
 gdata_query_set_start_index (GDataQuery *self, gint start_index)
@@ -925,6 +959,9 @@ gdata_query_set_start_index (GDataQuery *self, gint start_index)
 		self->priv->parameter_mask |= GDATA_QUERY_PARAM_START_INDEX;
 
 	g_object_notify (G_OBJECT (self), "start-index");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -966,6 +1003,9 @@ gdata_query_set_is_strict (GDataQuery *self, gboolean is_strict)
 		self->priv->parameter_mask |= GDATA_QUERY_PARAM_IS_STRICT;
 
 	g_object_notify (G_OBJECT (self), "is-strict");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -974,7 +1014,7 @@ gdata_query_set_is_strict (GDataQuery *self, gboolean is_strict)
  *
  * Gets the #GDataQuery:max-results property.
  *
- * Return value: the maximum results property, or %-1 if it is unset
+ * Return value: the maximum results property, or <code class="literal">-1</code> if it is unset
  **/
 gint
 gdata_query_get_max_results (GDataQuery *self)
@@ -990,7 +1030,7 @@ gdata_query_get_max_results (GDataQuery *self)
  *
  * Sets the #GDataQuery:max-results property of the #GDataQuery to the new maximum results value, @max_results.
  *
- * Set @max_results to %-1 to unset the property in the query URI.
+ * Set @max_results to <code class="literal">-1</code> to unset the property in the query URI.
  **/
 void
 gdata_query_set_max_results (GDataQuery *self, gint max_results)
@@ -1006,6 +1046,9 @@ gdata_query_set_max_results (GDataQuery *self, gint max_results)
 		self->priv->parameter_mask |= GDATA_QUERY_PARAM_MAX_RESULTS;
 
 	g_object_notify (G_OBJECT (self), "max-results");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -1046,6 +1089,9 @@ gdata_query_set_entry_id (GDataQuery *self, const gchar *entry_id)
 		self->priv->parameter_mask |= GDATA_QUERY_PARAM_ENTRY_ID;
 
 	g_object_notify (G_OBJECT (self), "entry-id");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -1130,9 +1176,8 @@ gdata_query_next_page (GDataQuery *self)
 		priv->start_index += priv->max_results;
 	}
 
-	/* Our current ETag will not be relevant */
-	g_free (priv->etag);
-	priv->etag = NULL;
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 }
 
 /**
@@ -1160,9 +1205,8 @@ gdata_query_previous_page (GDataQuery *self)
 		priv->start_index -= priv->max_results;
 	}
 
-	/* Our current ETag will not be relevant */
-	g_free (priv->etag);
-	priv->etag = NULL;
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (self, NULL);
 
 	return TRUE;
 }

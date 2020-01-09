@@ -4,7 +4,7 @@
 #include "gdata-picasaweb-album.h"
 #include "gdata-picasaweb-enums.h"
 
-/* enumerations from "gdata-picasaweb-album.h" */
+/* enumerations from "./gdata/services/picasaweb/gdata-picasaweb-album.h" */
 GType
 gdata_picasaweb_visibility_get_type (void)
 {

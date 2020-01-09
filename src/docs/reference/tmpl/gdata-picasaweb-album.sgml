@@ -19,11 +19,19 @@ GDataPicasaWebAlbum
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataPicasaWebAlbum ##### -->
 <para>
 
 </para>
 
+
+<!-- ##### ARG GDataPicasaWebAlbum:album-id ##### -->
+<para>
+
+</para>
 
 <!-- ##### ARG GDataPicasaWebAlbum:bytes-used ##### -->
 <para>
@@ -31,11 +39,6 @@ GDataPicasaWebAlbum
 </para>
 
 <!-- ##### ARG GDataPicasaWebAlbum:comment-count ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GDataPicasaWebAlbum:description ##### -->
 <para>
 
 </para>
@@ -61,11 +64,6 @@ GDataPicasaWebAlbum
 </para>
 
 <!-- ##### ARG GDataPicasaWebAlbum:longitude ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GDataPicasaWebAlbum:name ##### -->
 <para>
 
 </para>
@@ -128,6 +126,15 @@ GDataPicasaWebAlbum
 @Returns: 
 
 
+<!-- ##### FUNCTION gdata_picasaweb_album_get_id ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdata_picasaweb_album_get_user ##### -->
 <para>
 
@@ -153,15 +160,6 @@ GDataPicasaWebAlbum
 
 @self: 
 @edited: 
-
-
-<!-- ##### FUNCTION gdata_picasaweb_album_get_name ##### -->
-<para>
-
-</para>
-
-@self: 
-@Returns: 
 
 
 <!-- ##### FUNCTION gdata_picasaweb_album_get_location ##### -->
@@ -288,24 +286,6 @@ GDataPicasaWebAlbum
 
 @self: 
 @tags: 
-
-
-<!-- ##### FUNCTION gdata_picasaweb_album_get_description ##### -->
-<para>
-
-</para>
-
-@self: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdata_picasaweb_album_set_description ##### -->
-<para>
-
-</para>
-
-@self: 
-@description: 
 
 
 <!-- ##### FUNCTION gdata_picasaweb_album_get_contents ##### -->

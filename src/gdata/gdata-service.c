@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008-2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -64,8 +64,8 @@ static void gdata_service_get_property (GObject *object, guint property_id, GVal
 static void gdata_service_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 static gboolean real_parse_authentication_response (GDataService *self, guint status, const gchar *response_body, gint length, GError **error);
 static void real_append_query_headers (GDataService *self, SoupMessage *message);
-static void real_parse_error_response (GDataService *self, GDataServiceError error_type, guint status, const gchar *reason_phrase,
-				       const gchar *response_body, gint length, GError **error);
+static void real_parse_error_response (GDataService *self, GDataOperationType operation_type, guint status, const gchar *reason_phrase,
+                                       const gchar *response_body, gint length, GError **error);
 static void notify_proxy_uri_cb (GObject *gobject, GParamSpec *pspec, GObject *self);
 
 struct _GDataServicePrivate {
@@ -329,72 +329,91 @@ real_append_query_headers (GDataService *self, SoupMessage *message)
 }
 
 static void
-real_parse_error_response (GDataService *self, GDataServiceError error_type, guint status, const gchar *reason_phrase, const gchar *response_body,
+real_parse_error_response (GDataService *self, GDataOperationType operation_type, guint status, const gchar *reason_phrase, const gchar *response_body,
 			   gint length, GError **error)
 {
 	/* See: http://code.google.com/apis/gdata/docs/2.0/reference.html#HTTPStatusCodes */
 	switch (status) {
-		case 400:
+		case SOUP_STATUS_CANT_RESOLVE:
+		case SOUP_STATUS_CANT_CONNECT:
+		case SOUP_STATUS_SSL_FAILED:
+		case SOUP_STATUS_IO_ERROR:
+			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_NETWORK_ERROR,
+			             _("Cannot connect to the service's server."));
+			return;
+		case SOUP_STATUS_CANT_RESOLVE_PROXY:
+		case SOUP_STATUS_CANT_CONNECT_PROXY:
+			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROXY_ERROR,
+			             _("Cannot connect to the proxy server."));
+			return;
+		case SOUP_STATUS_MALFORMED:
+		case SOUP_STATUS_BAD_REQUEST: /* 400 */
 			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
 				     /* Translators: the parameter is an error message returned by the server. */
 				     _("Invalid request URI or header, or unsupported nonstandard parameter: %s"), response_body);
 			return;
-		case 401:
-		case 403:
+		case SOUP_STATUS_UNAUTHORIZED: /* 401 */
+		case SOUP_STATUS_FORBIDDEN: /* 403 */
 			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED,
 				     /* Translators: the parameter is an error message returned by the server. */
 				     _("Authentication required: %s"), response_body);
 			return;
-		case 404:
+		case SOUP_STATUS_NOT_FOUND: /* 404 */
 			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_NOT_FOUND,
 				     /* Translators: the parameter is an error message returned by the server. */
 				     _("The requested resource was not found: %s"), response_body);
 			return;
-		case 409:
+		case SOUP_STATUS_CONFLICT: /* 409 */
+		case SOUP_STATUS_PRECONDITION_FAILED: /* 412 */
 			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_CONFLICT,
 				     /* Translators: the parameter is an error message returned by the server. */
 				     _("The entry has been modified since it was downloaded: %s"), response_body);
 			return;
-		case 500:
+		case SOUP_STATUS_INTERNAL_SERVER_ERROR: /* 500 */
 		default:
 			/* We'll fall back to generic errors, below */
 			break;
 	}
 
-	/* If the error hasn't been handled already, throw a generic error corresponding to the action type */
-	switch (error_type) {
-		case GDATA_SERVICE_ERROR_WITH_INSERTION:
-			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_WITH_INSERTION,
-				     /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
-				     _("Error code %u when inserting an entry: %s"), status, response_body);
+	/* If the error hasn't been handled already, throw a generic error */
+	switch (operation_type) {
+		case GDATA_OPERATION_AUTHENTICATION:
+			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
+			             /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
+			             _("Error code %u when authenticating: %s"), status, response_body);
 			break;
-		case GDATA_SERVICE_ERROR_WITH_UPDATE:
-			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_WITH_UPDATE,
-				     /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
-				     _("Error code %u when updating an entry: %s"), status, response_body);
-			break;
-		case GDATA_SERVICE_ERROR_WITH_DELETION:
-			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_WITH_DELETION,
-				     /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
-				     _("Error code %u when deleting an entry: %s"), status, response_body);
-			break;
-		case GDATA_SERVICE_ERROR_WITH_QUERY:
-			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_WITH_QUERY,
+		case GDATA_OPERATION_QUERY:
+			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
 				     /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
 				     _("Error code %u when querying: %s"), status, response_body);
 			break;
-		case GDATA_SERVICE_ERROR_WITH_DOWNLOAD:
-			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_WITH_DOWNLOAD,
+		case GDATA_OPERATION_INSERTION:
+			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
+				     /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
+				     _("Error code %u when inserting an entry: %s"), status, response_body);
+			break;
+		case GDATA_OPERATION_UPDATE:
+			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
+				     /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
+				     _("Error code %u when updating an entry: %s"), status, response_body);
+			break;
+		case GDATA_OPERATION_DELETION:
+			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
+				     /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
+				     _("Error code %u when deleting an entry: %s"), status, response_body);
+			break;
+		case GDATA_OPERATION_DOWNLOAD:
+			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
 				     /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
 				     _("Error code %u when downloading: %s"), status, response_body);
 			break;
-		case GDATA_SERVICE_ERROR_WITH_UPLOAD:
-			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_WITH_UPLOAD,
+		case GDATA_OPERATION_UPLOAD:
+			g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
 				     /* Translators: the first parameter is an HTTP status, and the second is an error message returned by the server. */
 				     _("Error code %u when uploading: %s"), status, response_body);
 			break;
 		default:
-			/* We should not be called with anything other than the above four generic error types */
+			/* We should not be called with anything other than the above operation types */
 			g_assert_not_reached ();
 	}
 }
@@ -747,8 +766,9 @@ login_error:
 	return retval;
 
 protocol_error:
-	g_set_error_literal (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
-			     _("The server returned a malformed response."));
+	g_assert (klass->parse_error_response != NULL);
+	klass->parse_error_response (self, GDATA_OPERATION_AUTHENTICATION, status, message->reason_phrase, message->response_body->data,
+	                             message->response_body->length, error);
 
 general_error:
 	g_object_unref (message);
@@ -998,8 +1018,8 @@ _gdata_service_query (GDataService *self, const gchar *feed_uri, GDataQuery *que
 	} else if (status != 200) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (self, GDATA_SERVICE_ERROR_WITH_QUERY, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (self, GDATA_OPERATION_QUERY, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
@@ -1023,7 +1043,7 @@ _gdata_service_query (GDataService *self, const gchar *feed_uri, GDataQuery *que
  * If @cancellable is not %NULL, then the operation can be cancelled by triggering the @cancellable object from another thread.
  * If the operation was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
  *
- * A %GDATA_SERVICE_ERROR_WITH_QUERY will be returned if the server indicates there is a problem with the query, but subclasses may override
+ * A %GDATA_SERVICE_ERROR_PROTOCOL_ERROR will be returned if the server indicates there is a problem with the query, but subclasses may override
  * this and return their own errors. See their documentation for more details.
  *
  * For each entry in the response feed, @progress_callback will be called in the main thread. If there was an error parsing the XML response,
@@ -1032,14 +1052,14 @@ _gdata_service_query (GDataService *self, const gchar *feed_uri, GDataQuery *que
  * If the query is successful and the feed supports pagination, @query will be updated with the pagination URIs, and the next or previous page
  * can then be loaded by calling gdata_query_next_page() or gdata_query_previous_page() before running the query again.
  *
- * If the #GDataQuery's ETag is set and it finds a match on the server, %FALSE will be returned, but @error will remain unset. Otherwise,
+ * If the #GDataQuery's ETag is set and it finds a match on the server, %NULL will be returned, but @error will remain unset. Otherwise,
  * @query's ETag will be updated with the ETag from the returned feed, if available.
  *
  * Return value: a #GDataFeed of query results, or %NULL; unref with g_object_unref()
  **/
 GDataFeed *
 gdata_service_query (GDataService *self, const gchar *feed_uri, GDataQuery *query, GType entry_type,
-		     GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error)
+                     GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error)
 {
 	GDataServiceClass *klass;
 	GDataFeed *feed;
@@ -1056,7 +1076,7 @@ gdata_service_query (GDataService *self, const gchar *feed_uri, GDataQuery *quer
 	g_assert (message->response_body->data != NULL);
 	klass = GDATA_SERVICE_GET_CLASS (self);
 	feed = _gdata_feed_new_from_xml (klass->feed_type, message->response_body->data, message->response_body->length, entry_type,
-					 progress_callback, progress_user_data, error);
+	                                 progress_callback, progress_user_data, error);
 	g_object_unref (message);
 
 	if (feed == NULL)
@@ -1216,7 +1236,7 @@ gdata_service_insert_entry_finish (GDataService *self, GAsyncResult *async_resul
  * If the entry is marked as already having been inserted a %GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED error will be returned immediately
  * (there will be no network requests).
  *
- * If there is an error inserting the entry, a %GDATA_SERVICE_ERROR_WITH_INSERTION error will be returned. Currently, subclasses
+ * If there is an error inserting the entry, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned. Currently, subclasses
  * <emphasis>cannot</emphasis> cannot override this or provide more specific errors.
  *
  * Return value: an updated #GDataEntry, or %NULL
@@ -1267,8 +1287,8 @@ gdata_service_insert_entry (GDataService *self, const gchar *upload_uri, GDataEn
 	if (status != 201) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (self, GDATA_SERVICE_ERROR_WITH_INSERTION, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (self, GDATA_OPERATION_INSERTION, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
@@ -1390,7 +1410,7 @@ gdata_service_update_entry_finish (GDataService *self, GAsyncResult *async_resul
  * If @cancellable is not %NULL, then the operation can be cancelled by triggering the @cancellable object from another thread.
  * If the operation was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
  *
- * If there is an error updating the entry, a %GDATA_SERVICE_ERROR_WITH_UPDATE error will be returned. Currently, subclasses
+ * If there is an error updating the entry, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned. Currently, subclasses
  * <emphasis>cannot</emphasis> cannot override this or provide more specific errors.
  *
  * Return value: an updated #GDataEntry, or %NULL
@@ -1444,8 +1464,8 @@ gdata_service_update_entry (GDataService *self, GDataEntry *entry, GCancellable 
 	if (status != 200) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (self, GDATA_SERVICE_ERROR_WITH_UPDATE, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (self, GDATA_OPERATION_UPDATE, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
@@ -1560,7 +1580,7 @@ gdata_service_delete_entry_finish (GDataService *self, GAsyncResult *async_resul
  * If @cancellable is not %NULL, then the operation can be cancelled by triggering the @cancellable object from another thread.
  * If the operation was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
  *
- * If there is an error deleting the entry, a %GDATA_SERVICE_ERROR_WITH_DELETION error will be returned. Currently, subclasses
+ * If there is an error deleting the entry, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned. Currently, subclasses
  * <emphasis>cannot</emphasis> cannot override this or provide more specific errors.
  *
  * Return value: %TRUE on success, %FALSE otherwise
@@ -1608,8 +1628,8 @@ gdata_service_delete_entry (GDataService *self, GDataEntry *entry, GCancellable 
 	if (status != 200) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (self, GDATA_SERVICE_ERROR_WITH_DELETION, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (self, GDATA_OPERATION_DELETION, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return FALSE;
 	}
@@ -1738,4 +1758,28 @@ SoupSession *
 _gdata_service_get_session (GDataService *self)
 {
 	return self->priv->session;
+}
+
+/*
+ * _gdata_service_get_scheme:
+ *
+ * Returns the name of the scheme to use (either "http" or "https") for network operations if a request should use HTTPS. This allows
+ * requests to normally use HTTPS, but have the option of using HTTP for debugging purposes. If a request should normally use HTTP, that
+ * should be hard-coded in the relevant code, and this function needn't be called.
+ *
+ * Return value: the scheme to use
+ *
+ * Since: 0.6.0
+ */
+const gchar *
+_gdata_service_get_scheme (void)
+{
+	static gint force_http = -1;
+
+	if (force_http == -1)
+		force_http = (g_getenv ("LIBGDATA_FORCE_HTTP") != NULL);
+
+	if (force_http)
+		return "http";
+	return "https";
 }

@@ -2,6 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
+ * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,6 +28,8 @@
  *
  * For more details of Google Documents' GData API, see the
  * <ulink type="http://code.google.com/apis/document/docs/2.0/developers_guide_protocol.html">online documentation</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <config.h>
@@ -113,7 +116,7 @@ gdata_documents_presentation_new (const gchar *id)
  * If @cancellable is not %NULL, then the operation can be cancelled by triggering the @cancellable object from another thread.
  * If the operation was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
  *
- * If there is an error getting the document, a %GDATA_SERVICE_ERROR_WITH_QUERY error will be returned.
+ * If there is an error getting the document, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned.
  *
  * If @destination_file is a directory, then the file will be downloaded in this directory with the #GDataEntry:title with 
  * the apropriate extension as name.
@@ -167,5 +170,6 @@ gdata_documents_presentation_get_download_uri (GDataDocumentsPresentation *self,
 	document_id = gdata_documents_entry_get_document_id (GDATA_DOCUMENTS_ENTRY (self));
 	g_assert (document_id != NULL);
 
-	return g_strdup_printf ("http://docs.google.com/feeds/download/presentations/Export?exportFormat=%s&docID=%s", export_formats[export_format], document_id);
+	return g_strdup_printf ("%s://docs.google.com/feeds/download/presentations/Export?exportFormat=%s&docID=%s",
+	                        _gdata_service_get_scheme (), export_formats[export_format], document_id);
 }

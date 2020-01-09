@@ -19,6 +19,9 @@ GDataGDOrganization
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataGDOrganization ##### -->
 <para>
 
@@ -41,6 +44,11 @@ GDataGDOrganization
 </para>
 
 <!-- ##### ARG GDataGDOrganization:label ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GDataGDOrganization:location ##### -->
 <para>
 
 </para>
@@ -236,5 +244,23 @@ GDataGDOrganization
 
 @self: 
 @symbol: 
+
+
+<!-- ##### FUNCTION gdata_gd_organization_get_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_gd_organization_set_location ##### -->
+<para>
+
+</para>
+
+@self: 
+@location: 
 
 

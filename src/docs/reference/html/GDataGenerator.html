@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataGenerator</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch04.html" title="Atom API">
 <link rel="prev" href="GDataCategory.html" title="GDataCategory">
 <link rel="next" href="GDataLink.html" title="GDataLink">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -52,7 +30,7 @@
                   <a href="#GDataGenerator.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataGenerator">
 <a name="GDataGenerator"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -61,91 +39,97 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataGenerator.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataGenerator.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/atom/gdata-generator.h&gt;
 
-                    <a href="GDataGenerator.html#GDataGenerator-struct">GDataGenerator</a>;
-                    <a href="GDataGenerator.html#GDataGeneratorClass">GDataGeneratorClass</a>;
-gint                <a href="GDataGenerator.html#gdata-generator-compare">gdata_generator_compare</a>             (const <a href="GDataGenerator.html">GDataGenerator</a> *a,
-                                                         const <a href="GDataGenerator.html">GDataGenerator</a> *b);
-const gchar *       <a href="GDataGenerator.html#gdata-generator-get-name">gdata_generator_get_name</a>            (<a href="GDataGenerator.html">GDataGenerator</a> *self);
-const gchar *       <a href="GDataGenerator.html#gdata-generator-get-uri">gdata_generator_get_uri</a>             (<a href="GDataGenerator.html">GDataGenerator</a> *self);
-const gchar *       <a href="GDataGenerator.html#gdata-generator-get-version">gdata_generator_get_version</a>         (<a href="GDataGenerator.html">GDataGenerator</a> *self);
+                    <a class="link" href="GDataGenerator.html#GDataGenerator-struct" title="GDataGenerator">GDataGenerator</a>;
+                    <a class="link" href="GDataGenerator.html#GDataGeneratorClass" title="GDataGeneratorClass">GDataGeneratorClass</a>;
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="GDataGenerator.html#gdata-generator-compare" title="gdata_generator_compare ()">gdata_generator_compare</a>             (<em class="parameter"><code>const <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *a</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *b</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGenerator.html#gdata-generator-get-name" title="gdata_generator_get_name ()">gdata_generator_get_name</a>            (<em class="parameter"><code><a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGenerator.html#gdata-generator-get-uri" title="gdata_generator_get_uri ()">gdata_generator_get_uri</a>             (<em class="parameter"><code><a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGenerator.html#gdata-generator-get-version" title="gdata_generator_get_version ()">gdata_generator_get_version</a>         (<em class="parameter"><code><a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *self</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataGenerator.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataParsable.html">GDataParsable</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
          +----GDataGenerator
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataGenerator.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataGenerator.html#GDataGenerator--name">name</a>"                     gchar*                : Read
-  "<a href="GDataGenerator.html#GDataGenerator--uri">uri</a>"                      gchar*                : Read
-  "<a href="GDataGenerator.html#GDataGenerator--version">version</a>"                  gchar*                : Read
+  "<a class="link" href="GDataGenerator.html#GDataGenerator--name" title='The "name" property'>name</a>"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataGenerator.html#GDataGenerator--uri" title='The "uri" property'>uri</a>"                      <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataGenerator.html#GDataGenerator--version" title='The "version" property'>version</a>"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataGenerator.description"></a><h2>Description</h2>
 <p>
-<a href="GDataGenerator.html"><span class="type">GDataGenerator</span></a> represents a "generator" element from the
-<a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php" target="_top">Atom specification</a>.</p>
+<a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> represents a "generator" element from the
+<a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php" target="_top">Atom specification</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataGenerator.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataGenerator">
 <a name="GDataGenerator-struct"></a><h3>GDataGenerator</h3>
 <pre class="programlisting">typedef struct _GDataGenerator GDataGenerator;</pre>
 <p>
-All the fields in the <a href="GDataGenerator.html"><span class="type">GDataGenerator</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> structure are private and should never be accessed directly.
+</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataGeneratorClass">
 <a name="GDataGeneratorClass"></a><h3>GDataGeneratorClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataGeneratorClass;
 </pre>
 <p>
-All the fields in the <a href="GDataGenerator.html#GDataGeneratorClass"><span class="type">GDataGeneratorClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataGenerator.html#GDataGeneratorClass" title="GDataGeneratorClass"><span class="type">GDataGeneratorClass</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_generator_compare ()">
 <a name="gdata-generator-compare"></a><h3>gdata_generator_compare ()</h3>
-<pre class="programlisting">gint                gdata_generator_compare             (const <a href="GDataGenerator.html">GDataGenerator</a> *a,
-                                                         const <a href="GDataGenerator.html">GDataGenerator</a> *b);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                gdata_generator_compare             (<em class="parameter"><code>const <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *a</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *b</code></em>);</pre>
 <p>
-Compares the two generators in a <code class="function">strcmp()</code> fashion. <code class="literal">NULL</code> values are handled gracefully, with
-<code class="literal">0</code> returned if both <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are <code class="literal">NULL</code>, <code class="literal">-1</code> if <em class="parameter"><code>a</code></em> is <code class="literal">NULL</code> and <code class="literal">1</code> if <em class="parameter"><code>b</code></em> is <code class="literal">NULL</code>.
+Compares the two generators in a <code class="function">strcmp()</code> fashion. <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> values are handled gracefully, with
+<code class="code">0</code> returned if both <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, <code class="code">-1</code> if <em class="parameter"><code>a</code></em> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+and <code class="code">1</code> if <em class="parameter"><code>b</code></em> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </p>
 <p>
-The comparison of non-<code class="literal">NULL</code> values is done on the basis of the <em class="parameter"><code>name</code></em> property of the <a href="GDataGenerator.html"><span class="type">GDataGenerator</span></a>s.</p>
+The comparison of non-<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> values is done on the basis of the <em class="parameter"><code>name</code></em> property of the <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a>s.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
-<td> a <a href="GDataGenerator.html"><span class="type">GDataGenerator</span></a>, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
-<td> another <a href="GDataGenerator.html"><span class="type">GDataGenerator</span></a>, or <code class="literal">NULL</code>
+<td>another <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">0</code> if <em class="parameter"><code>a</code></em> equals <em class="parameter"><code>b</code></em>, <code class="literal">-1</code> or <code class="literal">1</code> as appropriate otherwise
+<td> <code class="code">0</code> if <em class="parameter"><code>a</code></em> equals <em class="parameter"><code>b</code></em>, <code class="code">-1</code> or <code class="code">1</code> as
+appropriate otherwise
 
 </td>
 </tr>
@@ -154,17 +138,18 @@ The comparison of non-<code class="literal">NULL</code> values is done on the ba
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_generator_get_name ()">
 <a name="gdata-generator-get-name"></a><h3>gdata_generator_get_name ()</h3>
-<pre class="programlisting">const gchar *       gdata_generator_get_name            (<a href="GDataGenerator.html">GDataGenerator</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_generator_get_name            (<em class="parameter"><code><a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataGenerator.html#GDataGenerator--name"><span class="type">"name"</span></a> property.</p>
+Gets the <a class="link" href="GDataGenerator.html#GDataGenerator--name" title='The "name" property'><span class="type">"name"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGenerator.html"><span class="type">GDataGenerator</span></a>
+<td>a <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a>
 </td>
 </tr>
 <tr>
@@ -178,22 +163,23 @@ Gets the <a href="GDataGenerator.html#GDataGenerator--name"><span class="type">"
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_generator_get_uri ()">
 <a name="gdata-generator-get-uri"></a><h3>gdata_generator_get_uri ()</h3>
-<pre class="programlisting">const gchar *       gdata_generator_get_uri             (<a href="GDataGenerator.html">GDataGenerator</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_generator_get_uri             (<em class="parameter"><code><a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataGenerator.html#GDataGenerator--uri"><span class="type">"uri"</span></a> property.</p>
+Gets the <a class="link" href="GDataGenerator.html#GDataGenerator--uri" title='The "uri" property'><span class="type">"uri"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGenerator.html"><span class="type">GDataGenerator</span></a>
+<td>a <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the generator's URI, or <code class="literal">NULL</code>
+<td> the generator's URI, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -202,22 +188,23 @@ Gets the <a href="GDataGenerator.html#GDataGenerator--uri"><span class="type">"u
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_generator_get_version ()">
 <a name="gdata-generator-get-version"></a><h3>gdata_generator_get_version ()</h3>
-<pre class="programlisting">const gchar *       gdata_generator_get_version         (<a href="GDataGenerator.html">GDataGenerator</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_generator_get_version         (<em class="parameter"><code><a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataGenerator.html#GDataGenerator--version"><span class="type">"version"</span></a> property.</p>
+Gets the <a class="link" href="GDataGenerator.html#GDataGenerator--version" title='The "version" property'><span class="type">"version"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataGenerator.html"><span class="type">GDataGenerator</span></a>
+<td>a <a class="link" href="GDataGenerator.html" title="GDataGenerator"><span class="type">GDataGenerator</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the generator's version, or <code class="literal">NULL</code>
+<td> the generator's version, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -226,43 +213,46 @@ Gets the <a href="GDataGenerator.html#GDataGenerator--version"><span class="type
 <p class="since">Since 0.4.0</p>
 </div>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Property Details">
 <a name="GDataGenerator.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "name" property'>
 <a name="GDataGenerator--name"></a><h3>The <code class="literal">"name"</code> property</h3>
-<pre class="programlisting">  "name"                     gchar*                : Read</pre>
+<pre class="programlisting">  "name"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 A human-readable name for the generating agent.
 </p>
 <p>
 For more information, see the
-<a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.generator" target="_top">Atom specification</a>.</p>
+<a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.generator" target="_top">Atom specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "uri" property'>
 <a name="GDataGenerator--uri"></a><h3>The <code class="literal">"uri"</code> property</h3>
-<pre class="programlisting">  "uri"                      gchar*                : Read</pre>
+<pre class="programlisting">  "uri"                      <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 An IRI reference that is relevant to the agent.
 </p>
 <p>
 For more information, see the
-<a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.generator" target="_top">Atom specification</a>.</p>
+<a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.generator" target="_top">Atom specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "version" property'>
 <a name="GDataGenerator--version"></a><h3>The <code class="literal">"version"</code> property</h3>
-<pre class="programlisting">  "version"                  gchar*                : Read</pre>
+<pre class="programlisting">  "version"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 Indicates the version of the generating agent.
 </p>
 <p>
 For more information, see the
-<a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.generator" target="_top">Atom specification</a>.</p>
+<a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.generator" target="_top">Atom specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
@@ -270,6 +260,6 @@ For more information, see the
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

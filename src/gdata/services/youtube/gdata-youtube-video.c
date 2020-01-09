@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008-2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,6 +27,39 @@
  *
  * For more details of YouTube's GData API, see the <ulink type="http" url="http://code.google.com/apis/youtube/2.0/reference.html">
  * online documentation</ulink>.
+ *
+ * <example>
+ * 	<title>Getting Basic Video Data</title>
+ * 	<programlisting>
+ * 		GDataYouTubeVideo *video;
+ * 		const gchar *video_id, *title, *player_uri, *description, *video_uri = NULL;
+ * 		GTimeVal updated, published;
+ * 		GDataMediaContent *content;
+ * 		GList *thumbnails;
+ *
+ * 		video = gdata_youtube_service_query_single_video (service, NULL, "R-9gzmQHoe0", NULL, NULL);
+ *
+ * 		video_id = gdata_youtube_video_get_video_id (video); /<!-- -->* e.g. "R-9gzmQHoe0" *<!-- -->/
+ * 		title = gdata_entry_get_title (GDATA_ENTRY (video)); /<!-- -->* e.g. "Korpiklaani Vodka (official video 2009)" *<!-- -->/
+ * 		player_uri = gdata_youtube_video_get_player_uri (video); /<!-- -->* e.g. "http://www.youtube.com/watch?v=ZTUVgYoeN_b" *<!-- -->/
+ * 		description = gdata_youtube_video_get_description (video); /<!-- -->* e.g. "Vodka is the first single from the album..." *<!-- -->/
+ * 		gdata_entry_get_published (GDATA_ENTRY (video), &published); /<!-- -->* Date and time the video was originally published *<!-- -->/
+ * 		gdata_entry_get_updated (GDATA_ENTRY (video), &updated); /<!-- -->* When the video was most recently updated by the author *<!-- -->/
+ *
+ * 		/<!-- -->* Retrieve a specific encoding of the video in #GDataMediaContent format *<!-- -->/
+ * 		content = gdata_youtube_video_look_up_content (video, "video/3gpp");
+ * 		if (content != NULL)
+ * 			video_uri = gdata_media_content_get_uri (content); /<!-- -->* the URI for the direct 3GP version of the video *<!-- -->/
+ * 		else
+ * 			/<!-- -->* Fall back and try a different video encoding? SWF ("application/x-shockwave-flash") is always present. *<!-- -->/
+ *
+ * 		/<!-- -->* Get a list of #GDataMediaThumbnail<!-- -->s for the video *<!-- -->/
+ * 		for (thumbnails = gdata_youtube_video_get_thumbnails (video); thumbnails != NULL; thumbnails = thumbnails->next)
+ * 			download_and_do_something_with_thumbnail (gdata_media_thumbnail_get_uri (thumbnail));
+ *
+ * 		g_object_unref (video);
+ * 	</programlisting>
+ * </example>
  **/
 
 #include <config.h>
@@ -88,7 +121,6 @@ enum {
 	PROP_AVERAGE_RATING,
 	PROP_KEYWORDS,
 	PROP_PLAYER_URI,
-	PROP_TITLE,
 	PROP_CATEGORY,
 	PROP_CREDIT,
 	PROP_DESCRIPTION,
@@ -266,20 +298,6 @@ gdata_youtube_video_class_init (GDataYouTubeVideoClass *klass)
 					G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GDataYouTubeVideo:title:
-	 *
-	 * Identifies the title of the video. This field has a maximum length of 60 characters or 100 bytes, whichever is reached first.
-	 *
-	 * For more information, see the <ulink type="http"
-	 * url="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:title">online documentation</ulink>.
-	 **/
-	g_object_class_install_property (gobject_class, PROP_TITLE,
-				g_param_spec_string ("title",
-					"Title", "Identifies the title of the video.",
-					NULL,
-					G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
-
-	/**
 	 * GDataYouTubeVideo:category:
 	 *
 	 * Specifies a genre or developer tag that describes the video.
@@ -440,9 +458,22 @@ gdata_youtube_video_class_init (GDataYouTubeVideoClass *klass)
 }
 
 static void
+notify_title_cb (GDataYouTubeVideo *self, GParamSpec *pspec, gpointer user_data)
+{
+	/* Update our media:group title */
+	if (self->priv->media_group != NULL)
+		gdata_media_group_set_title (self->priv->media_group, gdata_entry_get_title (GDATA_ENTRY (self)));
+}
+
+static void
 gdata_youtube_video_init (GDataYouTubeVideo *self)
 {
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_YOUTUBE_VIDEO, GDataYouTubeVideoPrivate);
+
+	/* The video's title is duplicated between atom:title and media:group/media:title, so listen for change notifications on atom:title
+	 * and propagate them to media:group/media:title accordingly. Since the media group isn't publically accessible, we don't need to
+	 * listen for notifications from it. */
+	g_signal_connect (GDATA_ENTRY (self), "notify::title", G_CALLBACK (notify_title_cb), NULL);
 }
 
 static void
@@ -509,9 +540,6 @@ gdata_youtube_video_get_property (GObject *object, guint property_id, GValue *va
 		case PROP_PLAYER_URI:
 			g_value_set_string (value, gdata_media_group_get_player_uri (priv->media_group));
 			break;
-		case PROP_TITLE:
-			g_value_set_string (value, gdata_media_group_get_title (priv->media_group));
-			break;
 		case PROP_CATEGORY:
 			g_value_set_object (value, gdata_media_group_get_category (priv->media_group));
 			break;
@@ -569,9 +597,6 @@ gdata_youtube_video_set_property (GObject *object, guint property_id, const GVal
 		case PROP_KEYWORDS:
 			gdata_youtube_video_set_keywords (self, g_value_get_string (value));
 			break;
-		case PROP_TITLE:
-			gdata_youtube_video_set_title (self, g_value_get_string (value));
-			break;
 		case PROP_CATEGORY:
 			gdata_youtube_video_set_category (self, g_value_get_object (value));
 			break;
@@ -620,7 +645,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataYouTubeVideo *self = GDATA_YOUTUBE_VIDEO (parsable);
 
-	if (xmlStrcmp (node->name, (xmlChar*) "group") == 0) {
+	if (gdata_parser_is_namespace (node, "http://search.yahoo.com/mrss/") == TRUE &&
+	    xmlStrcmp (node->name, (xmlChar*) "group") == 0) {
 		/* media:group */
 		GDataMediaGroup *group = GDATA_MEDIA_GROUP (_gdata_parsable_new_from_xml_node (GDATA_TYPE_YOUTUBE_GROUP, doc, node, NULL, error));
 		if (group == NULL)
@@ -632,120 +658,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 		}
 
 		self->priv->media_group = group;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "rating") == 0) {
-		/* gd:rating */
-		xmlChar *min, *max, *num_raters, *average;
-		guint num_raters_uint;
-		gdouble average_double;
-
-		min = xmlGetProp (node, (xmlChar*) "min");
-		if (min == NULL)
-			return gdata_parser_error_required_property_missing (node, "min", error);
-
-		max = xmlGetProp (node, (xmlChar*) "max");
-		if (max == NULL) {
-			gdata_parser_error_required_property_missing (node, "max", error);
-			xmlFree (min);
-			return FALSE;
-		}
-
-		num_raters = xmlGetProp (node, (xmlChar*) "numRaters");
-		if (num_raters == NULL)
-			num_raters_uint = 0;
-		else
-			num_raters_uint = strtoul ((gchar*) num_raters, NULL, 10);
-		xmlFree (num_raters);
-
-		average = xmlGetProp (node, (xmlChar*) "average");
-		if (average == NULL)
-			average_double = 0;
-		else
-			average_double = g_ascii_strtod ((gchar*) average, NULL);
-		xmlFree (average);
-
-		self->priv->rating.min = strtoul ((gchar*) min, NULL, 10);
-		self->priv->rating.max = strtoul ((gchar*) max, NULL, 10);
-		self->priv->rating.count = num_raters_uint;
-		self->priv->rating.average = average_double;
-
-		g_object_freeze_notify (G_OBJECT (self));
-		g_object_notify (G_OBJECT (self), "min-rating");
-		g_object_notify (G_OBJECT (self), "max-rating");
-		g_object_notify (G_OBJECT (self), "rating-count");
-		g_object_notify (G_OBJECT (self), "average-rating");
-		g_object_thaw_notify (G_OBJECT (self));
-	} else if (xmlStrcmp (node->name, (xmlChar*) "comments") == 0) {
-		/* gd:comments */
-		xmlChar *rel, *href, *count_hint, *read_only;
-		xmlNode *child_node;
-		guint count_hint_uint;
-
-		/* This is actually the child of the <comments> element */
-		child_node = node->children;
-
-		count_hint = xmlGetProp (child_node, (xmlChar*) "countHint");
-		if (count_hint == NULL)
-			count_hint_uint = 0;
-		else
-			count_hint_uint = strtoul ((gchar*) count_hint, NULL, 10);
-		xmlFree (count_hint);
-
-		read_only = xmlGetProp (child_node, (xmlChar*) "readOnly");
-		rel = xmlGetProp (child_node, (xmlChar*) "rel");
-		href = xmlGetProp (child_node, (xmlChar*) "href");
-
-		/* TODO */
-		/*gdata_gd_feed_link_free (self->priv->comments_feed_link);
-		self->priv->comments_feed_link = gdata_gd_feed_link_new ((gchar*) href, (gchar*) rel, count_hint_uint,
-									 ((xmlStrcmp (read_only, (xmlChar*) "true") == 0) ? TRUE : FALSE));
-		g_object_notify (G_OBJECT (self), "comments-feed-link");*/
-
-		xmlFree (rel);
-		xmlFree (href);
-		xmlFree (read_only);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "statistics") == 0) {
-		/* yt:statistics */
-		xmlChar *view_count, *favorite_count;
-
-		/* View count */
-		view_count = xmlGetProp (node, (xmlChar*) "viewCount");
-		if (view_count == NULL)
-			return gdata_parser_error_required_property_missing (node, "viewCount", error);
-		self->priv->view_count = strtoul ((gchar*) view_count, NULL, 10);
-		g_object_notify (G_OBJECT (self), "view-count");
-		xmlFree (view_count);
-
-		/* Favourite count */
-		favorite_count = xmlGetProp (node, (xmlChar*) "favoriteCount");
-		if (favorite_count == NULL)
-			self->priv->favorite_count = 0;
-		else
-			self->priv->favorite_count = strtoul ((gchar*) favorite_count, NULL, 10);
-		g_object_notify (G_OBJECT (self), "favorite-count");
-		xmlFree (favorite_count);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "location") == 0) {
-		/* yt:location */
-		xmlChar *location = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_youtube_video_set_location (self, (gchar*) location);
-		xmlFree (location);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "noembed") == 0) {
-		/* yt:noembed */
-		gdata_youtube_video_set_no_embed (self, TRUE);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "recorded") == 0) {
-		/* yt:recorded */
-		xmlChar *recorded;
-		GTimeVal recorded_timeval;
-
-		recorded = xmlNodeListGetString (doc, node->children, TRUE);
-		if (gdata_parser_time_val_from_date ((gchar*) recorded, &recorded_timeval) == FALSE) {
-			/* Error */
-			gdata_parser_error_not_iso8601_format (node, (gchar*) recorded, error);
-			xmlFree (recorded);
-			return FALSE;
-		}
-		xmlFree (recorded);
-		gdata_youtube_video_set_recorded (self, &recorded_timeval);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "control") == 0) {
+	} else if (gdata_parser_is_namespace (node, "http://www.w3.org/2007/app") == TRUE &&
+	           xmlStrcmp (node->name, (xmlChar*) "control") == 0) {
 		/* app:control */
 		GDataYouTubeControl *control = GDATA_YOUTUBE_CONTROL (_gdata_parsable_new_from_xml_node (GDATA_TYPE_YOUTUBE_CONTROL, doc,
 													 node, NULL, error));
@@ -758,9 +672,115 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 		}
 
 		self->priv->youtube_control = control;
-	} else if (GDATA_PARSABLE_CLASS (gdata_youtube_video_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+	} else if (gdata_parser_is_namespace (node, "http://schemas.google.com/g/2005") == TRUE) {
+		if (xmlStrcmp (node->name, (xmlChar*) "rating") == 0) {
+			/* gd:rating */
+			xmlChar *min, *max, *num_raters, *average;
+			guint num_raters_uint;
+			gdouble average_double;
+
+			min = xmlGetProp (node, (xmlChar*) "min");
+			if (min == NULL)
+				return gdata_parser_error_required_property_missing (node, "min", error);
+
+			max = xmlGetProp (node, (xmlChar*) "max");
+			if (max == NULL) {
+				gdata_parser_error_required_property_missing (node, "max", error);
+				xmlFree (min);
+				return FALSE;
+			}
+
+			num_raters = xmlGetProp (node, (xmlChar*) "numRaters");
+			if (num_raters == NULL)
+				num_raters_uint = 0;
+			else
+				num_raters_uint = strtoul ((gchar*) num_raters, NULL, 10);
+			xmlFree (num_raters);
+
+			average = xmlGetProp (node, (xmlChar*) "average");
+			if (average == NULL)
+				average_double = 0;
+			else
+				average_double = g_ascii_strtod ((gchar*) average, NULL);
+			xmlFree (average);
+
+			self->priv->rating.min = strtoul ((gchar*) min, NULL, 10);
+			self->priv->rating.max = strtoul ((gchar*) max, NULL, 10);
+			self->priv->rating.count = num_raters_uint;
+			self->priv->rating.average = average_double;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "comments") == 0) {
+			/* gd:comments */
+			xmlChar *rel, *href, *count_hint, *read_only;
+			xmlNode *child_node;
+			guint count_hint_uint;
+
+			/* This is actually the child of the <comments> element */
+			child_node = node->children;
+
+			count_hint = xmlGetProp (child_node, (xmlChar*) "countHint");
+			if (count_hint == NULL)
+				count_hint_uint = 0;
+			else
+				count_hint_uint = strtoul ((gchar*) count_hint, NULL, 10);
+			xmlFree (count_hint);
+
+			read_only = xmlGetProp (child_node, (xmlChar*) "readOnly");
+			rel = xmlGetProp (child_node, (xmlChar*) "rel");
+			href = xmlGetProp (child_node, (xmlChar*) "href");
+
+			/* TODO */
+			/*gdata_gd_feed_link_free (self->priv->comments_feed_link);
+			self->priv->comments_feed_link = gdata_gd_feed_link_new ((gchar*) href, (gchar*) rel, count_hint_uint,
+										 ((xmlStrcmp (read_only, (xmlChar*) "true") == 0) ? TRUE : FALSE));*/
+
+			xmlFree (rel);
+			xmlFree (href);
+			xmlFree (read_only);
+		} else {
+			return GDATA_PARSABLE_CLASS (gdata_youtube_video_parent_class)->parse_xml (parsable, doc, node, user_data, error);
+		}
+	} else if (gdata_parser_is_namespace (node, "http://gdata.youtube.com/schemas/2007") == TRUE) {
+		if (xmlStrcmp (node->name, (xmlChar*) "statistics") == 0) {
+			/* yt:statistics */
+			xmlChar *view_count, *favorite_count;
+
+			/* View count */
+			view_count = xmlGetProp (node, (xmlChar*) "viewCount");
+			if (view_count == NULL)
+				return gdata_parser_error_required_property_missing (node, "viewCount", error);
+			self->priv->view_count = strtoul ((gchar*) view_count, NULL, 10);
+			xmlFree (view_count);
+
+			/* Favourite count */
+			favorite_count = xmlGetProp (node, (xmlChar*) "favoriteCount");
+			self->priv->favorite_count = (favorite_count != NULL) ? strtoul ((gchar*) favorite_count, NULL, 10) : 0;
+			xmlFree (favorite_count);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "location") == 0) {
+			/* yt:location */
+			g_free (self->priv->location);
+			self->priv->location = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "noembed") == 0) {
+			/* yt:noembed */
+			gdata_youtube_video_set_no_embed (self, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "recorded") == 0) {
+			/* yt:recorded */
+			xmlChar *recorded;
+			GTimeVal recorded_timeval;
+
+			recorded = xmlNodeListGetString (doc, node->children, TRUE);
+			if (gdata_parser_time_val_from_date ((gchar*) recorded, &recorded_timeval) == FALSE) {
+				/* Error */
+				gdata_parser_error_not_iso8601_format (node, (gchar*) recorded, error);
+				xmlFree (recorded);
+				return FALSE;
+			}
+			xmlFree (recorded);
+			gdata_youtube_video_set_recorded (self, &recorded_timeval);
+		} else {
+			return GDATA_PARSABLE_CLASS (gdata_youtube_video_parent_class)->parse_xml (parsable, doc, node, user_data, error);
+		}
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_youtube_video_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -1005,6 +1025,8 @@ gdata_youtube_video_get_player_uri (GDataYouTubeVideo *self)
  * The return value from this function is purely informational, and no obligation is assumed.
  *
  * Return value: %TRUE if the video is restricted in @country, %FALSE otherwise
+ *
+ * Since: 0.4.0
  **/
 gboolean
 gdata_youtube_video_is_restricted_in_country (GDataYouTubeVideo *self, const gchar *country)
@@ -1013,39 +1035,6 @@ gdata_youtube_video_is_restricted_in_country (GDataYouTubeVideo *self, const gch
 	g_return_val_if_fail (country != NULL && *country != '\0', FALSE);
 
 	return gdata_media_group_is_restricted_in_country (self->priv->media_group, country);
-}
-
-/**
- * gdata_youtube_video_get_title:
- * @self: a #GDataYouTubeVideo
- *
- * Gets the #GDataYouTubeVideo:title property.
- *
- * Return value: the video's title, or %NULL
- **/
-const gchar *
-gdata_youtube_video_get_title (GDataYouTubeVideo *self)
-{
-	g_return_val_if_fail (GDATA_IS_YOUTUBE_VIDEO (self), NULL);
-	return gdata_media_group_get_title (self->priv->media_group);
-}
-
-/**
- * gdata_youtube_video_set_title:
- * @self: a #GDataYouTubeVideo
- * @title: the new video title
- *
- * Sets the #GDataYouTubeVideo:title property to the new title, @title.
- *
- * Set @title to %NULL to unset the video's title.
- **/
-void
-gdata_youtube_video_set_title (GDataYouTubeVideo *self, const gchar *title)
-{
-	g_return_if_fail (GDATA_IS_YOUTUBE_VIDEO (self));
-
-	gdata_media_group_set_title (self->priv->media_group, title);
-	g_object_notify (G_OBJECT (self), "title");
 }
 
 /**
@@ -1171,7 +1160,7 @@ gdata_youtube_video_get_thumbnails (GDataYouTubeVideo *self)
  *
  * Gets the #GDataYouTubeVideo:duration property.
  *
- * Return value: the video duration in seconds, or %0 if unknown
+ * Return value: the video duration in seconds, or <code class="literal">0</code> if unknown
  **/
 guint
 gdata_youtube_video_get_duration (GDataYouTubeVideo *self)
@@ -1216,7 +1205,7 @@ gdata_youtube_video_set_is_private (GDataYouTubeVideo *self, gboolean is_private
  * @uploaded: a #GTimeVal
  *
  * Gets the #GDataYouTubeVideo:uploaded property and puts it in @uploaded. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  **/
 void
 gdata_youtube_video_get_uploaded (GDataYouTubeVideo *self, GTimeVal *uploaded)
@@ -1294,7 +1283,7 @@ gdata_youtube_video_get_state (GDataYouTubeVideo *self)
  * @recorded: a #GTimeVal
  *
  * Gets the #GDataYouTubeVideo:recorded property and puts it in @recorded. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  *
  * Since: 0.3.0
  **/
@@ -1342,7 +1331,7 @@ gdata_youtube_video_set_recorded (GDataYouTubeVideo *self, GTimeVal *recorded)
  * For example:
  * <informalexample><programlisting>
  * video_id = gdata_youtube_video_get_video_id_from_uri ("http://www.youtube.com/watch?v=BH_vwsyCrTc&feature=featured");
- * g_message ("Video ID: %s", video_id); /\* Should print: BH_vwsyCrTc *\/
+ * g_message ("Video ID: %s", video_id); /<!-- -->* Should print: BH_vwsyCrTc *<!-- -->/
  * g_free (video_id);
  * </programlisting></informalexample>
  *
@@ -1353,8 +1342,7 @@ gdata_youtube_video_set_recorded (GDataYouTubeVideo *self, GTimeVal *recorded)
 gchar *
 gdata_youtube_video_get_video_id_from_uri (const gchar *video_uri)
 {
-	GHashTable *params;
-	gchar *video_id;
+	gchar *video_id = NULL;
 	SoupURI *uri;
 
 	g_return_val_if_fail (video_uri != NULL && *video_uri != '\0', NULL);
@@ -1363,15 +1351,35 @@ gdata_youtube_video_get_video_id_from_uri (const gchar *video_uri)
 	uri = soup_uri_new (video_uri);
 	if (uri == NULL)
 		return NULL;
-	else if (uri->query == NULL || uri->host == NULL || strstr (uri->host, "youtube") == NULL) {
+	else if (uri->host == NULL || strstr (uri->host, "youtube") == NULL) {
 		soup_uri_free (uri);
 		return NULL;
 	}
 
-	params = soup_form_decode (uri->query);
+	/* Try the "v" parameter (e.g. format is: http://www.youtube.com/watch?v=ylLzyHk54Z0) */
+	if (uri->query != NULL) {
+		GHashTable *params = soup_form_decode (uri->query);
+		video_id = g_strdup (g_hash_table_lookup (params, "v"));
+		g_hash_table_destroy (params);
+	}
+
+	/* Try the "v" fragment component (e.g. format is: http://www.youtube.com/watch#!v=ylLzyHk54Z0).
+	 * YouTube introduced this new URI format in March 2010:
+	 * http://apiblog.youtube.com/2010/03/upcoming-change-to-youtube-video-page.html */
+	if (video_id == NULL && uri->fragment != NULL) {
+		gchar **components, **i;
+
+		components = g_strsplit (uri->fragment, "!", -1);
+		for (i = components; *i != NULL; i++) {
+			if (**i == 'v' && *((*i) + 1) == '=') {
+				video_id = g_strdup ((*i) + 2);
+				break;
+			}
+		}
+		g_strfreev (components);
+	}
+
 	soup_uri_free (uri);
-	video_id = g_strdup (g_hash_table_lookup (params, "v"));
-	g_hash_table_destroy (params);
 
 	return video_id;
 }

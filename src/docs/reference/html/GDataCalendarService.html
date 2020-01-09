@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataCalendarService</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch09.html" title="Google Calendar API">
 <link rel="prev" href="ch09.html" title="Google Calendar API">
 <link rel="next" href="GDataCalendarFeed.html" title="GDataCalendarFeed">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -50,7 +28,7 @@
                   <a href="#GDataCalendarService.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataCalendarService">
 <a name="GDataCalendarService"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -59,455 +37,465 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataCalendarService.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataCalendarService.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/services/calendar/gdata-calendar-service.h&gt;
 
-                    <a href="GDataCalendarService.html#GDataCalendarService-struct">GDataCalendarService</a>;
-                    <a href="GDataCalendarService.html#GDataCalendarServiceClass">GDataCalendarServiceClass</a>;
-<a href="GDataCalendarService.html">GDataCalendarService</a> * <a href="GDataCalendarService.html#gdata-calendar-service-new">gdata_calendar_service_new</a>       (const gchar *client_id);
-<a href="GDataFeed.html">GDataFeed</a> *         <a href="GDataCalendarService.html#gdata-calendar-service-query-all-calendars">gdata_calendar_service_query_all_calendars</a>
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GError **error);
-void                <a href="GDataCalendarService.html#gdata-calendar-service-query-all-calendars-async">gdata_calendar_service_query_all_calendars_async</a>
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GAsyncReadyCallback callback,
-                                                         gpointer user_data);
-<a href="GDataFeed.html">GDataFeed</a> *         <a href="GDataCalendarService.html#gdata-calendar-service-query-own-calendars">gdata_calendar_service_query_own_calendars</a>
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GError **error);
-void                <a href="GDataCalendarService.html#gdata-calendar-service-query-own-calendars-async">gdata_calendar_service_query_own_calendars_async</a>
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GAsyncReadyCallback callback,
-                                                         gpointer user_data);
-<a href="GDataFeed.html">GDataFeed</a> *         <a href="GDataCalendarService.html#gdata-calendar-service-query-events">gdata_calendar_service_query_events</a> (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataCalendarCalendar.html">GDataCalendarCalendar</a> *calendar,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GError **error);
-<a href="GDataCalendarEvent.html">GDataCalendarEvent</a> * <a href="GDataCalendarService.html#gdata-calendar-service-insert-event">gdata_calendar_service_insert_event</a>
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *event,
-                                                         GCancellable *cancellable,
-                                                         GError **error);
+                    <a class="link" href="GDataCalendarService.html#GDataCalendarService-struct" title="GDataCalendarService">GDataCalendarService</a>;
+                    <a class="link" href="GDataCalendarService.html#GDataCalendarServiceClass" title="GDataCalendarServiceClass">GDataCalendarServiceClass</a>;
+<a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="returnvalue">GDataCalendarService</span></a> * <a class="link" href="GDataCalendarService.html#gdata-calendar-service-new" title="gdata_calendar_service_new ()">gdata_calendar_service_new</a>       (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client_id</code></em>);
+<a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *         <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-all-calendars" title="gdata_calendar_service_query_all_calendars ()">gdata_calendar_service_query_all_calendars</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-all-calendars-async" title="gdata_calendar_service_query_all_calendars_async ()">gdata_calendar_service_query_all_calendars_async</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *         <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-own-calendars" title="gdata_calendar_service_query_own_calendars ()">gdata_calendar_service_query_own_calendars</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-own-calendars-async" title="gdata_calendar_service_query_own_calendars_async ()">gdata_calendar_service_query_own_calendars_async</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *         <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-events" title="gdata_calendar_service_query_events ()">gdata_calendar_service_query_events</a> (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar"><span class="type">GDataCalendarCalendar</span></a> *calendar</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="returnvalue">GDataCalendarEvent</span></a> * <a class="link" href="GDataCalendarService.html#gdata-calendar-service-insert-event" title="gdata_calendar_service_insert_event ()">gdata_calendar_service_insert_event</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> *event</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataCalendarService.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataService.html">GDataService</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataService.html" title="GDataService">GDataService</a>
          +----GDataCalendarService
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataCalendarService.description"></a><h2>Description</h2>
 <p>
-<a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a> is a subclass of <a href="GDataService.html"><span class="type">GDataService</span></a> for communicating with the GData API of Google Calendar. It supports querying
+<a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> is a subclass of <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> for communicating with the GData API of Google Calendar. It supports querying
 for, inserting, editing and deleting events from calendars, as well as operations on the calendars themselves.
 </p>
 <p>
 For more details of Google Calendar's GData API, see the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html" target="_top">
-online documentation</a>.</p>
+online documentation</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataCalendarService.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataCalendarService">
 <a name="GDataCalendarService-struct"></a><h3>GDataCalendarService</h3>
 <pre class="programlisting">typedef struct _GDataCalendarService GDataCalendarService;</pre>
 <p>
-All the fields in the <a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> structure are private and should never be accessed directly.
+</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataCalendarServiceClass">
 <a name="GDataCalendarServiceClass"></a><h3>GDataCalendarServiceClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataCalendarServiceClass;
 </pre>
 <p>
-All the fields in the <a href="GDataCalendarService.html#GDataCalendarServiceClass"><span class="type">GDataCalendarServiceClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataCalendarService.html#GDataCalendarServiceClass" title="GDataCalendarServiceClass"><span class="type">GDataCalendarServiceClass</span></a> structure are private and should never be accessed directly.
+</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_service_new ()">
 <a name="gdata-calendar-service-new"></a><h3>gdata_calendar_service_new ()</h3>
-<pre class="programlisting"><a href="GDataCalendarService.html">GDataCalendarService</a> * gdata_calendar_service_new       (const gchar *client_id);</pre>
+<pre class="programlisting"><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="returnvalue">GDataCalendarService</span></a> * gdata_calendar_service_new       (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client_id</code></em>);</pre>
 <p>
-Creates a new <a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a>. The <em class="parameter"><code>client_id</code></em> must be unique for your application, and as registered with Google.</p>
+Creates a new <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>. The <em class="parameter"><code>client_id</code></em> must be unique for your application, and as registered with Google.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>client_id</code></em> :</span></p></td>
-<td> your application's client ID
+<td>your application's client ID
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a>, or <code class="literal">NULL</code>
+<td> a new <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_service_query_all_calendars ()">
 <a name="gdata-calendar-service-query-all-calendars"></a><h3>gdata_calendar_service_query_all_calendars ()</h3>
-<pre class="programlisting"><a href="GDataFeed.html">GDataFeed</a> *         gdata_calendar_service_query_all_calendars
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *         gdata_calendar_service_query_all_calendars
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Queries the service to return a list of all calendars from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>. It will return all calendars the user has read access to, including primary, secondary and imported
 calendars.
 </p>
 <p>
-For more details, see <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a>
+<td>a <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
-<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
-<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>progress_callback</code></em> function
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> of query results; unref with <code class="function">g_object_unref()</code>
+<td> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_service_query_all_calendars_async ()">
 <a name="gdata-calendar-service-query-all-calendars-async"></a><h3>gdata_calendar_service_query_all_calendars_async ()</h3>
-<pre class="programlisting">void                gdata_calendar_service_query_all_calendars_async
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GAsyncReadyCallback callback,
-                                                         gpointer user_data);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_service_query_all_calendars_async
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Queries the service to return a list of all calendars from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>. <em class="parameter"><code>self</code></em> and <em class="parameter"><code>query</code></em> are all reffed when this function is called, so can safely be unreffed after
 this function returns.
 </p>
 <p>
-For more details, see <a href="GDataCalendarService.html#gdata-calendar-service-query-all-calendars"><code class="function">gdata_calendar_service_query_all_calendars()</code></a>, which is the synchronous version of
-this function, and <a href="GDataService.html#gdata-service-query-async"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.</p>
+For more details, see <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-all-calendars" title="gdata_calendar_service_query_all_calendars ()"><code class="function">gdata_calendar_service_query_all_calendars()</code></a>, which is the synchronous version of
+this function, and <a class="link" href="GDataService.html#gdata-service-query-async" title="gdata_service_query_async ()"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a>
+<td>a <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
-<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
-<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>progress_callback</code></em> function
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td> a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when authentication is finished
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>callback</code></em> function
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_service_query_own_calendars ()">
 <a name="gdata-calendar-service-query-own-calendars"></a><h3>gdata_calendar_service_query_own_calendars ()</h3>
-<pre class="programlisting"><a href="GDataFeed.html">GDataFeed</a> *         gdata_calendar_service_query_own_calendars
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *         gdata_calendar_service_query_own_calendars
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Queries the service to return a list of calendars from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>, and the authenticated user owns. (i.e. They have full read/write access to the calendar, as well
 as the ability to set permissions on the calendar.)
 </p>
 <p>
-For more details, see <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a>
+<td>a <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
-<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
-<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>progress_callback</code></em> function
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> of query results; unref with <code class="function">g_object_unref()</code>
+<td> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_service_query_own_calendars_async ()">
 <a name="gdata-calendar-service-query-own-calendars-async"></a><h3>gdata_calendar_service_query_own_calendars_async ()</h3>
-<pre class="programlisting">void                gdata_calendar_service_query_own_calendars_async
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GAsyncReadyCallback callback,
-                                                         gpointer user_data);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_service_query_own_calendars_async
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Queries the service to return a list of calendars from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>, and the authenticated user owns. <em class="parameter"><code>self</code></em> and <em class="parameter"><code>query</code></em> are all reffed when this function is called,
 so can safely be unreffed after this function returns.
 </p>
 <p>
-For more details, see <a href="GDataCalendarService.html#gdata-calendar-service-query-own-calendars"><code class="function">gdata_calendar_service_query_own_calendars()</code></a>, which is the synchronous version of
-this function, and <a href="GDataService.html#gdata-service-query-async"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.</p>
+For more details, see <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-own-calendars" title="gdata_calendar_service_query_own_calendars ()"><code class="function">gdata_calendar_service_query_own_calendars()</code></a>, which is the synchronous version of
+this function, and <a class="link" href="GDataService.html#gdata-service-query-async" title="gdata_service_query_async ()"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a>
+<td>a <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
-<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
-<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>progress_callback</code></em> function
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td> a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when authentication is finished
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>callback</code></em> function
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_service_query_events ()">
 <a name="gdata-calendar-service-query-events"></a><h3>gdata_calendar_service_query_events ()</h3>
-<pre class="programlisting"><a href="GDataFeed.html">GDataFeed</a> *         gdata_calendar_service_query_events (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataCalendarCalendar.html">GDataCalendarCalendar</a> *calendar,
-                                                         <a href="GDataQuery.html">GDataQuery</a> *query,
-                                                         GCancellable *cancellable,
-                                                         <a href="GDataService.html#GDataQueryProgressCallback">GDataQueryProgressCallback</a> progress_callback,
-                                                         gpointer progress_user_data,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *         gdata_calendar_service_query_events (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar"><span class="type">GDataCalendarCalendar</span></a> *calendar</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Queries the service to return a list of events in the given <em class="parameter"><code>calendar</code></em>, which match <em class="parameter"><code>query</code></em>.
 </p>
 <p>
-For more details, see <a href="GDataService.html#gdata-service-query"><code class="function">gdata_service_query()</code></a>.</p>
+For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a>
+<td>a <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>calendar</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarCalendar.html"><span class="type">GDataCalendarCalendar</span></a>
+<td>a <a class="link" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar"><span class="type">GDataCalendarCalendar</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
-<td> a <a href="GDataQuery.html"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
-<td> a <a href="GDataService.html#GDataQueryProgressCallback"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>
+<td>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>progress_user_data</code></em> :</span></p></td>
-<td> data to pass to the <em class="parameter"><code>progress_callback</code></em> function
+<td>data to pass to the <em class="parameter"><code>progress_callback</code></em> function
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataFeed.html"><span class="type">GDataFeed</span></a> of query results; unref with <code class="function">g_object_unref()</code>
+<td> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_service_insert_event ()">
 <a name="gdata-calendar-service-insert-event"></a><h3>gdata_calendar_service_insert_event ()</h3>
-<pre class="programlisting"><a href="GDataCalendarEvent.html">GDataCalendarEvent</a> * gdata_calendar_service_insert_event
-                                                        (<a href="GDataCalendarService.html">GDataCalendarService</a> *self,
-                                                         <a href="GDataCalendarEvent.html">GDataCalendarEvent</a> *event,
-                                                         GCancellable *cancellable,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="returnvalue">GDataCalendarEvent</span></a> * gdata_calendar_service_insert_event
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> *event</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Inserts <em class="parameter"><code>event</code></em> by uploading it to the online calendar service.
 </p>
 <p>
-For more details, see <a href="GDataService.html#gdata-service-insert-entry"><code class="function">gdata_service_insert_entry()</code></a>.</p>
+For more details, see <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarService.html"><span class="type">GDataCalendarService</span></a>
+<td>a <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
-<td> the <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a> to insert
+<td>the <a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> to insert
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> an updated <a href="GDataCalendarEvent.html"><span class="type">GDataCalendarEvent</span></a>, or <code class="literal">NULL</code>
+<td> an updated <a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -519,6 +507,6 @@ For more details, see <a href="GDataService.html#gdata-service-insert-entry"><co
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

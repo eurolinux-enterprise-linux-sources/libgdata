@@ -2,7 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Richard Schwarting 2009 <aquarichy@gmail.com>
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,9 +28,11 @@
  *
  * For more details of Google PicasaWeb's GData API, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html">
  * online documentation</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
-/* TODO: support the album cover/icon ? */
+/* TODO: support the album cover/icon ? I think this is already done with the thumbnails, but we don't set it yet :( */
 
 #include <config.h>
 #include <glib.h>
@@ -57,10 +59,10 @@ static gboolean parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, 
 static void get_namespaces (GDataParsable *parsable, GHashTable *namespaces);
 
 struct _GDataPicasaWebAlbumPrivate {
+	gchar *album_id;
 	gchar *user;
 	gchar *nickname;
 	GTimeVal edited;
-	gchar *name; /* album title, usable in URIs */
 	gchar *location;
 	GDataPicasaWebVisibility visibility;
 	GTimeVal timestamp;
@@ -80,7 +82,6 @@ enum {
 	PROP_USER = 1,
 	PROP_NICKNAME,
 	PROP_EDITED,
-	PROP_NAME,
 	PROP_LOCATION,
 	PROP_VISIBILITY,
 	PROP_TIMESTAMP,
@@ -89,10 +90,10 @@ enum {
 	PROP_BYTES_USED,
 	PROP_IS_COMMENTING_ENABLED,
 	PROP_COMMENT_COUNT,
-	PROP_DESCRIPTION,
 	PROP_TAGS,
 	PROP_LATITUDE,
-	PROP_LONGITUDE
+	PROP_LONGITUDE,
+	PROP_ALBUM_ID
 };
 
 G_DEFINE_TYPE (GDataPicasaWebAlbum, gdata_picasaweb_album, GDATA_TYPE_ENTRY)
@@ -116,7 +117,25 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 	parsable_class->get_namespaces = get_namespaces;
 
 	/**
-	 * GDataPicasaWeb:user
+	 * GDataPicasaWebAlbum:album-id
+	 *
+	 * The ID of the album. This is a substring of the ID returned by gdata_entry_get_id() for #GDataPicasaWebAlbum<!-- -->s; for example,
+	 * if gdata_entry_get_id() returned "http://picasaweb.google.com/data/entry/user/libgdata.picasaweb/albumid/5328889949261497249" for a
+	 * particular #GDataPicasaWebAlbum, the #GDataPicasaWebAlbum:album-id property would be "5328889949261497249".
+	 *
+	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#gphoto_id">
+	 * gphoto specification</ulink>.
+	 *
+	 * Since: 0.6.4
+	 **/
+	g_object_class_install_property (gobject_class, PROP_ALBUM_ID,
+					 g_param_spec_string ("album-id",
+							      "Album ID", "The ID of the album.",
+							      NULL,
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GDataPicasaWebAlbum:user
 	 *
 	 * The username of the album owner.
 	 *
@@ -132,7 +151,7 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 							      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GDataPicasaWeb:nickname
+	 * GDataPicasaWebAlbum:nickname
 	 *
 	 * The user's nickname. This is a user-specified value that should be used when referring to the user by name.
 	 *
@@ -148,7 +167,7 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 							      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GDataPicasaWeb:edited
+	 * GDataPicasaWebAlbum:edited
 	 *
 	 * The time this album was last edited. If the album has not been edited yet, the content indicates the time it was created.
 	 *
@@ -164,23 +183,7 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 							     G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GDataPicasaWeb:name
-	 *
-	 * The name of the album, which is the URI-usable name derived from the album title (#GDataEntry:title).
-	 *
-	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#gphoto_name">
-	 * gphoto specification</ulink>.
-	 *
-	 * Since: 0.4.0
-	 **/
-	g_object_class_install_property (gobject_class, PROP_NAME,
-					 g_param_spec_string ("name",
-							      "Name", "The name of the album.",
-							      NULL,
-							      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
-
-	/**
-	 * GDataPicasaWeb:location
+	 * GDataPicasaWebAlbum:location
 	 *
 	 * The user-specified location associated with the album. A place name.
 	 *
@@ -196,7 +199,7 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 							      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GDataPicasaWeb:visibility
+	 * GDataPicasaWebAlbum:visibility
 	 *
 	 * The visibility (or access rights) of the album.
 	 *
@@ -212,7 +215,7 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 							    G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GDataPicasaWeb:timestamp
+	 * GDataPicasaWebAlbum:timestamp
 	 *
 	 * The timestamp of when the album occurred, settable by the user.
 	 *
@@ -267,7 +270,7 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 	 * GDataPicasaWebAlbum:bytes-used:
 	 *
 	 * The number of bytes consumed by this album and its contents. Note that this is only set if the authenticated user is the owner of the
-	 * album; it's otherwise %-1.
+	 * album; it's otherwise <code class="literal">-1</code>.
 	 *
 	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#gphoto_bytesUsed">
 	 * gphoto specification</ulink>.
@@ -310,22 +313,6 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 							    G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GDataPicasaWebAlbum:description:
-	 *
-	 * Description of the album.
-	 *
-	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#media_description">
-	 * Media RSS specification</ulink>.
-	 *
-	 * Since: 0.4.0
-	 **/
-	g_object_class_install_property (gobject_class, PROP_DESCRIPTION,
-					 g_param_spec_string ("description",
-							      "Description", "Description of the album.",
-							      NULL,
-							      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
-
-	/**
 	 * GDataPicasaWebAlbum:tags:
 	 *
 	 * A comma-separated list of tags associated with the album; all the tags associated with the individual photos in the album.
@@ -344,7 +331,8 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 	/**
 	 * GDataPicasaWebAlbum:latitude:
 	 *
-	 * The location as a latitude coordinate associated with this album. Valid latitudes range from %-90.0 to %90.0 inclusive.
+	 * The location as a latitude coordinate associated with this album. Valid latitudes range from <code class="literal">-90.0</code>
+	 * to <code class="literal">90.0</code> inclusive.
 	 *
 	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/docs/2.0/reference.html#georss_where">
 	 * GeoRSS specification</ulink>.
@@ -360,7 +348,8 @@ gdata_picasaweb_album_class_init (GDataPicasaWebAlbumClass *klass)
 	/**
 	 * GDataPicasaWebAlbum:longitude:
 	 *
-	 * The location as a longitude coordinate associated with this album. Valid longitudes range from %-180.0 to %180.0 inclusive.
+	 * The location as a longitude coordinate associated with this album. Valid longitudes range from <code class="literal">-180.0</code>
+	 * to <code class="literal">180.0</code> inclusive.
 	 *
 	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/docs/2.0/reference.html#georss_where">
 	 * GeoRSS specification</ulink>.
@@ -380,6 +369,14 @@ notify_title_cb (GDataPicasaWebAlbum *self, GParamSpec *pspec, gpointer user_dat
 	/* Update our media:group title */
 	if (self->priv->media_group != NULL)
 		gdata_media_group_set_title (self->priv->media_group, gdata_entry_get_title (GDATA_ENTRY (self)));
+}
+
+static void
+notify_summary_cb (GDataPicasaWebAlbum *self, GParamSpec *pspec, gpointer user_data)
+{
+	/* Update our media:group description */
+	if (self->priv->media_group != NULL)
+		gdata_media_group_set_description (self->priv->media_group, gdata_entry_get_summary (GDATA_ENTRY (self)));
 }
 
 static void notify_visibility_cb (GDataPicasaWebAlbum *self, GParamSpec *pspec, gpointer user_data);
@@ -430,12 +427,21 @@ gdata_picasaweb_album_init (GDataPicasaWebAlbum *self)
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_PICASAWEB_ALBUM, GDataPicasaWebAlbumPrivate);
 	self->priv->media_group = g_object_new (GDATA_TYPE_MEDIA_GROUP, NULL);
 	self->priv->georss_where = g_object_new (GDATA_TYPE_GEORSS_WHERE, NULL);
+	self->priv->visibility = GDATA_PICASAWEB_PRIVATE;
 
-	/* Connect to the notify::title signal from GDataEntry so our media:group title can be kept in sync */
+	/* Initialise the timestamp and edited properties to the current time (bgo#599140) */
+	g_get_current_time (&(self->priv->timestamp));
+	g_get_current_time (&(self->priv->edited));
+
+	/* Connect to the notify::title signal from GDataEntry so our media:group title can be kept in sync
+	 * (the title of an album is duplicated in atom:title and media:group/media:title) */
 	g_signal_connect (GDATA_ENTRY (self), "notify::title", G_CALLBACK (notify_title_cb), NULL);
-	/* Connect to the notify::rights signal from GDataEntry so our gphoto:visibility can be kept in sync */
+	/* Connect to the notify::description signal from GDataEntry so our media:group description can be kept in sync
+	 * (the description of an album is duplicated in atom:summary and media:group/media:description) */
+	g_signal_connect (GDATA_ENTRY (self), "notify::summary", G_CALLBACK (notify_summary_cb), NULL);
+	/* Connect to the notify::rights signal from GDataEntry so our gphoto:visibility can be kept in sync (and vice-versa)
+	 * (visibility settings are duplicated in atom:rights and gphoto:visibility) */
 	g_signal_connect (GDATA_ENTRY (self), "notify::rights", G_CALLBACK (notify_rights_cb), NULL);
-	/* Connect to the notify::visibility signal so our rights can be kept in sync */
 	g_signal_connect (self, "notify::visibility", G_CALLBACK (notify_visibility_cb), NULL);
 }
 
@@ -461,9 +467,9 @@ gdata_picasaweb_album_finalize (GObject *object)
 {
 	GDataPicasaWebAlbumPrivate *priv = GDATA_PICASAWEB_ALBUM_GET_PRIVATE (object);
 
-	xmlFree (priv->user);
-	xmlFree (priv->nickname);
-	xmlFree (priv->name);
+	g_free (priv->album_id);
+	g_free (priv->user);
+	g_free (priv->nickname);
 	g_free (priv->location);
 
 	/* Chain up to the parent class */
@@ -476,6 +482,9 @@ gdata_picasaweb_album_get_property (GObject *object, guint property_id, GValue *
 	GDataPicasaWebAlbumPrivate *priv = GDATA_PICASAWEB_ALBUM_GET_PRIVATE (object);
 
 	switch (property_id) {
+		case PROP_ALBUM_ID:
+			g_value_set_string (value, priv->album_id);
+			break;
 		case PROP_USER:
 			g_value_set_string (value, priv->user);
 			break;
@@ -484,9 +493,6 @@ gdata_picasaweb_album_get_property (GObject *object, guint property_id, GValue *
 			break;
 		case PROP_EDITED:
 			g_value_set_boxed (value, &(priv->edited));
-			break;
-		case PROP_NAME:
-			g_value_set_string (value, priv->name);
 			break;
 		case PROP_LOCATION:
 			g_value_set_string (value, priv->location);
@@ -512,9 +518,6 @@ gdata_picasaweb_album_get_property (GObject *object, guint property_id, GValue *
 		case PROP_COMMENT_COUNT:
 			g_value_set_uint (value, priv->comment_count);
 			break;
-		case PROP_DESCRIPTION:
-			g_value_set_string (value, gdata_media_group_get_description (priv->media_group));
-			break;
 		case PROP_TAGS:
 			g_value_set_string (value, gdata_media_group_get_keywords (priv->media_group));
 			break;
@@ -537,6 +540,11 @@ gdata_picasaweb_album_set_property (GObject *object, guint property_id, const GV
 	GDataPicasaWebAlbum *self = GDATA_PICASAWEB_ALBUM (object);
 
 	switch (property_id) {
+		case PROP_ALBUM_ID:
+			/* Construct only */
+			g_free (self->priv->album_id);
+			self->priv->album_id = g_value_dup_string (value);
+			break;
 		case PROP_LOCATION:
 			gdata_picasaweb_album_set_location (self, g_value_get_string (value));
 			break;
@@ -548,9 +556,6 @@ gdata_picasaweb_album_set_property (GObject *object, guint property_id, const GV
 			break;
 		case PROP_IS_COMMENTING_ENABLED:
 			gdata_picasaweb_album_set_is_commenting_enabled (self, g_value_get_boolean (value));
-			break;
-		case PROP_DESCRIPTION:
-			gdata_picasaweb_album_set_description (self, g_value_get_string (value));
 			break;
 		case PROP_TAGS:
 			gdata_picasaweb_album_set_tags (self, g_value_get_string (value));
@@ -575,7 +580,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataPicasaWebAlbum *self = GDATA_PICASAWEB_ALBUM (parsable);
 
-	if (xmlStrcmp (node->name, (xmlChar*) "group") == 0) {
+	if (gdata_parser_is_namespace (node, "http://search.yahoo.com/mrss/") == TRUE &&
+	    xmlStrcmp (node->name, (xmlChar*) "group") == 0) {
 		/* media:group */
 		GDataMediaGroup *group = GDATA_MEDIA_GROUP (_gdata_parsable_new_from_xml_node (GDATA_TYPE_MEDIA_GROUP, doc, node, NULL, error));
 		if (group == NULL)
@@ -587,7 +593,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			g_object_unref (self->priv->media_group);
 
 		self->priv->media_group = group;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "where") == 0) {
+	} else if (gdata_parser_is_namespace (node, "http://www.georss.org/georss") == TRUE &&
+	           xmlStrcmp (node->name, (xmlChar*) "where") == 0) {
 		/* georss:where */
 		GDataGeoRSSWhere *where = GDATA_GEORSS_WHERE (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GEORSS_WHERE, doc, node, NULL, error));
 		if (where == NULL)
@@ -597,21 +604,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			g_object_unref (self->priv->georss_where);
 
 		self->priv->georss_where = where;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "user") == 0) {
-		/* gphoto:user */
-		xmlChar *user = xmlNodeListGetString (doc, node->children, TRUE);
-		if (user == NULL || *user == '\0')
-			return gdata_parser_error_required_content_missing (node, error);
-		xmlFree (self->priv->user);
-		self->priv->user = (gchar*) user;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "nickname") == 0) {
-		/* gphoto:nickname */
-		xmlChar *nickname = xmlNodeListGetString (doc, node->children, TRUE);
-		if (nickname == NULL || *nickname == '\0')
-			return gdata_parser_error_required_content_missing (node, error);
-		xmlFree (self->priv->nickname);
-		self->priv->nickname = (gchar*) nickname;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "edited") == 0) {
+	} else if (gdata_parser_is_namespace (node, "http://www.w3.org/2007/app") == TRUE &&
+	           xmlStrcmp (node->name, (xmlChar*) "edited") == 0) {
 		/* app:edited */
 		xmlChar *edited = xmlNodeListGetString (doc, node->children, TRUE);
 		if (g_time_val_from_iso8601 ((gchar*) edited, &(self->priv->edited)) == FALSE) {
@@ -621,90 +615,112 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			return FALSE;
 		}
 		xmlFree (edited);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "summary") == 0) {
-		/* gphoto:summary */
-		/* @summary and @description are the same, so they're combined to @description */
-		xmlChar *summary = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_picasaweb_album_set_description (self, (gchar*) summary);
-		xmlFree (summary);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "name") == 0) {
-		/* gphoto:name */
-		xmlChar *name = xmlNodeListGetString (doc, node->children, TRUE);
-		if (name == NULL || *name == '\0') {
-			xmlFree (name);
-			return gdata_parser_error_required_content_missing (node, error);
-		}
-		xmlFree (self->priv->name);
-		self->priv->name = (gchar*) name;
-	} else if (xmlStrcmp (node->name, (xmlChar*) "location") == 0) {
-		/* gphoto:location */
-		xmlChar *location = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_picasaweb_album_set_location (self, (gchar*) location);
-		xmlFree (location);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "access") == 0) {
-		/* gphoto:access */
-		xmlChar *access = xmlNodeListGetString (doc, node->children, TRUE);
-		if (xmlStrcmp (access, (xmlChar*) "public") == 0) {
-			gdata_picasaweb_album_set_visibility (self, GDATA_PICASAWEB_PUBLIC);
-		} else if (xmlStrcmp (access, (xmlChar*) "private") == 0) {
-			gdata_picasaweb_album_set_visibility (self, GDATA_PICASAWEB_PRIVATE);
-		} else {
-			gdata_parser_error_unknown_content (node, (gchar*) access, error);
+	} else if (gdata_parser_is_namespace (node, "http://schemas.google.com/photos/2007") == TRUE) {
+		if (xmlStrcmp (node->name, (xmlChar*) "user") == 0) {
+			/* gphoto:user */
+			xmlChar *user = xmlNodeListGetString (doc, node->children, TRUE);
+			if (user == NULL || *user == '\0')
+				return gdata_parser_error_required_content_missing (node, error);
+			g_free (self->priv->user);
+			self->priv->user = (gchar*) user;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "nickname") == 0) {
+			/* gphoto:nickname */
+			xmlChar *nickname = xmlNodeListGetString (doc, node->children, TRUE);
+			if (nickname == NULL || *nickname == '\0')
+				return gdata_parser_error_required_content_missing (node, error);
+			g_free (self->priv->nickname);
+			self->priv->nickname = (gchar*) nickname;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "location") == 0) {
+			/* gphoto:location */
+			g_free (self->priv->location);
+			self->priv->location = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "id") == 0) {
+			/* gphoto:id */
+			xmlChar *id = xmlNodeListGetString (doc, node->children, TRUE);
+			if (id == NULL || *id == '\0')
+				return gdata_parser_error_required_content_missing (node, error);
+			g_free (self->priv->album_id);
+			self->priv->album_id = (gchar*) id;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "access") == 0) {
+			/* gphoto:access */
+			xmlChar *access = xmlNodeListGetString (doc, node->children, TRUE);
+			if (xmlStrcmp (access, (xmlChar*) "public") == 0) {
+				gdata_picasaweb_album_set_visibility (self, GDATA_PICASAWEB_PUBLIC);
+			} else if (xmlStrcmp (access, (xmlChar*) "private") == 0) {
+				gdata_picasaweb_album_set_visibility (self, GDATA_PICASAWEB_PRIVATE);
+			} else {
+				gdata_parser_error_unknown_content (node, (gchar*) access, error);
+			}
 			xmlFree (access);
-			return FALSE;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "timestamp") == 0) {
+			/* gphoto:timestamp */
+			xmlChar *timestamp_str;
+			guint64 milliseconds;
+			GTimeVal timestamp;
+
+			timestamp_str = xmlNodeListGetString (doc, node->children, TRUE);
+			milliseconds = g_ascii_strtoull ((gchar*) timestamp_str, NULL, 10);
+			xmlFree (timestamp_str);
+
+			timestamp.tv_sec = (glong) (milliseconds / 1000);
+			timestamp.tv_usec = (glong) ((milliseconds % 1000) * 1000);
+
+			gdata_picasaweb_album_set_timestamp (self, &timestamp);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "numphotos") == 0) {
+			/* gphoto:numphotos */
+			xmlChar *num_photos = xmlNodeListGetString (doc, node->children, TRUE);
+			if (num_photos == NULL || *num_photos == '\0') {
+				xmlFree (num_photos);
+				return gdata_parser_error_required_content_missing (node, error);
+			}
+
+			self->priv->num_photos = strtoul ((char*) num_photos, NULL, 10);
+			xmlFree (num_photos);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "numphotosremaining") == 0) {
+			/* gphoto:numphotosremaining */
+			xmlChar *num_photos_remaining = xmlNodeListGetString (doc, node->children, TRUE);
+			if (num_photos_remaining == NULL || *num_photos_remaining == '\0') {
+				xmlFree (num_photos_remaining);
+				return gdata_parser_error_required_content_missing (node, error);
+			}
+
+			self->priv->num_photos_remaining = strtoul ((char*) num_photos_remaining, NULL, 10);
+			xmlFree (num_photos_remaining);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "bytesUsed") == 0) {
+			/* gphoto:bytesUsed */
+			xmlChar *bytes_used = xmlNodeListGetString (doc, node->children, TRUE);
+			if (bytes_used == NULL || *bytes_used == '\0') {
+				xmlFree (bytes_used);
+				return gdata_parser_error_required_content_missing (node, error);
+			}
+
+			self->priv->bytes_used = strtol ((char*) bytes_used, NULL, 10);
+			xmlFree (bytes_used);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "commentingEnabled") == 0) {
+			/* gphoto:commentingEnabled */
+			xmlChar *commenting_enabled = xmlNodeListGetString (doc, node->children, TRUE);
+			if (commenting_enabled == NULL || *commenting_enabled == '\0') {
+				xmlFree (commenting_enabled);
+				return gdata_parser_error_required_content_missing (node, error);
+			}
+
+			gdata_picasaweb_album_set_is_commenting_enabled (self, (xmlStrcmp (commenting_enabled, (xmlChar*) "true") == 0) ? TRUE : FALSE);
+			xmlFree (commenting_enabled);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "commentCount") == 0) {
+			/* gphoto:commentCount */
+			xmlChar *comment_count = xmlNodeListGetString (doc, node->children, TRUE);
+			if (comment_count == NULL || *comment_count == '\0') {
+				xmlFree (comment_count);
+				return gdata_parser_error_required_content_missing (node, error);
+			}
+
+			self->priv->comment_count = strtoul ((char*) comment_count, NULL, 10);
+			xmlFree (comment_count);
+		} else {
+			return GDATA_PARSABLE_CLASS (gdata_picasaweb_album_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 		}
-		xmlFree (access);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "timestamp") == 0) {
-		/* gphoto:timestamp */
-		xmlChar *timestamp_str;
-		guint64 milliseconds;
-		GTimeVal timestamp;
-
-		timestamp_str = xmlNodeListGetString (doc, node->children, TRUE);
-		milliseconds = g_ascii_strtoull ((gchar*) timestamp_str, NULL, 10);
-		xmlFree (timestamp_str);
-
-		timestamp.tv_sec = (glong) (milliseconds / 1000);
-		timestamp.tv_usec = (glong) ((milliseconds % 1000) * 1000);
-
-		gdata_picasaweb_album_set_timestamp (self, &timestamp);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "numphotos") == 0) {
-		/* gphoto:numphotos */
-		xmlChar *num_photos = xmlNodeListGetString (doc, node->children, TRUE);
-		if (num_photos == NULL || *num_photos == '\0')
-			return gdata_parser_error_required_content_missing (node, error);
-		self->priv->num_photos = strtoul ((char*) num_photos, NULL, 10);
-		xmlFree (num_photos);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "numphotosremaining") == 0) {
-		/* gphoto:numphotosremaining */
-		xmlChar *num_photos_remaining = xmlNodeListGetString (doc, node->children, TRUE);
-		if (num_photos_remaining == NULL || *num_photos_remaining == '\0')
-			return gdata_parser_error_required_content_missing (node, error);
-		self->priv->num_photos_remaining = strtoul ((char*) num_photos_remaining, NULL, 10);
-		xmlFree (num_photos_remaining);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "bytesUsed") == 0) {
-		/* gphoto:bytesUsed */
-		xmlChar *bytes_used = xmlNodeListGetString (doc, node->children, TRUE);
-		if (bytes_used == NULL || *bytes_used == '\0')
-			return gdata_parser_error_required_content_missing (node, error);
-		self->priv->bytes_used = strtol ((char*) bytes_used, NULL, 10);
-		xmlFree (bytes_used);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "commentingEnabled") == 0) {
-		/* gphoto:commentingEnabled */
-		xmlChar *commenting_enabled = xmlNodeListGetString (doc, node->children, TRUE);
-		if (commenting_enabled == NULL || *commenting_enabled == '\0')
-			return gdata_parser_error_required_content_missing (node, error);
-		gdata_picasaweb_album_set_is_commenting_enabled (self, (xmlStrcmp (commenting_enabled, (xmlChar*) "true") == 0) ? TRUE : FALSE);
-		xmlFree (commenting_enabled);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "commentCount") == 0) {
-		xmlChar *comment_count = xmlNodeListGetString (doc, node->children, TRUE);
-		if (comment_count == NULL || *comment_count == '\0')
-			return gdata_parser_error_required_content_missing (node, error);
-		self->priv->comment_count = strtoul ((char*) comment_count, NULL, 10);
-		xmlFree (comment_count);
-	} else if (GDATA_PARSABLE_CLASS (gdata_picasaweb_album_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_picasaweb_album_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -719,7 +735,9 @@ get_xml (GDataParsable *parsable, GString *xml_string)
 	GDATA_PARSABLE_CLASS (gdata_picasaweb_album_parent_class)->get_xml (parsable, xml_string);
 
 	/* Add all the album-specific XML */
-	/* TODO: gphoto:name?, gphoto:id */
+	if (priv->album_id != NULL)
+		g_string_append_printf (xml_string, "<gphoto:id>%s</gphoto:id>", priv->album_id);
+
 	if (priv->location != NULL)
 		gdata_parser_string_append_escaped (xml_string, "<gphoto:location>", priv->location, "</gphoto:location>");
 
@@ -737,7 +755,7 @@ get_xml (GDataParsable *parsable, GString *xml_string)
 	if (priv->timestamp.tv_sec != 0 || priv->timestamp.tv_usec != 0) {
 		/* in milliseconds */
 		g_string_append_printf (xml_string, "<gphoto:timestamp>%" G_GUINT64_FORMAT "</gphoto:timestamp>",
-					(guint64) (priv->timestamp.tv_sec * 1000 + priv->timestamp.tv_usec));
+					((guint64) priv->timestamp.tv_sec) * 1000 + priv->timestamp.tv_usec / 1000);
 	}
 
 	if (priv->is_commenting_enabled == FALSE)
@@ -781,18 +799,53 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
 
 /**
  * gdata_picasaweb_album_new:
- * @id: the album's ID, or %NULL
+ * @id: the album's entry ID, or %NULL
  *
- * Creates a new #GDataPicasaWebAlbum with the given ID and default properties.
+ * Creates a new #GDataPicasaWebAlbum with the given ID and default properties. @id is the ID which would be returned by gdata_entry_get_id(),
+ * not gdata_picasaweb_album_get_id().
  *
- * Return value: a new #GDataPicasaWebAlbum; unref with g_object_unref()
+ * If @id is not %NULL and can't be parsed to extract an album ID, %NULL will be returned.
+ *
+ * Return value: a new #GDataPicasaWebAlbum, or %NULL; unref with g_object_unref()
  *
  * Since: 0.4.0
  **/
 GDataPicasaWebAlbum *
 gdata_picasaweb_album_new (const gchar *id)
 {
-	return g_object_new (GDATA_TYPE_PICASAWEB_ALBUM, "id", id, NULL);
+	const gchar *album_id = NULL, *i;
+
+	if (id != NULL) {
+		album_id = g_strrstr (id, "/");
+		if (album_id == NULL)
+			return NULL;
+		album_id++; /* skip the slash */
+
+		/* Ensure the @album_id is entirely numeric */
+		for (i = album_id; *i != '\0'; i = g_utf8_next_char (i)) {
+			if (g_unichar_isdigit (g_utf8_get_char (i)) == FALSE)
+				return NULL;
+		}
+	}
+
+	return GDATA_PICASAWEB_ALBUM (g_object_new (GDATA_TYPE_PICASAWEB_ALBUM, "id", id, "album-id", album_id, NULL));
+}
+
+/**
+ * gdata_picasaweb_album_get_id:
+ * @self: a #GDataPicasaWebAlbum
+ *
+ * Gets the #GDataPicasaWebAlbum:album-id property.
+ *
+ * Return value: the album's ID
+ *
+ * Since: 0.6.4
+ **/
+const gchar *
+gdata_picasaweb_album_get_id (GDataPicasaWebAlbum *self)
+{
+	g_return_val_if_fail (GDATA_IS_PICASAWEB_ALBUM (self), NULL);
+	return self->priv->album_id;
 }
 
 /**
@@ -835,7 +888,7 @@ gdata_picasaweb_album_get_nickname (GDataPicasaWebAlbum *self)
  * @edited: a #GTimeVal
  *
  * Gets the #GDataPicasaWebAlbum:edited property and puts it in @edited. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  *
  * Since: 0.4.0
  **/
@@ -845,23 +898,6 @@ gdata_picasaweb_album_get_edited (GDataPicasaWebAlbum *self, GTimeVal *edited)
 	g_return_if_fail (GDATA_IS_PICASAWEB_ALBUM (self));
 	g_return_if_fail (edited != NULL);
 	*edited = self->priv->edited;
-}
-
-/**
- * gdata_picasaweb_album_get_name:
- * @self: a #GDataPicasaWebAlbum
- *
- * Gets the #GDataPicasaWebAlbum:name property.
- *
- * Return value: the album's name, as usable in URIs, or %NULL
- *
- * Since: 0.4.0
- **/
-const gchar *
-gdata_picasaweb_album_get_name (GDataPicasaWebAlbum *self)
-{
-	g_return_val_if_fail (GDATA_IS_PICASAWEB_ALBUM (self), NULL);
-	return self->priv->name;
 }
 
 /**
@@ -943,7 +979,7 @@ gdata_picasaweb_album_set_visibility (GDataPicasaWebAlbum *self, GDataPicasaWebV
  * @timestamp: a #GTimeVal
  *
  * Gets the #GDataPicasaWebAlbum:timestamp property and puts it in @timestamp. If the property is unset,
- * both fields in the #GTimeVal will be set to %0.
+ * both fields in the #GTimeVal will be set to <code class="literal">0</code>.
  *
  * Since: 0.4.0
  **/
@@ -1015,10 +1051,10 @@ gdata_picasaweb_album_get_num_photos_remaining (GDataPicasaWebAlbum *self)
  * gdata_picasaweb_album_get_bytes_used:
  * @self: a #GDataPicasaWebAlbum
  *
- * Gets the #GDataPicasaWebAlbum:bytes-used property. It will return %-1 if the current authenticated
+ * Gets the #GDataPicasaWebAlbum:bytes-used property. It will return <code class="literal">-1</code> if the current authenticated
  * user is not the owner of the album.
  *
- * Return value: the number of bytes used by the album and its contents, or %-1
+ * Return value: the number of bytes used by the album and its contents, or <code class="literal">-1</code>
  *
  * Since: 0.4.0
  **/
@@ -1115,45 +1151,6 @@ gdata_picasaweb_album_set_tags (GDataPicasaWebAlbum *self, const gchar *tags)
 
 	gdata_media_group_set_keywords (self->priv->media_group, tags);
 	g_object_notify (G_OBJECT (self), "tags");
-}
-
-/**
- * gdata_picasaweb_album_get_description:
- * @self: a #GDataPicasaWebAlbum
- *
- * Gets the #GDataPicasaWebAlbum:description property.
- *
- * Return value: the album's long text description, or %NULL
- *
- * Since: 0.4.0
- **/
-const gchar *
-gdata_picasaweb_album_get_description (GDataPicasaWebAlbum *self)
-{
-	g_return_val_if_fail (GDATA_IS_PICASAWEB_ALBUM (self), NULL);
-	return gdata_media_group_get_description (self->priv->media_group);
-}
-
-/**
- * gdata_picasaweb_album_set_description:
- * @self: a #GDataPicasaWebAlbum
- * @description: the album's new description, or %NULL
- *
- * Sets the #GDataPicasaWebAlbum:description property to the new description, @description.
- *
- * Set @description to %NULL to unset the album's description.
- *
- * Since: 0.4.0
- **/
-void
-gdata_picasaweb_album_set_description (GDataPicasaWebAlbum *self, const gchar *description)
-{
-	g_return_if_fail (GDATA_IS_PICASAWEB_ALBUM (self));
-
-	/* media:group/media:description is the same as atom:summary */
-	gdata_media_group_set_description (self->priv->media_group, description);
-	/*gdata_entry_set_summary (GDATA_ENTRY (self), description); TODO function doesn't exist yet */
-	g_object_notify (G_OBJECT (self), "description");
 }
 
 /**

@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataDownloadStream</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch02.html" title="Core API">
 <link rel="prev" href="GDataParsable.html" title="GDataParsable">
 <link rel="next" href="GDataUploadStream.html" title="GDataUploadStream">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -54,7 +32,7 @@
                   <a href="#GDataDownloadStream.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataDownloadStream">
 <a name="GDataDownloadStream"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -63,112 +41,117 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataDownloadStream.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataDownloadStream.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/gdata-download-stream.h&gt;
 
-                    <a href="GDataDownloadStream.html#GDataDownloadStream-struct">GDataDownloadStream</a>;
-                    <a href="GDataDownloadStream.html#GDataDownloadStreamClass">GDataDownloadStreamClass</a>;
-GInputStream *      <a href="GDataDownloadStream.html#gdata-download-stream-new">gdata_download_stream_new</a>           (<a href="GDataService.html">GDataService</a> *service,
-                                                         const gchar *download_uri);
-<a href="GDataService.html">GDataService</a> *      <a href="GDataDownloadStream.html#gdata-download-stream-get-service">gdata_download_stream_get_service</a>   (<a href="GDataDownloadStream.html">GDataDownloadStream</a> *self);
-const gchar *       <a href="GDataDownloadStream.html#gdata-download-stream-get-download-uri">gdata_download_stream_get_download_uri</a>
-                                                        (<a href="GDataDownloadStream.html">GDataDownloadStream</a> *self);
-const gchar *       <a href="GDataDownloadStream.html#gdata-download-stream-get-content-type">gdata_download_stream_get_content_type</a>
-                                                        (<a href="GDataDownloadStream.html">GDataDownloadStream</a> *self);
-gssize              <a href="GDataDownloadStream.html#gdata-download-stream-get-content-length">gdata_download_stream_get_content_length</a>
-                                                        (<a href="GDataDownloadStream.html">GDataDownloadStream</a> *self);
+                    <a class="link" href="GDataDownloadStream.html#GDataDownloadStream-struct" title="GDataDownloadStream">GDataDownloadStream</a>;
+                    <a class="link" href="GDataDownloadStream.html#GDataDownloadStreamClass" title="GDataDownloadStreamClass">GDataDownloadStreamClass</a>;
+<a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html"><span class="returnvalue">GInputStream</span></a> *      <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()">gdata_download_stream_new</a>           (<em class="parameter"><code><a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *service</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *download_uri</code></em>);
+<a class="link" href="GDataService.html" title="GDataService"><span class="returnvalue">GDataService</span></a> *      <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-service" title="gdata_download_stream_get_service ()">gdata_download_stream_get_service</a>   (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-download-uri" title="gdata_download_stream_get_download_uri ()">gdata_download_stream_get_download_uri</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-content-type" title="gdata_download_stream_get_content_type ()">gdata_download_stream_get_content_type</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"><span class="returnvalue">gssize</span></a>              <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-content-length" title="gdata_download_stream_get_content_length ()">gdata_download_stream_get_content_length</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataDownloadStream.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----GInputStream
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html">GInputStream</a>
          +----GDataDownloadStream
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Implemented Interfaces">
 <a name="GDataDownloadStream.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GDataDownloadStream implements
- GSeekable.</p>
+ <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GSeekable.html">GSeekable</a>.</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataDownloadStream.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataDownloadStream.html#GDataDownloadStream--content-length">content-length</a>"           glong                 : Read
-  "<a href="GDataDownloadStream.html#GDataDownloadStream--content-type">content-type</a>"             gchar*                : Read
-  "<a href="GDataDownloadStream.html#GDataDownloadStream--download-uri">download-uri</a>"             gchar*                : Read / Write / Construct Only
-  "<a href="GDataDownloadStream.html#GDataDownloadStream--service">service</a>"                  <a href="GDataService.html">GDataService</a>*         : Read / Write / Construct Only
+  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-length" title='The "content-length" property'>content-length</a>"           <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"><span class="type">glong</span></a>                 : Read
+  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-type" title='The "content-type" property'>content-type</a>"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--download-uri" title='The "download-uri" property'>download-uri</a>"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--service" title='The "service" property'>service</a>"                  <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>*         : Read / Write / Construct Only
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataDownloadStream.description"></a><h2>Description</h2>
 <p>
-<a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a> is a <span class="type">GInputStream</span> subclass to allow downloading of files from GData services with authentication from a <a href="GDataService.html"><span class="type">GDataService</span></a>.
+<a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> is a <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html"><span class="type">GInputStream</span></a> subclass to allow downloading of files from GData services with authentication from a <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>.
 </p>
 <p>
-Once a <a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a> is instantiated with <a href="GDataDownloadStream.html#gdata-download-stream-new"><code class="function">gdata_download_stream_new()</code></a>, the standard <span class="type">GInputStream</span> API can be used on the stream to download
-the file. Network communication may not actually begin until the first call to <code class="function">g_input_stream_read()</code>, so having a <a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a> around is no
+Once a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> is instantiated with <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>, the standard <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html"><span class="type">GInputStream</span></a> API can be used on the stream to download
+the file. Network communication may not actually begin until the first call to <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a>, so having a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> around is no
 guarantee that the file is being downloaded.
 </p>
 <p>
-The content type and length of the file being downloaded are made available through <a href="GDataDownloadStream.html#GDataDownloadStream--content-type"><span class="type">"content-type"</span></a> and <a href="GDataDownloadStream.html#GDataDownloadStream--content-length"><span class="type">"content-length"</span></a>
-as soon as the appropriate data is received from the server. Connect to <span class="type">":content-type"</span> and
-<span class="type">":content-length"</span> to be notified as soon as the data is available.</p>
+The content type and length of the file being downloaded are made available through <a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-type" title='The "content-type" property'><span class="type">"content-type"</span></a> and
+<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-length" title='The "content-length" property'><span class="type">"content-length"</span></a> as soon as the appropriate data is received from the server. Connect to the
+<a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject-notify"><span class="type">"notify"</span></a> <code class="code">content-type</code> and <code class="code">content-length</code> details to be notified as
+soon as the data is available.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataDownloadStream.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataDownloadStream">
 <a name="GDataDownloadStream-struct"></a><h3>GDataDownloadStream</h3>
 <pre class="programlisting">typedef struct _GDataDownloadStream GDataDownloadStream;</pre>
 <p>
-All the fields in the <a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataDownloadStreamClass">
 <a name="GDataDownloadStreamClass"></a><h3>GDataDownloadStreamClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataDownloadStreamClass;
 </pre>
 <p>
-All the fields in the <a href="GDataDownloadStream.html#GDataDownloadStreamClass"><span class="type">GDataDownloadStreamClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataDownloadStream.html#GDataDownloadStreamClass" title="GDataDownloadStreamClass"><span class="type">GDataDownloadStreamClass</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_download_stream_new ()">
 <a name="gdata-download-stream-new"></a><h3>gdata_download_stream_new ()</h3>
-<pre class="programlisting">GInputStream *      gdata_download_stream_new           (<a href="GDataService.html">GDataService</a> *service,
-                                                         const gchar *download_uri);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html"><span class="returnvalue">GInputStream</span></a> *      gdata_download_stream_new           (<em class="parameter"><code><a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *service</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *download_uri</code></em>);</pre>
 <p>
-Creates a new <a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a>, allowing a file to be downloaded from a GData service using standard <span class="type">GInputStream</span> API.
+Creates a new <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>, allowing a file to be downloaded from a GData service using standard <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html"><span class="type">GInputStream</span></a> API.
 </p>
 <p>
-As well as the standard GIO errors, calls to the <span class="type">GInputStream</span> API on a <a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a> can also return any relevant specific error from
-<a href="GDataService.html#GDataServiceError"><span class="type">GDataServiceError</span></a>, or <code class="literal">GDATA_SERVICE_ERROR_WITH_DOWNLOAD</code> in the general case.</p>
+As well as the standard GIO errors, calls to the <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html"><span class="type">GInputStream</span></a> API on a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> can also return any relevant specific error from
+<a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a>, or <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-PROTOCOL-ERROR:CAPS"><code class="literal">GDATA_SERVICE_ERROR_PROTOCOL_ERROR</code></a> in the general case.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>service</code></em> :</span></p></td>
-<td> a <a href="GDataService.html"><span class="type">GDataService</span></a>
+<td>a <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>download_uri</code></em> :</span></p></td>
-<td> the URI to download
+<td>the URI to download
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <span class="type">GInputStream</span>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> a new <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html"><span class="type">GInputStream</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -177,22 +160,23 @@ As well as the standard GIO errors, calls to the <span class="type">GInputStream
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_download_stream_get_service ()">
 <a name="gdata-download-stream-get-service"></a><h3>gdata_download_stream_get_service ()</h3>
-<pre class="programlisting"><a href="GDataService.html">GDataService</a> *      gdata_download_stream_get_service   (<a href="GDataDownloadStream.html">GDataDownloadStream</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataService.html" title="GDataService"><span class="returnvalue">GDataService</span></a> *      gdata_download_stream_get_service   (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
 <p>
-Gets the service used to authenticate the download, as passed to <a href="GDataDownloadStream.html#gdata-download-stream-new"><code class="function">gdata_download_stream_new()</code></a>.</p>
+Gets the service used to authenticate the download, as passed to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a>
+<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the <a href="GDataService.html"><span class="type">GDataService</span></a> used to authenticate the download
+<td> the <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> used to authenticate the download
 
 </td>
 </tr>
@@ -201,18 +185,19 @@ Gets the service used to authenticate the download, as passed to <a href="GDataD
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_download_stream_get_download_uri ()">
 <a name="gdata-download-stream-get-download-uri"></a><h3>gdata_download_stream_get_download_uri ()</h3>
-<pre class="programlisting">const gchar *       gdata_download_stream_get_download_uri
-                                                        (<a href="GDataDownloadStream.html">GDataDownloadStream</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_download_stream_get_download_uri
+                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
 <p>
-Gets the URI of the file being downloaded, as passed to <a href="GDataDownloadStream.html#gdata-download-stream-new"><code class="function">gdata_download_stream_new()</code></a>.</p>
+Gets the URI of the file being downloaded, as passed to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a>
+<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
 </td>
 </tr>
 <tr>
@@ -226,24 +211,25 @@ Gets the URI of the file being downloaded, as passed to <a href="GDataDownloadSt
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_download_stream_get_content_type ()">
 <a name="gdata-download-stream-get-content-type"></a><h3>gdata_download_stream_get_content_type ()</h3>
-<pre class="programlisting">const gchar *       gdata_download_stream_get_content_type
-                                                        (<a href="GDataDownloadStream.html">GDataDownloadStream</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_download_stream_get_content_type
+                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
 <p>
 Gets the content type of the file being downloaded. If the <code class="literal">Content-Type</code> header has not yet
-been received, <code class="literal">NULL</code> will be returned.</p>
+been received, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> will be returned.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a>
+<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the content type of the file being downloaded, or <code class="literal">NULL</code>
+<td> the content type of the file being downloaded, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -252,24 +238,25 @@ been received, <code class="literal">NULL</code> will be returned.</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_download_stream_get_content_length ()">
 <a name="gdata-download-stream-get-content-length"></a><h3>gdata_download_stream_get_content_length ()</h3>
-<pre class="programlisting">gssize              gdata_download_stream_get_content_length
-                                                        (<a href="GDataDownloadStream.html">GDataDownloadStream</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"><span class="returnvalue">gssize</span></a>              gdata_download_stream_get_content_length
+                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
 <p>
 Gets the length (in bytes) of the file being downloaded. If the <code class="literal">Content-Length</code> header has not yet
-been received from the server, <code class="literal">-1</code> will be returned.</p>
+been received from the server, <code class="code">-1</code> will be returned.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDownloadStream.html"><span class="type">GDataDownloadStream</span></a>
+<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the content length of the file being downloaded, or <code class="literal">-1</code>
+<td> the content length of the file being downloaded, or <code class="code">-1</code>
 
 </td>
 </tr>
@@ -278,47 +265,51 @@ been received from the server, <code class="literal">-1</code> will be returned.
 <p class="since">Since 0.5.0</p>
 </div>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Property Details">
 <a name="GDataDownloadStream.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "content-length" property'>
 <a name="GDataDownloadStream--content-length"></a><h3>The <code class="literal">"content-length"</code> property</h3>
-<pre class="programlisting">  "content-length"           glong                 : Read</pre>
+<pre class="programlisting">  "content-length"           <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"><span class="type">glong</span></a>                 : Read</pre>
 <p>
-The length (in bytes) of the file being downloaded.</p>
+The length (in bytes) of the file being downloaded.
+</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "content-type" property'>
 <a name="GDataDownloadStream--content-type"></a><h3>The <code class="literal">"content-type"</code> property</h3>
-<pre class="programlisting">  "content-type"             gchar*                : Read</pre>
+<pre class="programlisting">  "content-type"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
-The content type of the file being downloaded.</p>
+The content type of the file being downloaded.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "download-uri" property'>
 <a name="GDataDownloadStream--download-uri"></a><h3>The <code class="literal">"download-uri"</code> property</h3>
-<pre class="programlisting">  "download-uri"             gchar*                : Read / Write / Construct Only</pre>
+<pre class="programlisting">  "download-uri"             <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
 <p>
-The URI of the file to download.</p>
+The URI of the file to download.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "service" property'>
 <a name="GDataDownloadStream--service"></a><h3>The <code class="literal">"service"</code> property</h3>
-<pre class="programlisting">  "service"                  <a href="GDataService.html">GDataService</a>*         : Read / Write / Construct Only</pre>
+<pre class="programlisting">  "service"                  <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>*         : Read / Write / Construct Only</pre>
 <p>
-The service which is used to authenticate the download, and to which the download relates.</p>
+The service which is used to authenticate the download, and to which the download relates.
+</p>
 <p class="since">Since 0.5.0</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

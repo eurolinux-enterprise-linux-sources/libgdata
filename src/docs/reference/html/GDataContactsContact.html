@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataContactsContact</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch10.html" title="Google Contacts API">
 <link rel="prev" href="GDataContactsQuery.html" title="GDataContactsQuery">
 <link rel="next" href="ch11.html" title="Google Documents API">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -52,7 +30,7 @@
                   <a href="#GDataContactsContact.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataContactsContact">
 <a name="GDataContactsContact"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -61,160 +39,168 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataContactsContact.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataContactsContact.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/services/contacts/gdata-contacts-contact.h&gt;
 
-                    <a href="GDataContactsContact.html#GDataContactsContact-struct">GDataContactsContact</a>;
-                    <a href="GDataContactsContact.html#GDataContactsContactClass">GDataContactsContactClass</a>;
-<a href="GDataContactsContact.html">GDataContactsContact</a> * <a href="GDataContactsContact.html#gdata-contacts-contact-new">gdata_contacts_contact_new</a>       (const gchar *id);
-GDataGDName *       <a href="GDataContactsContact.html#gdata-contacts-contact-get-name">gdata_contacts_contact_get_name</a>     (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-GList *             <a href="GDataContactsContact.html#gdata-contacts-contact-get-email-addresses">gdata_contacts_contact_get_email_addresses</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-<a href="GDataGDEmailAddress.html">GDataGDEmailAddress</a> * <a href="GDataContactsContact.html#gdata-contacts-contact-get-primary-email-address">gdata_contacts_contact_get_primary_email_address</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-add-email-address">gdata_contacts_contact_add_email_address</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDEmailAddress.html">GDataGDEmailAddress</a> *email_address);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-remove-all-email-addresses">gdata_contacts_contact_remove_all_email_addresses</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-GList *             <a href="GDataContactsContact.html#gdata-contacts-contact-get-im-addresses">gdata_contacts_contact_get_im_addresses</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-<a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *  <a href="GDataContactsContact.html#gdata-contacts-contact-get-primary-im-address">gdata_contacts_contact_get_primary_im_address</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-add-im-address">gdata_contacts_contact_add_im_address</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *im_address);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-remove-all-im-addresses">gdata_contacts_contact_remove_all_im_addresses</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-GList *             <a href="GDataContactsContact.html#gdata-contacts-contact-get-postal-addresses">gdata_contacts_contact_get_postal_addresses</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-<a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> * <a href="GDataContactsContact.html#gdata-contacts-contact-get-primary-postal-address">gdata_contacts_contact_get_primary_postal_address</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-add-postal-address">gdata_contacts_contact_add_postal_address</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *postal_address);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-remove-all-postal-addresses">gdata_contacts_contact_remove_all_postal_addresses</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-GList *             <a href="GDataContactsContact.html#gdata-contacts-contact-get-phone-numbers">gdata_contacts_contact_get_phone_numbers</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-<a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> * <a href="GDataContactsContact.html#gdata-contacts-contact-get-primary-phone-number">gdata_contacts_contact_get_primary_phone_number</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-add-phone-number">gdata_contacts_contact_add_phone_number</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *phone_number);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-remove-all-phone-numbers">gdata_contacts_contact_remove_all_phone_numbers</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-GList *             <a href="GDataContactsContact.html#gdata-contacts-contact-get-organizations">gdata_contacts_contact_get_organizations</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-<a href="GDataGDOrganization.html">GDataGDOrganization</a> * <a href="GDataContactsContact.html#gdata-contacts-contact-get-primary-organization">gdata_contacts_contact_get_primary_organization</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-add-organization">gdata_contacts_contact_add_organization</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDOrganization.html">GDataGDOrganization</a> *organization);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-remove-all-organizations">gdata_contacts_contact_remove_all_organizations</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-GList *             <a href="GDataContactsContact.html#gdata-contacts-contact-get-groups">gdata_contacts_contact_get_groups</a>   (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-add-group">gdata_contacts_contact_add_group</a>    (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *href);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-remove-group">gdata_contacts_contact_remove_group</a> (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *href);
-gboolean            <a href="GDataContactsContact.html#gdata-contacts-contact-is-group-deleted">gdata_contacts_contact_is_group_deleted</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *href);
-const gchar *       <a href="GDataContactsContact.html#gdata-contacts-contact-get-extended-property">gdata_contacts_contact_get_extended_property</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *name);
-GHashTable *        <a href="GDataContactsContact.html#gdata-contacts-contact-get-extended-properties">gdata_contacts_contact_get_extended_properties</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-gboolean            <a href="GDataContactsContact.html#gdata-contacts-contact-set-extended-property">gdata_contacts_contact_set_extended_property</a>
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *name,
-                                                         const gchar *value);
-void                <a href="GDataContactsContact.html#gdata-contacts-contact-get-edited">gdata_contacts_contact_get_edited</a>   (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         GTimeVal *edited);
-gboolean            <a href="GDataContactsContact.html#gdata-contacts-contact-is-deleted">gdata_contacts_contact_is_deleted</a>   (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-gboolean            <a href="GDataContactsContact.html#gdata-contacts-contact-has-photo">gdata_contacts_contact_has_photo</a>    (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);
-gchar *             <a href="GDataContactsContact.html#gdata-contacts-contact-get-photo">gdata_contacts_contact_get_photo</a>    (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataContactsService.html">GDataContactsService</a> *service,
-                                                         gsize *length,
-                                                         gchar **content_type,
-                                                         GCancellable *cancellable,
-                                                         GError **error);
-gboolean            <a href="GDataContactsContact.html#gdata-contacts-contact-set-photo">gdata_contacts_contact_set_photo</a>    (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataService.html">GDataService</a> *service,
-                                                         const gchar *data,
-                                                         gsize length,
-                                                         GCancellable *cancellable,
-                                                         GError **error);
+                    <a class="link" href="GDataContactsContact.html#GDataContactsContact-struct" title="GDataContactsContact">GDataContactsContact</a>;
+                    <a class="link" href="GDataContactsContact.html#GDataContactsContactClass" title="GDataContactsContactClass">GDataContactsContactClass</a>;
+<a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="returnvalue">GDataContactsContact</span></a> * <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-new" title="gdata_contacts_contact_new ()">gdata_contacts_contact_new</a>       (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);
+<a class="link" href="GDataGDName.html" title="GDataGDName"><span class="returnvalue">GDataGDName</span></a> *       <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-name" title="gdata_contacts_contact_get_name ()">gdata_contacts_contact_get_name</a>     (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-set-name" title="gdata_contacts_contact_set_name ()">gdata_contacts_contact_set_name</a>     (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDName.html" title="GDataGDName"><span class="type">GDataGDName</span></a> *name</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-email-addresses" title="gdata_contacts_contact_get_email_addresses ()">gdata_contacts_contact_get_email_addresses</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="returnvalue">GDataGDEmailAddress</span></a> * <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-primary-email-address" title="gdata_contacts_contact_get_primary_email_address ()">gdata_contacts_contact_get_primary_email_address</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-add-email-address" title="gdata_contacts_contact_add_email_address ()">gdata_contacts_contact_add_email_address</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a> *email_address</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-remove-all-email-addresses" title="gdata_contacts_contact_remove_all_email_addresses ()">gdata_contacts_contact_remove_all_email_addresses</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-im-addresses" title="gdata_contacts_contact_get_im_addresses ()">gdata_contacts_contact_get_im_addresses</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="returnvalue">GDataGDIMAddress</span></a> *  <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-primary-im-address" title="gdata_contacts_contact_get_primary_im_address ()">gdata_contacts_contact_get_primary_im_address</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-add-im-address" title="gdata_contacts_contact_add_im_address ()">gdata_contacts_contact_add_im_address</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *im_address</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-remove-all-im-addresses" title="gdata_contacts_contact_remove_all_im_addresses ()">gdata_contacts_contact_remove_all_im_addresses</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-postal-addresses" title="gdata_contacts_contact_get_postal_addresses ()">gdata_contacts_contact_get_postal_addresses</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a class="link" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress"><span class="returnvalue">GDataGDPostalAddress</span></a> * <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-primary-postal-address" title="gdata_contacts_contact_get_primary_postal_address ()">gdata_contacts_contact_get_primary_postal_address</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-add-postal-address" title="gdata_contacts_contact_add_postal_address ()">gdata_contacts_contact_add_postal_address</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress"><span class="type">GDataGDPostalAddress</span></a> *postal_address</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-remove-all-postal-addresses" title="gdata_contacts_contact_remove_all_postal_addresses ()">gdata_contacts_contact_remove_all_postal_addresses</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-phone-numbers" title="gdata_contacts_contact_get_phone_numbers ()">gdata_contacts_contact_get_phone_numbers</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a class="link" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber"><span class="returnvalue">GDataGDPhoneNumber</span></a> * <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-primary-phone-number" title="gdata_contacts_contact_get_primary_phone_number ()">gdata_contacts_contact_get_primary_phone_number</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-add-phone-number" title="gdata_contacts_contact_add_phone_number ()">gdata_contacts_contact_add_phone_number</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber"><span class="type">GDataGDPhoneNumber</span></a> *phone_number</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-remove-all-phone-numbers" title="gdata_contacts_contact_remove_all_phone_numbers ()">gdata_contacts_contact_remove_all_phone_numbers</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-organizations" title="gdata_contacts_contact_get_organizations ()">gdata_contacts_contact_get_organizations</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a class="link" href="GDataGDOrganization.html" title="GDataGDOrganization"><span class="returnvalue">GDataGDOrganization</span></a> * <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-primary-organization" title="gdata_contacts_contact_get_primary_organization ()">gdata_contacts_contact_get_primary_organization</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-add-organization" title="gdata_contacts_contact_add_organization ()">gdata_contacts_contact_add_organization</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDOrganization.html" title="GDataGDOrganization"><span class="type">GDataGDOrganization</span></a> *organization</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-remove-all-organizations" title="gdata_contacts_contact_remove_all_organizations ()">gdata_contacts_contact_remove_all_organizations</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-groups" title="gdata_contacts_contact_get_groups ()">gdata_contacts_contact_get_groups</a>   (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-add-group" title="gdata_contacts_contact_add_group ()">gdata_contacts_contact_add_group</a>    (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *href</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-remove-group" title="gdata_contacts_contact_remove_group ()">gdata_contacts_contact_remove_group</a> (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *href</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-is-group-deleted" title="gdata_contacts_contact_is_group_deleted ()">gdata_contacts_contact_is_group_deleted</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *href</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-extended-property" title="gdata_contacts_contact_get_extended_property ()">gdata_contacts_contact_get_extended_property</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-extended-properties" title="gdata_contacts_contact_get_extended_properties ()">gdata_contacts_contact_get_extended_properties</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-set-extended-property" title="gdata_contacts_contact_set_extended_property ()">gdata_contacts_contact_set_extended_property</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-edited" title="gdata_contacts_contact_get_edited ()">gdata_contacts_contact_get_edited</a>   (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *edited</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-is-deleted" title="gdata_contacts_contact_is_deleted ()">gdata_contacts_contact_is_deleted</a>   (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-has-photo" title="gdata_contacts_contact_has_photo ()">gdata_contacts_contact_has_photo</a>    (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-photo" title="gdata_contacts_contact_get_photo ()">gdata_contacts_contact_get_photo</a>    (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *service</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"><span class="type">gsize</span></a> *length</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> **content_type</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-set-photo" title="gdata_contacts_contact_set_photo ()">gdata_contacts_contact_set_photo</a>    (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *service</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"><span class="type">gsize</span></a> length</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataContactsContact.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataParsable.html">GDataParsable</a>
-         +----<a href="GDataEntry.html">GDataEntry</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+         +----<a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
                +----GDataContactsContact
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataContactsContact.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataContactsContact.html#GDataContactsContact--deleted">deleted</a>"                  gboolean              : Read
-  "<a href="GDataContactsContact.html#GDataContactsContact--edited">edited</a>"                   GTimeVal*             : Read
-  "<a href="GDataContactsContact.html#GDataContactsContact--has-photo">has-photo</a>"                gboolean              : Read
-  "<a href="GDataContactsContact.html#GDataContactsContact--name">name</a>"                     GDataGDName*          : Read
+  "<a class="link" href="GDataContactsContact.html#GDataContactsContact--deleted" title='The "deleted" property'>deleted</a>"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read
+  "<a class="link" href="GDataContactsContact.html#GDataContactsContact--edited" title='The "edited" property'>edited</a>"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read
+  "<a class="link" href="GDataContactsContact.html#GDataContactsContact--has-photo" title='The "has-photo" property'>has-photo</a>"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read
+  "<a class="link" href="GDataContactsContact.html#GDataContactsContact--name" title='The "name" property'>name</a>"                     <a class="link" href="GDataGDName.html" title="GDataGDName"><span class="type">GDataGDName</span></a>*          : Read / Write
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataContactsContact.description"></a><h2>Description</h2>
 <p>
-<a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a> is a subclass of <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> to represent a contact from a Google address book.
+<a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> is a subclass of <a class="link" href="GDataEntry.html" title="GDataEntry"><span class="type">GDataEntry</span></a> to represent a contact from a Google address book.
 </p>
 <p>
 For more details of Google Contacts' GData API, see the <a class="ulink" href="http://code.google.com/apis/contacts/docs/2.0/reference.html" target="_top">
-online documentation</a>.</p>
+online documentation</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataContactsContact.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataContactsContact">
 <a name="GDataContactsContact-struct"></a><h3>GDataContactsContact</h3>
 <pre class="programlisting">typedef struct _GDataContactsContact GDataContactsContact;</pre>
 <p>
-All the fields in the <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> structure are private and should never be accessed directly.
+</p>
+<p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataContactsContactClass">
 <a name="GDataContactsContactClass"></a><h3>GDataContactsContactClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataContactsContactClass;
 </pre>
 <p>
-All the fields in the <a href="GDataContactsContact.html#GDataContactsContactClass"><span class="type">GDataContactsContactClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataContactsContact.html#GDataContactsContactClass" title="GDataContactsContactClass"><span class="type">GDataContactsContactClass</span></a> structure are private and should never be accessed directly.
+</p>
+<p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_new ()">
 <a name="gdata-contacts-contact-new"></a><h3>gdata_contacts_contact_new ()</h3>
-<pre class="programlisting"><a href="GDataContactsContact.html">GDataContactsContact</a> * gdata_contacts_contact_new       (const gchar *id);</pre>
+<pre class="programlisting"><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="returnvalue">GDataContactsContact</span></a> * gdata_contacts_contact_new       (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
 <p>
-Creates a new <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a> with the given ID and default properties.</p>
+Creates a new <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> with the given ID and default properties.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
-<td> the contact's ID, or <code class="literal">NULL</code>
+<td>the contact's ID, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>; unref with <code class="function">g_object_unref()</code>
+<td> a new <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -223,22 +209,23 @@ Creates a new <a href="GDataContactsContact.html"><span class="type">GDataContac
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_name ()">
 <a name="gdata-contacts-contact-get-name"></a><h3>gdata_contacts_contact_get_name ()</h3>
-<pre class="programlisting">GDataGDName *       gdata_contacts_contact_get_name     (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataGDName.html" title="GDataGDName"><span class="returnvalue">GDataGDName</span></a> *       gdata_contacts_contact_get_name     (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataContactsContact.html#GDataContactsContact--name"><span class="type">"name"</span></a> property.</p>
+Gets the <a class="link" href="GDataContactsContact.html#GDataContactsContact--name" title='The "name" property'><span class="type">"name"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the contact's name, or <code class="literal">NULL</code>
+<td> the contact's name, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -247,23 +234,52 @@ Gets the <a href="GDataContactsContact.html#GDataContactsContact--name"><span cl
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_set_name ()">
+<a name="gdata-contacts-contact-set-name"></a><h3>gdata_contacts_contact_set_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_set_name     (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDName.html" title="GDataGDName"><span class="type">GDataGDName</span></a> *name</code></em>);</pre>
+<p>
+Sets the <a class="link" href="GDataContactsContact.html#GDataContactsContact--name" title='The "name" property'><span class="type">"name"</span></a> property to <em class="parameter"><code>name</code></em>, and increments its reference count.
+</p>
+<p>
+<em class="parameter"><code>name</code></em> must not be <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, though all its properties may be <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>the new <a class="link" href="GDataGDName.html" title="GDataGDName"><span class="type">GDataGDName</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.6.3</p>
+</div>
+<hr>
+<div class="refsect2" title="gdata_contacts_contact_get_email_addresses ()">
 <a name="gdata-contacts-contact-get-email-addresses"></a><h3>gdata_contacts_contact_get_email_addresses ()</h3>
-<pre class="programlisting">GList *             gdata_contacts_contact_get_email_addresses
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_contacts_contact_get_email_addresses
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets a list of the e-mail addresses owned by the contact.</p>
+Gets a list of the e-mail addresses owned by the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of <a href="GDataGDEmailAddress.html"><span class="type">GDataGDEmailAddress</span></a>es, or <code class="literal">NULL</code>
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>es, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -272,23 +288,24 @@ Gets a list of the e-mail addresses owned by the contact.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_primary_email_address ()">
 <a name="gdata-contacts-contact-get-primary-email-address"></a><h3>gdata_contacts_contact_get_primary_email_address ()</h3>
-<pre class="programlisting"><a href="GDataGDEmailAddress.html">GDataGDEmailAddress</a> * gdata_contacts_contact_get_primary_email_address
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="returnvalue">GDataGDEmailAddress</span></a> * gdata_contacts_contact_get_primary_email_address
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets the contact's primary e-mail address, if one exists.</p>
+Gets the contact's primary e-mail address, if one exists.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataGDEmailAddress.html"><span class="type">GDataGDEmailAddress</span></a>, or <code class="literal">NULL</code>
+<td> a <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -297,32 +314,33 @@ Gets the contact's primary e-mail address, if one exists.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_add_email_address ()">
 <a name="gdata-contacts-contact-add-email-address"></a><h3>gdata_contacts_contact_add_email_address ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_add_email_address
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDEmailAddress.html">GDataGDEmailAddress</a> *email_address);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_add_email_address
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a> *email_address</code></em>);</pre>
 <p>
 Adds an e-mail address to the contact's list of e-mail addresses and increments its reference count.
 </p>
 <p>
 Note that only one e-mail address per contact may be marked as "primary". Insertion and update operations
-(with <a href="GDataContactsService.html#gdata-contacts-service-insert-contact"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one e-mail address
+(with <a class="link" href="GDataContactsService.html#gdata-contacts-service-insert-contact" title="gdata_contacts_service_insert_contact ()"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one e-mail address
 is marked as primary.
 </p>
 <p>
-Duplicate e-mail addresses will not be added to the list.</p>
+Duplicate e-mail addresses will not be added to the list.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>email_address</code></em> :</span></p></td>
-<td> a <a href="GDataGDEmailAddress.html"><span class="type">GDataGDEmailAddress</span></a> to add
+<td>a <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a> to add
 </td>
 </tr>
 </tbody>
@@ -330,40 +348,42 @@ Duplicate e-mail addresses will not be added to the list.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_remove_all_email_addresses ()">
 <a name="gdata-contacts-contact-remove-all-email-addresses"></a><h3>gdata_contacts_contact_remove_all_email_addresses ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_remove_all_email_addresses
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_remove_all_email_addresses
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Removes all e-mail addresses from the contact.</p>
+Removes all e-mail addresses from the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr></tbody>
 </table></div>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_im_addresses ()">
 <a name="gdata-contacts-contact-get-im-addresses"></a><h3>gdata_contacts_contact_get_im_addresses ()</h3>
-<pre class="programlisting">GList *             gdata_contacts_contact_get_im_addresses
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_contacts_contact_get_im_addresses
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets a list of the IM addresses owned by the contact.</p>
+Gets a list of the IM addresses owned by the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>es, or <code class="literal">NULL</code>
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>es, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -372,23 +392,24 @@ Gets a list of the IM addresses owned by the contact.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_primary_im_address ()">
 <a name="gdata-contacts-contact-get-primary-im-address"></a><h3>gdata_contacts_contact_get_primary_im_address ()</h3>
-<pre class="programlisting"><a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *  gdata_contacts_contact_get_primary_im_address
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="returnvalue">GDataGDIMAddress</span></a> *  gdata_contacts_contact_get_primary_im_address
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets the contact's primary IM address, if one exists.</p>
+Gets the contact's primary IM address, if one exists.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a>, or <code class="literal">NULL</code>
+<td> a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -397,32 +418,33 @@ Gets the contact's primary IM address, if one exists.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_add_im_address ()">
 <a name="gdata-contacts-contact-add-im-address"></a><h3>gdata_contacts_contact_add_im_address ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_add_im_address
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDIMAddress.html">GDataGDIMAddress</a> *im_address);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_add_im_address
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> *im_address</code></em>);</pre>
 <p>
 Adds an IM (instant messaging) address to the contact's list of IM addresses and increments its reference count.
 </p>
 <p>
 Note that only one IM address per contact may be marked as "primary". Insertion and update operations
-(with <a href="GDataContactsService.html#gdata-contacts-service-insert-contact"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one IM address
+(with <a class="link" href="GDataContactsService.html#gdata-contacts-service-insert-contact" title="gdata_contacts_service_insert_contact ()"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one IM address
 is marked as primary.
 </p>
 <p>
-Duplicate IM addresses will not be added to the list.</p>
+Duplicate IM addresses will not be added to the list.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>im_address</code></em> :</span></p></td>
-<td> a <a href="GDataGDIMAddress.html"><span class="type">GDataGDIMAddress</span></a> to add
+<td>a <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress"><span class="type">GDataGDIMAddress</span></a> to add
 </td>
 </tr>
 </tbody>
@@ -430,40 +452,42 @@ Duplicate IM addresses will not be added to the list.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_remove_all_im_addresses ()">
 <a name="gdata-contacts-contact-remove-all-im-addresses"></a><h3>gdata_contacts_contact_remove_all_im_addresses ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_remove_all_im_addresses
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_remove_all_im_addresses
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Removes all IM addresses from the contact.</p>
+Removes all IM addresses from the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr></tbody>
 </table></div>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_postal_addresses ()">
 <a name="gdata-contacts-contact-get-postal-addresses"></a><h3>gdata_contacts_contact_get_postal_addresses ()</h3>
-<pre class="programlisting">GList *             gdata_contacts_contact_get_postal_addresses
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_contacts_contact_get_postal_addresses
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets a list of the postal addresses owned by the contact.</p>
+Gets a list of the postal addresses owned by the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>es, or <code class="literal">NULL</code>
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress"><span class="type">GDataGDPostalAddress</span></a>es, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -472,23 +496,24 @@ Gets a list of the postal addresses owned by the contact.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_primary_postal_address ()">
 <a name="gdata-contacts-contact-get-primary-postal-address"></a><h3>gdata_contacts_contact_get_primary_postal_address ()</h3>
-<pre class="programlisting"><a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> * gdata_contacts_contact_get_primary_postal_address
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress"><span class="returnvalue">GDataGDPostalAddress</span></a> * gdata_contacts_contact_get_primary_postal_address
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets the contact's primary postal address, if one exists.</p>
+Gets the contact's primary postal address, if one exists.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a>, or <code class="literal">NULL</code>
+<td> a <a class="link" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress"><span class="type">GDataGDPostalAddress</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -497,32 +522,33 @@ Gets the contact's primary postal address, if one exists.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_add_postal_address ()">
 <a name="gdata-contacts-contact-add-postal-address"></a><h3>gdata_contacts_contact_add_postal_address ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_add_postal_address
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDPostalAddress.html">GDataGDPostalAddress</a> *postal_address);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_add_postal_address
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress"><span class="type">GDataGDPostalAddress</span></a> *postal_address</code></em>);</pre>
 <p>
 Adds a postal address to the contact's list of postal addresses and increments its reference count.
 </p>
 <p>
 Note that only one postal address per contact may be marked as "primary". Insertion and update operations
-(with <a href="GDataContactsService.html#gdata-contacts-service-insert-contact"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one postal address
+(with <a class="link" href="GDataContactsService.html#gdata-contacts-service-insert-contact" title="gdata_contacts_service_insert_contact ()"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one postal address
 is marked as primary.
 </p>
 <p>
-Duplicate postal addresses will not be added to the list.</p>
+Duplicate postal addresses will not be added to the list.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>postal_address</code></em> :</span></p></td>
-<td> a <a href="GDataGDPostalAddress.html"><span class="type">GDataGDPostalAddress</span></a> to add
+<td>a <a class="link" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress"><span class="type">GDataGDPostalAddress</span></a> to add
 </td>
 </tr>
 </tbody>
@@ -530,40 +556,42 @@ Duplicate postal addresses will not be added to the list.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_remove_all_postal_addresses ()">
 <a name="gdata-contacts-contact-remove-all-postal-addresses"></a><h3>gdata_contacts_contact_remove_all_postal_addresses ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_remove_all_postal_addresses
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_remove_all_postal_addresses
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Removes all postal addresses from the contact.</p>
+Removes all postal addresses from the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr></tbody>
 </table></div>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_phone_numbers ()">
 <a name="gdata-contacts-contact-get-phone-numbers"></a><h3>gdata_contacts_contact_get_phone_numbers ()</h3>
-<pre class="programlisting">GList *             gdata_contacts_contact_get_phone_numbers
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_contacts_contact_get_phone_numbers
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets a list of the phone numbers owned by the contact.</p>
+Gets a list of the phone numbers owned by the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>s, or <code class="literal">NULL</code>
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber"><span class="type">GDataGDPhoneNumber</span></a>s, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -572,23 +600,24 @@ Gets a list of the phone numbers owned by the contact.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_primary_phone_number ()">
 <a name="gdata-contacts-contact-get-primary-phone-number"></a><h3>gdata_contacts_contact_get_primary_phone_number ()</h3>
-<pre class="programlisting"><a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> * gdata_contacts_contact_get_primary_phone_number
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber"><span class="returnvalue">GDataGDPhoneNumber</span></a> * gdata_contacts_contact_get_primary_phone_number
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets the contact's primary phone number, if one exists.</p>
+Gets the contact's primary phone number, if one exists.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a>, or <code class="literal">NULL</code>
+<td> a <a class="link" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber"><span class="type">GDataGDPhoneNumber</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -597,32 +626,33 @@ Gets the contact's primary phone number, if one exists.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_add_phone_number ()">
 <a name="gdata-contacts-contact-add-phone-number"></a><h3>gdata_contacts_contact_add_phone_number ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_add_phone_number
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDPhoneNumber.html">GDataGDPhoneNumber</a> *phone_number);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_add_phone_number
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber"><span class="type">GDataGDPhoneNumber</span></a> *phone_number</code></em>);</pre>
 <p>
 Adds a phone number to the contact's list of phone numbers and increments its reference count
 </p>
 <p>
 Note that only one phone number per contact may be marked as "primary". Insertion and update operations
-(with <a href="GDataContactsService.html#gdata-contacts-service-insert-contact"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one phone number
+(with <a class="link" href="GDataContactsService.html#gdata-contacts-service-insert-contact" title="gdata_contacts_service_insert_contact ()"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one phone number
 is marked as primary.
 </p>
 <p>
-Duplicate phone numbers will not be added to the list.</p>
+Duplicate phone numbers will not be added to the list.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>phone_number</code></em> :</span></p></td>
-<td> a <a href="GDataGDPhoneNumber.html"><span class="type">GDataGDPhoneNumber</span></a> to add
+<td>a <a class="link" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber"><span class="type">GDataGDPhoneNumber</span></a> to add
 </td>
 </tr>
 </tbody>
@@ -630,40 +660,42 @@ Duplicate phone numbers will not be added to the list.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_remove_all_phone_numbers ()">
 <a name="gdata-contacts-contact-remove-all-phone-numbers"></a><h3>gdata_contacts_contact_remove_all_phone_numbers ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_remove_all_phone_numbers
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_remove_all_phone_numbers
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Removes all phone numbers from the contact.</p>
+Removes all phone numbers from the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr></tbody>
 </table></div>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_organizations ()">
 <a name="gdata-contacts-contact-get-organizations"></a><h3>gdata_contacts_contact_get_organizations ()</h3>
-<pre class="programlisting">GList *             gdata_contacts_contact_get_organizations
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_contacts_contact_get_organizations
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets a list of the organizations to which the contact belongs.</p>
+Gets a list of the organizations to which the contact belongs.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of <a href="GDataGDOrganization.html"><span class="type">GDataGDOrganization</span></a>s, or <code class="literal">NULL</code>
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="GDataGDOrganization.html" title="GDataGDOrganization"><span class="type">GDataGDOrganization</span></a>s, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -672,23 +704,24 @@ Gets a list of the organizations to which the contact belongs.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_primary_organization ()">
 <a name="gdata-contacts-contact-get-primary-organization"></a><h3>gdata_contacts_contact_get_primary_organization ()</h3>
-<pre class="programlisting"><a href="GDataGDOrganization.html">GDataGDOrganization</a> * gdata_contacts_contact_get_primary_organization
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataGDOrganization.html" title="GDataGDOrganization"><span class="returnvalue">GDataGDOrganization</span></a> * gdata_contacts_contact_get_primary_organization
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets the contact's primary organization, if one exists.</p>
+Gets the contact's primary organization, if one exists.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="GDataGDOrganization.html"><span class="type">GDataGDOrganization</span></a>, or <code class="literal">NULL</code>
+<td> a <a class="link" href="GDataGDOrganization.html" title="GDataGDOrganization"><span class="type">GDataGDOrganization</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -697,32 +730,33 @@ Gets the contact's primary organization, if one exists.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_add_organization ()">
 <a name="gdata-contacts-contact-add-organization"></a><h3>gdata_contacts_contact_add_organization ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_add_organization
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataGDOrganization.html">GDataGDOrganization</a> *organization);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_add_organization
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataGDOrganization.html" title="GDataGDOrganization"><span class="type">GDataGDOrganization</span></a> *organization</code></em>);</pre>
 <p>
 Adds an organization to the contact's list of organizations (e.g. employers) and increments its reference count.
 </p>
 <p>
 Note that only one organization per contact may be marked as "primary". Insertion and update operations
-(with <a href="GDataContactsService.html#gdata-contacts-service-insert-contact"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one organization
+(with <a class="link" href="GDataContactsService.html#gdata-contacts-service-insert-contact" title="gdata_contacts_service_insert_contact ()"><code class="function">gdata_contacts_service_insert_contact()</code></a>) will return an error if more than one organization
 is marked as primary.
 </p>
 <p>
-Duplicate organizations will not be added to the list.</p>
+Duplicate organizations will not be added to the list.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>organization</code></em> :</span></p></td>
-<td> a <a href="GDataGDOrganization.html"><span class="type">GDataGDOrganization</span></a> to add
+<td>a <a class="link" href="GDataGDOrganization.html" title="GDataGDOrganization"><span class="type">GDataGDOrganization</span></a> to add
 </td>
 </tr>
 </tbody>
@@ -730,39 +764,41 @@ Duplicate organizations will not be added to the list.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_remove_all_organizations ()">
 <a name="gdata-contacts-contact-remove-all-organizations"></a><h3>gdata_contacts_contact_remove_all_organizations ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_remove_all_organizations
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_remove_all_organizations
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Removes all organizations from the contact.</p>
+Removes all organizations from the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr></tbody>
 </table></div>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_groups ()">
 <a name="gdata-contacts-contact-get-groups"></a><h3>gdata_contacts_contact_get_groups ()</h3>
-<pre class="programlisting">GList *             gdata_contacts_contact_get_groups   (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_contacts_contact_get_groups   (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets a list of the groups to which the contact belongs.</p>
+Gets a list of the groups to which the contact belongs.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of constant group ID URIs, or <code class="literal">NULL</code>; free with <code class="function">g_list_free()</code>
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of constant group ID URIs, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; free with <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#g-list-free"><code class="function">g_list_free()</code></a>
 
 </td>
 </tr>
@@ -771,23 +807,24 @@ Gets a list of the groups to which the contact belongs.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_add_group ()">
 <a name="gdata-contacts-contact-add-group"></a><h3>gdata_contacts_contact_add_group ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_add_group    (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *href);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_add_group    (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *href</code></em>);</pre>
 <p>
-Adds the contact to the given group. <em class="parameter"><code>href</code></em> should be a URI.</p>
+Adds the contact to the given group. <em class="parameter"><code>href</code></em> should be a URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>href</code></em> :</span></p></td>
-<td> the group's ID URI
+<td>the group's ID URI
 </td>
 </tr>
 </tbody>
@@ -795,23 +832,24 @@ Adds the contact to the given group. <em class="parameter"><code>href</code></em
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_remove_group ()">
 <a name="gdata-contacts-contact-remove-group"></a><h3>gdata_contacts_contact_remove_group ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_remove_group (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *href);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_remove_group (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *href</code></em>);</pre>
 <p>
-Removes the contact from the given group. <em class="parameter"><code>href</code></em> should be a URI.</p>
+Removes the contact from the given group. <em class="parameter"><code>href</code></em> should be a URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>href</code></em> :</span></p></td>
-<td> the group's ID URI
+<td>the group's ID URI
 </td>
 </tr>
 </tbody>
@@ -819,31 +857,32 @@ Removes the contact from the given group. <em class="parameter"><code>href</code
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_is_group_deleted ()">
 <a name="gdata-contacts-contact-is-group-deleted"></a><h3>gdata_contacts_contact_is_group_deleted ()</h3>
-<pre class="programlisting">gboolean            gdata_contacts_contact_is_group_deleted
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *href);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_contacts_contact_is_group_deleted
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *href</code></em>);</pre>
 <p>
 Returns whether the contact has recently been removed from the given group. This
-will always return <code class="literal">FALSE</code> unless <a href="GDataContactsQuery.html#GDataContactsQuery--show-deleted"><span class="type">"show-deleted"</span></a> has been set to
-<code class="literal">TRUE</code> for the query which returned the contact.</p>
+will always return <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> unless <a class="link" href="GDataContactsQuery.html#GDataContactsQuery--show-deleted" title='The "show-deleted" property'><span class="type">"show-deleted"</span></a> has been set to
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> for the query which returned the contact.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>href</code></em> :</span></p></td>
-<td> the group's ID URI
+<td>the group's ID URI
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if the contact has recently been removed from the group, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the contact has recently been removed from the group, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -852,30 +891,31 @@ will always return <code class="literal">FALSE</code> unless <a href="GDataConta
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_extended_property ()">
 <a name="gdata-contacts-contact-get-extended-property"></a><h3>gdata_contacts_contact_get_extended_property ()</h3>
-<pre class="programlisting">const gchar *       gdata_contacts_contact_get_extended_property
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *name);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_contacts_contact_get_extended_property
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);</pre>
 <p>
 Gets the value of an extended property of the contact. Each contact can have up to 10 client-set extended
-properties to store data of the client's choosing.</p>
+properties to store data of the client's choosing.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
-<td> the property name; an arbitrary, unique string
+<td>the property name; an arbitrary, unique string
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the property's value, or <code class="literal">NULL</code>
+<td> the property's value, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -884,23 +924,24 @@ properties to store data of the client's choosing.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_extended_properties ()">
 <a name="gdata-contacts-contact-get-extended-properties"></a><h3>gdata_contacts_contact_get_extended_properties ()</h3>
-<pre class="programlisting">GHashTable *        gdata_contacts_contact_get_extended_properties
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        gdata_contacts_contact_get_extended_properties
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
-Gets the full list of extended properties of the contact; a hash table mapping property name to value.</p>
+Gets the full list of extended properties of the contact; a hash table mapping property name to value.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GHashTable</span> of extended properties
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a> of extended properties
 
 </td>
 </tr>
@@ -909,44 +950,45 @@ Gets the full list of extended properties of the contact; a hash table mapping p
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_set_extended_property ()">
 <a name="gdata-contacts-contact-set-extended-property"></a><h3>gdata_contacts_contact_set_extended_property ()</h3>
-<pre class="programlisting">gboolean            gdata_contacts_contact_set_extended_property
-                                                        (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         const gchar *name,
-                                                         const gchar *value);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_contacts_contact_set_extended_property
+                                                        (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value</code></em>);</pre>
 <p>
 Sets the value of a contact's extended property. Extended property names are unique (but of the client's choosing),
 and reusing the same property name will result in the old value of that property being overwritten.
 </p>
 <p>
-To unset a property, set <em class="parameter"><code>value</code></em> to <code class="literal">NULL</code>.
+To unset a property, set <em class="parameter"><code>value</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </p>
 <p>
 A contact may have up to 10 extended properties, and each should be reasonably small (i.e. not a photo or ringtone).
 For more information, see the <a class="ulink" href="http://code.google.com/apis/contacts/docs/2.0/reference.html#ProjectionsAndExtended" target="_top">online documentation</a>.
-<code class="literal">FALSE</code> will be returned if you attempt to add more than 10 extended properties.</p>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> will be returned if you attempt to add more than 10 extended properties.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
-<td> the property name; an arbitrary, unique string
+<td>the property name; an arbitrary, unique string
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
-<td> the property value, or <code class="literal">NULL</code>
+<td>the property value, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if the property was updated or deleted successfully, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the property was updated or deleted successfully, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -955,24 +997,25 @@ For more information, see the <a class="ulink" href="http://code.google.com/apis
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_edited ()">
 <a name="gdata-contacts-contact-get-edited"></a><h3>gdata_contacts_contact_get_edited ()</h3>
-<pre class="programlisting">void                gdata_contacts_contact_get_edited   (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         GTimeVal *edited);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_contacts_contact_get_edited   (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *edited</code></em>);</pre>
 <p>
-Gets the <a href="GDataContactsContact.html#GDataContactsContact--edited"><span class="type">"edited"</span></a> property and puts it in <em class="parameter"><code>edited</code></em>. If the property is unset,
-both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataContactsContact.html#GDataContactsContact--edited" title='The "edited" property'><span class="type">"edited"</span></a> property and puts it in <em class="parameter"><code>edited</code></em>. If the property is unset,
+both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>edited</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
@@ -980,31 +1023,32 @@ both fields in the <span class="type">GTimeVal</span> will be set to <code class
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_is_deleted ()">
 <a name="gdata-contacts-contact-is-deleted"></a><h3>gdata_contacts_contact_is_deleted ()</h3>
-<pre class="programlisting">gboolean            gdata_contacts_contact_is_deleted   (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_contacts_contact_is_deleted   (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
 Returns whether the contact has recently been deleted. This will always return
-<code class="literal">FALSE</code> unless <a href="GDataContactsQuery.html#GDataContactsQuery--show-deleted"><span class="type">"show-deleted"</span></a> has been set to
-<code class="literal">TRUE</code> for the query which returned the contact; then this function will return
-<code class="literal">TRUE</code> only if the contact has been deleted.
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> unless <a class="link" href="GDataContactsQuery.html#GDataContactsQuery--show-deleted" title='The "show-deleted" property'><span class="type">"show-deleted"</span></a> has been set to
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> for the query which returned the contact; then this function will return
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> only if the contact has been deleted.
 </p>
 <p>
 If a contact has been deleted, no other information is available about it. This
 is designed to allow contacts to be deleted from local address books using
-incremental updates from the server (e.g. with <a href="GDataQuery.html#GDataQuery--updated-min"><span class="type">"updated-min"</span></a> and
-<a href="GDataContactsQuery.html#GDataContactsQuery--show-deleted"><span class="type">"show-deleted"</span></a>).</p>
+incremental updates from the server (e.g. with <a class="link" href="GDataQuery.html#GDataQuery--updated-min" title='The "updated-min" property'><span class="type">"updated-min"</span></a> and
+<a class="link" href="GDataContactsQuery.html#GDataContactsQuery--show-deleted" title='The "show-deleted" property'><span class="type">"show-deleted"</span></a>).
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if the contact has been deleted, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the contact has been deleted, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -1013,23 +1057,24 @@ incremental updates from the server (e.g. with <a href="GDataQuery.html#GDataQue
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_has_photo ()">
 <a name="gdata-contacts-contact-has-photo"></a><h3>gdata_contacts_contact_has_photo ()</h3>
-<pre class="programlisting">gboolean            gdata_contacts_contact_has_photo    (<a href="GDataContactsContact.html">GDataContactsContact</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_contacts_contact_has_photo    (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>);</pre>
 <p>
 Returns whether the contact has a photo attached to their contact entry. If the contact
-does have a photo, it can be returned using <a href="GDataContactsContact.html#gdata-contacts-contact-get-photo"><code class="function">gdata_contacts_contact_get_photo()</code></a>.</p>
+does have a photo, it can be returned using <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-get-photo" title="gdata_contacts_contact_get_photo ()"><code class="function">gdata_contacts_contact_get_photo()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if the contact has a photo, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the contact has a photo, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -1038,61 +1083,62 @@ does have a photo, it can be returned using <a href="GDataContactsContact.html#g
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_get_photo ()">
 <a name="gdata-contacts-contact-get-photo"></a><h3>gdata_contacts_contact_get_photo ()</h3>
-<pre class="programlisting">gchar *             gdata_contacts_contact_get_photo    (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataContactsService.html">GDataContactsService</a> *service,
-                                                         gsize *length,
-                                                         gchar **content_type,
-                                                         GCancellable *cancellable,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdata_contacts_contact_get_photo    (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *service</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"><span class="type">gsize</span></a> *length</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> **content_type</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Downloads and returns the contact's photo, if they have one. If the contact doesn't
-have a photo (i.e. <a href="GDataContactsContact.html#gdata-contacts-contact-has-photo"><code class="function">gdata_contacts_contact_has_photo()</code></a> returns <code class="literal">FALSE</code>), <code class="literal">NULL</code> is returned, but
+have a photo (i.e. <a class="link" href="GDataContactsContact.html#gdata-contacts-contact-has-photo" title="gdata_contacts_contact_has_photo ()"><code class="function">gdata_contacts_contact_has_photo()</code></a> returns <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>), <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> is returned, but
 no error is set in <em class="parameter"><code>error</code></em>.
 </p>
 <p>
-If <em class="parameter"><code>cancellable</code></em> is not <code class="literal">NULL</code>, then the operation can be cancelled by triggering the <em class="parameter"><code>cancellable</code></em> object from another thread.
-If the operation was cancelled, the error <code class="literal">G_IO_ERROR_CANCELLED</code> will be returned.
+If <em class="parameter"><code>cancellable</code></em> is not <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, then the operation can be cancelled by triggering the <em class="parameter"><code>cancellable</code></em> object from another thread.
+If the operation was cancelled, the error <a href="/opt/gnome2/build/share/gtk-doc/html/gio/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> will be returned.
 </p>
 <p>
-If there is an error getting the photo, a <code class="literal">GDATA_SERVICE_ERROR_WITH_QUERY</code> error will be returned.</p>
+If there is an error getting the photo, a <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-PROTOCOL-ERROR:CAPS"><code class="literal">GDATA_SERVICE_ERROR_PROTOCOL_ERROR</code></a> error will be returned.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>service</code></em> :</span></p></td>
-<td> a <a href="GDataContactsService.html"><span class="type">GDataContactsService</span></a>
+<td>a <a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
-<td> return location for the image length, in bytes
+<td>return location for the image length, in bytes
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>content_type</code></em> :</span></p></td>
-<td> return location for the image's content type, or <code class="literal">NULL</code>; free with <code class="function">g_free()</code>
+<td>return location for the image's content type, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; free with <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the image data, or <code class="literal">NULL</code>; free with <code class="function">g_free()</code>
+<td> the image data, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; free with <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>
 
 </td>
 </tr>
@@ -1101,59 +1147,60 @@ If there is an error getting the photo, a <code class="literal">GDATA_SERVICE_ER
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_contacts_contact_set_photo ()">
 <a name="gdata-contacts-contact-set-photo"></a><h3>gdata_contacts_contact_set_photo ()</h3>
-<pre class="programlisting">gboolean            gdata_contacts_contact_set_photo    (<a href="GDataContactsContact.html">GDataContactsContact</a> *self,
-                                                         <a href="GDataService.html">GDataService</a> *service,
-                                                         const gchar *data,
-                                                         gsize length,
-                                                         GCancellable *cancellable,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_contacts_contact_set_photo    (<em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *service</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *data</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"><span class="type">gsize</span></a> length</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
-Sets the contact's photo to <em class="parameter"><code>data</code></em> or, if <em class="parameter"><code>data</code></em> is <code class="literal">NULL</code>, deletes the contact's photo.
+Sets the contact's photo to <em class="parameter"><code>data</code></em> or, if <em class="parameter"><code>data</code></em> is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, deletes the contact's photo.
 </p>
 <p>
-If <em class="parameter"><code>cancellable</code></em> is not <code class="literal">NULL</code>, then the operation can be cancelled by triggering the <em class="parameter"><code>cancellable</code></em> object from another thread.
-If the operation was cancelled, the error <code class="literal">G_IO_ERROR_CANCELLED</code> will be returned.
+If <em class="parameter"><code>cancellable</code></em> is not <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, then the operation can be cancelled by triggering the <em class="parameter"><code>cancellable</code></em> object from another thread.
+If the operation was cancelled, the error <a href="/opt/gnome2/build/share/gtk-doc/html/gio/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> will be returned.
 </p>
 <p>
-If there is an error setting the photo, a <code class="literal">GDATA_SERVICE_ERROR_WITH_UPDATE</code> error will be returned.</p>
+If there is an error setting the photo, a <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-PROTOCOL-ERROR:CAPS"><code class="literal">GDATA_SERVICE_ERROR_PROTOCOL_ERROR</code></a> error will be returned.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataContactsContact.html"><span class="type">GDataContactsContact</span></a>
+<td>a <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>service</code></em> :</span></p></td>
-<td> a <a href="GDataService.html"><span class="type">GDataService</span></a>
+<td>a <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
-<td> the image data, or <code class="literal">NULL</code>
+<td>the image data, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
-<td> the image length, in bytes, or <code class="literal">0</code>
+<td>the image length, in bytes, or <code class="code">0</code>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> on success, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -1162,49 +1209,53 @@ If there is an error setting the photo, a <code class="literal">GDATA_SERVICE_ER
 <p class="since">Since 0.4.0</p>
 </div>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Property Details">
 <a name="GDataContactsContact.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "deleted" property'>
 <a name="GDataContactsContact--deleted"></a><h3>The <code class="literal">"deleted"</code> property</h3>
-<pre class="programlisting">  "deleted"                  gboolean              : Read</pre>
+<pre class="programlisting">  "deleted"                  <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read</pre>
 <p>
-Whether the entry has been deleted.</p>
+Whether the entry has been deleted.
+</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "edited" property'>
 <a name="GDataContactsContact--edited"></a><h3>The <code class="literal">"edited"</code> property</h3>
-<pre class="programlisting">  "edited"                   GTimeVal*             : Read</pre>
+<pre class="programlisting">  "edited"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read</pre>
 <p>
 The last time the contact was edited. If the contact has not been edited yet, the content indicates the time it was created.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://www.atomenabled.org/developers/protocol/#appEdited" target="_top">
-Atom Publishing Protocol specification</a>.</p>
+Atom Publishing Protocol specification</a>.
+</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "has-photo" property'>
 <a name="GDataContactsContact--has-photo"></a><h3>The <code class="literal">"has-photo"</code> property</h3>
-<pre class="programlisting">  "has-photo"                gboolean              : Read</pre>
+<pre class="programlisting">  "has-photo"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read</pre>
 <p>
-Whether the contact has a photo.</p>
+Whether the contact has a photo.
+</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "name" property'>
 <a name="GDataContactsContact--name"></a><h3>The <code class="literal">"name"</code> property</h3>
-<pre class="programlisting">  "name"                     GDataGDName*          : Read</pre>
+<pre class="programlisting">  "name"                     <a class="link" href="GDataGDName.html" title="GDataGDName"><span class="type">GDataGDName</span></a>*          : Read / Write</pre>
 <p>
-The contact's name in a structured representation.</p>
+The contact's name in a structured representation.
+</p>
 <p class="since">Since 0.5.0</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

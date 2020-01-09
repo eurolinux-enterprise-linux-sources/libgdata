@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataPicasaWebAlbum</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch12.html" title="Google PicasaWeb API">
 <link rel="prev" href="GDataPicasaWebQuery.html" title="GDataPicasaWebQuery">
 <link rel="next" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -52,7 +30,7 @@
                   <a href="#GDataPicasaWebAlbum.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataPicasaWebAlbum">
 <a name="GDataPicasaWebAlbum"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -61,130 +39,127 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataPicasaWebAlbum.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataPicasaWebAlbum.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/services/picasaweb/gdata-picasaweb-album.h&gt;
 
-                    <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum-struct">GDataPicasaWebAlbum</a>;
-                    <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbumClass">GDataPicasaWebAlbumClass</a>;
-enum                <a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a>;
-<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> * <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-new">gdata_picasaweb_album_new</a>         (const gchar *id);
-const gchar *       <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-user">gdata_picasaweb_album_get_user</a>      (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-const gchar *       <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-nickname">gdata_picasaweb_album_get_nickname</a>  (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-edited">gdata_picasaweb_album_get_edited</a>    (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         GTimeVal *edited);
-const gchar *       <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-name">gdata_picasaweb_album_get_name</a>      (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-const gchar *       <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-location">gdata_picasaweb_album_get_location</a>  (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-location">gdata_picasaweb_album_set_location</a>  (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         const gchar *location);
-<a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a>  <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-visibility">gdata_picasaweb_album_get_visibility</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-visibility">gdata_picasaweb_album_set_visibility</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         <a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a> visibility);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-timestamp">gdata_picasaweb_album_get_timestamp</a> (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         GTimeVal *timestamp);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-timestamp">gdata_picasaweb_album_set_timestamp</a> (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         GTimeVal *timestamp);
-guint               <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-num-photos">gdata_picasaweb_album_get_num_photos</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-guint               <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-num-photos-remaining">gdata_picasaweb_album_get_num_photos_remaining</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-glong               <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-bytes-used">gdata_picasaweb_album_get_bytes_used</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-gboolean            <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-is-commenting-enabled">gdata_picasaweb_album_is_commenting_enabled</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-is-commenting-enabled">gdata_picasaweb_album_set_is_commenting_enabled</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         gboolean is_commenting_enabled);
-guint               <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-comment-count">gdata_picasaweb_album_get_comment_count</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-const gchar *       <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-tags">gdata_picasaweb_album_get_tags</a>      (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-tags">gdata_picasaweb_album_set_tags</a>      (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         const gchar *tags);
-const gchar *       <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-description">gdata_picasaweb_album_get_description</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-description">gdata_picasaweb_album_set_description</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         const gchar *description);
-GList *             <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-contents">gdata_picasaweb_album_get_contents</a>  (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-GList *             <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-thumbnails">gdata_picasaweb_album_get_thumbnails</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-coordinates">gdata_picasaweb_album_get_coordinates</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         gdouble *latitude,
-                                                         gdouble *longitude);
-void                <a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-coordinates">gdata_picasaweb_album_set_coordinates</a>
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         gdouble latitude,
-                                                         gdouble longitude);
+                    <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum-struct" title="GDataPicasaWebAlbum">GDataPicasaWebAlbum</a>;
+                    <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbumClass" title="GDataPicasaWebAlbumClass">GDataPicasaWebAlbumClass</a>;
+enum                <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility" title="enum GDataPicasaWebVisibility">GDataPicasaWebVisibility</a>;
+<a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="returnvalue">GDataPicasaWebAlbum</span></a> * <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-new" title="gdata_picasaweb_album_new ()">gdata_picasaweb_album_new</a>         (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-id" title="gdata_picasaweb_album_get_id ()">gdata_picasaweb_album_get_id</a>        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-user" title="gdata_picasaweb_album_get_user ()">gdata_picasaweb_album_get_user</a>      (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-nickname" title="gdata_picasaweb_album_get_nickname ()">gdata_picasaweb_album_get_nickname</a>  (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-edited" title="gdata_picasaweb_album_get_edited ()">gdata_picasaweb_album_get_edited</a>    (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *edited</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-location" title="gdata_picasaweb_album_get_location ()">gdata_picasaweb_album_get_location</a>  (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-location" title="gdata_picasaweb_album_set_location ()">gdata_picasaweb_album_set_location</a>  (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *location</code></em>);
+<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility" title="enum GDataPicasaWebVisibility"><span class="returnvalue">GDataPicasaWebVisibility</span></a>  <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-visibility" title="gdata_picasaweb_album_get_visibility ()">gdata_picasaweb_album_get_visibility</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-visibility" title="gdata_picasaweb_album_set_visibility ()">gdata_picasaweb_album_set_visibility</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility" title="enum GDataPicasaWebVisibility"><span class="type">GDataPicasaWebVisibility</span></a> visibility</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-timestamp" title="gdata_picasaweb_album_get_timestamp ()">gdata_picasaweb_album_get_timestamp</a> (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *timestamp</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-timestamp" title="gdata_picasaweb_album_set_timestamp ()">gdata_picasaweb_album_set_timestamp</a> (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *timestamp</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-num-photos" title="gdata_picasaweb_album_get_num_photos ()">gdata_picasaweb_album_get_num_photos</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-num-photos-remaining" title="gdata_picasaweb_album_get_num_photos_remaining ()">gdata_picasaweb_album_get_num_photos_remaining</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"><span class="returnvalue">glong</span></a>               <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-bytes-used" title="gdata_picasaweb_album_get_bytes_used ()">gdata_picasaweb_album_get_bytes_used</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-is-commenting-enabled" title="gdata_picasaweb_album_is_commenting_enabled ()">gdata_picasaweb_album_is_commenting_enabled</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-is-commenting-enabled" title="gdata_picasaweb_album_set_is_commenting_enabled ()">gdata_picasaweb_album_set_is_commenting_enabled</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_commenting_enabled</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-comment-count" title="gdata_picasaweb_album_get_comment_count ()">gdata_picasaweb_album_get_comment_count</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-tags" title="gdata_picasaweb_album_get_tags ()">gdata_picasaweb_album_get_tags</a>      (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-tags" title="gdata_picasaweb_album_set_tags ()">gdata_picasaweb_album_set_tags</a>      (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *tags</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-contents" title="gdata_picasaweb_album_get_contents ()">gdata_picasaweb_album_get_contents</a>  (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-thumbnails" title="gdata_picasaweb_album_get_thumbnails ()">gdata_picasaweb_album_get_thumbnails</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-coordinates" title="gdata_picasaweb_album_get_coordinates ()">gdata_picasaweb_album_get_coordinates</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *longitude</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-coordinates" title="gdata_picasaweb_album_set_coordinates ()">gdata_picasaweb_album_set_coordinates</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> longitude</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataPicasaWebAlbum.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataParsable.html">GDataParsable</a>
-         +----<a href="GDataEntry.html">GDataEntry</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+         +----<a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
                +----GDataPicasaWebAlbum
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataPicasaWebAlbum.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--bytes-used">bytes-used</a>"               glong                 : Read
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--comment-count">comment-count</a>"            guint                 : Read
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--description">description</a>"              gchar*                : Read / Write
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--edited">edited</a>"                   GTimeVal*             : Read
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-enabled">is-commenting-enabled</a>"    gboolean              : Read / Write
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--latitude">latitude</a>"                 gdouble               : Read / Write
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location">location</a>"                 gchar*                : Read / Write
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--longitude">longitude</a>"                gdouble               : Read / Write
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--name">name</a>"                     gchar*                : Read
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--nickname">nickname</a>"                 gchar*                : Read
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos">num-photos</a>"               guint                 : Read
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos-remaining">num-photos-remaining</a>"     guint                 : Read
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--tags">tags</a>"                     gchar*                : Read / Write
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--timestamp">timestamp</a>"                GTimeVal*             : Read / Write
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--user">user</a>"                     gchar*                : Read
-  "<a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility">visibility</a>"               <a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a>  : Read / Write
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--album-id" title='The "album-id" property'>album-id</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--bytes-used" title='The "bytes-used" property'>bytes-used</a>"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"><span class="type">glong</span></a>                 : Read
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--comment-count" title='The "comment-count" property'>comment-count</a>"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--edited" title='The "edited" property'>edited</a>"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-enabled" title='The "is-commenting-enabled" property'>is-commenting-enabled</a>"    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--latitude" title='The "latitude" property'>latitude</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location" title='The "location" property'>location</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--longitude" title='The "longitude" property'>longitude</a>"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--nickname" title='The "nickname" property'>nickname</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos" title='The "num-photos" property'>num-photos</a>"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos-remaining" title='The "num-photos-remaining" property'>num-photos-remaining</a>"     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--tags" title='The "tags" property'>tags</a>"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--timestamp" title='The "timestamp" property'>timestamp</a>"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--user" title='The "user" property'>user</a>"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility" title='The "visibility" property'>visibility</a>"               <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility" title="enum GDataPicasaWebVisibility"><span class="type">GDataPicasaWebVisibility</span></a>  : Read / Write
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataPicasaWebAlbum.description"></a><h2>Description</h2>
 <p>
-<a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a> is a subclass of <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> to represent an album from Google PicasaWeb.
+<a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> is a subclass of <a class="link" href="GDataEntry.html" title="GDataEntry"><span class="type">GDataEntry</span></a> to represent an album from Google PicasaWeb.
 </p>
 <p>
 For more details of Google PicasaWeb's GData API, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html" target="_top">
-online documentation</a>.</p>
+online documentation</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataPicasaWebAlbum.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataPicasaWebAlbum">
 <a name="GDataPicasaWebAlbum-struct"></a><h3>GDataPicasaWebAlbum</h3>
 <pre class="programlisting">typedef struct _GDataPicasaWebAlbum GDataPicasaWebAlbum;</pre>
 <p>
-All the fields in the <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataPicasaWebAlbumClass">
 <a name="GDataPicasaWebAlbumClass"></a><h3>GDataPicasaWebAlbumClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataPicasaWebAlbumClass;
 </pre>
 <p>
-All the fields in the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbumClass"><span class="type">GDataPicasaWebAlbumClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbumClass" title="GDataPicasaWebAlbumClass"><span class="type">GDataPicasaWebAlbumClass</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GDataPicasaWebVisibility">
 <a name="GDataPicasaWebVisibility"></a><h3>enum GDataPicasaWebVisibility</h3>
 <pre class="programlisting">typedef enum {
 	GDATA_PICASAWEB_PUBLIC = 1,
@@ -192,18 +167,19 @@ All the fields in the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbumClass
 } GDataPicasaWebVisibility;
 </pre>
 <p>
-Visibility statuses available for albums on PicasaWeb. For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#Visibility" target="_top">online documentation</a>.</p>
+Visibility statuses available for albums on PicasaWeb. For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#Visibility" target="_top">online documentation</a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><a name="GDATA-PICASAWEB-PUBLIC:CAPS"></a><span class="term"><code class="literal">GDATA_PICASAWEB_PUBLIC</code></span></p></td>
-<td> the album is visible to everyone, regardless of whether they're authenticated
+<td>the album is visible to everyone, regardless of whether they're authenticated
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-PICASAWEB-PRIVATE:CAPS"></a><span class="term"><code class="literal">GDATA_PICASAWEB_PRIVATE</code></span></p></td>
-<td> the album is visible only to authenticated users in a whitelist
+<td>the album is visible only to authenticated users in a whitelist
 </td>
 </tr>
 </tbody>
@@ -211,22 +187,27 @@ Visibility statuses available for albums on PicasaWeb. For more information, see
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_new ()">
 <a name="gdata-picasaweb-album-new"></a><h3>gdata_picasaweb_album_new ()</h3>
-<pre class="programlisting"><a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> * gdata_picasaweb_album_new         (const gchar *id);</pre>
+<pre class="programlisting"><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="returnvalue">GDataPicasaWebAlbum</span></a> * gdata_picasaweb_album_new         (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
 <p>
-Creates a new <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a> with the given ID and default properties.</p>
+Creates a new <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> with the given ID and default properties. <em class="parameter"><code>id</code></em> is the ID which would be returned by <a class="link" href="GDataEntry.html#gdata-entry-get-id" title="gdata_entry_get_id ()"><code class="function">gdata_entry_get_id()</code></a>,
+not <a class="link" href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-id" title="gdata_picasaweb_album_get_id ()"><code class="function">gdata_picasaweb_album_get_id()</code></a>.
+</p>
+<p>
+If <em class="parameter"><code>id</code></em> is not <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and can't be parsed to extract an album ID, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> will be returned.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
-<td> the album's ID, or <code class="literal">NULL</code>
+<td>the album's entry ID, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>; unref with <code class="function">g_object_unref()</code>
+<td> a new <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -235,17 +216,43 @@ Creates a new <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaW
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
-<a name="gdata-picasaweb-album-get-user"></a><h3>gdata_picasaweb_album_get_user ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_album_get_user      (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<div class="refsect2" title="gdata_picasaweb_album_get_id ()">
+<a name="gdata-picasaweb-album-get-id"></a><h3>gdata_picasaweb_album_get_id ()</h3>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_album_get_id        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--user"><span class="type">"user"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--album-id" title='The "album-id" property'><span class="type">"album-id"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the album's ID
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.6.4</p>
+</div>
+<hr>
+<div class="refsect2" title="gdata_picasaweb_album_get_user ()">
+<a name="gdata-picasaweb-album-get-user"></a><h3>gdata_picasaweb_album_get_user ()</h3>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_album_get_user      (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
+<p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--user" title='The "user" property'><span class="type">"user"</span></a> property.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
@@ -259,17 +266,18 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--user"><span clas
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_nickname ()">
 <a name="gdata-picasaweb-album-get-nickname"></a><h3>gdata_picasaweb_album_get_nickname ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_album_get_nickname  (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_album_get_nickname  (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--nickname"><span class="type">"nickname"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--nickname" title='The "nickname" property'><span class="type">"nickname"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
@@ -283,24 +291,25 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--nickname"><span 
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_edited ()">
 <a name="gdata-picasaweb-album-get-edited"></a><h3>gdata_picasaweb_album_get_edited ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_get_edited    (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         GTimeVal *edited);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_album_get_edited    (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *edited</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--edited"><span class="type">"edited"</span></a> property and puts it in <em class="parameter"><code>edited</code></em>. If the property is unset,
-both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--edited" title='The "edited" property'><span class="type">"edited"</span></a> property and puts it in <em class="parameter"><code>edited</code></em>. If the property is unset,
+both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>edited</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
@@ -308,46 +317,23 @@ both fields in the <span class="type">GTimeVal</span> will be set to <code class
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
-<a name="gdata-picasaweb-album-get-name"></a><h3>gdata_picasaweb_album_get_name ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_album_get_name      (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
-<p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--name"><span class="type">"name"</span></a> property.</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the album's name, as usable in URIs, or <code class="literal">NULL</code>
-
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_location ()">
 <a name="gdata-picasaweb-album-get-location"></a><h3>gdata_picasaweb_album_get_location ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_album_get_location  (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_album_get_location  (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location"><span class="type">"location"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location" title='The "location" property'><span class="type">"location"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the album's location, or <code class="literal">NULL</code>
+<td> the album's location, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -356,26 +342,27 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location"><span 
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_set_location ()">
 <a name="gdata-picasaweb-album-set-location"></a><h3>gdata_picasaweb_album_set_location ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_set_location  (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         const gchar *location);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_album_set_location  (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *location</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location"><span class="type">"location"</span></a> property to <em class="parameter"><code>location</code></em>.
+Sets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location" title='The "location" property'><span class="type">"location"</span></a> property to <em class="parameter"><code>location</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>location</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+Set <em class="parameter"><code>location</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>location</code></em> :</span></p></td>
-<td> the new album location
+<td>the new album location
 </td>
 </tr>
 </tbody>
@@ -383,18 +370,19 @@ Set <em class="parameter"><code>location</code></em> to <code class="literal">NU
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_visibility ()">
 <a name="gdata-picasaweb-album-get-visibility"></a><h3>gdata_picasaweb_album_get_visibility ()</h3>
-<pre class="programlisting"><a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a>  gdata_picasaweb_album_get_visibility
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility" title="enum GDataPicasaWebVisibility"><span class="returnvalue">GDataPicasaWebVisibility</span></a>  gdata_picasaweb_album_get_visibility
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility"><span class="type">"visibility"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility" title='The "visibility" property'><span class="type">"visibility"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
@@ -408,24 +396,25 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility"><spa
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_set_visibility ()">
 <a name="gdata-picasaweb-album-set-visibility"></a><h3>gdata_picasaweb_album_set_visibility ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_set_visibility
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         <a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a> visibility);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_album_set_visibility
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility" title="enum GDataPicasaWebVisibility"><span class="type">GDataPicasaWebVisibility</span></a> visibility</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility"><span class="type">"visibility"</span></a> property to <em class="parameter"><code>visibility</code></em>.</p>
+Sets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility" title='The "visibility" property'><span class="type">"visibility"</span></a> property to <em class="parameter"><code>visibility</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>visibility</code></em> :</span></p></td>
-<td> the new album visibility level
+<td>the new album visibility level
 </td>
 </tr>
 </tbody>
@@ -433,24 +422,25 @@ Sets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--visibility"><spa
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_timestamp ()">
 <a name="gdata-picasaweb-album-get-timestamp"></a><h3>gdata_picasaweb_album_get_timestamp ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_get_timestamp (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         GTimeVal *timestamp);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_album_get_timestamp (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *timestamp</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--timestamp"><span class="type">"timestamp"</span></a> property and puts it in <em class="parameter"><code>timestamp</code></em>. If the property is unset,
-both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--timestamp" title='The "timestamp" property'><span class="type">"timestamp"</span></a> property and puts it in <em class="parameter"><code>timestamp</code></em>. If the property is unset,
+both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>timestamp</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
@@ -458,26 +448,27 @@ both fields in the <span class="type">GTimeVal</span> will be set to <code class
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_set_timestamp ()">
 <a name="gdata-picasaweb-album-set-timestamp"></a><h3>gdata_picasaweb_album_set_timestamp ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_set_timestamp (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         GTimeVal *timestamp);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_album_set_timestamp (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *timestamp</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--timestamp"><span class="type">"timestamp"</span></a> property from values supplied by <em class="parameter"><code>timestamp</code></em>.
+Sets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--timestamp" title='The "timestamp" property'><span class="type">"timestamp"</span></a> property from values supplied by <em class="parameter"><code>timestamp</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>timestamp</code></em> to <code class="literal">NULL</code> to unset the property.</p>
+Set <em class="parameter"><code>timestamp</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>timestamp</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -485,18 +476,19 @@ Set <em class="parameter"><code>timestamp</code></em> to <code class="literal">N
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_num_photos ()">
 <a name="gdata-picasaweb-album-get-num-photos"></a><h3>gdata_picasaweb_album_get_num_photos ()</h3>
-<pre class="programlisting">guint               gdata_picasaweb_album_get_num_photos
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               gdata_picasaweb_album_get_num_photos
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos"><span class="type">"num-photos"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos" title='The "num-photos" property'><span class="type">"num-photos"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
@@ -510,18 +502,19 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos"><spa
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_num_photos_remaining ()">
 <a name="gdata-picasaweb-album-get-num-photos-remaining"></a><h3>gdata_picasaweb_album_get_num_photos_remaining ()</h3>
-<pre class="programlisting">guint               gdata_picasaweb_album_get_num_photos_remaining
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               gdata_picasaweb_album_get_num_photos_remaining
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos-remaining"><span class="type">"num-photos-remaining"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos-remaining" title='The "num-photos-remaining" property'><span class="type">"num-photos-remaining"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
@@ -535,24 +528,25 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos-remai
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_bytes_used ()">
 <a name="gdata-picasaweb-album-get-bytes-used"></a><h3>gdata_picasaweb_album_get_bytes_used ()</h3>
-<pre class="programlisting">glong               gdata_picasaweb_album_get_bytes_used
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"><span class="returnvalue">glong</span></a>               gdata_picasaweb_album_get_bytes_used
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--bytes-used"><span class="type">"bytes-used"</span></a> property. It will return <code class="literal">-1</code> if the current authenticated
-user is not the owner of the album.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--bytes-used" title='The "bytes-used" property'><span class="type">"bytes-used"</span></a> property. It will return <code class="code">-1</code> if the current authenticated
+user is not the owner of the album.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the number of bytes used by the album and its contents, or <code class="literal">-1</code>
+<td> the number of bytes used by the album and its contents, or <code class="code">-1</code>
 
 </td>
 </tr>
@@ -561,23 +555,24 @@ user is not the owner of the album.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_is_commenting_enabled ()">
 <a name="gdata-picasaweb-album-is-commenting-enabled"></a><h3>gdata_picasaweb_album_is_commenting_enabled ()</h3>
-<pre class="programlisting">gboolean            gdata_picasaweb_album_is_commenting_enabled
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_picasaweb_album_is_commenting_enabled
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-enabled"><span class="type">"is-commenting-enabled"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-enabled" title='The "is-commenting-enabled" property'><span class="type">"is-commenting-enabled"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if commenting is enabled for the album, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if commenting is enabled for the album, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -586,24 +581,26 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-en
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_set_is_commenting_enabled ()">
 <a name="gdata-picasaweb-album-set-is-commenting-enabled"></a><h3>gdata_picasaweb_album_set_is_commenting_enabled ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_set_is_commenting_enabled
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         gboolean is_commenting_enabled);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_album_set_is_commenting_enabled
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_commenting_enabled</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-enabled"><span class="type">"is-commenting-enabled"</span></a> property to <em class="parameter"><code>is_commenting_enabled</code></em>.</p>
+Sets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-enabled" title='The "is-commenting-enabled" property'><span class="type">"is-commenting-enabled"</span></a> property to <em class="parameter"><code>is_commenting_enabled</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>is_commenting_enabled</code></em> :</span></p></td>
-<td> <code class="literal">TRUE</code> if commenting should be enabled for the album, <code class="literal">FALSE</code> otherwise
+<td>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if commenting should be enabled for the album, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 </tbody>
@@ -611,18 +608,19 @@ Sets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-en
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_comment_count ()">
 <a name="gdata-picasaweb-album-get-comment-count"></a><h3>gdata_picasaweb_album_get_comment_count ()</h3>
-<pre class="programlisting">guint               gdata_picasaweb_album_get_comment_count
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               gdata_picasaweb_album_get_comment_count
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--comment-count"><span class="type">"comment-count"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--comment-count" title='The "comment-count" property'><span class="type">"comment-count"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
@@ -636,22 +634,23 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--comment-count"><
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_get_tags ()">
 <a name="gdata-picasaweb-album-get-tags"></a><h3>gdata_picasaweb_album_get_tags ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_album_get_tags      (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_picasaweb_album_get_tags      (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--tags"><span class="type">"tags"</span></a> property.</p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--tags" title='The "tags" property'><span class="type">"tags"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a comma-separated list of tags associated with all the photos in the album, or <code class="literal">NULL</code>
+<td> a comma-separated list of tags associated with all the photos in the album, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 
 </td>
 </tr>
@@ -660,26 +659,27 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--tags"><span clas
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_picasaweb_album_set_tags ()">
 <a name="gdata-picasaweb-album-set-tags"></a><h3>gdata_picasaweb_album_set_tags ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_set_tags      (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         const gchar *tags);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_album_set_tags      (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *tags</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--tags"><span class="type">"tags"</span></a> property to <em class="parameter"><code>tags</code></em>.
+Sets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--tags" title='The "tags" property'><span class="type">"tags"</span></a> property to <em class="parameter"><code>tags</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>tags</code></em> to <code class="literal">NULL</code> to unset the album's tag list.</p>
+Set <em class="parameter"><code>tags</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the album's tag list.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>tags</code></em> :</span></p></td>
-<td> the new comma-separated list of tags, or <code class="literal">NULL</code>
+<td>the new comma-separated list of tags, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -687,23 +687,23 @@ Set <em class="parameter"><code>tags</code></em> to <code class="literal">NULL</
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
-<a name="gdata-picasaweb-album-get-description"></a><h3>gdata_picasaweb_album_get_description ()</h3>
-<pre class="programlisting">const gchar *       gdata_picasaweb_album_get_description
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
+<div class="refsect2" title="gdata_picasaweb_album_get_contents ()">
+<a name="gdata-picasaweb-album-get-contents"></a><h3>gdata_picasaweb_album_get_contents ()</h3>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_picasaweb_album_get_contents  (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--description"><span class="type">"description"</span></a> property.</p>
+Returns a list of media content, such as the cover image for the album.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the album's long text description, or <code class="literal">NULL</code>
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="GDataMediaContent.html" title="GDataMediaContent"><span class="type">GDataMediaContent</span></a> items
 
 </td>
 </tr>
@@ -712,316 +712,314 @@ Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--description"><sp
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
-<a name="gdata-picasaweb-album-set-description"></a><h3>gdata_picasaweb_album_set_description ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_set_description
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         const gchar *description);</pre>
+<div class="refsect2" title="gdata_picasaweb_album_get_thumbnails ()">
+<a name="gdata-picasaweb-album-get-thumbnails"></a><h3>gdata_picasaweb_album_get_thumbnails ()</h3>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_picasaweb_album_get_thumbnails
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>);</pre>
 <p>
-Sets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--description"><span class="type">"description"</span></a> property to the new description, <em class="parameter"><code>description</code></em>.
+Returns a list of thumbnails, often at different sizes, for this album.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="GDataMediaThumbnail.html" title="GDataMediaThumbnail"><span class="type">GDataMediaThumbnail</span></a>s, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2" title="gdata_picasaweb_album_get_coordinates ()">
+<a name="gdata-picasaweb-album-get-coordinates"></a><h3>gdata_picasaweb_album_get_coordinates ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_album_get_coordinates
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *longitude</code></em>);</pre>
+<p>
+Gets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a> and <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--longitude" title='The "longitude" property'><span class="type">"longitude"</span></a> properties,
+setting the out parameters to them. If either latitude or longitude is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, that parameter will not be set.
+If the coordinates are unset, <em class="parameter"><code>latitude</code></em> and <em class="parameter"><code>longitude</code></em> will be set to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Limits-of-Basic-Types.html#G-MAXDOUBLE:CAPS"><code class="literal">G_MAXDOUBLE</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>latitude</code></em> :</span></p></td>
+<td>return location for the latitude, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>longitude</code></em> :</span></p></td>
+<td>return location for the longitude, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2" title="gdata_picasaweb_album_set_coordinates ()">
+<a name="gdata-picasaweb-album-set-coordinates"></a><h3>gdata_picasaweb_album_set_coordinates ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_picasaweb_album_set_coordinates
+                                                        (<em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> latitude</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> longitude</code></em>);</pre>
+<p>
+Sets the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--latitude" title='The "latitude" property'><span class="type">"latitude"</span></a> and <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--longitude" title='The "longitude" property'><span class="type">"longitude"</span></a> properties to
+<em class="parameter"><code>latitude</code></em> and <em class="parameter"><code>longitude</code></em> respectively.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>latitude</code></em> :</span></p></td>
+<td>the album's new latitude coordinate, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Limits-of-Basic-Types.html#G-MAXDOUBLE:CAPS"><code class="literal">G_MAXDOUBLE</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>longitude</code></em> :</span></p></td>
+<td>the album's new longitude coordinate, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Limits-of-Basic-Types.html#G-MAXDOUBLE:CAPS"><code class="literal">G_MAXDOUBLE</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 0.5.0</p>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="GDataPicasaWebAlbum.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "album-id" property'>
+<a name="GDataPicasaWebAlbum--album-id"></a><h3>The <code class="literal">"album-id"</code> property</h3>
+<pre class="programlisting">  "album-id"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>
+The ID of the album. This is a substring of the ID returned by <a class="link" href="GDataEntry.html#gdata-entry-get-id" title="gdata_entry_get_id ()"><code class="function">gdata_entry_get_id()</code></a> for <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>s; for example,
+if <a class="link" href="GDataEntry.html#gdata-entry-get-id" title="gdata_entry_get_id ()"><code class="function">gdata_entry_get_id()</code></a> returned "http://picasaweb.google.com/data/entry/user/libgdata.picasaweb/albumid/5328889949261497249" for a
+particular <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>, the <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--album-id" title='The "album-id" property'><span class="type">"album-id"</span></a> property would be "5328889949261497249".
 </p>
 <p>
-Set <em class="parameter"><code>description</code></em> to <code class="literal">NULL</code> to unset the album's description.</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>description</code></em> :</span></p></td>
-<td> the album's new description, or <code class="literal">NULL</code>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_id" target="_top">
+gphoto specification</a>.
+</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.6.4</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
-<a name="gdata-picasaweb-album-get-contents"></a><h3>gdata_picasaweb_album_get_contents ()</h3>
-<pre class="programlisting">GList *             gdata_picasaweb_album_get_contents  (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
-<p>
-Returns a list of media content, such as the cover image for the album.</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of <a href="GDataMediaContent.html"><span class="type">GDataMediaContent</span></a> items
-
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdata-picasaweb-album-get-thumbnails"></a><h3>gdata_picasaweb_album_get_thumbnails ()</h3>
-<pre class="programlisting">GList *             gdata_picasaweb_album_get_thumbnails
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self);</pre>
-<p>
-Returns a list of thumbnails, often at different sizes, for this album.</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GList</span> of <a href="GDataMediaThumbnail.html"><span class="type">GDataMediaThumbnail</span></a>s, or <code class="literal">NULL</code>
-
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdata-picasaweb-album-get-coordinates"></a><h3>gdata_picasaweb_album_get_coordinates ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_get_coordinates
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         gdouble *latitude,
-                                                         gdouble *longitude);</pre>
-<p>
-Gets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--latitude"><span class="type">"latitude"</span></a> and <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--longitude"><span class="type">"longitude"</span></a> properties,
-setting the out parameters to them. If either latitude or longitude is <code class="literal">NULL</code>, that parameter will not be set.
-If the coordinates are unset, <em class="parameter"><code>latitude</code></em> and <em class="parameter"><code>longitude</code></em> will be set to <code class="literal">G_MAXDOUBLE</code>.</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>latitude</code></em> :</span></p></td>
-<td> return location for the latitude, or <code class="literal">NULL</code>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>longitude</code></em> :</span></p></td>
-<td> return location for the longitude, or <code class="literal">NULL</code>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.5.0</p>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdata-picasaweb-album-set-coordinates"></a><h3>gdata_picasaweb_album_set_coordinates ()</h3>
-<pre class="programlisting">void                gdata_picasaweb_album_set_coordinates
-                                                        (<a href="GDataPicasaWebAlbum.html">GDataPicasaWebAlbum</a> *self,
-                                                         gdouble latitude,
-                                                         gdouble longitude);</pre>
-<p>
-Sets the <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--latitude"><span class="type">"latitude"</span></a> and <a href="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--longitude"><span class="type">"longitude"</span></a> properties to
-<em class="parameter"><code>latitude</code></em> and <em class="parameter"><code>longitude</code></em> respectively.</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataPicasaWebAlbum.html"><span class="type">GDataPicasaWebAlbum</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>latitude</code></em> :</span></p></td>
-<td> the album's new latitude coordinate, or <code class="literal">G_MAXDOUBLE</code>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>longitude</code></em> :</span></p></td>
-<td> the album's new longitude coordinate, or <code class="literal">G_MAXDOUBLE</code>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.5.0</p>
-</div>
-</div>
-<div class="refsect1" lang="en">
-<a name="GDataPicasaWebAlbum.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "bytes-used" property'>
 <a name="GDataPicasaWebAlbum--bytes-used"></a><h3>The <code class="literal">"bytes-used"</code> property</h3>
-<pre class="programlisting">  "bytes-used"               glong                 : Read</pre>
+<pre class="programlisting">  "bytes-used"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"><span class="type">glong</span></a>                 : Read</pre>
 <p>
 The number of bytes consumed by this album and its contents. Note that this is only set if the authenticated user is the owner of the
-album; it's otherwise <code class="literal">-1</code>.
+album; it's otherwise <code class="code">-1</code>.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_bytesUsed" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "comment-count" property'>
 <a name="GDataPicasaWebAlbum--comment-count"></a><h3>The <code class="literal">"comment-count"</code> property</h3>
-<pre class="programlisting">  "comment-count"            guint                 : Read</pre>
+<pre class="programlisting">  "comment-count"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read</pre>
 <p>
 The number of comments on the album.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_commentCount" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
-<a name="GDataPicasaWebAlbum--description"></a><h3>The <code class="literal">"description"</code> property</h3>
-<pre class="programlisting">  "description"              gchar*                : Read / Write</pre>
+<div class="refsect2" title='The "edited" property'>
+<a name="GDataPicasaWebAlbum--edited"></a><h3>The <code class="literal">"edited"</code> property</h3>
+<pre class="programlisting">  "edited"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read</pre>
 <p>
-Description of the album.
+The time this album was last edited. If the album has not been edited yet, the content indicates the time it was created.
 </p>
 <p>
-For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#media_description" target="_top">
-Media RSS specification</a>.</p>
-<p>Default value: NULL</p>
+For more information, see the <a class="ulink" href="http://www.atomenabled.org/developers/protocol/#appEdited" target="_top">
+Atom Publishing Protocol specification</a>.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
-<a name="GDataPicasaWebAlbum--edited"></a><h3>The <code class="literal">"edited"</code> property</h3>
-<pre class="programlisting">  "edited"                   GTimeVal*             : Read</pre>
-<p>The time this album was last edited.</p>
-</div>
-<hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "is-commenting-enabled" property'>
 <a name="GDataPicasaWebAlbum--is-commenting-enabled"></a><h3>The <code class="literal">"is-commenting-enabled"</code> property</h3>
-<pre class="programlisting">  "is-commenting-enabled"    gboolean              : Read / Write</pre>
+<pre class="programlisting">  "is-commenting-enabled"    <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
 <p>Whether commenting is enabled for this album.</p>
 <p>Default value: FALSE</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "latitude" property'>
 <a name="GDataPicasaWebAlbum--latitude"></a><h3>The <code class="literal">"latitude"</code> property</h3>
-<pre class="programlisting">  "latitude"                 gdouble               : Read / Write</pre>
+<pre class="programlisting">  "latitude"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write</pre>
 <p>
-The location as a latitude coordinate associated with this album. Valid latitudes range from <code class="literal">-90</code>.0 to <code class="literal">90</code>.0 inclusive.
+The location as a latitude coordinate associated with this album. Valid latitudes range from <code class="code">-90.0</code>
+to <code class="code">90.0</code> inclusive.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/docs/2.0/reference.html#georss_where" target="_top">
-GeoRSS specification</a>.</p>
+GeoRSS specification</a>.
+</p>
 <p>Allowed values: [-90,90]</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "location" property'>
 <a name="GDataPicasaWebAlbum--location"></a><h3>The <code class="literal">"location"</code> property</h3>
-<pre class="programlisting">  "location"                 gchar*                : Read / Write</pre>
-<p>The user-specified location associated with the album.</p>
+<pre class="programlisting">  "location"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
+<p>
+The user-specified location associated with the album. A place name.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_location" target="_top">
+gphoto specification</a>.
+</p>
 <p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "longitude" property'>
 <a name="GDataPicasaWebAlbum--longitude"></a><h3>The <code class="literal">"longitude"</code> property</h3>
-<pre class="programlisting">  "longitude"                gdouble               : Read / Write</pre>
+<pre class="programlisting">  "longitude"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write</pre>
 <p>
-The location as a longitude coordinate associated with this album. Valid longitudes range from <code class="literal">-180</code>.0 to <code class="literal">180</code>.0 inclusive.
+The location as a longitude coordinate associated with this album. Valid longitudes range from <code class="code">-180.0</code>
+to <code class="code">180.0</code> inclusive.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/docs/2.0/reference.html#georss_where" target="_top">
-GeoRSS specification</a>.</p>
+GeoRSS specification</a>.
+</p>
 <p>Allowed values: [-180,180]</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
-<a name="GDataPicasaWebAlbum--name"></a><h3>The <code class="literal">"name"</code> property</h3>
-<pre class="programlisting">  "name"                     gchar*                : Read</pre>
-<p>The name of the album.</p>
-<p>Default value: NULL</p>
-</div>
-<hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "nickname" property'>
 <a name="GDataPicasaWebAlbum--nickname"></a><h3>The <code class="literal">"nickname"</code> property</h3>
-<pre class="programlisting">  "nickname"                 gchar*                : Read</pre>
-<p>The user's nickname.</p>
+<pre class="programlisting">  "nickname"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
+<p>
+The user's nickname. This is a user-specified value that should be used when referring to the user by name.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_nickname" target="_top">
+gphoto specification</a>.
+</p>
 <p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "num-photos" property'>
 <a name="GDataPicasaWebAlbum--num-photos"></a><h3>The <code class="literal">"num-photos"</code> property</h3>
-<pre class="programlisting">  "num-photos"               guint                 : Read</pre>
+<pre class="programlisting">  "num-photos"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read</pre>
 <p>
 The number of photos and videos in the album.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_numphotos" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "num-photos-remaining" property'>
 <a name="GDataPicasaWebAlbum--num-photos-remaining"></a><h3>The <code class="literal">"num-photos-remaining"</code> property</h3>
-<pre class="programlisting">  "num-photos-remaining"     guint                 : Read</pre>
+<pre class="programlisting">  "num-photos-remaining"     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read</pre>
 <p>
 The number of photos and videos that can still be uploaded to this album.
 This doesn't account for quota, just a hardcoded maximum number per album set by Google.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_numphotosremaining" target="_top">
-gphoto specification</a>.</p>
+gphoto specification</a>.
+</p>
 <p>Default value: 0</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "tags" property'>
 <a name="GDataPicasaWebAlbum--tags"></a><h3>The <code class="literal">"tags"</code> property</h3>
-<pre class="programlisting">  "tags"                     gchar*                : Read / Write</pre>
+<pre class="programlisting">  "tags"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 A comma-separated list of tags associated with the album; all the tags associated with the individual photos in the album.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#media_keywords" target="_top">
-Media RSS specification</a>.</p>
+Media RSS specification</a>.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "timestamp" property'>
 <a name="GDataPicasaWebAlbum--timestamp"></a><h3>The <code class="literal">"timestamp"</code> property</h3>
-<pre class="programlisting">  "timestamp"                GTimeVal*             : Read / Write</pre>
-<p>The timestamp of when the album occurred, settable by the user.</p>
+<pre class="programlisting">  "timestamp"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write</pre>
+<p>
+The timestamp of when the album occurred, settable by the user.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_timestamp" target="_top">
+gphoto specification</a>.
+</p>
+<p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "user" property'>
 <a name="GDataPicasaWebAlbum--user"></a><h3>The <code class="literal">"user"</code> property</h3>
-<pre class="programlisting">  "user"                     gchar*                : Read</pre>
-<p>The username of the album owner.</p>
+<pre class="programlisting">  "user"                     <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
+<p>
+The username of the album owner.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_user" target="_top">
+gphoto specification</a>.
+</p>
 <p>Default value: NULL</p>
+<p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "visibility" property'>
 <a name="GDataPicasaWebAlbum--visibility"></a><h3>The <code class="literal">"visibility"</code> property</h3>
-<pre class="programlisting">  "visibility"               <a href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility">GDataPicasaWebVisibility</a>  : Read / Write</pre>
-<p>The visibility (or access rights) of the album.</p>
+<pre class="programlisting">  "visibility"               <a class="link" href="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility" title="enum GDataPicasaWebVisibility"><span class="type">GDataPicasaWebVisibility</span></a>  : Read / Write</pre>
+<p>
+The visibility (or access rights) of the album.
+</p>
+<p>
+For more information, see the <a class="ulink" href="http://code.google.com/apis/picasaweb/reference.html#gphoto_access" target="_top">
+gphoto specification</a>.
+</p>
 <p>Default value: GDATA_PICASAWEB_PUBLIC</p>
+<p class="since">Since 0.4.0</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

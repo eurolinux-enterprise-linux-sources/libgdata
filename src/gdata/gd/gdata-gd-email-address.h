@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -40,6 +40,8 @@ typedef struct _GDataGDEmailAddressPrivate	GDataGDEmailAddressPrivate;
  * GDataGDEmailAddress:
  *
  * All the fields in the #GDataGDEmailAddress structure are private and should never be accessed directly.
+ *
+ * Since: 0.2.0
  **/
 typedef struct {
 	GDataParsable parent;
@@ -72,6 +74,9 @@ void gdata_gd_email_address_set_relation_type (GDataGDEmailAddress *self, const 
 
 const gchar *gdata_gd_email_address_get_label (GDataGDEmailAddress *self);
 void gdata_gd_email_address_set_label (GDataGDEmailAddress *self, const gchar *label);
+
+const gchar *gdata_gd_email_address_get_display_name (GDataGDEmailAddress *self);
+void gdata_gd_email_address_set_display_name (GDataGDEmailAddress *self, const gchar *display_name);
 
 gboolean gdata_gd_email_address_is_primary (GDataGDEmailAddress *self);
 void gdata_gd_email_address_set_is_primary (GDataGDEmailAddress *self, gboolean is_primary);

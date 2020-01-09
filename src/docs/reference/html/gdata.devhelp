@@ -32,6 +32,7 @@
       <sub name="GData API" link="ch05.html">
         <sub name="GDataGDEmailAddress" link="GDataGDEmailAddress.html"/>
         <sub name="GDataGDIMAddress" link="GDataGDIMAddress.html"/>
+        <sub name="GDataGDName" link="GDataGDName.html"/>
         <sub name="GDataGDOrganization" link="GDataGDOrganization.html"/>
         <sub name="GDataGDPhoneNumber" link="GDataGDPhoneNumber.html"/>
         <sub name="GDataGDPostalAddress" link="GDataGDPostalAddress.html"/>
@@ -87,16 +88,27 @@
         <sub name="GDataPicasaWebFile" link="GDataPicasaWebFile.html"/>
       </sub>
     </sub>
-    <sub name="Appendices" link="pt05.html"/>
+    <sub name="Appendices" link="pt05.html">
+      <sub name="API Index" link="api-index-full.html"/>
+      <sub name="Index of new symbols in 0.1.1" link="ix02.html"/>
+      <sub name="Index of new symbols in 0.2.0" link="ix03.html"/>
+      <sub name="Index of new symbols in 0.3.0" link="ix04.html"/>
+      <sub name="Index of new symbols in 0.4.0" link="ix05.html"/>
+      <sub name="Index of new symbols in 0.5.0" link="ix06.html"/>
+      <sub name="Index of new symbols in 0.6.0" link="ix07.html"/>
+      <sub name="Index of new symbols in 0.6.3" link="ix08.html"/>
+      <sub name="Index of new symbols in 0.6.4" link="ix09.html"/>
+    </sub>
   </chapters>
   <functions>
-    <function name="Protocol" link="gdata-overview.html#id445392"/>
-    <function name="Structure" link="gdata-overview.html#id474703"/>
+    <function name="Protocol" link="gdata-overview.html#id607674"/>
+    <function name="Structure" link="gdata-overview.html#id620938"/>
     <function name="GDataService" link="GDataService.html#GDataService-struct"/>
     <function name="GDataServiceClass" link="GDataService.html#GDataServiceClass"/>
     <function name="enum GDataServiceError" link="GDataService.html#GDataServiceError"/>
     <function name="enum GDataAuthenticationError" link="GDataService.html#GDataAuthenticationError"/>
     <function name="enum GDataParserError" link="GDataService.html#GDataParserError"/>
+    <function name="enum GDataOperationType" link="GDataService.html#GDataOperationType"/>
     <function name="GDataQueryProgressCallback ()" link="GDataService.html#GDataQueryProgressCallback"/>
     <function name="gdata_service_authenticate ()" link="GDataService.html#gdata-service-authenticate"/>
     <function name="gdata_service_authenticate_async ()" link="GDataService.html#gdata-service-authenticate-async"/>
@@ -183,12 +195,14 @@
     <function name="gdata_feed_get_links ()" link="GDataFeed.html#gdata-feed-get-links"/>
     <function name="gdata_feed_look_up_link ()" link="GDataFeed.html#gdata-feed-look-up-link"/>
     <function name="gdata_feed_get_logo ()" link="GDataFeed.html#gdata-feed-get-logo"/>
+    <function name="gdata_feed_get_icon ()" link="GDataFeed.html#gdata-feed-get-icon"/>
     <function name="gdata_feed_get_updated ()" link="GDataFeed.html#gdata-feed-get-updated"/>
     <function name="gdata_feed_get_start_index ()" link="GDataFeed.html#gdata-feed-get-start-index"/>
     <function name="gdata_feed_get_total_results ()" link="GDataFeed.html#gdata-feed-get-total-results"/>
     <function name="gdata_feed_get_items_per_page ()" link="GDataFeed.html#gdata-feed-get-items-per-page"/>
     <function name="The &quot;etag&quot; property" link="GDataFeed.html#GDataFeed--etag"/>
     <function name="The &quot;generator&quot; property" link="GDataFeed.html#GDataFeed--generator"/>
+    <function name="The &quot;icon&quot; property" link="GDataFeed.html#GDataFeed--icon"/>
     <function name="The &quot;id&quot; property" link="GDataFeed.html#GDataFeed--id"/>
     <function name="The &quot;items-per-page&quot; property" link="GDataFeed.html#GDataFeed--items-per-page"/>
     <function name="The &quot;logo&quot; property" link="GDataFeed.html#GDataFeed--logo"/>
@@ -352,7 +366,10 @@
     <function name="gdata_gd_email_address_set_label ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-label"/>
     <function name="gdata_gd_email_address_is_primary ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-is-primary"/>
     <function name="gdata_gd_email_address_set_is_primary ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-is-primary"/>
+    <function name="gdata_gd_email_address_get_display_name ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-get-display-name"/>
+    <function name="gdata_gd_email_address_set_display_name ()" link="GDataGDEmailAddress.html#gdata-gd-email-address-set-display-name"/>
     <function name="The &quot;address&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--address"/>
+    <function name="The &quot;display-name&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--display-name"/>
     <function name="The &quot;is-primary&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--is-primary"/>
     <function name="The &quot;label&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--label"/>
     <function name="The &quot;relation-type&quot; property" link="GDataGDEmailAddress.html#GDataGDEmailAddress--relation-type"/>
@@ -375,6 +392,28 @@
     <function name="The &quot;label&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--label"/>
     <function name="The &quot;protocol&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--protocol"/>
     <function name="The &quot;relation-type&quot; property" link="GDataGDIMAddress.html#GDataGDIMAddress--relation-type"/>
+    <function name="GDataGDName" link="GDataGDName.html#GDataGDName-struct"/>
+    <function name="GDataGDNameClass" link="GDataGDName.html#GDataGDNameClass"/>
+    <function name="gdata_gd_name_new ()" link="GDataGDName.html#gdata-gd-name-new"/>
+    <function name="gdata_gd_name_compare ()" link="GDataGDName.html#gdata-gd-name-compare"/>
+    <function name="gdata_gd_name_get_given_name ()" link="GDataGDName.html#gdata-gd-name-get-given-name"/>
+    <function name="gdata_gd_name_set_given_name ()" link="GDataGDName.html#gdata-gd-name-set-given-name"/>
+    <function name="gdata_gd_name_get_additional_name ()" link="GDataGDName.html#gdata-gd-name-get-additional-name"/>
+    <function name="gdata_gd_name_set_additional_name ()" link="GDataGDName.html#gdata-gd-name-set-additional-name"/>
+    <function name="gdata_gd_name_get_family_name ()" link="GDataGDName.html#gdata-gd-name-get-family-name"/>
+    <function name="gdata_gd_name_set_family_name ()" link="GDataGDName.html#gdata-gd-name-set-family-name"/>
+    <function name="gdata_gd_name_get_prefix ()" link="GDataGDName.html#gdata-gd-name-get-prefix"/>
+    <function name="gdata_gd_name_set_prefix ()" link="GDataGDName.html#gdata-gd-name-set-prefix"/>
+    <function name="gdata_gd_name_get_suffix ()" link="GDataGDName.html#gdata-gd-name-get-suffix"/>
+    <function name="gdata_gd_name_set_suffix ()" link="GDataGDName.html#gdata-gd-name-set-suffix"/>
+    <function name="gdata_gd_name_get_full_name ()" link="GDataGDName.html#gdata-gd-name-get-full-name"/>
+    <function name="gdata_gd_name_set_full_name ()" link="GDataGDName.html#gdata-gd-name-set-full-name"/>
+    <function name="The &quot;additional-name&quot; property" link="GDataGDName.html#GDataGDName--additional-name"/>
+    <function name="The &quot;family-name&quot; property" link="GDataGDName.html#GDataGDName--family-name"/>
+    <function name="The &quot;full-name&quot; property" link="GDataGDName.html#GDataGDName--full-name"/>
+    <function name="The &quot;given-name&quot; property" link="GDataGDName.html#GDataGDName--given-name"/>
+    <function name="The &quot;prefix&quot; property" link="GDataGDName.html#GDataGDName--prefix"/>
+    <function name="The &quot;suffix&quot; property" link="GDataGDName.html#GDataGDName--suffix"/>
     <function name="GDataGDOrganization" link="GDataGDOrganization.html#GDataGDOrganization-struct"/>
     <function name="GDataGDOrganizationClass" link="GDataGDOrganization.html#GDataGDOrganizationClass"/>
     <function name="gdata_gd_organization_new ()" link="GDataGDOrganization.html#gdata-gd-organization-new"/>
@@ -395,10 +434,13 @@
     <function name="gdata_gd_organization_set_job_description ()" link="GDataGDOrganization.html#gdata-gd-organization-set-job-description"/>
     <function name="gdata_gd_organization_get_symbol ()" link="GDataGDOrganization.html#gdata-gd-organization-get-symbol"/>
     <function name="gdata_gd_organization_set_symbol ()" link="GDataGDOrganization.html#gdata-gd-organization-set-symbol"/>
+    <function name="gdata_gd_organization_get_location ()" link="GDataGDOrganization.html#gdata-gd-organization-get-location"/>
+    <function name="gdata_gd_organization_set_location ()" link="GDataGDOrganization.html#gdata-gd-organization-set-location"/>
     <function name="The &quot;department&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--department"/>
     <function name="The &quot;is-primary&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--is-primary"/>
     <function name="The &quot;job-description&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--job-description"/>
     <function name="The &quot;label&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--label"/>
+    <function name="The &quot;location&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--location"/>
     <function name="The &quot;name&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--name"/>
     <function name="The &quot;relation-type&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--relation-type"/>
     <function name="The &quot;symbol&quot; property" link="GDataGDOrganization.html#GDataGDOrganization--symbol"/>
@@ -565,6 +607,7 @@
     <function name="gdata_media_content_get_duration ()" link="GDataMediaContent.html#gdata-media-content-get-duration"/>
     <function name="gdata_media_content_get_height ()" link="GDataMediaContent.html#gdata-media-content-get-height"/>
     <function name="gdata_media_content_get_width ()" link="GDataMediaContent.html#gdata-media-content-get-width"/>
+    <function name="gdata_media_content_download ()" link="GDataMediaContent.html#gdata-media-content-download"/>
     <function name="The &quot;content-type&quot; property" link="GDataMediaContent.html#GDataMediaContent--content-type"/>
     <function name="The &quot;duration&quot; property" link="GDataMediaContent.html#GDataMediaContent--duration"/>
     <function name="The &quot;expression&quot; property" link="GDataMediaContent.html#GDataMediaContent--expression"/>
@@ -588,6 +631,7 @@
     <function name="gdata_media_thumbnail_get_height ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-height"/>
     <function name="gdata_media_thumbnail_get_width ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-width"/>
     <function name="gdata_media_thumbnail_get_time ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-get-time"/>
+    <function name="gdata_media_thumbnail_download ()" link="GDataMediaThumbnail.html#gdata-media-thumbnail-download"/>
     <function name="The &quot;height&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--height"/>
     <function name="The &quot;time&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--time"/>
     <function name="The &quot;uri&quot; property" link="GDataMediaThumbnail.html#GDataMediaThumbnail--uri"/>
@@ -695,8 +739,6 @@
     <function name="gdata_youtube_video_set_is_draft ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-is-draft"/>
     <function name="gdata_youtube_video_get_state ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-state"/>
     <function name="gdata_youtube_video_get_rating ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-rating"/>
-    <function name="gdata_youtube_video_get_title ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-title"/>
-    <function name="gdata_youtube_video_set_title ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-title"/>
     <function name="gdata_youtube_video_get_uploaded ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-uploaded"/>
     <function name="gdata_youtube_video_get_recorded ()" link="GDataYouTubeVideo.html#gdata-youtube-video-get-recorded"/>
     <function name="gdata_youtube_video_set_recorded ()" link="GDataYouTubeVideo.html#gdata-youtube-video-set-recorded"/>
@@ -722,7 +764,6 @@
     <function name="The &quot;rating-count&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--rating-count"/>
     <function name="The &quot;recorded&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--recorded"/>
     <function name="The &quot;state&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--state"/>
-    <function name="The &quot;title&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--title"/>
     <function name="The &quot;uploaded&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--uploaded"/>
     <function name="The &quot;video-id&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--video-id"/>
     <function name="The &quot;view-count&quot; property" link="GDataYouTubeVideo.html#GDataYouTubeVideo--view-count"/>
@@ -866,6 +907,7 @@
     <function name="GDataContactsContactClass" link="GDataContactsContact.html#GDataContactsContactClass"/>
     <function name="gdata_contacts_contact_new ()" link="GDataContactsContact.html#gdata-contacts-contact-new"/>
     <function name="gdata_contacts_contact_get_name ()" link="GDataContactsContact.html#gdata-contacts-contact-get-name"/>
+    <function name="gdata_contacts_contact_set_name ()" link="GDataContactsContact.html#gdata-contacts-contact-set-name"/>
     <function name="gdata_contacts_contact_get_email_addresses ()" link="GDataContactsContact.html#gdata-contacts-contact-get-email-addresses"/>
     <function name="gdata_contacts_contact_get_primary_email_address ()" link="GDataContactsContact.html#gdata-contacts-contact-get-primary-email-address"/>
     <function name="gdata_contacts_contact_add_email_address ()" link="GDataContactsContact.html#gdata-contacts-contact-add-email-address"/>
@@ -979,13 +1021,18 @@
     <function name="GDataPicasaWebService" link="GDataPicasaWebService.html#GDataPicasaWebService-struct"/>
     <function name="GDataPicasaWebServiceClass" link="GDataPicasaWebService.html#GDataPicasaWebServiceClass"/>
     <function name="gdata_picasaweb_service_new ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-new"/>
+    <function name="gdata_picasaweb_service_get_user ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-get-user"/>
     <function name="gdata_picasaweb_service_query_all_albums ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums"/>
     <function name="gdata_picasaweb_service_query_all_albums_async ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-query-all-albums-async"/>
     <function name="gdata_picasaweb_service_query_files ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-query-files"/>
     <function name="gdata_picasaweb_service_upload_file ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file"/>
+    <function name="gdata_picasaweb_service_upload_file_async ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file-async"/>
+    <function name="gdata_picasaweb_service_upload_file_finish ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file-finish"/>
+    <function name="gdata_picasaweb_service_insert_album ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-insert-album"/>
     <function name="GDataPicasaWebQuery" link="GDataPicasaWebQuery.html#GDataPicasaWebQuery-struct"/>
     <function name="GDataPicasaWebQueryClass" link="GDataPicasaWebQuery.html#GDataPicasaWebQueryClass"/>
     <function name="gdata_picasaweb_query_new ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-new"/>
+    <function name="gdata_picasaweb_query_new_with_limits ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-new-with-limits"/>
     <function name="gdata_picasaweb_query_get_visibility ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-visibility"/>
     <function name="gdata_picasaweb_query_set_visibility ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-set-visibility"/>
     <function name="gdata_picasaweb_query_get_thumbnail_size ()" link="GDataPicasaWebQuery.html#gdata-picasaweb-query-get-thumbnail-size"/>
@@ -1007,10 +1054,10 @@
     <function name="GDataPicasaWebAlbumClass" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbumClass"/>
     <function name="enum GDataPicasaWebVisibility" link="GDataPicasaWebAlbum.html#GDataPicasaWebVisibility"/>
     <function name="gdata_picasaweb_album_new ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-new"/>
+    <function name="gdata_picasaweb_album_get_id ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-id"/>
     <function name="gdata_picasaweb_album_get_user ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-user"/>
     <function name="gdata_picasaweb_album_get_nickname ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-nickname"/>
     <function name="gdata_picasaweb_album_get_edited ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-edited"/>
-    <function name="gdata_picasaweb_album_get_name ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-name"/>
     <function name="gdata_picasaweb_album_get_location ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-location"/>
     <function name="gdata_picasaweb_album_set_location ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-location"/>
     <function name="gdata_picasaweb_album_get_visibility ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-visibility"/>
@@ -1025,21 +1072,18 @@
     <function name="gdata_picasaweb_album_get_comment_count ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-comment-count"/>
     <function name="gdata_picasaweb_album_get_tags ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-tags"/>
     <function name="gdata_picasaweb_album_set_tags ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-tags"/>
-    <function name="gdata_picasaweb_album_get_description ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-description"/>
-    <function name="gdata_picasaweb_album_set_description ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-description"/>
     <function name="gdata_picasaweb_album_get_contents ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-contents"/>
     <function name="gdata_picasaweb_album_get_thumbnails ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-thumbnails"/>
     <function name="gdata_picasaweb_album_get_coordinates ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-get-coordinates"/>
     <function name="gdata_picasaweb_album_set_coordinates ()" link="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-coordinates"/>
+    <function name="The &quot;album-id&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--album-id"/>
     <function name="The &quot;bytes-used&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--bytes-used"/>
     <function name="The &quot;comment-count&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--comment-count"/>
-    <function name="The &quot;description&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--description"/>
     <function name="The &quot;edited&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--edited"/>
     <function name="The &quot;is-commenting-enabled&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--is-commenting-enabled"/>
     <function name="The &quot;latitude&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--latitude"/>
     <function name="The &quot;location&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--location"/>
     <function name="The &quot;longitude&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--longitude"/>
-    <function name="The &quot;name&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--name"/>
     <function name="The &quot;nickname&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--nickname"/>
     <function name="The &quot;num-photos&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos"/>
     <function name="The &quot;num-photos-remaining&quot; property" link="GDataPicasaWebAlbum.html#GDataPicasaWebAlbum--num-photos-remaining"/>
@@ -1050,6 +1094,7 @@
     <function name="GDataPicasaWebFile" link="GDataPicasaWebFile.html#GDataPicasaWebFile-struct"/>
     <function name="GDataPicasaWebFileClass" link="GDataPicasaWebFile.html#GDataPicasaWebFileClass"/>
     <function name="gdata_picasaweb_file_new ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-new"/>
+    <function name="gdata_picasaweb_file_get_id ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-id"/>
     <function name="gdata_picasaweb_file_get_edited ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-edited"/>
     <function name="gdata_picasaweb_file_get_version ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-version"/>
     <function name="gdata_picasaweb_file_get_position ()" link="GDataPicasaWebFile.html#gdata-picasaweb-file-get-position"/>
@@ -1098,6 +1143,7 @@
     <function name="The &quot;distance&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--distance"/>
     <function name="The &quot;edited&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--edited"/>
     <function name="The &quot;exposure&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--exposure"/>
+    <function name="The &quot;file-id&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--file-id"/>
     <function name="The &quot;flash&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--flash"/>
     <function name="The &quot;focal-length&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--focal-length"/>
     <function name="The &quot;fstop&quot; property" link="GDataPicasaWebFile.html#GDataPicasaWebFile--fstop"/>

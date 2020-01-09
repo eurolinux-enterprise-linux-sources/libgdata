@@ -38,6 +38,8 @@ void _gdata_service_query_async (GDataService *self, const gchar *feed_uri, GDat
 				 GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
 				 GAsyncReadyCallback callback, gpointer user_data, GSimpleAsyncThreadFunc query_thread);
 
+const gchar *_gdata_service_get_scheme (void);
+
 #include "gdata-query.h"
 void _gdata_query_set_next_uri (GDataQuery *self, const gchar *next_uri);
 void _gdata_query_set_previous_uri (GDataQuery *self, const gchar *previous_uri);
@@ -68,6 +70,8 @@ GFile *_gdata_documents_entry_download_document (GDataDocumentsEntry *self, GDat
 GDataService *_gdata_documents_service_get_spreadsheet_service (GDataDocumentsService *self);
 
 #include "gdata-parser.h"
+
+GFileOutputStream *_gdata_download_stream_find_destination (const gchar *default_filename, GFile *target_dest_file, GFile **actual_dest_file, gboolean replace_file_if_exists, GCancellable *cancellable, GError **error) G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS
 

@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataDocumentsSpreadsheet</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch11.html" title="Google Documents API">
 <link rel="prev" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation">
 <link rel="next" href="GDataDocumentsText.html" title="GDataDocumentsText">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -52,7 +30,7 @@
                   <a href="#GDataDocumentsSpreadsheet.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataDocumentsSpreadsheet">
 <a name="GDataDocumentsSpreadsheet"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -61,82 +39,85 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataDocumentsSpreadsheet.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataDocumentsSpreadsheet.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/services/documents/gdata-documents-spreadsheet.h&gt;
 
-                    <a href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheet-struct">GDataDocumentsSpreadsheet</a>;
-                    <a href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetClass">GDataDocumentsSpreadsheetClass</a>;
-enum                <a href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat">GDataDocumentsSpreadsheetFormat</a>;
-<a href="GDataDocumentsSpreadsheet.html">GDataDocumentsSpreadsheet</a> * <a href="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-new">gdata_documents_spreadsheet_new</a>
-                                                        (const gchar *id);
-GFile *             <a href="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-download-document">gdata_documents_spreadsheet_download_document</a>
-                                                        (<a href="GDataDocumentsSpreadsheet.html">GDataDocumentsSpreadsheet</a> *self,
-                                                         <a href="GDataDocumentsService.html">GDataDocumentsService</a> *service,
-                                                         gchar **content_type,
-                                                         <a href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat">GDataDocumentsSpreadsheetFormat</a> export_format,
-                                                         gint gid,
-                                                         GFile *destination_file,
-                                                         gboolean replace_file_if_exists,
-                                                         GCancellable *cancellable,
-                                                         GError **error);
-gchar *             <a href="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-get-download-uri">gdata_documents_spreadsheet_get_download_uri</a>
-                                                        (<a href="GDataDocumentsSpreadsheet.html">GDataDocumentsSpreadsheet</a> *self,
-                                                         <a href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat">GDataDocumentsSpreadsheetFormat</a> export_format,
-                                                         gint gid);
+                    <a class="link" href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheet-struct" title="GDataDocumentsSpreadsheet">GDataDocumentsSpreadsheet</a>;
+                    <a class="link" href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetClass" title="GDataDocumentsSpreadsheetClass">GDataDocumentsSpreadsheetClass</a>;
+enum                <a class="link" href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat" title="enum GDataDocumentsSpreadsheetFormat">GDataDocumentsSpreadsheetFormat</a>;
+<a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="returnvalue">GDataDocumentsSpreadsheet</span></a> * <a class="link" href="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-new" title="gdata_documents_spreadsheet_new ()">gdata_documents_spreadsheet_new</a>
+                                                        (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html"><span class="returnvalue">GFile</span></a> *             <a class="link" href="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-download-document" title="gdata_documents_spreadsheet_download_document ()">gdata_documents_spreadsheet_download_document</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *service</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> **content_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat" title="enum GDataDocumentsSpreadsheetFormat"><span class="type">GDataDocumentsSpreadsheetFormat</span></a> export_format</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> gid</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *destination_file</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> replace_file_if_exists</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-get-download-uri" title="gdata_documents_spreadsheet_get_download_uri ()">gdata_documents_spreadsheet_get_download_uri</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat" title="enum GDataDocumentsSpreadsheetFormat"><span class="type">GDataDocumentsSpreadsheetFormat</span></a> export_format</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> gid</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataDocumentsSpreadsheet.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataParsable.html">GDataParsable</a>
-         +----<a href="GDataEntry.html">GDataEntry</a>
-               +----<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+         +----<a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
+               +----<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry">GDataDocumentsEntry</a>
                      +----GDataDocumentsSpreadsheet
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Implemented Interfaces">
 <a name="GDataDocumentsSpreadsheet.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GDataDocumentsSpreadsheet implements
- <a href="GDataAccessHandler.html">GDataAccessHandler</a>.</p>
+ <a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler">GDataAccessHandler</a>.</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataDocumentsSpreadsheet.description"></a><h2>Description</h2>
 <p>
-<a href="GDataDocumentsSpreadsheet.html"><span class="type">GDataDocumentsSpreadsheet</span></a> is a subclass of <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> to represent a spreadsheet from Google Documents.
+<a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> is a subclass of <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> to represent a spreadsheet from Google Documents.
 </p>
 <p>
 For more details of Google Documents' GData API, see the <a class="ulink" href="" target="_top">
-online documentation</a>.</p>
+online documentation</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataDocumentsSpreadsheet.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataDocumentsSpreadsheet">
 <a name="GDataDocumentsSpreadsheet-struct"></a><h3>GDataDocumentsSpreadsheet</h3>
 <pre class="programlisting">typedef struct _GDataDocumentsSpreadsheet GDataDocumentsSpreadsheet;</pre>
 <p>
-All the fields in the <a href="GDataDocumentsSpreadsheet.html"><span class="type">GDataDocumentsSpreadsheet</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataDocumentsSpreadsheetClass">
 <a name="GDataDocumentsSpreadsheetClass"></a><h3>GDataDocumentsSpreadsheetClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataDocumentsSpreadsheetClass;
 </pre>
 <p>
-All the fields in the <a href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetClass"><span class="type">GDataDocumentsSpreadsheetClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetClass" title="GDataDocumentsSpreadsheetClass"><span class="type">GDataDocumentsSpreadsheetClass</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GDataDocumentsSpreadsheetFormat">
 <a name="GDataDocumentsSpreadsheetFormat"></a><h3>enum GDataDocumentsSpreadsheetFormat</h3>
 <pre class="programlisting">typedef enum {
         GDATA_DOCUMENTS_SPREADSHEET_XLS = 0,
@@ -148,38 +129,39 @@ All the fields in the <a href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpre
 } GDataDocumentsSpreadsheetFormat;
 </pre>
 <p>
-The different available download formats for spreadsheets.</p>
+The different available download formats for spreadsheets.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><a name="GDATA-DOCUMENTS-SPREADSHEET-XLS:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_XLS</code></span></p></td>
-<td> Microsoft Excel spreadsheet (XLS) format
+<td>Microsoft Excel spreadsheet (XLS) format
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-DOCUMENTS-SPREADSHEET-CSV:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_CSV</code></span></p></td>
-<td> Comma-Separated Values (CSV) format
+<td>Comma-Separated Values (CSV) format
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-DOCUMENTS-SPREADSHEET-PDF:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_PDF</code></span></p></td>
-<td> Portable Document Format (PDF)
+<td>Portable Document Format (PDF)
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-DOCUMENTS-SPREADSHEET-ODS:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_ODS</code></span></p></td>
-<td> OpenDocument Spreadsheet (ODS) format
+<td>OpenDocument Spreadsheet (ODS) format
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-DOCUMENTS-SPREADSHEET-TSV:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_TSV</code></span></p></td>
-<td> Tab-Separated Values (TSV) format
+<td>Tab-Separated Values (TSV) format
 </td>
 </tr>
 <tr>
 <td><p><a name="GDATA-DOCUMENTS-SPREADSHEET-HTML:CAPS"></a><span class="term"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_HTML</code></span></p></td>
-<td> HyperText Markup Language (HTML) format
+<td>HyperText Markup Language (HTML) format
 </td>
 </tr>
 </tbody>
@@ -187,23 +169,24 @@ The different available download formats for spreadsheets.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_spreadsheet_new ()">
 <a name="gdata-documents-spreadsheet-new"></a><h3>gdata_documents_spreadsheet_new ()</h3>
-<pre class="programlisting"><a href="GDataDocumentsSpreadsheet.html">GDataDocumentsSpreadsheet</a> * gdata_documents_spreadsheet_new
-                                                        (const gchar *id);</pre>
+<pre class="programlisting"><a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="returnvalue">GDataDocumentsSpreadsheet</span></a> * gdata_documents_spreadsheet_new
+                                                        (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
 <p>
-Creates a new <a href="GDataDocumentsSpreadsheet.html"><span class="type">GDataDocumentsSpreadsheet</span></a> with the given entry ID (<a href="GDataEntry.html#GDataEntry--id"><span class="type">"id"</span></a>).</p>
+Creates a new <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> with the given entry ID (<a class="link" href="GDataEntry.html#GDataEntry--id" title='The "id" property'><span class="type">"id"</span></a>).
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
-<td> the entry's ID (not the document ID of the spreadsheet), or <code class="literal">NULL</code>
+<td>the entry's ID (not the document ID of the spreadsheet), or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataDocumentsSpreadsheet.html"><span class="type">GDataDocumentsSpreadsheet</span></a>, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> a new <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -212,88 +195,90 @@ Creates a new <a href="GDataDocumentsSpreadsheet.html"><span class="type">GDataD
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_spreadsheet_download_document ()">
 <a name="gdata-documents-spreadsheet-download-document"></a><h3>gdata_documents_spreadsheet_download_document ()</h3>
-<pre class="programlisting">GFile *             gdata_documents_spreadsheet_download_document
-                                                        (<a href="GDataDocumentsSpreadsheet.html">GDataDocumentsSpreadsheet</a> *self,
-                                                         <a href="GDataDocumentsService.html">GDataDocumentsService</a> *service,
-                                                         gchar **content_type,
-                                                         <a href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat">GDataDocumentsSpreadsheetFormat</a> export_format,
-                                                         gint gid,
-                                                         GFile *destination_file,
-                                                         gboolean replace_file_if_exists,
-                                                         GCancellable *cancellable,
-                                                         GError **error);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html"><span class="returnvalue">GFile</span></a> *             gdata_documents_spreadsheet_download_document
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *service</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> **content_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat" title="enum GDataDocumentsSpreadsheetFormat"><span class="type">GDataDocumentsSpreadsheetFormat</span></a> export_format</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> gid</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *destination_file</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> replace_file_if_exists</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
-Downloads and returns the spreadsheet file represented by the <a href="GDataDocumentsSpreadsheet.html"><span class="type">GDataDocumentsSpreadsheet</span></a>. If the document doesn't exist,
-<code class="literal">NULL</code> is returned, but no error is set in <em class="parameter"><code>error</code></em>. TODO: What?
+Downloads and returns the spreadsheet file represented by the <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a>. If the document doesn't exist,
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> is returned, but no error is set in <em class="parameter"><code>error</code></em>. TODO: What?
 </p>
 <p>
-If <em class="parameter"><code>cancellable</code></em> is not <code class="literal">NULL</code>, then the operation can be cancelled by triggering the <em class="parameter"><code>cancellable</code></em> object from another thread.
-If the operation was cancelled, the error <code class="literal">G_IO_ERROR_CANCELLED</code> will be returned.
+If <em class="parameter"><code>cancellable</code></em> is not <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, then the operation can be cancelled by triggering the <em class="parameter"><code>cancellable</code></em> object from another thread.
+If the operation was cancelled, the error <a href="/opt/gnome2/build/share/gtk-doc/html/gio/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> will be returned.
 </p>
 <p>
-When requesting a <code class="literal">GDATA_DOCUMENTS_SPREADSHEET_CSV</code> or <code class="literal">GDATA_DOCUMENTS_SPREADSHEET_TSV</code> file you must specify an additional
-parameter called <em class="parameter"><code>gid</code></em> which indicates which grid, or sheet, you wish to get (the index is <code class="literal">0</code>-based, so GID <code class="literal">1</code> actually refers
-to the second sheet on a given spreadsheet).
+When requesting a <a class="link" href="GDataDocumentsSpreadsheet.html#GDATA-DOCUMENTS-SPREADSHEET-CSV:CAPS"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_CSV</code></a> or <a class="link" href="GDataDocumentsSpreadsheet.html#GDATA-DOCUMENTS-SPREADSHEET-TSV:CAPS"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_TSV</code></a> file you must specify an additional
+parameter called <em class="parameter"><code>gid</code></em> which indicates which grid, or sheet, you wish to get (the index is <code class="code">0</code>-based, so
+GID <code class="code">1</code> actually refers to the second sheet on a given spreadsheet).
 </p>
 <p>
-If <em class="parameter"><code>destination_file</code></em> is a directory, then the file will be downloaded in this directory with the <a href="GDataEntry.html#GDataEntry--title"><span class="type">"title"</span></a> with 
+If <em class="parameter"><code>destination_file</code></em> is a directory, then the file will be downloaded in this directory with the <a class="link" href="GDataEntry.html#GDataEntry--title" title='The "title" property'><span class="type">"title"</span></a> with 
 the apropriate extension as name.
 </p>
 <p>
-If there is an error getting the document, a <code class="literal">GDATA_SERVICE_ERROR_WITH_QUERY</code> error will be returned.</p>
+If there is an error getting the document, a <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-PROTOCOL-ERROR:CAPS"><code class="literal">GDATA_SERVICE_ERROR_PROTOCOL_ERROR</code></a> error will be returned.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsSpreadsheet.html"><span class="type">GDataDocumentsSpreadsheet</span></a>
+<td>a <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>service</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsService.html"><span class="type">GDataDocumentsService</span></a>
+<td>a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>content_type</code></em> :</span></p></td>
-<td> return location for the document's content type, or <code class="literal">NULL</code>; free with <code class="function">g_free()</code>
+<td>return location for the document's content type, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; free with <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>export_format</code></em> :</span></p></td>
-<td> the format in which the spreadsheet should be exported
+<td>the format in which the spreadsheet should be exported
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>gid</code></em> :</span></p></td>
-<td> the <code class="literal">0</code>-based sheet ID to download, or <code class="literal">-1</code>
+<td>the <code class="code">0</code>-based sheet ID to download, or <code class="code">-1</code>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>destination_file</code></em> :</span></p></td>
-<td> the <span class="type">GFile</span> into which the spreadsheet file should be saved
+<td>the <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> into which the spreadsheet file should be saved
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>replace_file_if_exists</code></em> :</span></p></td>
-<td> <code class="literal">TRUE</code> if the file should be replaced if it already exists, <code class="literal">FALSE</code> otherwise
+<td>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the file should be replaced if it already exists, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> optional <span class="type">GCancellable</span> object, or <code class="literal">NULL</code>
+<td>optional <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> a <span class="type">GError</span>, or <code class="literal">NULL</code>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the document's data, or <code class="literal">NULL</code>; unref with <code class="function">g_object_unref()</code>
+<td> the document's data, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
 
 </td>
 </tr>
@@ -302,42 +287,43 @@ If there is an error getting the document, a <code class="literal">GDATA_SERVICE
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_spreadsheet_get_download_uri ()">
 <a name="gdata-documents-spreadsheet-get-download-uri"></a><h3>gdata_documents_spreadsheet_get_download_uri ()</h3>
-<pre class="programlisting">gchar *             gdata_documents_spreadsheet_get_download_uri
-                                                        (<a href="GDataDocumentsSpreadsheet.html">GDataDocumentsSpreadsheet</a> *self,
-                                                         <a href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat">GDataDocumentsSpreadsheetFormat</a> export_format,
-                                                         gint gid);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdata_documents_spreadsheet_get_download_uri
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetFormat" title="enum GDataDocumentsSpreadsheetFormat"><span class="type">GDataDocumentsSpreadsheetFormat</span></a> export_format</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> gid</code></em>);</pre>
 <p>
-Builds and returns the download URI for the given <a href="GDataDocumentsSpreadsheet.html"><span class="type">GDataDocumentsSpreadsheet</span></a> in the desired format. Note that directly downloading
-the document using this URI isn't possible, as authentication is required. You should instead use <a href="GDataDownloadStream.html#gdata-download-stream-new"><code class="function">gdata_download_stream_new()</code></a> with
-the URI, and use the resulting <span class="type">GInputStream</span>.
+Builds and returns the download URI for the given <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> in the desired format. Note that directly downloading
+the document using this URI isn't possible, as authentication is required. You should instead use <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a> with
+the URI, and use the resulting <a href="/opt/gnome2/build/share/gtk-doc/html/gio/GInputStream.html"><span class="type">GInputStream</span></a>.
 </p>
 <p>
-When requesting a <code class="literal">GDATA_DOCUMENTS_SPREADSHEET_CSV</code> or <code class="literal">GDATA_DOCUMENTS_SPREADSHEET_TSV</code> file you must specify an additional
-parameter called <em class="parameter"><code>gid</code></em> which indicates which grid, or sheet, you wish to get (the index is <code class="literal">0</code>-based, so GID <code class="literal">1</code> actually refers
-to the second sheet on a given spreadsheet).</p>
+When requesting a <a class="link" href="GDataDocumentsSpreadsheet.html#GDATA-DOCUMENTS-SPREADSHEET-CSV:CAPS"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_CSV</code></a> or <a class="link" href="GDataDocumentsSpreadsheet.html#GDATA-DOCUMENTS-SPREADSHEET-TSV:CAPS"><code class="literal">GDATA_DOCUMENTS_SPREADSHEET_TSV</code></a> file you must specify an additional
+parameter called <em class="parameter"><code>gid</code></em> which indicates which grid, or sheet, you wish to get (the index is <code class="code">0</code>-based, so
+GID <code class="code">1</code> actually refers to the second sheet on a given spreadsheet).
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsSpreadsheet.html"><span class="type">GDataDocumentsSpreadsheet</span></a>
+<td>a <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>export_format</code></em> :</span></p></td>
-<td> the format in which the spreadsheet should be exported when downloaded
+<td>the format in which the spreadsheet should be exported when downloaded
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>gid</code></em> :</span></p></td>
-<td> the <code class="literal">0</code>-based sheet ID to download, or <code class="literal">-1</code>
+<td>the <code class="code">0</code>-based sheet ID to download, or <code class="code">-1</code>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the download URI; free with <code class="function">g_free()</code>
+<td> the download URI; free with <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>
 
 </td>
 </tr>
@@ -349,6 +335,6 @@ to the second sheet on a given spreadsheet).</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

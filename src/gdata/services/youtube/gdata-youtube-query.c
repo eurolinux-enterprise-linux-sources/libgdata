@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,8 @@
  *
  * For more information on the custom GData query parameters supported by #GDataYouTubeQuery, see the <ulink type="http"
  * url="http://code.google.com/apis/youtube/2.0/reference.html#Custom_parameters">online documentation</ulink>.
+ *
+ * Since: 0.3.0
  **/
 
 #include <config.h>
@@ -110,10 +112,11 @@ gdata_youtube_query_class_init (GDataYouTubeQueryClass *klass)
 	 *
 	 * The latitude of a particular location of which videos should be found. This should be used in conjunction with
 	 * #GDataYouTubeQuery:longitude; if either property is outside the valid range, neither will be used. Valid latitudes
-	 * are between %-90 and %90 degrees; any values of this property outside that range will unset the property in the
-	 * query URI.
+	 * are between <code class="literal">-90</code> and <code class="literal">90</code>0 degrees; any values of this property outside that range
+	 * will unset the property in the query URI.
 	 *
-	 * If #GDataYouTubeQuery:location-radius is a non-%0 value, this will define a circle from which videos should be found.
+	 * If #GDataYouTubeQuery:location-radius is a non-<code class="literal">0</code> value, this will define a circle from which videos should be
+	 * found.
 	 *
 	 * If #GDataYouTubeQuery:has-location is %TRUE, only videos which are associated with specific coordinates in the search
 	 * circle will be returned. Otherwise, videos which have a relevant descriptive address (but no specific coordinates) will
@@ -135,8 +138,8 @@ gdata_youtube_query_class_init (GDataYouTubeQueryClass *klass)
 	 *
 	 * The longitude of a particular location of which videos should be found. This should be used in conjunction with
 	 * #GDataYouTubeQuery:latitude; if either property is outside the valid range, neither will be used. Valid longitudes
-	 * are between %-180 and %180 degrees; any values of this property outside that range will unset the property in the
-	 * query URI.
+	 * are between <code class="literal">-180</code> and <code class="literal">180</code> degrees; any values of this property outside that
+	 * range will unset the property in the query URI.
 	 *
 	 * For more information, see the documentation for #GDataYouTubeQuery:latitude.
 	 *
@@ -154,7 +157,7 @@ gdata_youtube_query_class_init (GDataYouTubeQueryClass *klass)
 	 * The radius, in metres, of a circle from within which videos should be returned. The circle is centred on the latitude and
 	 * longitude given in #GDataYouTubeQuery:latitude and #GDataYouTubeQuery:longitude.
 	 *
-	 * Set this property to %0 to search for specific coordinates, rather than within a given radius.
+	 * Set this property to <code class="literal">0</code> to search for specific coordinates, rather than within a given radius.
 	 *
 	 * For more information, see the documentation for #GDataYouTubeQuery:latitude.
 	 *
@@ -378,19 +381,15 @@ gdata_youtube_query_set_property (GObject *object, guint property_id, const GVal
 			break;
 		case PROP_LATITUDE:
 			self->priv->latitude = g_value_get_double (value);
-			g_object_notify (object, "latitude");
 			break;
 		case PROP_LONGITUDE:
 			self->priv->longitude = g_value_get_double (value);
-			g_object_notify (object, "longitude");
 			break;
 		case PROP_LOCATION_RADIUS:
 			self->priv->location_radius = g_value_get_double (value);
-			g_object_notify (object, "location-radius");
 			break;
 		case PROP_HAS_LOCATION:
 			self->priv->has_location = g_value_get_boolean (value);
-			g_object_notify (object, "has-location");
 			break;
 		case PROP_LANGUAGE:
 			gdata_youtube_query_set_language (self, g_value_get_string (value));
@@ -484,17 +483,17 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 
 	if (priv->language != NULL) {
 		g_string_append (query_uri, "&lr=");
-		g_string_append_uri_escaped (query_uri, priv->language, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->language, NULL, FALSE);
 	}
 
 	if (priv->order_by != NULL) {
 		g_string_append (query_uri, "&orderby=");
-		g_string_append_uri_escaped (query_uri, priv->order_by, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->order_by, NULL, FALSE);
 	}
 
 	if (priv->restriction != NULL) {
 		g_string_append (query_uri, "&restriction=");
-		g_string_append_uri_escaped (query_uri, priv->restriction, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->restriction, NULL, FALSE);
 	}
 
 	if (priv->sort_order != GDATA_YOUTUBE_SORT_NONE) {
@@ -558,6 +557,9 @@ gdata_youtube_query_set_format (GDataYouTubeQuery *self, GDataYouTubeFormat form
 	g_return_if_fail (GDATA_IS_YOUTUBE_QUERY (self));
 	self->priv->format = format;
 	g_object_notify (G_OBJECT (self), "format");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -593,7 +595,7 @@ gdata_youtube_query_get_location (GDataYouTubeQuery *self, gdouble *latitude, gd
  * @self: a #GDataYouTubeQuery
  * @latitude: the new latitude, or %G_MAXDOUBLE
  * @longitude: the new longitude, or %G_MAXDOUBLE
- * @radius: the new location radius, or %0
+ * @radius: the new location radius, or <code class="literal">0</code>
  * @has_location: %TRUE if the query is for videos with a specific location, %FALSE otherwise
  *
  * Sets the location-based properties of the #GDataYouTubeQuery<!-- -->: #GDataYouTubeQuery:latitude, #GDataYouTubeQuery:longitude,
@@ -611,10 +613,15 @@ gdata_youtube_query_set_location (GDataYouTubeQuery *self, gdouble latitude, gdo
 	self->priv->location_radius = radius;
 	self->priv->has_location = has_location;
 
+	g_object_freeze_notify (G_OBJECT (self));
 	g_object_notify (G_OBJECT (self), "latitude");
 	g_object_notify (G_OBJECT (self), "longitude");
 	g_object_notify (G_OBJECT (self), "location-radius");
 	g_object_notify (G_OBJECT (self), "has-location");
+	g_object_thaw_notify (G_OBJECT (self));
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -652,6 +659,9 @@ gdata_youtube_query_set_language (GDataYouTubeQuery *self, const gchar *language
 	g_free (self->priv->language);
 	self->priv->language = g_strdup (language);
 	g_object_notify (G_OBJECT (self), "language");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -690,6 +700,9 @@ gdata_youtube_query_set_order_by (GDataYouTubeQuery *self, const gchar *order_by
 	g_free (self->priv->order_by);
 	self->priv->order_by = g_strdup (order_by);
 	g_object_notify (G_OBJECT (self), "order-by");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -727,6 +740,9 @@ gdata_youtube_query_set_restriction (GDataYouTubeQuery *self, const gchar *restr
 	g_free (self->priv->restriction);
 	self->priv->restriction = g_strdup (restriction);
 	g_object_notify (G_OBJECT (self), "restriction");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -761,6 +777,9 @@ gdata_youtube_query_set_safe_search (GDataYouTubeQuery *self, GDataYouTubeSafeSe
 	g_return_if_fail (GDATA_IS_YOUTUBE_QUERY (self));
 	self->priv->safe_search = safe_search;
 	g_object_notify (G_OBJECT (self), "safe-search");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -797,6 +816,9 @@ gdata_youtube_query_set_sort_order (GDataYouTubeQuery *self, GDataYouTubeSortOrd
 	g_return_if_fail (GDATA_IS_YOUTUBE_QUERY (self));
 	self->priv->sort_order = sort_order;
 	g_object_notify (G_OBJECT (self), "sort-order");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -831,6 +853,9 @@ gdata_youtube_query_set_age (GDataYouTubeQuery *self, GDataYouTubeAge age)
 	g_return_if_fail (GDATA_IS_YOUTUBE_QUERY (self));
 	self->priv->age = age;
 	g_object_notify (G_OBJECT (self), "age");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -865,4 +890,7 @@ gdata_youtube_query_set_uploader (GDataYouTubeQuery *self, GDataYouTubeUploader 
 	g_return_if_fail (GDATA_IS_YOUTUBE_QUERY (self));
 	self->priv->uploader = uploader;
 	g_object_notify (G_OBJECT (self), "uploader");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }

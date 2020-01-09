@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataDocumentsEntry</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch11.html" title="Google Documents API">
 <link rel="prev" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery">
 <link rel="next" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -54,7 +32,7 @@
                   <a href="#GDataDocumentsEntry.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataDocumentsEntry">
 <a name="GDataDocumentsEntry"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -63,114 +41,123 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataDocumentsEntry.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataDocumentsEntry.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/services/documents/gdata-documents-entry.h&gt;
 
-                    <a href="GDataDocumentsEntry.html#GDataDocumentsEntry-struct">GDataDocumentsEntry</a>;
-                    <a href="GDataDocumentsEntry.html#GDataDocumentsEntryClass">GDataDocumentsEntryClass</a>;
-gchar *             <a href="GDataDocumentsEntry.html#gdata-documents-entry-get-path">gdata_documents_entry_get_path</a>      (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);
-const gchar *       <a href="GDataDocumentsEntry.html#gdata-documents-entry-get-document-id">gdata_documents_entry_get_document_id</a>
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);
-void                <a href="GDataDocumentsEntry.html#gdata-documents-entry-get-edited">gdata_documents_entry_get_edited</a>    (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self,
-                                                         GTimeVal *edited);
-<a href="GDataAuthor.html">GDataAuthor</a> *       <a href="GDataDocumentsEntry.html#gdata-documents-entry-get-last-modified-by">gdata_documents_entry_get_last_modified_by</a>
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);
-void                <a href="GDataDocumentsEntry.html#gdata-documents-entry-get-last-viewed">gdata_documents_entry_get_last_viewed</a>
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self,
-                                                         GTimeVal *last_viewed);
-gboolean            <a href="GDataDocumentsEntry.html#gdata-documents-entry-writers-can-invite">gdata_documents_entry_writers_can_invite</a>
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);
-void                <a href="GDataDocumentsEntry.html#gdata-documents-entry-set-writers-can-invite">gdata_documents_entry_set_writers_can_invite</a>
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self,
-                                                         gboolean writers_can_invite);
-gboolean            <a href="GDataDocumentsEntry.html#gdata-documents-entry-is-deleted">gdata_documents_entry_is_deleted</a>    (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);
+                    <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry-struct" title="GDataDocumentsEntry">GDataDocumentsEntry</a>;
+                    <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntryClass" title="GDataDocumentsEntryClass">GDataDocumentsEntryClass</a>;
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="GDataDocumentsEntry.html#gdata-documents-entry-get-path" title="gdata_documents_entry_get_path ()">gdata_documents_entry_get_path</a>      (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataDocumentsEntry.html#gdata-documents-entry-get-document-id" title="gdata_documents_entry_get_document_id ()">gdata_documents_entry_get_document_id</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsEntry.html#gdata-documents-entry-get-edited" title="gdata_documents_entry_get_edited ()">gdata_documents_entry_get_edited</a>    (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *edited</code></em>);
+<a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="returnvalue">GDataAuthor</span></a> *       <a class="link" href="GDataDocumentsEntry.html#gdata-documents-entry-get-last-modified-by" title="gdata_documents_entry_get_last_modified_by ()">gdata_documents_entry_get_last_modified_by</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsEntry.html#gdata-documents-entry-get-last-viewed" title="gdata_documents_entry_get_last_viewed ()">gdata_documents_entry_get_last_viewed</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *last_viewed</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataDocumentsEntry.html#gdata-documents-entry-writers-can-invite" title="gdata_documents_entry_writers_can_invite ()">gdata_documents_entry_writers_can_invite</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsEntry.html#gdata-documents-entry-set-writers-can-invite" title="gdata_documents_entry_set_writers_can_invite ()">gdata_documents_entry_set_writers_can_invite</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> writers_can_invite</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataDocumentsEntry.html#gdata-documents-entry-is-deleted" title="gdata_documents_entry_is_deleted ()">gdata_documents_entry_is_deleted</a>    (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataDocumentsEntry.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataParsable.html">GDataParsable</a>
-         +----<a href="GDataEntry.html">GDataEntry</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+         +----<a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
                +----GDataDocumentsEntry
-                     +----<a href="GDataDocumentsFolder.html">GDataDocumentsFolder</a>
-                     +----<a href="GDataDocumentsPresentation.html">GDataDocumentsPresentation</a>
-                     +----<a href="GDataDocumentsSpreadsheet.html">GDataDocumentsSpreadsheet</a>
-                     +----<a href="GDataDocumentsText.html">GDataDocumentsText</a>
+                     +----<a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder">GDataDocumentsFolder</a>
+                     +----<a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation">GDataDocumentsPresentation</a>
+                     +----<a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet">GDataDocumentsSpreadsheet</a>
+                     +----<a class="link" href="GDataDocumentsText.html" title="GDataDocumentsText">GDataDocumentsText</a>
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Implemented Interfaces">
 <a name="GDataDocumentsEntry.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GDataDocumentsEntry implements
- <a href="GDataAccessHandler.html">GDataAccessHandler</a>.</p>
+ <a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler">GDataAccessHandler</a>.</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataDocumentsEntry.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataDocumentsEntry.html#GDataDocumentsEntry--document-id">document-id</a>"              gchar*                : Read
-  "<a href="GDataDocumentsEntry.html#GDataDocumentsEntry--edited">edited</a>"                   GTimeVal*             : Read
-  "<a href="GDataDocumentsEntry.html#GDataDocumentsEntry--is-deleted">is-deleted</a>"               gboolean              : Read / Write
-  "<a href="GDataDocumentsEntry.html#GDataDocumentsEntry--last-modified-by">last-modified-by</a>"         <a href="GDataAuthor.html">GDataAuthor</a>*          : Read
-  "<a href="GDataDocumentsEntry.html#GDataDocumentsEntry--last-viewed">last-viewed</a>"              GTimeVal*             : Read
-  "<a href="GDataDocumentsEntry.html#GDataDocumentsEntry--writers-can-invite">writers-can-invite</a>"       gboolean              : Read / Write
+  "<a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--document-id" title='The "document-id" property'>document-id</a>"              <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--edited" title='The "edited" property'>edited</a>"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read
+  "<a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--is-deleted" title='The "is-deleted" property'>is-deleted</a>"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--last-modified-by" title='The "last-modified-by" property'>last-modified-by</a>"         <a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a>*          : Read
+  "<a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--last-viewed" title='The "last-viewed" property'>last-viewed</a>"              <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read
+  "<a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--writers-can-invite" title='The "writers-can-invite" property'>writers-can-invite</a>"       <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataDocumentsEntry.description"></a><h2>Description</h2>
 <p>
-<a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> is a subclass of <a href="GDataEntry.html"><span class="type">GDataEntry</span></a> to represent a Google Documents entry, which is then further subclassed
+<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> is a subclass of <a class="link" href="GDataEntry.html" title="GDataEntry"><span class="type">GDataEntry</span></a> to represent a Google Documents entry, which is then further subclassed
 to give specific document types.
 </p>
 <p>
 For more details of Google Documents' GData API, see the <a class="ulink" href="" target="_top">
-online documentation</a>.</p>
+online documentation</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataDocumentsEntry.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataDocumentsEntry">
 <a name="GDataDocumentsEntry-struct"></a><h3>GDataDocumentsEntry</h3>
 <pre class="programlisting">typedef struct _GDataDocumentsEntry GDataDocumentsEntry;</pre>
 <p>
-All the fields in the <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataDocumentsEntryClass">
 <a name="GDataDocumentsEntryClass"></a><h3>GDataDocumentsEntryClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataDocumentsEntryClass;
 </pre>
 <p>
-All the fields in the <a href="GDataDocumentsEntry.html#GDataDocumentsEntryClass"><span class="type">GDataDocumentsEntryClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntryClass" title="GDataDocumentsEntryClass"><span class="type">GDataDocumentsEntryClass</span></a> structure are private and should never be accessed directly.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_entry_get_path ()">
 <a name="gdata-documents-entry-get-path"></a><h3>gdata_documents_entry_get_path ()</h3>
-<pre class="programlisting">gchar *             gdata_documents_entry_get_path      (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdata_documents_entry_get_path      (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);</pre>
 <p>
-Gets the <span class="type">"path"</span> property.
+Builds a path for the <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, starting from a root node and traversing the folders containing the document, then
+ending with the document's ID.
 </p>
 <p>
-Note: the path is based on the entry ID, and not the entry human readable name (<span class="type">"title"</span>).</p>
+An example path would be: "/folder_id1/folder_id2/document_id".
+</p>
+<p>
+Note: the path is based on the entry/document IDs of the folders (<a class="link" href="GDataEntry.html#GDataEntry--id" title='The "id" property'><span class="type">"id"</span></a>) and document (<a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--document-id" title='The "document-id" property'><span class="type">"document-id"</span></a>),
+and not the entries' human-readable names (<a class="link" href="GDataEntry.html#GDataEntry--title" title='The "title" property'><span class="type">"title"</span></a>).
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>
+<td>a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the folder hierarchy path containing the entry, or <code class="literal">NULL</code>; free with <code class="function">g_free()</code>
+<td> the folder hierarchy path containing the document, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; free with <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>
 
 </td>
 </tr>
@@ -179,18 +166,19 @@ Note: the path is based on the entry ID, and not the entry human readable name (
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_entry_get_document_id ()">
 <a name="gdata-documents-entry-get-document-id"></a><h3>gdata_documents_entry_get_document_id ()</h3>
-<pre class="programlisting">const gchar *       gdata_documents_entry_get_document_id
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_documents_entry_get_document_id
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--document-id"><span class="type">"document-id"</span></a> property.</p>
+Gets the <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--document-id" title='The "document-id" property'><span class="type">"document-id"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>
+<td>a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>
 </td>
 </tr>
 <tr>
@@ -204,24 +192,25 @@ Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--document-id"><sp
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_entry_get_edited ()">
 <a name="gdata-documents-entry-get-edited"></a><h3>gdata_documents_entry_get_edited ()</h3>
-<pre class="programlisting">void                gdata_documents_entry_get_edited    (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self,
-                                                         GTimeVal *edited);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_entry_get_edited    (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *edited</code></em>);</pre>
 <p>
-Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--edited"><span class="type">"edited"</span></a> property and puts it in <em class="parameter"><code>edited</code></em>. If the property is unset,
-both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--edited" title='The "edited" property'><span class="type">"edited"</span></a> property and puts it in <em class="parameter"><code>edited</code></em>. If the property is unset,
+both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>
+<td>a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>edited</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
@@ -229,18 +218,19 @@ both fields in the <span class="type">GTimeVal</span> will be set to <code class
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_entry_get_last_modified_by ()">
 <a name="gdata-documents-entry-get-last-modified-by"></a><h3>gdata_documents_entry_get_last_modified_by ()</h3>
-<pre class="programlisting"><a href="GDataAuthor.html">GDataAuthor</a> *       gdata_documents_entry_get_last_modified_by
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);</pre>
+<pre class="programlisting"><a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="returnvalue">GDataAuthor</span></a> *       gdata_documents_entry_get_last_modified_by
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--last-modified-by"><span class="type">"last-modified-by"</span></a> property.</p>
+Gets the <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--last-modified-by" title='The "last-modified-by" property'><span class="type">"last-modified-by"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>
+<td>a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>
 </td>
 </tr>
 <tr>
@@ -254,25 +244,26 @@ Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--last-modified-by
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_entry_get_last_viewed ()">
 <a name="gdata-documents-entry-get-last-viewed"></a><h3>gdata_documents_entry_get_last_viewed ()</h3>
-<pre class="programlisting">void                gdata_documents_entry_get_last_viewed
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self,
-                                                         GTimeVal *last_viewed);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_entry_get_last_viewed
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *last_viewed</code></em>);</pre>
 <p>
-Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--last-viewed"><span class="type">"last-viewed"</span></a> property and puts it in <em class="parameter"><code>last_viewed</code></em>. If the property is unset,
-both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--last-viewed" title='The "last-viewed" property'><span class="type">"last-viewed"</span></a> property and puts it in <em class="parameter"><code>last_viewed</code></em>. If the property is unset,
+both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>
+<td>a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>last_viewed</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
@@ -280,23 +271,24 @@ both fields in the <span class="type">GTimeVal</span> will be set to <code class
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_entry_writers_can_invite ()">
 <a name="gdata-documents-entry-writers-can-invite"></a><h3>gdata_documents_entry_writers_can_invite ()</h3>
-<pre class="programlisting">gboolean            gdata_documents_entry_writers_can_invite
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_documents_entry_writers_can_invite
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--writers-can-invite"><span class="type">"writers-can-invite"</span></a> property.</p>
+Gets the <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--writers-can-invite" title='The "writers-can-invite" property'><span class="type">"writers-can-invite"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>
+<td>a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if writers can invite other people to edit the document, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if writers can invite other people to edit the document, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -305,24 +297,26 @@ Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--writers-can-invi
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_entry_set_writers_can_invite ()">
 <a name="gdata-documents-entry-set-writers-can-invite"></a><h3>gdata_documents_entry_set_writers_can_invite ()</h3>
-<pre class="programlisting">void                gdata_documents_entry_set_writers_can_invite
-                                                        (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self,
-                                                         gboolean writers_can_invite);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_entry_set_writers_can_invite
+                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> writers_can_invite</code></em>);</pre>
 <p>
-Sets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--writers-can-invite"><span class="type">"writers-can-invite"</span></a> property to <em class="parameter"><code>writers_can_invite</code></em>.</p>
+Sets the <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--writers-can-invite" title='The "writers-can-invite" property'><span class="type">"writers-can-invite"</span></a> property to <em class="parameter"><code>writers_can_invite</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>
+<td>a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>writers_can_invite</code></em> :</span></p></td>
-<td> <code class="literal">TRUE</code> if writers can invite other people to edit the document, <code class="literal">FALSE</code> otherwise
+<td>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if writers can invite other people to edit the document, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 </tbody>
@@ -330,22 +324,23 @@ Sets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--writers-can-invi
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_documents_entry_is_deleted ()">
 <a name="gdata-documents-entry-is-deleted"></a><h3>gdata_documents_entry_is_deleted ()</h3>
-<pre class="programlisting">gboolean            gdata_documents_entry_is_deleted    (<a href="GDataDocumentsEntry.html">GDataDocumentsEntry</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_documents_entry_is_deleted    (<em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--is-deleted"><span class="type">"is-deleted"</span></a> property.</p>
+Gets the <a class="link" href="GDataDocumentsEntry.html#GDataDocumentsEntry--is-deleted" title='The "is-deleted" property'><span class="type">"is-deleted"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataDocumentsEntry.html"><span class="type">GDataDocumentsEntry</span></a>
+<td>a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> if the document has been deleted, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the document has been deleted, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 
 </td>
 </tr>
@@ -354,60 +349,66 @@ Gets the <a href="GDataDocumentsEntry.html#GDataDocumentsEntry--is-deleted"><spa
 <p class="since">Since 0.5.0</p>
 </div>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Property Details">
 <a name="GDataDocumentsEntry.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "document-id" property'>
 <a name="GDataDocumentsEntry--document-id"></a><h3>The <code class="literal">"document-id"</code> property</h3>
-<pre class="programlisting">  "document-id"              gchar*                : Read</pre>
+<pre class="programlisting">  "document-id"              <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
-The document ID of the document, which is different from its entry ID (GDataEntry:id).</p>
+The document ID of the document, which is different from its entry ID (GDataEntry:id).
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "edited" property'>
 <a name="GDataDocumentsEntry--edited"></a><h3>The <code class="literal">"edited"</code> property</h3>
-<pre class="programlisting">  "edited"                   GTimeVal*             : Read</pre>
+<pre class="programlisting">  "edited"                   <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read</pre>
 <p>
 The last time the document was edited. If the document has not been edited yet, the content indicates the time it was created.
 </p>
 <p>
 For more information, see the <a class="ulink" href="http://www.atomenabled.org/developers/protocol/#appEdited" target="_top">
-Atom Publishing Protocol specification</a>.</p>
+Atom Publishing Protocol specification</a>.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "is-deleted" property'>
 <a name="GDataDocumentsEntry--is-deleted"></a><h3>The <code class="literal">"is-deleted"</code> property</h3>
-<pre class="programlisting">  "is-deleted"               gboolean              : Read / Write</pre>
+<pre class="programlisting">  "is-deleted"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
 <p>
 Indicates whether the document entry has been deleted (moved to the trash). Deleted documents will only
-appear in query results if the <a href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-deleted"><span class="type">"show-deleted"</span></a> property is <code class="literal">TRUE</code>.</p>
+appear in query results if the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-deleted" title='The "show-deleted" property'><span class="type">"show-deleted"</span></a> property is <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>.
+</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "last-modified-by" property'>
 <a name="GDataDocumentsEntry--last-modified-by"></a><h3>The <code class="literal">"last-modified-by"</code> property</h3>
-<pre class="programlisting">  "last-modified-by"         <a href="GDataAuthor.html">GDataAuthor</a>*          : Read</pre>
+<pre class="programlisting">  "last-modified-by"         <a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a>*          : Read</pre>
 <p>
-Indicates the author of the last modification.</p>
+Indicates the author of the last modification.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "last-viewed" property'>
 <a name="GDataDocumentsEntry--last-viewed"></a><h3>The <code class="literal">"last-viewed"</code> property</h3>
-<pre class="programlisting">  "last-viewed"              GTimeVal*             : Read</pre>
+<pre class="programlisting">  "last-viewed"              <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read</pre>
 <p>
-The last time the document was viewed.</p>
+The last time the document was viewed.
+</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "writers-can-invite" property'>
 <a name="GDataDocumentsEntry--writers-can-invite"></a><h3>The <code class="literal">"writers-can-invite"</code> property</h3>
-<pre class="programlisting">  "writers-can-invite"       gboolean              : Read / Write</pre>
+<pre class="programlisting">  "writers-can-invite"       <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
 <p>
-Indicates whether the document entry writers can invite others to edit the document.</p>
+Indicates whether the document entry writers can invite others to edit the document.
+</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.4.0</p>
 </div>
@@ -415,6 +416,6 @@ Indicates whether the document entry writers can invite others to edit the docum
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -25,6 +25,8 @@
  *
  * #GDataLink represents a "link" element from the
  * <ulink type="http" url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php">Atom specification</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -107,7 +109,7 @@ gdata_link_class_init (GDataLinkClass *klass)
 	g_object_class_install_property (gobject_class, PROP_RELATION_TYPE,
 				g_param_spec_string ("relation-type",
 					"Relation type", "The link relation type.",
-					"http://www.iana.org/assignments/relation/alternate",
+					GDATA_LINK_ALTERNATE,
 					G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
 	/**
@@ -162,7 +164,7 @@ gdata_link_class_init (GDataLinkClass *klass)
 	/**
 	 * GDataLink:length:
 	 *
-	 * Indicates an advisory length of the linked content in octets. %-1 means the length is unspecified.
+	 * Indicates an advisory length of the linked content in octets. <code class="literal">-1</code> means the length is unspecified.
 	 *
 	 * For more information, see the
 	 * <ulink type="http" url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.link">Atom specification</ulink>.
@@ -181,7 +183,7 @@ gdata_link_init (GDataLink *self)
 {
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_LINK, GDataLinkPrivate);
 	self->priv->length = -1;
-	self->priv->relation_type = g_strdup ("http://www.iana.org/assignments/relation/alternate");
+	self->priv->relation_type = g_strdup (GDATA_LINK_ALTERNATE);
 }
 
 static void
@@ -264,15 +266,16 @@ gdata_link_set_property (GObject *object, guint property_id, const GValue *value
 static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
-	xmlChar *uri, *relation_type, *content_type, *language, *title, *length;
+	xmlChar *uri, *relation_type, *content_type, *language, *length;
 	GDataLink *self = GDATA_LINK (parsable);
 
 	/* href */
 	uri = xmlGetProp (root_node, (xmlChar*) "href");
-	if (uri == NULL && *uri != '\0')
+	if (uri == NULL || *uri == '\0') {
+		xmlFree (uri);
 		return gdata_parser_error_required_property_missing (root_node, "href", error);
-	self->priv->uri = g_strdup ((gchar*) uri);
-	xmlFree (uri);
+	}
+	self->priv->uri = (gchar*) uri;
 
 	/* rel */
 	relation_type = xmlGetProp (root_node, (xmlChar*) "rel");
@@ -290,8 +293,7 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 		xmlFree (content_type);
 		return gdata_parser_error_required_property_missing (root_node, "type", error);
 	}
-	self->priv->content_type = g_strdup ((gchar*) content_type);
-	xmlFree (content_type);
+	self->priv->content_type = (gchar*) content_type;
 
 	/* hreflang */
 	language = xmlGetProp (root_node, (xmlChar*) "hreflang");
@@ -299,13 +301,10 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 		xmlFree (language);
 		return gdata_parser_error_required_property_missing (root_node, "hreflang", error);
 	}
-	self->priv->language = g_strdup ((gchar*) language);
-	xmlFree (language);
+	self->priv->language = (gchar*) language;
 
 	/* title */
-	title = xmlGetProp (root_node, (xmlChar*) "title");
-	self->priv->title = g_strdup ((gchar*) title);
-	xmlFree (title);
+	self->priv->title = (gchar*) xmlGetProp (root_node, (xmlChar*) "title");
 
 	/* length */
 	length = xmlGetProp (root_node, (xmlChar*) "length");
@@ -313,6 +312,7 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 		self->priv->length = -1;
 	else
 		self->priv->length = strtoul ((gchar*) length, NULL, 10);
+	xmlFree (length);
 
 	return TRUE;
 }
@@ -361,11 +361,13 @@ gdata_link_new (const gchar *uri, const gchar *relation_type)
  * @b: another #GDataLink, or %NULL
  *
  * Compares the two links in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @uri property of the #GDataLink<!-- -->s.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
@@ -374,7 +376,7 @@ gdata_link_compare (const GDataLink *a, const GDataLink *b)
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)
@@ -467,7 +469,7 @@ gdata_link_set_relation_type (GDataLink *self, const gchar *relation_type)
 	 */
 	g_free (self->priv->relation_type);
 	if (relation_type == NULL)
-		self->priv->relation_type = g_strdup ("http://www.iana.org/assignments/relation/alternate");
+		self->priv->relation_type = g_strdup (GDATA_LINK_ALTERNATE);
 	else if (strchr ((char*) relation_type, ':') == NULL)
 		self->priv->relation_type = g_strconcat ("http://www.iana.org/assignments/relation/", (const gchar*) relation_type, NULL);
 	else
@@ -598,7 +600,7 @@ gdata_link_set_title (GDataLink *self, const gchar *title)
  *
  * Gets the #GDataLink:length property.
  *
- * Return value: the link's length, or %-1
+ * Return value: the link's length, or <code class="literal">-1</code>
  *
  * Since: 0.4.0
  **/
@@ -612,11 +614,11 @@ gdata_link_get_length (GDataLink *self)
 /**
  * gdata_link_set_length:
  * @self: a #GDataLink
- * @length: the new length for the link, or %-1
+ * @length: the new length for the link, or <code class="literal">-1</code>
  *
  * Sets the #GDataLink:length property to @length.
  *
- * Set @length to %-1 to unset the property in the link.
+ * Set @length to <code class="literal">-1</code> to unset the property in the link.
  *
  * Since: 0.4.0
  **/

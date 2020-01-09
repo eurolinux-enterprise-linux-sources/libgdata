@@ -19,6 +19,9 @@ GDataMediaContent
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GDataMediaContent ##### -->
 <para>
 
@@ -175,6 +178,21 @@ GDataMediaContent
 </para>
 
 @self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdata_media_content_download ##### -->
+<para>
+
+</para>
+
+@self: 
+@service: 
+@default_filename: 
+@target_dest_file: 
+@replace_file_if_exists: 
+@cancellable: 
+@error: 
 @Returns: 
 
 

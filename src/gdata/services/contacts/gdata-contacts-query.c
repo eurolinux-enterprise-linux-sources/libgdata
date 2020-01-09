@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,8 @@
  *
  * For more information on the custom GData query parameters supported by #GDataContactsQuery, see the <ulink type="http"
  * url="http://code.google.com/apis/contacts/docs/2.0/reference.html#Parameters">online documentation</ulink>.
+ *
+ * Since: 0.2.0
  **/
 
 #include <config.h>
@@ -212,7 +214,7 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 	if (priv->order_by != NULL) {
 		APPEND_SEP
 		g_string_append (query_uri, "orderby=");
-		g_string_append_uri_escaped (query_uri, priv->order_by, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->order_by, NULL, FALSE);
 	}
 
 	APPEND_SEP
@@ -224,13 +226,13 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 	if (priv->sort_order != NULL) {
 		APPEND_SEP
 		g_string_append (query_uri, "sortorder=");
-		g_string_append_uri_escaped (query_uri, priv->sort_order, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->sort_order, NULL, FALSE);
 	}
 
 	if (priv->group != NULL) {
 		APPEND_SEP
 		g_string_append (query_uri, "group=");
-		g_string_append_uri_escaped (query_uri, priv->group, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->group, NULL, FALSE);
 	}
 }
 
@@ -309,6 +311,9 @@ gdata_contacts_query_set_order_by (GDataContactsQuery *self, const gchar *order_
 	g_free (self->priv->order_by);
 	self->priv->order_by = g_strdup (order_by);
 	g_object_notify (G_OBJECT (self), "order-by");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -343,6 +348,9 @@ gdata_contacts_query_set_show_deleted (GDataContactsQuery *self, gboolean show_d
 	g_return_if_fail (GDATA_IS_CONTACTS_QUERY (self));
 	self->priv->show_deleted = show_deleted;
 	g_object_notify (G_OBJECT (self), "show-deleted");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -381,6 +389,9 @@ gdata_contacts_query_set_sort_order (GDataContactsQuery *self, const gchar *sort
 	g_free (self->priv->sort_order);
 	self->priv->sort_order = g_strdup (sort_order);
 	g_object_notify (G_OBJECT (self), "sort-order");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -419,4 +430,7 @@ gdata_contacts_query_set_group (GDataContactsQuery *self, const gchar *group)
 	g_free (self->priv->group);
 	self->priv->group = g_strdup (group);
 	g_object_notify (G_OBJECT (self), "group");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }

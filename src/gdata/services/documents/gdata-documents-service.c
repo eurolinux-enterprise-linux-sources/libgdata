@@ -2,6 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
+ * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -32,6 +33,8 @@
  * Fore more details about the spreadsheet downloads handling, see the
  * <ulink type="http" url="http://groups.google.com/group/Google-Docs-Data-APIs/browse_thread/thread/bfc50e94e303a29a?pli=1">
  * online explanation about the problem</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <config.h>
@@ -182,6 +185,9 @@ gdata_documents_service_query_documents (GDataDocumentsService *self, GDataDocum
 					 GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
 					 GError **error)
 {
+	GDataFeed *feed;
+	gchar *request_uri;
+
 	/* Ensure we're authenticated first */
 	if (gdata_service_is_authenticated (GDATA_SERVICE (self)) == FALSE) {
 		g_set_error_literal (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED,
@@ -190,15 +196,16 @@ gdata_documents_service_query_documents (GDataDocumentsService *self, GDataDocum
 	}
 
 	/* If we want to query for documents contained in a folder, the URI is different */
-	if (query != NULL && gdata_documents_query_get_folder_id (query) != NULL) {
-		return GDATA_DOCUMENTS_FEED (gdata_service_query (GDATA_SERVICE (self), "http://docs.google.com/feeds/folders/private/full",
-								  GDATA_QUERY (query), GDATA_TYPE_DOCUMENTS_ENTRY, cancellable, progress_callback,
-								  progress_user_data, error));
-	}
+	if (query != NULL && gdata_documents_query_get_folder_id (query) != NULL)
+		request_uri = g_strconcat (_gdata_service_get_scheme (), "://docs.google.com/feeds/folders/private/full", NULL);
+	else
+		request_uri = g_strconcat (_gdata_service_get_scheme (), "://docs.google.com/feeds/documents/private/full", NULL);
 
-	return GDATA_DOCUMENTS_FEED (gdata_service_query (GDATA_SERVICE (self), "http://docs.google.com/feeds/documents/private/full",
-							  GDATA_QUERY (query), GDATA_TYPE_DOCUMENTS_ENTRY, cancellable, progress_callback,
-							  progress_user_data, error));
+	feed = gdata_service_query (GDATA_SERVICE (self), request_uri, GDATA_QUERY (query), GDATA_TYPE_DOCUMENTS_ENTRY, cancellable,
+	                            progress_callback, progress_user_data, error);
+	g_free (request_uri);
+
+	return GDATA_DOCUMENTS_FEED (feed);
 }
 
 /**
@@ -214,7 +221,7 @@ gdata_documents_service_query_documents (GDataDocumentsService *self, GDataDocum
  * @document_type should be the expected type of the document to be returned. e.g. %GDATA_TYPE_DOCUMENTS_SPREADSHEET if you're querying
  * for a spreadsheet.
  *
- * @document_id should be the ID of the document as returned by gdata_document_entry_get_document_id().
+ * @document_id should be the ID of the document as returned by gdata_documents_entry_get_document_id().
  *
  * Parameters and errors are as for gdata_service_query().
  *
@@ -229,7 +236,7 @@ gdata_documents_service_query_single_document (GDataDocumentsService *self, GTyp
 	GDataDocumentsEntry *document;
 	SoupMessage *message;
 	GDataDocumentsQuery *query;
-	gchar *resource_id;
+	gchar *resource_id, *request_uri;
 
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
 	g_return_val_if_fail (document_id != NULL, NULL);
@@ -251,8 +258,9 @@ gdata_documents_service_query_single_document (GDataDocumentsService *self, GTyp
 	gdata_query_set_entry_id (GDATA_QUERY (query), resource_id);
 	g_free (resource_id);
 
-	message = _gdata_service_query (GDATA_SERVICE (self), "http://docs.google.com/feeds/documents/private/full", GDATA_QUERY (query),
-					cancellable, NULL, NULL, error);
+	request_uri = g_strconcat (_gdata_service_get_scheme (), "://docs.google.com/feeds/documents/private/full", NULL);
+	message = _gdata_service_query (GDATA_SERVICE (self), request_uri, GDATA_QUERY (query), cancellable, NULL, NULL, error);
+	g_free (request_uri);
 	g_object_unref (query);
 
 	if (message == NULL)
@@ -289,6 +297,8 @@ gdata_documents_service_query_documents_async (GDataDocumentsService *self, GDat
 					       GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
 					       GAsyncReadyCallback callback, gpointer user_data)
 {
+	gchar *request_uri;
+
 	/* Ensure we're authenticated first */
 	if (gdata_service_is_authenticated (GDATA_SERVICE (self)) == FALSE) {
 		g_simple_async_report_error_in_idle (G_OBJECT (self), callback, user_data,
@@ -297,8 +307,10 @@ gdata_documents_service_query_documents_async (GDataDocumentsService *self, GDat
 		return;
 	}
 
-	gdata_service_query_async (GDATA_SERVICE (self), "http://docs.google.com/feeds/documents/private/full", GDATA_QUERY (query),
-				   GDATA_TYPE_DOCUMENTS_ENTRY, cancellable, progress_callback, progress_user_data, callback, user_data);
+	request_uri = g_strconcat (_gdata_service_get_scheme (), "://docs.google.com/feeds/documents/private/full", NULL);
+	gdata_service_query_async (GDATA_SERVICE (self), request_uri, GDATA_QUERY (query), GDATA_TYPE_DOCUMENTS_ENTRY,
+	                           cancellable, progress_callback, progress_user_data, callback, user_data);
+	g_free (request_uri);
 }
 
 /*
@@ -345,6 +357,7 @@ upload_update_document (GDataDocumentsService *self, GDataDocumentsEntry *docume
 	gssize response_length;
 	GFileInfo *file_info = NULL;
 	GType new_document_type;
+	GError *child_error = NULL;
 
 	/* Get some information about the file we're uploading */
 	if (document_file != NULL) {
@@ -409,11 +422,12 @@ upload_update_document (GDataDocumentsService *self, GDataDocumentsEntry *docume
 	}
 
 	g_output_stream_splice (output_stream, input_stream, G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE | G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET,
-				cancellable, error);
+				cancellable, &child_error);
 
 	g_object_unref (input_stream);
-	if (error != NULL && *error != NULL) {
+	if (child_error != NULL) {
 		g_object_unref (output_stream);
+		g_propagate_error (error, child_error);
 		return NULL;
 	}
 
@@ -579,7 +593,7 @@ gdata_documents_service_move_document_to_folder (GDataDocumentsService *self, GD
 
 	folder_id = gdata_documents_entry_get_document_id (GDATA_DOCUMENTS_ENTRY (folder));
 	g_assert (folder_id != NULL);
-	uri = g_strconcat ("http://docs.google.com/feeds/folders/private/full/folder%3A", folder_id, NULL);
+	uri = g_strconcat (_gdata_service_get_scheme (), "://docs.google.com/feeds/folders/private/full/folder%3A", folder_id, NULL);
 
 	message = soup_message_new (SOUP_METHOD_POST, uri);
 	g_free (uri);
@@ -619,8 +633,8 @@ gdata_documents_service_move_document_to_folder (GDataDocumentsService *self, GD
 	if (status != 201) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (GDATA_SERVICE (self), GDATA_SERVICE_ERROR_WITH_INSERTION, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (GDATA_SERVICE (self), GDATA_OPERATION_UPDATE, status, message->reason_phrase,
+		                             message->response_body->data, message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
@@ -630,7 +644,7 @@ gdata_documents_service_move_document_to_folder (GDataDocumentsService *self, GD
 
 	/* Parse the XML; and update the document*/
 	new_document = GDATA_DOCUMENTS_ENTRY (gdata_parsable_new_from_xml (G_OBJECT_TYPE (document), message->response_body->data,
-									   message->response_body->length, error));
+	                                                                   message->response_body->length, error));
 	g_object_unref (message);
 
 	return new_document;
@@ -669,7 +683,7 @@ gdata_documents_service_remove_document_from_folder (GDataDocumentsService *self
 
 	if (gdata_service_is_authenticated (GDATA_SERVICE (self)) == FALSE) {
 		g_set_error_literal (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED,
-				     _("You must be authenticated to move documents."));
+		                     _("You must be authenticated to move documents."));
 		return NULL;
 	}
 
@@ -679,16 +693,21 @@ gdata_documents_service_remove_document_from_folder (GDataDocumentsService *self
 	g_assert (folder_id != NULL);
 	g_assert (document_id != NULL);
 
-	if (GDATA_IS_DOCUMENTS_PRESENTATION (document))
-		uri = g_strdup_printf ("http://docs.google.com/feeds/folders/private/full/folder%%3A%s/presentation%%3A%s", folder_id, document_id);
-	else if (GDATA_IS_DOCUMENTS_SPREADSHEET (document))
-		uri = g_strdup_printf ("http://docs.google.com/feeds/folders/private/full/folder%%3A%s/spreadsheet%%3A%s", folder_id, document_id);
-	else if (GDATA_IS_DOCUMENTS_TEXT (document))
-		uri = g_strdup_printf ("http://docs.google.com/feeds/folders/private/full/folder%%3A%s/document%%3A%s", folder_id, document_id);
-	else if (GDATA_IS_DOCUMENTS_FOLDER (document))
-		uri = g_strdup_printf ("http://docs.google.com/feeds/folders/private/full/folder%%3A%s/folder%%3A%s", folder_id, document_id);
-	else
+	if (GDATA_IS_DOCUMENTS_PRESENTATION (document)) {
+		uri = g_strdup_printf ("%s://docs.google.com/feeds/folders/private/full/folder%%3A%s/presentation%%3A%s",
+		                       _gdata_service_get_scheme (), folder_id, document_id);
+	} else if (GDATA_IS_DOCUMENTS_SPREADSHEET (document)) {
+		uri = g_strdup_printf ("%s://docs.google.com/feeds/folders/private/full/folder%%3A%s/spreadsheet%%3A%s",
+		                       _gdata_service_get_scheme (), folder_id, document_id);
+	} else if (GDATA_IS_DOCUMENTS_TEXT (document)) {
+		uri = g_strdup_printf ("%s://docs.google.com/feeds/folders/private/full/folder%%3A%s/document%%3A%s",
+		                       _gdata_service_get_scheme (), folder_id, document_id);
+	} else if (GDATA_IS_DOCUMENTS_FOLDER (document)) {
+		uri = g_strdup_printf ("%s://docs.google.com/feeds/folders/private/full/folder%%3A%s/folder%%3A%s",
+		                       _gdata_service_get_scheme (), folder_id, document_id);
+	} else {
 		g_assert_not_reached ();
+	}
 
 	message = soup_message_new (SOUP_METHOD_DELETE, uri);
 	g_free (uri);
@@ -716,8 +735,8 @@ gdata_documents_service_remove_document_from_folder (GDataDocumentsService *self
 	if (status != 200) {
 		/* Error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (GDATA_SERVICE (self), GDATA_SERVICE_ERROR_WITH_INSERTION, status, message->reason_phrase, message->response_body->data,
-					     message->response_body->length, error);
+		klass->parse_error_response (GDATA_SERVICE (self), GDATA_OPERATION_UPDATE, status, message->reason_phrase, message->response_body->data,
+		                             message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
@@ -727,7 +746,7 @@ gdata_documents_service_remove_document_from_folder (GDataDocumentsService *self
 	/* Google's servers don't return an updated copy of the entry, so we have to query for it again.
 	 * See: http://code.google.com/p/gdata-issues/issues/detail?id=1380 */
 	return gdata_documents_service_query_single_document (self, G_OBJECT_TYPE (document), gdata_documents_entry_get_document_id (document),
-							      cancellable, error);
+	                                                      cancellable, error);
 }
 
 /**
@@ -751,11 +770,11 @@ gdata_documents_service_get_upload_uri (GDataDocumentsFolder *folder)
 	if (folder != NULL) {
 		const gchar *folder_id = gdata_documents_entry_get_document_id (GDATA_DOCUMENTS_ENTRY (folder));
 		g_assert (folder_id != NULL);
-		return g_strconcat ("http://docs.google.com/feeds/folders/private/full/folder%3A", folder_id, NULL);
+		return g_strconcat (_gdata_service_get_scheme (), "://docs.google.com/feeds/folders/private/full/folder%3A", folder_id, NULL);
 	}
 
 	/* Otherwise return the default upload URI */
-	return g_strdup ("http://docs.google.com/feeds/documents/private/full");
+	return g_strconcat (_gdata_service_get_scheme (), "://docs.google.com/feeds/documents/private/full", NULL);
 }
 
 GDataService *

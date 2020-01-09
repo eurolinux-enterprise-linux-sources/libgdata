@@ -29,9 +29,10 @@
  * the file. Network communication may not actually begin until the first call to g_input_stream_read(), so having a #GDataDownloadStream around is no
  * guarantee that the file is being downloaded.
  *
- * The content type and length of the file being downloaded are made available through #GDataDownloadStream:content-type and #GDataDownloadStream:content-length
- * as soon as the appropriate data is received from the server. Connect to #GDataDownloadStream::notify::content-type and
- * #GDataDownloadStream::notify::content-length to be notified as soon as the data is available.
+ * The content type and length of the file being downloaded are made available through #GDataDownloadStream:content-type and
+ * #GDataDownloadStream:content-length as soon as the appropriate data is received from the server. Connect to the
+ * #GObject::notify <code type="literal">content-type</code> and <code type="literal">content-length</code> details to be notified as
+ * soon as the data is available.
  *
  * Since: 0.5.0
  **/
@@ -282,8 +283,8 @@ gdata_download_stream_read (GInputStream *stream, void *buffer, gsize count, GCa
 
 		/* Set an appropriate error */
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (priv->service, GDATA_SERVICE_ERROR_WITH_DOWNLOAD, priv->message->status_code, priv->message->reason_phrase,
-					     NULL, 0, error);
+		klass->parse_error_response (priv->service, GDATA_OPERATION_DOWNLOAD, priv->message->status_code, priv->message->reason_phrase,
+		                             NULL, 0, error);
 		return 0;
 	}
 
@@ -456,7 +457,7 @@ create_network_thread (GDataDownloadStream *self, GError **error)
  * Creates a new #GDataDownloadStream, allowing a file to be downloaded from a GData service using standard #GInputStream API.
  *
  * As well as the standard GIO errors, calls to the #GInputStream API on a #GDataDownloadStream can also return any relevant specific error from
- * #GDataServiceError, or %GDATA_SERVICE_ERROR_WITH_DOWNLOAD in the general case.
+ * #GDataServiceError, or %GDATA_SERVICE_ERROR_PROTOCOL_ERROR in the general case.
  *
  * Return value: a new #GInputStream, or %NULL; unref with g_object_unref()
  *
@@ -548,9 +549,9 @@ gdata_download_stream_get_content_type (GDataDownloadStream *self)
  * @self: a #GDataDownloadStream
  *
  * Gets the length (in bytes) of the file being downloaded. If the <literal>Content-Length</literal> header has not yet
- * been received from the server, %-1 will be returned.
+ * been received from the server, <code class="literal">-1</code> will be returned.
  *
- * Return value: the content length of the file being downloaded, or %-1
+ * Return value: the content length of the file being downloaded, or <code class="literal">-1</code>
  *
  * Since: 0.5.0
  **/
@@ -559,4 +560,73 @@ gdata_download_stream_get_content_length (GDataDownloadStream *self)
 {
 	g_return_val_if_fail (GDATA_IS_DOWNLOAD_STREAM (self), -1);
 	return self->priv->content_length;
+}
+
+/**
+ * _gdata_download_stream_find_destination:
+ * @default_filename: a default filename used if the user selects a directory as the destination
+ * @target_dest_file: the destination file or directory to download to
+ * @actual_dest_file: will be set to reference the actual destination, which might be different from @target_dest_file
+ * @replace_file_if_exists: whether to replace pre-existing files at the download location
+ * @cancellable: optional #GCancellable object, or %NULL
+ * @error: a #GError, or %NULL
+ *
+ * Sets up a download stream for a given destination.
+ *
+ * If @target_dest_file is a directory, then the file will be
+ * downloaded into the directory with the filename specified by
+ * @default_filename.  Otherwise, the file will be downloaded as the
+ * file specified by @target_dest_file.
+ *
+ * @actual_dest_file usually only differs from @target_dest_file when
+ * the latter is set to a directory, and @default_filename must be
+ * used. The @actual_dest_file argument should be a pointer to a %NULL
+ * #GFile.  Regardless, unref the #GFile returned in @actual_dest_file
+ * with g_object_unref(), as it increases the ref count of
+ * @target_dest_file even when they are the same.
+ *
+ * Return value: a #GFileOutputStream, or %NULL; unref with g_object_unref()
+ *
+ * Since: 0.6.0
+ **/
+GFileOutputStream *
+_gdata_download_stream_find_destination (const gchar *default_filename, GFile *target_dest_file, GFile **actual_dest_file, gboolean replace_file_if_exists, GCancellable *cancellable, GError **error)
+{
+	GFileInfo *target_dest_info;
+	GFileOutputStream *dest_stream;
+
+	g_return_val_if_fail (default_filename != NULL, NULL);
+	g_return_val_if_fail (G_IS_FILE (target_dest_file), NULL);
+	g_return_val_if_fail (actual_dest_file != NULL && *actual_dest_file == NULL, NULL);
+	g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), NULL);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+	/* handle the case where it exists as a directory, so we want to insert it in there */
+	if (g_file_query_exists (target_dest_file, cancellable)) {
+		target_dest_info = g_file_query_info (target_dest_file, "standard::type", G_FILE_QUERY_INFO_NONE, cancellable, error);
+		if (target_dest_info == NULL)
+			return NULL;
+
+		if (g_file_info_get_file_type (target_dest_info) == G_FILE_TYPE_DIRECTORY)
+			*actual_dest_file = g_file_get_child (target_dest_file, default_filename);
+
+		g_object_unref (target_dest_info);
+	}
+
+	/* handle the general case (where it doesn't exist or it does but isn't a directory) */
+	if (*actual_dest_file == NULL)
+		*actual_dest_file = g_object_ref (target_dest_file);
+
+	/* replace or create, leaving it up to the APIs to get the relevant error message */
+	if (replace_file_if_exists)
+		dest_stream = g_file_replace (*actual_dest_file, NULL, FALSE, G_FILE_CREATE_REPLACE_DESTINATION, cancellable, error);
+	else
+		dest_stream = g_file_create (*actual_dest_file, G_FILE_CREATE_NONE, cancellable, error);
+
+	if (dest_stream == NULL) {
+		g_object_unref (*actual_dest_file);
+		return NULL;
+	}
+
+	return dest_stream;
 }

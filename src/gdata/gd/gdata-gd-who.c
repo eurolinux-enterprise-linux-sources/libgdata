@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,9 @@
  * @include: gdata/gd/gdata-gd-who.h
  *
  * #GDataGDWho represents an "who" element from the
- * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWho">GData specification</ulink>.
+ * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho">GData specification</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -38,9 +40,9 @@ static void gdata_gd_who_finalize (GObject *object);
 static void gdata_gd_who_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void gdata_gd_who_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 static gboolean pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error);
-static gboolean parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error);
+/*static gboolean parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error);*/
 static void pre_get_xml (GDataParsable *parsable, GString *xml_string);
-static void get_xml (GDataParsable *parsable, GString *xml_string);
+/*static void get_xml (GDataParsable *parsable, GString *xml_string);*/
 static void get_namespaces (GDataParsable *parsable, GHashTable *namespaces);
 
 struct _GDataGDWhoPrivate {
@@ -71,9 +73,9 @@ gdata_gd_who_class_init (GDataGDWhoClass *klass)
 	gobject_class->finalize = gdata_gd_who_finalize;
 
 	parsable_class->pre_parse_xml = pre_parse_xml;
-	parsable_class->parse_xml = parse_xml;
+	/*parsable_class->parse_xml = parse_xml;*/
 	parsable_class->pre_get_xml = pre_get_xml;
-	parsable_class->get_xml = get_xml;
+	/*parsable_class->get_xml = get_xml;*/
 	parsable_class->get_namespaces = get_namespaces;
 	parsable_class->element_name = "who";
 	parsable_class->element_namespace = "gd";
@@ -84,7 +86,7 @@ gdata_gd_who_class_init (GDataGDWhoClass *klass)
 	 * Specifies the relationship between the containing entity and the contained person.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWho">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -100,7 +102,7 @@ gdata_gd_who_class_init (GDataGDWhoClass *klass)
 	 * A simple string value that can be used as a representation of this person.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWho">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -113,16 +115,16 @@ gdata_gd_who_class_init (GDataGDWhoClass *klass)
 	/**
 	 * GDataGDWho:email-address:
 	 *
-	 * The e-mail address of the person represented by the #GDataWho.
+	 * The e-mail address of the person represented by the #GDataGDWho.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWho">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
 	g_object_class_install_property (gobject_class, PROP_EMAIL_ADDRESS,
 				g_param_spec_string ("email-address",
-					"E-mail address", "The e-mail address of the person represented by the #GDataWho.",
+					"E-mail address", "The e-mail address of the person represented by the #GDataGDWho.",
 					NULL,
 					G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
@@ -193,7 +195,7 @@ gdata_gd_who_set_property (GObject *object, guint property_id, const GValue *val
 static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
-	xmlChar *rel, *value_string, *email;
+	xmlChar *rel, *email;
 	GDataGDWhoPrivate *priv = GDATA_GD_WHO (parsable)->priv;
 
 	rel = xmlGetProp (root_node, (xmlChar*) "rel");
@@ -208,28 +210,23 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 		xmlFree (email);
 		return gdata_parser_error_required_property_missing (root_node, "email", error);
 	}
-	value_string = xmlGetProp (root_node, (xmlChar*) "valueString");
 
-	priv->relation_type = g_strdup ((gchar*) rel);
-	priv->value_string = g_strdup ((gchar*) value_string);
-	priv->email_address = g_strdup ((gchar*) email);
-
-	xmlFree (rel);
-	xmlFree (value_string);
-	xmlFree (email);
+	priv->relation_type = (gchar*) rel;
+	priv->value_string = (gchar*) xmlGetProp (root_node, (xmlChar*) "valueString");
+	priv->email_address = (gchar*) email;
 
 	return TRUE;
 }
 
-static gboolean
+/*static gboolean
 parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error)
 {
 	GDataGDWhoPrivate *priv = GDATA_GD_WHO (parsable)->priv;
 
-	/* TODO: deal with the attendeeType, attendeeStatus and entryLink */
+	TODO: deal with the attendeeType, attendeeStatus and entryLink
 
 	return TRUE;
-}
+}*/
 
 static void
 pre_get_xml (GDataParsable *parsable, GString *xml_string)
@@ -244,13 +241,13 @@ pre_get_xml (GDataParsable *parsable, GString *xml_string)
 		gdata_parser_string_append_escaped (xml_string, " valueString='", priv->value_string, "'");
 }
 
-static void
+/*static void
 get_xml (GDataParsable *parsable, GString *xml_string)
 {
 	GDataGDWhoPrivate *priv = GDATA_GD_WHO (parsable)->priv;
 
-	/* TODO: deal with the attendeeType, attendeeStatus and entryLink */
-}
+	TODO: deal with the attendeeType, attendeeStatus and entryLink
+}*/
 
 static void
 get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
@@ -265,11 +262,13 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
  * @email_address: the person's e-mail address, or %NULL
  *
  * Creates a new #GDataGDWho. More information is available in the <ulink type="http"
- * url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWho">GData specification</ulink>.
+ * url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho">GData specification</ulink>.
  *
  * Currently, entryLink functionality is not implemented in #GDataGDWho.
  *
  * Return value: a new #GDataGDWho; unref with g_object_unref()
+ *
+ * Since: 0.2.0
  **/
 GDataGDWho *
 gdata_gd_who_new (const gchar *relation_type, const gchar *value_string, const gchar *email_address)
@@ -285,11 +284,13 @@ gdata_gd_who_new (const gchar *relation_type, const gchar *value_string, const g
  * @b: another #GDataGDWho, or %NULL
  *
  * Compares the two people in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @email and @value_string properties of the #GDataGDWho<!-- -->s.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
@@ -298,7 +299,7 @@ gdata_gd_who_compare (const GDataGDWho *a, const GDataGDWho *b)
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)

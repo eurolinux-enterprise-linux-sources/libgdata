@@ -2,7 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Richard Schwarting 2009 <aquarichy@gmail.com>
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -29,6 +29,8 @@
  *
  * For more information on the custom GData query parameters supported by #GDataPicasaWebQuery, see the <ulink type="http"
  * url="http://code.google.com/apis/picasaweb/reference.html#Parameters">online documentation</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <config.h>
@@ -90,7 +92,8 @@ gdata_picasaweb_query_class_init (GDataPicasaWebQueryClass *klass)
 	 *
 	 * Specifies which albums should be listed, in terms of their visibility (#GDataPicasaWebAlbum:visibility).
 	 *
-	 * Set the property to %0 to list all albums, regardless of their visibility. Otherwise, use values from #GDataPicasaWebVisibility.
+	 * Set the property to <code class="literal">0</code> to list all albums, regardless of their visibility. Otherwise, use values
+	 * from #GDataPicasaWebVisibility.
 	 *
 	 * For more information, see the <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#Visibility">
 	 * online documentation</ulink>.
@@ -248,7 +251,7 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 
 	APPEND_SEP
 	if (priv->visibility == 0)
-		g_string_append (query_uri, "access=all");
+		; // Appending nothing to retrieve all for authenticated users and just public albums for unauthenticated
 	else if (priv->visibility == GDATA_PICASAWEB_PUBLIC)
 		g_string_append (query_uri, "access=public");
 	else if (priv->visibility == GDATA_PICASAWEB_PRIVATE)
@@ -271,7 +274,7 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 	if (priv->tag != NULL) {
 		APPEND_SEP
 		g_string_append (query_uri, "tag=");
-		g_string_append_uri_escaped (query_uri, priv->tag, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->tag, NULL, FALSE);
 	}
 
 	if (priv->bounding_box.north != priv->bounding_box.south && priv->bounding_box.east != priv->bounding_box.west) {
@@ -288,7 +291,7 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 	if (priv->location != NULL) {
 		APPEND_SEP
 		g_string_append (query_uri, "l=");
-		g_string_append_uri_escaped (query_uri, priv->location, NULL, TRUE);
+		g_string_append_uri_escaped (query_uri, priv->location, NULL, FALSE);
 	}
 }
 
@@ -311,12 +314,45 @@ gdata_picasaweb_query_new (const gchar *q)
 }
 
 /**
+ * gdata_picasaweb_query_new_with_limits:
+ * @q: a query string
+ * @start_index: the index of the first result to include
+ * @max_results: the maximum number of results to include
+ *
+ * Creates a #GDataPicasaWebQuery with its #GDataQuery:q property set
+ * to @q, returning @max_results starting from the @start_index
+ * result.
+ *
+ * Note that when querying for albums with gdata_picasaweb_service_query_all_albums(), the @q parameter cannot be used.
+ *
+ * This is useful for paging through results, but the result
+ * set between separate queries may change.  So, if you use this to
+ * request the next ten results after a previous query, it may include
+ * some of the previously returned results if their order changed, or
+ * omit ones that would have otherwise been found in a earlier but
+ * larger query.
+ *
+ * Return value: a new #GDataPicasaWebQuery
+ *
+ * Since: 0.6.0
+ **/
+GDataPicasaWebQuery *
+gdata_picasaweb_query_new_with_limits (const gchar *q, gint start_index, gint max_results)
+{
+	return g_object_new (GDATA_TYPE_PICASAWEB_QUERY,
+			     "q", q,
+			     "start-index", start_index,
+			     "max-results", max_results,
+			     NULL);
+}
+
+/**
  * gdata_picasaweb_query_get_visibility:
  * @self: a #GDataPicasaWebQuery
  *
  * Gets the #GDataPicasaWebQuery:visibility property.
  *
- * Return value: the visibility of the objects to retrieve, or %0 to retrieve all objects
+ * Return value: the visibility of the objects to retrieve, or <code class="literal">0</code> to retrieve all objects
  *
  * Since: 0.4.0
  **/
@@ -330,7 +366,7 @@ gdata_picasaweb_query_get_visibility (GDataPicasaWebQuery *self)
 /**
  * gdata_picasaweb_query_set_visibility:
  * @self: a #GDataPicasaWebQuery
- * @visibility: the visibility of the objects to retrieve, or %0 to retrieve all objects
+ * @visibility: the visibility of the objects to retrieve, or <code class="literal">0</code> to retrieve all objects
  *
  * Sets the #GDataPicasaWebQuery:visibility property to @visibility.
  *
@@ -342,6 +378,9 @@ gdata_picasaweb_query_set_visibility (GDataPicasaWebQuery *self, GDataPicasaWebV
 	g_return_if_fail (GDATA_IS_PICASAWEB_QUERY (self));
 	self->priv->visibility = visibility;
 	g_object_notify (G_OBJECT (self), "visibility");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -380,6 +419,9 @@ gdata_picasaweb_query_set_thumbnail_size (GDataPicasaWebQuery *self, const gchar
 	g_free (self->priv->thumbnail_size);
 	self->priv->thumbnail_size = g_strdup (thumbnail_size);
 	g_object_notify (G_OBJECT (self), "thumbnail-size");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -388,7 +430,7 @@ gdata_picasaweb_query_set_thumbnail_size (GDataPicasaWebQuery *self, const gchar
  *
  * Gets the #GDataPicasaWebQuery:image-size property.
  *
- * Return value: a comma-separated list of image sizes to retrieve, or %NULL
+ * Return value: the currently set desired image size for retrieval, or %NULL
  *
  * Since: 0.4.0
  **/
@@ -402,9 +444,11 @@ gdata_picasaweb_query_get_image_size (GDataPicasaWebQuery *self)
 /**
  * gdata_picasaweb_query_set_image_size:
  * @self: a #GDataPicasaWebQuery
- * @image_size: a comma-separated list of image sizes to retrieve, or %NULL
+ * @image_size: the desired size of the image to be retrieved, or %NULL
  *
  * Sets the #GDataPicasaWebQuery:image-size property to @image_size.
+ * Valid sizes are described in the
+ * <ulink type="http" url="http://code.google.com/apis/picasaweb/docs/2.0/reference.html#Parameters">online documentation</ulink>.
  *
  * Set @image_size to %NULL to unset the property.
  *
@@ -418,6 +462,9 @@ gdata_picasaweb_query_set_image_size (GDataPicasaWebQuery *self, const gchar *im
 	g_free (self->priv->image_size);
 	self->priv->image_size = g_strdup (image_size);
 	g_object_notify (G_OBJECT (self), "image-size");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -456,6 +503,9 @@ gdata_picasaweb_query_set_tag (GDataPicasaWebQuery *self, const gchar *tag)
 	g_free (self->priv->tag);
 	self->priv->tag = g_strdup (tag);
 	g_object_notify (G_OBJECT (self), "tag");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -495,7 +545,7 @@ gdata_picasaweb_query_get_bounding_box (GDataPicasaWebQuery *self, gdouble *nort
  *
  * Sets a bounding box, inside which all the returned results must lie.
  *
- * Set @north, @east, @south and @west to %0 to unset the property.
+ * Set @north, @east, @south and @west to <code class="literal">0</code> to unset the property.
  *
  * Since: 0.4.0
  **/
@@ -512,6 +562,9 @@ gdata_picasaweb_query_set_bounding_box (GDataPicasaWebQuery *self, gdouble north
 	self->priv->bounding_box.east = east;
 	self->priv->bounding_box.south = south;
 	self->priv->bounding_box.west = west;
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }
 
 /**
@@ -550,4 +603,7 @@ gdata_picasaweb_query_set_location (GDataPicasaWebQuery *self, const gchar *loca
 	g_free (self->priv->location);
 	self->priv->location = g_strdup (location);
 	g_object_notify (G_OBJECT (self), "location");
+
+	/* Our current ETag will no longer be relevant */
+	gdata_query_set_etag (GDATA_QUERY (self), NULL);
 }

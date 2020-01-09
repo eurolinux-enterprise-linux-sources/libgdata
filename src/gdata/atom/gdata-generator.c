@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -129,9 +129,9 @@ gdata_generator_finalize (GObject *object)
 {
 	GDataGeneratorPrivate *priv = GDATA_GENERATOR (object)->priv;
 
-	xmlFree (priv->name);
-	xmlFree (priv->uri);
-	xmlFree (priv->version);
+	g_free (priv->name);
+	g_free (priv->uri);
+	g_free (priv->version);
 
 	/* Chain up to the parent class */
 	G_OBJECT_CLASS (gdata_generator_parent_class)->finalize (object);
@@ -162,17 +162,17 @@ gdata_generator_get_property (GObject *object, guint property_id, GValue *value,
 static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
-	xmlChar *name;
+	xmlChar *uri;
 	GDataGeneratorPrivate *priv = GDATA_GENERATOR (parsable)->priv;
 
-	name = xmlNodeListGetString (doc, root_node->children, TRUE);
-	if (name != NULL && *name == '\0') {
-		xmlFree (name);
-		return gdata_parser_error_required_content_missing (root_node, error);
+	uri = xmlGetProp (root_node, (xmlChar*) "uri");
+	if (uri != NULL && *uri == '\0') {
+		xmlFree (uri);
+		return gdata_parser_error_required_property_missing (root_node, "uri", error);
 	}
+	priv->uri = (gchar*) uri;
 
-	priv->name = (gchar*) name;
-	priv->uri = (gchar*) xmlGetProp (root_node, (xmlChar*) "uri");
+	priv->name = (gchar*) xmlNodeListGetString (doc, root_node->children, TRUE);
 	priv->version = (gchar*) xmlGetProp (root_node, (xmlChar*) "version");
 
 	return TRUE;
@@ -199,11 +199,13 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
  * @b: another #GDataGenerator, or %NULL
  *
  * Compares the two generators in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @name property of the #GDataGenerator<!-- -->s.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
@@ -212,7 +214,7 @@ gdata_generator_compare (const GDataGenerator *a, const GDataGenerator *b)
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)

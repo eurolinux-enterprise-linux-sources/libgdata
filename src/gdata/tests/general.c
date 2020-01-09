@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008-2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,28 +21,41 @@
 #include <locale.h>
 
 #include "gdata.h"
+#include "common.h"
 
 static void
 test_entry_get_xml (void)
 {
-	/*GTimeVal updated, published, updated2, published2;*/
+	GTimeVal updated, published, updated2, published2, *updated3, *published3;
 	GDataEntry *entry, *entry2;
 	GDataCategory *category;
 	GDataLink *link;
 	GDataAuthor *author;
-	gchar *xml;
-	GList *links;
+	gchar *xml, *title, *summary, *id, *etag, *content, *rights;
+	gboolean is_inserted;
+	GList *list;
 	GError *error = NULL;
 
 	entry = gdata_entry_new (NULL);
+
+	/* Test setting properties directly */
+	g_object_set (G_OBJECT (entry),
+	              "title", "First testing title & escaping",
+	              "summary", "Test summary & escaping.",
+	              "content", "Test <markup> & escaping.",
+	              "rights", "Philip Withnall <philip@tecnocode.co.uk>",
+	              NULL);
+
+	g_assert_cmpstr (gdata_entry_get_title (entry), ==, "First testing title & escaping");
+	g_assert_cmpstr (gdata_entry_get_summary (entry), ==, "Test summary & escaping.");
+	g_assert_cmpstr (gdata_entry_get_content (entry), ==, "Test <markup> & escaping.");
+	g_assert_cmpstr (gdata_entry_get_rights (entry), ==, "Philip Withnall <philip@tecnocode.co.uk>");
+
+	/* Set the properties more conventionally */
 	gdata_entry_set_title (entry, "Testing title & escaping");
+	gdata_entry_set_summary (entry, NULL);
 	gdata_entry_set_content (entry, "This is some sample content testing, amongst other things, <markup> & odd characters‽");
-
-	/*g_time_val_from_iso8601 ("2009-01-25T14:07:37.880860Z", &updated);
-	gdata_entry_set_updated (entry, &updated);
-
-	g_time_val_from_iso8601 ("2009-01-23T14:06:37.880860Z", &published);
-	gdata_entry_set_published (entry, &published);*/
+	gdata_entry_set_rights (entry, NULL);
 
 	/* Categories */
 	category = gdata_category_new ("test", NULL, NULL);
@@ -93,8 +106,6 @@ test_entry_get_xml (void)
 	g_assert_cmpstr (xml, ==,
 			 "<entry xmlns='http://www.w3.org/2005/Atom' xmlns:gd='http://schemas.google.com/g/2005'>"
 				 "<title type='text'>Testing title &amp; escaping</title>"
-				 /*"<updated>2009-01-25T14:07:37.880860Z</updated>"
-				 "<published>2009-01-23T14:06:37.880860Z</published>"*/
 				 "<content type='text'>This is some sample content testing, amongst other things, &lt;markup&gt; &amp; odd characters\342\200\275</content>"
 				 "<category term='Film' scheme='http://gdata.youtube.com/schemas/2007/categories.cat' label='Film &amp; Animation'/>"
 				 "<category term='example' label='Example stuff'/>"
@@ -120,7 +131,7 @@ test_entry_get_xml (void)
 	g_assert_cmpstr (gdata_entry_get_id (entry), ==, gdata_entry_get_id (entry2)); /* should both be NULL */
 	g_assert_cmpstr (gdata_entry_get_content (entry), ==, gdata_entry_get_content (entry2));
 
-	/*gdata_entry_get_updated (entry, &updated);
+	gdata_entry_get_updated (entry, &updated);
 	gdata_entry_get_updated (entry2, &updated2);
 	g_assert_cmpuint (updated.tv_sec, ==, updated2.tv_sec);
 	g_assert_cmpuint (updated.tv_usec, ==, updated2.tv_usec);
@@ -128,7 +139,7 @@ test_entry_get_xml (void)
 	gdata_entry_get_published (entry, &published);
 	gdata_entry_get_published (entry2, &published2);
 	g_assert_cmpuint (published.tv_sec, ==, published2.tv_sec);
-	g_assert_cmpuint (published.tv_usec, ==, published2.tv_usec);*/
+	g_assert_cmpuint (published.tv_usec, ==, published2.tv_usec);
 
 	/* Check links */
 	link = gdata_entry_look_up_link (entry, GDATA_LINK_SELF);
@@ -137,23 +148,84 @@ test_entry_get_xml (void)
 	g_assert_cmpstr (gdata_link_get_relation_type (link), ==, GDATA_LINK_SELF);
 	g_assert_cmpstr (gdata_link_get_content_type (link), ==, "application/atom+xml");
 
-	links = gdata_entry_look_up_links (entry, "http://foobar.link");
-	g_assert (links != NULL);
-	g_assert_cmpint (g_list_length (links), ==, 2);
+	link = gdata_entry_look_up_link (entry, "http://link.not.exist");
+	g_assert (link == NULL);
 
-	link = GDATA_LINK (links->data);
+	list = gdata_entry_look_up_links (entry, "http://foobar.link");
+	g_assert (list != NULL);
+	g_assert_cmpint (g_list_length (list), ==, 2);
+
+	link = GDATA_LINK (list->data);
 	g_assert (link != NULL);
 	g_assert_cmpstr (gdata_link_get_uri (link), ==, "http://example2.com/");
 	g_assert_cmpstr (gdata_link_get_relation_type (link), ==, "http://foobar.link");
 
-	link = GDATA_LINK (links->next->data);
+	link = GDATA_LINK (list->next->data);
 	g_assert (link != NULL);
 	g_assert_cmpstr (gdata_link_get_uri (link), ==, "http://example.com/");
 	g_assert_cmpstr (gdata_link_get_relation_type (link), ==, "http://foobar.link");
 
-	/* TODO: Check categories and authors */
+	g_list_free (list);
 
-	g_list_free (links);
+	/* Check categories */
+	list = gdata_entry_get_categories (entry);
+	g_assert (list != NULL);
+	g_assert_cmpint (g_list_length (list), ==, 3);
+
+	category = GDATA_CATEGORY (list->data);
+	g_assert (category != NULL);
+	g_assert_cmpstr (gdata_category_get_term (category), ==, "Film");
+	g_assert_cmpstr (gdata_category_get_scheme (category), ==, "http://gdata.youtube.com/schemas/2007/categories.cat");
+	g_assert_cmpstr (gdata_category_get_label (category), ==, "Film & Animation");
+
+	category = GDATA_CATEGORY (list->next->data);
+	g_assert (category != NULL);
+	g_assert_cmpstr (gdata_category_get_term (category), ==, "example");
+	g_assert (gdata_category_get_scheme (category) == NULL);
+	g_assert_cmpstr (gdata_category_get_label (category), ==, "Example stuff");
+
+	category = GDATA_CATEGORY (list->next->next->data);
+	g_assert (category != NULL);
+	g_assert_cmpstr (gdata_category_get_term (category), ==, "test");
+	g_assert (gdata_category_get_scheme (category) == NULL);
+	g_assert (gdata_category_get_label (category) == NULL);
+
+	/* TODO: Check authors */
+
+	/* Check properties a different way */
+	g_object_get (G_OBJECT (entry2),
+	              "title", &title,
+	              "summary", &summary,
+	              "id", &id,
+	              "etag", &etag,
+	              "updated", &updated3,
+	              "published", &published3,
+	              "content", &content,
+	              "is-inserted", &is_inserted,
+	              "rights", &rights,
+	              NULL);
+
+	g_assert_cmpstr (title, ==, gdata_entry_get_title (entry));
+	g_assert_cmpstr (summary, ==, gdata_entry_get_summary (entry));
+	g_assert_cmpstr (id, ==, gdata_entry_get_id (entry));
+	g_assert_cmpstr (etag, ==, gdata_entry_get_etag (entry));
+	g_assert_cmpint (updated3->tv_sec, ==, updated.tv_sec);
+	g_assert_cmpint (updated3->tv_usec, ==, updated.tv_usec);
+	g_assert_cmpint (published3->tv_sec, ==, published.tv_sec);
+	g_assert_cmpint (published3->tv_usec, ==, published.tv_usec);
+	g_assert_cmpstr (content, ==, gdata_entry_get_content (entry));
+	g_assert (is_inserted == FALSE);
+	g_assert_cmpstr (rights, ==, gdata_entry_get_rights (entry));
+
+	g_free (title);
+	g_free (summary);
+	g_free (id);
+	g_free (etag);
+	g_free (updated3);
+	g_free (published3);
+	g_free (content);
+	g_free (rights);
+
 	g_object_unref (entry);
 	g_object_unref (entry2);
 }
@@ -196,6 +268,285 @@ test_entry_parse_xml (void)
 }
 
 static void
+test_entry_error_handling (void)
+{
+	GDataEntry *entry;
+	GError *error = NULL;
+
+#define TEST_XML_ERROR_HANDLING(x) entry = GDATA_ENTRY (gdata_parsable_new_from_xml (GDATA_TYPE_ENTRY,\
+		"<entry>"\
+			x\
+		"</entry>", -1, &error));\
+	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR);\
+	g_assert (entry == NULL);\
+	g_clear_error (&error)
+
+	/* updated */
+	TEST_XML_ERROR_HANDLING ("<updated>not a date</updated>"); /* invalid date */
+
+	/* published */
+	TEST_XML_ERROR_HANDLING ("<published>also not a date</published>"); /* invalid date */
+
+	/* category */
+	TEST_XML_ERROR_HANDLING ("<category/>"); /* invalid category */
+
+	/* link */
+	TEST_XML_ERROR_HANDLING ("<link/>"); /* invalid link */
+
+	/* author */
+	TEST_XML_ERROR_HANDLING ("<author/>"); /* invalid author */
+
+#undef TEST_XML_ERROR_HANDLING
+}
+
+static void
+test_feed_parse_xml (void)
+{
+	GDataFeed *feed;
+	GDataEntry *entry;
+	GDataLink *link;
+	GList *list;
+	gchar *title, *subtitle, *id, *etag, *logo, *icon;
+	GTimeVal *updated, updated2;
+	GDataGenerator *generator;
+	guint items_per_page, start_index, total_results;
+	GError *error = NULL;
+
+	feed = GDATA_FEED (gdata_parsable_new_from_xml (GDATA_TYPE_FEED,
+		"<feed xmlns='http://www.w3.org/2005/Atom' "
+		      "xmlns:openSearch='http://a9.com/-/spec/opensearch/1.1/' "
+		      "xmlns:gd='http://schemas.google.com/g/2005' "
+		      "gd:etag='W/\"D08FQn8-eil7ImA9WxZbFEw.\"'>"
+			"<id>http://example.com/id</id>"
+			"<updated>2009-02-25T14:07:37.880860Z</updated>"
+			"<title type='text'>Test feed</title>"
+			"<subtitle type='text'>Test subtitle</subtitle>"
+			"<logo>http://example.com/logo.png</logo>"
+			"<icon>http://example.com/icon.png</icon>"
+			"<link rel='alternate' type='text/html' href='http://alternate.example.com/'/>"
+			"<link rel='http://schemas.google.com/g/2005#feed' type='application/atom+xml' href='http://example.com/id'/>"
+			"<link rel='http://schemas.google.com/g/2005#post' type='application/atom+xml' href='http://example.com/post'/>"
+			"<link rel='self' type='application/atom+xml' href='http://example.com/id'/>"
+			"<category scheme='http://example.com/categories' term='feed'/>"
+			"<author>"
+				"<name>Joe Smith</name>"
+				"<email>j.smith@example.com</email>"
+			"</author>"
+			"<generator version='0.6' uri='http://example.com/'>Example Generator</generator>"
+			"<openSearch:totalResults>2</openSearch:totalResults>"
+			"<openSearch:startIndex>0</openSearch:startIndex>"
+			"<openSearch:itemsPerPage>50</openSearch:itemsPerPage>"
+			"<entry>"
+				"<id>entry1</id>"
+				"<title type='text'>Testing unhandled XML</title>"
+				"<updated>2009-01-25T14:07:37.880860Z</updated>"
+				"<published>2009-01-23T14:06:37.880860Z</published>"
+				"<content type='text'>Here we test unhandled XML elements.</content>"
+			"</entry>"
+			"<entry>"
+				"<id>entry2</id>"
+				"<title type='text'>Testing unhandled XML 2</title>"
+				"<updated>2009-02-25T14:07:37.880860Z</updated>"
+				"<published>2009-02-23T14:06:37.880860Z</published>"
+				"<content type='text'>Here we test unhandled XML elements again.</content>"
+			"</entry>"
+			"<foobar>Test unhandled elements!</foobar>"
+		"</feed>", -1, &error));
+	g_assert_no_error (error);
+	g_assert (GDATA_IS_FEED (feed));
+	g_clear_error (&error);
+
+	/* Check the feed's properties */
+	g_object_get (G_OBJECT (feed),
+	              "title", &title,
+	              "subtitle", &subtitle,
+	              "id", &id,
+	              "etag", &etag,
+	              "updated", &updated,
+	              "logo", &logo,
+	              "icon", &icon,
+	              "generator", &generator,
+	              "items-per-page", &items_per_page,
+	              "start-index", &start_index,
+	              "total-results", &total_results,
+	              NULL);
+
+	g_assert_cmpstr (title, ==, "Test feed");
+	g_assert_cmpstr (subtitle, ==, "Test subtitle");
+	g_assert_cmpstr (id, ==, "http://example.com/id");
+	g_assert_cmpstr (etag, ==, "W/\"D08FQn8-eil7ImA9WxZbFEw.\"");
+
+	g_assert_cmpint (updated->tv_sec, ==, 1235570857);
+	g_assert_cmpint (updated->tv_usec, ==, 880860);
+
+	g_assert_cmpstr (logo, ==, "http://example.com/logo.png");
+	g_assert_cmpstr (icon, ==, "http://example.com/icon.png");
+
+	g_assert (GDATA_IS_GENERATOR (generator));
+	g_assert_cmpstr (gdata_generator_get_name (generator), ==, "Example Generator");
+	g_assert_cmpstr (gdata_generator_get_uri (generator), ==, "http://example.com/");
+	g_assert_cmpstr (gdata_generator_get_version (generator), ==, "0.6");
+
+	g_assert_cmpuint (items_per_page, ==, 50);
+	g_assert_cmpuint (start_index, ==, 0);
+	g_assert_cmpuint (total_results, ==, 2);
+
+	g_free (title);
+	g_free (subtitle);
+	g_free (id);
+	g_free (etag);
+	g_free (updated);
+	g_free (logo);
+	g_free (icon);
+	g_object_unref (generator);
+
+	/* Check the entries */
+	entry = gdata_feed_look_up_entry (feed, "entry1");
+	g_assert (GDATA_IS_ENTRY (entry));
+
+	entry = gdata_feed_look_up_entry (feed, "this doesn't exist");
+	g_assert (entry == NULL);
+
+	entry = gdata_feed_look_up_entry (feed, "entry2");
+	g_assert (GDATA_IS_ENTRY (entry));
+
+	/* Check the categories */
+	list = gdata_feed_get_categories (feed);
+	g_assert (list != NULL);
+	g_assert_cmpint (g_list_length (list), ==, 1);
+	g_assert (GDATA_IS_CATEGORY (list->data));
+
+	/* Check the links */
+	list = gdata_feed_get_links (feed);
+	g_assert (list != NULL);
+	g_assert_cmpint (g_list_length (list), ==, 4);
+	g_assert (GDATA_IS_LINK (list->data));
+	g_assert (GDATA_IS_LINK (list->next->data));
+	g_assert (GDATA_IS_LINK (list->next->next->data));
+	g_assert (GDATA_IS_LINK (list->next->next->next->data));
+
+	link = gdata_feed_look_up_link (feed, GDATA_LINK_ALTERNATE);
+	g_assert (GDATA_IS_LINK (link));
+
+	link = gdata_feed_look_up_link (feed, "this doesn't exist");
+	g_assert (link == NULL);
+
+	link = gdata_feed_look_up_link (feed, "http://schemas.google.com/g/2005#feed");
+	g_assert (GDATA_IS_LINK (link));
+
+	link = gdata_feed_look_up_link (feed, "http://schemas.google.com/g/2005#post");
+	g_assert (GDATA_IS_LINK (link));
+
+	link = gdata_feed_look_up_link (feed, GDATA_LINK_SELF);
+	g_assert (GDATA_IS_LINK (link));
+
+	/* Check the authors */
+	list = gdata_feed_get_authors (feed);
+	g_assert (list != NULL);
+	g_assert_cmpint (g_list_length (list), ==, 1);
+	g_assert (GDATA_IS_AUTHOR (list->data));
+
+	/* Check the other properties again, the more normal way this time */
+	g_assert_cmpstr (gdata_feed_get_title (feed), ==, "Test feed");
+	g_assert_cmpstr (gdata_feed_get_subtitle (feed), ==, "Test subtitle");
+	g_assert_cmpstr (gdata_feed_get_id (feed), ==, "http://example.com/id");
+	g_assert_cmpstr (gdata_feed_get_etag (feed), ==, "W/\"D08FQn8-eil7ImA9WxZbFEw.\"");
+
+	gdata_feed_get_updated (feed, &updated2);
+	g_assert_cmpint (updated2.tv_sec, ==, 1235570857);
+	g_assert_cmpint (updated2.tv_usec, ==, 880860);
+
+	g_assert_cmpstr (gdata_feed_get_logo (feed), ==, "http://example.com/logo.png");
+	g_assert_cmpstr (gdata_feed_get_icon (feed), ==, "http://example.com/icon.png");
+
+	generator = gdata_feed_get_generator (feed);
+	g_assert (GDATA_IS_GENERATOR (generator));
+	g_assert_cmpstr (gdata_generator_get_name (generator), ==, "Example Generator");
+	g_assert_cmpstr (gdata_generator_get_uri (generator), ==, "http://example.com/");
+	g_assert_cmpstr (gdata_generator_get_version (generator), ==, "0.6");
+
+	g_assert_cmpuint (gdata_feed_get_items_per_page (feed), ==, 50);
+	g_assert_cmpuint (gdata_feed_get_start_index (feed), ==, 0);
+	g_assert_cmpuint (gdata_feed_get_total_results (feed), ==, 2);
+
+	g_object_unref (feed);
+}
+
+static void
+test_feed_error_handling (void)
+{
+	GDataFeed *feed;
+	GError *error = NULL;
+
+#define TEST_XML_ERROR_HANDLING(x) feed = GDATA_FEED (gdata_parsable_new_from_xml (GDATA_TYPE_FEED, \
+		"<feed xmlns='http://www.w3.org/2005/Atom' xmlns:openSearch='http://a9.com/-/spec/opensearch/1.1/'>"\
+			x\
+		"</feed>", -1, &error));\
+	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR);\
+	g_assert (feed == NULL);\
+	g_clear_error (&error)
+
+	/* entry */
+	TEST_XML_ERROR_HANDLING ("<entry><updated>this isn't a date</updated></entry>"); /* invalid entry */
+
+	/* title */
+	TEST_XML_ERROR_HANDLING ("<title>First title</title><title>Second title</title>"); /* duplicate title */
+	TEST_XML_ERROR_HANDLING ("<id>ID</id><updated>2009-01-25T14:07:37.880860Z</updated>"); /* missing title */
+
+	/* subtitle */
+	TEST_XML_ERROR_HANDLING ("<subtitle>First subtitle</subtitle><subtitle>Second subtitle</subtitle>"); /* duplicate subtitle */
+
+	/* id */
+	TEST_XML_ERROR_HANDLING ("<id>First ID</id><id>Second ID</id>"); /* duplicate ID */
+	TEST_XML_ERROR_HANDLING ("<title>Title</title><updated>2009-01-25T14:07:37.880860Z</updated>"); /* missing ID */
+
+	/* updated */
+	TEST_XML_ERROR_HANDLING ("<updated>2009-01-25T14:07:37.880860Z</updated>"
+	                         "<updated>2009-01-25T14:07:37.880860Z</updated>"); /* duplicate updated */
+	TEST_XML_ERROR_HANDLING ("<updated>not a date</updated>"); /* invalid date */
+	TEST_XML_ERROR_HANDLING ("<title>Title</title><id>ID</id>"); /* missing updated */
+
+	/* category */
+	TEST_XML_ERROR_HANDLING ("<category/>"); /* invalid category */
+
+	/* logo */
+	TEST_XML_ERROR_HANDLING ("<logo>First logo</logo><logo>Second logo</logo>"); /* duplicate logo */
+
+	/* icon */
+	TEST_XML_ERROR_HANDLING ("<icon>First icon</icon><icon>Second icon</icon>"); /* duplicate icon */
+
+	/* link */
+	TEST_XML_ERROR_HANDLING ("<link/>"); /* invalid link */
+
+	/* author */
+	TEST_XML_ERROR_HANDLING ("<author/>"); /* invalid author */
+
+	/* generator */
+	TEST_XML_ERROR_HANDLING ("<generator>First generator</generator><generator>Second generator</generator>"); /* duplicate generator */
+	TEST_XML_ERROR_HANDLING ("<generator uri=''/>"); /* invalid generator */
+
+	/* openSearch:totalResults */
+	TEST_XML_ERROR_HANDLING ("<openSearch:totalResults>5</openSearch:totalResults>"
+	                         "<openSearch:totalResults>3</openSearch:totalResults>"); /* duplicate totalResults */
+	TEST_XML_ERROR_HANDLING ("<openSearch:totalResults></openSearch:totalResults>"); /* missing content */
+	TEST_XML_ERROR_HANDLING ("<openSearch:totalResults>this isn't a number!</openSearch:totalResults>"); /* invalid number */
+
+	/* openSearch:startIndex */
+	TEST_XML_ERROR_HANDLING ("<openSearch:startIndex>5</openSearch:startIndex>"
+	                         "<openSearch:startIndex>3</openSearch:startIndex>"); /* duplicate startIndex */
+	TEST_XML_ERROR_HANDLING ("<openSearch:startIndex></openSearch:startIndex>"); /* missing content */
+	TEST_XML_ERROR_HANDLING ("<openSearch:startIndex>this isn't a number!</openSearch:startIndex>"); /* invalid number */
+
+	/* openSearch:itemsPerPage */
+	TEST_XML_ERROR_HANDLING ("<openSearch:itemsPerPage>5</openSearch:itemsPerPage>"
+	                         "<openSearch:itemsPerPage>3</openSearch:itemsPerPage>"); /* duplicate itemsPerPage */
+	TEST_XML_ERROR_HANDLING ("<openSearch:itemsPerPage></openSearch:itemsPerPage>"); /* missing content */
+	TEST_XML_ERROR_HANDLING ("<openSearch:itemsPerPage>this isn't a number!</openSearch:itemsPerPage>"); /* invalid number */
+
+#undef TEST_XML_ERROR_HANDLING
+}
+
+static void
 test_query_categories (void)
 {
 	GDataQuery *query;
@@ -206,32 +557,214 @@ test_query_categories (void)
 	/* AND */
 	gdata_query_set_categories (query, "Fritz/Laurie");
 	query_uri = gdata_query_get_query_uri (query, "http://example.com");
-
 	g_assert_cmpstr (query_uri, ==, "http://example.com/-/Fritz/Laurie?q=foobar");
 	g_free (query_uri);
 
 	/* OR */
 	gdata_query_set_categories (query, "Fritz|Laurie");
 	query_uri = gdata_query_get_query_uri (query, "http://example.com");
-
 	g_assert_cmpstr (query_uri, ==, "http://example.com/-/Fritz%7CLaurie?q=foobar");
 	g_free (query_uri);
 
 	/* Combination */
 	gdata_query_set_categories (query, "A|-{urn:google.com}B/-C");
 	query_uri = gdata_query_get_query_uri (query, "http://example.com/gdata_test");
-
 	g_assert_cmpstr (query_uri, ==, "http://example.com/gdata_test/-/A%7C-%7Burn%3Agoogle.com%7DB/-C?q=foobar");
 	g_free (query_uri);
 
 	/* Same combination without q param */
 	gdata_query_set_q (query, NULL);
 	query_uri = gdata_query_get_query_uri (query, "http://example.com");
-
 	g_assert_cmpstr (query_uri, ==, "http://example.com/-/A%7C-%7Burn%3Agoogle.com%7DB/-C");
 	g_free (query_uri);
 
 	g_object_unref (query);
+}
+
+static void
+test_query_unicode (void)
+{
+	GDataQuery *query;
+	gchar *query_uri;
+
+	g_test_bug ("602497");
+
+	/* Simple query */
+	query = gdata_query_new ("fööbar‽");
+	query_uri = gdata_query_get_query_uri (query, "http://example.com");
+	g_assert_cmpstr (query_uri, ==, "http://example.com?q=f%C3%B6%C3%B6bar%E2%80%BD");
+	g_free (query_uri);
+
+	/* Categories */
+	gdata_query_set_categories (query, "Ümlauts|¿Questions‽");
+	query_uri = gdata_query_get_query_uri (query, "http://example.com");
+	g_assert_cmpstr (query_uri, ==, "http://example.com/-/%C3%9Cmlauts%7C%C2%BFQuestions%E2%80%BD?q=f%C3%B6%C3%B6bar%E2%80%BD");
+	g_free (query_uri);
+
+	/* Author */
+	gdata_query_set_author (query, "Lørd Brïan Bleßêd");
+	query_uri = gdata_query_get_query_uri (query, "http://example.com");
+	g_assert_cmpstr (query_uri, ==, "http://example.com/-/%C3%9Cmlauts%7C%C2%BFQuestions%E2%80%BD?q=f%C3%B6%C3%B6bar%E2%80%BD&author=L%C3%B8rd%20Br%C3%AFan%20Ble%C3%9F%C3%AAd");
+	g_free (query_uri);
+
+	g_object_unref (query);
+}
+
+static void
+test_query_etag (void)
+{
+	GDataQuery *query = gdata_query_new (NULL);
+
+	/* Test that setting any property will unset the ETag */
+	g_test_bug ("613529");
+
+	/* Also check that setting the ETag doesn't unset the ETag! */
+	gdata_query_set_etag (query, "foobar");
+	g_assert_cmpstr (gdata_query_get_etag (query), ==, "foobar");
+
+#define CHECK_ETAG(C) \
+	gdata_query_set_etag (query, "foobar");		\
+	(C);						\
+	g_assert (gdata_query_get_etag (query) == NULL);
+
+	CHECK_ETAG (gdata_query_set_q (query, "q"))
+	CHECK_ETAG (gdata_query_set_categories (query, "shizzle,foobar"))
+	CHECK_ETAG (gdata_query_set_author (query, "John Smith"))
+	CHECK_ETAG (gdata_query_set_updated_min (query, NULL))
+	CHECK_ETAG (gdata_query_set_updated_max (query, NULL))
+	CHECK_ETAG (gdata_query_set_published_min (query, NULL))
+	CHECK_ETAG (gdata_query_set_published_max (query, NULL))
+	CHECK_ETAG (gdata_query_set_start_index (query, 5))
+	CHECK_ETAG (gdata_query_set_is_strict (query, TRUE))
+	CHECK_ETAG (gdata_query_set_max_results (query, 1000))
+	CHECK_ETAG (gdata_query_set_entry_id (query, "id"))
+	CHECK_ETAG (gdata_query_next_page (query))
+	CHECK_ETAG (gdata_query_previous_page (query))
+
+#undef CHECK_ETAG
+
+	g_object_unref (query);
+}
+
+static void
+test_service_network_error (void)
+{
+	GDataService *service;
+	SoupURI *proxy_uri;
+	GError *error = NULL;
+
+	/* This is a little hacky, but it should work */
+	service = g_object_new (GDATA_TYPE_SERVICE, "client-id", CLIENT_ID, NULL);
+
+	/* Try a query which should always fail due to errors resolving the hostname */
+	g_assert (gdata_service_query (service, "http://thisshouldnotexist.localhost", NULL, GDATA_TYPE_ENTRY, NULL, NULL, NULL, &error) == NULL);
+	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_NETWORK_ERROR);
+	g_clear_error (&error);
+
+	/* Try one with a bad proxy set */
+	proxy_uri = soup_uri_new ("http://thisshouldalsonotexist.localhost/proxy");
+	gdata_service_set_proxy_uri (service, proxy_uri);
+	soup_uri_free (proxy_uri);
+
+	g_assert (gdata_service_query (service, "http://google.com", NULL, GDATA_TYPE_ENTRY, NULL, NULL, NULL, &error) == NULL);
+	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROXY_ERROR);
+	g_clear_error (&error);
+
+	g_object_unref (service);
+}
+
+static void
+test_access_rule_get_xml (void)
+{
+	GDataAccessRule *rule, *rule2;
+	gchar *xml, *role, *scope_type3, *scope_value3;
+	const gchar *scope_type, *scope_value, *scope_type2, *scope_value2;
+	GError *error = NULL;
+
+	rule = gdata_access_rule_new ("an-id");
+
+	/* Test setting properties directly */
+	g_object_set (G_OBJECT (rule),
+	              "role", "A role",
+	              "scope-type", "A scope type",
+	              "scope-value", "A scope value",
+	              NULL);
+
+	g_assert_cmpstr (gdata_access_rule_get_role (rule), ==, "A role");
+	gdata_access_rule_get_scope (rule, &scope_type, &scope_value);
+	g_assert_cmpstr (scope_type, ==, "A scope type");
+	g_assert_cmpstr (scope_value, ==, "A scope value");
+
+	/* Set the properties more conventionally */
+	gdata_access_rule_set_role (rule, "writer");
+	gdata_access_rule_set_scope (rule, "user", "foo@example.com");
+
+	/* Check the generated XML's OK */
+	xml = gdata_parsable_get_xml (GDATA_PARSABLE (rule));
+	g_assert_cmpstr (xml, ==,
+			 "<entry xmlns='http://www.w3.org/2005/Atom' "
+			 "xmlns:gd='http://schemas.google.com/g/2005' "
+			 "xmlns:gAcl='http://schemas.google.com/acl/2007'>"
+				"<title type='text'>writer</title>"
+				"<id>an-id</id>"
+				"<category term='http://schemas.google.com/acl/2007#accessRule' scheme='http://schemas.google.com/g/2005#kind'/>"
+				"<gAcl:role value='writer'/>"
+				"<gAcl:scope type='user' value='foo@example.com'/>"
+			 "</entry>");
+
+	/* Check again by re-parsing the XML to a GDataAccessRule */
+	rule2 = GDATA_ACCESS_RULE (gdata_parsable_new_from_xml (GDATA_TYPE_ACCESS_RULE, xml, -1, &error));
+	g_assert_no_error (error);
+	g_assert (GDATA_IS_ACCESS_RULE (rule2));
+	g_clear_error (&error);
+	g_free (xml);
+
+	g_assert_cmpstr (gdata_access_rule_get_role (rule), ==, gdata_access_rule_get_role (rule2));
+	gdata_access_rule_get_scope (rule, &scope_type, &scope_value);
+	gdata_access_rule_get_scope (rule2, &scope_type2, &scope_value2);
+	g_assert_cmpstr (scope_type, ==, scope_type2);
+	g_assert_cmpstr (scope_value, ==, scope_value2);
+
+	/* Check properties a different way */
+	g_object_get (G_OBJECT (rule2),
+	              "role", &role,
+	              "scope-type", &scope_type3,
+	              "scope-value", &scope_value3,
+	              NULL);
+
+	g_assert_cmpstr (role, ==, gdata_access_rule_get_role (rule));
+	g_assert_cmpstr (scope_type, ==, scope_type3);
+	g_assert_cmpstr (scope_value, ==, scope_value3);
+
+	g_free (role);
+	g_free (scope_type3);
+	g_free (scope_value3);
+
+	g_object_unref (rule);
+	g_object_unref (rule2);
+}
+
+static void
+test_access_rule_error_handling (void)
+{
+	GDataAccessRule *rule;
+	GError *error = NULL;
+
+#define TEST_XML_ERROR_HANDLING(x) rule = GDATA_ACCESS_RULE (gdata_parsable_new_from_xml (GDATA_TYPE_ACCESS_RULE,\
+		"<entry xmlns='http://www.w3.org/2005/Atom' xmlns:gAcl='http://schemas.google.com/acl/2007'>"\
+			x\
+		"</entry>", -1, &error));\
+	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR);\
+	g_assert (rule == NULL);\
+	g_clear_error (&error)
+
+	/* role */
+	TEST_XML_ERROR_HANDLING ("<gAcl:role/>"); /* missing value */
+
+	/* scope */
+	TEST_XML_ERROR_HANDLING ("<gAcl:scope/>"); /* missing type */
+
+#undef TEST_XML_ERROR_HANDLING
 }
 
 static void
@@ -303,7 +836,7 @@ static void
 test_atom_author (void)
 {
 	GDataAuthor *author, *author2;
-	gchar *xml;
+	gchar *xml, *name, *uri, *email_address;
 	GError *error = NULL;
 
 	author = GDATA_AUTHOR (gdata_parsable_new_from_xml (GDATA_TYPE_AUTHOR,
@@ -331,6 +864,12 @@ test_atom_author (void)
 	g_assert_cmpint (gdata_author_compare (author, author2), !=, 0);
 	g_object_unref (author2);
 
+	/* More comparisons */
+	g_assert_cmpint (gdata_author_compare (author, NULL), ==, 1);
+	g_assert_cmpint (gdata_author_compare (NULL, author), ==, -1);
+	g_assert_cmpint (gdata_author_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_author_compare (author, author), ==, 0);
+
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (author));
 	g_assert_cmpstr (xml, ==,
@@ -340,6 +879,21 @@ test_atom_author (void)
 				"<email>john@example.com</email>"
 			 "</author>");
 	g_free (xml);
+
+	/* Check the properties */
+	g_object_get (G_OBJECT (author),
+	              "name", &name,
+	              "uri", &uri,
+	              "email-address", &email_address,
+	              NULL);
+
+	g_assert_cmpstr (name, ==, "John Smöth");
+	g_assert_cmpstr (uri, ==, "http://example.com/");
+	g_assert_cmpstr (email_address, ==, "john@example.com");
+
+	g_free (name);
+	g_free (uri);
+	g_free (email_address);
 	g_object_unref (author);
 
 	/* Now parse an author with little information available */
@@ -355,14 +909,43 @@ test_atom_author (void)
 	g_assert_cmpstr (gdata_author_get_name (author), ==, "James Johnson");
 	g_assert (gdata_author_get_uri (author) == NULL);
 	g_assert (gdata_author_get_email_address (author) == NULL);
+
 	g_object_unref (author);
+}
+
+static void
+test_atom_author_error_handling (void)
+{
+	GDataAuthor *author;
+	GError *error = NULL;
+
+#define TEST_XML_ERROR_HANDLING(x) author = GDATA_AUTHOR (gdata_parsable_new_from_xml (GDATA_TYPE_AUTHOR,\
+		"<author>"\
+			x\
+		"</author>", -1, &error));\
+	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR);\
+	g_assert (author == NULL);\
+	g_clear_error (&error)
+
+	/* name */
+	TEST_XML_ERROR_HANDLING ("<name>John Smöth</name><name>Not John Smöth</name>"); /* duplicated name */
+	TEST_XML_ERROR_HANDLING ("<name></name>"); /* empty name */
+	TEST_XML_ERROR_HANDLING ("<uri>http://example.com/</uri><email>john@example.com</email>"); /* missing name */
+
+	/* uri */
+	TEST_XML_ERROR_HANDLING ("<uri>http://example.com/</uri><uri>http://another-example.com/</uri>"); /* duplicated URI */
+
+	/* email */
+	TEST_XML_ERROR_HANDLING ("<email>john@example.com</email><email>john@another-example.com</email>"); /* duplicated e-mail address */
+
+#undef TEST_XML_ERROR_HANDLING
 }
 
 static void
 test_atom_category (void)
 {
 	GDataCategory *category, *category2;
-	gchar *xml;
+	gchar *xml, *term, *scheme, *label;
 	GError *error = NULL;
 
 	category = GDATA_CATEGORY (gdata_parsable_new_from_xml (GDATA_TYPE_CATEGORY,
@@ -386,12 +969,33 @@ test_atom_category (void)
 	g_assert_cmpint (gdata_category_compare (category, category2), !=, 0);
 	g_object_unref (category2);
 
+	/* More comparisons */
+	g_assert_cmpint (gdata_category_compare (category, NULL), ==, 1);
+	g_assert_cmpint (gdata_category_compare (NULL, category), ==, -1);
+	g_assert_cmpint (gdata_category_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_category_compare (category, category), ==, 0);
+
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (category));
 	g_assert_cmpstr (xml, ==,
 			 "<category xmlns='http://www.w3.org/2005/Atom' "
 				"term='jokes' scheme='http://foobar.com#categories' label='Jokes &amp; Trivia'/>");
 	g_free (xml);
+
+	/* Check the properties */
+	g_object_get (G_OBJECT (category),
+	              "term", &term,
+	              "scheme", &scheme,
+	              "label", &label,
+	              NULL);
+
+	g_assert_cmpstr (term, ==, "jokes");
+	g_assert_cmpstr (scheme, ==, "http://foobar.com#categories");
+	g_assert_cmpstr (label, ==, "Jokes & Trivia");
+
+	g_free (term);
+	g_free (scheme);
+	g_free (label);
 	g_object_unref (category);
 
 	/* Now parse a category with less information available */
@@ -429,9 +1033,23 @@ test_atom_category (void)
 }
 
 static void
+test_atom_category_error_handling (void)
+{
+	GDataCategory *category;
+	GError *error = NULL;
+
+	/* Missing term */
+	category = GDATA_CATEGORY (gdata_parsable_new_from_xml (GDATA_TYPE_CATEGORY, "<category/>", -1, &error));
+	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR);
+	g_assert (category == NULL);
+	g_clear_error (&error);
+}
+
+static void
 test_atom_generator (void)
 {
-	GDataGenerator *generator;
+	GDataGenerator *generator, *generator2;
+	gchar *name, *uri, *version;
 	GError *error = NULL;
 
 	generator = GDATA_GENERATOR (gdata_parsable_new_from_xml (GDATA_TYPE_GENERATOR,
@@ -440,10 +1058,45 @@ test_atom_generator (void)
 	g_assert (GDATA_IS_GENERATOR (generator));
 	g_clear_error (&error);
 
+	/* Compare it against another identical generator */
+	generator2 = GDATA_GENERATOR (gdata_parsable_new_from_xml (GDATA_TYPE_GENERATOR,
+		"<generator uri='http://example.com/' version='15'>Bach &amp; Son's Generator</generator>", -1, NULL));
+	g_assert_cmpint (gdata_generator_compare (generator, generator2), ==, 0);
+	g_object_unref (generator2);
+
+	/* …and a different generator */
+	generator2 = GDATA_GENERATOR (gdata_parsable_new_from_xml (GDATA_TYPE_GENERATOR,
+		"<generator>Different generator</generator>", -1, &error));
+	g_assert_no_error (error);
+	g_assert (GDATA_IS_GENERATOR (generator));
+	g_assert_cmpint (gdata_generator_compare (generator, generator2), !=, 0);
+	g_object_unref (generator2);
+
+	/* More comparisons */
+	g_assert_cmpint (gdata_generator_compare (generator, NULL), ==, 1);
+	g_assert_cmpint (gdata_generator_compare (NULL, generator), ==, -1);
+	g_assert_cmpint (gdata_generator_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_generator_compare (generator, generator), ==, 0);
+
 	/* Check the properties */
 	g_assert_cmpstr (gdata_generator_get_name (generator), ==, "Bach & Son's Generator");
 	g_assert_cmpstr (gdata_generator_get_uri (generator), ==, "http://example.com/");
 	g_assert_cmpstr (gdata_generator_get_version (generator), ==, "15");
+
+	/* Check them a different way too */
+	g_object_get (G_OBJECT (generator),
+	              "name", &name,
+	              "uri", &uri,
+	              "version", &version,
+	              NULL);
+
+	g_assert_cmpstr (name, ==, "Bach & Son's Generator");
+	g_assert_cmpstr (uri, ==, "http://example.com/");
+	g_assert_cmpstr (version, ==, "15");
+
+	g_free (name);
+	g_free (uri);
+	g_free (version);
 	g_object_unref (generator);
 
 	/* Now parse a generator with less information available */
@@ -461,10 +1114,24 @@ test_atom_generator (void)
 }
 
 static void
+test_atom_generator_error_handling (void)
+{
+	GDataGenerator *generator;
+	GError *error = NULL;
+
+	/* Empty URI */
+	generator = GDATA_GENERATOR (gdata_parsable_new_from_xml (GDATA_TYPE_GENERATOR, "<generator uri=''/>", -1, &error));
+	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR);
+	g_assert (generator == NULL);
+	g_clear_error (&error);
+}
+
+static void
 test_atom_link (void)
 {
 	GDataLink *link, *link2;
-	gchar *xml;
+	gchar *xml, *uri, *relation_type, *content_type, *language, *title;
+	gint length;
 	GError *error = NULL;
 
 	link = GDATA_LINK (gdata_parsable_new_from_xml (GDATA_TYPE_LINK,
@@ -496,12 +1163,51 @@ test_atom_link (void)
 	g_assert_cmpint (gdata_link_compare (link, link2), !=, 0);
 	g_object_unref (link2);
 
+	/* More comparisons */
+	g_assert_cmpint (gdata_link_compare (link, NULL), ==, 1);
+	g_assert_cmpint (gdata_link_compare (NULL, link), ==, -1);
+	g_assert_cmpint (gdata_link_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_link_compare (link, link), ==, 0);
+
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (link));
 	g_assert_cmpstr (xml, ==,
 			 "<link xmlns='http://www.w3.org/2005/Atom' href='http://example.com/' title='All About Angle Brackets: &lt;, &gt;' "
 				"rel='http://test.com#link-type' type='text/plain' hreflang='de' length='2000'/>");
 	g_free (xml);
+
+	/* Set some of the properties */
+	g_object_set (G_OBJECT (link),
+	              "uri", "http://another-example.com/",
+	              "relation-type", "http://test.com#link-type2",
+	              "content-type", "text/html",
+	              "language", "sv",
+	              "title", "This & That About <Angle Brackets>",
+	              "length", -1,
+	              NULL);
+
+	/* Check the properties */
+	g_object_get (G_OBJECT (link),
+	              "uri", &uri,
+	              "relation-type", &relation_type,
+	              "content-type", &content_type,
+	              "language", &language,
+	              "title", &title,
+	              "length", &length,
+	              NULL);
+
+	g_assert_cmpstr (uri, ==, "http://another-example.com/");
+	g_assert_cmpstr (relation_type, ==, "http://test.com#link-type2");
+	g_assert_cmpstr (content_type, ==, "text/html");
+	g_assert_cmpstr (language, ==, "sv");
+	g_assert_cmpstr (title, ==, "This & That About <Angle Brackets>");
+	g_assert_cmpint (length, ==, -1);
+
+	g_free (uri);
+	g_free (relation_type);
+	g_free (content_type);
+	g_free (language);
+	g_free (title);
 	g_object_unref (link);
 
 	/* Now parse a link with less information available */
@@ -529,6 +1235,34 @@ test_atom_link (void)
 }
 
 static void
+test_atom_link_error_handling (void)
+{
+	GDataLink *link;
+	GError *error = NULL;
+
+#define TEST_XML_ERROR_HANDLING(x) link = GDATA_LINK (gdata_parsable_new_from_xml (GDATA_TYPE_LINK,\
+		"<link " x "/>", -1, &error));\
+	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR);\
+	g_assert (link == NULL);\
+	g_clear_error (&error)
+
+	/* href */
+	TEST_XML_ERROR_HANDLING (""); /* missing href */
+	TEST_XML_ERROR_HANDLING ("href=''"); /* empty href */
+
+	/* rel */
+	TEST_XML_ERROR_HANDLING ("href='http://example.com/' rel=''"); /* empty rel */
+
+	/* type */
+	TEST_XML_ERROR_HANDLING ("href='http://example.com/' type=''"); /* empty type */
+
+	/* hreflang */
+	TEST_XML_ERROR_HANDLING ("href='http://example.com/' hreflang=''"); /* empty hreflang */
+
+#undef TEST_XML_ERROR_HANDLING
+}
+
+static void
 test_gd_email_address (void)
 {
 	GDataGDEmailAddress *email, *email2;
@@ -537,7 +1271,7 @@ test_gd_email_address (void)
 
 	email = GDATA_GD_EMAIL_ADDRESS (gdata_parsable_new_from_xml (GDATA_TYPE_GD_EMAIL_ADDRESS,
 		"<gd:email xmlns:gd='http://schemas.google.com/g/2005' label='Personal &amp; Private' rel='http://schemas.google.com/g/2005#home' "
-			"address='fubar@gmail.com' primary='true'/>", -1, &error));
+			"address='fubar@gmail.com' primary='true' displayName='&lt;John Smith&gt;'/>", -1, &error));
 	g_assert_no_error (error);
 	g_assert (GDATA_IS_GD_EMAIL_ADDRESS (email));
 	g_clear_error (&error);
@@ -546,10 +1280,12 @@ test_gd_email_address (void)
 	g_assert_cmpstr (gdata_gd_email_address_get_address (email), ==, "fubar@gmail.com");
 	g_assert_cmpstr (gdata_gd_email_address_get_relation_type (email), ==, "http://schemas.google.com/g/2005#home");
 	g_assert_cmpstr (gdata_gd_email_address_get_label (email), ==, "Personal & Private");
+	g_assert_cmpstr (gdata_gd_email_address_get_display_name (email), ==, "<John Smith>");
 	g_assert (gdata_gd_email_address_is_primary (email) == TRUE);
 
 	/* Compare it against another identical address */
 	email2 = gdata_gd_email_address_new ("fubar@gmail.com", "http://schemas.google.com/g/2005#home", "Personal & Private", TRUE);
+	gdata_gd_email_address_set_display_name (email2, "<John Smith>");
 	g_assert_cmpint (gdata_gd_email_address_compare (email, email2), ==, 0);
 
 	/* …and a different one */
@@ -557,11 +1293,18 @@ test_gd_email_address (void)
 	g_assert_cmpint (gdata_gd_email_address_compare (email, email2), !=, 0);
 	g_object_unref (email2);
 
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_email_address_compare (email, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_email_address_compare (NULL, email), ==, -1);
+	g_assert_cmpint (gdata_gd_email_address_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_email_address_compare (email, email), ==, 0);
+
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (email));
 	g_assert_cmpstr (xml, ==,
 			 "<gd:email xmlns='http://www.w3.org/2005/Atom' xmlns:gd='http://schemas.google.com/g/2005' address='fubar@gmail.com' "
-				"rel='http://schemas.google.com/g/2005#home' label='Personal &amp; Private' primary='true'/>");
+				"rel='http://schemas.google.com/g/2005#home' label='Personal &amp; Private' displayName='&lt;John Smith&gt;' "
+				"primary='true'/>");
 	g_free (xml);
 	g_object_unref (email);
 
@@ -576,6 +1319,7 @@ test_gd_email_address (void)
 	g_assert_cmpstr (gdata_gd_email_address_get_address (email), ==, "test@example.com");
 	g_assert (gdata_gd_email_address_get_relation_type (email) == NULL);
 	g_assert (gdata_gd_email_address_get_label (email) == NULL);
+	g_assert (gdata_gd_email_address_get_display_name (email) == NULL);
 	g_assert (gdata_gd_email_address_is_primary (email) == FALSE);
 
 	/* Check the outputted XML contains the unknown XML */
@@ -616,6 +1360,12 @@ test_gd_im_address (void)
 	gdata_gd_im_address_set_protocol (im2, "http://schemas.google.com/g/2005#GOOGLE_TALK");
 	g_assert_cmpint (gdata_gd_im_address_compare (im, im2), !=, 0);
 	g_object_unref (im2);
+
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_im_address_compare (im, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_im_address_compare (NULL, im), ==, -1);
+	g_assert_cmpint (gdata_gd_im_address_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_im_address_compare (im, im), ==, 0);
 
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (im));
@@ -689,6 +1439,12 @@ test_gd_name (void)
 	g_assert_cmpint (gdata_gd_name_compare (name, name2), !=, 0);
 	g_object_unref (name2);
 
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_name_compare (name, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_name_compare (NULL, name), ==, -1);
+	g_assert_cmpint (gdata_gd_name_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_name_compare (name, name), ==, 0);
+
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (name));
 	g_assert_cmpstr (xml, ==,
@@ -732,6 +1488,7 @@ static void
 test_gd_organization (void)
 {
 	GDataGDOrganization *org, *org2;
+	GDataGDWhere *location;
 	gchar *xml;
 	GError *error = NULL;
 
@@ -743,6 +1500,7 @@ test_gd_organization (void)
 			"<gd:orgDepartment>Finance</gd:orgDepartment>"
 			"<gd:orgJobDescription>Doing stuff.</gd:orgJobDescription>"
 			"<gd:orgSymbol>FOO</gd:orgSymbol>"
+			"<gd:where valueString='Test location'/>"
 		"</gd:organization>", -1, &error));
 	g_assert_no_error (error);
 	g_assert (GDATA_IS_GD_ORGANIZATION (org));
@@ -756,17 +1514,26 @@ test_gd_organization (void)
 	g_assert_cmpstr (gdata_gd_organization_get_department (org), ==, "Finance");
 	g_assert_cmpstr (gdata_gd_organization_get_job_description (org), ==, "Doing stuff.");
 	g_assert_cmpstr (gdata_gd_organization_get_symbol (org), ==, "FOO");
+	location = gdata_gd_organization_get_location (org);
+	g_assert (GDATA_IS_GD_WHERE (location));
 	g_assert (gdata_gd_organization_is_primary (org) == TRUE);
 
 	/* Compare it against another identical organization */
 	org2 = gdata_gd_organization_new ("Google, Inc.", "<Angle Bracketeer>", "http://schemas.google.com/g/2005#work", "Work & Occupation", TRUE);
 	gdata_gd_organization_set_department (org2, "Finance");
+	gdata_gd_organization_set_location (org2, location);
 	g_assert_cmpint (gdata_gd_organization_compare (org, org2), ==, 0);
 
 	/* …and a different one */
 	gdata_gd_organization_set_title (org2, "Demoted!");
 	g_assert_cmpint (gdata_gd_organization_compare (org, org2), !=, 0);
 	g_object_unref (org2);
+
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_organization_compare (org, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_organization_compare (NULL, org), ==, -1);
+	g_assert_cmpint (gdata_gd_organization_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_organization_compare (org, org), ==, 0);
 
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (org));
@@ -778,6 +1545,7 @@ test_gd_organization (void)
 				"<gd:orgDepartment>Finance</gd:orgDepartment>"
 				"<gd:orgJobDescription>Doing stuff.</gd:orgJobDescription>"
 				"<gd:orgSymbol>FOO</gd:orgSymbol>"
+				"<gd:where valueString='Test location'/>"
 			 "</gd:organization>");
 	g_free (xml);
 	g_object_unref (org);
@@ -798,6 +1566,7 @@ test_gd_organization (void)
 	g_assert (gdata_gd_organization_get_department (org) == NULL);
 	g_assert (gdata_gd_organization_get_job_description (org) == NULL);
 	g_assert (gdata_gd_organization_get_symbol (org) == NULL);
+	g_assert (gdata_gd_organization_get_location (org) == NULL);
 
 	/* Check the outputted XML contains the unknown XML */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (org));
@@ -838,6 +1607,12 @@ test_gd_phone_number (void)
 	g_assert_cmpint (gdata_gd_phone_number_compare (phone, phone2), !=, 0);
 	g_object_unref (phone2);
 
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_phone_number_compare (phone, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_phone_number_compare (NULL, phone), ==, -1);
+	g_assert_cmpint (gdata_gd_phone_number_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_phone_number_compare (phone, phone), ==, 0);
+
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (phone));
 	g_assert_cmpstr (xml, ==,
@@ -845,6 +1620,10 @@ test_gd_phone_number (void)
 				"uri='tel:+12065551212' rel='http://schemas.google.com/g/2005#mobile' label='Personal &amp; business calls only' "
 				"primary='false'>+1 206 555 1212</gd:phoneNumber>");
 	g_free (xml);
+
+	/* Check we trim whitespace properly, and respect Unicode characters */
+	gdata_gd_phone_number_set_number (phone, "  	 0123456 (789) ëxt 300  ");
+	g_assert_cmpstr (gdata_gd_phone_number_get_number (phone), ==, "0123456 (789) ëxt 300");
 	g_object_unref (phone);
 
 	/* Now parse a phone number with less information available, but some extraneous whitespace */
@@ -908,6 +1687,12 @@ test_gd_postal_address (void)
 	g_assert_cmpint (gdata_gd_postal_address_compare (postal, postal2), !=, 0);
 	g_object_unref (postal2);
 
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_postal_address_compare (postal, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_postal_address_compare (NULL, postal), ==, -1);
+	g_assert_cmpint (gdata_gd_postal_address_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_postal_address_compare (postal, postal), ==, 0);
+
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (postal));
 	g_assert_cmpstr (xml, ==,
@@ -918,6 +1703,10 @@ test_gd_postal_address (void)
 				"<gd:postcode>NY 10036</gd:postcode>"
 			 "</gd:structuredPostalAddress>");
 	g_free (xml);
+
+	/* Check we trim whitespace properly, and respect Unicode characters */
+	gdata_gd_postal_address_set_address (postal, "  	 Schöne Grüße Straße\nGermany  ");
+	g_assert_cmpstr (gdata_gd_postal_address_get_address (postal), ==, "Schöne Grüße Straße\nGermany");
 	g_object_unref (postal);
 
 	/* Now parse an address with less information available */
@@ -994,6 +1783,12 @@ test_gd_reminder (void)
 	g_assert (GDATA_IS_GD_REMINDER (reminder));
 	g_clear_error (&error);
 
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_reminder_compare (reminder, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_reminder_compare (NULL, reminder), ==, -1);
+	g_assert_cmpint (gdata_gd_reminder_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_reminder_compare (reminder, reminder), ==, 0);
+
 	/* Check the properties */
 	g_assert (gdata_gd_reminder_get_method (reminder) == NULL);
 	g_assert (gdata_gd_reminder_is_absolute_time (reminder) == FALSE);
@@ -1064,6 +1859,12 @@ test_gd_when (void)
 	gdata_gd_when_set_end_time (when2, &time_val2);
 	g_assert_cmpint (gdata_gd_when_compare (when, when2), !=, 0);
 	g_object_unref (when2);
+
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_when_compare (when, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_when_compare (NULL, when), ==, -1);
+	g_assert_cmpint (gdata_gd_when_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_when_compare (when, when), ==, 0);
 
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (when));
@@ -1140,6 +1941,12 @@ test_gd_where (void)
 	g_assert_cmpint (gdata_gd_where_compare (where, where2), !=, 0);
 	g_object_unref (where2);
 
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_where_compare (where, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_where_compare (NULL, where), ==, -1);
+	g_assert_cmpint (gdata_gd_where_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_where_compare (where, where), ==, 0);
+
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (where));
 	g_assert_cmpstr (xml, ==,
@@ -1197,6 +2004,12 @@ test_gd_who (void)
 	gdata_gd_who_set_email_address (who2, "john@example.com");
 	g_assert_cmpint (gdata_gd_who_compare (who, who2), !=, 0);
 	g_object_unref (who2);
+
+	/* More comparisons */
+	g_assert_cmpint (gdata_gd_who_compare (who, NULL), ==, 1);
+	g_assert_cmpint (gdata_gd_who_compare (NULL, who), ==, -1);
+	g_assert_cmpint (gdata_gd_who_compare (NULL, NULL), ==, 0);
+	g_assert_cmpint (gdata_gd_who_compare (who, who), ==, 0);
 
 	/* Check the outputted XML is the same */
 	xml = gdata_parsable_get_xml (GDATA_PARSABLE (who));
@@ -1534,16 +2347,33 @@ main (int argc, char *argv[])
 	g_test_init (&argc, &argv, NULL);
 	g_test_bug_base ("http://bugzilla.gnome.org/show_bug.cgi?id=");
 
+	g_test_add_func ("/service/network_error", test_service_network_error);
+
 	g_test_add_func ("/entry/get_xml", test_entry_get_xml);
 	g_test_add_func ("/entry/parse_xml", test_entry_parse_xml);
+	g_test_add_func ("/entry/error_handling", test_entry_error_handling);
+
+	g_test_add_func ("/feed/parse_xml", test_feed_parse_xml);
+	g_test_add_func ("/feed/error_handling", test_feed_error_handling);
+
 	g_test_add_func ("/query/categories", test_query_categories);
+	g_test_add_func ("/query/unicode", test_query_unicode);
+	g_test_add_func ("/query/etag", test_query_etag);
+
+	g_test_add_func ("/access-rule/get_xml", test_access_rule_get_xml);
+	g_test_add_func ("/access-rule/error_handling", test_access_rule_error_handling);
+
 	g_test_add_func ("/color/parsing", test_color_parsing);
 	g_test_add_func ("/color/output", test_color_output);
 
 	g_test_add_func ("/atom/author", test_atom_author);
+	g_test_add_func ("/atom/author/error_handling", test_atom_author_error_handling);
 	g_test_add_func ("/atom/category", test_atom_category);
+	g_test_add_func ("/atom/category/error_handling", test_atom_category_error_handling);
 	g_test_add_func ("/atom/generator", test_atom_generator);
+	g_test_add_func ("/atom/generator/error_handling", test_atom_generator_error_handling);
 	g_test_add_func ("/atom/link", test_atom_link);
+	g_test_add_func ("/atom/link/error_handling", test_atom_link_error_handling);
 
 	g_test_add_func ("/gd/email_address", test_gd_email_address);
 	g_test_add_func ("/gd/im_address", test_gd_im_address);

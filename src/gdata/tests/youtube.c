@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008-2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -98,7 +98,7 @@ test_authentication_async (void)
 }
 
 static void
-test_query_standard_feed (GDataService *service)
+test_query_standard_feed (gconstpointer service)
 {
 	GDataFeed *feed;
 	GError *error = NULL;
@@ -131,7 +131,7 @@ test_query_standard_feed_async_cb (GDataService *service, GAsyncResult *async_re
 }
 
 static void
-test_query_standard_feed_async (GDataService *service)
+test_query_standard_feed_async (gconstpointer service)
 {
 	GMainLoop *main_loop = g_main_loop_new (NULL, TRUE);
 
@@ -212,7 +212,7 @@ get_video_for_related (void)
 }
 
 static void
-test_query_related (GDataService *service)
+test_query_related (gconstpointer service)
 {
 	GDataFeed *feed;
 	GDataYouTubeVideo *video;
@@ -248,7 +248,7 @@ test_query_related_async_cb (GDataService *service, GAsyncResult *async_result, 
 }
 
 static void
-test_query_related_async (GDataService *service)
+test_query_related_async (gconstpointer service)
 {
 	GDataYouTubeVideo *video;
 	GMainLoop *main_loop = g_main_loop_new (NULL, TRUE);
@@ -263,7 +263,7 @@ test_query_related_async (GDataService *service)
 }
 
 static void
-test_upload_simple (GDataService *service)
+test_upload_simple (gconstpointer service)
 {
 	GDataYouTubeVideo *video, *new_video;
 	GDataMediaCategory *category;
@@ -274,7 +274,6 @@ test_upload_simple (GDataService *service)
 	video = gdata_youtube_video_new (NULL);
 
 	gdata_entry_set_title (GDATA_ENTRY (video), "Bad Wedding Toast");
-	gdata_youtube_video_set_title (video, "Bad Wedding Toast");
 	gdata_youtube_video_set_description (video, "I gave a bad toast at my friend's wedding.");
 	category = gdata_media_category_new ("People", "http://gdata.youtube.com/schemas/2007/categories.cat", NULL);
 	gdata_youtube_video_set_category (video, category);
@@ -319,7 +318,7 @@ test_upload_simple (GDataService *service)
 }
 
 static void
-test_parsing_app_control (GDataService *service)
+test_parsing_app_control (gconstpointer service)
 {
 	GDataYouTubeVideo *video;
 	GDataYouTubeState *state;
@@ -371,7 +370,7 @@ test_parsing_app_control (GDataService *service)
 }
 
 static void
-test_parsing_yt_recorded (GDataService *service)
+test_parsing_yt_recorded (gconstpointer service)
 {
 	GDataYouTubeVideo *video;
 	GTimeVal recorded;
@@ -502,7 +501,7 @@ test_parsing_comments_feed_link (void)
 }*/
 
 static void
-test_query_uri (GDataService *service)
+test_query_uri (void)
 {
 	gdouble latitude, longitude, radius;
 	gboolean has_location;
@@ -581,7 +580,35 @@ test_query_uri (GDataService *service)
 }
 
 static void
-test_query_single (GDataService *service)
+test_query_etag (void)
+{
+	GDataYouTubeQuery *query = gdata_youtube_query_new (NULL);
+
+	/* Test that setting any property will unset the ETag */
+	g_test_bug ("613529");
+
+#define CHECK_ETAG(C) \
+	gdata_query_set_etag (GDATA_QUERY (query), "foobar");		\
+	(C);								\
+	g_assert (gdata_query_get_etag (GDATA_QUERY (query)) == NULL);
+
+	CHECK_ETAG (gdata_youtube_query_set_format (query, GDATA_YOUTUBE_FORMAT_RTSP_H263_AMR))
+	CHECK_ETAG (gdata_youtube_query_set_location (query, 0.0, 65.0, 15.0, TRUE))
+	CHECK_ETAG (gdata_youtube_query_set_language (query, "British English"))
+	CHECK_ETAG (gdata_youtube_query_set_order_by (query, "shizzle"))
+	CHECK_ETAG (gdata_youtube_query_set_restriction (query, "restriction"))
+	CHECK_ETAG (gdata_youtube_query_set_safe_search (query, GDATA_YOUTUBE_SAFE_SEARCH_MODERATE))
+	CHECK_ETAG (gdata_youtube_query_set_sort_order (query, GDATA_YOUTUBE_SORT_DESCENDING))
+	CHECK_ETAG (gdata_youtube_query_set_age (query, GDATA_YOUTUBE_AGE_THIS_WEEK))
+	CHECK_ETAG (gdata_youtube_query_set_uploader (query, GDATA_YOUTUBE_UPLOADER_PARTNER))
+
+#undef CHECK_ETAG
+
+	g_object_unref (query);
+}
+
+static void
+test_query_single (gconstpointer service)
 {
 	GDataYouTubeVideo *video;
 	GError *error = NULL;
@@ -617,7 +644,7 @@ test_query_single_async_cb (GDataService *service, GAsyncResult *async_result, G
 }
 
 static void
-test_query_single_async (GDataService *service)
+test_query_single_async (gconstpointer service)
 {
 	GMainLoop *main_loop = g_main_loop_new (NULL, TRUE);
 
@@ -645,6 +672,20 @@ test_parsing_video_id_from_uri (void)
 	g_assert (video_id == NULL);
 
 	video_id = gdata_youtube_video_get_video_id_from_uri ("http://foobar.com/not/real");
+	g_assert (video_id == NULL);
+
+	video_id = gdata_youtube_video_get_video_id_from_uri ("http://www.youtube.com/watch#!v=ylLzyHk54Z0");
+	g_assert_cmpstr (video_id, ==, "ylLzyHk54Z0");
+	g_free (video_id);
+
+	video_id = gdata_youtube_video_get_video_id_from_uri ("http://www.youtube.com/watch#!foo=bar!v=ylLzyHk54Z0");
+	g_assert_cmpstr (video_id, ==, "ylLzyHk54Z0");
+	g_free (video_id);
+
+	video_id = gdata_youtube_video_get_video_id_from_uri ("http://www.youtube.com/watch#!foo=bar");
+	g_assert (video_id == NULL);
+
+	video_id = gdata_youtube_video_get_video_id_from_uri ("http://www.youtube.com/watch#random-fragment");
 	g_assert (video_id == NULL);
 }
 
@@ -676,7 +717,8 @@ main (int argc, char *argv[])
 	g_test_add_data_func ("/youtube/parsing/app:control", service, test_parsing_app_control);
 	/*g_test_add_func ("/youtube/parsing/comments/feedLink", test_parsing_comments_feed_link);*/
 	g_test_add_data_func ("/youtube/parsing/yt:recorded", service, test_parsing_yt_recorded);
-	g_test_add_data_func ("/youtube/query/uri", service, test_query_uri);
+	g_test_add_func ("/youtube/query/uri", test_query_uri);
+	g_test_add_func ("/youtube/query/etag", test_query_etag);
 	g_test_add_data_func ("/youtube/query/single", service, test_query_single);
 	if (g_test_slow () == TRUE)
 		g_test_add_data_func ("/youtube/query/single_async", service, test_query_single_async);

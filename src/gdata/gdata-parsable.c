@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,6 +27,8 @@
  * both of which require XML parsing which can be extended by subclassing.
  *
  * It allows methods to be defined for handling the root XML node, each of its child nodes, and a method to be called after parsing is complete.
+ *
+ * Since: 0.3.0
  **/
 
 #include <config.h>
@@ -106,9 +108,11 @@ real_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer us
 
 	for (namespace = namespaces; *namespace != NULL; namespace++) {
 		if ((*namespace)->prefix != NULL) {
+			/* NOTE: These two g_strdup()s leak, but it's probably acceptable, given that it saves us
+			 * g_strdup()ing every other namespace we put in @extra_namespaces. */
 			g_hash_table_insert (parsable->priv->extra_namespaces,
-					     g_strdup ((gchar*) ((*namespace)->prefix)),
-					     g_strdup ((gchar*) ((*namespace)->href)));
+			                     g_strdup ((gchar*) ((*namespace)->prefix)),
+			                     g_strdup ((gchar*) ((*namespace)->href)));
 		}
 	}
 	xmlFree (namespaces);
@@ -135,6 +139,8 @@ real_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer us
  * If an error occurs during parsing, a suitable error from #GDataParserError will be returned.
  *
  * Return value: a new #GDataParsable, or %NULL; unref with g_object_unref()
+ *
+ * Since: 0.4.0
  **/
 GDataParsable *
 gdata_parsable_new_from_xml (GType parsable_type, const gchar *xml, gint length, GError **error)
@@ -147,10 +153,21 @@ _gdata_parsable_new_from_xml (GType parsable_type, const gchar *xml, gint length
 {
 	xmlDoc *doc;
 	xmlNode *node;
+	GDataParsable *parsable;
+	static gboolean libxml_initialised = FALSE;
 
-	g_return_val_if_fail (g_type_is_a (parsable_type, GDATA_TYPE_PARSABLE) == TRUE, FALSE);
+	g_return_val_if_fail (g_type_is_a (parsable_type, GDATA_TYPE_PARSABLE), NULL);
 	g_return_val_if_fail (xml != NULL && *xml != '\0', NULL);
 	g_return_val_if_fail (length >= -1, NULL);
+
+	/* Set up libxml. We do this here to avoid introducing a libgdata setup function, which would be unnecessary hassle. This is the only place
+	 * that libxml can be initialised in the library. */
+	if (libxml_initialised == FALSE) {
+		/* Change the libxml memory allocation functions to be GLib's. This means we don't have to re-allocate all the strings we get from
+		 * libxml, which cuts down on strdup() calls dramatically. */
+		xmlMemSetup ((xmlFreeFunc) g_free, (xmlMallocFunc) g_malloc, (xmlReallocFunc) g_realloc, (xmlStrdupFunc) g_strdup);
+		libxml_initialised = TRUE;
+	}
 
 	if (length == -1)
 		length = strlen (xml);
@@ -178,7 +195,10 @@ _gdata_parsable_new_from_xml (GType parsable_type, const gchar *xml, gint length
 		return NULL;
 	}
 
-	return _gdata_parsable_new_from_xml_node (parsable_type, doc, node, user_data, error);
+	parsable = _gdata_parsable_new_from_xml_node (parsable_type, doc, node, user_data, error);
+	xmlFreeDoc (doc);
+
+	return parsable;
 }
 
 GDataParsable *
@@ -187,9 +207,9 @@ _gdata_parsable_new_from_xml_node (GType parsable_type, xmlDoc *doc, xmlNode *no
 	GDataParsable *parsable;
 	GDataParsableClass *klass;
 
-	g_return_val_if_fail (g_type_is_a (parsable_type, GDATA_TYPE_PARSABLE) == TRUE, FALSE);
-	g_return_val_if_fail (doc != NULL, FALSE);
-	g_return_val_if_fail (node != NULL, FALSE);
+	g_return_val_if_fail (g_type_is_a (parsable_type, GDATA_TYPE_PARSABLE), NULL);
+	g_return_val_if_fail (doc != NULL, NULL);
+	g_return_val_if_fail (node != NULL, NULL);
 
 	parsable = g_object_new (parsable_type, NULL);
 
@@ -202,7 +222,6 @@ _gdata_parsable_new_from_xml_node (GType parsable_type, xmlDoc *doc, xmlNode *no
 	/*if (xmlStrcmp (node->name, (xmlChar*) klass->element_name) != 0 ||
 	    (node->ns != NULL && xmlStrcmp (node->ns->prefix, (xmlChar*) klass->element_namespace) != 0)) {
 		* No <entry> element (required) *
-		xmlFreeDoc (doc);
 		gdata_parser_error_required_element_missing (klass->element_name, "root", error);
 		return NULL;
 	}*/
@@ -256,11 +275,17 @@ filter_namespaces_cb (gchar *prefix, gchar *href, GHashTable *canonical_namespac
  * all its namespaces declared properly in a self-contained fashion, and is valid for stand-alone use.
  *
  * Return value: the object's XML; free with g_free()
+ *
+ * Since: 0.4.0
  **/
 gchar *
 gdata_parsable_get_xml (GDataParsable *self)
 {
-	GString *xml_string = g_string_sized_new (100);
+	GString *xml_string;
+
+	g_return_val_if_fail (GDATA_IS_PARSABLE (self), NULL);
+
+	xml_string = g_string_sized_new (100);
 	_gdata_parsable_get_xml (self, xml_string, TRUE);
 	return g_string_free (xml_string, FALSE);
 }
@@ -275,6 +300,8 @@ gdata_parsable_get_xml (GDataParsable *self)
  * @declare_namespaces is %FALSE, none of the used namespaces are declared, and the XML is suitable for insertion into a larger XML tree.
  *
  * Return value: the object's XML; free with g_free()
+ *
+ * Since: 0.4.0
  */
 void
 _gdata_parsable_get_xml (GDataParsable *self, GString *xml_string, gboolean declare_namespaces)

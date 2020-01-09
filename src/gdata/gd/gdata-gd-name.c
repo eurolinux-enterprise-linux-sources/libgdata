@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -35,6 +35,8 @@
  * 	<varlistentry><term>#GDataGDName:prefix</term><listitem><para>Sir</para></listitem></varlistentry>
  * 	<varlistentry><term>#GDataGDName:suffix</term><listitem><para>KG</para></listitem></varlistentry>
  * </variablelist>
+ *
+ * Since: 0.5.0
  **/
 
 #include <glib.h>
@@ -275,14 +277,9 @@ gdata_gd_name_set_property (GObject *object, guint property_id, const GValue *va
 #define PARSE_STRING_ELEMENT(E,F)							\
 	if (xmlStrcmp (node->name, (xmlChar*) (E)) == 0) {				\
 		/* gd:##E */								\
-		xmlChar *name;								\
-											\
 		if (priv->F != NULL)							\
 			return gdata_parser_error_duplicate_element (node, error);	\
-											\
-		name = xmlNodeListGetString (doc, node->children, TRUE);		\
-		priv->F = g_strdup ((gchar*) name);					\
-		xmlFree (name);								\
+		priv->F = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);	\
 	}
 
 static gboolean
@@ -290,15 +287,22 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataGDNamePrivate *priv = GDATA_GD_NAME (parsable)->priv;
 
-	PARSE_STRING_ELEMENT ("givenName", given_name)
-	else PARSE_STRING_ELEMENT ("additionalName", additional_name)
-	else PARSE_STRING_ELEMENT ("familyName", family_name)
-	else PARSE_STRING_ELEMENT ("namePrefix", prefix)
-	else PARSE_STRING_ELEMENT ("nameSuffix", suffix)
-	else PARSE_STRING_ELEMENT ("fullName", full_name)
-	else if (GDATA_PARSABLE_CLASS (gdata_gd_name_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+	if (gdata_parser_is_namespace (node, "http://schemas.google.com/g/2005") == TRUE) {
+		PARSE_STRING_ELEMENT ("givenName", given_name)
+		else PARSE_STRING_ELEMENT ("additionalName", additional_name)
+		else PARSE_STRING_ELEMENT ("familyName", family_name)
+		else PARSE_STRING_ELEMENT ("namePrefix", prefix)
+		else PARSE_STRING_ELEMENT ("nameSuffix", suffix)
+		else if (xmlStrcmp (node->name, (xmlChar*) "fullName") == 0) {
+			/* gd:fullName */
+			if (priv->full_name != NULL)
+				return gdata_parser_error_duplicate_element (node, error);
+			priv->full_name = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else {
+			return GDATA_PARSABLE_CLASS (gdata_gd_name_parent_class)->parse_xml (parsable, doc, node, user_data, error);
+		}
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_gd_name_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -351,12 +355,14 @@ gdata_gd_name_new (const gchar *given_name, const gchar *family_name)
  * @b: another #GDataGDName, or %NULL
  *
  * Compares the two names in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @given_name, @additional_name and @family_name properties of the
  * #GDataGDName<!-- -->s.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.5.0
  **/
@@ -365,7 +371,7 @@ gdata_gd_name_compare (const GDataGDName *a, const GDataGDName *b)
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)

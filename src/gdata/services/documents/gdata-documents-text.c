@@ -2,6 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
+ * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,6 +28,8 @@
  *
  * For more details of Google Documents' GData API, see the <ulink type="http://code.google.com/apis/document/docs/2.0/developers_guide_protocol.html">
  * online documentation</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <config.h>
@@ -118,7 +121,7 @@ gdata_documents_text_new (const gchar *id)
  * If @destination_file is a directory, then the file will be downloaded in this directory with the #GDataEntry:title with 
  * the apropriate extension as name.
  *
- * If there is an error getting the document, a %GDATA_SERVICE_ERROR_WITH_QUERY error will be returned.
+ * If there is an error getting the document, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned.
  *
  * Return value: the document's data, or %NULL; unref with g_object_unref()
  *
@@ -170,5 +173,6 @@ gdata_documents_text_get_download_uri (GDataDocumentsText *self, GDataDocumentsT
 	document_id = gdata_documents_entry_get_document_id (GDATA_DOCUMENTS_ENTRY (self));
 	g_assert (document_id != NULL);
 
-	return g_strdup_printf ("http://docs.google.com/feeds/download/documents/Export?exportFormat=%s&docID=%s", export_formats[export_format], document_id);
+	return g_strdup_printf ("%s://docs.google.com/feeds/download/documents/Export?exportFormat=%s&docID=%s",
+	                        _gdata_service_get_scheme (), export_formats[export_format], document_id);
 }

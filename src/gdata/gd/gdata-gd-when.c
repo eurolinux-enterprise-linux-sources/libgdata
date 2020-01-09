@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,9 @@
  * @include: gdata/gd/gdata-gd-when.h
  *
  * #GDataGDWhen represents a "when" element from the
- * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen">GData specification</ulink>.
+ * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhen">GData specification</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -94,7 +96,7 @@ gdata_gd_when_class_init (GDataGDWhenClass *klass)
 	 * The name of the when.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhen">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -110,7 +112,7 @@ gdata_gd_when_class_init (GDataGDWhenClass *klass)
 	 * The title of a person within the when.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhen">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -126,7 +128,7 @@ gdata_gd_when_class_init (GDataGDWhenClass *klass)
 	 * A programmatic value that identifies the type of when.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhen">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -143,7 +145,7 @@ gdata_gd_when_class_init (GDataGDWhenClass *klass)
 	 * "Professional Society", etc.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhen">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -240,7 +242,7 @@ static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
 	GDataGDWhenPrivate *priv = GDATA_GD_WHEN (parsable)->priv;
-	xmlChar *start_time, *end_time, *value_string;
+	xmlChar *start_time, *end_time;
 	GTimeVal start_time_timeval, end_time_timeval;
 	gboolean is_date = FALSE;
 
@@ -278,14 +280,10 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 		end_time_timeval.tv_sec = end_time_timeval.tv_usec = 0;
 	}
 
-	value_string = xmlGetProp (root_node, (xmlChar*) "valueString");
-
 	priv->start_time = start_time_timeval;
 	priv->end_time = end_time_timeval;
 	priv->is_date = is_date;
-	priv->value_string = g_strdup ((gchar*) value_string);
-
-	xmlFree (value_string);
+	priv->value_string = (gchar*) xmlGetProp (root_node, (xmlChar*) "valueString");
 
 	return TRUE;
 }
@@ -295,16 +293,16 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 {
 	GDataGDWhenPrivate *priv = GDATA_GD_WHEN (parsable)->priv;
 
-	if (xmlStrcmp (node->name, (xmlChar*) "reminder") == 0) {
+	if (gdata_parser_is_namespace (node, "http://schemas.google.com/g/2005") == TRUE &&
+	    xmlStrcmp (node->name, (xmlChar*) "reminder") == 0) {
 		/* gd:reminder */
 		GDataGDReminder *reminder = GDATA_GD_REMINDER (_gdata_parsable_new_from_xml_node (GDATA_TYPE_GD_REMINDER, doc, node, NULL, error));
 		if (reminder == NULL)
 			return FALSE;
 
 		priv->reminders = g_list_prepend (priv->reminders, reminder);
-	} else if (GDATA_PARSABLE_CLASS (gdata_gd_when_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_gd_when_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -374,7 +372,7 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
  * @is_date: %TRUE if @start_time and @end_time specify dates rather than times, %FALSE otherwise
  *
  * Creates a new #GDataGDWhen. More information is available in the <ulink type="http"
- * url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdWhen">GData specification</ulink>.
+ * url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWhen">GData specification</ulink>.
  *
  * Return value: a new #GDataGDWhen, or %NULL; unref with g_object_unref()
  *
@@ -393,20 +391,24 @@ gdata_gd_when_new (GTimeVal *start_time, GTimeVal *end_time, gboolean is_date)
  * @b: another #GDataGDWhen, or %NULL
  *
  * Compares the two times in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @start_time, @end_time and @is_date properties of the #GDataGDWhen<!-- -->s.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
 gint
 gdata_gd_when_compare (const GDataGDWhen *a, const GDataGDWhen *b)
 {
+	gint64 start_diff, end_diff;
+
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)
@@ -414,11 +416,14 @@ gdata_gd_when_compare (const GDataGDWhen *a, const GDataGDWhen *b)
 	if (a->priv->is_date != b->priv->is_date)
 		return CLAMP (b->priv->is_date - a->priv->is_date, -1, 1);
 
-	if (a->priv->start_time.tv_sec == b->priv->start_time.tv_sec && a->priv->start_time.tv_usec == b->priv->start_time.tv_usec)
-		return CLAMP ((b->priv->end_time.tv_sec * 1000 + b->priv->end_time.tv_usec) -
-			      (a->priv->end_time.tv_sec * 1000 + a->priv->end_time.tv_usec), -1, 1);
-	return CLAMP ((b->priv->start_time.tv_sec * 1000 + b->priv->start_time.tv_usec) -
-		      (a->priv->start_time.tv_sec * 1000 + a->priv->start_time.tv_usec), -1, 1);
+	start_diff = (b->priv->start_time.tv_sec - a->priv->start_time.tv_sec) * 1000000 +
+	             (b->priv->start_time.tv_usec - a->priv->start_time.tv_usec);
+	end_diff = (b->priv->end_time.tv_sec - a->priv->end_time.tv_sec) * 1000000 +
+	           (b->priv->end_time.tv_usec - a->priv->end_time.tv_usec);
+
+	if (start_diff == 0)
+		return CLAMP (end_diff, -1, 1);
+	return CLAMP (start_diff, -1, 1);
 }
 
 /**
@@ -464,7 +469,7 @@ gdata_gd_when_set_start_time (GDataGDWhen *self, GTimeVal *start_time)
  *
  * Gets the #GDataGDWhen:end-time property and returns it in @end_time.
  *
- * If the end time is unset, both fields of the #GTimeVal will be %0.
+ * If the end time is unset, both fields of the #GTimeVal will be <code class="literal">0</code>.
  *
  * Since: 0.4.0
  **/

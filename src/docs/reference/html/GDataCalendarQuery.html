@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataCalendarQuery</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch09.html" title="Google Calendar API">
 <link rel="prev" href="GDataCalendarFeed.html" title="GDataCalendarFeed">
 <link rel="next" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -52,7 +30,7 @@
                   <a href="#GDataCalendarQuery.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GDataCalendarQuery">
 <a name="GDataCalendarQuery"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -61,182 +39,188 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="GDataCalendarQuery.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GDataCalendarQuery.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/services/calendar/gdata-calendar-query.h&gt;
 
-                    <a href="GDataCalendarQuery.html#GDataCalendarQuery-struct">GDataCalendarQuery</a>;
-                    <a href="GDataCalendarQuery.html#GDataCalendarQueryClass">GDataCalendarQueryClass</a>;
-<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> * <a href="GDataCalendarQuery.html#gdata-calendar-query-new">gdata_calendar_query_new</a>           (const gchar *q);
-<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> * <a href="GDataCalendarQuery.html#gdata-calendar-query-new-with-limits">gdata_calendar_query_new_with_limits</a>
-                                                        (const gchar *q,
-                                                         GTimeVal *start_min,
-                                                         GTimeVal *start_max);
-gboolean            <a href="GDataCalendarQuery.html#gdata-calendar-query-get-future-events">gdata_calendar_query_get_future_events</a>
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-future-events">gdata_calendar_query_set_future_events</a>
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         gboolean future_events);
-gboolean            <a href="GDataCalendarQuery.html#gdata-calendar-query-get-single-events">gdata_calendar_query_get_single_events</a>
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-single-events">gdata_calendar_query_set_single_events</a>
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         gboolean single_events);
-const gchar *       <a href="GDataCalendarQuery.html#gdata-calendar-query-get-order-by">gdata_calendar_query_get_order_by</a>   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-order-by">gdata_calendar_query_set_order_by</a>   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         const gchar *order_by);
-const gchar *       <a href="GDataCalendarQuery.html#gdata-calendar-query-get-sort-order">gdata_calendar_query_get_sort_order</a> (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-sort-order">gdata_calendar_query_set_sort_order</a> (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         const gchar *sort_order);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-get-start-min">gdata_calendar_query_get_start_min</a>  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start_min);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-start-min">gdata_calendar_query_set_start_min</a>  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start_min);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-get-start-max">gdata_calendar_query_get_start_max</a>  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start_max);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-start-max">gdata_calendar_query_set_start_max</a>  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start_max);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-start">gdata_calendar_query_get_recurrence_expansion_start</a>
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-start">gdata_calendar_query_set_recurrence_expansion_start</a>
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-end">gdata_calendar_query_get_recurrence_expansion_end</a>
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *end);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-end">gdata_calendar_query_set_recurrence_expansion_end</a>
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *end);
-const gchar *       <a href="GDataCalendarQuery.html#gdata-calendar-query-get-timezone">gdata_calendar_query_get_timezone</a>   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);
-void                <a href="GDataCalendarQuery.html#gdata-calendar-query-set-timezone">gdata_calendar_query_set_timezone</a>   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         const gchar *_timezone);
+                    <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery-struct" title="GDataCalendarQuery">GDataCalendarQuery</a>;
+                    <a class="link" href="GDataCalendarQuery.html#GDataCalendarQueryClass" title="GDataCalendarQueryClass">GDataCalendarQueryClass</a>;
+<a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="returnvalue">GDataCalendarQuery</span></a> * <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-new" title="gdata_calendar_query_new ()">gdata_calendar_query_new</a>           (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>);
+<a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="returnvalue">GDataCalendarQuery</span></a> * <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-new-with-limits" title="gdata_calendar_query_new_with_limits ()">gdata_calendar_query_new_with_limits</a>
+                                                        (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_min</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_max</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-get-future-events" title="gdata_calendar_query_get_future_events ()">gdata_calendar_query_get_future_events</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-set-future-events" title="gdata_calendar_query_set_future_events ()">gdata_calendar_query_set_future_events</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> future_events</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-get-single-events" title="gdata_calendar_query_get_single_events ()">gdata_calendar_query_get_single_events</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-set-single-events" title="gdata_calendar_query_set_single_events ()">gdata_calendar_query_set_single_events</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> single_events</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-get-order-by" title="gdata_calendar_query_get_order_by ()">gdata_calendar_query_get_order_by</a>   (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-set-order-by" title="gdata_calendar_query_set_order_by ()">gdata_calendar_query_set_order_by</a>   (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *order_by</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-get-sort-order" title="gdata_calendar_query_get_sort_order ()">gdata_calendar_query_get_sort_order</a> (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-set-sort-order" title="gdata_calendar_query_set_sort_order ()">gdata_calendar_query_set_sort_order</a> (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *sort_order</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-get-start-min" title="gdata_calendar_query_get_start_min ()">gdata_calendar_query_get_start_min</a>  (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_min</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-set-start-min" title="gdata_calendar_query_set_start_min ()">gdata_calendar_query_set_start_min</a>  (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_min</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-get-start-max" title="gdata_calendar_query_get_start_max ()">gdata_calendar_query_get_start_max</a>  (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_max</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-set-start-max" title="gdata_calendar_query_set_start_max ()">gdata_calendar_query_set_start_max</a>  (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_max</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-start" title="gdata_calendar_query_get_recurrence_expansion_start ()">gdata_calendar_query_get_recurrence_expansion_start</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-start" title="gdata_calendar_query_set_recurrence_expansion_start ()">gdata_calendar_query_set_recurrence_expansion_start</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-end" title="gdata_calendar_query_get_recurrence_expansion_end ()">gdata_calendar_query_get_recurrence_expansion_end</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *end</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-end" title="gdata_calendar_query_set_recurrence_expansion_end ()">gdata_calendar_query_set_recurrence_expansion_end</a>
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *end</code></em>);
+const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-get-timezone" title="gdata_calendar_query_get_timezone ()">gdata_calendar_query_get_timezone</a>   (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="GDataCalendarQuery.html#gdata-calendar-query-set-timezone" title="gdata_calendar_query_set_timezone ()">gdata_calendar_query_set_timezone</a>   (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *_timezone</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GDataCalendarQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
-   +----<a href="GDataQuery.html">GDataQuery</a>
+  <a href="/opt/gnome2/build/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="GDataQuery.html" title="GDataQuery">GDataQuery</a>
          +----GDataCalendarQuery
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Properties">
 <a name="GDataCalendarQuery.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--future-events">future-events</a>"            gboolean              : Read / Write
-  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--order-by">order-by</a>"                 gchar*                : Read / Write
-  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end">recurrence-expansion-end</a>" GTimeVal*             : Read / Write
-  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start">recurrence-expansion-start</a>" GTimeVal*             : Read / Write
-  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--single-events">single-events</a>"            gboolean              : Read / Write
-  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--sort-order">sort-order</a>"               gchar*                : Read / Write
-  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max">start-max</a>"                GTimeVal*             : Read / Write
-  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min">start-min</a>"                GTimeVal*             : Read / Write
-  "<a href="GDataCalendarQuery.html#GDataCalendarQuery--timezone">timezone</a>"                 gchar*                : Read / Write
+  "<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--future-events" title='The "future-events" property'>future-events</a>"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--order-by" title='The "order-by" property'>order-by</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end" title='The "recurrence-expansion-end" property'>recurrence-expansion-end</a>" <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write
+  "<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start" title='The "recurrence-expansion-start" property'>recurrence-expansion-start</a>" <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write
+  "<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--single-events" title='The "single-events" property'>single-events</a>"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--sort-order" title='The "sort-order" property'>sort-order</a>"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-max" title='The "start-max" property'>start-max</a>"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write
+  "<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-min" title='The "start-min" property'>start-min</a>"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write
+  "<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--timezone" title='The "timezone" property'>timezone</a>"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GDataCalendarQuery.description"></a><h2>Description</h2>
 <p>
-<a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> represents a collection of query parameters specific to the Google Calendar service, which go above and beyond
-those catered for by <a href="GDataQuery.html"><span class="type">GDataQuery</span></a>.
+<a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> represents a collection of query parameters specific to the Google Calendar service, which go above and beyond
+those catered for by <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a>.
 </p>
 <p>
-For more information on the custom GData query parameters supported by <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>, see the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html#Parameters" target="_top">online documentation</a>.</p>
+For more information on the custom GData query parameters supported by <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>, see the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html#Parameters" target="_top">online documentation</a>.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GDataCalendarQuery.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataCalendarQuery">
 <a name="GDataCalendarQuery-struct"></a><h3>GDataCalendarQuery</h3>
 <pre class="programlisting">typedef struct _GDataCalendarQuery GDataCalendarQuery;</pre>
 <p>
-All the fields in the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> structure are private and should never be accessed directly.
+</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataCalendarQueryClass">
 <a name="GDataCalendarQueryClass"></a><h3>GDataCalendarQueryClass</h3>
 <pre class="programlisting">typedef struct {
 } GDataCalendarQueryClass;
 </pre>
 <p>
-All the fields in the <a href="GDataCalendarQuery.html#GDataCalendarQueryClass"><span class="type">GDataCalendarQueryClass</span></a> structure are private and should never be accessed directly.</p>
+All the fields in the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQueryClass" title="GDataCalendarQueryClass"><span class="type">GDataCalendarQueryClass</span></a> structure are private and should never be accessed directly.
+</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_new ()">
 <a name="gdata-calendar-query-new"></a><h3>gdata_calendar_query_new ()</h3>
-<pre class="programlisting"><a href="GDataCalendarQuery.html">GDataCalendarQuery</a> * gdata_calendar_query_new           (const gchar *q);</pre>
+<pre class="programlisting"><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="returnvalue">GDataCalendarQuery</span></a> * gdata_calendar_query_new           (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>);</pre>
 <p>
-Creates a new <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> with its <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>.</p>
+Creates a new <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> with its <a class="link" href="GDataQuery.html#GDataQuery--q" title='The "q" property'><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
-<td> a query string
+<td>a query string
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td> a new <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_new_with_limits ()">
 <a name="gdata-calendar-query-new-with-limits"></a><h3>gdata_calendar_query_new_with_limits ()</h3>
-<pre class="programlisting"><a href="GDataCalendarQuery.html">GDataCalendarQuery</a> * gdata_calendar_query_new_with_limits
-                                                        (const gchar *q,
-                                                         GTimeVal *start_min,
-                                                         GTimeVal *start_max);</pre>
+<pre class="programlisting"><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="returnvalue">GDataCalendarQuery</span></a> * gdata_calendar_query_new_with_limits
+                                                        (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_min</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_max</code></em>);</pre>
 <p>
-Creates a new <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> with its <a href="GDataQuery.html#GDataQuery--q"><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>, and the time limits <em class="parameter"><code>start_min</code></em> and <em class="parameter"><code>start_max</code></em>
-applied.</p>
+Creates a new <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> with its <a class="link" href="GDataQuery.html#GDataQuery--q" title='The "q" property'><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>, and the time limits <em class="parameter"><code>start_min</code></em> and <em class="parameter"><code>start_max</code></em>
+applied.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
-<td> a query string
+<td>a query string
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_min</code></em> :</span></p></td>
-<td> a starting time for the event period
+<td>a starting time for the event period
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_max</code></em> :</span></p></td>
-<td> an ending time for the event period
+<td>an ending time for the event period
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td> a new <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_get_future_events ()">
 <a name="gdata-calendar-query-get-future-events"></a><h3>gdata_calendar_query_get_future_events ()</h3>
-<pre class="programlisting">gboolean            gdata_calendar_query_get_future_events
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_calendar_query_get_future_events
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--future-events"><span class="type">"future-events"</span></a> property.</p>
+Gets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--future-events" title='The "future-events" property'><span class="type">"future-events"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
@@ -248,42 +232,45 @@ Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--future-events"><sp
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_set_future_events ()">
 <a name="gdata-calendar-query-set-future-events"></a><h3>gdata_calendar_query_set_future_events ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_set_future_events
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         gboolean future_events);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_set_future_events
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> future_events</code></em>);</pre>
 <p>
-Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--future-events"><span class="type">"future-events"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to <em class="parameter"><code>future_events</code></em>.</p>
+Sets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--future-events" title='The "future-events" property'><span class="type">"future-events"</span></a> property of the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> to <em class="parameter"><code>future_events</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>future_events</code></em> :</span></p></td>
-<td> <code class="literal">TRUE</code> to unconditionally show future events, <code class="literal">FALSE</code> otherwise
+<td>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> to unconditionally show future events, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_get_single_events ()">
 <a name="gdata-calendar-query-get-single-events"></a><h3>gdata_calendar_query_get_single_events ()</h3>
-<pre class="programlisting">gboolean            gdata_calendar_query_get_single_events
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_calendar_query_get_single_events
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--single-events"><span class="type">"single-events"</span></a> property.</p>
+Gets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--single-events" title='The "single-events" property'><span class="type">"single-events"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
@@ -295,350 +282,365 @@ Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--single-events"><sp
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_set_single_events ()">
 <a name="gdata-calendar-query-set-single-events"></a><h3>gdata_calendar_query_set_single_events ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_set_single_events
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         gboolean single_events);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_set_single_events
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> single_events</code></em>);</pre>
 <p>
-Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--single-events"><span class="type">"single-events"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to <em class="parameter"><code>single_events</code></em>.</p>
+Sets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--single-events" title='The "single-events" property'><span class="type">"single-events"</span></a> property of the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> to <em class="parameter"><code>single_events</code></em>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>single_events</code></em> :</span></p></td>
-<td> <code class="literal">TRUE</code> to show recurring events as single events, <code class="literal">FALSE</code> otherwise
+<td>
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> to show recurring events as single events, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_get_order_by ()">
 <a name="gdata-calendar-query-get-order-by"></a><h3>gdata_calendar_query_get_order_by ()</h3>
-<pre class="programlisting">const gchar *       gdata_calendar_query_get_order_by   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_calendar_query_get_order_by   (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--order-by"><span class="type">"order-by"</span></a> property.</p>
+Gets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--order-by" title='The "order-by" property'><span class="type">"order-by"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the order by property, or <code class="literal">NULL</code> if it is unset
+<td> the order by property, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if it is unset
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_set_order_by ()">
 <a name="gdata-calendar-query-set-order-by"></a><h3>gdata_calendar_query_set_order_by ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_set_order_by   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         const gchar *order_by);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_set_order_by   (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *order_by</code></em>);</pre>
 <p>
-Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--order-by"><span class="type">"order-by"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to the new order by string, <em class="parameter"><code>order_by</code></em>.
+Sets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--order-by" title='The "order-by" property'><span class="type">"order-by"</span></a> property of the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> to the new order by string, <em class="parameter"><code>order_by</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>order_by</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>order_by</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>order_by</code></em> :</span></p></td>
-<td> a new order by string, or <code class="literal">NULL</code>
+<td>a new order by string, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_get_sort_order ()">
 <a name="gdata-calendar-query-get-sort-order"></a><h3>gdata_calendar_query_get_sort_order ()</h3>
-<pre class="programlisting">const gchar *       gdata_calendar_query_get_sort_order (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_calendar_query_get_sort_order (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--sort-order"><span class="type">"sort-order"</span></a> property.</p>
+Gets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--sort-order" title='The "sort-order" property'><span class="type">"sort-order"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the sort order property, or <code class="literal">NULL</code> if it is unset
+<td> the sort order property, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if it is unset
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_set_sort_order ()">
 <a name="gdata-calendar-query-set-sort-order"></a><h3>gdata_calendar_query_set_sort_order ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_set_sort_order (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         const gchar *sort_order);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_set_sort_order (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *sort_order</code></em>);</pre>
 <p>
-Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--sort-order"><span class="type">"sort-order"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to the new sort order string, <em class="parameter"><code>sort_order</code></em>.
+Sets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--sort-order" title='The "sort-order" property'><span class="type">"sort-order"</span></a> property of the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> to the new sort order string, <em class="parameter"><code>sort_order</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>sort_order</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>sort_order</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>sort_order</code></em> :</span></p></td>
-<td> a new sort order string, or <code class="literal">NULL</code>
+<td>a new sort order string, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_get_start_min ()">
 <a name="gdata-calendar-query-get-start-min"></a><h3>gdata_calendar_query_get_start_min ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_get_start_min  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start_min);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_get_start_min  (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_min</code></em>);</pre>
 <p>
-Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> property and puts it
-in <em class="parameter"><code>start_min</code></em>. If the property is unset, both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-min" title='The "start-min" property'><span class="type">"start-min"</span></a> property and puts it
+in <em class="parameter"><code>start_min</code></em>. If the property is unset, both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_min</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_set_start_min ()">
 <a name="gdata-calendar-query-set-start-min"></a><h3>gdata_calendar_query_set_start_min ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_set_start_min  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start_min);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_set_start_min  (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_min</code></em>);</pre>
 <p>
-Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+Sets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-min" title='The "start-min" property'><span class="type">"start-min"</span></a> property of the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 to the new time/date, <em class="parameter"><code>start_min</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>start_min</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>start_min</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_min</code></em> :</span></p></td>
-<td> a new minimum start time
+<td>a new minimum start time
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_get_start_max ()">
 <a name="gdata-calendar-query-get-start-max"></a><h3>gdata_calendar_query_get_start_max ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_get_start_max  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start_max);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_get_start_max  (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_max</code></em>);</pre>
 <p>
-Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> property and puts it
-in <em class="parameter"><code>start_max</code></em>. If the property is unset, both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-max" title='The "start-max" property'><span class="type">"start-max"</span></a> property and puts it
+in <em class="parameter"><code>start_max</code></em>. If the property is unset, both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_max</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_set_start_max ()">
 <a name="gdata-calendar-query-set-start-max"></a><h3>gdata_calendar_query_set_start_max ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_set_start_max  (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start_max);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_set_start_max  (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start_max</code></em>);</pre>
 <p>
-Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+Sets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-max" title='The "start-max" property'><span class="type">"start-max"</span></a> property of the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 to the new time/date, <em class="parameter"><code>start_max</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>start_max</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>start_max</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_max</code></em> :</span></p></td>
-<td> a new maximum start time
+<td>a new maximum start time
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_get_recurrence_expansion_start ()">
 <a name="gdata-calendar-query-get-recurrence-expansion-start"></a><h3>gdata_calendar_query_get_recurrence_expansion_start ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_get_recurrence_expansion_start
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_get_recurrence_expansion_start
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start</code></em>);</pre>
 <p>
-Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start"><span class="type">"recurrence-expansion-start"</span></a> property and puts it
-in <em class="parameter"><code>start</code></em>. If the property is unset, both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start" title='The "recurrence-expansion-start" property'><span class="type">"recurrence-expansion-start"</span></a> property and puts it
+in <em class="parameter"><code>start</code></em>. If the property is unset, both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_set_recurrence_expansion_start ()">
 <a name="gdata-calendar-query-set-recurrence-expansion-start"></a><h3>gdata_calendar_query_set_recurrence_expansion_start ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_set_recurrence_expansion_start
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *start);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_set_recurrence_expansion_start
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *start</code></em>);</pre>
 <p>
-Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start"><span class="type">"recurrence-expansion-start"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+Sets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start" title='The "recurrence-expansion-start" property'><span class="type">"recurrence-expansion-start"</span></a> property of the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 to the new time/date, <em class="parameter"><code>start</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>start</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>start</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start</code></em> :</span></p></td>
-<td> a new start time
+<td>a new start time
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_get_recurrence_expansion_end ()">
 <a name="gdata-calendar-query-get-recurrence-expansion-end"></a><h3>gdata_calendar_query_get_recurrence_expansion_end ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_get_recurrence_expansion_end
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *end);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_get_recurrence_expansion_end
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *end</code></em>);</pre>
 <p>
-Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end"><span class="type">"recurrence-expansion-end"</span></a> property and puts it
-in <em class="parameter"><code>end</code></em>. If the property is unset, both fields in the <span class="type">GTimeVal</span> will be set to <code class="literal">0</code>.</p>
+Gets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end" title='The "recurrence-expansion-end" property'><span class="type">"recurrence-expansion-end"</span></a> property and puts it
+in <em class="parameter"><code>end</code></em>. If the property is unset, both fields in the <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> will be set to <code class="code">0</code>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>end</code></em> :</span></p></td>
-<td> a <span class="type">GTimeVal</span>
+<td>a <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_set_recurrence_expansion_end ()">
 <a name="gdata-calendar-query-set-recurrence-expansion-end"></a><h3>gdata_calendar_query_set_recurrence_expansion_end ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_set_recurrence_expansion_end
-                                                        (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         GTimeVal *end);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_set_recurrence_expansion_end
+                                                        (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a> *end</code></em>);</pre>
 <p>
-Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end"><span class="type">"recurrence-expansion-end"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+Sets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end" title='The "recurrence-expansion-end" property'><span class="type">"recurrence-expansion-end"</span></a> property of the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 to the new time/date, <em class="parameter"><code>end</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>end</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>end</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>end</code></em> :</span></p></td>
-<td> a new end time
+<td>a new end time
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_get_timezone ()">
 <a name="gdata-calendar-query-get-timezone"></a><h3>gdata_calendar_query_get_timezone ()</h3>
-<pre class="programlisting">const gchar *       gdata_calendar_query_get_timezone   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self);</pre>
+<pre class="programlisting">const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_calendar_query_get_timezone   (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>);</pre>
 <p>
-Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--timezone"><span class="type">"timezone"</span></a> property.</p>
+Gets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--timezone" title='The "timezone" property'><span class="type">"timezone"</span></a> property.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the timezone property, or <code class="literal">NULL</code> if it is unset
+<td> the timezone property, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if it is unset
 
 </td>
 </tr>
@@ -647,26 +649,27 @@ Gets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--timezone"><span cl
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_calendar_query_set_timezone ()">
 <a name="gdata-calendar-query-set-timezone"></a><h3>gdata_calendar_query_set_timezone ()</h3>
-<pre class="programlisting">void                gdata_calendar_query_set_timezone   (<a href="GDataCalendarQuery.html">GDataCalendarQuery</a> *self,
-                                                         const gchar *_timezone);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdata_calendar_query_set_timezone   (<em class="parameter"><code><a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *_timezone</code></em>);</pre>
 <p>
-Sets the <a href="GDataCalendarQuery.html#GDataCalendarQuery--timezone"><span class="type">"timezone"</span></a> property of the <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a> to the new timezone string, <em class="parameter"><code>timezone</code></em>.
+Sets the <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--timezone" title='The "timezone" property'><span class="type">"timezone"</span></a> property of the <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a> to the new timezone string, <em class="parameter"><code>timezone</code></em>.
 </p>
 <p>
-Set <em class="parameter"><code>timezone</code></em> to <code class="literal">NULL</code> to unset the property in the query URI.</p>
+Set <em class="parameter"><code>timezone</code></em> to <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td> a <a href="GDataCalendarQuery.html"><span class="type">GDataCalendarQuery</span></a>
+<td>a <a class="link" href="GDataCalendarQuery.html" title="GDataCalendarQuery"><span class="type">GDataCalendarQuery</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>_timezone</code></em> :</span></p></td>
-<td> a new timezone string, or <code class="literal">NULL</code>
+<td>a new timezone string, or <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 </td>
 </tr>
 </tbody>
@@ -674,91 +677,100 @@ Set <em class="parameter"><code>timezone</code></em> to <code class="literal">NU
 <p class="since">Since 0.2.0</p>
 </div>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Property Details">
 <a name="GDataCalendarQuery.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "future-events" property'>
 <a name="GDataCalendarQuery--future-events"></a><h3>The <code class="literal">"future-events"</code> property</h3>
-<pre class="programlisting">  "future-events"            gboolean              : Read / Write</pre>
+<pre class="programlisting">  "future-events"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
 <p>
 A shortcut to request all events that are scheduled for future times. Overrides the
-<a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start"><span class="type">"recurrence-expansion-start"</span></a>, <a href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end"><span class="type">"recurrence-expansion-end"</span></a>,
-<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> and <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> properties.</p>
+<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-start" title='The "recurrence-expansion-start" property'><span class="type">"recurrence-expansion-start"</span></a>, <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--recurrence-expansion-end" title='The "recurrence-expansion-end" property'><span class="type">"recurrence-expansion-end"</span></a>,
+<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-min" title='The "start-min" property'><span class="type">"start-min"</span></a> and <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-max" title='The "start-max" property'><span class="type">"start-max"</span></a> properties.
+</p>
 <p>Default value: FALSE</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "order-by" property'>
 <a name="GDataCalendarQuery--order-by"></a><h3>The <code class="literal">"order-by"</code> property</h3>
-<pre class="programlisting">  "order-by"                 gchar*                : Read / Write</pre>
+<pre class="programlisting">  "order-by"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 Specifies order of entries in a feed. Supported values are <code class="literal">lastmodified</code> and
-<code class="literal">starttime</code>.</p>
+<code class="literal">starttime</code>.
+</p>
 <p>Default value: NULL</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "recurrence-expansion-end" property'>
 <a name="GDataCalendarQuery--recurrence-expansion-end"></a><h3>The <code class="literal">"recurrence-expansion-end"</code> property</h3>
-<pre class="programlisting">  "recurrence-expansion-end" GTimeVal*             : Read / Write</pre>
+<pre class="programlisting">  "recurrence-expansion-end" <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write</pre>
 <p>
-Specifies end of time period for which to expand recurring events, exclusive.</p>
+Specifies end of time period for which to expand recurring events, exclusive.
+</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "recurrence-expansion-start" property'>
 <a name="GDataCalendarQuery--recurrence-expansion-start"></a><h3>The <code class="literal">"recurrence-expansion-start"</code> property</h3>
-<pre class="programlisting">  "recurrence-expansion-start" GTimeVal*             : Read / Write</pre>
+<pre class="programlisting">  "recurrence-expansion-start" <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write</pre>
 <p>
-Specifies beginning of time period for which to expand recurring events, inclusive.</p>
+Specifies beginning of time period for which to expand recurring events, inclusive.
+</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "single-events" property'>
 <a name="GDataCalendarQuery--single-events"></a><h3>The <code class="literal">"single-events"</code> property</h3>
-<pre class="programlisting">  "single-events"            gboolean              : Read / Write</pre>
+<pre class="programlisting">  "single-events"            <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
 <p>
-Indicates whether recurring events should be expanded or represented as a single event.</p>
+Indicates whether recurring events should be expanded or represented as a single event.
+</p>
 <p>Default value: FALSE</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "sort-order" property'>
 <a name="GDataCalendarQuery--sort-order"></a><h3>The <code class="literal">"sort-order"</code> property</h3>
-<pre class="programlisting">  "sort-order"               gchar*                : Read / Write</pre>
+<pre class="programlisting">  "sort-order"               <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
 Specifies direction of sorting. Supported values are <code class="literal">ascending</code> and
-<code class="literal">descending</code>.</p>
+<code class="literal">descending</code>.
+</p>
 <p>Default value: NULL</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "start-max" property'>
 <a name="GDataCalendarQuery--start-max"></a><h3>The <code class="literal">"start-max"</code> property</h3>
-<pre class="programlisting">  "start-max"                GTimeVal*             : Read / Write</pre>
+<pre class="programlisting">  "start-max"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write</pre>
 <p>
-Together with <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> creates a timespan such that only events that are within the timespan are returned
+Together with <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-min" title='The "start-min" property'><span class="type">"start-min"</span></a> creates a timespan such that only events that are within the timespan are returned
 </p>
 <p>
-<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> is inclusive, while <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> is exclusive. Events that overlap the range are
+<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-min" title='The "start-min" property'><span class="type">"start-min"</span></a> is inclusive, while <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-max" title='The "start-max" property'><span class="type">"start-max"</span></a> is exclusive. Events that overlap the range are
 included.
 </p>
 <p>
-If not specified, the default <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> is <code class="literal">2031-01-01</code>.</p>
+If not specified, the default <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-max" title='The "start-max" property'><span class="type">"start-max"</span></a> is <code class="literal">2031-01-01</code>.
+</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "start-min" property'>
 <a name="GDataCalendarQuery--start-min"></a><h3>The <code class="literal">"start-min"</code> property</h3>
-<pre class="programlisting">  "start-min"                GTimeVal*             : Read / Write</pre>
+<pre class="programlisting">  "start-min"                <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"><span class="type">GTimeVal</span></a>*             : Read / Write</pre>
 <p>
-Together with <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> creates a timespan such that only events that are within the timespan are returned.
+Together with <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-max" title='The "start-max" property'><span class="type">"start-max"</span></a> creates a timespan such that only events that are within the timespan are returned.
 </p>
 <p>
-<a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> is inclusive, while <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-max"><span class="type">"start-max"</span></a> is exclusive. Events that overlap the range are
+<a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-min" title='The "start-min" property'><span class="type">"start-min"</span></a> is inclusive, while <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-max" title='The "start-max" property'><span class="type">"start-max"</span></a> is exclusive. Events that overlap the range are
 included.
 </p>
 <p>
-If not specified, the default <a href="GDataCalendarQuery.html#GDataCalendarQuery--start-min"><span class="type">"start-min"</span></a> is <code class="literal">1970-01-01</code>.</p>
+If not specified, the default <a class="link" href="GDataCalendarQuery.html#GDataCalendarQuery--start-min" title='The "start-min" property'><span class="type">"start-min"</span></a> is <code class="literal">1970-01-01</code>.
+</p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title='The "timezone" property'>
 <a name="GDataCalendarQuery--timezone"></a><h3>The <code class="literal">"timezone"</code> property</h3>
-<pre class="programlisting">  "timezone"                 gchar*                : Read / Write</pre>
+<pre class="programlisting">  "timezone"                 <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
 <p>
-The current timezone. If not specified, times are returned in UTC.</p>
+The current timezone. If not specified, times are returned in UTC.
+</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.2.0</p>
 </div>
@@ -766,6 +778,6 @@ The current timezone. If not specified, times are returned in UTC.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>

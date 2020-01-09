@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,9 @@
  * @include: gdata/gd/gdata-gd-phone-number.h
  *
  * #GDataGDPhoneNumber represents a "phoneNumber" element from the
- * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber">GData specification</ulink>.
+ * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdPhoneNumber">GData specification</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -89,7 +91,7 @@ gdata_gd_phone_number_class_init (GDataGDPhoneNumberClass *klass)
 	 * Human-readable phone number; may be in any telephone number format.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdPhoneNumber">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -105,7 +107,7 @@ gdata_gd_phone_number_class_init (GDataGDPhoneNumberClass *klass)
 	 * An optional "tel URI" used to represent the number in a formal way, useful for programmatic access, such as a VoIP/PSTN bridge.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdPhoneNumber">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -121,7 +123,7 @@ gdata_gd_phone_number_class_init (GDataGDPhoneNumberClass *klass)
 	 * A programmatic value that identifies the type of phone number.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdPhoneNumber">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -137,7 +139,7 @@ gdata_gd_phone_number_class_init (GDataGDPhoneNumberClass *klass)
 	 * A simple string value used to name this phone number. It allows UIs to display a label such as "Mobile", "Home", "Work", etc.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdPhoneNumber">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -153,7 +155,7 @@ gdata_gd_phone_number_class_init (GDataGDPhoneNumberClass *klass)
 	 * Indicates which phone number out of a group is primary.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdPhoneNumber">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -243,7 +245,7 @@ gdata_gd_phone_number_set_property (GObject *object, guint property_id, const GV
 static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
-	xmlChar *number, *uri, *rel, *label, *primary;
+	xmlChar *number, *rel, *primary;
 	gboolean primary_bool;
 	GDataGDPhoneNumberPrivate *priv = GDATA_GD_PHONE_NUMBER (parsable)->priv;
 
@@ -275,20 +277,13 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 	}
 	xmlFree (primary);
 
-	/* Other properties */
-	label = xmlGetProp (root_node, (xmlChar*) "label");
-	uri = xmlGetProp (root_node, (xmlChar*) "uri");
-
 	gdata_gd_phone_number_set_number (GDATA_GD_PHONE_NUMBER (parsable), (gchar*) number);
-	priv->uri = g_strdup ((gchar*) uri);
-	priv->relation_type = g_strdup ((gchar*) rel);
-	priv->label = g_strdup ((gchar*) label);
+	priv->uri = (gchar*) xmlGetProp (root_node, (xmlChar*) "uri");
+	priv->relation_type = (gchar*) rel;
+	priv->label = (gchar*) xmlGetProp (root_node, (xmlChar*) "label");
 	priv->is_primary = primary_bool;
 
 	xmlFree (number);
-	xmlFree (uri);
-	xmlFree (rel);
-	xmlFree (label);
 
 	return TRUE;
 }
@@ -348,7 +343,7 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
  * @is_primary: %TRUE if this phone number is its owner's primary number, %FALSE otherwise
  *
  * Creates a new #GDataGDPhoneNumber. More information is available in the <ulink type="http"
- * url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber">GData specification</ulink>.
+ * url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdPhoneNumber">GData specification</ulink>.
  *
  * Return value: a new #GDataGDPhoneNumber, or %NULL; unref with g_object_unref()
  *
@@ -368,11 +363,13 @@ gdata_gd_phone_number_new (const gchar *number, const gchar *relation_type, cons
  * @b: another #GDataGDPhoneNumber, or %NULL
  *
  * Compares the two phone numbers in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @number property of the #GDataGDPhoneNumber<!-- -->s.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
@@ -381,7 +378,7 @@ gdata_gd_phone_number_compare (const GDataGDPhoneNumber *a, const GDataGDPhoneNu
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)
@@ -418,23 +415,13 @@ gdata_gd_phone_number_get_number (GDataGDPhoneNumber *self)
 void
 gdata_gd_phone_number_set_number (GDataGDPhoneNumber *self, const gchar *number)
 {
-	gint len;
-
 	g_return_if_fail (GDATA_IS_GD_PHONE_NUMBER (self));
 	g_return_if_fail (number != NULL && *number != '\0');
 
-	g_free (self->priv->number);
-
 	/* Trim leading and trailing whitespace from the number.
 	 * See here: http://code.google.com/apis/gdata/docs/1.0/elements.html#gdPhoneNumber */
-	while (*number != '\0' && g_ascii_isspace (*number))
-		number++;
-
-	len = strlen (number);
-	while (len > 0 && g_ascii_isspace (number[len - 1]))
-		len--;
-
-	self->priv->number = g_strndup (number, len);
+	g_free (self->priv->number);
+	self->priv->number = gdata_parser_utf8_trim_whitespace (number);
 	g_object_notify (G_OBJECT (self), "number");
 }
 

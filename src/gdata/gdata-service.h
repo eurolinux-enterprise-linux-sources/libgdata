@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008-2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,47 +23,62 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <libsoup/soup.h>
-#include <libxml/parser.h>
 
 #include <gdata/gdata-feed.h>
 
 G_BEGIN_DECLS
 
 /**
+ * GDataOperationType:
+ * @GDATA_OPERATION_QUERY: a query
+ * @GDATA_OPERATION_INSERTION: an insertion of a #GDataEntry
+ * @GDATA_OPERATION_UPDATE: an update of a #GDataEntry
+ * @GDATA_OPERATION_DELETION: a deletion of a #GDataEntry
+ * @GDATA_OPERATION_DOWNLOAD: a download of a file
+ * @GDATA_OPERATION_UPLOAD: an upload of a file
+ * @GDATA_OPERATION_AUTHENTICATION: authentication with the service
+ *
+ * Representations of the different operations performed by the library.
+ *
+ * Since: 0.6.0
+ **/
+typedef enum {
+	GDATA_OPERATION_QUERY = 1,
+	GDATA_OPERATION_INSERTION,
+	GDATA_OPERATION_UPDATE,
+	GDATA_OPERATION_DELETION,
+	GDATA_OPERATION_DOWNLOAD,
+	GDATA_OPERATION_UPLOAD,
+	GDATA_OPERATION_AUTHENTICATION
+} GDataOperationType;
+
+/**
  * GDataServiceError:
- * @GDATA_SERVICE_ERROR_UNAVAILABLE: The service is unavailable due to maintainence or other reasons
+ * @GDATA_SERVICE_ERROR_UNAVAILABLE: The service is unavailable due to maintainence or other reasons (e.g. network errors at the server end)
  * @GDATA_SERVICE_ERROR_PROTOCOL_ERROR: The client or server unexpectedly strayed from the protocol (fatal error)
- * @GDATA_SERVICE_ERROR_WITH_QUERY: Generic error when querying for entries
  * @GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED: An entry has already been inserted, and cannot be re-inserted
- * @GDATA_SERVICE_ERROR_WITH_INSERTION: Generic error when inserting an entry
  * @GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED: The user attempted to do something which required authentication, and they weren't authenticated
- * @GDATA_SERVICE_ERROR_WITH_UPDATE: Generic error when updating an entry
- * @GDATA_SERVICE_ERROR_WITH_DELETION: Generic error when deleting an entry
  * @GDATA_SERVICE_ERROR_NOT_FOUND: A requested resource (feed or entry) was not found on the server
  * @GDATA_SERVICE_ERROR_CONFLICT: There was a conflict when updating an entry on the server; the server-side copy was modified inbetween downloading
  * and uploading the modified entry
  * @GDATA_SERVICE_ERROR_FORBIDDEN: Generic error for a forbidden action (not due to having insufficient permissions)
- * @GDATA_SERVICE_ERROR_WITH_DOWNLOAD: Generic error when downloading a file (rather than querying for an entry)
- * @GDATA_SERVICE_ERROR_WITH_UPLOAD: Generic error when uploading a file (either inserting or updating an entry)
  * @GDATA_SERVICE_ERROR_BAD_QUERY_PARAMETER: A given query parameter was invalid for the query type
+ * @GDATA_SERVICE_ERROR_NETWORK_ERROR: The service is unavailable due to local network errors (e.g. no Internet connection)
+ * @GDATA_SERVICE_ERROR_PROXY_ERROR: The service is unavailable due to proxy network errors (e.g. proxy unreachable)
  *
  * Error codes for #GDataService operations.
  **/
 typedef enum {
 	GDATA_SERVICE_ERROR_UNAVAILABLE = 1,
 	GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
-	GDATA_SERVICE_ERROR_WITH_QUERY,
 	GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED,
-	GDATA_SERVICE_ERROR_WITH_INSERTION,
 	GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED,
-	GDATA_SERVICE_ERROR_WITH_UPDATE,
-	GDATA_SERVICE_ERROR_WITH_DELETION,
 	GDATA_SERVICE_ERROR_NOT_FOUND,
 	GDATA_SERVICE_ERROR_CONFLICT,
 	GDATA_SERVICE_ERROR_FORBIDDEN,
-	GDATA_SERVICE_ERROR_WITH_DOWNLOAD,
-	GDATA_SERVICE_ERROR_WITH_UPLOAD,
-	GDATA_SERVICE_ERROR_BAD_QUERY_PARAMETER
+	GDATA_SERVICE_ERROR_BAD_QUERY_PARAMETER,
+	GDATA_SERVICE_ERROR_NETWORK_ERROR,
+	GDATA_SERVICE_ERROR_PROXY_ERROR
 } GDataServiceError;
 
 /**
@@ -73,14 +88,15 @@ typedef enum {
  * directly to resolve the issue before logging in using a non-Google application.
  * @GDATA_AUTHENTICATION_ERROR_TERMS_NOT_AGREED: The user has not agreed to terms. The user will need to access their Google account directly to
  * resolve the issue before logging in using a non-Google application.
- * @GDATA_AUTHENTICATION_ERROR_CAPTCHA_REQUIRED: A CAPTCHA is required. (A response with this error code will also contain an image URL and a
+ * @GDATA_AUTHENTICATION_ERROR_CAPTCHA_REQUIRED: A CAPTCHA is required. (A response with this error code will also contain an image URI and a
  * CAPTCHA token.)
  * @GDATA_AUTHENTICATION_ERROR_ACCOUNT_DELETED: The user account has been deleted.
  * @GDATA_AUTHENTICATION_ERROR_ACCOUNT_DISABLED: The user account has been disabled.
  * @GDATA_AUTHENTICATION_ERROR_SERVICE_DISABLED: The user's access to the specified service has been disabled. (The user account may still be valid.)
  *
- * Error codes for #GDataDataService authentication operations. See http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html#Errors for
- * the official reference.
+ * Error codes for #GDataService authentication operations. See the
+ * <ulink type="http" url="http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html#Errors">Google accounts documentation</ulink> for
+ * more information.
  **/
 typedef enum {
 	GDATA_AUTHENTICATION_ERROR_BAD_AUTHENTICATION = 1,
@@ -134,7 +150,7 @@ typedef struct {
  * @parent: the parent class
  * @service_name: the name of the service (for subclasses) as given in the service's GData API documentation
  * @authentication_uri: the authentication URI (for subclasses) if different from the Google ClientLogin default
- * @api_version: the version of the GData API used by the service (typically %2)
+ * @api_version: the version of the GData API used by the service (typically <code class="literal">2</code>)
  * @feed_type: the #GType of the feed class (subclass of #GDataFeed) to use for query results from this service
  * @parse_authentication_response: a function to parse the response from the online service to an authentication request as
  * issued by gdata_service_authenticate(). It should return %TRUE if authentication was successful, and %FALSE if there was
@@ -156,8 +172,8 @@ typedef struct {
 
 	gboolean (*parse_authentication_response) (GDataService *self, guint status, const gchar *response_body, gint length, GError **error);
 	void (*append_query_headers) (GDataService *self, SoupMessage *message);
-	void (*parse_error_response) (GDataService *self, GDataServiceError error_type, guint status, const gchar *reason_phrase,
-				      const gchar *response_body, gint length, GError **error);
+	void (*parse_error_response) (GDataService *self, GDataOperationType operation_type, guint status, const gchar *reason_phrase,
+	                              const gchar *response_body, gint length, GError **error);
 } GDataServiceClass;
 
 GType gdata_service_get_type (void) G_GNUC_CONST;
@@ -166,34 +182,34 @@ GQuark gdata_authentication_error_quark (void) G_GNUC_CONST;
 
 gboolean gdata_service_authenticate (GDataService *self, const gchar *username, const gchar *password, GCancellable *cancellable, GError **error);
 void gdata_service_authenticate_async (GDataService *self, const gchar *username, const gchar *password,
-				       GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
+                                       GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
 gboolean gdata_service_authenticate_finish (GDataService *self, GAsyncResult *async_result, GError **error);
 
 #include <gdata/gdata-query.h>
 
 GDataFeed *gdata_service_query (GDataService *self, const gchar *feed_uri, GDataQuery *query, GType entry_type,
-				GCancellable *cancellable,
-				GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error) G_GNUC_WARN_UNUSED_RESULT;
+                                GCancellable *cancellable,
+                                GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error) G_GNUC_WARN_UNUSED_RESULT;
 void gdata_service_query_async (GDataService *self, const gchar *feed_uri, GDataQuery *query, GType entry_type,
-				GCancellable *cancellable,
-				GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
-				GAsyncReadyCallback callback, gpointer user_data);
+                                GCancellable *cancellable,
+                                GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
+                                GAsyncReadyCallback callback, gpointer user_data);
 GDataFeed *gdata_service_query_finish (GDataService *self, GAsyncResult *async_result, GError **error) G_GNUC_WARN_UNUSED_RESULT;
 
 GDataEntry *gdata_service_insert_entry (GDataService *self, const gchar *upload_uri, GDataEntry *entry,
-					GCancellable *cancellable, GError **error) G_GNUC_WARN_UNUSED_RESULT;
+                                        GCancellable *cancellable, GError **error) G_GNUC_WARN_UNUSED_RESULT;
 void gdata_service_insert_entry_async (GDataService *self, const gchar *upload_uri, GDataEntry *entry, GCancellable *cancellable,
-				       GAsyncReadyCallback callback, gpointer user_data);
+                                       GAsyncReadyCallback callback, gpointer user_data);
 GDataEntry *gdata_service_insert_entry_finish (GDataService *self, GAsyncResult *async_result, GError **error) G_GNUC_WARN_UNUSED_RESULT;
 
 GDataEntry *gdata_service_update_entry (GDataService *self, GDataEntry *entry, GCancellable *cancellable, GError **error) G_GNUC_WARN_UNUSED_RESULT;
 void gdata_service_update_entry_async (GDataService *self, GDataEntry *entry, GCancellable *cancellable,
-				       GAsyncReadyCallback callback, gpointer user_data);
+                                       GAsyncReadyCallback callback, gpointer user_data);
 GDataEntry *gdata_service_update_entry_finish (GDataService *self, GAsyncResult *async_result, GError **error) G_GNUC_WARN_UNUSED_RESULT;
 
 gboolean gdata_service_delete_entry (GDataService *self, GDataEntry *entry, GCancellable *cancellable, GError **error);
 void gdata_service_delete_entry_async (GDataService *self, GDataEntry *entry, GCancellable *cancellable,
-				       GAsyncReadyCallback callback, gpointer user_data);
+                                       GAsyncReadyCallback callback, gpointer user_data);
 gboolean gdata_service_delete_entry_finish (GDataService *self, GAsyncResult *async_result, GError **error);
 
 SoupURI *gdata_service_get_proxy_uri (GDataService *self);

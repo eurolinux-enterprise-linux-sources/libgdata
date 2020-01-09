@@ -51,7 +51,7 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* VOID:OBJECT,OBJECT,POINTER (./gdata-marshal.list:1) */
+/* VOID:OBJECT,OBJECT,POINTER (./gdata/gdata-marshal.list:1) */
 extern void gdata_marshal_VOID__OBJECT_OBJECT_POINTER (GClosure     *closure,
                                                        GValue       *return_value,
                                                        guint         n_param_values,
@@ -96,7 +96,7 @@ gdata_marshal_VOID__OBJECT_OBJECT_POINTER (GClosure     *closure,
             data2);
 }
 
-/* STRING:OBJECT,STRING (./gdata-marshal.list:2) */
+/* STRING:OBJECT,STRING (./gdata/gdata-marshal.list:2) */
 extern void gdata_marshal_STRING__OBJECT_STRING (GClosure     *closure,
                                                  GValue       *return_value,
                                                  guint         n_param_values,

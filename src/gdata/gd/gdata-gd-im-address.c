@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,9 @@
  * @include: gdata/gd/gdata-gd-im-address.h
  *
  * #GDataGDIMAddress represents an "im" element from the
- * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm">GData specification</ulink>.
+ * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm">GData specification</ulink>.
+ *
+ * Since: 0.4.0
  **/
 
 #include <glib.h>
@@ -84,7 +86,7 @@ gdata_gd_im_address_class_init (GDataGDIMAddressClass *klass)
 	 * The IM address itself.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -100,7 +102,7 @@ gdata_gd_im_address_class_init (GDataGDIMAddressClass *klass)
 	 * Identifies the IM network.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -116,7 +118,7 @@ gdata_gd_im_address_class_init (GDataGDIMAddressClass *klass)
 	 * A programmatic value that identifies the type of IM address.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -132,7 +134,7 @@ gdata_gd_im_address_class_init (GDataGDIMAddressClass *klass)
 	 * A simple string value used to name this IM address. It allows UIs to display a label such as "Work", "Personal", "Preferred", etc.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -148,7 +150,7 @@ gdata_gd_im_address_class_init (GDataGDIMAddressClass *klass)
 	 * Indicates which IM address out of a group is primary.
 	 *
 	 * For more information, see the
-	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm">GData specification</ulink>.
+	 * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm">GData specification</ulink>.
 	 *
 	 * Since: 0.4.0
 	 **/
@@ -238,7 +240,7 @@ gdata_gd_im_address_set_property (GObject *object, guint property_id, const GVal
 static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
-	xmlChar *address, *protocol, *rel, *label, *primary;
+	xmlChar *address, *protocol, *rel, *primary;
 	gboolean primary_bool;
 	GDataGDIMAddressPrivate *priv = GDATA_GD_IM_ADDRESS (parsable)->priv;
 
@@ -269,19 +271,11 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 	}
 	xmlFree (primary);
 
-	/* Other properties */
-	label = xmlGetProp (root_node, (xmlChar*) "label");
-
-	priv->address = g_strdup ((gchar*) address);
-	priv->protocol = g_strdup ((gchar*) protocol);
-	priv->relation_type = g_strdup ((gchar*) rel);
-	priv->label = g_strdup ((gchar*) label);
+	priv->address = (gchar*) address;
+	priv->protocol = (gchar*) protocol;
+	priv->relation_type = (gchar*) rel;
+	priv->label = (gchar*) xmlGetProp (root_node, (xmlChar*) "label");
 	priv->is_primary = primary_bool;
-
-	xmlFree (address);
-	xmlFree (protocol);
-	xmlFree (rel);
-	xmlFree (label);
 
 	return TRUE;
 }
@@ -322,7 +316,7 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
  * @is_primary: %TRUE if this IM address is its owner's primary address, %FALSE otherwise
  *
  * Creates a new #GDataGDIMAddress. More information is available in the <ulink type="http"
- * url="http://code.google.com/apis/gdata/docs/1.0/elements.html#gdIm">GData specification</ulink>.
+ * url="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdIm">GData specification</ulink>.
  *
  * Return value: a new #GDataGDIMAddress, or %NULL; unref with g_object_unref()
  *
@@ -343,11 +337,13 @@ gdata_gd_im_address_new (const gchar *address, const gchar *protocol, const gcha
  * @b: another #GDataGDIMAddress, or %NULL
  *
  * Compares the two IM addresses in a strcmp() fashion. %NULL values are handled gracefully, with
- * %0 returned if both @a and @b are %NULL, %-1 if @a is %NULL and %1 if @b is %NULL.
+ * <code class="literal">0</code> returned if both @a and @b are %NULL, <code class="literal">-1</code> if @a is %NULL
+ * and <code class="literal">1</code> if @b is %NULL.
  *
  * The comparison of non-%NULL values is done on the basis of the @address and @protocol properties of the #GDataGDIMAddress<!-- -->es.
  *
- * Return value: %0 if @a equals @b, %-1 or %1 as appropriate otherwise
+ * Return value: <code class="literal">0</code> if @a equals @b, <code class="literal">-1</code> or <code class="literal">1</code> as
+ * appropriate otherwise
  *
  * Since: 0.4.0
  **/
@@ -356,7 +352,7 @@ gdata_gd_im_address_compare (const GDataGDIMAddress *a, const GDataGDIMAddress *
 {
 	if (a == NULL && b != NULL)
 		return -1;
-	else if (b == NULL)
+	else if (a != NULL && b == NULL)
 		return 1;
 
 	if (a == b)

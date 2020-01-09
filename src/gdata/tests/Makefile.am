@@ -1,8 +1,9 @@
-include $(top_srcdir)/Makefile.decl
+include $(top_srcdir)/gtester.mk
 
 INCLUDES = \
 	-I$(top_srcdir)/				\
 	-I$(top_srcdir)/gdata				\
+	$(GDK_CFLAGS)					\
 	-DTEST_FILE_DIR="\"$(top_srcdir)/gdata/tests/\""\
 	$(DISABLE_DEPRECATED)				\
 	$(WARN_CFLAGS)					\
@@ -10,6 +11,7 @@ INCLUDES = \
 
 LIBS = \
 	$(top_builddir)/gdata/libgdata.la	\
+	$(GDK_LIBS)				\
 	$(GDATA_LIBS)
 
 noinst_PROGRAMS = $(TEST_PROGS)
@@ -37,7 +39,10 @@ documents_SOURCES		 = documents.c $(TEST_SRCS)
 TEST_PROGS			+= memory
 memory_SOURCES			 = memory.c $(TEST_SRCS)
 
-EXTRA_DIST = \
+TEST_PROGS			+= perf
+perf_SOURCES			 = perf.c $(TEST_SRCS)
+
+EXTRA_DIST += \
 	photo.jpg		\
 	sample.ogg		\
 	test.doc		\

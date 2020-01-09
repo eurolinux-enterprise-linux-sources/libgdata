@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008-2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008–2010 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -103,9 +103,17 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	parsable_class->get_namespaces = get_namespaces;
 	parsable_class->element_name = "entry";
 
+	/**
+	 * GDataEntry:title:
+	 *
+	 * A human-readable title for the entry.
+	 *
+	 * For more information, see the <ulink type="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.title">
+	 * Atom specification</ulink>.
+	 **/
 	g_object_class_install_property (gobject_class, PROP_TITLE,
 				g_param_spec_string ("title",
-					"Title", "The title for this entry.",
+					"Title", "A human-readable title for the entry.",
 					NULL,
 					G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
@@ -125,32 +133,85 @@ gdata_entry_class_init (GDataEntryClass *klass)
 					NULL,
 					G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
+	/**
+	 * GDataEntry:id:
+	 *
+	 * A permanent, universally unique identifier for the entry, in IRI form.
+	 *
+	 * For more information, see the <ulink type="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.id">
+	 * Atom specification</ulink>.
+	 **/
 	g_object_class_install_property (gobject_class, PROP_ID,
 				g_param_spec_string ("id",
-					"ID", "The ID for this entry.",
+					"ID", "A permanent, universally unique identifier for the entry, in IRI form.",
 					NULL,
 					G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
-	/* Since: 0.2.0 */
+
+	/**
+	 * GDataEntry:etag:
+	 *
+	 * An identifier for a particular version of the entry. This changes every time the entry on the server changes, and can be used
+	 * for conditional retrieval and locking.
+	 *
+	 * For more information, see the <ulink type="http://code.google.com/apis/gdata/docs/2.0/reference.html#ResourceVersioning">
+	 * GData specification</ulink>.
+	 *
+	 * Since: 0.2.0
+	 **/
 	g_object_class_install_property (gobject_class, PROP_ETAG,
 				g_param_spec_string ("etag",
-					"ETag", "The ETag for this entry.",
+					"ETag", "An identifier for a particular version of the entry.",
 					NULL,
 					G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GDataEntry:updated:
+	 *
+	 * The date and time the entry was most recently updated in a significant way.
+	 *
+	 * For more information, see the <ulink type="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.updated">
+	 * Atom specification</ulink>.
+	 **/
 	g_object_class_install_property (gobject_class, PROP_UPDATED,
 				g_param_spec_boxed ("updated",
-					"Updated", "The last update time for this entry.",
+					"Updated", "The date and time the entry was most recently updated in a significant way.",
 					GDATA_TYPE_G_TIME_VAL,
 					G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GDataEntry:published:
+	 *
+	 * The date and time the entry was first published or made available.
+	 *
+	 * For more information, see the <ulink type="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.published">
+	 * Atom specification</ulink>.
+	 **/
 	g_object_class_install_property (gobject_class, PROP_PUBLISHED,
 				g_param_spec_boxed ("published",
-					"Published", "The time this entry was published.",
+					"Published", "The date and time the entry was first published or made available.",
 					GDATA_TYPE_G_TIME_VAL,
 					G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GDataEntry:content:
+	 *
+	 * The content of the entry.
+	 *
+	 * For more information, see the <ulink type="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.published">
+	 * Atom specification</ulink>.
+	 **/
 	g_object_class_install_property (gobject_class, PROP_CONTENT,
 				g_param_spec_string ("content",
-					"Content", "The textual content of this entry.",
+					"Content", "The content of the entry.",
 					NULL,
 					G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GDataEntry:is-inserted:
+	 *
+	 * Whether the entry has been inserted on the server. This is %FALSE for entries which have just been created using gdata_entry_new() and
+	 * %TRUE for entries returned from the server by queries. It is set to %TRUE when an entry is inserted using gdata_service_insert_entry().
+	 **/
 	g_object_class_install_property (gobject_class, PROP_IS_INSERTED,
 				g_param_spec_boolean ("is-inserted",
 					"Inserted?", "Whether the entry has been inserted on the server.",
@@ -159,7 +220,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	/**
 	 * GDataEntry:rights:
 	 *
-	 * The ownership rights pertaining to this entry. 
+	 * The ownership rights pertaining to the entry.
 	 *
 	 * For more information, see the <ulink type="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.rights">
 	 * Atom specification</ulink>.
@@ -168,7 +229,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 **/
 	g_object_class_install_property (gobject_class, PROP_RIGHTS,
 					 g_param_spec_string ("rights",
-							      "Rights", "Rights pertaining to the entry.",
+							      "Rights", "The ownership rights pertaining to the entry.",
 							      NULL,
 							      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
@@ -213,8 +274,8 @@ gdata_entry_finalize (GObject *object)
 
 	g_free (priv->title);
 	g_free (priv->summary);
-	xmlFree (priv->id);
-	xmlFree (priv->etag);
+	g_free (priv->id);
+	g_free (priv->etag);
 	g_free (priv->rights);
 	g_free (priv->content);
 
@@ -252,7 +313,7 @@ gdata_entry_get_property (GObject *object, guint property_id, GValue *value, GPa
 		case PROP_IS_INSERTED:
 			g_value_set_boolean (value, gdata_entry_is_inserted (GDATA_ENTRY (object)));
 			break;
-	        case PROP_RIGHTS:
+		case PROP_RIGHTS:
 			g_value_set_string (value, priv->rights);
 			break;
 		default:
@@ -311,93 +372,81 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 static gboolean
 parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error)
 {
-	GDataEntry *self;
+	GDataEntry *self = GDATA_ENTRY (parsable);
 
-	g_return_val_if_fail (GDATA_IS_ENTRY (parsable), FALSE);
-	g_return_val_if_fail (doc != NULL, FALSE);
-	g_return_val_if_fail (node != NULL, FALSE);
+	if (gdata_parser_is_namespace (node, "http://www.w3.org/2005/Atom") == TRUE) {
+		if (xmlStrcmp (node->name, (xmlChar*) "title") == 0) {
+			/* atom:title */
+			xmlChar *title = xmlNodeListGetString (doc, node->children, TRUE);
 
-	self = GDATA_ENTRY (parsable);
+			/* Title can be empty */
+			self->priv->title = (title != NULL) ? (gchar*) title : g_strdup ("");
+		} else if (xmlStrcmp (node->name, (xmlChar*) "id") == 0) {
+			/* atom:id */
+			g_free (self->priv->id);
+			self->priv->id = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "updated") == 0) {
+			/* atom:updated */
+			xmlChar *updated;
 
-	if (xmlStrcmp (node->name, (xmlChar*) "title") == 0) {
-		/* atom:title */
-		xmlChar *title = xmlNodeListGetString (doc, node->children, TRUE);
-
-		/* Title can be empty */
-		if (title == NULL)
-			gdata_entry_set_title (self, "");
-		else
-			gdata_entry_set_title (self, (gchar*) title);
-		xmlFree (title);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "id") == 0) {
-		/* atom:id */
-		xmlFree (self->priv->id);
-		self->priv->id = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "updated") == 0) {
-		/* atom:updated */
-		xmlChar *updated;
-
-		updated = xmlNodeListGetString (doc, node->children, TRUE);
-		if (g_time_val_from_iso8601 ((gchar*) updated, &(self->priv->updated)) == FALSE) {
-			/* Error */
-			gdata_parser_error_not_iso8601_format (node, (gchar*) updated, error);
+			updated = xmlNodeListGetString (doc, node->children, TRUE);
+			if (g_time_val_from_iso8601 ((gchar*) updated, &(self->priv->updated)) == FALSE) {
+				/* Error */
+				gdata_parser_error_not_iso8601_format (node, (gchar*) updated, error);
+				xmlFree (updated);
+				return FALSE;
+			}
 			xmlFree (updated);
-			return FALSE;
-		}
-		xmlFree (updated);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "published") == 0) {
-		/* atom:published */
-		xmlChar *published;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "published") == 0) {
+			/* atom:published */
+			xmlChar *published;
 
-		published = xmlNodeListGetString (doc, node->children, TRUE);
-		if (g_time_val_from_iso8601 ((gchar*) published, &(self->priv->published)) == FALSE) {
-			/* Error */
-			gdata_parser_error_not_iso8601_format (node, (gchar*) published, error);
+			published = xmlNodeListGetString (doc, node->children, TRUE);
+			if (g_time_val_from_iso8601 ((gchar*) published, &(self->priv->published)) == FALSE) {
+				/* Error */
+				gdata_parser_error_not_iso8601_format (node, (gchar*) published, error);
+				xmlFree (published);
+				return FALSE;
+			}
 			xmlFree (published);
-			return FALSE;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "category") == 0) {
+			/* atom:category */
+			GDataCategory *category = GDATA_CATEGORY (_gdata_parsable_new_from_xml_node (GDATA_TYPE_CATEGORY, doc, node, NULL, error));
+			if (category == NULL)
+				return FALSE;
+
+			self->priv->categories = g_list_prepend (self->priv->categories, category);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "content") == 0) {
+			/* atom:content */
+			xmlChar *content = xmlNodeListGetString (doc, node->children, TRUE);
+			if (content == NULL)
+				content = xmlGetProp (node, (xmlChar*) "src");
+			self->priv->content = (gchar*) content;
+		} else if (xmlStrcmp (node->name, (xmlChar*) "link") == 0) {
+			/* atom:link */
+			GDataLink *link = GDATA_LINK (_gdata_parsable_new_from_xml_node (GDATA_TYPE_LINK, doc, node, NULL, error));
+			if (link == NULL)
+				return FALSE;
+
+			self->priv->links = g_list_prepend (self->priv->links, link);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "author") == 0) {
+			/* atom:author */
+			GDataAuthor *author = GDATA_AUTHOR (_gdata_parsable_new_from_xml_node (GDATA_TYPE_AUTHOR, doc, node, NULL, error));
+			if (author == NULL)
+				return FALSE;
+
+			self->priv->authors = g_list_prepend (self->priv->authors, author);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "summary") == 0) {
+			/* atom:summary */
+			self->priv->summary = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else if (xmlStrcmp (node->name, (xmlChar*) "rights") == 0) {
+			/* atom:rights */
+			self->priv->rights = (gchar*) xmlNodeListGetString (doc, node->children, TRUE);
+		} else {
+			return GDATA_PARSABLE_CLASS (gdata_entry_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 		}
-		xmlFree (published);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "category") == 0) {
-		/* atom:category */
-		GDataCategory *category = GDATA_CATEGORY (_gdata_parsable_new_from_xml_node (GDATA_TYPE_CATEGORY, doc, node, NULL, error));
-		if (category == NULL)
-			return FALSE;
-
-		self->priv->categories = g_list_prepend (self->priv->categories, category);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "content") == 0) {
-		/* atom:content */
-		xmlChar *content = xmlNodeListGetString (doc, node->children, TRUE);
-		if (content == NULL)
-			content = xmlGetProp (node, (xmlChar*) "src");
-		gdata_entry_set_content (self, (gchar*) content);
-		xmlFree (content);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "link") == 0) {
-		/* atom:link */
-		GDataLink *link = GDATA_LINK (_gdata_parsable_new_from_xml_node (GDATA_TYPE_LINK, doc, node, NULL, error));
-		if (link == NULL)
-			return FALSE;
-
-		self->priv->links = g_list_prepend (self->priv->links, link);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "author") == 0) {
-		/* atom:author */
-		GDataAuthor *author = GDATA_AUTHOR (_gdata_parsable_new_from_xml_node (GDATA_TYPE_AUTHOR, doc, node, NULL, error));
-		if (author == NULL)
-			return FALSE;
-
-		self->priv->authors = g_list_prepend (self->priv->authors, author);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "summary") == 0) {
-		/* atom:summary */
-		xmlChar *summary = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_entry_set_summary (self, (gchar*) summary);
-		xmlFree (summary);
-	} else if (xmlStrcmp (node->name, (xmlChar*) "rights") == 0) {
-		/* atom:rights */
-		xmlChar *rights = xmlNodeListGetString (doc, node->children, TRUE);
-		gdata_entry_set_rights (self, (gchar*) rights);
-		xmlFree (rights);
-	} else if (GDATA_PARSABLE_CLASS (gdata_entry_parent_class)->parse_xml (parsable, doc, node, user_data, error) == FALSE) {
-		/* Error! */
-		return FALSE;
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_entry_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 	}
 
 	return TRUE;
@@ -523,6 +572,7 @@ void
 gdata_entry_set_title (GDataEntry *self, const gchar *title)
 {
 	g_return_if_fail (GDATA_IS_ENTRY (self));
+
 	g_free (self->priv->title);
 	self->priv->title = g_strdup (title);
 	g_object_notify (G_OBJECT (self), "title");
@@ -558,6 +608,7 @@ void
 gdata_entry_set_summary (GDataEntry *self, const gchar *summary)
 {
 	g_return_if_fail (GDATA_IS_ENTRY (self));
+
 	g_free (self->priv->summary);
 	self->priv->summary = g_strdup (summary);
 	g_object_notify (G_OBJECT (self), "summary");
@@ -812,9 +863,8 @@ gdata_entry_is_inserted (GDataEntry *self)
 {
 	g_return_val_if_fail (GDATA_IS_ENTRY (self), FALSE);
 
-	if (self->priv->id != NULL &&
-	    self->priv->links != NULL &&
-	    (self->priv->updated.tv_sec != 0 || self->priv->updated.tv_usec != 0))
+	if (self->priv->id != NULL ||
+	    self->priv->updated.tv_sec != 0 || self->priv->updated.tv_usec != 0)
 		return TRUE;
 	return FALSE;
 }
@@ -849,6 +899,7 @@ void
 gdata_entry_set_rights (GDataEntry *self, const gchar *rights)
 {
 	g_return_if_fail (GDATA_IS_ENTRY (self));
+
 	g_free (self->priv->rights);
 	self->priv->rights = g_strdup (rights);
 	g_object_notify (G_OBJECT (self), "rights");

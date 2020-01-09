@@ -3,35 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GData Types</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch02.html" title="Core API">
 <link rel="prev" href="GDataEntry.html" title="GDataEntry">
 <link rel="next" href="GDataParsable.html" title="GDataParsable">
-<meta name="generator" content="GTK-Doc V1.12 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="pt01.html" title="Part I. GData Overview">
-<link rel="chapter" href="ch01.html" title="Object Hierarchy">
-<link rel="part" href="pt02.html" title="Part II. Core API">
-<link rel="chapter" href="ch02.html" title="Core API">
-<link rel="chapter" href="ch03.html" title="Access Control List API">
-<link rel="part" href="pt03.html" title="Part III. Namespace API">
-<link rel="chapter" href="ch04.html" title="Atom API">
-<link rel="chapter" href="ch05.html" title="GData API">
-<link rel="chapter" href="ch06.html" title="Media RSS API">
-<link rel="chapter" href="ch07.html" title="YouTube API">
-<link rel="part" href="pt04.html" title="Part IV. Service APIs">
-<link rel="chapter" href="ch08.html" title="YouTube API">
-<link rel="chapter" href="ch09.html" title="Google Calendar API">
-<link rel="chapter" href="ch10.html" title="Google Contacts API">
-<link rel="chapter" href="ch11.html" title="Google Documents API">
-<link rel="chapter" href="ch12.html" title="Google PicasaWeb API">
-<link rel="part" href="pt05.html" title="Part V. Appendices">
-<link rel="index" href="api-index-full.html" title="API Index">
-<link rel="index" href="ix02.html" title="Index of new symbols in 0.1.1">
-<link rel="index" href="ix03.html" title="Index of new symbols in 0.2.0">
-<link rel="index" href="ix04.html" title="Index of new symbols in 0.3.0">
-<link rel="index" href="ix05.html" title="Index of new symbols in 0.4.0">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -48,7 +26,7 @@
                   <a href="#gdata-GData-Types.description" class="shortcut">Description</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GData Types">
 <a name="gdata-GData-Types"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -57,30 +35,31 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Stability Level">
 <a name="gdata-GData-Types.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="gdata-GData-Types.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 #include &lt;gdata/gdata-types.h&gt;
 
-                    <a href="gdata-GData-Types.html#GDataColor">GDataColor</a>;
-gboolean            <a href="gdata-GData-Types.html#gdata-color-from-hexadecimal">gdata_color_from_hexadecimal</a>        (const gchar *hexadecimal,
-                                                         <a href="gdata-GData-Types.html#GDataColor">GDataColor</a> *color);
-gchar *             <a href="gdata-GData-Types.html#gdata-color-to-hexadecimal">gdata_color_to_hexadecimal</a>          (<a href="gdata-GData-Types.html#GDataColor">GDataColor</a> *color);
+                    <a class="link" href="gdata-GData-Types.html#GDataColor" title="GDataColor">GDataColor</a>;
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gdata-GData-Types.html#gdata-color-from-hexadecimal" title="gdata_color_from_hexadecimal ()">gdata_color_from_hexadecimal</a>        (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *hexadecimal</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="gdata-GData-Types.html#GDataColor" title="GDataColor"><span class="type">GDataColor</span></a> *color</code></em>);
+<a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="gdata-GData-Types.html#gdata-color-to-hexadecimal" title="gdata_color_to_hexadecimal ()">gdata_color_to_hexadecimal</a>          (<em class="parameter"><code><a class="link" href="gdata-GData-Types.html#GDataColor" title="GDataColor"><span class="type">GDataColor</span></a> *color</code></em>);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="gdata-GData-Types.description"></a><h2>Description</h2>
 <p>
 The structures here are used haphazardly across the library, describing
-various small data types.</p>
+various small data types.
+</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="gdata-GData-Types.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDataColor">
 <a name="GDataColor"></a><h3>GDataColor</h3>
 <pre class="programlisting">typedef struct {
 	guint16 red;
@@ -90,80 +69,83 @@ various small data types.</p>
 </pre>
 <p>
 Describes a color, such as used in the Google Calendar interface to
-differentiate calendars.</p>
+differentiate calendars.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term">guint16 <em class="structfield"><code><a name="GDataColor.red"></a>red</code></em>;</span></p></td>
-<td> red color intensity, from 0–255
+<td><p><span class="term"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> <em class="structfield"><code><a name="GDataColor.red"></a>red</code></em>;</span></p></td>
+<td>red color intensity, from 0–255
 </td>
 </tr>
 <tr>
-<td><p><span class="term">guint16 <em class="structfield"><code><a name="GDataColor.green"></a>green</code></em>;</span></p></td>
-<td> green color intensity, from 0–255
+<td><p><span class="term"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> <em class="structfield"><code><a name="GDataColor.green"></a>green</code></em>;</span></p></td>
+<td>green color intensity, from 0–255
 </td>
 </tr>
 <tr>
-<td><p><span class="term">guint16 <em class="structfield"><code><a name="GDataColor.blue"></a>blue</code></em>;</span></p></td>
-<td> blue color intensity, from 0–255
+<td><p><span class="term"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> <em class="structfield"><code><a name="GDataColor.blue"></a>blue</code></em>;</span></p></td>
+<td>blue color intensity, from 0–255
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_color_from_hexadecimal ()">
 <a name="gdata-color-from-hexadecimal"></a><h3>gdata_color_from_hexadecimal ()</h3>
-<pre class="programlisting">gboolean            gdata_color_from_hexadecimal        (const gchar *hexadecimal,
-                                                         <a href="gdata-GData-Types.html#GDataColor">GDataColor</a> *color);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_color_from_hexadecimal        (<em class="parameter"><code>const <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *hexadecimal</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="gdata-GData-Types.html#GDataColor" title="GDataColor"><span class="type">GDataColor</span></a> *color</code></em>);</pre>
 <p>
-Parses <em class="parameter"><code>hexadecimal</code></em> and returns a <a href="gdata-GData-Types.html#GDataColor"><span class="type">GDataColor</span></a> describing it in <em class="parameter"><code>color</code></em>.
+Parses <em class="parameter"><code>hexadecimal</code></em> and returns a <a class="link" href="gdata-GData-Types.html#GDataColor" title="GDataColor"><span class="type">GDataColor</span></a> describing it in <em class="parameter"><code>color</code></em>.
 </p>
 <p>
 <em class="parameter"><code>hexadecimal</code></em> should be in the form <code class="literal">#<em class="replaceable"><code>rr</code></em><em class="replaceable"><code>gg</code></em><em class="replaceable"><code>bb</code></em></code>,
 where <em class="replaceable"><code>rr</code></em> is a two-digit hexadecimal red intensity value, <em class="replaceable"><code>gg</code></em> is green
-and <em class="replaceable"><code>bb</code></em> is blue. The hash is optional.</p>
+and <em class="replaceable"><code>bb</code></em> is blue. The hash is optional.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>hexadecimal</code></em> :</span></p></td>
-<td> a hexadecimal color string
+<td>a hexadecimal color string
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
-<td> a <a href="gdata-GData-Types.html#GDataColor"><span class="type">GDataColor</span></a>
+<td>a <a class="link" href="gdata-GData-Types.html#GDataColor" title="GDataColor"><span class="type">GDataColor</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <code class="literal">TRUE</code> on success, <code class="literal">FALSE</code> otherwise
+<td> <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success, <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdata_color_to_hexadecimal ()">
 <a name="gdata-color-to-hexadecimal"></a><h3>gdata_color_to_hexadecimal ()</h3>
-<pre class="programlisting">gchar *             gdata_color_to_hexadecimal          (<a href="gdata-GData-Types.html#GDataColor">GDataColor</a> *color);</pre>
+<pre class="programlisting"><a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdata_color_to_hexadecimal          (<em class="parameter"><code><a class="link" href="gdata-GData-Types.html#GDataColor" title="GDataColor"><span class="type">GDataColor</span></a> *color</code></em>);</pre>
 <p>
 Returns a string describing <em class="parameter"><code>color</code></em> in hexadecimal form; in the form <code class="literal">#<em class="replaceable"><code>rr</code></em><em class="replaceable"><code>gg</code></em>
 <em class="replaceable"><code>bb</code></em></code>, where <em class="replaceable"><code>rr</code></em> is a two-digit hexadecimal red intensity value,
-<em class="replaceable"><code>gg</code></em> is green and <em class="replaceable"><code>bb</code></em> is blue. The hash is always present.</p>
+<em class="replaceable"><code>gg</code></em> is green and <em class="replaceable"><code>bb</code></em> is blue. The hash is always present.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
-<td> a <a href="gdata-GData-Types.html#GDataColor"><span class="type">GDataColor</span></a>
+<td>a <a class="link" href="gdata-GData-Types.html#GDataColor" title="GDataColor"><span class="type">GDataColor</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the color string; free with <code class="function">g_free()</code>
+<td> the color string; free with <a href="/opt/gnome2/build/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>
 
 </td>
 </tr>
@@ -175,6 +157,6 @@ Returns a string describing <em class="parameter"><code>color</code></em> in hex
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.12</div>
+          Generated by GTK-Doc V1.14</div>
 </body>
 </html>
