@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-upload-stream
  * @short_description: GData upload stream object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gdata-upload-stream.h
  *
  * #GDataUploadStream is a #GOutputStream subclass to allow uploading of files from GData services with authorization from a #GDataService under
@@ -409,9 +409,13 @@ static SoupMessage *
 build_message (GDataUploadStream *self, const gchar *method, const gchar *upload_uri)
 {
 	SoupMessage *new_message;
+	SoupURI *_uri;
 
 	/* Build the message */
-	new_message = soup_message_new (method, upload_uri);
+	_uri = soup_uri_new (upload_uri);
+	soup_uri_set_port (_uri, _gdata_service_get_https_port ());
+	new_message = soup_message_new_from_uri (method, _uri);
+	soup_uri_free (_uri);
 
 	/* We don't want to accumulate chunks */
 	soup_message_body_set_accumulate (new_message->request_body, FALSE);
@@ -423,7 +427,7 @@ static GObject *
 gdata_upload_stream_constructor (GType type, guint n_construct_params, GObjectConstructParam *construct_params)
 {
 	GDataUploadStreamPrivate *priv;
-	GDataServiceClass *klass;
+	GDataServiceClass *service_klass;
 	GObject *object;
 
 	/* Chain up to the parent class */
@@ -447,22 +451,47 @@ gdata_upload_stream_constructor (GType type, guint n_construct_params, GObjectCo
 		/* The Content-Type should be multipart/related if we're also uploading the metadata (entry != NULL),
 		 * and the given content_type otherwise. */
 		if (priv->entry != NULL) {
-			const gchar *first_part_header;
-			gchar *entry_xml, *second_part_header;
+			gchar *first_part_header, *upload_data;
+			gchar *second_part_header;
+			GDataParsableClass *parsable_klass;
+
+			parsable_klass = GDATA_PARSABLE_GET_CLASS (priv->entry);
+			g_assert (parsable_klass->get_content_type != NULL);
 
 			soup_message_headers_set_content_type (priv->message->request_headers, "multipart/related; boundary=" BOUNDARY_STRING, NULL);
 
+			if (g_strcmp0 (parsable_klass->get_content_type (), "application/json") == 0) {
+				upload_data = gdata_parsable_get_json (GDATA_PARSABLE (priv->entry));
+			} else {
+				upload_data = gdata_parsable_get_xml (GDATA_PARSABLE (priv->entry));
+			}
+
 			/* Start by writing out the entry; then the thread has something to write to the network when it's created */
-			first_part_header = "--" BOUNDARY_STRING "\nContent-Type: application/atom+xml; charset=UTF-8\n\n";
-			entry_xml = gdata_parsable_get_xml (GDATA_PARSABLE (priv->entry));
-			second_part_header = g_strdup_printf ("\n--" BOUNDARY_STRING "\nContent-Type: %s\nContent-Transfer-Encoding: binary\n\n",
+			first_part_header = g_strdup_printf ("--" BOUNDARY_STRING "\n"
+			                                     "Content-Type: %s; charset=UTF-8\n\n",
+			                                     parsable_klass->get_content_type ());
+			second_part_header = g_strdup_printf ("\n--" BOUNDARY_STRING "\n"
+			                                      "Content-Type: %s\n"
+			                                      "Content-Transfer-Encoding: binary\n\n",
 			                                      priv->content_type);
 
 			/* Push the message parts onto the message body; we can skip the buffer, since the network thread hasn't yet been created,
 			 * so we're the sole thread accessing the SoupMessage. */
-			soup_message_body_append (priv->message->request_body, SOUP_MEMORY_STATIC, first_part_header, strlen (first_part_header));
-			soup_message_body_append (priv->message->request_body, SOUP_MEMORY_TAKE, entry_xml, strlen (entry_xml));
-			soup_message_body_append (priv->message->request_body, SOUP_MEMORY_TAKE, second_part_header, strlen (second_part_header));
+			soup_message_body_append (priv->message->request_body,
+			                          SOUP_MEMORY_TAKE,
+			                          first_part_header,
+			                          strlen (first_part_header));
+			soup_message_body_append (priv->message->request_body,
+			                          SOUP_MEMORY_TAKE, upload_data,
+			                          strlen (upload_data));
+			soup_message_body_append (priv->message->request_body,
+			                          SOUP_MEMORY_TAKE,
+			                          second_part_header,
+			                          strlen (second_part_header));
+
+			first_part_header = NULL;
+			upload_data = NULL;
+			second_part_header = NULL;
 
 			priv->network_bytes_outstanding = priv->message->request_body->length;
 		} else {
@@ -483,12 +512,30 @@ gdata_upload_stream_constructor (GType type, guint n_construct_params, GObjectCo
 		g_free (content_length_str);
 
 		if (priv->entry != NULL) {
-			const gchar *entry_xml;
+			GDataParsableClass *parsable_klass;
+			gchar *content_type, *upload_data;
 
-			soup_message_headers_set_content_type (priv->message->request_headers, "application/atom+xml; charset=UTF-8", NULL);
+			parsable_klass = GDATA_PARSABLE_GET_CLASS (priv->entry);
+			g_assert (parsable_klass->get_content_type != NULL);
 
-			entry_xml = gdata_parsable_get_xml (GDATA_PARSABLE (priv->entry));
-			soup_message_body_append (priv->message->request_body, SOUP_MEMORY_TAKE, entry_xml, strlen (entry_xml));
+			if (g_strcmp0 (parsable_klass->get_content_type (), "application/json") == 0) {
+				upload_data = gdata_parsable_get_json (GDATA_PARSABLE (priv->entry));
+			} else {
+				upload_data = gdata_parsable_get_xml (GDATA_PARSABLE (priv->entry));
+			}
+
+			content_type = g_strdup_printf ("%s; charset=UTF-8",
+			                                parsable_klass->get_content_type ());
+			soup_message_headers_set_content_type (priv->message->request_headers,
+			                                       content_type,
+			                                       NULL);
+			g_free (content_type);
+
+			soup_message_body_append (priv->message->request_body,
+			                          SOUP_MEMORY_TAKE,
+			                          upload_data,
+			                          strlen (upload_data));
+			upload_data = NULL;
 
 			priv->network_bytes_outstanding = priv->message->request_body->length;
 		} else {
@@ -502,9 +549,9 @@ gdata_upload_stream_constructor (GType type, guint n_construct_params, GObjectCo
 
 	/* Make sure the headers are set. HACK: This should actually be in build_message(), but we have to work around
 	 * http://code.google.com/a/google.com/p/apps-api-issues/issues/detail?id=3033 in GDataDocumentsService's append_query_headers(). */
-	klass = GDATA_SERVICE_GET_CLASS (priv->service);
-	if (klass->append_query_headers != NULL) {
-		klass->append_query_headers (priv->service, priv->authorization_domain, priv->message);
+	service_klass = GDATA_SERVICE_GET_CLASS (priv->service);
+	if (service_klass->append_query_headers != NULL) {
+		service_klass->append_query_headers (priv->service, priv->authorization_domain, priv->message);
 	}
 
 	/* If the entry exists and has an ETag, we assume we're updating the entry, so we can set the If-Match header */
@@ -1055,8 +1102,6 @@ write_next_chunk (GDataUploadStream *self, SoupMessage *message)
 	}
 
 	g_mutex_unlock (&(priv->write_mutex));
-
-	soup_session_unpause_message (priv->session, priv->message);
 }
 
 static void
@@ -1099,8 +1144,6 @@ static gpointer
 upload_thread (GDataUploadStream *self)
 {
 	GDataUploadStreamPrivate *priv = self->priv;
-
-	g_object_ref (self);
 
 	g_assert (priv->cancellable != NULL);
 
@@ -1238,8 +1281,8 @@ finished_outer:
 	g_mutex_unlock (&(priv->write_mutex));
 
 	g_cond_signal (&(priv->finished_cond));
-	g_mutex_unlock (&(priv->response_mutex));
 
+	/* Referenced in create_network_thread(). */
 	g_object_unref (self);
 
 	return NULL;
@@ -1251,6 +1294,7 @@ create_network_thread (GDataUploadStream *self, GError **error)
 	GDataUploadStreamPrivate *priv = self->priv;
 
 	g_assert (priv->network_thread == NULL);
+	g_object_ref (self); /* ownership transferred to thread */
 	priv->network_thread = g_thread_try_new ("upload-thread", (GThreadFunc) upload_thread, self, error);
 }
 

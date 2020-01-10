@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-gd-when
  * @short_description: GData when element
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gd/gdata-gd-when.h
  *
  * #GDataGDWhen represents a "when" element from the
@@ -450,6 +450,9 @@ gdata_gd_when_set_start_time (GDataGDWhen *self, gint64 start_time)
  * Gets the #GDataGDWhen:end-time property.
  *
  * If the end time is unset, <code class="literal">-1</code> will be returned.
+ *
+ * Return value: the UNIX timestamp for the end time of the event, or
+ * <code class="literal">-1</code>
  *
  * Since: 0.4.0
  **/

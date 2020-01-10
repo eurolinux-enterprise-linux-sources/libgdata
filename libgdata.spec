@@ -1,20 +1,29 @@
 Name:           libgdata
-Version:        0.13.3
-Release:        4%{?dist}
+Version:        0.17.1
+Release:        1%{?dist}
 Summary:        Library for the GData protocol
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://live.gnome.org/libgdata
-Source0:        http://download.gnome.org/sources/%{name}/0.13/%{name}-%{version}.tar.xz
+Source0:        http://download.gnome.org/sources/%{name}/0.17/%{name}-%{version}.tar.xz
 
-BuildRequires:  glib2-devel libsoup-devel libxml2-devel gtk-doc intltool
 BuildRequires:  gcr-devel
-BuildRequires:  libgnome-keyring-devel
+BuildRequires:  glib2-devel
 BuildRequires:  gnome-online-accounts-devel
-BuildRequires:  gobject-introspection-devel liboauth-devel
+BuildRequires:  gobject-introspection-devel
+BuildRequires:  gtk-doc
+%if ! 0%{?rhel}
+BuildRequires:  uhttpmock-devel
+%endif
+BuildRequires:  intltool
+BuildRequires:  json-glib-devel
+BuildRequires:  liboauth-devel
+BuildRequires:  libsoup-devel
+BuildRequires:  libxml2-devel
 BuildRequires:  vala-devel
 BuildRequires:  vala-tools
+
 Requires:       gobject-introspection
 
 %description
@@ -25,12 +34,7 @@ the common Google services, and has full asynchronous support.
 %package        devel
 Summary:        Development files for %{name}
 Group:          Development/Libraries
-Requires:       %{name} = %{version}-%{release}
-Requires:       pkgconfig
-Requires:       gobject-introspection-devel
-
-# https://bugzilla.gnome.org/show_bug.cgi?id=610273
-BuildRequires:  libtool
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -40,7 +44,11 @@ developing applications that use %{name}.
 %setup -q
 
 %build
-%configure --disable-static
+%configure \
+%if 0%{?rhel}
+  --disable-tests \
+%endif
+  --disable-static
 make %{?_smp_mflags} CFLAGS="$CFLAGS -fno-strict-aliasing"
 
 %install
@@ -63,18 +71,26 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 %files -f gdata.lang
 %doc COPYING NEWS README AUTHORS
-%{_libdir}/*.so.*
+%{_libdir}/libgdata.so.22*
 %{_libdir}/girepository-1.0/GData-0.0.typelib
 
 %files devel
 %{_includedir}/*
-%{_libdir}/*.so
+%{_libdir}/libgdata.so
 %{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/gtk-doc/
 %{_datadir}/gir-1.0/GData-0.0.gir
 %{_datadir}/vala/
 
 %changelog
+* Mon May 04 2015 Debarshi Ray <rishi@fedoraproject.org> - 0.17.1-1
+- Update to 0.17.1
+- Resolves: #1174599
+
+* Mon Mar 23 2015 Richard Hughes <rhughes@redhat.com> - 0.16.1-1
+- Update to 0.16.1
+- Resolves: #1174599
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.13.3-4
 - Mass rebuild 2014-01-24
 

@@ -2,34 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GDataYouTubeContent</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<title>GDataYouTubeContent: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch12.html" title="YouTube API">
 <link rel="prev" href="GDataYouTubeCategory.html" title="GDataYouTubeCategory">
 <link rel="next" href="GDataYouTubeCredit.html" title="GDataYouTubeCredit">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="GDataYouTubeCategory.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch12.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="GDataYouTubeCredit.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#GDataYouTubeContent.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#GDataYouTubeContent.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#GDataYouTubeContent.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#GDataYouTubeContent.properties" class="shortcut">Properties</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataYouTubeContent.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataYouTubeContent.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#GDataYouTubeContent.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch12.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataYouTubeCategory.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataYouTubeCredit.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="GDataYouTubeContent"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -37,53 +31,133 @@
 <h2><span class="refentrytitle"><a name="GDataYouTubeContent.top_of_page"></a>GDataYouTubeContent</span></h2>
 <p>GDataYouTubeContent — YouTube content element</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
 <a name="GDataYouTubeContent.stability-level"></a><h2>Stability Level</h2>
-Unstable, unless otherwise indicated
-</div>
-<div class="refsynopsisdiv">
-<a name="GDataYouTubeContent.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#include &lt;gdata/services/youtube/gdata-youtube-content.h&gt;
-
-                    <a class="link" href="GDataYouTubeContent.html#GDataYouTubeContent-struct" title="GDataYouTubeContent">GDataYouTubeContent</a>;
-                    <a class="link" href="GDataYouTubeContent.html#GDataYouTubeContentClass" title="GDataYouTubeContentClass">GDataYouTubeContentClass</a>;
-<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat"><span class="returnvalue">GDataYouTubeFormat</span></a>  <a class="link" href="GDataYouTubeContent.html#gdata-youtube-content-get-format" title="gdata_youtube_content_get_format ()">gdata_youtube_content_get_format</a>    (<em class="parameter"><code><a class="link" href="GDataYouTubeContent.html" title="GDataYouTubeContent"><span class="type">GDataYouTubeContent</span></a> *self</code></em>);
-</pre>
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
 </div>
 <div class="refsect1">
-<a name="GDataYouTubeContent.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
-         +----<a class="link" href="GDataMediaContent.html" title="GDataMediaContent">GDataMediaContent</a>
-               +----GDataYouTubeContent
-</pre>
+<a name="GDataYouTubeContent.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody><tr>
+<td class="function_type">
+<a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="returnvalue">GDataYouTubeFormat</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataYouTubeContent.html#gdata-youtube-content-get-format" title="gdata_youtube_content_get_format ()">gdata_youtube_content_get_format</a> <span class="c_punctuation">()</span>
+</td>
+</tr></tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="GDataYouTubeContent.properties"></a><h2>Properties</h2>
-<pre class="synopsis">
-  "<a class="link" href="GDataYouTubeContent.html#GDataYouTubeContent--format" title='The "format" property'>format</a>"                   <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat"><span class="type">GDataYouTubeFormat</span></a>    : Read
+<div class="informaltable"><table border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody><tr>
+<td class="property_type"><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="type">GDataYouTubeFormat</span></a></td>
+<td class="property_name"><a class="link" href="GDataYouTubeContent.html#GDataYouTubeContent--format" title="The “format” property">format</a></td>
+<td class="property_flags">Read</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeContent.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataYouTubeContent.html#GDataYouTubeContent-struct" title="GDataYouTubeContent">GDataYouTubeContent</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataYouTubeContent.html#GDataYouTubeContentClass" title="GDataYouTubeContentClass">GDataYouTubeContentClass</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeContent.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+        <span class="lineart">╰──</span> <a class="link" href="GDataMediaContent.html" title="GDataMediaContent">GDataMediaContent</a>
+            <span class="lineart">╰──</span> GDataYouTubeContent
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeContent.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/services/youtube/gdata-youtube-content.h&gt;
 </pre>
 </div>
 <div class="refsect1">
 <a name="GDataYouTubeContent.description"></a><h2>Description</h2>
-<p>
-<a class="link" href="GDataYouTubeContent.html" title="GDataYouTubeContent"><span class="type">GDataYouTubeContent</span></a> represents the YouTube-specific customizations to <a class="link" href="GDataMediaContent.html" title="GDataMediaContent"><span class="type">GDataMediaContent</span></a>. For more information,
+<p><a class="link" href="GDataYouTubeContent.html" title="GDataYouTubeContent"><span class="type">GDataYouTubeContent</span></a> represents the YouTube-specific customizations to <a class="link" href="GDataMediaContent.html" title="GDataMediaContent"><span class="type">GDataMediaContent</span></a>. For more information,
 see the <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:content" target="_top">
-online documentation</a>.
-</p>
+online documentation</a>.</p>
 </div>
 <div class="refsect1">
-<a name="GDataYouTubeContent.details"></a><h2>Details</h2>
+<a name="GDataYouTubeContent.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="gdata-youtube-content-get-format"></a><h3>gdata_youtube_content_get_format ()</h3>
+<pre class="programlisting"><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="returnvalue">GDataYouTubeFormat</span></a>
+gdata_youtube_content_get_format (<em class="parameter"><code><a class="link" href="GDataYouTubeContent.html" title="GDataYouTubeContent"><span class="type">GDataYouTubeContent</span></a> *self</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_youtube_content_get_format</code> has been deprecated since version 0.17.0 and should not be used in newly-written code.</p>
+<p>Accessing YouTube video content directly is no longer
+  supported by Google. There is no replacement.</p>
+</div>
+<p>Gets the <a class="link" href="GDataYouTubeContent.html#GDataYouTubeContent--format" title="The “format” property"><span class="type">“format”</span></a> property.</p>
+<div class="refsect3">
+<a name="id-1.4.7.3.10.2.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataYouTubeContent.html" title="GDataYouTubeContent"><span class="type">GDataYouTubeContent</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.4.7.3.10.2.8"></a><h4>Returns</h4>
+<p> the video format, or <a class="link" href="GDataYouTubeQuery.html#GDATA-YOUTUBE-FORMAT-UNKNOWN:CAPS"><code class="literal">GDATA_YOUTUBE_FORMAT_UNKNOWN</code></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeContent.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="GDataYouTubeContent-struct"></a><h3>GDataYouTubeContent</h3>
 <pre class="programlisting">typedef struct _GDataYouTubeContent GDataYouTubeContent;</pre>
-<p>
-All the fields in the <a class="link" href="GDataYouTubeContent.html" title="GDataYouTubeContent"><span class="type">GDataYouTubeContent</span></a> structure are private and should never be accessed directly.
-</p>
+<div class="warning">
+<p><code class="literal">GDataYouTubeContent</code> has been deprecated since version 0.17.0 and should not be used in newly-written code.</p>
+<p>Accessing YouTube video content directly is no longer
+  supported by Google. There is no replacement.</p>
+</div>
+<p>All the fields in the <a class="link" href="GDataYouTubeContent.html" title="GDataYouTubeContent"><span class="type">GDataYouTubeContent</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
@@ -92,49 +166,30 @@ All the fields in the <a class="link" href="GDataYouTubeContent.html" title="GDa
 <pre class="programlisting">typedef struct {
 } GDataYouTubeContentClass;
 </pre>
-<p>
-All the fields in the <a class="link" href="GDataYouTubeContent.html#GDataYouTubeContentClass" title="GDataYouTubeContentClass"><span class="type">GDataYouTubeContentClass</span></a> structure are private and should never be accessed directly.
-</p>
-<p class="since">Since 0.4.0</p>
+<div class="warning">
+<p><code class="literal">GDataYouTubeContentClass</code> has been deprecated since version 0.17.0 and should not be used in newly-written code.</p>
+<p>Accessing YouTube video content directly is no longer
+  supported by Google. There is no replacement.</p>
 </div>
-<hr>
-<div class="refsect2">
-<a name="gdata-youtube-content-get-format"></a><h3>gdata_youtube_content_get_format ()</h3>
-<pre class="programlisting"><a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat"><span class="returnvalue">GDataYouTubeFormat</span></a>  gdata_youtube_content_get_format    (<em class="parameter"><code><a class="link" href="GDataYouTubeContent.html" title="GDataYouTubeContent"><span class="type">GDataYouTubeContent</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a class="link" href="GDataYouTubeContent.html#GDataYouTubeContent--format" title='The "format" property'><span class="type">"format"</span></a> property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataYouTubeContent.html" title="GDataYouTubeContent"><span class="type">GDataYouTubeContent</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the video format, or <a class="link" href="GDataYouTubeQuery.html#GDATA-YOUTUBE-FORMAT-UNKNOWN:CAPS"><code class="literal">GDATA_YOUTUBE_FORMAT_UNKNOWN</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
+<p>All the fields in the <a class="link" href="GDataYouTubeContent.html#GDataYouTubeContentClass" title="GDataYouTubeContentClass"><span class="type">GDataYouTubeContentClass</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataYouTubeContent.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
-<a name="GDataYouTubeContent--format"></a><h3>The <code class="literal">"format"</code> property</h3>
-<pre class="programlisting">  "format"                   <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat"><span class="type">GDataYouTubeFormat</span></a>    : Read</pre>
-<p>
-The video format of the video object.
-</p>
-<p>
-For more information, see the
+<a name="GDataYouTubeContent--format"></a><h3>The <code class="literal">“format”</code> property</h3>
+<pre class="programlisting">  “format”                   <a class="link" href="GDataYouTubeQuery.html#GDataYouTubeFormat" title="enum GDataYouTubeFormat"><span class="type">GDataYouTubeFormat</span></a></pre>
+<p>The video format of the video object.</p>
+<p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/youtube/2.0/reference.html#youtube_data_api_tag_media:content" target="_top">
 YouTube documentation</a>.
-</p>
+<div class="warning">
+<p><code class="literal">GDataYouTubeContent:format</code> has been deprecated since version 0.17.0 and should not be used in newly-written code.</p>
+<p>Accessing YouTube video content directly is
+  no longer supported by Google. There is no replacement.</p>
+</div>
+<p>Flags: Read</p>
 <p>Default value: GDATA_YOUTUBE_FORMAT_UNKNOWN</p>
 <p class="since">Since 0.4.0</p>
 </div>
@@ -142,6 +197,6 @@ YouTube documentation</a>.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

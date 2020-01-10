@@ -2,32 +2,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GDataDocumentsFeed</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<title>GDataDocumentsFeed: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch16.html" title="Google Documents API">
 <link rel="prev" href="GDataDocumentsService.html" title="GDataDocumentsService">
 <link rel="next" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="GDataDocumentsService.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch16.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="GDataDocumentsQuery.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#GDataDocumentsFeed.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#GDataDocumentsFeed.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#GDataDocumentsFeed.object-hierarchy" class="shortcut">Object Hierarchy</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataDocumentsFeed.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataDocumentsFeed.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch16.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataDocumentsService.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataDocumentsQuery.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="GDataDocumentsFeed"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -35,49 +30,66 @@
 <h2><span class="refentrytitle"><a name="GDataDocumentsFeed.top_of_page"></a>GDataDocumentsFeed</span></h2>
 <p>GDataDocumentsFeed — GData documents feed object</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
 <a name="GDataDocumentsFeed.stability-level"></a><h2>Stability Level</h2>
-Unstable, unless otherwise indicated
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
-<a name="GDataDocumentsFeed.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#include &lt;gdata/services/documents/gdata-documents-feed.h&gt;
-
-                    <a class="link" href="GDataDocumentsFeed.html#GDataDocumentsFeed-struct" title="GDataDocumentsFeed">GDataDocumentsFeed</a>;
-                    <a class="link" href="GDataDocumentsFeed.html#GDataDocumentsFeedClass" title="GDataDocumentsFeedClass">GDataDocumentsFeedClass</a>;
-</pre>
+<div class="refsect1">
+<a name="GDataDocumentsFeed.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataDocumentsFeed.html#GDataDocumentsFeed-struct" title="GDataDocumentsFeed">GDataDocumentsFeed</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataDocumentsFeed.html#GDataDocumentsFeedClass" title="GDataDocumentsFeedClass">GDataDocumentsFeedClass</a></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsFeed.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
-         +----<a class="link" href="GDataFeed.html" title="GDataFeed">GDataFeed</a>
-               +----GDataDocumentsFeed
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+        <span class="lineart">╰──</span> <a class="link" href="GDataFeed.html" title="GDataFeed">GDataFeed</a>
+            <span class="lineart">╰──</span> GDataDocumentsFeed
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataDocumentsFeed.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/services/documents/gdata-documents-feed.h&gt;
 </pre>
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsFeed.description"></a><h2>Description</h2>
-<p>
-<a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="type">GDataDocumentsFeed</span></a> is a list of entries (<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> subclasses) returned as the result of a query to a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>,
-or given as the input to another operation on the online service.
-</p>
-<p>
-Each <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> represents a single object on the Google Documents online service, such as a text document, presentation document,
-spreadsheet document or a folder, and the <a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="type">GDataDocumentsFeed</span></a> represents a collection of those objects.
-</p>
+<p><a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="type">GDataDocumentsFeed</span></a> is a list of entries (<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> subclasses) returned as the result of a query to a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>,
+or given as the input to another operation on the online service.</p>
+<p>Each <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> represents a single object on the Google Documents online service, such as a text document, presentation document,
+spreadsheet document or a folder, and the <a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="type">GDataDocumentsFeed</span></a> represents a collection of those objects.</p>
 </div>
 <div class="refsect1">
-<a name="GDataDocumentsFeed.details"></a><h2>Details</h2>
+<a name="GDataDocumentsFeed.functions_details"></a><h2>Functions</h2>
+</div>
+<div class="refsect1">
+<a name="GDataDocumentsFeed.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="GDataDocumentsFeed-struct"></a><h3>GDataDocumentsFeed</h3>
 <pre class="programlisting">typedef struct _GDataDocumentsFeed GDataDocumentsFeed;</pre>
-<p>
-All the fields in the <a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="type">GDataDocumentsFeed</span></a> structure are private and should never be accessed directly.
-</p>
+<p>All the fields in the <a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="type">GDataDocumentsFeed</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
@@ -86,15 +98,13 @@ All the fields in the <a class="link" href="GDataDocumentsFeed.html" title="GDat
 <pre class="programlisting">typedef struct {
 } GDataDocumentsFeedClass;
 </pre>
-<p>
-All the fields in the <a class="link" href="GDataDocumentsFeed.html#GDataDocumentsFeedClass" title="GDataDocumentsFeedClass"><span class="type">GDataDocumentsFeedClass</span></a> structure are private and should never be accessed directly.
-</p>
+<p>All the fields in the <a class="link" href="GDataDocumentsFeed.html#GDataDocumentsFeedClass" title="GDataDocumentsFeedClass"><span class="type">GDataDocumentsFeedClass</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

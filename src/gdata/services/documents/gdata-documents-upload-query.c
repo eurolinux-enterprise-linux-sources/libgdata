@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-documents-upload-query
  * @short_description: GData Documents upload query object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/services/documents/gdata-documents-upload-query.h
  *
  * #GDataDocumentsUploadQuery is a collection of parameters for document uploads to Google Documents, allowing various options to be set when uploading
@@ -210,6 +210,7 @@ static void
 gdata_documents_upload_query_init (GDataDocumentsUploadQuery *self)
 {
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_DOCUMENTS_UPLOAD_QUERY, GDataDocumentsUploadQueryPrivate);
+	self->priv->convert = TRUE;
 }
 
 static void

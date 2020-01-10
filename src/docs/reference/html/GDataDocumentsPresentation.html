@@ -2,34 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GDataDocumentsPresentation</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<title>GDataDocumentsPresentation: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch16.html" title="Google Documents API">
 <link rel="prev" href="GDataDocumentsPdf.html" title="GDataDocumentsPdf">
 <link rel="next" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="GDataDocumentsPdf.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch16.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="GDataDocumentsSpreadsheet.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#GDataDocumentsPresentation.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#GDataDocumentsPresentation.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#GDataDocumentsPresentation.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#GDataDocumentsPresentation.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataDocumentsPresentation.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataDocumentsPresentation.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_interfaces">  <span class="dim">|</span> 
+                  <a href="#GDataDocumentsPresentation.implemented-interfaces" class="shortcut">Implemented Interfaces</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch16.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataDocumentsPdf.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataDocumentsSpreadsheet.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="GDataDocumentsPresentation"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -37,37 +31,82 @@
 <h2><span class="refentrytitle"><a name="GDataDocumentsPresentation.top_of_page"></a>GDataDocumentsPresentation</span></h2>
 <p>GDataDocumentsPresentation — GData documents presentation object</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
 <a name="GDataDocumentsPresentation.stability-level"></a><h2>Stability Level</h2>
-Unstable, unless otherwise indicated
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
-<a name="GDataDocumentsPresentation.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#include &lt;gdata/services/documents/gdata-documents-presentation.h&gt;
-
-#define             <a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-PDF:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_PDF">GDATA_DOCUMENTS_PRESENTATION_PDF</a>
-#define             <a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-PNG:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_PNG">GDATA_DOCUMENTS_PRESENTATION_PNG</a>
-#define             <a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-PPT:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_PPT">GDATA_DOCUMENTS_PRESENTATION_PPT</a>
-#define             <a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-SWF:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_SWF">GDATA_DOCUMENTS_PRESENTATION_SWF</a>
-#define             <a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-TXT:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_TXT">GDATA_DOCUMENTS_PRESENTATION_TXT</a>
-                    <a class="link" href="GDataDocumentsPresentation.html#GDataDocumentsPresentation-struct" title="GDataDocumentsPresentation">GDataDocumentsPresentation</a>;
-                    <a class="link" href="GDataDocumentsPresentation.html#GDataDocumentsPresentationClass" title="GDataDocumentsPresentationClass">GDataDocumentsPresentationClass</a>;
-<a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="returnvalue">GDataDocumentsPresentation</span></a> * <a class="link" href="GDataDocumentsPresentation.html#gdata-documents-presentation-new" title="gdata_documents_presentation_new ()">gdata_documents_presentation_new</a>
-                                                        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);
-</pre>
+<div class="refsect1">
+<a name="GDataDocumentsPresentation.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody><tr>
+<td class="function_type">
+<a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="returnvalue">GDataDocumentsPresentation</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsPresentation.html#gdata-documents-presentation-new" title="gdata_documents_presentation_new ()">gdata_documents_presentation_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataDocumentsPresentation.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-PDF:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_PDF">GDATA_DOCUMENTS_PRESENTATION_PDF</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-PNG:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_PNG">GDATA_DOCUMENTS_PRESENTATION_PNG</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-PPT:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_PPT">GDATA_DOCUMENTS_PRESENTATION_PPT</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-SWF:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_SWF">GDATA_DOCUMENTS_PRESENTATION_SWF</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-TXT:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_TXT">GDATA_DOCUMENTS_PRESENTATION_TXT</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataDocumentsPresentation.html#GDataDocumentsPresentation-struct" title="GDataDocumentsPresentation">GDataDocumentsPresentation</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataDocumentsPresentation.html#GDataDocumentsPresentationClass" title="GDataDocumentsPresentationClass">GDataDocumentsPresentationClass</a></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsPresentation.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
-         +----<a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
-               +----<a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry">GDataDocumentsEntry</a>
-                     +----<a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument">GDataDocumentsDocument</a>
-                           +----GDataDocumentsPresentation
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+        <span class="lineart">╰──</span> <a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
+            <span class="lineart">╰──</span> <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry">GDataDocumentsEntry</a>
+                <span class="lineart">╰──</span> <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument">GDataDocumentsDocument</a>
+                    <span class="lineart">╰──</span> GDataDocumentsPresentation
 </pre>
 </div>
 <div class="refsect1">
@@ -77,29 +116,57 @@ GDataDocumentsPresentation implements
  <a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler">GDataAccessHandler</a>.</p>
 </div>
 <div class="refsect1">
-<a name="GDataDocumentsPresentation.description"></a><h2>Description</h2>
-<p>
-<a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a> is a subclass of <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> to represent a Google Documents presentation.
-</p>
-<p>
-For more details of Google Documents' GData API, see the
-<a class="ulink" href="https://developers.google.com/google-apps/documents-list/" target="_top">online documentation</a>.
-</p>
+<a name="GDataDocumentsPresentation.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/services/documents/gdata-documents-presentation.h&gt;
+</pre>
 </div>
 <div class="refsect1">
-<a name="GDataDocumentsPresentation.details"></a><h2>Details</h2>
+<a name="GDataDocumentsPresentation.description"></a><h2>Description</h2>
+<p><a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a> is a subclass of <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> to represent a Google Documents presentation.</p>
+<p>For more details of Google Documents' GData API, see the</p>
+<a class="ulink" href="https://developers.google.com/google-apps/documents-list/" target="_top">online documentation</a>.
+
+</div>
+<div class="refsect1">
+<a name="GDataDocumentsPresentation.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="gdata-documents-presentation-new"></a><h3>gdata_documents_presentation_new ()</h3>
+<pre class="programlisting"><a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="returnvalue">GDataDocumentsPresentation</span></a> *
+gdata_documents_presentation_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
+<p>Creates a new <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a> with the given entry ID (<a class="link" href="GDataEntry.html#GDataEntry--id" title="The “id” property"><span class="type">“id”</span></a>).</p>
+<div class="refsect3">
+<a name="id-1.5.5.11.10.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>id</p></td>
+<td class="parameter_description"><p> the entry's ID (not the document ID of the presentation), or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.11.10.2.6"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataDocumentsPresentation.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="GDATA-DOCUMENTS-PRESENTATION-PDF:CAPS"></a><h3>GDATA_DOCUMENTS_PRESENTATION_PDF</h3>
 <pre class="programlisting">#define GDATA_DOCUMENTS_PRESENTATION_PDF "pdf"
 </pre>
-<p>
-The export format for Portable Document Format (PDF).
-</p>
-<p>
-For more information, see the
+<p>The export format for Portable Document Format (PDF).</p>
+<p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-</p>
 <p class="since">Since 0.7.0</p>
 </div>
 <hr>
@@ -107,14 +174,10 @@ GData protocol specification</a>.
 <a name="GDATA-DOCUMENTS-PRESENTATION-PNG:CAPS"></a><h3>GDATA_DOCUMENTS_PRESENTATION_PNG</h3>
 <pre class="programlisting">#define GDATA_DOCUMENTS_PRESENTATION_PNG "png"
 </pre>
-<p>
-The export format for Portable Network Graphics (PNG) image format.
-</p>
-<p>
-For more information, see the
+<p>The export format for Portable Network Graphics (PNG) image format.</p>
+<p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-</p>
 <p class="since">Since 0.7.0</p>
 </div>
 <hr>
@@ -122,14 +185,10 @@ GData protocol specification</a>.
 <a name="GDATA-DOCUMENTS-PRESENTATION-PPT:CAPS"></a><h3>GDATA_DOCUMENTS_PRESENTATION_PPT</h3>
 <pre class="programlisting">#define GDATA_DOCUMENTS_PRESENTATION_PPT "ppt"
 </pre>
-<p>
-The export format for Microsoft PowerPoint (PPT) format.
-</p>
-<p>
-For more information, see the
+<p>The export format for Microsoft PowerPoint (PPT) format.</p>
+<p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-</p>
 <p class="since">Since 0.7.0</p>
 </div>
 <hr>
@@ -137,19 +196,15 @@ GData protocol specification</a>.
 <a name="GDATA-DOCUMENTS-PRESENTATION-SWF:CAPS"></a><h3>GDATA_DOCUMENTS_PRESENTATION_SWF</h3>
 <pre class="programlisting">#define GDATA_DOCUMENTS_PRESENTATION_SWF "swf"
 </pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">GDATA_DOCUMENTS_PRESENTATION_SWF</code> is deprecated and should not be used in newly-written code. SWF export has been deprecated in the protocol due to low demand for it; PDF export (using <a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-PDF:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_PDF"><code class="literal">GDATA_DOCUMENTS_PRESENTATION_PDF</code></a>) is
+<div class="warning">
+<p><code class="literal">GDATA_DOCUMENTS_PRESENTATION_SWF</code> is deprecated and should not be used in newly-written code.</p>
+<p>SWF export has been deprecated in the protocol due to low demand for it; PDF export (using <a class="link" href="GDataDocumentsPresentation.html#GDATA-DOCUMENTS-PRESENTATION-PDF:CAPS" title="GDATA_DOCUMENTS_PRESENTATION_PDF"><code class="literal">GDATA_DOCUMENTS_PRESENTATION_PDF</code></a>) is
 recommended instead. (Since: 0.11.0.)</p>
 </div>
-<p>
-The export format for Adobe Flash (SWF) format.
-</p>
-<p>
-For more information, see the
+<p>The export format for Adobe Flash (SWF) format.</p>
+<p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-</p>
 <p class="since">Since 0.7.0</p>
 </div>
 <hr>
@@ -157,23 +212,18 @@ GData protocol specification</a>.
 <a name="GDATA-DOCUMENTS-PRESENTATION-TXT:CAPS"></a><h3>GDATA_DOCUMENTS_PRESENTATION_TXT</h3>
 <pre class="programlisting">#define GDATA_DOCUMENTS_PRESENTATION_TXT "txt"
 </pre>
-<p>
-The export format for plain text format.
-</p>
-<p>
-For more information, see the
+<div class="warning"><p><code class="literal">GDATA_DOCUMENTS_PRESENTATION_TXT</code> is deprecated and should not be used in newly-written code.</p></div>
+<p>The export format for plain text format.</p>
+<p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-</p>
 <p class="since">Since 0.7.0</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataDocumentsPresentation-struct"></a><h3>GDataDocumentsPresentation</h3>
 <pre class="programlisting">typedef struct _GDataDocumentsPresentation GDataDocumentsPresentation;</pre>
-<p>
-All the fields in the <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a> structure are private and should never be accessed directly.
-</p>
+<p>All the fields in the <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
@@ -182,40 +232,13 @@ All the fields in the <a class="link" href="GDataDocumentsPresentation.html" tit
 <pre class="programlisting">typedef struct {
 } GDataDocumentsPresentationClass;
 </pre>
-<p>
-All the fields in the <a class="link" href="GDataDocumentsPresentation.html#GDataDocumentsPresentationClass" title="GDataDocumentsPresentationClass"><span class="type">GDataDocumentsPresentationClass</span></a> structure are private and should never be accessed directly.
-</p>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-presentation-new"></a><h3>gdata_documents_presentation_new ()</h3>
-<pre class="programlisting"><a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="returnvalue">GDataDocumentsPresentation</span></a> * gdata_documents_presentation_new
-                                                        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
-<p>
-Creates a new <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a> with the given entry ID (<a class="link" href="GDataEntry.html#GDataEntry--id" title='The "id" property'><span class="type">"id"</span></a>).
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
-<td>the entry's ID (not the document ID of the presentation), or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a>, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
+<p>All the fields in the <a class="link" href="GDataDocumentsPresentation.html#GDataDocumentsPresentationClass" title="GDataDocumentsPresentationClass"><span class="type">GDataDocumentsPresentationClass</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

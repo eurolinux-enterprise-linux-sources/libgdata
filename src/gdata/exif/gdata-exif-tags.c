@@ -20,7 +20,7 @@
 /*
  * SECTION:gdata-exif-tags
  * @short_description: EXIF tags element
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/exif/gdata-exif-tags.h
  *
  * #GDataExifTags represents a "tags" element from the
@@ -146,7 +146,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 	} else if (xmlStrcmp (node->name, (xmlChar*) "iso") == 0) {
 		/* exif:iso */
 		xmlChar *iso = xmlNodeListGetString (doc, node->children, TRUE);
-		self->priv->iso = strtol ((gchar*) iso, NULL, 10);
+		self->priv->iso = g_ascii_strtoll ((gchar*) iso, NULL, 10);
 		xmlFree (iso);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "time") == 0) {
 		/* exif:time */

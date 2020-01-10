@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataYouTubeFeed: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch13.html" title="YouTube API">
+<link rel="prev" href="GDataYouTubeService.html" title="GDataYouTubeService">
+<link rel="next" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataYouTubeFeed.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataYouTubeFeed.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch13.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataYouTubeService.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataYouTubeQuery.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="GDataYouTubeFeed"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataYouTubeFeed.top_of_page"></a>GDataYouTubeFeed</span></h2>
+<p>GDataYouTubeFeed — GData YouTube feed object</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="GDataYouTubeFeed.stability-level"></a><h2>Stability Level</h2>
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeFeed.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataYouTubeFeed.html#GDataYouTubeFeed-struct" title="GDataYouTubeFeed">GDataYouTubeFeed</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataYouTubeFeed.html#GDataYouTubeFeedClass" title="GDataYouTubeFeedClass">GDataYouTubeFeedClass</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeFeed.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+        <span class="lineart">╰──</span> <a class="link" href="GDataFeed.html" title="GDataFeed">GDataFeed</a>
+            <span class="lineart">╰──</span> GDataYouTubeFeed
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeFeed.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/services/youtube/gdata-youtube-feed.h&gt;
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeFeed.description"></a><h2>Description</h2>
+<p><a class="link" href="GDataYouTubeFeed.html" title="GDataYouTubeFeed"><span class="type">GDataYouTubeFeed</span></a> is a list of entries (<a class="link" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo"><span class="type">GDataYouTubeVideo</span></a> subclasses)
+returned as the result of a query to a <a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a>, or given as the
+input to another operation on the online service.</p>
+<p>Each <a class="link" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo"><span class="type">GDataYouTubeVideo</span></a> represents a single video on YouTube, and the
+<a class="link" href="GDataYouTubeFeed.html" title="GDataYouTubeFeed"><span class="type">GDataYouTubeFeed</span></a> represents a collection of those objects.</p>
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeFeed.functions_details"></a><h2>Functions</h2>
+</div>
+<div class="refsect1">
+<a name="GDataYouTubeFeed.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GDataYouTubeFeed-struct"></a><h3>GDataYouTubeFeed</h3>
+<pre class="programlisting">typedef struct _GDataYouTubeFeed GDataYouTubeFeed;</pre>
+<p>All the fields in the <a class="link" href="GDataYouTubeFeed.html" title="GDataYouTubeFeed"><span class="type">GDataYouTubeFeed</span></a> structure are private and should
+never be accessed directly.</p>
+<p class="since">Since 0.17.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GDataYouTubeFeedClass"></a><h3>GDataYouTubeFeedClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataYouTubeFeedClass;
+</pre>
+<p>All the fields in the <a class="link" href="GDataYouTubeFeed.html#GDataYouTubeFeedClass" title="GDataYouTubeFeedClass"><span class="type">GDataYouTubeFeedClass</span></a> structure are private and should
+never be accessed directly.</p>
+<p class="since">Since 0.17.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
+</body>
+</html>

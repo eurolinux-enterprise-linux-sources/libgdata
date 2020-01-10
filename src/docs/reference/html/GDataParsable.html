@@ -2,34 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GDataParsable</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<title>GDataParsable: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch02.html" title="Core API">
 <link rel="prev" href="gdata-GData-Types.html" title="GData Types">
 <link rel="next" href="GDataDownloadStream.html" title="GDataDownloadStream">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="gdata-GData-Types.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="GDataDownloadStream.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#GDataParsable.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#GDataParsable.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#GDataParsable.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#GDataParsable.properties" class="shortcut">Properties</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataParsable.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataParsable.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#GDataParsable.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="gdata-GData-Types.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataDownloadStream.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="GDataParsable"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -37,86 +31,325 @@
 <h2><span class="refentrytitle"><a name="GDataParsable.top_of_page"></a>GDataParsable</span></h2>
 <p>GDataParsable — GData parsable object</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
 <a name="GDataParsable.stability-level"></a><h2>Stability Level</h2>
-Unstable, unless otherwise indicated
-</div>
-<div class="refsynopsisdiv">
-<a name="GDataParsable.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#include &lt;gdata/gdata-parsable.h&gt;
-
-                    <a class="link" href="GDataParsable.html#GDataParsable-struct" title="GDataParsable">GDataParsable</a>;
-                    <a class="link" href="GDataParsable.html#GDataParsableClass" title="GDataParsableClass">GDataParsableClass</a>;
-<a class="link" href="GDataParsable.html" title="GDataParsable"><span class="returnvalue">GDataParsable</span></a> *     <a class="link" href="GDataParsable.html#gdata-parsable-new-from-xml" title="gdata_parsable_new_from_xml ()">gdata_parsable_new_from_xml</a>         (<em class="parameter"><code><a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> parsable_type</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *xml</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> length</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="GDataParsable.html#gdata-parsable-get-xml" title="gdata_parsable_get_xml ()">gdata_parsable_get_xml</a>              (<em class="parameter"><code><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> *self</code></em>);
-</pre>
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
 </div>
 <div class="refsect1">
-<a name="GDataParsable.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----GDataParsable
-         +----<a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
-         +----<a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories">GDataAPPCategories</a>
-         +----<a class="link" href="GDataAuthor.html" title="GDataAuthor">GDataAuthor</a>
-         +----<a class="link" href="GDataFeed.html" title="GDataFeed">GDataFeed</a>
-         +----<a class="link" href="GDataCategory.html" title="GDataCategory">GDataCategory</a>
-         +----<a class="link" href="GDataGContactCalendar.html" title="GDataGContactCalendar">GDataGContactCalendar</a>
-         +----<a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent">GDataGContactEvent</a>
-         +----<a class="link" href="GDataGContactExternalID.html" title="GDataGContactExternalID">GDataGContactExternalID</a>
-         +----<a class="link" href="GDataGContactJot.html" title="GDataGContactJot">GDataGContactJot</a>
-         +----<a class="link" href="GDataGContactLanguage.html" title="GDataGContactLanguage">GDataGContactLanguage</a>
-         +----<a class="link" href="GDataGContactRelation.html" title="GDataGContactRelation">GDataGContactRelation</a>
-         +----<a class="link" href="GDataGContactWebsite.html" title="GDataGContactWebsite">GDataGContactWebsite</a>
-         +----<a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress">GDataGDEmailAddress</a>
-         +----<a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress">GDataGDIMAddress</a>
-         +----<a class="link" href="GDataGDName.html" title="GDataGDName">GDataGDName</a>
-         +----<a class="link" href="GDataGDOrganization.html" title="GDataGDOrganization">GDataGDOrganization</a>
-         +----<a class="link" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber">GDataGDPhoneNumber</a>
-         +----<a class="link" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress">GDataGDPostalAddress</a>
-         +----<a class="link" href="GDataGDReminder.html" title="GDataGDReminder">GDataGDReminder</a>
-         +----<a class="link" href="GDataGDWhen.html" title="GDataGDWhen">GDataGDWhen</a>
-         +----<a class="link" href="GDataGDWhere.html" title="GDataGDWhere">GDataGDWhere</a>
-         +----<a class="link" href="GDataGDWho.html" title="GDataGDWho">GDataGDWho</a>
-         +----<a class="link" href="GDataGenerator.html" title="GDataGenerator">GDataGenerator</a>
-         +----<a class="link" href="GDataLink.html" title="GDataLink">GDataLink</a>
-         +----<a class="link" href="GDataMediaCategory.html" title="GDataMediaCategory">GDataMediaCategory</a>
-         +----<a class="link" href="GDataMediaContent.html" title="GDataMediaContent">GDataMediaContent</a>
-         +----<a class="link" href="GDataMediaCredit.html" title="GDataMediaCredit">GDataMediaCredit</a>
-         +----<a class="link" href="GDataMediaThumbnail.html" title="GDataMediaThumbnail">GDataMediaThumbnail</a>
-         +----<a class="link" href="GDataYouTubeState.html" title="GDataYouTubeState">GDataYouTubeState</a>
-</pre>
+<a name="GDataParsable.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataParsable.html" title="GDataParsable"><span class="returnvalue">GDataParsable</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataParsable.html#gdata-parsable-new-from-xml" title="gdata_parsable_new_from_xml ()">gdata_parsable_new_from_xml</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataParsable.html#gdata-parsable-get-xml" title="gdata_parsable_get_xml ()">gdata_parsable_get_xml</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataParsable.html" title="GDataParsable"><span class="returnvalue">GDataParsable</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataParsable.html#gdata-parsable-new-from-json" title="gdata_parsable_new_from_json ()">gdata_parsable_new_from_json</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataParsable.html#gdata-parsable-get-json" title="gdata_parsable_get_json ()">gdata_parsable_get_json</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="GDataParsable.properties"></a><h2>Properties</h2>
-<pre class="synopsis">
-  "<a class="link" href="GDataParsable.html#GDataParsable--constructed-from-xml" title='The "constructed-from-xml" property'>constructed-from-xml</a>"     <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write / Construct Only
+<div class="informaltable"><table border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody><tr>
+<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
+<td class="property_name"><a class="link" href="GDataParsable.html#GDataParsable--constructed-from-xml" title="The “constructed-from-xml” property">constructed-from-xml</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataParsable.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataParsable.html#GDataParsable-struct" title="GDataParsable">GDataParsable</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataParsable.html#GDataParsableClass" title="GDataParsableClass">GDataParsableClass</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataParsable.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> GDataParsable
+        <span class="lineart">├──</span> <a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories">GDataAPPCategories</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataAuthor.html" title="GDataAuthor">GDataAuthor</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataFeed.html" title="GDataFeed">GDataFeed</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataCategory.html" title="GDataCategory">GDataCategory</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGContactCalendar.html" title="GDataGContactCalendar">GDataGContactCalendar</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent">GDataGContactEvent</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGContactExternalID.html" title="GDataGContactExternalID">GDataGContactExternalID</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGContactJot.html" title="GDataGContactJot">GDataGContactJot</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGContactLanguage.html" title="GDataGContactLanguage">GDataGContactLanguage</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGContactRelation.html" title="GDataGContactRelation">GDataGContactRelation</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGContactWebsite.html" title="GDataGContactWebsite">GDataGContactWebsite</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress">GDataGDEmailAddress</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDIMAddress.html" title="GDataGDIMAddress">GDataGDIMAddress</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDName.html" title="GDataGDName">GDataGDName</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDOrganization.html" title="GDataGDOrganization">GDataGDOrganization</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDPhoneNumber.html" title="GDataGDPhoneNumber">GDataGDPhoneNumber</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress">GDataGDPostalAddress</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDReminder.html" title="GDataGDReminder">GDataGDReminder</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDWhen.html" title="GDataGDWhen">GDataGDWhen</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDWhere.html" title="GDataGDWhere">GDataGDWhere</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGDWho.html" title="GDataGDWho">GDataGDWho</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataGenerator.html" title="GDataGenerator">GDataGenerator</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataLink.html" title="GDataLink">GDataLink</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataMediaCategory.html" title="GDataMediaCategory">GDataMediaCategory</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataMediaContent.html" title="GDataMediaContent">GDataMediaContent</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataMediaCredit.html" title="GDataMediaCredit">GDataMediaCredit</a>
+        <span class="lineart">├──</span> <a class="link" href="GDataMediaThumbnail.html" title="GDataMediaThumbnail">GDataMediaThumbnail</a>
+        <span class="lineart">╰──</span> <a class="link" href="GDataYouTubeState.html" title="GDataYouTubeState">GDataYouTubeState</a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataParsable.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/gdata-parsable.h&gt;
 </pre>
 </div>
 <div class="refsect1">
 <a name="GDataParsable.description"></a><h2>Description</h2>
-<p>
-<a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> is an abstract class allowing easy implementation of an extensible parser. It is primarily extended by <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> and <a class="link" href="GDataEntry.html" title="GDataEntry"><span class="type">GDataEntry</span></a>,
-both of which require XML parsing which can be extended by subclassing.
-</p>
-<p>
-It allows methods to be defined for handling the root XML node, each of its child nodes, and a method to be called after parsing is complete.
-</p>
+<p><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> is an abstract class allowing easy implementation of an extensible parser. It is primarily extended by <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> and <a class="link" href="GDataEntry.html" title="GDataEntry"><span class="type">GDataEntry</span></a>,
+both of which require XML parsing which can be extended by subclassing.</p>
+<p>It allows methods to be defined for handling the root XML node, each of its child nodes, and a method to be called after parsing is complete.</p>
 </div>
 <div class="refsect1">
-<a name="GDataParsable.details"></a><h2>Details</h2>
+<a name="GDataParsable.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="gdata-parsable-new-from-xml"></a><h3>gdata_parsable_new_from_xml ()</h3>
+<pre class="programlisting"><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="returnvalue">GDataParsable</span></a> *
+gdata_parsable_new_from_xml (<em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> parsable_type</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *xml</code></em>,
+                             <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> length</code></em>,
+                             <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Creates a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> subclass (of the given <em class="parameter"><code>parsable_type</code></em>
+) from the given <em class="parameter"><code>xml</code></em>
+.</p>
+<p>An object of the given <em class="parameter"><code>parsable_type</code></em>
+ is created, and its <code class="function">pre_parse_xml</code>, <code class="function">parse_xml</code> and
+<code class="function">post_parse_xml</code> class functions called on the XML tree obtained from <em class="parameter"><code>xml</code></em>
+. <code class="function">pre_parse_xml</code> and
+<code class="function">post_parse_xml</code> are called once each on the root node of the tree, while <code class="function">parse_xml</code> is called for
+each of the child nodes of the root node.</p>
+<p>If <em class="parameter"><code>length</code></em>
+ is -1, <em class="parameter"><code>xml</code></em>
+ will be assumed to be null-terminated.</p>
+<p>If an error occurs during parsing, a suitable error from <a class="link" href="GDataService.html#GDataParserError" title="enum GDataParserError"><span class="type">GDataParserError</span></a> will be returned.</p>
+<div class="refsect3">
+<a name="id-1.3.2.8.10.2.8"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parsable_type</p></td>
+<td class="parameter_description"><p>the type of the class represented by the XML</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>xml</p></td>
+<td class="parameter_description"><p>the XML for just the parsable object, with full namespace declarations</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>length</p></td>
+<td class="parameter_description"><p>the length of <em class="parameter"><code>xml</code></em>
+, or -1</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.8.10.2.9"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-parsable-get-xml"></a><h3>gdata_parsable_get_xml ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_parsable_get_xml (<em class="parameter"><code><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> *self</code></em>);</pre>
+<p>Builds an XML representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, such that it could be inserted on the server. The XML is guaranteed
+to have all its namespaces declared properly in a self-contained fashion, and is valid for stand-alone use.</p>
+<div class="refsect3">
+<a name="id-1.3.2.8.10.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.8.10.3.6"></a><h4>Returns</h4>
+<p> the object's XML; free with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-parsable-new-from-json"></a><h3>gdata_parsable_new_from_json ()</h3>
+<pre class="programlisting"><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="returnvalue">GDataParsable</span></a> *
+gdata_parsable_new_from_json (<em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> parsable_type</code></em>,
+                              <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *json</code></em>,
+                              <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> length</code></em>,
+                              <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Creates a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> subclass (of the given <em class="parameter"><code>parsable_type</code></em>
+) from the given <em class="parameter"><code>json</code></em>
+.</p>
+<p>An object of the given <em class="parameter"><code>parsable_type</code></em>
+ is created, and its <code class="function">parse_json</code> and
+<code class="function">post_parse_json</code> class functions called on the JSON node obtained from <em class="parameter"><code>json</code></em>
+.
+<code class="function">post_parse_json</code> is called once on the root node, while <code class="function">parse_json</code> is called for
+each of the node's members.</p>
+<p>If <em class="parameter"><code>length</code></em>
+ is -1, <em class="parameter"><code>json</code></em>
+ will be assumed to be nul-terminated.</p>
+<p>If an error occurs during parsing, a suitable error from <a class="link" href="GDataService.html#GDataParserError" title="enum GDataParserError"><span class="type">GDataParserError</span></a> will be returned.</p>
+<div class="refsect3">
+<a name="id-1.3.2.8.10.4.8"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parsable_type</p></td>
+<td class="parameter_description"><p>the type of the class represented by the JSON</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>json</p></td>
+<td class="parameter_description"><p>the JSON for just the parsable object</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>length</p></td>
+<td class="parameter_description"><p>the length of <em class="parameter"><code>json</code></em>
+, or -1</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.8.10.4.9"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+</div>
+<p class="since">Since 0.15.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-parsable-get-json"></a><h3>gdata_parsable_get_json ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_parsable_get_json (<em class="parameter"><code><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> *self</code></em>);</pre>
+<p>Builds a JSON representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, such that it could be inserted on the server. The JSON
+is valid for stand-alone use.</p>
+<div class="refsect3">
+<a name="id-1.3.2.8.10.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.8.10.5.6"></a><h4>Returns</h4>
+<p> the object's JSON; free with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a></p>
+</div>
+<p class="since">Since 0.15.0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataParsable.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="GDataParsable-struct"></a><h3>GDataParsable</h3>
 <pre class="programlisting">typedef struct _GDataParsable GDataParsable;</pre>
-<p>
-All the fields in the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> structure are private and should never be accessed directly.
-</p>
+<p>All the fields in the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.3.0</p>
 </div>
 <hr>
@@ -133,147 +366,114 @@ All the fields in the <a class="link" href="GDataParsable.html" title="GDataPars
 	void (*get_xml) (GDataParsable *parsable, GString *xml_string);
 	void (*get_namespaces) (GDataParsable *parsable, GHashTable *namespaces);
 
+	gboolean (*parse_json) (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error);
+	gboolean (*post_parse_json) (GDataParsable *parsable, gpointer user_data, GError **error);
+	void (*get_json) (GDataParsable *parsable, JsonBuilder *builder);
+
+	const gchar *(*get_content_type) (void);
+
 	const gchar *element_name;
 	const gchar *element_namespace;
 } GDataParsableClass;
 </pre>
-<p>
-The class structure for the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> class.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
+<p>The class structure for the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> class. Note that JSON and XML functions are mutually exclusive:
+a given implementation of <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> is represented as exactly one of JSON and XML.</p>
+<div class="refsect3">
+<a name="id-1.3.2.8.11.3.5"></a><h4>Members</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObjectClass"><span class="type">GObjectClass</span></a> <em class="structfield"><code><a name="GDataParsableClass.parent"></a>parent</code></em>;</span></p></td>
-<td>the parent class</td>
+<td class="struct_member_name"><p><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObjectClass"><span class="type">GObjectClass</span></a> <em class="structfield"><code><a name="GDataParsableClass.parent"></a>parent</code></em>;</p></td>
+<td class="struct_member_description"><p>the parent class</p></td>
+<td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.pre-parse-xml"></a>pre_parse_xml</code></em> ()</span></p></td>
-<td>a function called before parsing of an XML tree is started, which allows properties from the root node to be extracted
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.pre-parse-xml"></a>pre_parse_xml</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function called before parsing of an XML tree is started, which allows properties from the root node to be extracted
 and used in <em class="parameter"><code>parsable</code></em>
-</td>
+</p></td>
+<td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.parse-xml"></a>parse_xml</code></em> ()</span></p></td>
-<td>a function to parse an XML representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> to set the properties of the <em class="parameter"><code>parsable</code></em>
-</td>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.parse-xml"></a>parse_xml</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function to parse an XML representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> to set the properties of the <em class="parameter"><code>parsable</code></em>
+</p></td>
+<td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.post-parse-xml"></a>post_parse_xml</code></em> ()</span></p></td>
-<td>a function called after parsing an XML tree, to allow the <em class="parameter"><code>parsable</code></em> to validate the parsed properties</td>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.post-parse-xml"></a>post_parse_xml</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function called after parsing an XML tree, to allow the <em class="parameter"><code>parsable</code></em>
+to validate the parsed properties</p></td>
+<td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.pre-get-xml"></a>pre_get_xml</code></em> ()</span></p></td>
-<td>a function called before building the XML representation of the children of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>, which allows attributes of the root
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.pre-get-xml"></a>pre_get_xml</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function called before building the XML representation of the children of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>, which allows attributes of the root
 XML node to be added to <em class="parameter"><code>xml_string</code></em>
-</td>
+</p></td>
+<td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.get-xml"></a>get_xml</code></em> ()</span></p></td>
-<td>a function to build an XML representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, appending it to the provided <a href="http://library.gnome.org/devel/glib/unstable/glib-Strings.html#GString"><span class="type">GString</span></a>
-</td>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.get-xml"></a>get_xml</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function to build an XML representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, appending it to the provided <a href="https://developer.gnome.org/glib/unstable/glib-Strings.html#GString"><span class="type">GString</span></a></p></td>
+<td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code><a name="GDataParsableClass.get-namespaces"></a>get_namespaces</code></em> ()</span></p></td>
-<td>a function to return a string containing the namespace declarations used by the <em class="parameter"><code>parsable</code></em> when represented in XML form</td>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.get-namespaces"></a>get_namespaces</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function to return a string containing the namespace declarations used by the <em class="parameter"><code>parsable</code></em>
+when represented in XML form</p></td>
+<td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *<em class="structfield"><code><a name="GDataParsableClass.element-name"></a>element_name</code></em>;</span></p></td>
-<td>the name of the XML element which represents this parsable</td>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.parse-json"></a>parse_json</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function to parse a JSON representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> to set the properties of the <em class="parameter"><code>parsable</code></em>
+</p></td>
+<td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *<em class="structfield"><code><a name="GDataParsableClass.element-namespace"></a>element_namespace</code></em>;</span></p></td>
-<td>the prefix of the XML namespace used for the parsable</td>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.post-parse-json"></a>post_parse_json</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function called after parsing a JSON object, to allow the <em class="parameter"><code>parsable</code></em>
+to validate the parsed properties</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.get-json"></a>get_json</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function to build a JSON representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, appending it to the provided <span class="type">JsonBuilder</span></p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.get-content-type"></a>get_content_type</code></em> ()</p></td>
+<td class="struct_member_description"><p>a function which returns content type upon which is <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> built</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *<em class="structfield"><code><a name="GDataParsableClass.element-name"></a>element_name</code></em>;</p></td>
+<td class="struct_member_description"><p>the name of the XML element which represents this parsable</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *<em class="structfield"><code><a name="GDataParsableClass.element-namespace"></a>element_namespace</code></em>;</p></td>
+<td class="struct_member_description"><p>the prefix of the XML namespace used for the parsable</p></td>
+<td class="struct_member_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
+</div>
 <p class="since">Since 0.3.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-parsable-new-from-xml"></a><h3>gdata_parsable_new_from_xml ()</h3>
-<pre class="programlisting"><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="returnvalue">GDataParsable</span></a> *     gdata_parsable_new_from_xml         (<em class="parameter"><code><a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> parsable_type</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *xml</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> length</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Creates a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> subclass (of the given <em class="parameter"><code>parsable_type</code></em>) from the given <em class="parameter"><code>xml</code></em>.
-</p>
-<p>
-An object of the given <em class="parameter"><code>parsable_type</code></em> is created, and its <code class="function">pre_parse_xml</code>, <code class="function">parse_xml</code> and
-<code class="function">post_parse_xml</code> class functions called on the XML tree obtained from <em class="parameter"><code>xml</code></em>. <code class="function">pre_parse_xml</code> and
-<code class="function">post_parse_xml</code> are called once each on the root node of the tree, while <code class="function">parse_xml</code> is called for
-each of the child nodes of the root node.
-</p>
-<p>
-If <em class="parameter"><code>length</code></em> is -1, <em class="parameter"><code>xml</code></em> will be assumed to be null-terminated.
-</p>
-<p>
-If an error occurs during parsing, a suitable error from <a class="link" href="GDataService.html#GDataParserError" title="enum GDataParserError"><span class="type">GDataParserError</span></a> will be returned.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>parsable_type</code></em> :</span></p></td>
-<td>the type of the class represented by the XML</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>xml</code></em> :</span></p></td>
-<td>the XML for just the parsable object, with full namespace declarations</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
-<td>the length of <em class="parameter"><code>xml</code></em>, or -1</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-parsable-get-xml"></a><h3>gdata_parsable_get_xml ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdata_parsable_get_xml              (<em class="parameter"><code><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> *self</code></em>);</pre>
-<p>
-Builds an XML representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, such that it could be inserted on the server. The XML is guaranteed
-to have all its namespaces declared properly in a self-contained fashion, and is valid for stand-alone use.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the object's XML; free with <a href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataParsable.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
-<a name="GDataParsable--constructed-from-xml"></a><h3>The <code class="literal">"constructed-from-xml"</code> property</h3>
-<pre class="programlisting">  "constructed-from-xml"     <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write / Construct Only</pre>
-<p>
-Specifies whether the object was constructed by parsing XML or manually.
-</p>
+<a name="GDataParsable--constructed-from-xml"></a><h3>The <code class="literal">“constructed-from-xml”</code> property</h3>
+<pre class="programlisting">  “constructed-from-xml”     <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
+<p>Specifies whether the object was constructed by parsing XML or manually.</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.7.0</p>
 </div>
@@ -281,6 +481,6 @@ Specifies whether the object was constructed by parsing XML or manually.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

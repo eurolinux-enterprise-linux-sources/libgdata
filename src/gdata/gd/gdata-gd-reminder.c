@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-gd-reminder
  * @short_description: GData reminder element
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gd/gdata-gd-reminder.h
  *
  * #GDataGDReminder represents a "reminder" element from the
@@ -148,7 +148,7 @@ gdata_gd_reminder_class_init (GDataGDReminderClass *klass)
 static gint
 compare_with (GDataComparable *self, GDataComparable *other)
 {
-	gint method_cmp;
+	gint method_cmp, time_cmp;
 	GDataGDReminder *a = (GDataGDReminder*) self, *b = (GDataGDReminder*) other;
 
 	if (gdata_gd_reminder_is_absolute_time (a) != gdata_gd_reminder_is_absolute_time (b))
@@ -156,14 +156,15 @@ compare_with (GDataComparable *self, GDataComparable *other)
 
 	method_cmp = g_strcmp0 (a->priv->method, b->priv->method);
 	if (gdata_gd_reminder_is_absolute_time (a) == TRUE) {
-		if (method_cmp == 0 && a->priv->absolute_time == b->priv->absolute_time)
-			return 0;
+		time_cmp = a->priv->absolute_time - b->priv->absolute_time;
 	} else {
-		if (method_cmp == 0 && a->priv->relative_time == b->priv->relative_time)
-			return 0;
+		time_cmp = a->priv->relative_time - b->priv->relative_time;
 	}
 
-	return method_cmp;
+	if (method_cmp == 0)
+		return time_cmp;
+	else
+		return method_cmp;
 }
 
 static void
@@ -262,15 +263,15 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 	/* Relative time */
 	relative_time = xmlGetProp (root_node, (xmlChar*) "days");
 	if (relative_time != NULL) {
-		relative_time_int = strtol ((gchar*) relative_time, NULL, 10) * 60 * 24;
+		relative_time_int = g_ascii_strtoll ((gchar*) relative_time, NULL, 10) * 60 * 24;
 	} else {
 		relative_time = xmlGetProp (root_node, (xmlChar*) "hours");
 		if (relative_time != NULL) {
-			relative_time_int = strtol ((gchar*) relative_time, NULL, 10) * 60;
+			relative_time_int = g_ascii_strtoll ((gchar*) relative_time, NULL, 10) * 60;
 		} else {
 			relative_time = xmlGetProp (root_node, (xmlChar*) "minutes");
 			if (relative_time != NULL)
-				relative_time_int = strtol ((gchar*) relative_time, NULL, 10);
+				relative_time_int = g_ascii_strtoll ((gchar*) relative_time, NULL, 10);
 		}
 	}
 	xmlFree (relative_time);

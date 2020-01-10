@@ -19,6 +19,7 @@
 
 #include <glib.h>
 #include <glib-object.h>
+#include <locale.h>
 #include <stdio.h>
 #include <string.h>
 #include <libxml/parser.h>
@@ -26,31 +27,64 @@
 
 #include "common.h"
 
-/* %TRUE if there's no Internet connection, so we should only run local tests */
-static gboolean no_internet = FALSE;
-
 /* %TRUE if interactive tests should be skipped because we're running automatically (for example) */
-static gboolean no_interactive = FALSE;
+static gboolean no_interactive = TRUE;
+
+/* declaration of debug handler */
+static void gdata_test_debug_handler (const gchar *log_domain, GLogLevelFlags log_level, const gchar *message, gpointer user_data);
+
+/* Directory to output network trace files to, if trace output is enabled. (NULL otherwise.) */
+static GFile *trace_dir = NULL;
+
+/* TRUE if tests should be run online and a trace file written for each; FALSE if tests should run offline against existing trace files. */
+static gboolean write_traces = FALSE;
+
+/* TRUE if tests should be run online and the server's responses compared to the existing trace file for each; FALSE if tests should run offline without comparison. */
+static gboolean compare_traces = FALSE;
+
+/* Global mock server instance used by all tests. */
+static UhmServer *mock_server = NULL;
 
 void
 gdata_test_init (int argc, char **argv)
 {
+	GTlsCertificate *cert;
+	GError *child_error = NULL;
 	gint i;
+
+	setlocale (LC_ALL, "");
 
 #if !GLIB_CHECK_VERSION (2, 35, 0)
 	g_type_init ();
 #endif
 
-	/* Parse the --no-internet and --no-interactive options */
+	/* Parse the custom options */
 	for (i = 1; i < argc; i++) {
-		if (strcmp ("--no-internet", argv[i]) == 0 || strcmp ("-n", argv[i]) == 0) {
-			no_internet = TRUE;
-			argv[i] = (char*) "";
-		} else if (strcmp ("--no-interactive", argv[i]) == 0 || strcmp ("-i", argv[i]) == 0) {
+		if (strcmp ("--no-interactive", argv[i]) == 0 || strcmp ("-ni", argv[i]) == 0) {
 			no_interactive = TRUE;
 			argv[i] = (char*) "";
+		} else if (strcmp ("--interactive", argv[i]) == 0 || strcmp ("-i", argv[i]) == 0) {
+			no_interactive = FALSE;
+			argv[i] = (char*) "";
+		} else if (strcmp ("--trace-dir", argv[i]) == 0 || strcmp ("-t", argv[i]) == 0) {
+			if (i >= argc - 1) {
+				fprintf (stderr, "Error: Missing directory for --trace-dir option.\n");
+				exit (1);
+			}
+
+			trace_dir = g_file_new_for_path (argv[i + 1]);
+
+			argv[i] = (char*) "";
+			argv[i + 1] = (char*) "";
+			i++;
+		} else if (strcmp ("--write-traces", argv[i]) == 0 || strcmp ("-w", argv[i]) == 0) {
+			write_traces = TRUE;
+			argv[i] = (char*) "";
+		} else if (strcmp ("--compare-traces", argv[i]) == 0 || strcmp ("-c", argv[i]) == 0) {
+			compare_traces = TRUE;
+			argv[i] = (char*) "";
 		} else if (strcmp ("-?", argv[i]) == 0 || strcmp ("--help", argv[i]) == 0 || strcmp ("-h" , argv[i]) == 0) {
-			/* We have to override --help in order to document --no-internet and --no-interactive */
+			/* We have to override --help in order to document --no-interactive and the trace flags. */
 			printf ("Usage:\n"
 			          "  %s [OPTION...]\n\n"
 			          "Help Options:\n"
@@ -64,34 +98,58 @@ gdata_test_init (int argc, char **argv)
 			          "  -p TESTPATH                    Execute all tests matching TESTPATH\n"
 			          "  -m {perf|slow|thorough|quick}  Execute tests according modes\n"
 			          "  --debug-log                    Debug test logging output\n"
-			          "  -n, --no-internet              Only execute tests which don't require Internet connectivity\n"
-			          "  -i, --no-interactive           Only execute tests which don't require user interaction\n",
+			          "  -ni, --no-interactive          Only execute tests which don't require user interaction\n"
+			          "  -i, --interactive              Execute tests including those requiring user interaction\n"
+			          "  -t, --trace-dir [directory]    Read/Write trace files in the specified directory\n"
+			          "  -w, --write-traces             Work online and write trace files to --trace-dir\n"
+			          "  -c, --compare-traces           Work online and compare with existing trace files in --trace-dir\n",
 			          argv[0]);
 			exit (0);
 		}
 	}
 
+	/* --[write|compare]-traces are mutually exclusive. */
+	if (write_traces == TRUE && compare_traces == TRUE) {
+		fprintf (stderr, "Error: --write-traces and --compare-traces are mutually exclusive.\n");
+		exit (1);
+	}
+
 	g_test_init (&argc, &argv, NULL);
 	g_test_bug_base ("http://bugzilla.gnome.org/show_bug.cgi?id=");
 
-	/* Enable full debugging */
-	g_setenv ("LIBGDATA_DEBUG", "3" /* GDATA_LOG_FULL */, FALSE);
+	/* Set handler of debug information */
+	g_log_set_handler (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, (GLogFunc) gdata_test_debug_handler, NULL);
+
+	/* Enable full debugging. These options are seriously unsafe, but we don't care for test cases. */
+	g_setenv ("LIBGDATA_DEBUG", "4" /* GDATA_LOG_FULL_UNREDACTED */, FALSE);
 	g_setenv ("G_MESSAGES_DEBUG", "libgdata", FALSE);
+	g_setenv ("LIBGDATA_LAX_SSL_CERTIFICATES", "1", FALSE);
+
+	mock_server = uhm_server_new ();
+	uhm_server_set_enable_logging (mock_server, write_traces);
+	uhm_server_set_enable_online (mock_server, write_traces || compare_traces);
+
+	/* Build the certificate. */
+	cert = g_tls_certificate_new_from_files (TEST_FILE_DIR "cert.pem", TEST_FILE_DIR "key.pem", &child_error);
+	g_assert_no_error (child_error);
+	/* Set it as the property. */
+	uhm_server_set_tls_certificate (mock_server, cert);
+	g_object_unref (cert);
 }
 
 /*
- * gdata_test_internet:
+ * gdata_test_get_mock_server:
  *
- * Returns whether tests which require Internet access should be run.
+ * Returns the singleton #UhmServer instance used throughout the test suite.
  *
- * Return value: %TRUE if Internet-requiring tests should be run, %FALSE otherwise
+ * Return value: (transfer none): the mock server
  *
- * Since: 0.7.0
+ * Since: 0.13.4
  */
-gboolean
-gdata_test_internet (void)
+UhmServer *
+gdata_test_get_mock_server (void)
 {
-	return (no_internet == FALSE) ? TRUE : FALSE;
+	return mock_server;
 }
 
 /*
@@ -578,6 +636,167 @@ gdata_test_compare_xml (GDataParsable *parsable, const gchar *expected_xml, gboo
 	return success;
 }
 
+static gboolean
+compare_json_nodes (JsonNode *node1, JsonNode *node2)
+{
+	if (node1 == node2)
+		return TRUE;
+
+	if (JSON_NODE_TYPE (node1) != JSON_NODE_TYPE (node2))
+		return FALSE;
+
+	switch (JSON_NODE_TYPE (node1)) {
+		case JSON_NODE_OBJECT: {
+			JsonObject *object1, *object2;
+			guint size1, size2;
+			GList *members, *i;
+
+			object1 = json_node_get_object (node1);
+			object2 = json_node_get_object (node2);
+
+			size1 = json_object_get_size (object1);
+			size2 = json_object_get_size (object2);
+
+			if (size1 != size2)
+				return FALSE;
+
+			/* Iterate over the first object, checking that every member is also present in the second object. */
+			members = json_object_get_members (object1);
+
+			for (i = members; i != NULL; i = i->next) {
+				JsonNode *child_node1, *child_node2;
+
+				child_node1 = json_object_get_member (object1, i->data);
+				child_node2 = json_object_get_member (object2, i->data);
+
+				g_assert (child_node1 != NULL);
+				if (child_node2 == NULL) {
+					g_list_free (members);
+					return FALSE;
+				}
+
+				if (compare_json_nodes (child_node1, child_node2) == FALSE) {
+					g_list_free (members);
+					return FALSE;
+				}
+			}
+
+			g_list_free (members);
+
+			return TRUE;
+		}
+		case JSON_NODE_ARRAY: {
+			JsonArray *array1, *array2;
+			guint length1, length2, i;
+
+			array1 = json_node_get_array (node1);
+			array2 = json_node_get_array (node2);
+
+			length1 = json_array_get_length (array1);
+			length2 = json_array_get_length (array2);
+
+			if (length1 != length2)
+				return FALSE;
+
+			/* Iterate over both arrays, checking the elements at each index are identical. */
+			for (i = 0; i < length1; i++) {
+				JsonNode *child_node1, *child_node2;
+
+				child_node1 = json_array_get_element (array1, i);
+				child_node2 = json_array_get_element (array2, i);
+
+				if (compare_json_nodes (child_node1, child_node2) == FALSE)
+					return FALSE;
+			}
+
+			return TRUE;
+		}
+		case JSON_NODE_VALUE: {
+			GType type1, type2;
+
+			type1 = json_node_get_value_type (node1);
+			type2 = json_node_get_value_type (node2);
+
+			if (type1 != type2)
+				return FALSE;
+
+			switch (type1) {
+				case G_TYPE_BOOLEAN:
+					return (json_node_get_boolean (node1) == json_node_get_boolean (node2)) ? TRUE : FALSE;
+				case G_TYPE_DOUBLE:
+					/* Note: This doesn't need an epsilon-based comparison because we only want to return
+					 * true if the string representation of the two values is equal — and if it is, their
+					 * parsed values should be binary identical too. */
+					return (json_node_get_double (node1) == json_node_get_double (node2)) ? TRUE : FALSE;
+				case G_TYPE_INT64:
+					return (json_node_get_int (node1) == json_node_get_int (node2)) ? TRUE : FALSE;
+				case G_TYPE_STRING:
+					return (g_strcmp0 (json_node_get_string (node1), json_node_get_string (node2)) == 0) ? TRUE : FALSE;
+				default:
+					/* JSON doesn't support any other types. */
+					g_assert_not_reached ();
+			}
+
+			return TRUE;
+		}
+		case JSON_NODE_NULL:
+			return TRUE;
+		default:
+			g_assert_not_reached ();
+	}
+}
+
+gboolean
+gdata_test_compare_json_strings (const gchar *parsable_json, const gchar *expected_json, gboolean print_error)
+{
+	gboolean success;
+	JsonParser *parsable_parser, *expected_parser;
+	GError *child_error = NULL;
+
+	/* Parse both strings. */
+	parsable_parser = json_parser_new ();
+	expected_parser = json_parser_new ();
+
+	json_parser_load_from_data (parsable_parser, parsable_json, -1, &child_error);
+	if (child_error != NULL) {
+		if (print_error == TRUE) {
+			g_message ("\n\nParsable: %s\n\nNot valid JSON: %s", parsable_json, child_error->message);
+		}
+
+		g_error_free (child_error);
+		return FALSE;
+	}
+
+	json_parser_load_from_data (expected_parser, expected_json, -1, &child_error);
+	g_assert_no_error (child_error); /* this really should never fail; or the test has encoded bad JSON */
+
+	/* Recursively compare the two JSON nodes. */
+	success = compare_json_nodes (json_parser_get_root (parsable_parser), json_parser_get_root (expected_parser));
+	if (success == FALSE && print_error == TRUE) {
+		/* The comparison has failed, so print out the two JSON strings for ease of debugging */
+		g_message ("\n\nParsable: %s\n\nExpected: %s\n\n", parsable_json, expected_json);
+	}
+
+	g_object_unref (expected_parser);
+	g_object_unref (parsable_parser);
+
+	return success;
+}
+
+gboolean
+gdata_test_compare_json (GDataParsable *parsable, const gchar *expected_json, gboolean print_error)
+{
+	gboolean success;
+	gchar *parsable_json;
+
+	/* Get a JSON string for the GDataParsable. */
+	parsable_json = gdata_parsable_get_json (parsable);
+	success = gdata_test_compare_json_strings (parsable_json, expected_json, print_error);
+	g_free (parsable_json);
+
+	return success;
+}
+
 gboolean
 gdata_test_compare_kind (GDataEntry *entry, const gchar *expected_term, const gchar *expected_label)
 {
@@ -650,4 +869,154 @@ gdata_tear_down_async_test_data (GDataAsyncTestData *async_data, gconstpointer t
 
 	g_object_unref (async_data->cancellable);
 	g_main_loop_unref (async_data->main_loop);
+}
+
+static void
+output_log_message (const gchar *message)
+{
+	if (strlen (message) > 2 && message[2] == '<') {
+		/* As debug string starts with direction indicator and space, t.i. "< ", */
+		/* we need access string starting from third character and see if it's   */
+		/* looks like xml - t.i. it starts with '<' */
+		xmlChar *xml_buff;
+		int buffer_size;
+		xmlDocPtr xml_doc;
+		/* we need to cut to the begining of XML string */
+		message = message + 2;
+		/* create xml document and dump it to string buffer */
+		xml_doc = xmlParseDoc ((const xmlChar*) message);
+		xmlDocDumpFormatMemory (xml_doc, &xml_buff, &buffer_size, 1);
+		/* print out structured xml - if it's not xml, it will get error in output */
+		printf("%s", (gchar*) xml_buff);
+		/* free xml structs */
+		xmlFree (xml_buff);
+		xmlFreeDoc (xml_doc);
+	} else {
+		printf ("%s\n", (gchar*) message);
+	}
+}
+
+static void
+gdata_test_debug_handler (const gchar *log_domain, GLogLevelFlags log_level, const gchar *message, gpointer user_data)
+{
+	output_log_message (message);
+
+	/* Log to the trace file. */
+	if ((*message == '<' || *message == '>' || *message == ' ') && *(message + 1) == ' ') {
+		uhm_server_received_message_chunk (mock_server, message, strlen (message), NULL);
+	}
+}
+
+/**
+ * gdata_test_set_https_port:
+ * @server: a #UhmServer
+ *
+ * Sets the HTTPS port used for all future libgdata requests to that used by the given mock @server,
+ * effectively redirecting all client requests to the mock server.
+ *
+ * Since: 0.13.4
+ */
+void
+gdata_test_set_https_port (UhmServer *server)
+{
+	gchar *port_string = g_strdup_printf ("%u", uhm_server_get_port (server));
+	g_setenv ("LIBGDATA_HTTPS_PORT", port_string, TRUE);
+	g_free (port_string);
+}
+
+/**
+ * gdata_test_mock_server_start_trace:
+ * @server: a #UhmServer
+ * @trace_filename: filename of the trace to load
+ *
+ * Wrapper around uhm_server_start_trace() which additionally sets the <code class="literal">LIBGDATA_HTTPS_PORT</code>
+ * environment variable to redirect all libgdata requests to the mock server.
+ *
+ * Since: 0.13.4
+ */
+void
+gdata_test_mock_server_start_trace (UhmServer *server, const gchar *trace_filename)
+{
+	GError *child_error = NULL;
+
+	uhm_server_start_trace (server, trace_filename, &child_error);
+	g_assert_no_error (child_error);
+	gdata_test_set_https_port (server);
+}
+
+/**
+ * gdata_test_mock_server_handle_message_error:
+ * @server: a #UhmServer
+ * @message: the message whose response should be filled
+ * @client: the currently connected client
+ * @user_data: user data provided when connecting the signal
+ *
+ * Handler for #UhmServer::handle-message which sets the HTTP response for @message to the HTTP error status
+ * specified in a #GDataTestRequestErrorData structure passed to @user_data.
+ *
+ * Since: 0.13.4
+ */
+gboolean
+gdata_test_mock_server_handle_message_error (UhmServer *server, SoupMessage *message, SoupClientContext *client, gpointer user_data)
+{
+	const GDataTestRequestErrorData *data = user_data;
+
+	soup_message_set_status_full (message, data->status_code, data->reason_phrase);
+	soup_message_body_append (message->response_body, SOUP_MEMORY_STATIC, data->message_body, strlen (data->message_body));
+
+	return TRUE;
+}
+
+/**
+ * gdata_test_mock_server_handle_message_timeout:
+ * @server: a #UhmServer
+ * @message: the message whose response should be filled
+ * @client: the currently connected client
+ * @user_data: user data provided when connecting the signal
+ *
+ * Handler for #UhmServer::handle-message which waits for 2 seconds before returning a %SOUP_STATUS_REQUEST_TIMEOUT status
+ * and appropriate error message body. If used in conjunction with a 1 second timeout in the client code under test, this can
+ * simulate network error conditions and timeouts, in order to test the error handling code for such conditions.
+ *
+ * Since: 0.13.4
+ */
+gboolean
+gdata_test_mock_server_handle_message_timeout (UhmServer *server, SoupMessage *message, SoupClientContext *client, gpointer user_data)
+{
+	/* Sleep for longer than the timeout set on the client. */
+	g_usleep (2 * G_USEC_PER_SEC);
+
+	soup_message_set_status_full (message, SOUP_STATUS_REQUEST_TIMEOUT, "Request Timeout");
+	soup_message_body_append (message->response_body, SOUP_MEMORY_STATIC, "Request timed out.", strlen ("Request timed out."));
+
+	return TRUE;
+}
+
+/**
+ * gdata_test_query_user_for_verifier:
+ * @authentication_uri: authentication URI to present
+ *
+ * Given an authentication URI, prompt the user to go to that URI, grant access
+ * to the test application and enter the resulting verifier. This is to be used
+ * with interactive OAuth authorisation requests.
+ *
+ * Returns: (transfer full): verifier from the web page
+ */
+gchar *
+gdata_test_query_user_for_verifier (const gchar *authentication_uri)
+{
+	char verifier[100];
+
+	/* Wait for the user to retrieve and enter the verifier */
+	g_print ("Please navigate to the following URI and grant access: %s\n", authentication_uri);
+	g_print ("Enter verifier (EOF to skip test): ");
+	if (scanf ("%100s", verifier) != 1) {
+		/* Skip the test */
+		g_test_message ("Skipping test on user request.");
+		return NULL;
+	}
+
+	g_test_message ("Proceeding with user-provided verifier “%s”.", verifier);
+
+	return g_strdup (verifier);
 }

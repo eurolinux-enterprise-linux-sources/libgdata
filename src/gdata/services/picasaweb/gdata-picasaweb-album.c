@@ -21,7 +21,7 @@
 /**
  * SECTION:gdata-picasaweb-album
  * @short_description: GData PicasaWeb album object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/services/picasaweb/gdata-picasaweb-album.h
  *
  * #GDataPicasaWebAlbum is a subclass of #GDataEntry to represent an album from Google PicasaWeb.
@@ -514,7 +514,7 @@ gdata_picasaweb_album_constructor (GType type, guint n_construct_params, GObject
 		/* Set the edited and timestamp properties to the current time (creation time). bgo#599140
 		 * We don't do this in *_init() since that would cause setting it from parse_xml() to fail (duplicate element). */
 		g_get_current_time (&time_val);
-		priv->timestamp = time_val.tv_sec * 1000;
+		priv->timestamp = (gint64) time_val.tv_sec * 1000;
 		priv->edited = time_val.tv_sec;
 	}
 
@@ -682,7 +682,8 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			xmlChar *access_level = xmlNodeListGetString (doc, node->children, TRUE);
 			if (xmlStrcmp (access_level, (xmlChar*) "public") == 0) {
 				gdata_picasaweb_album_set_visibility (self, GDATA_PICASAWEB_PUBLIC);
-			} else if (xmlStrcmp (access_level, (xmlChar*) "private") == 0) {
+			} else if (xmlStrcmp (access_level, (xmlChar*) "private") == 0 ||
+			           xmlStrcmp (access_level, (xmlChar*) "protected") == 0) {
 				gdata_picasaweb_album_set_visibility (self, GDATA_PICASAWEB_PRIVATE);
 			} else {
 				gdata_parser_error_unknown_content (node, (gchar*) access_level, error);
@@ -708,7 +709,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 				return gdata_parser_error_required_content_missing (node, error);
 			}
 
-			self->priv->num_photos = strtoul ((char*) num_photos, NULL, 10);
+			self->priv->num_photos = g_ascii_strtoull ((char*) num_photos, NULL, 10);
 			xmlFree (num_photos);
 		} else if (xmlStrcmp (node->name, (xmlChar*) "numphotosremaining") == 0) {
 			/* gphoto:numphotosremaining */
@@ -718,7 +719,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 				return gdata_parser_error_required_content_missing (node, error);
 			}
 
-			self->priv->num_photos_remaining = strtoul ((char*) num_photos_remaining, NULL, 10);
+			self->priv->num_photos_remaining = g_ascii_strtoull ((char*) num_photos_remaining, NULL, 10);
 			xmlFree (num_photos_remaining);
 		} else if (xmlStrcmp (node->name, (xmlChar*) "bytesUsed") == 0) {
 			/* gphoto:bytesUsed */
@@ -728,7 +729,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 				return gdata_parser_error_required_content_missing (node, error);
 			}
 
-			self->priv->bytes_used = strtol ((char*) bytes_used, NULL, 10);
+			self->priv->bytes_used = g_ascii_strtoll ((char*) bytes_used, NULL, 10);
 			xmlFree (bytes_used);
 		} else if (xmlStrcmp (node->name, (xmlChar*) "commentingEnabled") == 0) {
 			/* gphoto:commentingEnabled */
@@ -749,7 +750,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 				return gdata_parser_error_required_content_missing (node, error);
 			}
 
-			self->priv->comment_count = strtoul ((char*) comment_count, NULL, 10);
+			self->priv->comment_count = g_ascii_strtoull ((char*) comment_count, NULL, 10);
 			xmlFree (comment_count);
 		} else {
 			return GDATA_PARSABLE_CLASS (gdata_picasaweb_album_parent_class)->parse_xml (parsable, doc, node, user_data, error);

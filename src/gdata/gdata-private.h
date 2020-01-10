@@ -58,6 +58,7 @@ G_GNUC_INTERNAL SoupMessage *_gdata_service_query (GDataService *self, GDataAuth
                                                    GCancellable *cancellable, GError **error) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 G_GNUC_INTERNAL const gchar *_gdata_service_get_scheme (void) G_GNUC_CONST;
 G_GNUC_INTERNAL gchar *_gdata_service_build_uri (const gchar *format, ...) G_GNUC_PRINTF (1, 2) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
+G_GNUC_INTERNAL guint _gdata_service_get_https_port (void);
 G_GNUC_INTERNAL gchar *_gdata_service_fix_uri_scheme (const gchar *uri) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 G_GNUC_INTERNAL GDataLogLevel _gdata_service_get_log_level (void) G_GNUC_CONST;
 G_GNUC_INTERNAL SoupSession *_gdata_service_build_session (void) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
@@ -71,31 +72,49 @@ G_GNUC_INTERNAL void _gdata_service_secure_strfree (GDataSecureString str);
 
 #include "gdata-query.h"
 G_GNUC_INTERNAL void _gdata_query_set_next_uri (GDataQuery *self, const gchar *next_uri);
+G_GNUC_INTERNAL void _gdata_query_set_next_uri_end (GDataQuery *self);
+G_GNUC_INTERNAL gboolean _gdata_query_is_finished (GDataQuery *self);
 G_GNUC_INTERNAL void _gdata_query_set_previous_uri (GDataQuery *self, const gchar *previous_uri);
+G_GNUC_INTERNAL void _gdata_query_set_previous_uri_end (GDataQuery *self);
 
 #include "gdata-parsable.h"
 G_GNUC_INTERNAL GDataParsable *_gdata_parsable_new_from_xml (GType parsable_type, const gchar *xml, gint length, gpointer user_data,
                                                              GError **error) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 G_GNUC_INTERNAL GDataParsable *_gdata_parsable_new_from_xml_node (GType parsable_type, xmlDoc *doc, xmlNode *node, gpointer user_data,
                                                                   GError **error) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
+G_GNUC_INTERNAL GDataParsable *_gdata_parsable_new_from_json (GType parsable_type, const gchar *json, gint length, gpointer user_data,
+                                                              GError **error) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
+G_GNUC_INTERNAL GDataParsable *_gdata_parsable_new_from_json_node (GType parsable_type, JsonReader *reader, gpointer user_data,
+                                                                   GError **error) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 G_GNUC_INTERNAL void _gdata_parsable_get_xml (GDataParsable *self, GString *xml_string, gboolean declare_namespaces);
+G_GNUC_INTERNAL void _gdata_parsable_get_json (GDataParsable *self, JsonBuilder *builder);
 G_GNUC_INTERNAL void _gdata_parsable_string_append_escaped (GString *xml_string, const gchar *pre, const gchar *element_content, const gchar *post);
 G_GNUC_INTERNAL gboolean _gdata_parsable_is_constructed_from_xml (GDataParsable *self);
 
 #include "gdata-feed.h"
-G_GNUC_INTERNAL GDataFeed *_gdata_feed_new (const gchar *title, const gchar *id, gint64 updated) G_GNUC_WARN_UNUSED_RESULT;
+G_GNUC_INTERNAL GDataFeed *_gdata_feed_new (GType feed_type,
+                                            const gchar *title,
+                                            const gchar *id,
+                                            gint64 updated) G_GNUC_WARN_UNUSED_RESULT;
 G_GNUC_INTERNAL GDataFeed *_gdata_feed_new_from_xml (GType feed_type, const gchar *xml, gint length, GType entry_type,
-                                                     GDataQueryProgressCallback progress_callback, gpointer progress_user_data, gboolean is_async,
+                                                     GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
+                                                     GError **error) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
+G_GNUC_INTERNAL GDataFeed *_gdata_feed_new_from_json (GType feed_type, const gchar *json, gint length, GType entry_type,
+                                                     GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
                                                      GError **error) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 G_GNUC_INTERNAL void _gdata_feed_add_entry (GDataFeed *self, GDataEntry *entry);
-G_GNUC_INTERNAL gpointer _gdata_feed_parse_data_new (GType entry_type, GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
-                                                     gboolean is_async);
+G_GNUC_INTERNAL gpointer _gdata_feed_parse_data_new (GType entry_type, GDataQueryProgressCallback progress_callback, gpointer progress_user_data);
 G_GNUC_INTERNAL void _gdata_feed_parse_data_free (gpointer data);
 G_GNUC_INTERNAL void _gdata_feed_call_progress_callback (GDataFeed *self, gpointer user_data, GDataEntry *entry);
+G_GNUC_INTERNAL void
+_gdata_feed_set_page_info (GDataFeed *self, guint total_results,
+                           guint items_per_page);
 
 #include "gdata-entry.h"
 #include "gdata-batch-operation.h"
 G_GNUC_INTERNAL void _gdata_entry_set_updated (GDataEntry *self, gint64 updated);
+G_GNUC_INTERNAL void _gdata_entry_set_published (GDataEntry *self, gint64 published);
+G_GNUC_INTERNAL void _gdata_entry_set_id (GDataEntry *self, const gchar *id);
 G_GNUC_INTERNAL void _gdata_entry_set_batch_data (GDataEntry *self, guint id, GDataBatchOperationType type);
 
 #include "gdata-parser.h"
@@ -121,7 +140,7 @@ get_##l_n##_authorization_domain (void) \
 { \
 	static volatile GDataAuthorizationDomain *domain__volatile = NULL; \
  \
-	if (g_once_init_enter ((volatile gsize *) &domain__volatile) == TRUE) { \
+	if (g_once_init_enter (&domain__volatile) == TRUE) { \
 		GDataAuthorizationDomain *domain; \
  \
 		domain = g_object_new (GDATA_TYPE_AUTHORIZATION_DOMAIN, \
@@ -129,7 +148,7 @@ get_##l_n##_authorization_domain (void) \
 		                       "scope", SCOPE, \
 		                       NULL); \
  \
-		g_once_init_leave ((volatile gsize *) &domain__volatile, (gsize) domain); \
+		g_once_init_leave (&domain__volatile, domain); \
 	} \
  \
 	return GDATA_AUTHORIZATION_DOMAIN (domain__volatile); \

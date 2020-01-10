@@ -1,0 +1,1035 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataFreebaseTopicResult: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch19.html" title="Google Freebase API">
+<link rel="prev" href="GDataFreebaseTopicQuery.html" title="GDataFreebaseTopicQuery">
+<link rel="next" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataFreebaseTopicResult.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataFreebaseTopicResult.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch19.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataFreebaseTopicQuery.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataFreebaseSearchQuery.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="GDataFreebaseTopicResult"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataFreebaseTopicResult.top_of_page"></a>GDataFreebaseTopicResult</span></h2>
+<p>GDataFreebaseTopicResult — GData Freebase topic result object</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="GDataFreebaseTopicResult.stability-level"></a><h2>Stability Level</h2>
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseTopicResult.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="returnvalue">GDataFreebaseTopicResult</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-result-new" title="gdata_freebase_topic_result_new ()">gdata_freebase_topic_result_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="returnvalue">GDataFreebaseTopicObject</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-result-dup-object" title="gdata_freebase_topic_result_dup_object ()">gdata_freebase_topic_result_dup_object</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="returnvalue">GDataFreebaseTopicObject</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-ref" title="gdata_freebase_topic_object_ref ()">gdata_freebase_topic_object_ref</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-unref" title="gdata_freebase_topic_object_unref ()">gdata_freebase_topic_object_unref</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-list-properties" title="gdata_freebase_topic_object_list_properties ()">gdata_freebase_topic_object_list_properties</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-id" title="gdata_freebase_topic_object_get_id ()">gdata_freebase_topic_object_get_id</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-count" title="gdata_freebase_topic_object_get_property_count ()">gdata_freebase_topic_object_get_property_count</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-hits" title="gdata_freebase_topic_object_get_property_hits ()">gdata_freebase_topic_object_get_property_hits</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="returnvalue">GDataFreebaseTopicValue</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-value" title="gdata_freebase_topic_object_get_property_value ()">gdata_freebase_topic_object_get_property_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="returnvalue">GDataFreebaseTopicValue</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-ref" title="gdata_freebase_topic_value_ref ()">gdata_freebase_topic_value_ref</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-unref" title="gdata_freebase_topic_value_unref ()">gdata_freebase_topic_value_unref</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-property" title="gdata_freebase_topic_value_get_property ()">gdata_freebase_topic_value_get_property</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-text" title="gdata_freebase_topic_value_get_text ()">gdata_freebase_topic_value_get_text</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-language" title="gdata_freebase_topic_value_get_language ()">gdata_freebase_topic_value_get_language</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-creator" title="gdata_freebase_topic_value_get_creator ()">gdata_freebase_topic_value_get_creator</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-timestamp" title="gdata_freebase_topic_value_get_timestamp ()">gdata_freebase_topic_value_get_timestamp</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="returnvalue">GType</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-value-type" title="gdata_freebase_topic_value_get_value_type ()">gdata_freebase_topic_value_get_value_type</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-copy-value" title="gdata_freebase_topic_value_copy_value ()">gdata_freebase_topic_value_copy_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-int" title="gdata_freebase_topic_value_get_int ()">gdata_freebase_topic_value_get_int</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-double" title="gdata_freebase_topic_value_get_double ()">gdata_freebase_topic_value_get_double</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-string" title="gdata_freebase_topic_value_get_string ()">gdata_freebase_topic_value_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="returnvalue">GDataFreebaseTopicObject</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-object" title="gdata_freebase_topic_value_get_object ()">gdata_freebase_topic_value_get_object</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-is-image" title="gdata_freebase_topic_value_is_image ()">gdata_freebase_topic_value_is_image</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<a name="GDataFreebaseTopicObject"></a><a name="GDataFreebaseTopicValue"></a><div class="refsect1">
+<a name="GDataFreebaseTopicResult.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicResult-struct" title="GDataFreebaseTopicResult">GDataFreebaseTopicResult</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicResultClass" title="GDataFreebaseTopicResultClass">GDataFreebaseTopicResultClass</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject-struct" title="GDataFreebaseTopicObject">GDataFreebaseTopicObject</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue-struct" title="GDataFreebaseTopicValue">GDataFreebaseTopicValue</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseTopicResult.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    GBoxed
+    <span class="lineart">├──</span> GDataFreebaseTopicObject
+    <span class="lineart">╰──</span> GDataFreebaseTopicValue
+    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+        <span class="lineart">╰──</span> <a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
+            <span class="lineart">╰──</span> <a class="link" href="GDataFreebaseResult.html" title="GDataFreebaseResult">GDataFreebaseResult</a>
+                <span class="lineart">╰──</span> GDataFreebaseTopicResult
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseTopicResult.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/services/freebase/gdata-freebase-topic-result.h&gt;
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseTopicResult.description"></a><h2>Description</h2>
+<p><a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="type">GDataFreebaseTopicResult</span></a> is a subclass of <a class="link" href="GDataFreebaseResult.html" title="GDataFreebaseResult"><span class="type">GDataFreebaseResult</span></a> that contains all or a subset of the information
+contained in Freebase about the Freebase ID given to the <a class="link" href="GDataFreebaseTopicQuery.html" title="GDataFreebaseTopicQuery"><span class="type">GDataFreebaseTopicQuery</span></a>.</p>
+<p>For more details of Google Freebase API, see the <a class="ulink" href="https://developers.google.com/freebase/v1/" target="_top">
+online documentation</a>.</p>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseTopicResult.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="gdata-freebase-topic-result-new"></a><h3>gdata_freebase_topic_result_new ()</h3>
+<pre class="programlisting"><a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="returnvalue">GDataFreebaseTopicResult</span></a> *
+gdata_freebase_topic_result_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Creates a new <a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="type">GDataFreebaseTopicResult</span></a> with the given ID and default properties.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.2.5"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="type">GDataFreebaseTopicResult</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-result-dup-object"></a><h3>gdata_freebase_topic_result_dup_object ()</h3>
+<pre class="programlisting"><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="returnvalue">GDataFreebaseTopicObject</span></a> *
+gdata_freebase_topic_result_dup_object
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="type">GDataFreebaseTopicResult</span></a> *self</code></em>);</pre>
+<p>Returns a reference to the root <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a> containing the
+topic query results.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="type">GDataFreebaseTopicResult</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.3.6"></a><h4>Returns</h4>
+<p> A new reference on the result object, unref with
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-unref" title="gdata_freebase_topic_object_unref ()"><code class="function">gdata_freebase_topic_object_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-object-ref"></a><h3>gdata_freebase_topic_object_ref ()</h3>
+<pre class="programlisting"><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="returnvalue">GDataFreebaseTopicObject</span></a> *
+gdata_freebase_topic_object_ref (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a> *object</code></em>);</pre>
+<p>Creates and returns a new reference on <em class="parameter"><code>object</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>object</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.4.6"></a><h4>Returns</h4>
+<p> <em class="parameter"><code>object</code></em>
+, with an extra reference. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-object-unref"></a><h3>gdata_freebase_topic_object_unref ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_freebase_topic_object_unref (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a> *object</code></em>);</pre>
+<p>Removes a reference from <em class="parameter"><code>object</code></em>
+. If the reference count drops to 0,
+the object is freed.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>object</p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="type">GDataFreebaseTopicResult</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-object-list-properties"></a><h3>gdata_freebase_topic_object_list_properties ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *
+gdata_freebase_topic_object_list_properties
+                               (<em class="parameter"><code>const <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a> *object</code></em>);</pre>
+<p>Returns the list of Freebase properties described by <em class="parameter"><code>object</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>object</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.6.6"></a><h4>Returns</h4>
+<p> An array of property names, free with <a href="https://developer.gnome.org/glib/unstable/glib-Pointer-Arrays.html#g-ptr-array-unref"><code class="function">g_ptr_array_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar*]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-object-get-id"></a><h3>gdata_freebase_topic_object_get_id ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_freebase_topic_object_get_id (<em class="parameter"><code>const <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a> *object</code></em>);</pre>
+<p>Gets the Freebase ID for this specific object.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>object</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.7.6"></a><h4>Returns</h4>
+<p> the Freebase ID of this object. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-object-get-property-count"></a><h3>gdata_freebase_topic_object_get_property_count ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>
+gdata_freebase_topic_object_get_property_count
+                               (<em class="parameter"><code>const <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a> *object</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *property</code></em>);</pre>
+<p>Returns the number of values that <em class="parameter"><code>object</code></em>
+ holds for the given <em class="parameter"><code>property</code></em>
+. If <em class="parameter"><code>object</code></em>
+
+contains no information about <em class="parameter"><code>property</code></em>
+, 0 is returned.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>object</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>property</p></td>
+<td class="parameter_description"><p>a property name contained in <em class="parameter"><code>object</code></em>
+</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.8.6"></a><h4>Returns</h4>
+<p> The number of values contained for <em class="parameter"><code>property</code></em>
+</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-object-get-property-hits"></a><h3>gdata_freebase_topic_object_get_property_hits ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>
+gdata_freebase_topic_object_get_property_hits
+                               (<em class="parameter"><code>const <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a> *object</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *property</code></em>);</pre>
+<p>Returns the total number of hits that the Freebase database stores
+for this object, this number either equals or is greater than
+<a class="link" href="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-count" title="gdata_freebase_topic_object_get_property_count ()"><code class="function">gdata_freebase_topic_object_get_property_count()</code></a>, the query limit
+can be controlled through <a class="link" href="GDataQuery.html#gdata-query-set-max-results" title="gdata_query_set_max_results ()"><code class="function">gdata_query_set_max_results()</code></a> on the topic
+query.</p>
+<p>If <em class="parameter"><code>object</code></em>
+ contains no information about <em class="parameter"><code>property</code></em>
+, 0 is returned.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.9.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>object</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>property</p></td>
+<td class="parameter_description"><p>a property name contained in <em class="parameter"><code>object</code></em>
+</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.9.7"></a><h4>Returns</h4>
+<p> the total number of hits for this property</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-object-get-property-value"></a><h3>gdata_freebase_topic_object_get_property_value ()</h3>
+<pre class="programlisting"><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="returnvalue">GDataFreebaseTopicValue</span></a> *
+gdata_freebase_topic_object_get_property_value
+                               (<em class="parameter"><code>const <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a> *object</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *property</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> item</code></em>);</pre>
+<p>Gets the value that <em class="parameter"><code>object</code></em>
+ stores for this <em class="parameter"><code>property</code></em>
+/<em class="parameter"><code>item</code></em>
+ pair, as a generic
+<a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a>. If <em class="parameter"><code>object</code></em>
+ contains no information about <em class="parameter"><code>property</code></em>
+,
+or <em class="parameter"><code>item</code></em>
+ is outside the [0..gdata_freebase_topic_object_get_property_count() - 1]
+range, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> is returned.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>object</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>property</p></td>
+<td class="parameter_description"><p>a property name contained in <em class="parameter"><code>object</code></em>
+</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>item</p></td>
+<td class="parameter_description"><p>item number to retrieve from <em class="parameter"><code>property</code></em>
+</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.10.6"></a><h4>Returns</h4>
+<p> the value for this property/item. </p>
+<p><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-ref"></a><h3>gdata_freebase_topic_value_ref ()</h3>
+<pre class="programlisting"><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="returnvalue">GDataFreebaseTopicValue</span></a> *
+gdata_freebase_topic_value_ref (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Creates and returns a new reference on <em class="parameter"><code>value</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.11.6"></a><h4>Returns</h4>
+<p> <em class="parameter"><code>value</code></em>
+, with an extra reference. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-unref"></a><h3>gdata_freebase_topic_value_unref ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_freebase_topic_value_unref (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Removes a reference from <em class="parameter"><code>value</code></em>
+. If the reference count drops to 0,
+the object is freed.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.12.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-property"></a><h3>gdata_freebase_topic_value_get_property ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_freebase_topic_value_get_property
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns the property name that this value describes</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.13.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.13.6"></a><h4>Returns</h4>
+<p> the property name of <em class="parameter"><code>value</code></em>
+</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-text"></a><h3>gdata_freebase_topic_value_get_text ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_freebase_topic_value_get_text (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns a textual representation of this value, this is either
+the value contained transformed to a string, or a concatenation
+of subvalues for compound types.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.14.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.14.6"></a><h4>Returns</h4>
+<p> a textual representation of <em class="parameter"><code>value</code></em>
+</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-language"></a><h3>gdata_freebase_topic_value_get_language ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_freebase_topic_value_get_language
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns the language used in the content of <em class="parameter"><code>value</code></em>
+</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.15.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.15.6"></a><h4>Returns</h4>
+<p> the language <em class="parameter"><code>value</code></em>
+is written in</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-creator"></a><h3>gdata_freebase_topic_value_get_creator ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_freebase_topic_value_get_creator
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns the Freebase ID of the user that created this value.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.16.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.16.6"></a><h4>Returns</h4>
+<p> the creator of this value, as a Freebase ID</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-timestamp"></a><h3>gdata_freebase_topic_value_get_timestamp ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>
+gdata_freebase_topic_value_get_timestamp
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns the time at which this value was created in the Freebase database.
+It's a UNIX timestamp in seconds since the epoch. If <em class="parameter"><code>value</code></em>
+ has no timestamp,
+-1 will be returned.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.17.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.17.6"></a><h4>Returns</h4>
+<p> The creation time of <em class="parameter"><code>value</code></em>
+, or -1</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-value-type"></a><h3>gdata_freebase_topic_value_get_value_type ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="returnvalue">GType</span></a>
+gdata_freebase_topic_value_get_value_type
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns the <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> of the real value held in <em class="parameter"><code>value</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.18.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.18.6"></a><h4>Returns</h4>
+<p> the <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> of the contained value</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-copy-value"></a><h3>gdata_freebase_topic_value_copy_value ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_freebase_topic_value_copy_value (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>,
+                                       <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Generic-values.html#GValue"><span class="type">GValue</span></a> *gvalue</code></em>);</pre>
+<p>Copies in <em class="parameter"><code>gvalue</code></em>
+ the value held in <em class="parameter"><code>value</code></em>
+. the <a href="https://developer.gnome.org/gobject/unstable/gobject-Generic-values.html#GValue"><span class="type">GValue</span></a> must be later freed through <a href="https://developer.gnome.org/gobject/unstable/gobject-Generic-values.html#g-value-unset"><code class="function">g_value_unset()</code></a></p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.19.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>gvalue</p></td>
+<td class="parameter_description"><p> an empty <a href="https://developer.gnome.org/gobject/unstable/gobject-Generic-values.html#GValue"><span class="type">GValue</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-int"></a><h3>gdata_freebase_topic_value_get_int ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>
+gdata_freebase_topic_value_get_int (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns a <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> value held in <em class="parameter"><code>value</code></em>
+. It is only valid to call this if the <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> is a <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INT64:CAPS"><code class="literal">G_TYPE_INT64</code></a></p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.20.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.20.6"></a><h4>Returns</h4>
+<p> the <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> value</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-double"></a><h3>gdata_freebase_topic_value_get_double ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>
+gdata_freebase_topic_value_get_double (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns a <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> value held in <em class="parameter"><code>value</code></em>
+. It is only valid to call this if the <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> is a <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-DOUBLE:CAPS"><code class="literal">G_TYPE_DOUBLE</code></a></p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.21.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.21.6"></a><h4>Returns</h4>
+<p> the <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> value</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-string"></a><h3>gdata_freebase_topic_value_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_freebase_topic_value_get_string (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns a string value held in <em class="parameter"><code>value</code></em>
+. It is only valid to call this if the <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> is a <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-STRING:CAPS"><code class="literal">G_TYPE_STRING</code></a></p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.22.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.22.6"></a><h4>Returns</h4>
+<p> the string value</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-get-object"></a><h3>gdata_freebase_topic_value_get_object ()</h3>
+<pre class="programlisting">const <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="returnvalue">GDataFreebaseTopicObject</span></a> *
+gdata_freebase_topic_value_get_object (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns a compound/complex object held in <em class="parameter"><code>value</code></em>
+. It is only valid to call this if the <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> is a
+<code class="literal">GDATA_TYPE_FREEBASE_TOPIC_OBJECT</code>.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.23.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.23.6"></a><h4>Returns</h4>
+<p> the compound value as a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-topic-value-is-image"></a><h3>gdata_freebase_topic_value_is_image ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+gdata_freebase_topic_value_is_image (<em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>);</pre>
+<p>Returns true if <em class="parameter"><code>value</code></em>
+ holds a freebase image object, on such values it
+will be valid to call <a class="link" href="GDataFreebaseService.html#gdata-freebase-service-get-image" title="gdata_freebase_service_get_image ()"><code class="function">gdata_freebase_service_get_image()</code></a> to get a stream
+to the image itself.</p>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.24.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.6.11.24.6"></a><h4>Returns</h4>
+<p> Whether <em class="parameter"><code>value</code></em>
+holds a Freebase image object</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseTopicResult.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GDataFreebaseTopicResult-struct"></a><h3>GDataFreebaseTopicResult</h3>
+<pre class="programlisting">typedef struct _GDataFreebaseTopicResult GDataFreebaseTopicResult;</pre>
+<p>All the fields in the <a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="type">GDataFreebaseTopicResult</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GDataFreebaseTopicResultClass"></a><h3>GDataFreebaseTopicResultClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataFreebaseTopicResultClass;
+</pre>
+<p>All the fields in the <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicResultClass" title="GDataFreebaseTopicResultClass"><span class="type">GDataFreebaseTopicResultClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GDataFreebaseTopicObject-struct"></a><h3>GDataFreebaseTopicObject</h3>
+<pre class="programlisting">typedef struct _GDataFreebaseTopicObject GDataFreebaseTopicObject;</pre>
+<p>Opaque struct containing a Freebase topic object. This object may contain one or more
+<a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> structs, which may in turn contain nested <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a>
+structs to express complex data.</p>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GDataFreebaseTopicValue-struct"></a><h3>GDataFreebaseTopicValue</h3>
+<pre class="programlisting">typedef struct _GDataFreebaseTopicValue GDataFreebaseTopicValue;</pre>
+<p>Opaque struct containing a value of a Freebase topic object. This struct may contain a simple
+value (integers, doubles, strings...) or complex values, expressed through a <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject"><span class="type">GDataFreebaseTopicObject</span></a>.</p>
+<p class="since">Since 0.15.1</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
+</body>
+</html>

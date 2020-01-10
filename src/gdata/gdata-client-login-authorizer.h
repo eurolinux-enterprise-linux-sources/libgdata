@@ -101,6 +101,11 @@ typedef struct {
 typedef struct {
 	/*< private >*/
 	GObjectClass parent;
+
+	/*< private >*/
+	/* Padding for future expansion */
+	void (*_g_reserved0) (void);
+	void (*_g_reserved1) (void);
 } GDataClientLoginAuthorizerClass;
 
 GType gdata_client_login_authorizer_get_type (void) G_GNUC_CONST;
@@ -119,8 +124,13 @@ const gchar *gdata_client_login_authorizer_get_client_id (GDataClientLoginAuthor
 const gchar *gdata_client_login_authorizer_get_username (GDataClientLoginAuthorizer *self) G_GNUC_PURE;
 const gchar *gdata_client_login_authorizer_get_password (GDataClientLoginAuthorizer *self) G_GNUC_PURE;
 
-SoupURI *gdata_client_login_authorizer_get_proxy_uri (GDataClientLoginAuthorizer *self) G_GNUC_PURE;
-void gdata_client_login_authorizer_set_proxy_uri (GDataClientLoginAuthorizer *self, SoupURI *proxy_uri);
+#ifndef LIBGDATA_DISABLE_DEPRECATED
+SoupURI *gdata_client_login_authorizer_get_proxy_uri (GDataClientLoginAuthorizer *self) G_GNUC_PURE G_GNUC_DEPRECATED_FOR (gdata_client_login_authorizer_get_proxy_resolver);
+void gdata_client_login_authorizer_set_proxy_uri (GDataClientLoginAuthorizer *self, SoupURI *proxy_uri) G_GNUC_DEPRECATED_FOR (gdata_client_login_authorizer_set_proxy_resolver);
+#endif /* !LIBGDATA_DISABLE_DEPRECATED */
+
+GProxyResolver *gdata_client_login_authorizer_get_proxy_resolver (GDataClientLoginAuthorizer *self) G_GNUC_PURE;
+void gdata_client_login_authorizer_set_proxy_resolver (GDataClientLoginAuthorizer *self, GProxyResolver *proxy_resolver);
 
 guint gdata_client_login_authorizer_get_timeout (GDataClientLoginAuthorizer *self) G_GNUC_PURE;
 void gdata_client_login_authorizer_set_timeout (GDataClientLoginAuthorizer *self, guint timeout);

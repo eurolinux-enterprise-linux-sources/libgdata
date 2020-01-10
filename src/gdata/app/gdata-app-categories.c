@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2010, 2015 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-app-categories
  * @short_description: GData APP categories object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/app/gdata-app-categories.h
  *
  * #GDataAPPCategories is a list of categories (#GDataCategory) returned as the result of querying an
@@ -31,7 +31,6 @@
 
 #include <config.h>
 #include <glib.h>
-#include <libxml/parser.h>
 
 #include "gdata-app-categories.h"
 #include "atom/gdata-category.h"
@@ -41,9 +40,11 @@
 static void gdata_app_categories_dispose (GObject *object);
 static void gdata_app_categories_finalize (GObject *object);
 static void gdata_app_categories_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
-static gboolean pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error);
-static gboolean parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error);
-static gboolean post_parse_xml (GDataParsable *parsable, gpointer user_data, GError **error);
+static gboolean
+parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data,
+            GError **error);
+static gboolean
+post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error);
 
 struct _GDataAPPCategoriesPrivate {
 	GList *categories;
@@ -69,9 +70,9 @@ gdata_app_categories_class_init (GDataAPPCategoriesClass *klass)
 	gobject_class->dispose = gdata_app_categories_dispose;
 	gobject_class->finalize = gdata_app_categories_finalize;
 
-	parsable_class->pre_parse_xml = pre_parse_xml;
-	parsable_class->parse_xml = parse_xml;
-	parsable_class->post_parse_xml = post_parse_xml;
+	parsable_class->parse_json = parse_json;
+	parsable_class->post_parse_json = post_parse_json;
+
 	parsable_class->element_name = "categories";
 	parsable_class->element_namespace = "app";
 
@@ -139,57 +140,68 @@ gdata_app_categories_get_property (GObject *object, guint property_id, GValue *v
 	}
 }
 
+/* Reference: https://developers.google.com/youtube/v3/docs/videoCategories/list */
 static gboolean
-pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
+parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error)
 {
-	GDataAPPCategoriesPrivate *priv = GDATA_APP_CATEGORIES (parsable)->priv;
-	xmlChar *fixed;
+	GDataAPPCategories *self = GDATA_APP_CATEGORIES (parsable);
+	GDataAPPCategoriesPrivate *priv = self->priv;
 
-	/* Extract fixed and scheme */
-	priv->scheme = (gchar*) xmlGetProp (root_node, (xmlChar*) "scheme");
+	if (g_strcmp0 (json_reader_get_member_name (reader), "items") == 0) {
+		guint i, elements;
 
-	fixed = xmlGetProp (root_node, (xmlChar*) "fixed");
-	if (xmlStrcmp (fixed, (xmlChar*) "yes") == 0)
-		priv->fixed = TRUE;
-	xmlFree (fixed);
+		/* Loop through the elements array. */
+		for (i = 0, elements = (guint) json_reader_count_elements (reader); i < elements; i++) {
+			GDataCategory *category = NULL;
+			const gchar *id, *title;
+			const GError *child_error = NULL;
 
-	return TRUE;
-}
+			json_reader_read_element (reader, i);
 
-static void
-_gdata_app_categories_add_category (GDataAPPCategories *self, GDataCategory *category)
-{
-	g_return_if_fail (GDATA_IS_APP_CATEGORIES (self));
-	g_return_if_fail (GDATA_IS_CATEGORY (category));
+			json_reader_read_member (reader, "id");
+			id = json_reader_get_string_value (reader);
+			json_reader_end_member (reader);
 
-	/* If the category doesn't have a scheme, make it inherit ours */
-	if (gdata_category_get_scheme (category) == NULL)
-		gdata_category_set_scheme (category, self->priv->scheme);
+			json_reader_read_member (reader, "snippet");
 
-	self->priv->categories = g_list_prepend (self->priv->categories, g_object_ref (category));
-}
+			json_reader_read_member (reader, "title");
+			title = json_reader_get_string_value (reader);
+			json_reader_end_member (reader);
 
-static gboolean
-parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error)
-{
-	gboolean success;
+			child_error = json_reader_get_error (reader);
 
-	if (gdata_parser_is_namespace (node, "http://www.w3.org/2005/Atom") == TRUE &&
-	    gdata_parser_object_from_element_setter (node, "category", P_REQUIRED,
-	                                             (user_data == NULL) ? GDATA_TYPE_CATEGORY : GPOINTER_TO_SIZE (user_data),
-		                                     _gdata_app_categories_add_category, GDATA_APP_CATEGORIES (parsable), &success, error) == TRUE) {
-		return success;
+			if (child_error != NULL) {
+				return gdata_parser_error_from_json_error (reader,
+				                                           child_error,
+				                                           error);
+			}
+
+			/* Create the category. */
+			category = gdata_category_new (id, NULL, title);
+			priv->categories = g_list_prepend (priv->categories,
+			                                   category);
+
+			json_reader_end_member (reader);  /* snippet */
+			json_reader_end_element (reader);  /* category */
+		}
+
+		return TRUE;
+	} else if (g_strcmp0 (json_reader_get_member_name (reader), "kind") == 0 ||
+	           g_strcmp0 (json_reader_get_member_name (reader), "etag") == 0 ||
+	           g_strcmp0 (json_reader_get_member_name (reader), "id") == 0) {
+		/* Ignore. */
+		return TRUE;
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_app_categories_parent_class)->parse_json (parsable, reader, user_data, error);
 	}
-
-	return GDATA_PARSABLE_CLASS (gdata_app_categories_parent_class)->parse_xml (parsable, doc, node, user_data, error);
 }
 
 static gboolean
-post_parse_xml (GDataParsable *parsable, gpointer user_data, GError **error)
+post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error)
 {
 	GDataAPPCategoriesPrivate *priv = GDATA_APP_CATEGORIES (parsable)->priv;
 
-	/* Reverse our lists of stuff */
+	/* Reverse our lists of stuff. */
 	priv->categories = g_list_reverse (priv->categories);
 
 	return TRUE;

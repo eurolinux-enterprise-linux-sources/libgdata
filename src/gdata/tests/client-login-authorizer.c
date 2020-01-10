@@ -23,6 +23,7 @@
 #include "common.h"
 
 static GThread *main_thread = NULL;
+static UhmServer *mock_server = NULL;
 
 static void
 test_client_login_authorizer_constructor (void)
@@ -77,8 +78,8 @@ test_client_login_authorizer_constructor_for_domains (void)
 typedef struct {
 	GDataClientLoginAuthorizer *authorizer;
 
-	guint proxy_uri_notification_count;
-	gulong proxy_uri_signal_handler;
+	guint proxy_resolver_notification_count;
+	gulong proxy_resolver_signal_handler;
 	guint timeout_notification_count;
 	gulong timeout_signal_handler;
 	guint username_notification_count;
@@ -102,8 +103,8 @@ static void
 connect_to_client_login_authorizer (ClientLoginAuthorizerData *data)
 {
 	/* Connect to notifications from the object to verify they're only emitted the correct number of times */
-	data->proxy_uri_signal_handler = g_signal_connect (data->authorizer, "notify::proxy-uri", (GCallback) notify_cb,
-	                                                   &(data->proxy_uri_notification_count));
+	data->proxy_resolver_signal_handler = g_signal_connect (data->authorizer, "notify::proxy-resolver", (GCallback) notify_cb,
+	                                                        &(data->proxy_resolver_notification_count));
 	data->timeout_signal_handler = g_signal_connect (data->authorizer, "notify::timeout", (GCallback) notify_cb,
 	                                                 &(data->timeout_notification_count));
 	data->username_signal_handler = g_signal_connect (data->authorizer, "notify::username", (GCallback) notify_cb,
@@ -135,9 +136,13 @@ set_up_client_login_authorizer_data_multiple_domains (ClientLoginAuthorizerData 
 static void
 set_up_client_login_authorizer_data_authenticated (ClientLoginAuthorizerData *data, gconstpointer user_data)
 {
+	gdata_test_mock_server_start_trace (mock_server, "setup-client-login-authorizer-data-authenticated");
+
 	data->authorizer = gdata_client_login_authorizer_new ("client-id", GDATA_TYPE_YOUTUBE_SERVICE);
 	g_assert (gdata_client_login_authorizer_authenticate (data->authorizer, USERNAME, PASSWORD, NULL, NULL) == TRUE);
 	connect_to_client_login_authorizer (data);
+
+	uhm_server_end_trace (mock_server);
 }
 
 static void
@@ -147,7 +152,7 @@ tear_down_client_login_authorizer_data (ClientLoginAuthorizerData *data, gconstp
 	g_signal_handler_disconnect (data->authorizer, data->password_signal_handler);
 	g_signal_handler_disconnect (data->authorizer, data->username_signal_handler);
 	g_signal_handler_disconnect (data->authorizer, data->timeout_signal_handler);
-	g_signal_handler_disconnect (data->authorizer, data->proxy_uri_signal_handler);
+	g_signal_handler_disconnect (data->authorizer, data->proxy_resolver_signal_handler);
 
 	g_object_unref (data->authorizer);
 }
@@ -194,52 +199,53 @@ test_client_login_authorizer_properties_password (ClientLoginAuthorizerData *dat
 	g_free (password);
 }
 
-/* Test getting and setting the proxy-uri property */
+/* Test getting and setting the proxy-resolver property */
 static void
-test_client_login_authorizer_properties_proxy_uri (ClientLoginAuthorizerData *data, gconstpointer user_data)
+test_client_login_authorizer_properties_proxy_resolver (ClientLoginAuthorizerData *data, gconstpointer user_data)
 {
-	SoupURI *proxy_uri, *new_proxy_uri;
+	GProxyResolver *old_proxy_resolver, *proxy_resolver, *new_proxy_resolver;
 
-	/* Verifying the normal state of the property in a newly-constructed instance of GDataClientLoginAuthorizer */
-	g_assert (gdata_client_login_authorizer_get_proxy_uri (data->authorizer) == NULL);
+	/* Verifying the normal state of the property in a newly-constructed instance of GDataClientLoginAuthorizer.
+	 * Since the resolver comes from the SoupSession, we don’t know whether it’s initially NULL. */
+	old_proxy_resolver = gdata_client_login_authorizer_get_proxy_resolver (data->authorizer);
 
-	g_object_get (data->authorizer, "proxy-uri", &proxy_uri, NULL);
-	g_assert (proxy_uri == NULL);
+	g_object_get (data->authorizer, "proxy-resolver", &proxy_resolver, NULL);
+	g_assert (proxy_resolver == old_proxy_resolver);
 
-	g_assert_cmpuint (data->proxy_uri_notification_count, ==, 0);
+	g_assert_cmpuint (data->proxy_resolver_notification_count, ==, 0);
 
 	/* Check setting it works and emits a notification */
-	new_proxy_uri = soup_uri_new ("http://example.com/");
-	gdata_client_login_authorizer_set_proxy_uri (data->authorizer, new_proxy_uri);
+	new_proxy_resolver = g_object_ref (g_proxy_resolver_get_default ());
+	gdata_client_login_authorizer_set_proxy_resolver (data->authorizer, new_proxy_resolver);
 
-	g_assert_cmpuint (data->proxy_uri_notification_count, ==, 1);
+	g_assert_cmpuint (data->proxy_resolver_notification_count, ==, 1);
 
-	g_assert (gdata_client_login_authorizer_get_proxy_uri (data->authorizer) != NULL);
-	g_assert (soup_uri_equal (gdata_client_login_authorizer_get_proxy_uri (data->authorizer), new_proxy_uri) == TRUE);
+	g_assert (gdata_client_login_authorizer_get_proxy_resolver (data->authorizer) != NULL);
+	g_assert (gdata_client_login_authorizer_get_proxy_resolver (data->authorizer) == new_proxy_resolver);
 
-	g_object_get (data->authorizer, "proxy-uri", &proxy_uri, NULL);
-	g_assert (proxy_uri != NULL);
-	g_assert (soup_uri_equal (gdata_client_login_authorizer_get_proxy_uri (data->authorizer), new_proxy_uri) == TRUE);
-	soup_uri_free (proxy_uri);
+	g_object_get (data->authorizer, "proxy-resolver", &proxy_resolver, NULL);
+	g_assert (proxy_resolver != NULL);
+	g_assert (gdata_client_login_authorizer_get_proxy_resolver (data->authorizer) == new_proxy_resolver);
+	g_object_unref (proxy_resolver);
 
-	soup_uri_free (new_proxy_uri);
+	g_object_unref (new_proxy_resolver);
 
-	/* Check setting it back to NULL works */
-	gdata_client_login_authorizer_set_proxy_uri (data->authorizer, NULL);
+	/* Check setting it to NULL works */
+	gdata_client_login_authorizer_set_proxy_resolver (data->authorizer, NULL);
 
-	g_assert_cmpuint (data->proxy_uri_notification_count, ==, 2);
+	g_assert_cmpuint (data->proxy_resolver_notification_count, ==, 2);
 
-	g_assert (gdata_client_login_authorizer_get_proxy_uri (data->authorizer) == NULL);
+	g_assert (gdata_client_login_authorizer_get_proxy_resolver (data->authorizer) == NULL);
 
-	g_object_get (data->authorizer, "proxy-uri", &proxy_uri, NULL);
-	g_assert (proxy_uri == NULL);
+	g_object_get (data->authorizer, "proxy-resolver", &proxy_resolver, NULL);
+	g_assert (proxy_resolver == NULL);
 
 	/* Test that setting it using g_object_set() works */
-	new_proxy_uri = soup_uri_new ("http://example.com/");
-	g_object_set (data->authorizer, "proxy-uri", new_proxy_uri, NULL);
-	soup_uri_free (new_proxy_uri);
+	new_proxy_resolver = g_object_ref (g_proxy_resolver_get_default ());
+	g_object_set (data->authorizer, "proxy-resolver", new_proxy_resolver, NULL);
+	g_object_unref (new_proxy_resolver);
 
-	g_assert (gdata_client_login_authorizer_get_proxy_uri (data->authorizer) != NULL);
+	g_assert (gdata_client_login_authorizer_get_proxy_resolver (data->authorizer) != NULL);
 }
 
 /* Test getting and setting the timeout property */
@@ -325,6 +331,8 @@ test_client_login_authorizer_authenticate_sync (ClientLoginAuthorizerData *data,
 	gboolean success;
 	GError *error = NULL;
 
+	gdata_test_mock_server_start_trace (mock_server, "client-login-authorizer-authenticate-sync");
+
 	pre_test_authentication (data);
 
 	/* Authenticate! */
@@ -334,6 +342,8 @@ test_client_login_authorizer_authenticate_sync (ClientLoginAuthorizerData *data,
 	g_clear_error (&error);
 
 	post_test_authentication (data, TRUE);
+
+	uhm_server_end_trace (mock_server);
 }
 
 /* Test that authentication using an incorrect password fails */
@@ -344,6 +354,8 @@ test_client_login_authorizer_authenticate_sync_bad_password (ClientLoginAuthoriz
 	gboolean success;
 	GError *error = NULL;
 
+	gdata_test_mock_server_start_trace (mock_server, "client-login-authorizer-authenticate-sync-bad-password");
+
 	pre_test_authentication (data);
 
 	/* Authenticate! */
@@ -353,6 +365,8 @@ test_client_login_authorizer_authenticate_sync_bad_password (ClientLoginAuthoriz
 	g_clear_error (&error);
 
 	post_test_authentication (data, FALSE);
+
+	uhm_server_end_trace (mock_server);
 }
 
 /* Test that authentication against multiple authorization domains simultaneously and synchronously works */
@@ -361,6 +375,8 @@ test_client_login_authorizer_authenticate_sync_multiple_domains (ClientLoginAuth
 {
 	gboolean success;
 	GError *error = NULL;
+
+	gdata_test_mock_server_start_trace (mock_server, "client-login-authorizer-authenticate-sync-multiple-domains");
 
 	pre_test_authentication (data);
 
@@ -375,6 +391,8 @@ test_client_login_authorizer_authenticate_sync_multiple_domains (ClientLoginAuth
 	          gdata_picasaweb_service_get_primary_authorization_domain ()) == TRUE);
 
 	post_test_authentication (data, TRUE);
+
+	uhm_server_end_trace (mock_server);
 }
 
 /* Test that synchronous authentication can be cancelled */
@@ -384,6 +402,8 @@ test_client_login_authorizer_authenticate_sync_cancellation (ClientLoginAuthoriz
 	gboolean success;
 	GCancellable *cancellable;
 	GError *error = NULL;
+
+	gdata_test_mock_server_start_trace (mock_server, "client-login-authorizer-authenticate-sync-cancellation");
 
 	pre_test_authentication (data);
 
@@ -400,6 +420,8 @@ test_client_login_authorizer_authenticate_sync_cancellation (ClientLoginAuthoriz
 	post_test_authentication (data, FALSE);
 
 	g_object_unref (cancellable);
+
+	uhm_server_end_trace (mock_server);
 }
 
 typedef struct {
@@ -469,6 +491,8 @@ test_client_login_authorizer_authenticate_async_cb (GDataClientLoginAuthorizer *
 static void
 test_client_login_authorizer_authenticate_async (ClientLoginAuthorizerAsyncData *data, gconstpointer user_data)
 {
+	gdata_test_mock_server_start_trace (mock_server, "client-login-authorizer-authenticate-async");
+
 	pre_test_authentication ((ClientLoginAuthorizerData*) data);
 
 	/* Create a main loop and authenticate */
@@ -476,6 +500,8 @@ test_client_login_authorizer_authenticate_async (ClientLoginAuthorizerAsyncData 
 	                                                  (GAsyncReadyCallback) test_client_login_authorizer_authenticate_async_cb, data);
 
 	g_main_loop_run (data->main_loop);
+
+	uhm_server_end_trace (mock_server);
 }
 
 static void
@@ -503,6 +529,8 @@ test_client_login_authorizer_authenticate_async_multiple_domains_cb (GDataClient
 static void
 test_client_login_authorizer_authenticate_async_multiple_domains (ClientLoginAuthorizerAsyncData *data, gconstpointer user_data)
 {
+	gdata_test_mock_server_start_trace (mock_server, "client-login-authorizer-authenticate-async-multiple-domains");
+
 	pre_test_authentication ((ClientLoginAuthorizerData*) data);
 
 	/* Create a main loop and authenticate */
@@ -511,6 +539,8 @@ test_client_login_authorizer_authenticate_async_multiple_domains (ClientLoginAut
 	                                                  data);
 
 	g_main_loop_run (data->main_loop);
+
+	uhm_server_end_trace (mock_server);
 }
 
 static void
@@ -536,6 +566,8 @@ test_client_login_authorizer_authenticate_async_cancellation (ClientLoginAuthori
 {
 	GCancellable *cancellable;
 
+	gdata_test_mock_server_start_trace (mock_server, "client-login-authorizer-authenticate-async-cancellation");
+
 	pre_test_authentication ((ClientLoginAuthorizerData*) data);
 
 	/* Set up the cancellable */
@@ -550,6 +582,8 @@ test_client_login_authorizer_authenticate_async_cancellation (ClientLoginAuthori
 	g_main_loop_run (data->main_loop);
 
 	g_object_unref (cancellable);
+
+	uhm_server_end_trace (mock_server);
 }
 
 /* Test that gdata_authorizer_refresh_authorization() is a no-op (when authorised or not) */
@@ -644,35 +678,70 @@ test_client_login_authorizer_process_request_authenticated (ClientLoginAuthorize
 	g_object_unref (message);
 }
 
-/* Test that processing a HTTP request (as opposed to the more normal HTTPS request) with an authenticated authorizer will abort rather than
- * transmitting the user's private auth token over an insecure HTTP connection. */
 static void
-test_client_login_authorizer_process_request_insecure (ClientLoginAuthorizerData *data, gconstpointer user_data)
+test_client_login_authorizer_process_request_insecure_subprocess (ClientLoginAuthorizerData *data, gconstpointer user_data)
 {
 	SoupMessage *message;
 
 	/* Create a new message which uses HTTP instead of HTTPS */
 	message = soup_message_new (SOUP_METHOD_GET, "http://example.com/");
+	gdata_authorizer_process_request (GDATA_AUTHORIZER (data->authorizer), gdata_youtube_service_get_primary_authorization_domain (),
+	                                  message);
+	g_object_unref (message);
+}
 
+/* Test that processing a HTTP request (as opposed to the more normal HTTPS request) with an authenticated authorizer will abort rather than
+ * transmitting the user's private auth token over an insecure HTTP connection. */
+static void
+test_client_login_authorizer_process_request_insecure (ClientLoginAuthorizerData *data, gconstpointer user_data)
+{
 	/* Process the message */
+#if GLIB_CHECK_VERSION(2, 38, 0)
+	g_test_trap_subprocess ("/client-login-authorizer/process-request/insecure/subprocess", 0, 0);
+#else
 	if (g_test_trap_fork (0, 0) == TRUE) {
-		gdata_authorizer_process_request (GDATA_AUTHORIZER (data->authorizer), gdata_youtube_service_get_primary_authorization_domain (),
-		                                message);
+		test_client_login_authorizer_process_request_insecure_subprocess (data, user_data);
 		exit (0);
 	}
+#endif
 
 	/* Assert that it aborted */
 	g_test_trap_assert_failed ();
 	g_test_trap_assert_stderr_unmatched ("Not authorizing a non-HTTPS message with the user's ClientLogin "
 	                                     "auth token as the connection isn't secure.");
+}
 
-	g_object_unref (message);
+static void
+mock_server_notify_resolver_cb (GObject *object, GParamSpec *pspec, gpointer user_data)
+{
+	UhmServer *server;
+	UhmResolver *resolver;
+
+	server = UHM_SERVER (object);
+
+	/* Set up the expected domain names here. This should technically be split up between
+	 * the different unit test suites, but that's too much effort. */
+	resolver = uhm_server_get_resolver (server);
+
+	if (resolver != NULL) {
+		const gchar *ip_address = uhm_server_get_address (server);
+
+		uhm_resolver_add_A (resolver, "www.google.com", ip_address);
+	}
 }
 
 int
 main (int argc, char *argv[])
 {
+	GFile *trace_directory;
+
 	gdata_test_init (argc, argv);
+
+	mock_server = gdata_test_get_mock_server ();
+	g_signal_connect (G_OBJECT (mock_server), "notify::resolver", (GCallback) mock_server_notify_resolver_cb, NULL);
+	trace_directory = g_file_new_for_path (TEST_FILE_DIR "traces/client-login-authorizer");
+	uhm_server_set_trace_directory (mock_server, trace_directory);
+	g_object_unref (trace_directory);
 
 	main_thread = g_thread_self ();
 
@@ -685,8 +754,8 @@ main (int argc, char *argv[])
 	            test_client_login_authorizer_properties_username, tear_down_client_login_authorizer_data);
 	g_test_add ("/client-login-authorizer/properties/password", ClientLoginAuthorizerData, NULL, set_up_client_login_authorizer_data,
 	            test_client_login_authorizer_properties_password, tear_down_client_login_authorizer_data);
-	g_test_add ("/client-login-authorizer/properties/proxy-uri", ClientLoginAuthorizerData, NULL, set_up_client_login_authorizer_data,
-	            test_client_login_authorizer_properties_proxy_uri, tear_down_client_login_authorizer_data);
+	g_test_add ("/client-login-authorizer/properties/proxy-resolver", ClientLoginAuthorizerData, NULL, set_up_client_login_authorizer_data,
+	            test_client_login_authorizer_properties_proxy_resolver, tear_down_client_login_authorizer_data);
 	g_test_add ("/client-login-authorizer/properties/timeout", ClientLoginAuthorizerData, NULL, set_up_client_login_authorizer_data,
 	            test_client_login_authorizer_properties_timeout, tear_down_client_login_authorizer_data);
 
@@ -700,46 +769,49 @@ main (int argc, char *argv[])
 	            set_up_client_login_authorizer_data, test_client_login_authorizer_process_request_unauthenticated,
 	            tear_down_client_login_authorizer_data);
 
-	if (gdata_test_internet () == TRUE) {
-		/* Test once with the domain attached and once without */
-		g_test_add ("/client-login-authorizer/authenticate/sync", ClientLoginAuthorizerData, USERNAME, set_up_client_login_authorizer_data,
-		            test_client_login_authorizer_authenticate_sync, tear_down_client_login_authorizer_data);
-		g_test_add ("/client-login-authorizer/authenticate/sync/no-domain", ClientLoginAuthorizerData, USERNAME_NO_DOMAIN,
-		            set_up_client_login_authorizer_data, test_client_login_authorizer_authenticate_sync,
-		            tear_down_client_login_authorizer_data);
-		g_test_add ("/client-login-authorizer/authenticate/sync/bad-password", ClientLoginAuthorizerData, USERNAME,
-		            set_up_client_login_authorizer_data, test_client_login_authorizer_authenticate_sync_bad_password,
-		            tear_down_client_login_authorizer_data);
-		g_test_add ("/client-login-authorizer/authenticate/sync/multiple-domains", ClientLoginAuthorizerData, NULL,
-		            set_up_client_login_authorizer_data_multiple_domains, test_client_login_authorizer_authenticate_sync_multiple_domains,
-		            tear_down_client_login_authorizer_data);
-		g_test_add ("/client-login-authorizer/authenticate/sync/cancellation", ClientLoginAuthorizerData, NULL,
-		            set_up_client_login_authorizer_data, test_client_login_authorizer_authenticate_sync_cancellation,
-		            tear_down_client_login_authorizer_data);
+	/* Test once with the domain attached and once without */
+	g_test_add ("/client-login-authorizer/authenticate/sync", ClientLoginAuthorizerData, USERNAME, set_up_client_login_authorizer_data,
+	            test_client_login_authorizer_authenticate_sync, tear_down_client_login_authorizer_data);
+	g_test_add ("/client-login-authorizer/authenticate/sync/no-domain", ClientLoginAuthorizerData, USERNAME_NO_DOMAIN,
+	            set_up_client_login_authorizer_data, test_client_login_authorizer_authenticate_sync,
+	            tear_down_client_login_authorizer_data);
+	g_test_add ("/client-login-authorizer/authenticate/sync/bad-password", ClientLoginAuthorizerData, USERNAME,
+	            set_up_client_login_authorizer_data, test_client_login_authorizer_authenticate_sync_bad_password,
+	            tear_down_client_login_authorizer_data);
+	g_test_add ("/client-login-authorizer/authenticate/sync/multiple-domains", ClientLoginAuthorizerData, NULL,
+	            set_up_client_login_authorizer_data_multiple_domains, test_client_login_authorizer_authenticate_sync_multiple_domains,
+	            tear_down_client_login_authorizer_data);
+	g_test_add ("/client-login-authorizer/authenticate/sync/cancellation", ClientLoginAuthorizerData, NULL,
+	            set_up_client_login_authorizer_data, test_client_login_authorizer_authenticate_sync_cancellation,
+	            tear_down_client_login_authorizer_data);
 
-		/* Async tests */
-		g_test_add ("/client-login-authorizer/authenticate/async", ClientLoginAuthorizerAsyncData, NULL,
-		            set_up_client_login_authorizer_async_data, test_client_login_authorizer_authenticate_async,
-		            tear_down_client_login_authorizer_async_data);
-		g_test_add ("/client-login-authorizer/authenticate/async/multiple-domains", ClientLoginAuthorizerAsyncData, NULL,
-		            set_up_client_login_authorizer_async_data_multiple_domains,
-		            test_client_login_authorizer_authenticate_async_multiple_domains, tear_down_client_login_authorizer_async_data);
-		g_test_add ("/client-login-authorizer/authenticate/async/cancellation", ClientLoginAuthorizerAsyncData, NULL,
-		            set_up_client_login_authorizer_async_data, test_client_login_authorizer_authenticate_async_cancellation,
-		            tear_down_client_login_authorizer_async_data);
+	/* Async tests */
+	g_test_add ("/client-login-authorizer/authenticate/async", ClientLoginAuthorizerAsyncData, NULL,
+	            set_up_client_login_authorizer_async_data, test_client_login_authorizer_authenticate_async,
+	            tear_down_client_login_authorizer_async_data);
+	g_test_add ("/client-login-authorizer/authenticate/async/multiple-domains", ClientLoginAuthorizerAsyncData, NULL,
+	            set_up_client_login_authorizer_async_data_multiple_domains,
+	            test_client_login_authorizer_authenticate_async_multiple_domains, tear_down_client_login_authorizer_async_data);
+	g_test_add ("/client-login-authorizer/authenticate/async/cancellation", ClientLoginAuthorizerAsyncData, NULL,
+	            set_up_client_login_authorizer_async_data, test_client_login_authorizer_authenticate_async_cancellation,
+	            tear_down_client_login_authorizer_async_data);
 
-		/* Miscellaneous other tests which require authentication */
-		g_test_add ("/client-login-authorizer/refresh-authorization/authenticated", ClientLoginAuthorizerData, NULL,
-		            set_up_client_login_authorizer_data_authenticated, test_client_login_authorizer_refresh_authorization,
-		            tear_down_client_login_authorizer_data);
+	/* Miscellaneous other tests which require authentication */
+	g_test_add ("/client-login-authorizer/refresh-authorization/authenticated", ClientLoginAuthorizerData, NULL,
+	            set_up_client_login_authorizer_data_authenticated, test_client_login_authorizer_refresh_authorization,
+	            tear_down_client_login_authorizer_data);
 
-		g_test_add ("/client-login-authorizer/process-request/authenticated", ClientLoginAuthorizerData, NULL,
-		            set_up_client_login_authorizer_data_authenticated, test_client_login_authorizer_process_request_authenticated,
-		            tear_down_client_login_authorizer_data);
-		g_test_add ("/client-login-authorizer/process-request/insecure", ClientLoginAuthorizerData, NULL,
-		            set_up_client_login_authorizer_data_authenticated, test_client_login_authorizer_process_request_insecure,
-		            tear_down_client_login_authorizer_data);
-	}
+	g_test_add ("/client-login-authorizer/process-request/authenticated", ClientLoginAuthorizerData, NULL,
+	            set_up_client_login_authorizer_data_authenticated, test_client_login_authorizer_process_request_authenticated,
+	            tear_down_client_login_authorizer_data);
+	g_test_add ("/client-login-authorizer/process-request/insecure", ClientLoginAuthorizerData, NULL,
+	            set_up_client_login_authorizer_data_authenticated, test_client_login_authorizer_process_request_insecure,
+	            tear_down_client_login_authorizer_data);
+#if GLIB_CHECK_VERSION(2, 38, 0)
+	g_test_add ("/client-login-authorizer/process-request/insecure/subprocess", ClientLoginAuthorizerData, NULL,
+	            set_up_client_login_authorizer_data_authenticated, test_client_login_authorizer_process_request_insecure_subprocess,
+	            tear_down_client_login_authorizer_data);
+#endif
 
 	return g_test_run ();
 }

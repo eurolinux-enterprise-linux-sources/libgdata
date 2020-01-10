@@ -2,34 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GDataDocumentsQuery</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<title>GDataDocumentsQuery: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch16.html" title="Google Documents API">
 <link rel="prev" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed">
 <link rel="next" href="GDataDocumentsUploadQuery.html" title="GDataDocumentsUploadQuery">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="GDataDocumentsFeed.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch16.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="GDataDocumentsUploadQuery.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#GDataDocumentsQuery.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#GDataDocumentsQuery.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#GDataDocumentsQuery.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#GDataDocumentsQuery.properties" class="shortcut">Properties</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataDocumentsQuery.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataDocumentsQuery.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#GDataDocumentsQuery.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch16.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataDocumentsFeed.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataDocumentsUploadQuery.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="GDataDocumentsQuery"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -37,83 +31,224 @@
 <h2><span class="refentrytitle"><a name="GDataDocumentsQuery.top_of_page"></a>GDataDocumentsQuery</span></h2>
 <p>GDataDocumentsQuery — GData Documents query object</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
 <a name="GDataDocumentsQuery.stability-level"></a><h2>Stability Level</h2>
-Unstable, unless otherwise indicated
-</div>
-<div class="refsynopsisdiv">
-<a name="GDataDocumentsQuery.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#include &lt;gdata/services/documents/gdata-documents-query.h&gt;
-
-                    <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery-struct" title="GDataDocumentsQuery">GDataDocumentsQuery</a>;
-                    <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQueryClass" title="GDataDocumentsQueryClass">GDataDocumentsQueryClass</a>;
-<a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="returnvalue">GDataDocumentsQuery</span></a> * <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-new" title="gdata_documents_query_new ()">gdata_documents_query_new</a>         (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>);
-<a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="returnvalue">GDataDocumentsQuery</span></a> * <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-new-with-limits" title="gdata_documents_query_new_with_limits ()">gdata_documents_query_new_with_limits</a>
-                                                        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> start_index</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> max_results</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-show-deleted" title="gdata_documents_query_show_deleted ()">gdata_documents_query_show_deleted</a>  (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-set-show-deleted" title="gdata_documents_query_set_show_deleted ()">gdata_documents_query_set_show_deleted</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> show_deleted</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-show-folders" title="gdata_documents_query_show_folders ()">gdata_documents_query_show_folders</a>  (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-set-show-folders" title="gdata_documents_query_set_show_folders ()">gdata_documents_query_set_show_folders</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> show_folders</code></em>);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-folder-id" title="gdata_documents_query_get_folder_id ()">gdata_documents_query_get_folder_id</a> (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-set-folder-id" title="gdata_documents_query_set_folder_id ()">gdata_documents_query_set_folder_id</a> (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *folder_id</code></em>);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-title" title="gdata_documents_query_get_title ()">gdata_documents_query_get_title</a>     (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-exact-title" title="gdata_documents_query_get_exact_title ()">gdata_documents_query_get_exact_title</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-set-title" title="gdata_documents_query_set_title ()">gdata_documents_query_set_title</a>     (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *title</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> exact_title</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-collaborator-addresses" title="gdata_documents_query_get_collaborator_addresses ()">gdata_documents_query_get_collaborator_addresses</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-add-collaborator" title="gdata_documents_query_add_collaborator ()">gdata_documents_query_add_collaborator</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-reader-addresses" title="gdata_documents_query_get_reader_addresses ()">gdata_documents_query_get_reader_addresses</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-add-reader" title="gdata_documents_query_add_reader ()">gdata_documents_query_add_reader</a>    (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);
-</pre>
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
 </div>
 <div class="refsect1">
-<a name="GDataDocumentsQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----<a class="link" href="GDataQuery.html" title="GDataQuery">GDataQuery</a>
-         +----GDataDocumentsQuery
-</pre>
+<a name="GDataDocumentsQuery.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="returnvalue">GDataDocumentsQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-new" title="gdata_documents_query_new ()">gdata_documents_query_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="returnvalue">GDataDocumentsQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-new-with-limits" title="gdata_documents_query_new_with_limits ()">gdata_documents_query_new_with_limits</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-show-deleted" title="gdata_documents_query_show_deleted ()">gdata_documents_query_show_deleted</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-set-show-deleted" title="gdata_documents_query_set_show_deleted ()">gdata_documents_query_set_show_deleted</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-show-folders" title="gdata_documents_query_show_folders ()">gdata_documents_query_show_folders</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-set-show-folders" title="gdata_documents_query_set_show_folders ()">gdata_documents_query_set_show_folders</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-folder-id" title="gdata_documents_query_get_folder_id ()">gdata_documents_query_get_folder_id</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-set-folder-id" title="gdata_documents_query_set_folder_id ()">gdata_documents_query_set_folder_id</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-title" title="gdata_documents_query_get_title ()">gdata_documents_query_get_title</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-exact-title" title="gdata_documents_query_get_exact_title ()">gdata_documents_query_get_exact_title</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-set-title" title="gdata_documents_query_set_title ()">gdata_documents_query_set_title</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-collaborator-addresses" title="gdata_documents_query_get_collaborator_addresses ()">gdata_documents_query_get_collaborator_addresses</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-add-collaborator" title="gdata_documents_query_add_collaborator ()">gdata_documents_query_add_collaborator</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-get-reader-addresses" title="gdata_documents_query_get_reader_addresses ()">gdata_documents_query_get_reader_addresses</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsQuery.html#gdata-documents-query-add-reader" title="gdata_documents_query_add_reader ()">gdata_documents_query_add_reader</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsQuery.properties"></a><h2>Properties</h2>
-<pre class="synopsis">
-  "<a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--exact-title" title='The "exact-title" property'>exact-title</a>"              <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
-  "<a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--folder-id" title='The "folder-id" property'>folder-id</a>"                <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
-  "<a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-deleted" title='The "show-deleted" property'>show-deleted</a>"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
-  "<a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-folders" title='The "show-folders" property'>show-folders</a>"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
-  "<a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title='The "title" property'>title</a>"                    <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+<div class="informaltable"><table border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody>
+<tr>
+<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
+<td class="property_name"><a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--exact-title" title="The “exact-title” property">exact-title</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--folder-id" title="The “folder-id” property">folder-id</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
+<td class="property_name"><a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-deleted" title="The “show-deleted” property">show-deleted</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
+<td class="property_name"><a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-folders" title="The “show-folders” property">show-folders</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title="The “title” property">title</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataDocumentsQuery.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery-struct" title="GDataDocumentsQuery">GDataDocumentsQuery</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQueryClass" title="GDataDocumentsQueryClass">GDataDocumentsQueryClass</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataDocumentsQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="GDataQuery.html" title="GDataQuery">GDataQuery</a>
+        <span class="lineart">╰──</span> GDataDocumentsQuery
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataDocumentsQuery.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/services/documents/gdata-documents-query.h&gt;
 </pre>
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsQuery.description"></a><h2>Description</h2>
-<p>
-<a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> represents a collection of query parameters specific to the Google Documents service, which go above and beyond
-those catered for by <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a>.
-</p>
-<p>
-For more information on the custom GData query parameters supported by <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>, see the <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#searching_for_documents_and_files" target="_top">online documentation</a>.
-</p>
-<p>
-</p>
+<p><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> represents a collection of query parameters specific to the Google Documents service, which go above and beyond
+those catered for by <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a>.</p>
+<p>For more information on the custom GData query parameters supported by <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>, see the <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#searching_for_documents_and_files" target="_top">online documentation</a>.</p>
 <div class="example">
-<a name="id775362"></a><p class="title"><b>Example 30. Querying for Documents</b></p>
+<a name="id-1.5.5.4.9.4"></a><p class="title"><b>Example 31. Querying for Documents</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -159,64 +294,536 @@ For more information on the custom GData query parameters supported by <a class=
 39
 40
 41</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataDocumentsService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
-<span class="usertype">GDataDocumentsQuery</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">query</span><span class="symbol">;</span>
-<span class="usertype">GDataFeed</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">feed</span><span class="symbol">;</span>
-<span class="usertype">GTimeVal</span><span class="normal"> current_time</span><span class="symbol">;</span>
-<span class="usertype">GList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">i</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting">GDataDocumentsService <span class="gtkdoc opt">*</span>service<span class="gtkdoc opt">;</span>
+GDataDocumentsQuery <span class="gtkdoc opt">*</span>query<span class="gtkdoc opt">;</span>
+GDataFeed <span class="gtkdoc opt">*</span>feed<span class="gtkdoc opt">;</span>
+GTimeVal current_time<span class="gtkdoc opt">;</span>
+GList <span class="gtkdoc opt">*</span>i<span class="gtkdoc opt">;</span>
+GError <span class="gtkdoc opt">*</span>error <span class="gtkdoc opt">=</span> NULL<span class="gtkdoc opt">;</span>
 
 <span class="comment">/* Create a service */</span>
-<span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_documents_service</span><span class="normal"> </span><span class="symbol">();</span>
+service <span class="gtkdoc opt">=</span> <span class="function">create_documents_service</span> <span class="gtkdoc opt">();</span>
 
-<span class="comment">/* Create the query to use. We're going to query for the last 10 documents modified by </span><span class="url"><a href="example@gmail.com">example@gmail.com</a></span><span class="comment"> in the past week, including</span>
+<span class="comment">/* Create the query to use. We're going to query for the last 10 documents modified by example&#64;gmail.com in the past week, including</span>
 <span class="comment"> * deleted documents. */</span>
-<span class="normal">query </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsQuery.html#gdata-documents-query-new-with-limits">gdata_documents_query_new_with_limits</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">10</span><span class="symbol">);</span>
+query <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataDocumentsQuery.html#gdata-documents-query-new-with-limits">gdata_documents_query_new_with_limits</a></span> <span class="gtkdoc opt">(</span>NULL<span class="gtkdoc opt">,</span> <span class="number">0</span><span class="gtkdoc opt">,</span> <span class="number">10</span><span class="gtkdoc opt">);</span>
 
-<span class="function"><a href="GDataDocumentsQuery.html#gdata-documents-query-add-collaborator">gdata_documents_query_add_collaborator</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">query</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"example@gmail.com"</span><span class="symbol">);</span>
-<span class="function"><a href="GDataDocumentsQuery.html#gdata-documents-query-set-show-deleted">gdata_documents_query_set_show_deleted</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">query</span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS">TRUE</a></span><span class="symbol">);</span>
+<span class="function"><a href="GDataDocumentsQuery.html#gdata-documents-query-add-collaborator">gdata_documents_query_add_collaborator</a></span> <span class="gtkdoc opt">(</span>query<span class="gtkdoc opt">,</span> <span class="string">&quot;example&#64;gmail.com&quot;</span><span class="gtkdoc opt">);</span>
+<span class="function"><a href="GDataDocumentsQuery.html#gdata-documents-query-set-show-deleted">gdata_documents_query_set_show_deleted</a></span> <span class="gtkdoc opt">(</span>query<span class="gtkdoc opt">,</span> TRUE<span class="gtkdoc opt">);</span>
 
-<span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#g-get-current-time">g_get_current_time</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">current_time</span><span class="symbol">);</span>
-<span class="function"><a href="GDataQuery.html#gdata-query-set-updated-min">gdata_query_set_updated_min</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_QUERY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">query</span><span class="symbol">),</span><span class="normal"> current_time</span><span class="symbol">.</span><span class="normal">tv_sec </span><span class="symbol">-</span><span class="normal"> </span><span class="number">7</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="number">24</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="number">60</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="number">60</span><span class="symbol">);</span>
-<span class="function"><a href="GDataQuery.html#gdata-query-set-updated-max">gdata_query_set_updated_max</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_QUERY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">query</span><span class="symbol">),</span><span class="normal"> current_time</span><span class="symbol">.</span><span class="normal">tv_sec</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Date-and-Time-Functions.html#g-get-current-time">g_get_current_time</a></span> <span class="gtkdoc opt">(&amp;</span>current_time<span class="gtkdoc opt">);</span>
+<span class="function"><a href="GDataQuery.html#gdata-query-set-updated-min">gdata_query_set_updated_min</a></span> <span class="gtkdoc opt">(</span><span class="function">GDATA_QUERY</span> <span class="gtkdoc opt">(</span>query<span class="gtkdoc opt">),</span> current_time<span class="gtkdoc opt">.</span>tv_sec <span class="gtkdoc opt">-</span> <span class="number">7</span> <span class="gtkdoc opt">*</span> <span class="number">24</span> <span class="gtkdoc opt">*</span> <span class="number">60</span> <span class="gtkdoc opt">*</span> <span class="number">60</span><span class="gtkdoc opt">);</span>
+<span class="function"><a href="GDataQuery.html#gdata-query-set-updated-max">gdata_query_set_updated_max</a></span> <span class="gtkdoc opt">(</span><span class="function">GDATA_QUERY</span> <span class="gtkdoc opt">(</span>query<span class="gtkdoc opt">),</span> current_time<span class="gtkdoc opt">.</span>tv_sec<span class="gtkdoc opt">);</span>
 
 <span class="comment">/* Execute the query */</span>
-<span class="normal">feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-query-documents">gdata_documents_service_query_documents</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> query</span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+feed <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-query-documents">gdata_documents_service_query_documents</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">,</span> query<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">);</span>
 
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">query</span><span class="symbol">);</span>
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>query<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error querying for documents: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
-<span class="cbracket">}</span>
+<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
+	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error querying for documents: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
+	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
+	<span class="keyword">return</span><span class="gtkdoc opt">;</span>
+<span class="gtkdoc opt">}</span>
 
 <span class="comment">/* Iterate through the returned documents and do something with them */</span>
-<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="usertype">GDataDocumentsDocument</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">document </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_DOCUMENTS_DOCUMENT</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i</span><span class="symbol">-&gt;</span><span class="normal">data</span><span class="symbol">);</span>
+<span class="keyword">for</span> <span class="gtkdoc opt">(</span>i <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span> <span class="gtkdoc opt">(</span>feed<span class="gtkdoc opt">);</span> i <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">;</span> i <span class="gtkdoc opt">=</span> i<span class="gtkdoc opt">-&gt;</span>next<span class="gtkdoc opt">) {</span>
+	GDataDocumentsDocument <span class="gtkdoc opt">*</span>document <span class="gtkdoc opt">=</span> <span class="function">GDATA_DOCUMENTS_DOCUMENT</span> <span class="gtkdoc opt">(</span>i<span class="gtkdoc opt">-&gt;</span>data<span class="gtkdoc opt">);</span>
 
-<span class="normal">    </span><span class="comment">/* Do something with the document here, such as insert it into a UI */</span>
-<span class="cbracket">}</span>
+	<span class="comment">/* Do something with the document here, such as insert it into a UI */</span>
+<span class="gtkdoc opt">}</span>
 
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>feed<span class="gtkdoc opt">);</span></pre></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 </div>
-<p><br class="example-break">
-</p>
+<br class="example-break">
 </div>
 <div class="refsect1">
-<a name="GDataDocumentsQuery.details"></a><h2>Details</h2>
+<a name="GDataDocumentsQuery.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="gdata-documents-query-new"></a><h3>gdata_documents_query_new ()</h3>
+<pre class="programlisting"><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="returnvalue">GDataDocumentsQuery</span></a> *
+gdata_documents_query_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>);</pre>
+<p>Creates a new <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> with its <a class="link" href="GDataQuery.html#GDataQuery--q" title="The “q” property"><span class="type">“q”</span></a> property set to <em class="parameter"><code>q</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>q</p></td>
+<td class="parameter_description"><p> a query string, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.2.6"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-new-with-limits"></a><h3>gdata_documents_query_new_with_limits ()</h3>
+<pre class="programlisting"><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="returnvalue">GDataDocumentsQuery</span></a> *
+gdata_documents_query_new_with_limits (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>,
+                                       <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> start_index</code></em>,
+                                       <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> max_results</code></em>);</pre>
+<p>Creates a new <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> with its <a class="link" href="GDataQuery.html#GDataQuery--q" title="The “q” property"><span class="type">“q”</span></a> property set to <em class="parameter"><code>q</code></em>
+, and the limits <em class="parameter"><code>start_index</code></em>
+ and <em class="parameter"><code>max_results</code></em>
+
+applied.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>q</p></td>
+<td class="parameter_description"><p> a query string, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>start_index</p></td>
+<td class="parameter_description"><p>a one-based start index for the results, or <code class="code">0</code></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>max_results</p></td>
+<td class="parameter_description"><p>the maximum number of results to return, or <code class="code">0</code></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.3.6"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-show-deleted"></a><h3>gdata_documents_query_show_deleted ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+gdata_documents_query_show_deleted (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
+<p>Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-deleted" title="The “show-deleted” property"><span class="type">“show_deleted”</span></a> property.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.4.6"></a><h4>Returns</h4>
+<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the request should return deleted entries, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-set-show-deleted"></a><h3>gdata_documents_query_set_show_deleted ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_documents_query_set_show_deleted
+                               (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> show_deleted</code></em>);</pre>
+<p>Sets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-deleted" title="The “show-deleted” property"><span class="type">“show_deleted”</span></a> property to <em class="parameter"><code>show_deleted</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>show_deleted</p></td>
+<td class="parameter_description"><p><a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the request should return deleted entries, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-show-folders"></a><h3>gdata_documents_query_show_folders ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+gdata_documents_query_show_folders (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
+<p>Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-folders" title="The “show-folders” property"><span class="type">“show-folders”</span></a> property.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.6.6"></a><h4>Returns</h4>
+<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the request should return folders, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-set-show-folders"></a><h3>gdata_documents_query_set_show_folders ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_documents_query_set_show_folders
+                               (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> show_folders</code></em>);</pre>
+<p>Sets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-folders" title="The “show-folders” property"><span class="type">“show-folders”</span></a> property to show_folders.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>show_folders</p></td>
+<td class="parameter_description"><p><a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the request should return folders, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-get-folder-id"></a><h3>gdata_documents_query_get_folder_id ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_documents_query_get_folder_id (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
+<p>Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--folder-id" title="The “folder-id” property"><span class="type">“folder-id”</span></a> property.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.8.6"></a><h4>Returns</h4>
+<p> the ID of the folder to be queried, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-set-folder-id"></a><h3>gdata_documents_query_set_folder_id ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_documents_query_set_folder_id (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
+                                     <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *folder_id</code></em>);</pre>
+<p>Sets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--folder-id" title="The “folder-id” property"><span class="type">“folder-id”</span></a> property to <em class="parameter"><code>folder_id</code></em>
+.</p>
+<p>Set <em class="parameter"><code>folder_id</code></em>
+ to <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.9.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>folder_id</p></td>
+<td class="parameter_description"><p> the ID of the folder to be queried, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-get-title"></a><h3>gdata_documents_query_get_title ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_documents_query_get_title (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
+<p>Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title="The “title” property"><span class="type">“title”</span></a> property.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.10.6"></a><h4>Returns</h4>
+<p> the title (or title fragment) being queried for, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-get-exact-title"></a><h3>gdata_documents_query_get_exact_title ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+gdata_documents_query_get_exact_title (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
+<p>Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--exact-title" title="The “exact-title” property"><span class="type">“exact-title”</span></a> property.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.11.6"></a><h4>Returns</h4>
+<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the query matches the exact title of documents with <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title="The “title” property"><span class="type">“title”</span></a>, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-set-title"></a><h3>gdata_documents_query_set_title ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_documents_query_set_title (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
+                                 <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *title</code></em>,
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> exact_title</code></em>);</pre>
+<p>Sets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title="The “title” property"><span class="type">“title”</span></a> property to <em class="parameter"><code>title</code></em>
+.</p>
+<p>Set <em class="parameter"><code>title</code></em>
+ to <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.12.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>title</p></td>
+<td class="parameter_description"><p> the title (or title fragment) to query for, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>exact_title</p></td>
+<td class="parameter_description"><p><a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the query should match the exact <em class="parameter"><code>title</code></em>
+, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-get-collaborator-addresses"></a><h3>gdata_documents_query_get_collaborator_addresses ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *
+gdata_documents_query_get_collaborator_addresses
+                               (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
+<p>Gets a list of <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>es of the document collaborators whose documents will be queried.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.13.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.13.6"></a><h4>Returns</h4>
+<p> a list of <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>es of the collaborators concerned by the
+query, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GData.GDEmailAddress][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-add-collaborator"></a><h3>gdata_documents_query_add_collaborator ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_documents_query_add_collaborator
+                               (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
+<p>Add <em class="parameter"><code>email_address</code></em>
+ as a <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a> to the list of collaborators whose edited documents will be queried.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.14.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>email_address</p></td>
+<td class="parameter_description"><p>the e-mail address of the collaborator to add</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-get-reader-addresses"></a><h3>gdata_documents_query_get_reader_addresses ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *
+gdata_documents_query_get_reader_addresses
+                               (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
+<p>Gets a list of <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>es of the document readers whose documents will be queried.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.15.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.15.6"></a><h4>Returns</h4>
+<p> a list of <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>es of the readers concerned by the query,
+or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GData.GDEmailAddress][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-query-add-reader"></a><h3>gdata_documents_query_add_reader ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_documents_query_add_reader (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
+                                  <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
+<p>Add <em class="parameter"><code>email_address</code></em>
+ as a <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a> to the list of readers, the documents readable by whom will be queried.</p>
+<div class="refsect3">
+<a name="id-1.5.5.4.10.16.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>email_address</p></td>
+<td class="parameter_description"><p>the e-mail address of the reader to add</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataDocumentsQuery.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="GDataDocumentsQuery-struct"></a><h3>GDataDocumentsQuery</h3>
 <pre class="programlisting">typedef struct _GDataDocumentsQuery GDataDocumentsQuery;</pre>
-<p>
-All the fields in the <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> structure are private and should never be accessed directly.
-</p>
+<p>All the fields in the <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
@@ -225,459 +832,54 @@ All the fields in the <a class="link" href="GDataDocumentsQuery.html" title="GDa
 <pre class="programlisting">typedef struct {
 } GDataDocumentsQueryClass;
 </pre>
-<p>
-All the fields in the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQueryClass" title="GDataDocumentsQueryClass"><span class="type">GDataDocumentsQueryClass</span></a> structure are private and should never be accessed directly.
-</p>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-new"></a><h3>gdata_documents_query_new ()</h3>
-<pre class="programlisting"><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="returnvalue">GDataDocumentsQuery</span></a> * gdata_documents_query_new         (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>);</pre>
-<p>
-Creates a new <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> with its <a class="link" href="GDataQuery.html#GDataQuery--q" title='The "q" property'><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
-<td>a query string, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-new-with-limits"></a><h3>gdata_documents_query_new_with_limits ()</h3>
-<pre class="programlisting"><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="returnvalue">GDataDocumentsQuery</span></a> * gdata_documents_query_new_with_limits
-                                                        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *q</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> start_index</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> max_results</code></em>);</pre>
-<p>
-Creates a new <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> with its <a class="link" href="GDataQuery.html#GDataQuery--q" title='The "q" property'><span class="type">"q"</span></a> property set to <em class="parameter"><code>q</code></em>, and the limits <em class="parameter"><code>start_index</code></em> and <em class="parameter"><code>max_results</code></em>
-applied.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>q</code></em> :</span></p></td>
-<td>a query string, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>start_index</code></em> :</span></p></td>
-<td>a one-based start index for the results, or <code class="code">0</code>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>max_results</code></em> :</span></p></td>
-<td>the maximum number of results to return, or <code class="code">0</code>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-show-deleted"></a><h3>gdata_documents_query_show_deleted ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_documents_query_show_deleted  (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-deleted" title='The "show-deleted" property'><span class="type">"show_deleted"</span></a> property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the request should return deleted entries, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-set-show-deleted"></a><h3>gdata_documents_query_set_show_deleted ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_query_set_show_deleted
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> show_deleted</code></em>);</pre>
-<p>
-Sets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-deleted" title='The "show-deleted" property'><span class="type">"show_deleted"</span></a> property to <em class="parameter"><code>show_deleted</code></em>.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>show_deleted</code></em> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the request should return deleted entries, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-show-folders"></a><h3>gdata_documents_query_show_folders ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_documents_query_show_folders  (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-folders" title='The "show-folders" property'><span class="type">"show-folders"</span></a> property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the request should return folders, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-set-show-folders"></a><h3>gdata_documents_query_set_show_folders ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_query_set_show_folders
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> show_folders</code></em>);</pre>
-<p>
-Sets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--show-folders" title='The "show-folders" property'><span class="type">"show-folders"</span></a> property to show_folders.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>show_folders</code></em> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the request should return folders, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-get-folder-id"></a><h3>gdata_documents_query_get_folder_id ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_documents_query_get_folder_id (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--folder-id" title='The "folder-id" property'><span class="type">"folder-id"</span></a> property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the ID of the folder to be queried, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-set-folder-id"></a><h3>gdata_documents_query_set_folder_id ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_query_set_folder_id (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *folder_id</code></em>);</pre>
-<p>
-Sets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--folder-id" title='The "folder-id" property'><span class="type">"folder-id"</span></a> property to <em class="parameter"><code>folder_id</code></em>.
-</p>
-<p>
-Set <em class="parameter"><code>folder_id</code></em> to <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>folder_id</code></em> :</span></p></td>
-<td>the ID of the folder to be queried, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-get-title"></a><h3>gdata_documents_query_get_title ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_documents_query_get_title     (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title='The "title" property'><span class="type">"title"</span></a> property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the title (or title fragment) being queried for, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-get-exact-title"></a><h3>gdata_documents_query_get_exact_title ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdata_documents_query_get_exact_title
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--exact-title" title='The "exact-title" property'><span class="type">"exact-title"</span></a> property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the query matches the exact title of documents with <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title='The "title" property'><span class="type">"title"</span></a>, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-set-title"></a><h3>gdata_documents_query_set_title ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_query_set_title     (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *title</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> exact_title</code></em>);</pre>
-<p>
-Sets the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title='The "title" property'><span class="type">"title"</span></a> property to <em class="parameter"><code>title</code></em>.
-</p>
-<p>
-Set <em class="parameter"><code>title</code></em> to <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the query URI.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>title</code></em> :</span></p></td>
-<td>the title (or title fragment) to query for, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>exact_title</code></em> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the query should match the exact <em class="parameter"><code>title</code></em>, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-get-collaborator-addresses"></a><h3>gdata_documents_query_get_collaborator_addresses ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_documents_query_get_collaborator_addresses
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
-<p>
-Gets a list of <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>es of the document collaborators whose documents will be queried.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a list of <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>es of the collaborators concerned by the
-query, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GData.GDEmailAddress][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-add-collaborator"></a><h3>gdata_documents_query_add_collaborator ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_query_add_collaborator
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
-<p>
-Add <em class="parameter"><code>email_address</code></em> as a <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a> to the list of collaborators whose edited documents will be queried.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>email_address</code></em> :</span></p></td>
-<td>the e-mail address of the collaborator to add</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-get-reader-addresses"></a><h3>gdata_documents_query_get_reader_addresses ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             gdata_documents_query_get_reader_addresses
-                                                        (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>);</pre>
-<p>
-Gets a list of <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>es of the document readers whose documents will be queried.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a list of <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a>es of the readers concerned by the query,
-or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GData.GDEmailAddress][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-documents-query-add-reader"></a><h3>gdata_documents_query_add_reader ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdata_documents_query_add_reader    (<em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
-<p>
-Add <em class="parameter"><code>email_address</code></em> as a <a class="link" href="GDataGDEmailAddress.html" title="GDataGDEmailAddress"><span class="type">GDataGDEmailAddress</span></a> to the list of readers, the documents readable by whom will be queried.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>email_address</code></em> :</span></p></td>
-<td>the e-mail address of the reader to add</td>
-</tr>
-</tbody>
-</table></div>
+<p>All the fields in the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQueryClass" title="GDataDocumentsQueryClass"><span class="type">GDataDocumentsQueryClass</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsQuery.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
-<a name="GDataDocumentsQuery--exact-title"></a><h3>The <code class="literal">"exact-title"</code> property</h3>
-<pre class="programlisting">  "exact-title"              <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
-<p>
-Specifies whether the query should search for an exact title match for the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title='The "title" property'><span class="type">"title"</span></a> parameter.
-</p>
+<a name="GDataDocumentsQuery--exact-title"></a><h3>The <code class="literal">“exact-title”</code> property</h3>
+<pre class="programlisting">  “exact-title”              <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
+<p>Specifies whether the query should search for an exact title match for the <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--title" title="The “title” property"><span class="type">“title”</span></a> parameter.</p>
+<p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataDocumentsQuery--folder-id"></a><h3>The <code class="literal">"folder-id"</code> property</h3>
-<pre class="programlisting">  "folder-id"                <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
-<p>
-Specifies the ID of the folder in which to search.
-</p>
+<a name="GDataDocumentsQuery--folder-id"></a><h3>The <code class="literal">“folder-id”</code> property</h3>
+<pre class="programlisting">  “folder-id”                <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<p>Specifies the ID of the folder in which to search.</p>
+<p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataDocumentsQuery--show-deleted"></a><h3>The <code class="literal">"show-deleted"</code> property</h3>
-<pre class="programlisting">  "show-deleted"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
-<p>
-A shortcut to request all documents that have been deleted.
-</p>
+<a name="GDataDocumentsQuery--show-deleted"></a><h3>The <code class="literal">“show-deleted”</code> property</h3>
+<pre class="programlisting">  “show-deleted”             <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
+<p>A shortcut to request all documents that have been deleted.</p>
+<p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataDocumentsQuery--show-folders"></a><h3>The <code class="literal">"show-folders"</code> property</h3>
-<pre class="programlisting">  "show-folders"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
-<p>
-Specifies if the request also returns folders.
-</p>
+<a name="GDataDocumentsQuery--show-folders"></a><h3>The <code class="literal">“show-folders”</code> property</h3>
+<pre class="programlisting">  “show-folders”             <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
+<p>Specifies if the request also returns folders.</p>
+<p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataDocumentsQuery--title"></a><h3>The <code class="literal">"title"</code> property</h3>
-<pre class="programlisting">  "title"                    <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
-<p>
-A title (or title fragment) to be searched for. If <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--exact-title" title='The "exact-title" property'><span class="type">"exact-title"</span></a> is <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>, an exact
-title match will be searched for, otherwise substring matches will also be returned.
-</p>
+<a name="GDataDocumentsQuery--title"></a><h3>The <code class="literal">“title”</code> property</h3>
+<pre class="programlisting">  “title”                    <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<p>A title (or title fragment) to be searched for. If <a class="link" href="GDataDocumentsQuery.html#GDataDocumentsQuery--exact-title" title="The “exact-title” property"><span class="type">“exact-title”</span></a> is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>, an exact
+title match will be searched for, otherwise substring matches will also be returned.</p>
+<p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
@@ -685,6 +887,6 @@ title match will be searched for, otherwise substring matches will also be retur
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

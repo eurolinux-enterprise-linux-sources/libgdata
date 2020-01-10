@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-batch-operation
  * @short_description: GData batch operation object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gdata-batch-operation.h
  *
  * #GDataBatchOperation is a transient standalone class which represents and handles a single batch operation request to a service. To make a batch
@@ -411,10 +411,13 @@ _gdata_batch_operation_run_callback (GDataBatchOperation *self, BatchOperation *
 
 	/* Only dispatch it in the main thread if the request was run with *_run_async(). This allows applications to run batch operations entirely in
 	 * application-owned threads if desired. */
-	if (self->priv->is_async == TRUE)
-		g_idle_add ((GSourceFunc) run_callback_cb, op);
-	else
+	if (self->priv->is_async == TRUE) {
+		/* Send the callback; use G_PRIORITY_DEFAULT rather than G_PRIORITY_DEFAULT_IDLE
+		 * to contend with the priorities used by the callback functions in GAsyncResult */
+		g_idle_add_full (G_PRIORITY_DEFAULT, (GSourceFunc) run_callback_cb, op, NULL);
+	} else {
 		run_callback_cb (op);
+	}
 }
 
 /* Free a #BatchOperation */
@@ -613,7 +616,8 @@ gdata_batch_operation_run (GDataBatchOperation *self, GCancellable *cancellable,
 
 	/* Build the request */
 	g_get_current_time (&updated);
-	feed = _gdata_feed_new ("Batch operation feed", "batch1", updated.tv_sec);
+	feed = _gdata_feed_new (GDATA_TYPE_FEED, "Batch operation feed",
+	                        "batch1", updated.tv_sec);
 
 	g_hash_table_iter_init (&iter, priv->operations);
 	while (g_hash_table_iter_next (&iter, &op_id, (gpointer*) &op) == TRUE) {

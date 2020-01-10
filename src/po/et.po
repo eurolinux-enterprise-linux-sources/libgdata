@@ -2,15 +2,15 @@
 # Copyright (C) 2012 libgdata's COPYRIGHT HOLDER
 # This file is distributed under the same license as the libgdata package.
 #
-# Mattias Põldaru <mahfiaz@gmail.com>, 2012.
+# Mattias Põldaru <mahfiaz@gmail.com>, 2012, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libgdata master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=libgdata&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-21 11:00+0000\n"
-"PO-Revision-Date: 2012-10-30 00:18+0300\n"
+"POT-Creation-Date: 2015-03-14 22:39+0000\n"
+"PO-Revision-Date: 2015-03-15 09:42+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid "The server returned a malformed response."
 msgstr "Server andis vigase vastuse."
@@ -136,11 +137,19 @@ msgstr "Ligipääsu on keelanud kasutaja või server."
 #. Translators: the parameter is an error message
 #, c-format
 msgid "Error parsing XML: %s"
-msgstr "Viga XML-i töötlemisel: %s"
+msgstr "Viga XML-i parsimisel: %s"
 
 #. Translators: this is a dummy error message to be substituted into "Error parsing XML: %s".
 msgid "Empty document."
 msgstr "Tühi dokument."
+
+#. Translators: the parameter is an error message
+#, c-format
+msgid "Error parsing JSON: %s"
+msgstr "Viga JSON-i parsimisel: %s"
+
+msgid "Outermost JSON node is not an object."
+msgstr "Kõige välimine JSON sõlm ei ole objekt."
 
 #. Translators: the parameter is the name of an XML element, including the angle brackets ("<" and ">").
 #. *
@@ -148,7 +157,7 @@ msgstr "Tühi dokument."
 #. *  A <title> element was missing required content.
 #, c-format
 msgid "A %s element was missing required content."
-msgstr "%s elemendil puudus vajalik sisu."
+msgstr "Elemendil %s puudus vajalik sisu."
 
 #. Translators: the first parameter is the name of an XML element (including the angle brackets ("<" and ">")),
 #. * and the second parameter is the erroneous value (which was not in ISO 8601 format).
@@ -157,7 +166,7 @@ msgstr "%s elemendil puudus vajalik sisu."
 #. *  The content of a <media:group/media:uploaded> element ("2009-05-06 26:30Z") was not in ISO 8601 format.
 #, c-format
 msgid "The content of a %s element (\"%s\") was not in ISO 8601 format."
-msgstr "%s elemendi sisu (\"%s\") ei olnud ISO 8601 vormingus."
+msgstr "Elemendi %s sisu (\"%s\") ei olnud ISO 8601 vormingus."
 
 #. Translators: the first parameter is the name of an XML property, the second is the name of an XML element
 #. * (including the angle brackets ("<" and ">")) to which the property belongs, and the third is the unknown value.
@@ -212,9 +221,35 @@ msgstr "Nõutud elementi (%s) ei olnud."
 #. *
 #. * For example:
 #. *  A singleton element (<feed/title>) was duplicated.
+#. Translators: the parameter is the name of an JSON element.
+#. *
+#. * For example:
+#. *  A singleton element (title) was duplicated.
 #, c-format
 msgid "A singleton element (%s) was duplicated."
 msgstr "Singleton elemendist (%s) oli duplikaat."
+
+#. Translators: the parameter is the name of an JSON element.
+#. *
+#. * For example:
+#. *  A 'title' element was missing required content.
+#, c-format
+msgid "A '%s' element was missing required content."
+msgstr "Elemendil '%s' puudus vajalik sisu."
+
+#. Translators: the first parameter is the name of an JSON element,
+#. * and the second parameter is the erroneous value (which was not in ISO 8601 format).
+#. *
+#. * For example:
+#. *  The content of a 'uploaded' element ("2009-05-06 26:30Z") was not in ISO 8601 format.
+#, c-format
+msgid "The content of a '%s' element (\"%s\") was not in ISO 8601 format."
+msgstr "Elemendi '%s' sisu (\"%s\") ei olnud ISO 8601 vormingus."
+
+#. Translators: the parameter is an error message.
+#, c-format
+msgid "Invalid JSON was received from the server: %s"
+msgstr "Server tagastas sobimatud JSON andmed: %s"
 
 #. Translators: the first parameter is an HTTP status,
 #. * and the second is an error message returned by the server.
@@ -332,6 +367,10 @@ msgstr "Dokumentide kopeerimiseks pead olema sisse loginud."
 msgid "You must be authenticated to move documents and folders."
 msgstr "Dokumentide ja kataloogide liigutamiseks pead olema sisse loginud."
 
+#, c-format
+msgid "Property '%s' does not hold an image"
+msgstr "Omadus '%s' ei tohi sisaldada pilti"
+
 msgid "You must specify a username or be authenticated to query a user."
 msgstr "Kasutaja pärimiseks pead määrama kasutajanime või olema sisse loginud."
 
@@ -355,14 +394,6 @@ msgid "You must be authenticated to insert an album."
 msgstr "Albumi sisestamiseks pead olema sisse loginud."
 
 #, c-format
-msgid "This service is not available at the moment."
-msgstr "Teenus pole hetkel saadaval."
-
-#, c-format
-msgid "You must be authenticated to do this."
-msgstr "Selle tegemiseks pead olema sisse loginud."
-
-#, c-format
 msgid ""
 "You have made too many API calls recently. Please wait a few minutes and try "
 "again."
@@ -371,11 +402,27 @@ msgstr ""
 "uuesti."
 
 #, c-format
+msgid "You must be authenticated to do this."
+msgstr "Selle tegemiseks pead olema sisse loginud."
+
+msgid "You must be authenticated to query all tasklists."
+msgstr "Kõigi ülesandeloetelude pärimiseks pead olema sisse loginud."
+
+msgid "You must be authenticated to query your own tasks."
+msgstr "Oma ülesannete pärimiseks pead olema sisse loginud."
+
+#, c-format
+msgid "This service is not available at the moment."
+msgstr "Teenus pole hetkel saadaval."
+
+#. Translators: the parameter is a URI.
+#, c-format
 msgid ""
-"You have exceeded your entry quota. Please delete some entries and try again."
+"Your Google Account must be associated with a YouTube channel to do this. "
+"Visit %s to create one."
 msgstr ""
-"Oled ületanud oma sissekannete kvoodi. Kustuta mõned sissekanded ja proovi "
-"uuesti."
+"Sinu Google konto peab selle tegemiseks olema YouTube kanaliga seotud. Konto "
+"saad luua aadressil %s."
 
 #. Translators: the first parameter is an error code, which is a coded string.
 #. * The second parameter is an error domain, which is another coded string.
@@ -383,7 +430,14 @@ msgstr ""
 #, c-format
 msgid ""
 "Unknown error code \"%s\" in domain \"%s\" received with location \"%s\"."
-msgstr "Tundmatu veakood \"%s\" saadi domeenilt \"%s\" asukohas \"%s\"."
+msgstr "Tundmatu veakood \"%s\" domeenilt \"%s\" kohast \"%s\"."
+
+#, c-format
+msgid ""
+"You have exceeded your entry quota. Please delete some entries and try again."
+msgstr ""
+"Oled ületanud oma sissekannete kvoodi. Kustuta mõned sissekanded ja proovi "
+"uuesti."
 
 #, c-format
 msgid "Unknown and unparsable error received."

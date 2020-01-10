@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008-2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008-2009, 2015 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -33,20 +33,51 @@ G_BEGIN_DECLS
 
 /**
  * GDataYouTubeStandardFeedType:
- * @GDATA_YOUTUBE_TOP_RATED_FEED: This feed contains the most highly rated YouTube videos.
- * @GDATA_YOUTUBE_TOP_FAVORITES_FEED: This feed contains videos most frequently flagged as favorite videos.
- * @GDATA_YOUTUBE_MOST_VIEWED_FEED: This feed contains the most frequently watched YouTube videos.
- * @GDATA_YOUTUBE_MOST_POPULAR_FEED: This feed contains the most popular YouTube videos, selected using an algorithm that combines many
- * different signals to determine overall popularity.
- * @GDATA_YOUTUBE_MOST_RECENT_FEED: This feed contains the videos most recently submitted to YouTube.
- * @GDATA_YOUTUBE_MOST_DISCUSSED_FEED: This feed contains the YouTube videos that have received the most comments.
- * @GDATA_YOUTUBE_MOST_LINKED_FEED: This feed contains the YouTube videos that receive the most links from other websites.
- * @GDATA_YOUTUBE_MOST_RESPONDED_FEED: This feed contains YouTube videos that receive the most video responses.
- * @GDATA_YOUTUBE_RECENTLY_FEATURED_FEED: This feed contains videos recently featured on the YouTube home page or featured videos tab.
- * @GDATA_YOUTUBE_WATCH_ON_MOBILE_FEED: This feed contains videos suitable for playback on mobile devices.
+ * @GDATA_YOUTUBE_TOP_RATED_FEED: This feed contains the most highly rated
+ *   YouTube videos. Deprecated: 0.17.0: Google no longer supports this feed
+ *   type, and it will return results equivalent to
+ *   %GDATA_YOUTUBE_MOST_POPULAR_FEED.
+ * @GDATA_YOUTUBE_TOP_FAVORITES_FEED: This feed contains videos most frequently
+ *   flagged as favorite videos. Deprecated: 0.17.0: Google no longer
+ *   supports this feed type, and it will return results equivalent to
+ *   %GDATA_YOUTUBE_MOST_POPULAR_FEED.
+ * @GDATA_YOUTUBE_MOST_VIEWED_FEED: This feed contains the most frequently
+ *   watched YouTube videos. Deprecated: 0.17.0: Google no longer supports
+ *   this feed type, and it will return results equivalent to
+ *   %GDATA_YOUTUBE_MOST_POPULAR_FEED.
+ * @GDATA_YOUTUBE_MOST_POPULAR_FEED: This feed contains the most popular YouTube
+ *   videos, selected using an algorithm that combines many different signals to
+ *   determine overall popularity. As of version 0.17.0, this is the only
+ *   supported feed type.
+ * @GDATA_YOUTUBE_MOST_RECENT_FEED: This feed contains the videos most recently
+ *   submitted to YouTube. Deprecated: 0.17.0: Google no longer supports
+ *   this feed type, and it will return results equivalent to
+ *   %GDATA_YOUTUBE_MOST_POPULAR_FEED.
+ * @GDATA_YOUTUBE_MOST_DISCUSSED_FEED: This feed contains the YouTube videos
+ *   that have received the most comments. Deprecated: 0.17.0: Google no
+ *   longer supports this feed type, and it will return results equivalent to
+ *   %GDATA_YOUTUBE_MOST_POPULAR_FEED.
+ * @GDATA_YOUTUBE_MOST_LINKED_FEED: This feed contains the YouTube videos that
+ *   receive the most links from other websites. Deprecated: 0.17.0: Google
+ *   no longer supports this feed type, and it will return results equivalent to
+ *   %GDATA_YOUTUBE_MOST_POPULAR_FEED.
+ * @GDATA_YOUTUBE_MOST_RESPONDED_FEED: This feed contains YouTube videos that
+ *   receive the most video responses. Deprecated: 0.17.0: Google no longer
+ *   supports this feed type, and it will return results equivalent to
+ *   %GDATA_YOUTUBE_MOST_POPULAR_FEED.
+ * @GDATA_YOUTUBE_RECENTLY_FEATURED_FEED: This feed contains videos recently
+ *   featured on the YouTube home page or featured videos tab. Deprecated:
+ *   0.17.0: Google no longer supports this feed type, and it will return
+ *   results equivalent to %GDATA_YOUTUBE_MOST_POPULAR_FEED.
+ * @GDATA_YOUTUBE_WATCH_ON_MOBILE_FEED: This feed contains videos suitable for
+ *   playback on mobile devices. Deprecated: 0.17.0: Google no longer
+ *   supports this feed type, and it will return results equivalent to
+ *   %GDATA_YOUTUBE_MOST_POPULAR_FEED.
  *
- * Standard feed types for standard feed queries with gdata_youtube_service_query_standard_feed(). For more information, see
- * the <ulink type="http" url="http://code.google.com/apis/youtube/2.0/developers_guide_protocol.html#Standard_feeds">online documentation</ulink>.
+ * Standard feed types for standard feed queries with
+ * gdata_youtube_service_query_standard_feed(). For more information, see the
+ * <ulink type="http" url="https://developers.google.com/youtube/2.0/developers_guide_protocol_video_feeds#Standard_feeds">online
+ * documentation</ulink>.
  **/
 typedef enum {
 	GDATA_YOUTUBE_TOP_RATED_FEED,
@@ -65,12 +96,16 @@ typedef enum {
  * GDataYouTubeServiceError:
  * @GDATA_YOUTUBE_SERVICE_ERROR_API_QUOTA_EXCEEDED: the API request quota for this developer account has been exceeded
  * @GDATA_YOUTUBE_SERVICE_ERROR_ENTRY_QUOTA_EXCEEDED: the entry (e.g. video) quota for this user account has been exceeded
+ * @GDATA_YOUTUBE_SERVICE_ERROR_CHANNEL_REQUIRED: the currently authenticated user doesn't have a YouTube channel, but the current action requires one;
+ * if this error is received, inform the user that they need a YouTube channel, and provide a link to
+ * <ulink type="http" url="https://www.youtube.com/create_channel">https://www.youtube.com/create_channel</ulink>
  *
  * Error codes for #GDataYouTubeService operations.
  **/
 typedef enum {
 	GDATA_YOUTUBE_SERVICE_ERROR_API_QUOTA_EXCEEDED,
-	GDATA_YOUTUBE_SERVICE_ERROR_ENTRY_QUOTA_EXCEEDED
+	GDATA_YOUTUBE_SERVICE_ERROR_ENTRY_QUOTA_EXCEEDED,
+	GDATA_YOUTUBE_SERVICE_ERROR_CHANNEL_REQUIRED,
 } GDataYouTubeServiceError;
 
 #define GDATA_TYPE_YOUTUBE_SERVICE		(gdata_youtube_service_get_type ())
@@ -102,6 +137,15 @@ typedef struct {
 typedef struct {
 	/*< private >*/
 	GDataServiceClass parent;
+
+	/*< private >*/
+	/* Padding for future expansion */
+	void (*_g_reserved0) (void);
+	void (*_g_reserved1) (void);
+	void (*_g_reserved2) (void);
+	void (*_g_reserved3) (void);
+	void (*_g_reserved4) (void);
+	void (*_g_reserved5) (void);
 } GDataYouTubeServiceClass;
 
 GType gdata_youtube_service_get_type (void) G_GNUC_CONST;

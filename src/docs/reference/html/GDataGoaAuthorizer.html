@@ -2,36 +2,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GDataGoaAuthorizer</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<title>GDataGoaAuthorizer: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch05.html" title="Authentication/Authorization API">
 <link rel="prev" href="GDataClientLoginAuthorizer.html" title="GDataClientLoginAuthorizer">
 <link rel="next" href="GDataOAuth1Authorizer.html" title="GDataOAuth1Authorizer">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="GDataClientLoginAuthorizer.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="GDataOAuth1Authorizer.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#GDataGoaAuthorizer.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#GDataGoaAuthorizer.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#GDataGoaAuthorizer.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#GDataGoaAuthorizer.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
-                   | 
-                  <a href="#GDataGoaAuthorizer.properties" class="shortcut">Properties</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataGoaAuthorizer.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataGoaAuthorizer.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_interfaces">  <span class="dim">|</span> 
+                  <a href="#GDataGoaAuthorizer.implemented-interfaces" class="shortcut">Implemented Interfaces</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#GDataGoaAuthorizer.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataClientLoginAuthorizer.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataOAuth1Authorizer.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="GDataGoaAuthorizer"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -39,28 +32,84 @@
 <h2><span class="refentrytitle"><a name="GDataGoaAuthorizer.top_of_page"></a>GDataGoaAuthorizer</span></h2>
 <p>GDataGoaAuthorizer — GData GOA authorization interface</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
 <a name="GDataGoaAuthorizer.stability-level"></a><h2>Stability Level</h2>
-Unstable, unless otherwise indicated
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
-<a name="GDataGoaAuthorizer.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#include &lt;gdata/gdata-goa-authorizer.h&gt;
-
-                    <a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizer-struct" title="GDataGoaAuthorizer">GDataGoaAuthorizer</a>;
-                    <a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizerClass" title="GDataGoaAuthorizerClass">GDataGoaAuthorizerClass</a>;
-<a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="returnvalue">GDataGoaAuthorizer</span></a> * <a class="link" href="GDataGoaAuthorizer.html#gdata-goa-authorizer-new" title="gdata_goa_authorizer_new ()">gdata_goa_authorizer_new</a>           (<em class="parameter"><code><span class="type">GoaObject</span> *goa_object</code></em>);
-<span class="returnvalue">GoaObject</span> *         <a class="link" href="GDataGoaAuthorizer.html#gdata-goa-authorizer-get-goa-object" title="gdata_goa_authorizer_get_goa_object ()">gdata_goa_authorizer_get_goa_object</a> (<em class="parameter"><code><a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> *self</code></em>);
-</pre>
+<div class="refsect1">
+<a name="GDataGoaAuthorizer.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="returnvalue">GDataGoaAuthorizer</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataGoaAuthorizer.html#gdata-goa-authorizer-new" title="gdata_goa_authorizer_new ()">gdata_goa_authorizer_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">GoaObject</span> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataGoaAuthorizer.html#gdata-goa-authorizer-get-goa-object" title="gdata_goa_authorizer_get_goa_object ()">gdata_goa_authorizer_get_goa_object</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataGoaAuthorizer.properties"></a><h2>Properties</h2>
+<div class="informaltable"><table border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody><tr>
+<td class="property_type">
+<span class="type">GoaObject</span> *</td>
+<td class="property_name"><a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizer--goa-object" title="The “goa-object” property">goa-object</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataGoaAuthorizer.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizer-struct" title="GDataGoaAuthorizer">GDataGoaAuthorizer</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizerClass" title="GDataGoaAuthorizerClass">GDataGoaAuthorizerClass</a></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="GDataGoaAuthorizer.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----GDataGoaAuthorizer
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> GDataGoaAuthorizer
 </pre>
 </div>
 <div class="refsect1">
@@ -70,31 +119,22 @@ GDataGoaAuthorizer implements
  <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer">GDataAuthorizer</a>.</p>
 </div>
 <div class="refsect1">
-<a name="GDataGoaAuthorizer.properties"></a><h2>Properties</h2>
-<pre class="synopsis">
-  "<a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizer--goa-object" title='The "goa-object" property'>goa-object</a>"               <span class="type">GoaObject</span>*            : Read / Write / Construct Only
+<a name="GDataGoaAuthorizer.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/gdata-goa-authorizer.h&gt;
 </pre>
 </div>
 <div class="refsect1">
 <a name="GDataGoaAuthorizer.description"></a><h2>Description</h2>
-<p>
-<a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> provides an implementation of the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> interface for authentication and authorization using GNOME Online Accounts
+<p><a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> provides an implementation of the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> interface for authentication and authorization using GNOME Online Accounts
 (GOA) over D-Bus. This allows a single login session (managed by the GOA daemon) to be used by multiple applications simultaneously, without each
 of those applications having to go through the authentication process themselves. Applications making use of <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> don't get access
-to the user's password (it's handled solely by the GOA daemon).
-</p>
-<p>
-Internally, GOA authenticates with the Google servers using the
+to the user's password (it's handled solely by the GOA daemon).</p>
+<p>Internally, GOA authenticates with the Google servers using the</p>
 <a class="ulink" href="http://code.google.com/apis/accounts/docs/OAuthForInstalledApps.html" target="_top">OAuth 1.0</a> process.
-</p>
-<p>
-<a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> natively supports authorization against multiple services (unlike <a class="link" href="GDataClientLoginAuthorizer.html" title="GDataClientLoginAuthorizer"><span class="type">GDataClientLoginAuthorizer</span></a>), depending entirely on which
-services the user has enabled for their Google account in GOA. <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> cannot authenticate for more services than are enabled in GOA.
-</p>
-<p>
-</p>
+<p><a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> natively supports authorization against multiple services (unlike <a class="link" href="GDataClientLoginAuthorizer.html" title="GDataClientLoginAuthorizer"><span class="type">GDataClientLoginAuthorizer</span></a>), depending entirely on which
+services the user has enabled for their Google account in GOA. <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> cannot authenticate for more services than are enabled in GOA.</p>
 <div class="example">
-<a name="id568841"></a><p class="title"><b>Example 7. Authenticating Using GOA</b></p>
+<a name="id-1.3.5.5.10.6"></a><p class="title"><b>Example 7. Authenticating Using GOA</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -115,39 +155,95 @@ services the user has enabled for their Google account in GOA. <a class="link" h
 14
 15
 16</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataSomeService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
-<span class="usertype">GoaObject</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">goa_object</span><span class="symbol">;</span>
-<span class="usertype">GDataGoaAuthorizer</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">authorizer</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting">GDataSomeService <span class="gtkdoc opt">*</span>service<span class="gtkdoc opt">;</span>
+GoaObject <span class="gtkdoc opt">*</span>goa_object<span class="gtkdoc opt">;</span>
+GDataGoaAuthorizer <span class="gtkdoc opt">*</span>authorizer<span class="gtkdoc opt">;</span>
 
-<span class="comment">/* Create an authorizer and pass it an existing &lt;GTKDOCLINK HREF="GoaObject"&gt;GoaObject&lt;/GTKDOCLINK&gt;. */</span>
-<span class="normal">goa_object </span><span class="symbol">=</span><span class="normal"> </span><span class="function">get_goa_object</span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">authorizer </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataGoaAuthorizer.html#gdata-goa-authorizer-new">gdata_goa_authorizer_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">goa_object</span><span class="symbol">);</span>
+<span class="comment">/* Create an authorizer and pass it an existing GoaObject. */</span>
+goa_object <span class="gtkdoc opt">=</span> <span class="function">get_goa_object</span> <span class="gtkdoc opt">();</span>
+authorizer <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataGoaAuthorizer.html#gdata-goa-authorizer-new">gdata_goa_authorizer_new</a></span> <span class="gtkdoc opt">(</span>goa_object<span class="gtkdoc opt">);</span>
 
 <span class="comment">/* Create a service object and link it with the authorizer */</span>
-<span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gdata_some_service_new</span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_AUTHORIZER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">));</span>
+service <span class="gtkdoc opt">=</span> <span class="function">gdata_some_service_new</span> <span class="gtkdoc opt">(</span><span class="function">GDATA_AUTHORIZER</span> <span class="gtkdoc opt">(</span>authorizer<span class="gtkdoc opt">));</span>
 
 <span class="comment">/* Use the service! */</span>
 
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">);</span>
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">goa_object</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>authorizer<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>goa_object<span class="gtkdoc opt">);</span></pre></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 </div>
-<p><br class="example-break">
-</p>
+<br class="example-break">
 </div>
 <div class="refsect1">
-<a name="GDataGoaAuthorizer.details"></a><h2>Details</h2>
+<a name="GDataGoaAuthorizer.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="gdata-goa-authorizer-new"></a><h3>gdata_goa_authorizer_new ()</h3>
+<pre class="programlisting"><a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="returnvalue">GDataGoaAuthorizer</span></a> *
+gdata_goa_authorizer_new (<em class="parameter"><code><span class="type">GoaObject</span> *goa_object</code></em>);</pre>
+<p>Create a new <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> using the authentication token from the given <em class="parameter"><code>goa_object</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.3.5.5.11.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>goa_object</p></td>
+<td class="parameter_description"><p> the GOA account providing authentication. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.5.5.11.2.6"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.13.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-goa-authorizer-get-goa-object"></a><h3>gdata_goa_authorizer_get_goa_object ()</h3>
+<pre class="programlisting"><span class="returnvalue">GoaObject</span> *
+gdata_goa_authorizer_get_goa_object (<em class="parameter"><code><a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> *self</code></em>);</pre>
+<p>The GOA account providing authentication. This is the same as <a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizer--goa-object" title="The “goa-object” property"><span class="type">“goa-object”</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.3.5.5.11.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.5.5.11.3.6"></a><h4>Returns</h4>
+<p> the GOA account providing authentication. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.13.1</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataGoaAuthorizer.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="GDataGoaAuthorizer-struct"></a><h3>GDataGoaAuthorizer</h3>
 <pre class="programlisting">typedef struct _GDataGoaAuthorizer GDataGoaAuthorizer;</pre>
-<p>
-All the fields in the <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> structure are private and should never be accessed directly.
-</p>
+<p>All the fields in the <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.13.1</p>
 </div>
 <hr>
@@ -156,74 +252,23 @@ All the fields in the <a class="link" href="GDataGoaAuthorizer.html" title="GDat
 <pre class="programlisting">typedef struct {
 } GDataGoaAuthorizerClass;
 </pre>
-<p>
-All the fields in the <a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizerClass" title="GDataGoaAuthorizerClass"><span class="type">GDataGoaAuthorizerClass</span></a> structure are private and should never be accessed directly.
-</p>
-<p class="since">Since 0.13.1</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-goa-authorizer-new"></a><h3>gdata_goa_authorizer_new ()</h3>
-<pre class="programlisting"><a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="returnvalue">GDataGoaAuthorizer</span></a> * gdata_goa_authorizer_new           (<em class="parameter"><code><span class="type">GoaObject</span> *goa_object</code></em>);</pre>
-<p>
-Create a new <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> using the authentication token from the given <em class="parameter"><code>goa_object</code></em>.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>goa_object</code></em> :</span></p></td>
-<td>the GOA account providing authentication. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a>; unref with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.13.1</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-goa-authorizer-get-goa-object"></a><h3>gdata_goa_authorizer_get_goa_object ()</h3>
-<pre class="programlisting"><span class="returnvalue">GoaObject</span> *         gdata_goa_authorizer_get_goa_object (<em class="parameter"><code><a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a> *self</code></em>);</pre>
-<p>
-The GOA account providing authentication. This is the same as <a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizer--goa-object" title='The "goa-object" property'><span class="type">"goa-object"</span></a>.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer"><span class="type">GDataGoaAuthorizer</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the GOA account providing authentication. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
+<p>All the fields in the <a class="link" href="GDataGoaAuthorizer.html#GDataGoaAuthorizerClass" title="GDataGoaAuthorizerClass"><span class="type">GDataGoaAuthorizerClass</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.13.1</p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataGoaAuthorizer.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
-<a name="GDataGoaAuthorizer--goa-object"></a><h3>The <code class="literal">"goa-object"</code> property</h3>
-<pre class="programlisting">  "goa-object"               <span class="type">GoaObject</span>*            : Read / Write / Construct Only</pre>
-<p>
-The GOA account providing authentication. This should have all the necessary services enabled on it.
-</p>
+<a name="GDataGoaAuthorizer--goa-object"></a><h3>The <code class="literal">“goa-object”</code> property</h3>
+<pre class="programlisting">  “goa-object”               <span class="type">GoaObject</span> *</pre>
+<p>The GOA account providing authentication. This should have all the necessary services enabled on it.</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since 0.13.1</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

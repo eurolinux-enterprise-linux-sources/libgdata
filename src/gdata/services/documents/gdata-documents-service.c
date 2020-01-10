@@ -2,7 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
- * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2010, 2014 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@
 /**
  * SECTION:gdata-documents-service
  * @short_description: GData Documents service object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/services/documents/gdata-documents-service.h
  *
  * #GDataDocumentsService is a subclass of #GDataService for communicating with the GData API of Google Documents. It supports querying
@@ -273,14 +273,23 @@ gdata_documents_service_error_quark (void)
 
 static void append_query_headers (GDataService *self, GDataAuthorizationDomain *domain, SoupMessage *message);
 static GList *get_authorization_domains (void);
+static GDataFeed *
+parse_feed (GDataService *self,
+            GDataAuthorizationDomain *domain,
+            GDataQuery *query,
+            GType entry_type,
+            SoupMessage *message,
+            GCancellable *cancellable,
+            GDataQueryProgressCallback progress_callback,
+            gpointer progress_user_data,
+            GError **error);
 
 static gchar *_build_v2_upload_uri (GDataDocumentsFolder *folder) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 static gchar *_get_upload_uri_for_query_and_folder (GDataDocumentsUploadQuery *query,
                                                     GDataDocumentsFolder *folder) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 
-_GDATA_DEFINE_AUTHORIZATION_DOMAIN (documents, "writely", "https://docs.google.com/feeds/")
+_GDATA_DEFINE_AUTHORIZATION_DOMAIN (documents, "writely", "https://www.googleapis.com/auth/drive")
 _GDATA_DEFINE_AUTHORIZATION_DOMAIN (spreadsheets, "wise", "https://spreadsheets.google.com/feeds/")
-_GDATA_DEFINE_AUTHORIZATION_DOMAIN (docs_downloads, "writely", "https://docs.googleusercontent.com/")
 G_DEFINE_TYPE_WITH_CODE (GDataDocumentsService, gdata_documents_service, GDATA_TYPE_SERVICE, G_IMPLEMENT_INTERFACE (GDATA_TYPE_BATCHABLE, NULL))
 
 static void
@@ -291,6 +300,7 @@ gdata_documents_service_class_init (GDataDocumentsServiceClass *klass)
 
 	service_class->append_query_headers = append_query_headers;
 	service_class->get_authorization_domains = get_authorization_domains;
+	service_class->parse_feed = parse_feed;
 
 	service_class->api_version = "3";
 }
@@ -351,9 +361,55 @@ get_authorization_domains (void)
 
 	authorization_domains = g_list_prepend (authorization_domains, get_documents_authorization_domain ());
 	authorization_domains = g_list_prepend (authorization_domains, get_spreadsheets_authorization_domain ());
-	authorization_domains = g_list_prepend (authorization_domains, get_docs_downloads_authorization_domain ());
 
 	return authorization_domains;
+}
+
+static GDataFeed *
+parse_feed (GDataService *self,
+            GDataAuthorizationDomain *domain,
+            GDataQuery *query,
+            GType entry_type,
+            SoupMessage *message,
+            GCancellable *cancellable,
+            GDataQueryProgressCallback progress_callback,
+            gpointer progress_user_data,
+            GError **error)
+{
+	GDataServiceClass *klass;  /* unowned */
+	GDataFeed *feed = NULL;  /* owned */
+
+	klass = GDATA_SERVICE_CLASS (gdata_documents_service_parent_class);
+
+	/* Parse the feed. */
+	feed = klass->parse_feed (self, domain, query, entry_type, message,
+	                          cancellable, progress_callback,
+	                          progress_user_data, error);
+
+	/* Update the query with the next and previous URIs from the feed. If
+	 * they are not present, we are on the first or final page of the
+	 * feed. (This behaviour is specific to Google Docs.) */
+	if (query != NULL && feed != NULL) {
+		GDataLink *_link;
+
+		_link = gdata_feed_look_up_link (feed, "http://www.iana.org/assignments/relation/next");
+
+		if (_link != NULL) {
+			_gdata_query_set_next_uri (query, gdata_link_get_uri (_link));
+		} else {
+			_gdata_query_set_next_uri_end (query);
+		}
+
+		_link = gdata_feed_look_up_link (feed, "http://www.iana.org/assignments/relation/previous");
+
+		if (_link != NULL) {
+			_gdata_query_set_previous_uri (query, gdata_link_get_uri (_link));
+		} else {
+			_gdata_query_set_previous_uri_end (query);
+		}
+	}
+
+	return feed;
 }
 
 /**
@@ -420,7 +476,7 @@ _query_documents_build_request_uri (GDataDocumentsQuery *query)
 {
 	/* If we want to query for documents contained in a folder, the URI is different.
 	 * The "/[folder:id]" suffix is added by the GDataQuery later. */
-	return g_strconcat (_gdata_service_get_scheme (), "://docs.google.com/feeds/default/private/full", NULL);
+	return g_strdup ("https://www.googleapis.com/drive/v2/files");
 }
 
 /**
@@ -1337,8 +1393,7 @@ remove_entry_from_folder_thread (GSimpleAsyncResult *result, GDataDocumentsServi
 	/* Remove the entry from the folder and return */
 	updated_entry = gdata_documents_service_remove_entry_from_folder (service, data->entry, data->folder, cancellable, &error);
 	if (error != NULL) {
-		g_simple_async_result_set_from_error (result, error);
-		g_error_free (error);
+		g_simple_async_result_take_error (result, error);
 		return;
 	}
 

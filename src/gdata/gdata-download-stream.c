@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-download-stream
  * @short_description: GData download stream object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gdata-download-stream.h
  *
  * #GDataDownloadStream is a #GInputStream subclass to allow downloading of files from GData services with authorization from a #GDataService under
@@ -160,6 +160,7 @@ struct _GDataDownloadStreamPrivate {
 	GThread *network_thread;
 	GCancellable *cancellable;
 	GCancellable *network_cancellable; /* see the comment in gdata_download_stream_constructor() about the relationship between these two */
+	gulong network_cancellable_id;
 
 	gboolean finished;
 	GCond finished_cond;
@@ -337,6 +338,7 @@ gdata_download_stream_constructor (GType type, guint n_construct_params, GObject
 	GDataDownloadStreamPrivate *priv;
 	GDataServiceClass *klass;
 	GObject *object;
+	SoupURI *_uri;
 
 	/* Chain up to the parent class */
 	object = G_OBJECT_CLASS (gdata_download_stream_parent_class)->constructor (type, n_construct_params, construct_params);
@@ -351,10 +353,13 @@ gdata_download_stream_constructor (GType type, guint n_construct_params, GObject
 	/* Create a #GCancellable for the entire download operation if one wasn't specified for #GDataDownloadStream:cancellable during construction */
 	if (priv->cancellable == NULL)
 		priv->cancellable = g_cancellable_new ();
-	g_cancellable_connect (priv->cancellable, (GCallback) cancellable_cancel_cb, priv->network_cancellable, NULL);
+	priv->network_cancellable_id = g_cancellable_connect (priv->cancellable, (GCallback) cancellable_cancel_cb, priv->network_cancellable, NULL);
 
 	/* Build the message */
-	priv->message = soup_message_new (SOUP_METHOD_GET, priv->download_uri);
+	_uri = soup_uri_new (priv->download_uri);
+	soup_uri_set_port (_uri, _gdata_service_get_https_port ());
+	priv->message = soup_message_new_from_uri (SOUP_METHOD_GET, _uri);
+	soup_uri_free (_uri);
 
 	/* Make sure the headers are set */
 	klass = GDATA_SERVICE_GET_CLASS (priv->service);
@@ -378,8 +383,15 @@ gdata_download_stream_dispose (GObject *object)
 	/* Block on closing the stream */
 	g_input_stream_close (G_INPUT_STREAM (object), NULL, NULL);
 
-	if (priv->cancellable != NULL)
+	if (priv->cancellable != NULL) {
+		if (priv->network_cancellable_id != 0) {
+			g_cancellable_disconnect (priv->cancellable, priv->network_cancellable_id);
+		}
+
 		g_object_unref (priv->cancellable);
+	}
+
+	priv->network_cancellable_id = 0;
 	priv->cancellable = NULL;
 
 	if (priv->network_cancellable != NULL)

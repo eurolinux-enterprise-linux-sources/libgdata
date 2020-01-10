@@ -88,6 +88,11 @@ typedef struct {
 typedef struct {
 	/*< private >*/
 	GDataEntryClass parent;
+
+	/*< private >*/
+	/* Padding for future expansion */
+	void (*_g_reserved0) (void);
+	void (*_g_reserved1) (void);
 } GDataDocumentsEntryClass;
 
 GType gdata_documents_entry_get_type (void) G_GNUC_CONST;
@@ -98,9 +103,9 @@ const gchar *gdata_documents_entry_get_resource_id (GDataDocumentsEntry *self) G
 
 #ifndef LIBGDATA_DISABLE_DEPRECATED
 const gchar *gdata_documents_entry_get_document_id (GDataDocumentsEntry *self) G_GNUC_PURE G_GNUC_DEPRECATED_FOR(gdata_documents_entry_get_resource_id);
+gint64 gdata_documents_entry_get_edited (GDataDocumentsEntry *self) G_GNUC_DEPRECATED_FOR(gdata_entry_get_updated);
 #endif /* !LIBGDATA_DISABLE_DEPRECATED */
 
-gint64 gdata_documents_entry_get_edited (GDataDocumentsEntry *self);
 gint64 gdata_documents_entry_get_last_viewed (GDataDocumentsEntry *self);
 
 void gdata_documents_entry_set_writers_can_invite (GDataDocumentsEntry *self, gboolean writers_can_invite);

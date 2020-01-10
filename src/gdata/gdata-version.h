@@ -48,7 +48,7 @@
  *
  * Since: 0.11.0
  */
-#define GDATA_MINOR_VERSION (13)
+#define GDATA_MINOR_VERSION (17)
 
 /**
  * GDATA_MICRO_VERSION:
@@ -58,7 +58,7 @@
  *
  * Since: 0.11.0
  */
-#define GDATA_MICRO_VERSION (3)
+#define GDATA_MICRO_VERSION (1)
 
 /**
  * GDATA_CHECK_VERSION:

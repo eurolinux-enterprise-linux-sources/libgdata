@@ -2,22 +2,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Running GData Applications</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<title>Running GData Applications: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="pt01.html" title="Part I. GData Overview">
 <link rel="prev" href="gdata-overview.html" title="GData Overview">
 <link rel="next" href="ch01.html" title="Object Hierarchy">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
-<td><a accesskey="p" href="gdata-overview.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="pt01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="ch01.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts"></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="pt01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="gdata-overview.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="ch01.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="gdata-running"></a><div class="titlepage"></div>
@@ -26,18 +26,21 @@
 <h2><span class="refentrytitle"><a name="gdata-overview.top_of_page"></a>Running GData Applications</span></h2>
 <p>Running GData Applications — running and debugging GData applications</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
-<a name="id555485"></a><h2>Running and Debugging GData Applications</h2>
+<a name="id-1.2.3.3"></a><h2>Running and Debugging GData Applications</h2>
 <div class="refsect2">
-<a name="id582269"></a><h3>Environment variables</h3>
+<a name="id-1.2.3.3.2"></a><h3>Environment variables</h3>
 <p>libgdata makes use of a few environment variables which affect how it runs, mainly with respect to debugging.</p>
 <p><a name="LIBGDATA_DEBUG"></a><b><code class="envar">LIBGDATA_DEBUG</code>. </b>If this environment variable is set to one of the following values, libgdata will give debug output
 					(at various levels). If it's unset, no debug output will be produced.
 					</p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term">0</span></p></td>
@@ -63,7 +66,7 @@
 </div>
 <hr>
 <div class="refsect2">
-<a name="id549573"></a><h3>Debugging Advice</h3>
+<a name="id-1.2.3.3.3"></a><h3>Debugging Advice</h3>
 <p>The easiest way to debug problems with libgdata is to use the
 			      <a class="link" href="gdata-running.html#LIBGDATA_DEBUG" title="LIBGDATA_DEBUG"><code class="envar">LIBGDATA_DEBUG</code></a> environment variable to observe all the network
 			      traffic being transmitted and received by libgdata. Typically, any problems will occur in the final network
@@ -71,10 +74,10 @@
 <p>If debugging using the environment variables and log output is not possible, it is sometimes possible to diagnose problems
 			      by examining the error responses sent by the Google servers to libgdata. These are exposed as the error messages returned
 			      by libgdata methods; so when handling errors from libgdata method calls, it is a good idea to output the message from
-			      the <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to a debug log, or even as a warning in the user's
+			      the <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to a debug log, or even as a warning in the user's
 			      <code class="filename">.xsession-errors</code> file.</p>
 <div class="example">
-<a name="id551749"></a><p class="title"><b>Example 1. Error Handling when Uploading a Document</b></p>
+<a name="id-1.2.3.3.3.4"></a><p class="title"><b>Example 1. Error Handling when Uploading a Document</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -96,23 +99,23 @@
 15
 16
 17</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataUploadStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">upload_stream</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span><span class="normal"> </span><span class="comment">/* make sure to initialise the GError to NULL */</span>
+        <td class="listing_code"><pre class="programlisting">GDataUploadStream <span class="gtkdoc opt">*</span>upload_stream<span class="gtkdoc opt">;</span>
+GError <span class="gtkdoc opt">*</span>error <span class="gtkdoc opt">=</span> NULL<span class="gtkdoc opt">;</span> <span class="comment">/* make sure to initialise the GError to NULL */</span>
 
 <span class="comment">/* Other code goes here. */</span>
 
-<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-upload-document">gdata_documents_service_upload_document</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> document</span><span class="symbol">,</span><span class="normal"> slug</span><span class="symbol">,</span><span class="normal"> content_type</span><span class="symbol">,</span><span class="normal"> destination_folder</span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span>
-<span class="normal">                                                         </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+upload_stream <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-upload-document">gdata_documents_service_upload_document</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">,</span> document<span class="gtkdoc opt">,</span> slug<span class="gtkdoc opt">,</span> content_type<span class="gtkdoc opt">,</span> destination_folder<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">,</span>
+                                                         <span class="gtkdoc opt">&amp;</span>error<span class="gtkdoc opt">);</span>
 
 <span class="comment">/* Handle any errors. */</span>
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="comment">/* Note that the error message is outputted to the terminal/logs.</span>
-<span class="comment">     * It will contain important debugging information from the Google servers. */</span>
-<span class="normal">    </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting upload stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
+	<span class="comment">/* Note that the error message is outputted to the terminal/logs.</span>
+<span class="comment">	 * It will contain important debugging information from the Google servers. */</span>
+	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error getting upload stream: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
+	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
 
-<span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+	<span class="keyword">return</span><span class="gtkdoc opt">;</span>
+<span class="gtkdoc opt">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -125,6 +128,6 @@
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

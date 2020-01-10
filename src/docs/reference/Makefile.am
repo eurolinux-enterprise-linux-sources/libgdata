@@ -48,21 +48,26 @@ CFILE_GLOB=$(top_srcdir)/gdata/*.c $(top_srcdir)/gdata/services/*/*.c
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h
 IGNORE_HFILES = \
 	common.h		\
+	mock-resolver.h		\
+	mock-server.h		\
 	gdata-private.h		\
 	gdata-parser.h		\
 	gdata-marshal.h		\
 	gdata-enums.h		\
 	gdata-media-enums.h	\
 	gdata-media-group.h	\
-	gdata-youtube-group.h	\
-	gdata-youtube-control.h	\
+	gdata-youtube-enums.h	\
 	gdata-picasaweb-enums.h	\
+	gdata-documents-enums.h	\
 	gdata-exif-tags.h	\
 	gdata-georss-where.h	\
 	gdata-buffer.h		\
 	gdata-batch-private.h	\
 	gdata-batch-feed.h	\
-	gdata-gd-feed-link.h
+	gdata-gd-feed-link.h \
+	gdata-dummy-authorizer.c \
+	gdata-dummy-authorizer.h \
+	$(NULL)
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png
@@ -86,7 +91,8 @@ expand_content_files=
 # signals and properties.
 # e.g. INCLUDES=-I$(top_srcdir) -I$(top_builddir) $(GTK_DEBUG_FLAGS)
 # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
-INCLUDES=-I$(top_srcdir) -I$(top_builddir) $(GDATA_CFLAGS)
+AM_CPPFLAGS = -I$(top_srcdir) -I$(top_builddir)
+AM_CFLAGS = $(GDATA_CFLAGS)
 GTKDOC_LIBS=$(top_builddir)/gdata/libgdata.la
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
@@ -95,16 +101,6 @@ include $(top_srcdir)/gtk-doc.make
 # This should be in gtk-doc.make, since we are calling gtkdoc-scan with
 # --rebuild-types
 SCANOBJ_FILES += $(DOC_MODULE).types
-
-distclean-local: distclean-docs
-distclean-docs:
-	cd $(srcdir) && \
-	  rm -rf xml $(REPORT_FILES) \
-	         $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt
-
-maintainer-clean-local: maintainer-clean-docs
-maintainer-clean-docs: clean
-	cd $(srcdir) && rm -rf xml html
 
 # Other files to distribute
 # e.g. EXTRA_DIST += version.xml.in
@@ -119,17 +115,5 @@ if ENABLE_GTK_DOC
 TESTS_ENVIRONMENT = cd $(builddir) &&
 TESTS = $(GTKDOC_CHECK)
 endif
-
-check-local: check-xml-includes
-check-xml-includes:
-	@any_missing=0; find $(srcdir) -name "*.xml" | while read x; do \
-		xml_file="$${x#./}"; \
-		if test "x$$xml_file" != "x$(DOC_MAIN_SGML_FILE)"; then \
-			if ! grep "\"$$xml_file\"" $(DOC_MAIN_SGML_FILE) >/dev/null; then \
-				echo "$(DOC_MAIN_SGML_FILE) doesn't appear to include \"$$xml_file\""; \
-				any_missing=1; \
-			fi; \
-		fi; \
-	done; exit "$$any_missing"
 
 -include $(top_srcdir)/git.mk

@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008–2010 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008, 2009, 2010, 2014 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -26,6 +26,7 @@
 
 #include <gdata/gdata-authorizer.h>
 #include <gdata/gdata-feed.h>
+#include <gdata/gdata-query.h>
 
 G_BEGIN_DECLS
 
@@ -70,6 +71,9 @@ typedef enum {
  * @GDATA_SERVICE_ERROR_NETWORK_ERROR: The service is unavailable due to local network errors (e.g. no Internet connection)
  * @GDATA_SERVICE_ERROR_PROXY_ERROR: The service is unavailable due to proxy network errors (e.g. proxy unreachable)
  * @GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION: Generic error when running a batch operation and the whole operation fails
+ * @GDATA_SERVICE_ERROR_API_QUOTA_EXCEEDED: The API request quota for this
+ * developer account has been exceeded for the current time period (e.g. day).
+ * Try again later. (Since: 0.16.0.)
  *
  * Error codes for #GDataService operations.
  **/
@@ -84,7 +88,8 @@ typedef enum {
 	GDATA_SERVICE_ERROR_BAD_QUERY_PARAMETER,
 	GDATA_SERVICE_ERROR_NETWORK_ERROR,
 	GDATA_SERVICE_ERROR_PROXY_ERROR,
-	GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION
+	GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION,
+	GDATA_SERVICE_ERROR_API_QUOTA_EXCEEDED,
 } GDataServiceError;
 
 /**
@@ -135,6 +140,8 @@ typedef struct {
  * @get_authorization_domains: a function to return a newly-allocated list of all the #GDataAuthorizationDomain<!-- -->s the service makes use of;
  * while the list should be newly-allocated, the individual domains should not be; not implementing this function is equivalent to returning an
  * empty list; new in version 0.9.0
+ * @parse_feed: a function to parse feed responses to queries from the online
+ * service; new in version 0.17.0
  *
  * The class structure for the #GDataService type.
  *
@@ -150,6 +157,25 @@ typedef struct {
 	void (*parse_error_response) (GDataService *self, GDataOperationType operation_type, guint status, const gchar *reason_phrase,
 	                              const gchar *response_body, gint length, GError **error);
 	GList *(*get_authorization_domains) (void);
+	GDataFeed *(*parse_feed) (GDataService *self,
+	                          GDataAuthorizationDomain *domain,
+	                          GDataQuery *query,
+	                          GType entry_type,
+	                          SoupMessage *message,
+	                          GCancellable *cancellable,
+	                          GDataQueryProgressCallback progress_callback,
+	                          gpointer progress_user_data,
+	                          GError **error);
+
+	/*< private >*/
+	/* Padding for future expansion */
+	void (*_g_reserved1) (void);
+	void (*_g_reserved2) (void);
+	void (*_g_reserved3) (void);
+	void (*_g_reserved4) (void);
+	void (*_g_reserved5) (void);
+	void (*_g_reserved6) (void);
+	void (*_g_reserved7) (void);
 } GDataServiceClass;
 
 GType gdata_service_get_type (void) G_GNUC_CONST;
@@ -200,8 +226,13 @@ void gdata_service_delete_entry_async (GDataService *self, GDataAuthorizationDom
                                        GAsyncReadyCallback callback, gpointer user_data);
 gboolean gdata_service_delete_entry_finish (GDataService *self, GAsyncResult *async_result, GError **error);
 
-SoupURI *gdata_service_get_proxy_uri (GDataService *self) G_GNUC_PURE;
-void gdata_service_set_proxy_uri (GDataService *self, SoupURI *proxy_uri);
+#ifndef LIBGDATA_DISABLE_DEPRECATED
+SoupURI *gdata_service_get_proxy_uri (GDataService *self) G_GNUC_PURE G_GNUC_DEPRECATED_FOR (gdata_service_get_proxy_resolver);
+void gdata_service_set_proxy_uri (GDataService *self, SoupURI *proxy_uri) G_GNUC_DEPRECATED_FOR (gdata_service_set_proxy_resolver);
+#endif /* !LIBGDATA_DISABLE_DEPRECATED */
+
+GProxyResolver *gdata_service_get_proxy_resolver (GDataService *self) G_GNUC_PURE;
+void gdata_service_set_proxy_resolver (GDataService *self, GProxyResolver *proxy_resolver);
 
 guint gdata_service_get_timeout (GDataService *self) G_GNUC_PURE;
 void gdata_service_set_timeout (GDataService *self, guint timeout);

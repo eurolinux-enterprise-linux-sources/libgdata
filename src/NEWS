@@ -1,3 +1,322 @@
+Overview of changes from libgdata 0.17.0 to libgdata 0.17.1
+===========================================================
+
+Major changes:
+ • Correctly increment LT version; this release should always be used instead
+   of 0.17.0
+
+Overview of changes from libgdata 0.16.0 to libgdata 0.17.0
+===========================================================
+
+Major changes:
+ • Port from v2 to v3 of the YouTube API — your client’s developer key may stop
+   working due to never being conigured for v3; refresh it here:
+      https://developers.google.com/youtube/registering_an_application
+ • Port from the Google Docs API to the Google Drive API (v2) — the same
+   libgdata APIs should continue to work unchanged
+ • Both the YouTube and Drive API ports are not thoroughly tested, and a number
+   of unit tests have been disabled temporarily; code quality will be ramped up
+   again in subsequent releases
+ • Add support for OAuth 2.0 authorisation
+ • Commit to API and ABI stability
+ • Add --disable-tests configure flag to skip building tests
+ • Various improvements to the unit tests
+ • Fix pagination handling in Google Docs
+ • Add demo applications for Google Docs and YouTube
+ • Various Freebase fixes, including a huge number of new tests and
+   authentication fixes
+ • Various JSON parser fixes
+ • Note that the Calendar v2 API has now been withdrawn; there has not been
+   enough time to port libgdata to version 3 (ongoing:
+   https://bugzilla.gnome.org/show_bug.cgi?id=664353), but clients can (and
+   should, regardless) use the CalDAV API provided by Google Calendar
+
+API changes:
+ • Add GDATA_OAUTH2_REDIRECT_URI_OOB
+ • Add GDATA_OAUTH2_REDIRECT_URI_OOB_AUTO
+ • Add GDataOAuth2Authorizer
+ • Add API padding and commit to API stability
+ • Add GDataServiceClass.parse_feed
+ • Add gdata_freebase_search_result_item_get_type(),
+   GDATA_TYPE_FREEBASE_SEARCH_RESULT_ITEM
+ • Add GDATA_CATEGORY_SCHEMA_LABELS_SHARED
+ • Add GDATA_CATEGORY_SCHEMA_LABELS_VIEWED
+ • Add GDataYouTubeFeed
+ • Deprecate GDataYouTubeQuery:format, gdata_youtube_query_get_format(),
+   gdata_youtube_query_set_format()
+ • Deprecate GDataYouTubeQuery:has-location
+ • Deprecate GDataYouTubeQuery:language, gdata_youtube_query_get_language(),
+   gdata_youtube_query_set_language()
+ • Deprecate GDataYouTubeQuery:sort-order, gdata_youtube_query_get_sort_order(),
+   gdata_youtube_query_set_sort_order()
+ • Deprecate GDataYouTubeQuery:uploader, gdata_youtube_query_get_uploader(),
+   gdata_youtube_query_set_uploader()
+ • Deprecate GDataYouTubeSortOrder
+ • Deprecate GDataYouTubeUploader
+ • Deprecate GDataYouTubeContent
+ • Deprecate GDataYouTubeFormat
+ • Deprecate GDataYouTubeVideo:video-id, gdata_youtube_video_get_video_id()
+ • Deprecate gdata_youtube_video_look_up_content()
+   (use gdata_youtube_video_get_player_uri() instead)
+ • Deprecate GDATA_YOUTUBE_RATING_TYPE_SIMPLE
+ • Deprecate GDataYouTubeCredit, GDATA_YOUTUBE_CREDIT_ENTITY_PARTNER
+ • Deprecate GDataYouTubeVideo:credit, gdata_youtube_video_get_credit()
+ • Deprecate GDataYouTubeVideo:is-draft, gdata_youtube_video_is_draft(),
+   gdata_youtube_video_set_is_draft()
+ • Deprecate GDATA_YOUTUBE_*_FEED except GDATA_YOUTUBE_MOST_POPULAR_FEED (all
+   others have been deprecated online and will transparently return the
+   most popular videos from the past 24 hours)
+ • GDataYouTubeQuery:restriction no longer accepts IP addresses
+ • All GDataCommentable functionality on GDataYouTubeVideo is disabled
+   at runtime until the v3 YouTube API for comments is finished online
+ • Not all properties of a GDataYouTubeVideo may be retrieved when doing
+   searches, retrieving related videos, or listing standard feeds — to
+   guarantee getting all properties, use gdata_service_query_single_entry() for
+   the video in question; common properties such as title, description, player
+   URI and thumbnails will always be retrieved
+ • Deprecate GDataDocumentsEntry:edited
+
+Bugs fixed:
+ • Bug 646285 — Add OAuth 2 support
+ • Bug 657539 — Add support for Google Tasks
+ • Bug 739395 — Add an option to build without uhttpmock
+ • Bug 737799 — Error while updating google address book
+ • Bug 739956 — libgdata-0.16.1: tests fail
+ • Bug 741345 — Paging does not work
+ • Bug 737539 — Freebase: topic results are shallower than expected
+ • Bug 737936 — Freebase: Add GType for GDataFreebaseSearchResultItem
+ • Bug 737540 — Freebase: async topic queries use the wrong result gtype
+ • Bug 737541 — freebase: search query buglets
+ • Bug 742472 — Freebase: Pass API key on all service requests
+ • Bug 742473 — Small freebase oauth2 access bugs
+ • Bug 687597 — Update to YouTube API v3
+ • Bug 684920 — Port to Google Drive API v2
+
+Updated translations:
+ • bg (Alexander Shopov)
+ • bs (Samir Ribić)
+ • da (Aputsiaq Niels Janussen)
+ • de (Bernd Homuth)
+ • et (Mattias Põldaru)
+ • pa (A S Alam)
+ • sk (Dušan Kazik)
+ • sr (Мирослав Николић)
+ • sv (Mattias Eriksson)
+ • tr (Muhammet Kara)
+ • zh_CN (Iris Gou)
+
+Overview of changes from libgdata 0.15.2 to libgdata 0.16.0
+===========================================================
+
+Major changes:
+ • Update date parsing to handle recent changes in Google’s servers
+ • Support ACLs with keys (e.g. for link-only sharing of documents)
+ • Add gzip encoding support for network packet compression
+ • Support for libsoup ≥ 2.47.3 (but the dependency has not been bumped)
+ • Basic test suite for the Google Tasks service
+ • Fix mutex warnings with new GLib versions
+
+API changes:
+ • Add GDataAccessRule:key
+ • Add gdata_access_rule_get_key()
+ • Add GDATA_TASKS_STATUS_NEEDS_ACTION
+ • Add GDATA_TASKS_STATUS_COMPLETED
+ • Deprecate the ‘q’ parameter of gdata_tasks_query_new()
+ • Add GDATA_SERVICE_ERROR_API_QUOTA_EXCEEDED
+
+Bugs fixed:
+ • Bug 732809 — evolution-3.12.3: cannot edit google contact due to invalid
+   format of timestamp
+ • Bug 734863 — Google contacts without email address block search/autocomplete
+ • Bug 690628 — <gAcl:withKey/> element Not Handled by libgdata
+ • Bug 703192 — The global log handler interferes with other application
+ • Bug 666623 — Add gzip encoding support
+
+Updated translations:
+ • as (Nilamdyuti Goswami)
+ • ca (Gil Forcada)
+ • cs (Marek Černocký)
+ • fr (Bruno Brouard)
+ • gu (Sweta Kothari)
+ • he (Yosef Or Boczko)
+ • hu (Balázs Úr)
+ • id (Andika Triwidada)
+ • it (Claudio Arseni)
+ • ko (Changwoo Ryu)
+ • lv (Rūdolfs Mazurs)
+ • nb (Kjartan Maraas)
+ • ru (Yuri Myasoedov)
+ • sl (Matej Urbančič)
+ • zh_HK (Chao-Hsiung Liao)
+ • zh_TW (Chao-Hsiung Liao)
+
+Overview of changes from libgdata 0.15.1 to libgdata 0.15.2
+===========================================================
+
+Major changes:
+ • Support PicasaWeb in the GOA authoriser (thanks to Saurav Agarwalla)
+ • Fix a data corruption bug in the downloads/uploads code
+
+Bugs fixed:
+ • Bug 731269 — Wrong scope information in authorization domain
+ • Bug 731949 — Memory leak from gdata_parser_int64_to_iso8601()
+ • Bug 731946 — Removing a task result in error, but succeeds
+ • Bug 732890 — Refresh authoriser on receiving SOUP_STATUS_NOT_FOUND
+
+Updated translations:
+ • el (Tom Tryfonidis)
+ • en_GB (Philip Withnall)
+ • es (Daniel Mustieles)
+ • eu (Iñaki Larrañaga Murgoitio)
+ • gl (Fran Dieguez)
+ • lt (Aurimas Černius)
+ • pt_BR (Enrico Nicoletto)
+ • sv (Anders Jonsson)
+
+Overview of changes from libgdata 0.15.0 to libgdata 0.15.1
+===========================================================
+
+Major changes:
+ • Add a Freebase service and demo (thanks to Carlos Garnacho)
+ • Various minor fixes to make libgdata compile without Coverity errors
+
+API changes:
+ • Add GDATA_LINK_PARENT
+ • Add GDataFreebase*
+
+Bugs fixed:
+ • Bug 707477 — Fill in GDataCategory::label for GDataDocumentsDocument
+   instances
+ • Bug 725827 — Define GDATA_LINK_PARENT
+ • Bug 726486 — Add support for the Freebase service
+
+Updated translations:
+ • ca (Gil Forcada)
+ • da (Aputsiaq Niels Janussen)
+ • de (Benjamin Steinwender)
+ • eu (Iñaki Larrañaga Murgoitio)
+ • fr (Bruno Brouard)
+ • he (Yosef Or Boczko)
+ • ko (Changwoo Ryu)
+ • lv (Rūdolfs Mazurs)
+ • nb (Kjartan Maraas)
+ • pl (Piotr Drąg, Aviary.pl)
+ • pt (Tiago S.)
+ • ru (Yuri Myasoedov)
+ • zh_HK (Chao-Hsiung Liao)
+ • zh_TW (Chao-Hsiung Liao)
+
+Overview of changes from libgdata 0.14.0 to libgdata 0.15.0
+===========================================================
+
+Major changes:
+ • Add JSON support and a Google Tasks service (thanks to Pēteris Krišjānis)
+  - This adds a dependency on json-glib ≥ 0.15 and breaks ABI (but not API)
+ • Add support for GProxyResolver proxies (thanks to Matthew Barnes)
+ • Fix build with recent gnome-common versions
+ • Fix build and installed header files for C++
+ • Remove deprecated function calls
+ • Fix compilation with -fstrict-aliasing
+ • Port local tests to use libuhttpmock (which is a new dependency)
+
+API changes:
+ • Add gdata_parsable_new_from_json()
+ • Add gdata_parsable_get_json()
+ • Add GDataParsable->get_content_type
+ • Add GDataService:proxy-resolver, gdata_service_get_proxy_resolver(),
+   gdata_service_set_proxy_resolver()
+ • Add GDataClientLoginAuthorizer:proxy-resolver,
+   gdata_client_login_authorizer_get_proxy_resolver(),
+   gdata_client_login_authorizer_set_proxy_resolver()
+ • Add GDataOAuth1Authorizer:proxy-resolver,
+   gdata_oauth1_authorizer_get_proxy_resolver(),
+   gdata_oauth1_authorizer_set_proxy_resolver()
+ • Add Google Tasks service: GDataTasksService, GDataTasksQuery,
+   GDataTasksTasklist, GDataTasksTask
+
+Bugs fixed:
+ • Bug 712565 — Fix compilation's warnings
+ • Bug 719647 — gdata-goa-authorizer.h broken for C++
+
+Updated translations:
+ • as (Nilamdyuti Goswami)
+ • be (Ihar Hrachyshka)
+ • ca (Gil Forcada)
+ • cs (Marek Černocký)
+ • da (Aputsiaq Niels Janussen)
+ • de (Christian Kirbach)
+ • el (Dimitris Spingos, Efstathios Iosifidis)
+ • es (Daniel Mustieles)
+ • et (Mattias Põldaru)
+ • fi (Jiri Grönroos)
+ • fr (Bruno Brouard)
+ • gl (Fran Dieguez)
+ • hu (Gabor Kelemen)
+ • id (Andika Triwidada)
+ • it (Claudio Arseni, Milo Casagrande)
+ • ja (Jiro Matsuzawa)
+ • ko (Changwoo Ryu)
+ • lt (Aurimas Černius)
+ • lv (Rūdolfs Mazurs)
+ • nb (Kjartan Maraas)
+ • pa (A S Alam)
+ • pl (Piotr Drąg)
+ • pt (António Lima)
+ • pt_BR (Enrico Nicoletto)
+ • ru (Yuri Myasoedov)
+ • sk (Ján Kyselica)
+ • sl (Matej Urbančič)
+ • sr (Мирослав Николић)
+ • th (Akom Chotiphantawanon)
+ • zh_CN (甘露)
+ • zh_HK (Chao-Hsiung Liao)
+ • zh_TW (Chao-Hsiung Liao)
+
+Overview of changes from libgdata 0.13.4 to libgdata 0.14.0
+===========================================================
+
+Updated translations:
+ • ca (Gil Forcada)
+ • cs (Marek Černocký)
+ • de (Christian Kirbach)
+ • el (Dimitris Spingos)
+ • es (Daniel Mustieles)
+ • fr (Alexandre Franke)
+ • he (Yaron Shahrabani)
+ • it (Claudio Arseni)
+ • lt (Aurimas Černius)
+ • nb (Kjartan Maraas)
+ • nl (Reinout van Schouwen)
+ • pt_BR (Rafael Ferreira)
+ • sl (Matej Urbančič)
+ • th (Akom Chotiphantawanon)
+ • zh_HK (Chao-Hsiung Liao)
+ • zh_TW (Chao-Hsiung Liao)
+
+Overview of changes from libgdata 0.13.3 to libgdata 0.13.4
+===========================================================
+
+Major changes:
+ • Fixes to request cancellation and progress notification
+ • Fix tests to be more reliable in the face of distributed system
+   non-synchronisation
+ • Add support for running tests offline using stored HTTP request traces
+
+API changes:
+ • Added GDATA_YOUTUBE_SERVICE_ERROR_CHANNEL_REQUIRED
+
+Bugs fixed:
+ • Bug 627895 — Pretty-print XML in test output
+ • Bug 703192 — The global log handler interferes with other application
+ • Bug 705266 — make check fails
+
+Updated translations:
+ • eu (Iñaki Larrañaga Murgoitio)
+ • gl (Fran Diéguez)
+ • pl (Piotr Drąg)
+ • pt (António Lima)
+ • tg (Victor Ibragimov)
+
 Overview of changes from libgdata 0.13.2 to libgdata 0.13.3
 ===========================================================
 

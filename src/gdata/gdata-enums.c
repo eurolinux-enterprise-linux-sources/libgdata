@@ -45,6 +45,7 @@ gdata_service_error_get_type (void)
       { GDATA_SERVICE_ERROR_NETWORK_ERROR, "GDATA_SERVICE_ERROR_NETWORK_ERROR", "network-error" },
       { GDATA_SERVICE_ERROR_PROXY_ERROR, "GDATA_SERVICE_ERROR_PROXY_ERROR", "proxy-error" },
       { GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION, "GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION", "with-batch-operation" },
+      { GDATA_SERVICE_ERROR_API_QUOTA_EXCEEDED, "GDATA_SERVICE_ERROR_API_QUOTA_EXCEEDED", "api-quota-exceeded" },
       { 0, NULL, NULL }
     };
     etype = g_enum_register_static ("GDataServiceError", values);

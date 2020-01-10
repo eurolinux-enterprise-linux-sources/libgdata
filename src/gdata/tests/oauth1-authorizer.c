@@ -23,6 +23,7 @@
 #include "common.h"
 
 static GThread *main_thread = NULL;
+static UhmServer *mock_server = NULL;
 
 static void
 test_oauth1_authorizer_constructor (void)
@@ -79,8 +80,8 @@ typedef struct {
 
 	guint locale_notification_count;
 	gulong locale_signal_handler;
-	guint proxy_uri_notification_count;
-	gulong proxy_uri_signal_handler;
+	guint proxy_resolver_notification_count;
+	gulong proxy_resolver_signal_handler;
 	guint timeout_notification_count;
 	gulong timeout_signal_handler;
 } OAuth1AuthorizerData;
@@ -102,8 +103,8 @@ connect_to_oauth1_authorizer (OAuth1AuthorizerData *data)
 	/* Connect to notifications from the object to verify they're only emitted the correct number of times */
 	data->locale_signal_handler = g_signal_connect (data->authorizer, "notify::locale", (GCallback) notify_cb,
 	                                                &(data->locale_notification_count));
-	data->proxy_uri_signal_handler = g_signal_connect (data->authorizer, "notify::proxy-uri", (GCallback) notify_cb,
-	                                                   &(data->proxy_uri_notification_count));
+	data->proxy_resolver_signal_handler = g_signal_connect (data->authorizer, "notify::proxy-resolver", (GCallback) notify_cb,
+	                                                        &(data->proxy_resolver_notification_count));
 	data->timeout_signal_handler = g_signal_connect (data->authorizer, "notify::timeout", (GCallback) notify_cb,
 	                                                 &(data->timeout_notification_count));
 }
@@ -144,31 +145,13 @@ set_up_oauth1_authorizer_data_locale (OAuth1AuthorizerData *data, gconstpointer 
 	connect_to_oauth1_authorizer (data);
 }
 
-/* Given an authentication URI, prompt the user to go to that URI, grant access to the test application and enter the resulting verifier */
-static gchar *
-query_user_for_verifier (const gchar *authentication_uri)
-{
-	char verifier[100];
-
-	/* Wait for the user to retrieve and enter the verifier */
-	g_print ("Please navigate to the following URI and grant access: %s\n", authentication_uri);
-	g_print ("Enter verifier (EOF to skip test): ");
-	if (scanf ("%100s", verifier) != 1) {
-		/* Skip the test */
-		g_test_message ("Skipping test on user request.");
-		return NULL;
-	}
-
-	g_test_message ("Proceeding with user-provided verifier “%s”.", verifier);
-
-	return g_strdup (verifier);
-}
-
 static void
 set_up_oauth1_authorizer_data_authenticated (OAuth1AuthorizerData *data, gconstpointer user_data)
 {
 	gboolean *skip_test = (gboolean*) user_data;
 	gchar *authentication_uri, *token, *token_secret, *verifier;
+
+	gdata_test_mock_server_start_trace (mock_server, "setup-oauth1-authorizer-data-authenticated");
 
 	/* Chain up */
 	set_up_oauth1_authorizer_data (data, NULL);
@@ -178,7 +161,7 @@ set_up_oauth1_authorizer_data_authenticated (OAuth1AuthorizerData *data, gconstp
 	g_assert (authentication_uri != NULL);
 
 	/* Get the verifier off the user */
-	verifier = query_user_for_verifier (authentication_uri);
+	verifier = gdata_test_query_user_for_verifier (authentication_uri);
 
 	g_free (authentication_uri);
 
@@ -194,6 +177,8 @@ skip_test:
 	g_free (token);
 	g_free (token_secret);
 	g_free (verifier);
+
+	uhm_server_end_trace (mock_server);
 }
 
 static void
@@ -201,7 +186,7 @@ tear_down_oauth1_authorizer_data (OAuth1AuthorizerData *data, gconstpointer user
 {
 	/* Clean up signal handlers */
 	g_signal_handler_disconnect (data->authorizer, data->timeout_signal_handler);
-	g_signal_handler_disconnect (data->authorizer, data->proxy_uri_signal_handler);
+	g_signal_handler_disconnect (data->authorizer, data->proxy_resolver_signal_handler);
 	g_signal_handler_disconnect (data->authorizer, data->locale_signal_handler);
 
 	g_object_unref (data->authorizer);
@@ -281,52 +266,53 @@ test_oauth1_authorizer_properties_locale (OAuth1AuthorizerData *data, gconstpoin
 	g_assert_cmpstr (gdata_oauth1_authorizer_get_locale (data->authorizer), ==, "de");
 }
 
-/* Test getting and setting the proxy-uri property */
+/* Test getting and setting the proxy-resolver property */
 static void
-test_oauth1_authorizer_properties_proxy_uri (OAuth1AuthorizerData *data, gconstpointer user_data)
+test_oauth1_authorizer_properties_proxy_resolver (OAuth1AuthorizerData *data, gconstpointer user_data)
 {
-	SoupURI *proxy_uri, *new_proxy_uri;
+	GProxyResolver *old_proxy_resolver, *proxy_resolver, *new_proxy_resolver;
 
-	/* Verifying the normal state of the property in a newly-constructed instance of GDataOAuth1Authorizer */
-	g_assert (gdata_oauth1_authorizer_get_proxy_uri (data->authorizer) == NULL);
+	/* Verifying the normal state of the property in a newly-constructed instance of GDataOAuth1Authorizer.
+	 * Since the resolver comes from the SoupSession, we don’t know whether it’s initially NULL. */
+	old_proxy_resolver = gdata_oauth1_authorizer_get_proxy_resolver (data->authorizer);
 
-	g_object_get (data->authorizer, "proxy-uri", &proxy_uri, NULL);
-	g_assert (proxy_uri == NULL);
+	g_object_get (data->authorizer, "proxy-resolver", &proxy_resolver, NULL);
+	g_assert (proxy_resolver == old_proxy_resolver);
 
-	g_assert_cmpuint (data->proxy_uri_notification_count, ==, 0);
+	g_assert_cmpuint (data->proxy_resolver_notification_count, ==, 0);
 
 	/* Check setting it works and emits a notification */
-	new_proxy_uri = soup_uri_new ("http://example.com/");
-	gdata_oauth1_authorizer_set_proxy_uri (data->authorizer, new_proxy_uri);
+	new_proxy_resolver = g_object_ref (g_proxy_resolver_get_default ());
+	gdata_oauth1_authorizer_set_proxy_resolver (data->authorizer, new_proxy_resolver);
 
-	g_assert_cmpuint (data->proxy_uri_notification_count, ==, 1);
+	g_assert_cmpuint (data->proxy_resolver_notification_count, ==, 1);
 
-	g_assert (gdata_oauth1_authorizer_get_proxy_uri (data->authorizer) != NULL);
-	g_assert (soup_uri_equal (gdata_oauth1_authorizer_get_proxy_uri (data->authorizer), new_proxy_uri) == TRUE);
+	g_assert (gdata_oauth1_authorizer_get_proxy_resolver (data->authorizer) != NULL);
+	g_assert (gdata_oauth1_authorizer_get_proxy_resolver (data->authorizer) == new_proxy_resolver);
 
-	g_object_get (data->authorizer, "proxy-uri", &proxy_uri, NULL);
-	g_assert (proxy_uri != NULL);
-	g_assert (soup_uri_equal (gdata_oauth1_authorizer_get_proxy_uri (data->authorizer), new_proxy_uri) == TRUE);
-	soup_uri_free (proxy_uri);
+	g_object_get (data->authorizer, "proxy-resolver", &proxy_resolver, NULL);
+	g_assert (proxy_resolver != NULL);
+	g_assert (gdata_oauth1_authorizer_get_proxy_resolver (data->authorizer) == new_proxy_resolver);
+	g_object_unref (proxy_resolver);
 
-	soup_uri_free (new_proxy_uri);
+	g_object_unref (new_proxy_resolver);
 
 	/* Check setting it back to NULL works */
-	gdata_oauth1_authorizer_set_proxy_uri (data->authorizer, NULL);
+	gdata_oauth1_authorizer_set_proxy_resolver (data->authorizer, NULL);
 
-	g_assert_cmpuint (data->proxy_uri_notification_count, ==, 2);
+	g_assert_cmpuint (data->proxy_resolver_notification_count, ==, 2);
 
-	g_assert (gdata_oauth1_authorizer_get_proxy_uri (data->authorizer) == NULL);
+	g_assert (gdata_oauth1_authorizer_get_proxy_resolver (data->authorizer) == NULL);
 
-	g_object_get (data->authorizer, "proxy-uri", &proxy_uri, NULL);
-	g_assert (proxy_uri == NULL);
+	g_object_get (data->authorizer, "proxy-resolver", &proxy_resolver, NULL);
+	g_assert (proxy_resolver == NULL);
 
 	/* Test that setting it using g_object_set() works */
-	new_proxy_uri = soup_uri_new ("http://example.com/");
-	g_object_set (data->authorizer, "proxy-uri", new_proxy_uri, NULL);
-	soup_uri_free (new_proxy_uri);
+	new_proxy_resolver = g_object_ref (g_proxy_resolver_get_default ());
+	g_object_set (data->authorizer, "proxy-resolver", new_proxy_resolver, NULL);
+	g_object_unref (new_proxy_resolver);
 
-	g_assert (gdata_oauth1_authorizer_get_proxy_uri (data->authorizer) != NULL);
+	g_assert (gdata_oauth1_authorizer_get_proxy_resolver (data->authorizer) != NULL);
 }
 
 /* Test getting and setting the timeout property */
@@ -384,9 +370,13 @@ test_oauth1_authorizer_refresh_authorization (OAuth1AuthorizerData *data, gconst
 		return;
 	}
 
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-refresh-authorization");
+
 	g_assert (gdata_authorizer_refresh_authorization (GDATA_AUTHORIZER (data->authorizer), NULL, &error) == FALSE);
 	g_assert_no_error (error);
 	g_clear_error (&error);
+
+	uhm_server_end_trace (mock_server);
 }
 
 /* Test that processing a request with a NULL domain will not change the request. */
@@ -483,11 +473,13 @@ test_oauth1_authorizer_request_authentication_uri_sync (OAuth1AuthorizerData *da
 	gchar *authentication_uri, *token, *token_secret;
 	GError *error = NULL;
 
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authentication-uri-sync");
+
 	authentication_uri = gdata_oauth1_authorizer_request_authentication_uri (data->authorizer, &token, &token_secret, NULL, &error);
 	g_assert_no_error (error);
 	g_assert (authentication_uri != NULL && *authentication_uri != '\0');
 	g_assert (token != NULL && *token != '\0');
-	g_assert (token_secret != NULL && *token != '\0');
+	g_assert (token_secret != NULL && *token_secret != '\0');
 	g_clear_error (&error);
 
 	g_test_message ("Requesting an authentication URI gave “%s” with request token “%s” and request token secret “%s”.",
@@ -496,6 +488,8 @@ test_oauth1_authorizer_request_authentication_uri_sync (OAuth1AuthorizerData *da
 	g_free (authentication_uri);
 	g_free (token);
 	g_free (token_secret);
+
+	uhm_server_end_trace (mock_server);
 }
 
 /* Test that requesting an authentication URI synchronously can be cancelled */
@@ -506,6 +500,8 @@ test_oauth1_authorizer_request_authentication_uri_sync_cancellation (OAuth1Autho
 	gchar *authentication_uri, *token = (gchar*) "error", *token_secret = (gchar*) "error";
 	GCancellable *cancellable;
 	GError *error = NULL;
+
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authentication-uri-sync-cancellation");
 
 	/* Set up the cancellable */
 	cancellable = g_cancellable_new ();
@@ -524,6 +520,8 @@ test_oauth1_authorizer_request_authentication_uri_sync_cancellation (OAuth1Autho
 	g_free (token_secret);
 
 	g_object_unref (cancellable);
+
+	uhm_server_end_trace (mock_server);
 }
 
 typedef struct {
@@ -571,7 +569,7 @@ test_oauth1_authorizer_request_authentication_uri_async_cb (GDataOAuth1Authorize
 	g_assert_no_error (error);
 	g_assert (authentication_uri != NULL && *authentication_uri != '\0');
 	g_assert (token != NULL && *token != '\0');
-	g_assert (token_secret != NULL && *token != '\0');
+	g_assert (token_secret != NULL && *token_secret != '\0');
 	g_clear_error (&error);
 
 	g_test_message ("Requesting an authentication URI asynchronously gave “%s” with request token “%s” and request token secret “%s”.",
@@ -588,12 +586,16 @@ test_oauth1_authorizer_request_authentication_uri_async_cb (GDataOAuth1Authorize
 static void
 test_oauth1_authorizer_request_authentication_uri_async (OAuth1AuthorizerAsyncData *data, gconstpointer user_data)
 {
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authentication-uri-async");
+
 	/* Create a main loop and request an authentication URI */
 	gdata_oauth1_authorizer_request_authentication_uri_async (data->parent.authorizer, NULL,
 	                                                          (GAsyncReadyCallback) test_oauth1_authorizer_request_authentication_uri_async_cb,
 	                                                          data);
 
 	g_main_loop_run (data->main_loop);
+
+	uhm_server_end_trace (mock_server);
 }
 
 static void
@@ -624,6 +626,8 @@ test_oauth1_authorizer_request_authentication_uri_async_cancellation (OAuth1Auth
 {
 	GCancellable *cancellable;
 
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authentication-uri-async-cancellation");
+
 	/* Set up the cancellable */
 	cancellable = g_cancellable_new ();
 
@@ -637,6 +641,8 @@ test_oauth1_authorizer_request_authentication_uri_async_cancellation (OAuth1Auth
 	g_main_loop_run (data->main_loop);
 
 	g_object_unref (cancellable);
+
+	uhm_server_end_trace (mock_server);
 }
 
 typedef struct {
@@ -655,15 +661,19 @@ set_up_oauth1_authorizer_interactive_data (OAuth1AuthorizerInteractiveData *data
 	/* Chain up */
 	set_up_oauth1_authorizer_data ((OAuth1AuthorizerData*) data, user_data);
 
+	gdata_test_mock_server_start_trace (mock_server, "setup-oauth1-authorizer-interactive-data");
+
 	/* Get an authentication URI */
 	authentication_uri = gdata_oauth1_authorizer_request_authentication_uri (data->parent.authorizer, &(data->token), &(data->token_secret),
 	                                                                         NULL, NULL);
 	g_assert (authentication_uri != NULL);
 
 	/* Wait for the user to retrieve and enter the verifier */
-	data->verifier = query_user_for_verifier (authentication_uri);
+	data->verifier = gdata_test_query_user_for_verifier (authentication_uri);
 
 	g_free (authentication_uri);
+
+	uhm_server_end_trace (mock_server);
 }
 
 static void
@@ -674,6 +684,8 @@ set_up_oauth1_authorizer_interactive_data_bad_credentials (OAuth1AuthorizerInter
 	/* Chain up */
 	set_up_oauth1_authorizer_data ((OAuth1AuthorizerData*) data, user_data);
 
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-interactive-data-bad-credentials");
+
 	/* Get an authentication URI */
 	authentication_uri = gdata_oauth1_authorizer_request_authentication_uri (data->parent.authorizer, &(data->token), &(data->token_secret),
 	                                                                         NULL, NULL);
@@ -683,6 +695,8 @@ set_up_oauth1_authorizer_interactive_data_bad_credentials (OAuth1AuthorizerInter
 	data->verifier = g_strdup ("test");
 
 	g_free (authentication_uri);
+
+	uhm_server_end_trace (mock_server);
 }
 
 static void
@@ -709,6 +723,8 @@ test_oauth1_authorizer_request_authorization_sync (OAuth1AuthorizerInteractiveDa
 		return;
 	}
 
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authorization-sync");
+
 	/* Check we're not authorised beforehand */
 	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (data->parent.authorizer),
 	          gdata_contacts_service_get_primary_authorization_domain ()) == FALSE);
@@ -723,6 +739,8 @@ test_oauth1_authorizer_request_authorization_sync (OAuth1AuthorizerInteractiveDa
 	/* Are we authorised now? */
 	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (data->parent.authorizer),
 	          gdata_contacts_service_get_primary_authorization_domain ()) == TRUE);
+
+	uhm_server_end_trace (mock_server);
 }
 
 /* Test that synchronously authorizing a request token fails if an invalid verifier is provided. */
@@ -731,6 +749,8 @@ test_oauth1_authorizer_request_authorization_sync_bad_credentials (OAuth1Authori
 {
 	gboolean success;
 	GError *error = NULL;
+
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authorization-sync-bad-credentials");
 
 	/* Check we're not authorised beforehand */
 	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (data->parent.authorizer),
@@ -746,6 +766,8 @@ test_oauth1_authorizer_request_authorization_sync_bad_credentials (OAuth1Authori
 	/* Are we authorised now? */
 	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (data->parent.authorizer),
 	          gdata_contacts_service_get_primary_authorization_domain ()) == FALSE);
+
+	uhm_server_end_trace (mock_server);
 }
 
 /* Test that cancellation of synchronously authorizing a request token works. Note that this test has to be interactive, as the user has to visit the
@@ -761,6 +783,8 @@ test_oauth1_authorizer_request_authorization_sync_cancellation (OAuth1Authorizer
 	if (data->verifier == NULL) {
 		return;
 	}
+
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authorization-sync-cancellation");
 
 	/* Check we're not authorised beforehand */
 	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (data->parent.authorizer),
@@ -782,6 +806,8 @@ test_oauth1_authorizer_request_authorization_sync_cancellation (OAuth1Authorizer
 	          gdata_contacts_service_get_primary_authorization_domain ()) == FALSE);
 
 	g_object_unref (cancellable);
+
+	uhm_server_end_trace (mock_server);
 }
 
 typedef struct {
@@ -848,6 +874,8 @@ test_oauth1_authorizer_request_authorization_async (OAuth1AuthorizerInteractiveA
 		return;
 	}
 
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authorization-async");
+
 	/* Check we're not authorised beforehand */
 	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (data->parent.parent.authorizer),
 	          gdata_contacts_service_get_primary_authorization_domain ()) == FALSE);
@@ -858,6 +886,8 @@ test_oauth1_authorizer_request_authorization_async (OAuth1AuthorizerInteractiveA
 	                                                     (GAsyncReadyCallback) test_oauth1_authorizer_request_authorization_async_cb, data);
 
 	g_main_loop_run (data->main_loop);
+
+	uhm_server_end_trace (mock_server);
 }
 
 static void
@@ -883,6 +913,8 @@ test_oauth1_authorizer_request_authorization_async_bad_credentials_cb (GDataOAut
 static void
 test_oauth1_authorizer_request_authorization_async_bad_credentials (OAuth1AuthorizerInteractiveAsyncData *data, gconstpointer user_data)
 {
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authorization-async-bad-credentials");
+
 	/* Check we're not authorised beforehand */
 	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (data->parent.parent.authorizer),
 	          gdata_contacts_service_get_primary_authorization_domain ()) == FALSE);
@@ -895,6 +927,8 @@ test_oauth1_authorizer_request_authorization_async_bad_credentials (OAuth1Author
 	                                                     data);
 
 	g_main_loop_run (data->main_loop);
+
+	uhm_server_end_trace (mock_server);
 }
 
 static void
@@ -928,6 +962,8 @@ test_oauth1_authorizer_request_authorization_async_cancellation (OAuth1Authorize
 		return;
 	}
 
+	gdata_test_mock_server_start_trace (mock_server, "oauth1-authorizer-request-authorization-async-cancellation");
+
 	/* Check we're not authorised beforehand */
 	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (data->parent.parent.authorizer),
 	          gdata_contacts_service_get_primary_authorization_domain ()) == FALSE);
@@ -945,12 +981,41 @@ test_oauth1_authorizer_request_authorization_async_cancellation (OAuth1Authorize
 	g_main_loop_run (data->main_loop);
 
 	g_object_unref (cancellable);
+
+	uhm_server_end_trace (mock_server);
+}
+
+static void
+mock_server_notify_resolver_cb (GObject *object, GParamSpec *pspec, gpointer user_data)
+{
+	UhmServer *server;
+	UhmResolver *resolver;
+
+	server = UHM_SERVER (object);
+
+	/* Set up the expected domain names here. This should technically be split up between
+	 * the different unit test suites, but that's too much effort. */
+	resolver = uhm_server_get_resolver (server);
+
+	if (resolver != NULL) {
+		const gchar *ip_address = uhm_server_get_address (server);
+
+		uhm_resolver_add_A (resolver, "www.google.com", ip_address);
+	}
 }
 
 int
 main (int argc, char *argv[])
 {
+	GFile *trace_directory;
+
 	gdata_test_init (argc, argv);
+
+	mock_server = gdata_test_get_mock_server ();
+	g_signal_connect (G_OBJECT (mock_server), "notify::resolver", (GCallback) mock_server_notify_resolver_cb, NULL);
+	trace_directory = g_file_new_for_path (TEST_FILE_DIR "traces/oauth1-authorizer");
+	uhm_server_set_trace_directory (mock_server, trace_directory);
+	g_object_unref (trace_directory);
 
 	main_thread = g_thread_self ();
 
@@ -964,8 +1029,8 @@ main (int argc, char *argv[])
 	            tear_down_oauth1_authorizer_data);
 	g_test_add ("/oauth1-authorizer/properties/locale", OAuth1AuthorizerData, NULL, set_up_oauth1_authorizer_data,
 	            test_oauth1_authorizer_properties_locale, tear_down_oauth1_authorizer_data);
-	g_test_add ("/oauth1-authorizer/properties/proxy-uri", OAuth1AuthorizerData, NULL, set_up_oauth1_authorizer_data,
-	            test_oauth1_authorizer_properties_proxy_uri, tear_down_oauth1_authorizer_data);
+	g_test_add ("/oauth1-authorizer/properties/proxy-resolver", OAuth1AuthorizerData, NULL, set_up_oauth1_authorizer_data,
+	            test_oauth1_authorizer_properties_proxy_resolver, tear_down_oauth1_authorizer_data);
 	g_test_add ("/oauth1-authorizer/properties/timeout", OAuth1AuthorizerData, NULL, set_up_oauth1_authorizer_data,
 	            test_oauth1_authorizer_properties_timeout, tear_down_oauth1_authorizer_data);
 
@@ -977,71 +1042,69 @@ main (int argc, char *argv[])
 	g_test_add ("/oauth1-authorizer/process-request/unauthenticated", OAuth1AuthorizerData, NULL,
 	            set_up_oauth1_authorizer_data, test_oauth1_authorizer_process_request_unauthenticated, tear_down_oauth1_authorizer_data);
 
-	if (gdata_test_internet () == TRUE) {
-		/* Sync request-authentication-uri tests */
-		g_test_add ("/oauth1-authorizer/request-authentication-uri/sync", OAuth1AuthorizerData, NULL, set_up_oauth1_authorizer_data,
-		            test_oauth1_authorizer_request_authentication_uri_sync, tear_down_oauth1_authorizer_data);
-		g_test_add ("/oauth1-authorizer/request-authentication-uri/sync/multiple-domains", OAuth1AuthorizerData, NULL,
-		            set_up_oauth1_authorizer_data_multiple_domains, test_oauth1_authorizer_request_authentication_uri_sync,
+	/* Sync request-authentication-uri tests */
+	g_test_add ("/oauth1-authorizer/request-authentication-uri/sync", OAuth1AuthorizerData, NULL, set_up_oauth1_authorizer_data,
+	            test_oauth1_authorizer_request_authentication_uri_sync, tear_down_oauth1_authorizer_data);
+	g_test_add ("/oauth1-authorizer/request-authentication-uri/sync/multiple-domains", OAuth1AuthorizerData, NULL,
+	            set_up_oauth1_authorizer_data_multiple_domains, test_oauth1_authorizer_request_authentication_uri_sync,
+	            tear_down_oauth1_authorizer_data);
+	g_test_add ("/oauth1-authorizer/request-authentication-uri/sync/multiple-domains", OAuth1AuthorizerData, NULL,
+	            set_up_oauth1_authorizer_data_locale, test_oauth1_authorizer_request_authentication_uri_sync,
+	            tear_down_oauth1_authorizer_data);
+	g_test_add ("/oauth1-authorizer/request-authentication-uri/sync/cancellation", OAuth1AuthorizerData, NULL,
+	            set_up_oauth1_authorizer_data, test_oauth1_authorizer_request_authentication_uri_sync_cancellation,
+	            tear_down_oauth1_authorizer_data);
+
+	/* Async request-authentication-uri tests */
+	g_test_add ("/oauth1-authorizer/request-authentication-uri/async", OAuth1AuthorizerAsyncData, NULL,
+	            set_up_oauth1_authorizer_async_data, test_oauth1_authorizer_request_authentication_uri_async,
+	            tear_down_oauth1_authorizer_async_data);
+	g_test_add ("/oauth1-authorizer/request-authentication-uri/async/multiple-domains", OAuth1AuthorizerAsyncData, NULL,
+	            set_up_oauth1_authorizer_async_data_multiple_domains, test_oauth1_authorizer_request_authentication_uri_async,
+	            tear_down_oauth1_authorizer_async_data);
+	g_test_add ("/oauth1-authorizer/request-authentication-uri/async/cancellation", OAuth1AuthorizerAsyncData, NULL,
+	            set_up_oauth1_authorizer_async_data, test_oauth1_authorizer_request_authentication_uri_async_cancellation,
+	            tear_down_oauth1_authorizer_async_data);
+
+	/* Sync request-authorization tests */
+	if (gdata_test_interactive () == TRUE) {
+		g_test_add ("/oauth1-authorizer/request-authorization/sync", OAuth1AuthorizerInteractiveData, NULL,
+		            set_up_oauth1_authorizer_interactive_data, test_oauth1_authorizer_request_authorization_sync,
+		            tear_down_oauth1_authorizer_interactive_data);
+		g_test_add ("/oauth1-authorizer/request-authorization/sync/cancellation", OAuth1AuthorizerInteractiveData, NULL,
+		            set_up_oauth1_authorizer_interactive_data, test_oauth1_authorizer_request_authorization_sync_cancellation,
+		            tear_down_oauth1_authorizer_interactive_data);
+	}
+
+	g_test_add ("/oauth1-authorizer/request-authorization/sync/bad-credentials", OAuth1AuthorizerInteractiveData, NULL,
+	            set_up_oauth1_authorizer_interactive_data_bad_credentials,
+	            test_oauth1_authorizer_request_authorization_sync_bad_credentials, tear_down_oauth1_authorizer_interactive_data);
+
+	/* Async request-authorization tests */
+	if (gdata_test_interactive () == TRUE) {
+		g_test_add ("/oauth1-authorizer/request-authorization/async", OAuth1AuthorizerInteractiveAsyncData, NULL,
+		            set_up_oauth1_authorizer_interactive_async_data, test_oauth1_authorizer_request_authorization_async,
+		            tear_down_oauth1_authorizer_interactive_async_data);
+		g_test_add ("/oauth1-authorizer/request-authorization/async/cancellation", OAuth1AuthorizerInteractiveAsyncData, NULL,
+		            set_up_oauth1_authorizer_interactive_async_data, test_oauth1_authorizer_request_authorization_async_cancellation,
+		            tear_down_oauth1_authorizer_interactive_async_data);
+	}
+
+	g_test_add ("/oauth1-authorizer/request-authorization/async/bad-credentials", OAuth1AuthorizerInteractiveAsyncData, NULL,
+	            set_up_oauth1_authorizer_interactive_async_data_bad_credentials,
+	            test_oauth1_authorizer_request_authorization_async_bad_credentials, tear_down_oauth1_authorizer_interactive_async_data);
+
+	/* Miscellaneous tests */
+	if (gdata_test_interactive () == TRUE) {
+		gboolean skip_test = FALSE;
+
+		g_test_add ("/oauth1-authorizer/refresh-authorization/authenticated", OAuth1AuthorizerData, &skip_test,
+		            set_up_oauth1_authorizer_data_authenticated, test_oauth1_authorizer_refresh_authorization,
 		            tear_down_oauth1_authorizer_data);
-		g_test_add ("/oauth1-authorizer/request-authentication-uri/sync/multiple-domains", OAuth1AuthorizerData, NULL,
-		            set_up_oauth1_authorizer_data_locale, test_oauth1_authorizer_request_authentication_uri_sync,
+
+		g_test_add ("/oauth1-authorizer/process-request/authenticated", OAuth1AuthorizerData, &skip_test,
+		            set_up_oauth1_authorizer_data_authenticated, test_oauth1_authorizer_process_request_authenticated,
 		            tear_down_oauth1_authorizer_data);
-		g_test_add ("/oauth1-authorizer/request-authentication-uri/sync/cancellation", OAuth1AuthorizerData, NULL,
-		            set_up_oauth1_authorizer_data, test_oauth1_authorizer_request_authentication_uri_sync_cancellation,
-		            tear_down_oauth1_authorizer_data);
-
-		/* Async request-authentication-uri tests */
-		g_test_add ("/oauth1-authorizer/request-authentication-uri/async", OAuth1AuthorizerAsyncData, NULL,
-		            set_up_oauth1_authorizer_async_data, test_oauth1_authorizer_request_authentication_uri_async,
-		            tear_down_oauth1_authorizer_async_data);
-		g_test_add ("/oauth1-authorizer/request-authentication-uri/async/multiple-domains", OAuth1AuthorizerAsyncData, NULL,
-		            set_up_oauth1_authorizer_async_data_multiple_domains, test_oauth1_authorizer_request_authentication_uri_async,
-		            tear_down_oauth1_authorizer_async_data);
-		g_test_add ("/oauth1-authorizer/request-authentication-uri/async/cancellation", OAuth1AuthorizerAsyncData, NULL,
-		            set_up_oauth1_authorizer_async_data, test_oauth1_authorizer_request_authentication_uri_async_cancellation,
-		            tear_down_oauth1_authorizer_async_data);
-
-		/* Sync request-authorization tests */
-		if (gdata_test_interactive () == TRUE) {
-			g_test_add ("/oauth1-authorizer/request-authorization/sync", OAuth1AuthorizerInteractiveData, NULL,
-			            set_up_oauth1_authorizer_interactive_data, test_oauth1_authorizer_request_authorization_sync,
-			            tear_down_oauth1_authorizer_interactive_data);
-			g_test_add ("/oauth1-authorizer/request-authorization/sync/cancellation", OAuth1AuthorizerInteractiveData, NULL,
-			            set_up_oauth1_authorizer_interactive_data, test_oauth1_authorizer_request_authorization_sync_cancellation,
-			            tear_down_oauth1_authorizer_interactive_data);
-		}
-
-		g_test_add ("/oauth1-authorizer/request-authorization/sync/bad-credentials", OAuth1AuthorizerInteractiveData, NULL,
-		            set_up_oauth1_authorizer_interactive_data_bad_credentials,
-		            test_oauth1_authorizer_request_authorization_sync_bad_credentials, tear_down_oauth1_authorizer_interactive_data);
-
-		/* Async request-authorization tests */
-		if (gdata_test_interactive () == TRUE) {
-			g_test_add ("/oauth1-authorizer/request-authorization/async", OAuth1AuthorizerInteractiveAsyncData, NULL,
-			            set_up_oauth1_authorizer_interactive_async_data, test_oauth1_authorizer_request_authorization_async,
-			            tear_down_oauth1_authorizer_interactive_async_data);
-			g_test_add ("/oauth1-authorizer/request-authorization/async/cancellation", OAuth1AuthorizerInteractiveAsyncData, NULL,
-			            set_up_oauth1_authorizer_interactive_async_data, test_oauth1_authorizer_request_authorization_async_cancellation,
-			            tear_down_oauth1_authorizer_interactive_async_data);
-		}
-
-		g_test_add ("/oauth1-authorizer/request-authorization/async/bad-credentials", OAuth1AuthorizerInteractiveAsyncData, NULL,
-		            set_up_oauth1_authorizer_interactive_async_data_bad_credentials,
-		            test_oauth1_authorizer_request_authorization_async_bad_credentials, tear_down_oauth1_authorizer_interactive_async_data);
-
-		/* Miscellaneous tests */
-		if (gdata_test_interactive () == TRUE) {
-			gboolean skip_test = FALSE;
-
-			g_test_add ("/oauth1-authorizer/refresh-authorization/authenticated", OAuth1AuthorizerData, &skip_test,
-			            set_up_oauth1_authorizer_data_authenticated, test_oauth1_authorizer_refresh_authorization,
-			            tear_down_oauth1_authorizer_data);
-
-			g_test_add ("/oauth1-authorizer/process-request/authenticated", OAuth1AuthorizerData, &skip_test,
-			            set_up_oauth1_authorizer_data_authenticated, test_oauth1_authorizer_process_request_authenticated,
-			            tear_down_oauth1_authorizer_data);
-		}
 	}
 
 	return g_test_run ();

@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-entry
  * @short_description: GData entry object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gdata-entry.h
  *
  * #GDataEntry represents a single object on the online service, such as a playlist, video or calendar event. It is a snapshot of the
@@ -33,6 +33,7 @@
 #include <glib/gi18n-lib.h>
 #include <libxml/parser.h>
 #include <string.h>
+#include <json-glib/json-glib.h>
 
 #include "gdata-entry.h"
 #include "gdata-types.h"
@@ -55,6 +56,8 @@ static void pre_get_xml (GDataParsable *parsable, GString *xml_string);
 static void get_xml (GDataParsable *parsable, GString *xml_string);
 static void get_namespaces (GDataParsable *parsable, GHashTable *namespaces);
 static gchar *get_entry_uri (const gchar *id) G_GNUC_WARN_UNUSED_RESULT;
+static gboolean parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error);
+static void get_json (GDataParsable *parsable, JsonBuilder *builder);
 
 struct _GDataEntryPrivate {
 	gchar *title;
@@ -111,6 +114,9 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	parsable_class->get_xml = get_xml;
 	parsable_class->get_namespaces = get_namespaces;
 	parsable_class->element_name = "entry";
+
+	parsable_class->parse_json = parse_json;
+	parsable_class->get_json = get_json;
 
 	klass->get_entry_uri = get_entry_uri;
 
@@ -584,6 +590,99 @@ get_entry_uri (const gchar *id)
 	return g_strdup (id);
 }
 
+static gboolean
+parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error)
+{
+	gboolean success;
+	GDataEntryPrivate *priv = GDATA_ENTRY (parsable)->priv;
+
+	if (gdata_parser_string_from_json_member (reader, "title", P_DEFAULT | P_NO_DUPES, &(priv->title), &success, error) == TRUE ||
+	    gdata_parser_string_from_json_member (reader, "id", P_NON_EMPTY | P_NO_DUPES, &(priv->id), &success, error) == TRUE ||
+	    gdata_parser_string_from_json_member (reader, "description", P_NONE, &(priv->summary), &success, error) == TRUE ||
+	    gdata_parser_int64_time_from_json_member (reader, "updated", P_REQUIRED | P_NO_DUPES, &(priv->updated), &success, error) == TRUE ||
+	    gdata_parser_string_from_json_member (reader, "etag", P_NON_EMPTY | P_NO_DUPES, &(priv->etag), &success, error) == TRUE) {
+		return success;
+	} else if (g_strcmp0 (json_reader_get_member_name (reader), "selfLink") == 0) {
+		GDataLink *_link;
+		const gchar *uri;
+
+		/* Empty URI? */
+		uri = json_reader_get_string_value (reader);
+		if (uri == NULL || *uri == '\0') {
+			return gdata_parser_error_required_json_content_missing (reader, error);
+		}
+
+		_link = gdata_link_new (uri, GDATA_LINK_SELF);
+		gdata_entry_add_link (GDATA_ENTRY (parsable), _link);
+		g_object_unref (_link);
+
+		return TRUE;
+	} else if (g_strcmp0 (json_reader_get_member_name (reader), "kind") == 0) {
+		GDataCategory *category;
+		const gchar *kind;
+
+		/* Empty kind? */
+		kind = json_reader_get_string_value (reader);
+		if (kind == NULL || *kind == '\0') {
+			return gdata_parser_error_required_json_content_missing (reader, error);
+		}
+
+		category = gdata_category_new (kind, "http://schemas.google.com/g/2005#kind", NULL);
+		gdata_entry_add_category (GDATA_ENTRY (parsable), category);
+		g_object_unref (category);
+
+		return TRUE;
+	}
+
+	return GDATA_PARSABLE_CLASS (gdata_entry_parent_class)->parse_json (parsable, reader, user_data, error);
+}
+
+static void
+get_json (GDataParsable *parsable, JsonBuilder *builder)
+{
+	GDataEntryPrivate *priv = GDATA_ENTRY (parsable)->priv;
+	GList *i;
+	GDataLink *_link;
+
+	json_builder_set_member_name (builder, "title");
+	json_builder_add_string_value (builder, priv->title);
+
+	if (priv->id != NULL) {
+		json_builder_set_member_name (builder, "id");
+		json_builder_add_string_value (builder, priv->id);
+	}
+
+	if (priv->updated != -1) {
+		gchar *updated = gdata_parser_int64_to_iso8601 (priv->updated);
+		json_builder_set_member_name (builder, "updated");
+		json_builder_add_string_value (builder, updated);
+		g_free (updated);
+	}
+
+	/* If we have a "kind" category, add that. */
+	for (i = priv->categories; i != NULL; i = i->next) {
+		GDataCategory *category = GDATA_CATEGORY (i->data);
+
+		if (g_strcmp0 (gdata_category_get_scheme (category), "http://schemas.google.com/g/2005#kind") == 0) {
+			json_builder_set_member_name (builder, "kind");
+			json_builder_add_string_value (builder, gdata_category_get_term (category));
+		}
+	}
+
+	/* Add the ETag, if available. */
+	if (gdata_entry_get_etag (GDATA_ENTRY (parsable)) != NULL) {
+		json_builder_set_member_name (builder, "etag");
+		json_builder_add_string_value (builder, priv->etag);
+	}
+
+	/* Add the self-link. */
+	_link = gdata_entry_look_up_link (GDATA_ENTRY (parsable), GDATA_LINK_SELF);
+	if (_link != NULL) {
+		json_builder_set_member_name (builder, "selfLink");
+		json_builder_add_string_value (builder, gdata_link_get_uri (_link));
+	}
+}
+
 /**
  * gdata_entry_new:
  * @id: (allow-none): the entry's ID, or %NULL
@@ -751,6 +850,40 @@ _gdata_entry_set_updated (GDataEntry *self, gint64 updated)
 	self->priv->updated = updated;
 }
 
+/*
+ * _gdata_entry_set_published:
+ * @self: a #GDataEntry
+ * @updated: the new published value
+ *
+ * Sets the value of the #GDataEntry:published property to @published.
+ *
+ * Since: 0.17.0
+ */
+void
+_gdata_entry_set_published (GDataEntry *self, gint64 published)
+{
+	g_return_if_fail (GDATA_IS_ENTRY (self));
+	self->priv->published = published;
+}
+
+/*
+ * _gdata_entry_set_id:
+ * @self: a #GDataEntry
+ * @id: (nullable): the new ID
+ *
+ * Sets the value of the #GDataEntry:id property to @id.
+ *
+ * Since: 0.17.0
+ */
+void
+_gdata_entry_set_id (GDataEntry *self, const gchar *id)
+{
+	g_return_if_fail (GDATA_IS_ENTRY (self));
+
+	g_free (self->priv->id);
+	self->priv->id = g_strdup (id);
+}
+
 /**
  * gdata_entry_get_published:
  * @self: a #GDataEntry
@@ -784,10 +917,24 @@ gdata_entry_add_category (GDataEntry *self, GDataCategory *category)
 	/* Check to see if it's a kind category and if it matches the entry's predetermined kind */
 	if (g_strcmp0 (gdata_category_get_scheme (category), "http://schemas.google.com/g/2005#kind") == 0) {
 		GDataEntryClass *klass = GDATA_ENTRY_GET_CLASS (self);
+		GList *element;
 
 		if (klass->kind_term != NULL && g_strcmp0 (gdata_category_get_term (category), klass->kind_term) != 0) {
 			g_warning ("Adding a kind category term, '%s', to an entry of kind '%s'.",
 			           gdata_category_get_term (category), klass->kind_term);
+		}
+
+		/* If it is a kind category, remove the entry’s existing kind category to allow the new one
+		 * to be added. This is necessary because the existing category was set in
+		 * gdata_entry_constructed() and might not contain all the attributes of the actual XML
+		 * category.
+		 *
+		 * See: https://bugzilla.gnome.org/show_bug.cgi?id=707477 */
+		element = g_list_find_custom (self->priv->categories, category, (GCompareFunc) gdata_comparable_compare);
+		if (element != NULL) {
+			g_assert (GDATA_IS_CATEGORY (element->data));
+			g_object_unref (element->data);
+			self->priv->categories = g_list_delete_link (self->priv->categories, element);
 		}
 	}
 

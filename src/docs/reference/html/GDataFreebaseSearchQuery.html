@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GDataFreebaseSearchQuery: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="GData Reference Manual">
+<link rel="up" href="ch19.html" title="Google Freebase API">
+<link rel="prev" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult">
+<link rel="next" href="GDataFreebaseSearchResult.html" title="GDataFreebaseSearchResult">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataFreebaseSearchQuery.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataFreebaseSearchQuery.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#GDataFreebaseSearchQuery.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch19.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataFreebaseTopicResult.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataFreebaseSearchResult.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="GDataFreebaseSearchQuery"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GDataFreebaseSearchQuery.top_of_page"></a>GDataFreebaseSearchQuery</span></h2>
+<p>GDataFreebaseSearchQuery — GData Freebase query object</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.stability-level"></a><h2>Stability Level</h2>
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="returnvalue">GDataFreebaseSearchQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-new" title="gdata_freebase_search_query_new ()">gdata_freebase_search_query_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-set-language" title="gdata_freebase_search_query_set_language ()">gdata_freebase_search_query_set_language</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-get-language" title="gdata_freebase_search_query_get_language ()">gdata_freebase_search_query_get_language</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-set-stemmed" title="gdata_freebase_search_query_set_stemmed ()">gdata_freebase_search_query_set_stemmed</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-get-stemmed" title="gdata_freebase_search_query_get_stemmed ()">gdata_freebase_search_query_get_stemmed</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-open-filter" title="gdata_freebase_search_query_open_filter ()">gdata_freebase_search_query_open_filter</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-close-filter" title="gdata_freebase_search_query_close_filter ()">gdata_freebase_search_query_close_filter</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-filter" title="gdata_freebase_search_query_add_filter ()">gdata_freebase_search_query_add_filter</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-location" title="gdata_freebase_search_query_add_location ()">gdata_freebase_search_query_add_location</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.properties"></a><h2>Properties</h2>
+<div class="informaltable"><table border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody>
+<tr>
+<td class="property_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQuery--language" title="The “language” property">language</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
+<td class="property_name"><a class="link" href="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQuery--stemmed" title="The “stemmed” property">stemmed</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQuery-struct" title="GDataFreebaseSearchQuery">GDataFreebaseSearchQuery</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQueryClass" title="GDataFreebaseSearchQueryClass">GDataFreebaseSearchQueryClass</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="GDataFreebaseSearchQuery.html#GDataFreebaseSearchFilterType" title="enum GDataFreebaseSearchFilterType">GDataFreebaseSearchFilterType</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    GEnum
+    <span class="lineart">╰──</span> GDataFreebaseSearchFilterType
+    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="GDataQuery.html" title="GDataQuery">GDataQuery</a>
+        <span class="lineart">╰──</span> GDataFreebaseSearchQuery
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/services/freebase/gdata-freebase-query.h&gt;
+</pre>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.description"></a><h2>Description</h2>
+<p><a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a> represents a collection of query parameters specific to the Google Freebase service.
+a <a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a> is built on top of a search term, further filters can be set on the search query
+through <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-filter" title="gdata_freebase_search_query_add_filter ()"><code class="function">gdata_freebase_search_query_add_filter()</code></a> or <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-location" title="gdata_freebase_search_query_add_location ()"><code class="function">gdata_freebase_search_query_add_location()</code></a>. The filters
+can be nested in sublevels, created through <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-open-filter" title="gdata_freebase_search_query_open_filter ()"><code class="function">gdata_freebase_search_query_open_filter()</code></a>
+and <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-close-filter" title="gdata_freebase_search_query_close_filter ()"><code class="function">gdata_freebase_search_query_close_filter()</code></a>.</p>
+<p>For more details of Google Freebase API, see the <a class="ulink" href="https://developers.google.com/freebase/v1/" target="_top">
+online documentation</a>.</p>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="gdata-freebase-search-query-new"></a><h3>gdata_freebase_search_query_new ()</h3>
+<pre class="programlisting"><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="returnvalue">GDataFreebaseSearchQuery</span></a> *
+gdata_freebase_search_query_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *search_terms</code></em>);</pre>
+<p>Creates a new <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> prepared to search for Freebase elements that
+match the given <em class="parameter"><code>search_terms</code></em>
+. Further filters on the query can be set through
+<a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-filter" title="gdata_freebase_search_query_add_filter ()"><code class="function">gdata_freebase_search_query_add_filter()</code></a> or <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-location" title="gdata_freebase_search_query_add_location ()"><code class="function">gdata_freebase_search_query_add_location()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>search_terms</p></td>
+<td class="parameter_description"><p>string to search for</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.2.6"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-search-query-set-language"></a><h3>gdata_freebase_search_query_set_language ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_freebase_search_query_set_language
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *self</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *lang</code></em>);</pre>
+<p>Sets the language used, both on the search terms and the results. If unset,
+the locale preferences will be respected.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>lang</p></td>
+<td class="parameter_description"><p> Language used on the search terms and results, in ISO-639-1 format, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-search-query-get-language"></a><h3>gdata_freebase_search_query_get_language ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_freebase_search_query_get_language
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *self</code></em>);</pre>
+<p>Gets the language set on the search query, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if unset.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.4.6"></a><h4>Returns</h4>
+<p> The language used on the query. </p>
+<p><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-search-query-set-stemmed"></a><h3>gdata_freebase_search_query_set_stemmed ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_freebase_search_query_set_stemmed
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> stemmed</code></em>);</pre>
+<p>Sets whether stemming is performed on the provided search terms. If <em class="parameter"><code>stemmed</code></em>
+ is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>,
+words like eg. "natural", "naturally" or "nature" would be all reduced to the root "natur"
+for search purposes.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>stemmed</p></td>
+<td class="parameter_description"><p><a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> to perform stemming on the search results</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-search-query-get-stemmed"></a><h3>gdata_freebase_search_query_get_stemmed ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+gdata_freebase_search_query_get_stemmed
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *self</code></em>);</pre>
+<p>Returns whether the <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> will perform stemming on the search terms.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.6.6"></a><h4>Returns</h4>
+<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> performs stemming</p>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-search-query-open-filter"></a><h3>gdata_freebase_search_query_open_filter ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_freebase_search_query_open_filter
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *self</code></em>,
+                                <em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html#GDataFreebaseSearchFilterType" title="enum GDataFreebaseSearchFilterType"><span class="type">GDataFreebaseSearchFilterType</span></a> filter_type</code></em>);</pre>
+<p>Opens a container of filter rules, those are applied according to the behavior specified by <em class="parameter"><code>filter_type</code></em>
+.
+Every call to this function must be paired by a call to <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-close-filter" title="gdata_freebase_search_query_close_filter ()"><code class="function">gdata_freebase_search_query_close_filter()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>filter_type</p></td>
+<td class="parameter_description"><p>filter type</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-search-query-close-filter"></a><h3>gdata_freebase_search_query_close_filter ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_freebase_search_query_close_filter
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *self</code></em>);</pre>
+<p>Closes a filter level.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-search-query-add-filter"></a><h3>gdata_freebase_search_query_add_filter ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_freebase_search_query_add_filter
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *self</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *property</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value</code></em>);</pre>
+<p>Adds a property filter to the query. property filters are always nested in
+containers, opened and closed through <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-open-filter" title="gdata_freebase_search_query_open_filter ()"><code class="function">gdata_freebase_search_query_open_filter()</code></a>
+and <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-close-filter" title="gdata_freebase_search_query_close_filter ()"><code class="function">gdata_freebase_search_query_close_filter()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>property</p></td>
+<td class="parameter_description"><p>Freebase property ID</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>match string</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-freebase-search-query-add-location"></a><h3>gdata_freebase_search_query_add_location ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_freebase_search_query_add_location
+                               (<em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> radius</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> lat</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> lon</code></em>);</pre>
+<p>Adds a geolocation filter to the query. location filters are always nested in
+containers, opened and closed through <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-open-filter" title="gdata_freebase_search_query_open_filter ()"><code class="function">gdata_freebase_search_query_open_filter()</code></a>
+and <a class="link" href="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-close-filter" title="gdata_freebase_search_query_close_filter ()"><code class="function">gdata_freebase_search_query_close_filter()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.10.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>radius</p></td>
+<td class="parameter_description"><p>radius in meters</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>lat</p></td>
+<td class="parameter_description"><p>latitude</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>lon</p></td>
+<td class="parameter_description"><p>longitude</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GDataFreebaseSearchQuery-struct"></a><h3>GDataFreebaseSearchQuery</h3>
+<pre class="programlisting">typedef struct _GDataFreebaseSearchQuery GDataFreebaseSearchQuery;</pre>
+<p>All the fields in the <a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GDataFreebaseSearchQueryClass"></a><h3>GDataFreebaseSearchQueryClass</h3>
+<pre class="programlisting">typedef struct {
+} GDataFreebaseSearchQueryClass;
+</pre>
+<p>All the fields in the <a class="link" href="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQueryClass" title="GDataFreebaseSearchQueryClass"><span class="type">GDataFreebaseSearchQueryClass</span></a> structure are private and should never be accessed directly.</p>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GDataFreebaseSearchFilterType"></a><h3>enum GDataFreebaseSearchFilterType</h3>
+<p>Search filter container types.</p>
+<div class="refsect3">
+<a name="id-1.5.8.7.11.4.4"></a><h4>Members</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GDATA-FREEBASE-SEARCH-FILTER-ALL:CAPS"></a>GDATA_FREEBASE_SEARCH_FILTER_ALL</p></td>
+<td class="enum_member_description">
+<p>all enclosed elements must match, logically an AND</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GDATA-FREEBASE-SEARCH-FILTER-ANY:CAPS"></a>GDATA_FREEBASE_SEARCH_FILTER_ANY</p></td>
+<td class="enum_member_description">
+<p>any of the enclosed elements must match, logically an OR</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GDATA-FREEBASE-SEARCH-FILTER-NOT:CAPS"></a>GDATA_FREEBASE_SEARCH_FILTER_NOT</p></td>
+<td class="enum_member_description">
+<p>the match is inverted.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.15.1</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataFreebaseSearchQuery.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="GDataFreebaseSearchQuery--language"></a><h3>The <code class="literal">“language”</code> property</h3>
+<pre class="programlisting">  “language”                 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<p>Language used for search results, in ISO-639-1 format.</p>
+<p>Flags: Read / Write</p>
+<p>Default value: NULL</p>
+<p class="since">Since 0.15.1</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GDataFreebaseSearchQuery--stemmed"></a><h3>The <code class="literal">“stemmed”</code> property</h3>
+<pre class="programlisting">  “stemmed”                  <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
+<p>Whether word stemming should happen on the search terms. If this property is enabled,
+words like eg. "natural", "naturally" or "nature" would be all reduced to the root "natur"
+for search purposes.</p>
+<p>Flags: Read / Write</p>
+<p>Default value: FALSE</p>
+<p class="since">Since 0.15.1</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
+</body>
+</html>

@@ -1,6 +1,10 @@
-SUBDIRS = . gdata/tests po docs
+SUBDIRS = . po docs
 
-ACLOCAL_AMFLAGS = -I m4
+if ENABLE_TESTS
+SUBDIRS += gdata/tests
+endif
+
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 DISTCHECK_CONFIGURE_FLAGS =
 MAINTAINERCLEANFILES =
@@ -26,6 +30,8 @@ GDATA_ENUM_FILES = \
 	gdata/media/gdata-media-enums.h				\
 	gdata/services/documents/gdata-documents-enums.c	\
 	gdata/services/documents/gdata-documents-enums.h	\
+	gdata/services/freebase/gdata-freebase-enums.c		\
+	gdata/services/freebase/gdata-freebase-enums.h		\
 	gdata/services/picasaweb/gdata-picasaweb-enums.c	\
 	gdata/services/picasaweb/gdata-picasaweb-enums.h	\
 	gdata/services/youtube/gdata-youtube-enums.c		\
@@ -94,6 +100,29 @@ gdata/services/documents/gdata-documents-enums.c: $(gdata_documents_headers) Mak
 		$(addprefix $(srcdir)/,$(gdata_documents_headers)) > gdata/services/documents/gdata-documents-enums.c.tmp \
 	&& sed "s/g_data/gdata/" gdata/services/documents/gdata-documents-enums.c.tmp > gdata/services/documents/gdata-documents-enums.c \
 	&& rm -f gdata/services/documents/gdata-documents-enums.c.tmp)
+
+gdata/services/freebase/gdata-freebase-enums.h: $(gdata_freebase_headers) Makefile
+	$(AM_V_GEN)($(GLIB_MKENUMS) \
+			--fhead "#ifndef GDATA_FREEBASE_ENUMS_H\n#define GDATA_FREEBASE_ENUMS_H\n\n#include <glib-object.h>\n\nG_BEGIN_DECLS\n" \
+			--fprod "/* enumerations from \"@filename@\" */\n" \
+			--vhead "GType @enum_name@_get_type (void) G_GNUC_CONST;\n#define GDATA_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n" \
+			--ftail "G_END_DECLS\n\n#endif /* !GDATA_FREEBASE_ENUMS_H */" \
+		$(addprefix $(srcdir)/,$(gdata_freebase_headers)) > gdata/services/freebase/gdata-freebase-enums.h.tmp \
+	&& sed "s/g_data_freebase/gdata_freebase/" gdata/services/freebase/gdata-freebase-enums.h.tmp > gdata/services/freebase/gdata-freebase-enums.h.tmp2 \
+	&& sed "s/GDATA_TYPE_DATA_FREEBASE/GDATA_TYPE_FREEBASE/" gdata/services/freebase/gdata-freebase-enums.h.tmp2 > gdata/services/freebase/gdata-freebase-enums.h \
+	&& rm -f gdata/services/freebase/gdata-freebase-enums.h.tmp \
+	&& rm -f gdata/services/freebase/gdata-freebase-enums.h.tmp2)
+
+gdata/services/freebase/gdata-freebase-enums.c: $(gdata_freebase_headers) Makefile gdata/services/freebase/gdata-freebase-enums.h
+	$(AM_V_GEN)($(GLIB_MKENUMS) \
+			--fhead "#include \"gdata-freebase-service.h\"\n#include \"gdata-freebase-search-query.h\"\n#include \"gdata-freebase-result.h\"\n#include \"gdata-freebase-enums.h\"" \
+			--fprod "\n/* enumerations from \"@filename@\" */" \
+			--vhead "GType\n@enum_name@_get_type (void)\n{\n  static GType etype = 0;\n  if (etype == 0) {\n    static const G@Type@Value values[] = {" \
+			--vprod "      { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
+			--vtail "      { 0, NULL, NULL }\n    };\n    etype = g_@type@_register_static (\"@EnumName@\", values);\n  }\n  return etype;\n}\n" \
+		$(addprefix $(srcdir)/,$(gdata_freebase_headers)) > gdata/services/freebase/gdata-freebase-enums.c.tmp \
+	&& sed "s/g_data_freebase/gdata_freebase/" gdata/services/freebase/gdata-freebase-enums.c.tmp > gdata/services/freebase/gdata-freebase-enums.c \
+	&& rm -f gdata/services/freebase/gdata-freebase-enums.c.tmp)
 
 gdata/services/picasaweb/gdata-picasaweb-enums.h: $(gdata_picasaweb_headers) Makefile
 	$(AM_V_GEN)($(GLIB_MKENUMS) \
@@ -166,7 +195,9 @@ gdata_headers = \
 	gdata/gdata-authorizer.h	\
 	gdata/gdata-authorization-domain.h	\
 	gdata/gdata-client-login-authorizer.h	\
-	gdata/gdata-oauth1-authorizer.h
+	gdata/gdata-oauth1-authorizer.h \
+	gdata/gdata-oauth2-authorizer.h \
+	$(NULL)
 
 if ENABLE_GOA
 gdata_headers += \
@@ -290,13 +321,31 @@ gdata_youtube_headers = \
 	gdata/services/youtube/gdata-youtube-query.h	\
 	gdata/services/youtube/gdata-youtube-state.h	\
 	gdata/services/youtube/gdata-youtube-category.h	\
-	gdata/services/youtube/gdata-youtube-comment.h
-private_headers += \
-	gdata/services/youtube/gdata-youtube-group.h	\
-	gdata/services/youtube/gdata-youtube-control.h
+	gdata/services/youtube/gdata-youtube-comment.h	\
+	gdata/services/youtube/gdata-youtube-feed.h
 gdatayoutubeinclude_HEADERS = \
 	$(gdata_youtube_headers)			\
 	gdata/services/youtube/gdata-youtube-enums.h
+
+gdatatasksincludedir = $(gdataincludedir)/services/tasks
+gdatatasksinclude_HEADERS = 						\
+	gdata/services/tasks/gdata-tasks-service.h		\
+	gdata/services/tasks/gdata-tasks-tasklist.h		\
+	gdata/services/tasks/gdata-tasks-task.h			\
+	gdata/services/tasks/gdata-tasks-query.h
+
+gdatafreebaseincludedir = $(gdataincludedir)/services/freebase
+gdata_freebase_headers = \
+	gdata/services/freebase/gdata-freebase-service.h		\
+	gdata/services/freebase/gdata-freebase-result.h			\
+	gdata/services/freebase/gdata-freebase-search-query.h		\
+	gdata/services/freebase/gdata-freebase-search-result.h		\
+	gdata/services/freebase/gdata-freebase-topic-query.h		\
+	gdata/services/freebase/gdata-freebase-topic-result.h		\
+	gdata/services/freebase/gdata-freebase-query.h
+gdatafreebaseinclude_HEADERS = 						\
+	$(gdata_freebase_headers)					\
+	gdata/services/freebase/gdata-freebase-enums.h
 
 gdata_sources = \
 	gdata/gdata-entry.c		\
@@ -321,6 +370,7 @@ gdata_sources = \
 	gdata/gdata-authorization-domain.c	\
 	gdata/gdata-client-login-authorizer.c	\
 	gdata/gdata-oauth1-authorizer.c		\
+	gdata/gdata-oauth2-authorizer.c		\
 	\
 	gdata/atom/gdata-author.c	\
 	gdata/atom/gdata-category.c	\
@@ -396,11 +446,24 @@ gdata_sources = \
 	gdata/services/youtube/gdata-youtube-content.c		\
 	gdata/services/youtube/gdata-youtube-credit.c		\
 	gdata/services/youtube/gdata-youtube-query.c		\
-	gdata/services/youtube/gdata-youtube-group.c		\
 	gdata/services/youtube/gdata-youtube-state.c		\
-	gdata/services/youtube/gdata-youtube-control.c		\
 	gdata/services/youtube/gdata-youtube-category.c		\
-	gdata/services/youtube/gdata-youtube-comment.c
+	gdata/services/youtube/gdata-youtube-comment.c		\
+	gdata/services/youtube/gdata-youtube-feed.c		\
+	\
+	gdata/services/tasks/gdata-tasks-service.c			\
+	gdata/services/tasks/gdata-tasks-tasklist.c			\
+	gdata/services/tasks/gdata-tasks-task.c				\
+	gdata/services/tasks/gdata-tasks-query.c			\
+	\
+	gdata/services/freebase/gdata-freebase-service.c		\
+	gdata/services/freebase/gdata-freebase-result.c			\
+	gdata/services/freebase/gdata-freebase-search-query.c		\
+	gdata/services/freebase/gdata-freebase-search-result.c		\
+	gdata/services/freebase/gdata-freebase-topic-query.c		\
+	gdata/services/freebase/gdata-freebase-topic-result.c		\
+	gdata/services/freebase/gdata-freebase-query.c
+
 
 if ENABLE_GOA
 gdata_sources += \
@@ -420,7 +483,9 @@ public_headers = \
 	$(gdatacontactsinclude_HEADERS)		\
 	$(gdatadocumentsinclude_HEADERS)	\
 	$(gdatapicasawebinclude_HEADERS)	\
-	$(gdatayoutubeinclude_HEADERS)
+	$(gdatayoutubeinclude_HEADERS)		\
+	$(gdatatasksinclude_HEADERS)		\
+	$(gdatafreebaseinclude_HEADERS)
 
 gdata_libgdata_la_SOURCES = \
 	$(GDATA_MARSHAL_FILES)		\
@@ -436,10 +501,12 @@ gdata_libgdata_la_CPPFLAGS = \
 	-I$(top_srcdir)/gdata/services/documents	\
 	-I$(top_srcdir)/gdata/services/picasaweb	\
 	-I$(top_srcdir)/gdata/services/youtube		\
+	-I$(top_srcdir)/gdata/services/freebase		\
 	-I$(top_builddir)/gdata				\
 	-I$(top_builddir)/gdata/media			\
 	-I$(top_builddir)/gdata/services/picasaweb	\
 	-I$(top_builddir)/gdata/services/youtube	\
+	-I$(top_builddir)/gdata/services/freebase	\
 	-DG_LOG_DOMAIN=\"libgdata\"			\
 	$(DISABLE_DEPRECATED)				\
 	$(AM_CPPFLAGS)
@@ -487,7 +554,7 @@ EXTRA_DIST += m4/introspection.m4
 
 if HAVE_INTROSPECTION
 gdata/GData-@GDATA_API_VERSION_MAJOR@.@GDATA_API_VERSION_MINOR@.gir: gdata/libgdata.la
-gdata_GData_@GDATA_API_VERSION_MAJOR@_@GDATA_API_VERSION_MINOR@_gir_INCLUDES = GObject-2.0 libxml2-2.0 Soup-2.4
+gdata_GData_@GDATA_API_VERSION_MAJOR@_@GDATA_API_VERSION_MINOR@_gir_INCLUDES = GObject-2.0 libxml2-2.0 Soup-2.4 Json-1.0
 if ENABLE_GOA
 gdata_GData_@GDATA_API_VERSION_MAJOR@_@GDATA_API_VERSION_MINOR@_gir_INCLUDES += Goa-1.0
 endif
@@ -521,7 +588,7 @@ gdata/libgdata.vapi: gdata/GData-@GDATA_API_VERSION_MAJOR@.@GDATA_API_VERSION_MI
 
 VAPIGEN_VAPIS = gdata/libgdata.vapi
 
-gdata_libgdata_vapi_DEPS = libxml-2.0 libsoup-2.4
+gdata_libgdata_vapi_DEPS = libxml-2.0 libsoup-2.4 json-glib-1.0
 gdata_libgdata_vapi_METADATADIRS = $(srcdir)/gdata
 gdata_libgdata_vapi_FILES = gdata/GData-@GDATA_API_VERSION_MAJOR@.@GDATA_API_VERSION_MINOR@.gir
 
@@ -540,16 +607,49 @@ endif
 endif
 
 # Code coverage
-@GNOME_CODE_COVERAGE_RULES@
+@CODE_COVERAGE_RULES@
 CODE_COVERAGE_DIRECTORY = $(top_builddir)/gdata
 CODE_COVERAGE_LCOV_OPTIONS = --base-directory $(abs_top_srcdir)
 
 # Demo programs
-noinst_PROGRAMS =
+noinst_PROGRAMS = demos/youtube/youtube-cli
+
+if ENABLE_GOA
+noinst_PROGRAMS += demos/docs-list/docs-list
+endif
 
 if HAVE_GTK
-noinst_PROGRAMS += demos/scrapbook/scrapbook
+noinst_PROGRAMS += 			\
+	demos/scrapbook/scrapbook	\
+	demos/freebase/freebase-cli
 endif
+
+demos_docs_list_docs_list_SOURCES = \
+	demos/docs-list/docs-list.c \
+	$(NULL)
+
+demos_docs_list_docs_list_CPPFLAGS = \
+	-I$(top_srcdir)/ \
+	-I$(top_srcdir)/gdata \
+	-DG_LOG_DOMAIN=\"docs-list\" \
+	-DLIBGDATA_DISABLE_DEPRECATED \
+	$(DISABLE_DEPRECATED) \
+	$(AM_CPPFLAGS) \
+	$(NULL)
+
+demos_docs_list_docs_list_CFLAGS = \
+	$(WARN_CFLAGS) \
+	$(GDATA_CFLAGS) \
+	$(GNOME_CFLAGS) \
+	$(AM_CFLAGS) \
+	$(NULL)
+
+demos_docs_list_docs_list_LDADD = \
+	$(top_builddir)/gdata/libgdata.la \
+	$(GDATA_LIBS) \
+	$(GNOME_LIBS) \
+	$(AM_LDADD) \
+	$(NULL)
 
 demos_scrapbook_scrapbook_SOURCES = \
 	demos/scrapbook/scrapbook.c \
@@ -581,12 +681,69 @@ demos_scrapbook_scrapbook_LDADD = \
 	$(AM_LDADD) \
 	$(NULL)
 
+demos_freebase_freebase_cli_SOURCES = \
+	demos/freebase/freebase-cli.c  \
+	$(NULL)
+
+demos_freebase_freebase_cli_CPPFLAGS = \
+	-I$(top_srcdir)/ \
+	-I$(top_srcdir)/gdata \
+	-DG_LOG_DOMAIN=\"freebase\" \
+	-DLIBGDATA_DISABLE_DEPRECATED \
+	$(DISABLE_DEPRECATED) \
+	$(AM_CPPFLAGS) \
+	$(NULL)
+
+demos_freebase_freebase_cli_CFLAGS = \
+	$(WARN_CFLAGS) \
+	$(GDATA_CFLAGS) \
+	$(GNOME_CFLAGS) \
+	$(AM_CFLAGS) \
+	$(NULL)
+
+demos_freebase_freebase_cli_LDADD = \
+	$(top_builddir)/gdata/libgdata.la \
+	$(GDATA_LIBS) \
+	$(GNOME_LIBS) \
+	$(AM_LDADD) \
+	$(NULL)
+
+demos_youtube_youtube_cli_SOURCES = \
+	demos/youtube/youtube-cli.c  \
+	$(NULL)
+
+demos_youtube_youtube_cli_CPPFLAGS = \
+	-I$(top_srcdir)/ \
+	-I$(top_srcdir)/gdata \
+	-DG_LOG_DOMAIN=\"youtube\" \
+	-DLIBGDATA_DISABLE_DEPRECATED \
+	$(DISABLE_DEPRECATED) \
+	$(AM_CPPFLAGS) \
+	$(NULL)
+
+demos_youtube_youtube_cli_CFLAGS = \
+	$(WARN_CFLAGS) \
+	$(GDATA_CFLAGS) \
+	$(GNOME_CFLAGS) \
+	$(AM_CFLAGS) \
+	$(NULL)
+
+demos_youtube_youtube_cli_LDADD = \
+	$(top_builddir)/gdata/libgdata.la \
+	$(GDATA_LIBS) \
+	$(GNOME_LIBS) \
+	$(AM_LDADD) \
+	$(NULL)
+
 # Cleaning
 EXTRA_DIST += \
 	autogen.sh		\
 	HACKING			\
 	gtk-doc.make		\
-	libgdata.doap
+	libgdata.doap \
+	m4/ax_code_coverage.m4 \
+	m4/gnome-compiler-flags.m4 \
+	$(NULL)
 
 CLEANFILES += \
 	`find "$(srcdir)" -type f -name .dirstamp -print`
@@ -595,20 +752,13 @@ DISTCLEANFILES = \
 	gtk-doc.make
 
 MAINTAINERCLEANFILES += \
-	INSTALL		\
-	aclocal.m4	\
-	compile		\
-	config.guess	\
-	config.h.in	\
-	config.sub	\
-	depcomp		\
-	install-sh	\
-	ltmain.sh	\
-	missing		\
-	mkinstalldirs	\
-	omf.make	\
-	gtk-doc.make	\
-	`find "$(srcdir)" -type f -name Makefile.in -print` \
+	$(GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL) \
+	$(GITIGNORE_MAINTAINERCLEANFILES_MAKEFILE_IN) \
+	$(GITIGNORE_MAINTAINERCLEANFILES_M4_LIBTOOL) \
+	build-aux/ \
+	INSTALL \
+	omf.make \
+	gtk-doc.make \
 	ABOUT-NLS \
 	config.rpath \
 	po/Makevars.template \
@@ -619,6 +769,8 @@ MAINTAINERCLEANFILES += \
 	po/insert-header.sin \
 	po/quot.sed \
 	po/remove-potcdate.sin \
+	m4/gtk-doc.m4 \
+	m4/intltool.m4 \
 	$(NULL)
 
 DISTCHECK_CONFIGURE_FLAGS += --enable-gtk-doc
@@ -636,7 +788,7 @@ ChangeLog: $(srcdir)/ChangeLog
 $(srcdir)/ChangeLog:
 	@echo Creating $@
 	@if test -d "$(srcdir)/.git"; then \
-	  (GIT_DIR=$(top_srcdir)/.git ./missing --run \
+	  (GIT_DIR=$(top_srcdir)/.git ./build-aux/missing --run \
 	   git log --stat) | fmt --split-only > $@.tmp \
 	  && mv -f $@.tmp $@ \
 	  || ($(RM) $@.tmp; \

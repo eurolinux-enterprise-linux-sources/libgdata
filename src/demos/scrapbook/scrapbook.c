@@ -516,7 +516,7 @@ properties_show (GtkWidget *widget, ScrapData *first)
 	gtk_widget_show (box2);
 
 	/* OK button */
-	button = gtk_button_new_from_stock (GTK_STOCK_OK);
+	button = gtk_button_new_with_label ("_OK");
 	g_signal_connect (button, "clicked", (GCallback) properties_set, self);
 	gtk_widget_show (button);
 	gtk_box_pack_start (GTK_BOX (self->box1), button, FALSE, FALSE, 0);
@@ -587,8 +587,8 @@ got_name (GtkWidget *widget, ScrapData *scrap_data)
 	gtk_widget_destroy 	(self->dialog);
 
 	file_dialog = gtk_file_chooser_dialog_new ("Upload Photo", GTK_WINDOW (scrap_data->window), GTK_FILE_CHOOSER_ACTION_SAVE,
-	                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-	                                           GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+	                                           "_Cancel", GTK_RESPONSE_CANCEL,
+	                                           "_Open", GTK_RESPONSE_ACCEPT,
 	                                           NULL);
 
 	if (gtk_dialog_run (GTK_DIALOG (file_dialog)) == GTK_RESPONSE_ACCEPT) {
@@ -604,7 +604,7 @@ static void
 upload (GtkWidget *widget, ScrapData *first)
 {
 	ScrapPUpload 	*self;
-	GtkWidget *label, *content_area, *action_area;
+	GtkWidget *label, *content_area;
 	label = gtk_label_new ("Enter photo name and description");
 	self = first->p_upload;
 
@@ -613,7 +613,6 @@ upload (GtkWidget *widget, ScrapData *first)
 	/* dialog to get the file's name and description */
 	self->dialog = gtk_dialog_new();
 	content_area = gtk_dialog_get_content_area (GTK_DIALOG (self->dialog));
-	action_area = gtk_dialog_get_action_area (GTK_DIALOG (self->dialog));
 
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (content_area), label, FALSE, FALSE, 0);
@@ -621,12 +620,12 @@ upload (GtkWidget *widget, ScrapData *first)
 	self->name	= gtk_entry_new ();
 	g_signal_connect 	(self->name, "activate", G_CALLBACK (got_name), self);
 	gtk_widget_show  	(self->name);
-	gtk_box_pack_start (GTK_BOX (action_area), self->name, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (content_area), self->name, TRUE, TRUE, 0);
 
 	self->description = gtk_entry_new ();
 	g_signal_connect 	(self->description, "activate", G_CALLBACK (got_name), first);
 	gtk_widget_show  	(self->description);
-	gtk_box_pack_start (GTK_BOX (action_area), self->description, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (content_area), self->description, TRUE, TRUE, 0);
 
 	gtk_widget_show		(self->dialog);
 }

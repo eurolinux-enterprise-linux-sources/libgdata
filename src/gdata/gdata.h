@@ -39,6 +39,7 @@
 #include <gdata/gdata-authorization-domain.h>
 #include <gdata/gdata-client-login-authorizer.h>
 #include <gdata/gdata-oauth1-authorizer.h>
+#include <gdata/gdata-oauth2-authorizer.h>
 #ifdef GOA_API_IS_SUBJECT_TO_CHANGE
 /* You need to define GOA_API_IS_SUBJECT_TO_CHANGE in order to use the GOA authoriser. */
 #include <gdata/gdata-goa-authorizer.h>
@@ -90,6 +91,7 @@
 
 /* YouTube */
 #include <gdata/services/youtube/gdata-youtube-service.h>
+#include <gdata/services/youtube/gdata-youtube-feed.h>
 #include <gdata/services/youtube/gdata-youtube-query.h>
 #include <gdata/services/youtube/gdata-youtube-video.h>
 #include <gdata/services/youtube/gdata-youtube-content.h>
@@ -136,5 +138,21 @@
 #include <gdata/services/documents/gdata-documents-pdf.h>
 #include <gdata/services/documents/gdata-documents-enums.h>
 #include <gdata/services/documents/gdata-documents-upload-query.h>
+
+/* Google Tasks */
+#include <gdata/services/tasks/gdata-tasks-service.h>
+#include <gdata/services/tasks/gdata-tasks-query.h>
+#include <gdata/services/tasks/gdata-tasks-tasklist.h>
+#include <gdata/services/tasks/gdata-tasks-task.h>
+
+/* Google Freebase */
+#include <gdata/services/freebase/gdata-freebase-service.h>
+#include <gdata/services/freebase/gdata-freebase-query.h>
+#include <gdata/services/freebase/gdata-freebase-result.h>
+#include <gdata/services/freebase/gdata-freebase-search-query.h>
+#include <gdata/services/freebase/gdata-freebase-search-result.h>
+#include <gdata/services/freebase/gdata-freebase-topic-query.h>
+#include <gdata/services/freebase/gdata-freebase-topic-result.h>
+#include <gdata/services/freebase/gdata-freebase-enums.h>
 
 #endif /* !GDATA_H */

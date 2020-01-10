@@ -20,7 +20,7 @@
 /*
  * SECTION:gdata-buffer
  * @short_description: GData buffer to allow threadsafe buffering
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gdata-buffer.h
  *
  * #GDataBuffer is a simple object which allows threadsafe buffering of data meaning, for example, data can be received from
@@ -268,7 +268,7 @@ gdata_buffer_pop_data (GDataBuffer *self, guint8 *data, gsize length_requested, 
 
 	/* We can't assume we'll have enough data, since we may have reached EOF */
 	chunk = self->head;
-	while (chunk != NULL && length_remaining >= chunk->length) {
+	while (chunk != NULL && self->head_read_offset + length_remaining >= chunk->length) {
 		GDataBufferChunk *next_chunk;
 		gsize chunk_length = chunk->length - self->head_read_offset;
 
@@ -292,6 +292,7 @@ gdata_buffer_pop_data (GDataBuffer *self, guint8 *data, gsize length_requested, 
 	 * been corrupted somewhere). */
 	if (G_LIKELY (length_remaining > 0)) {
 		g_assert (chunk != NULL);
+		g_assert_cmpuint (length_remaining, <=, chunk->length);
 
 		/* Copy the requested data to the output */
 		if (data != NULL) {

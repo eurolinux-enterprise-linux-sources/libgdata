@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-feed
  * @short_description: GData feed object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gdata-feed.h
  *
  * #GDataFeed is a list of entries (#GDataEntry) returned as the result of a query to a #GDataService, or given as the input to another
@@ -36,6 +36,7 @@
 #include <glib/gi18n-lib.h>
 #include <libxml/parser.h>
 #include <string.h>
+#include <json-glib/json-glib.h>
 
 #include "gdata-feed.h"
 #include "gdata-entry.h"
@@ -56,6 +57,9 @@ static void get_namespaces (GDataParsable *parsable, GHashTable *namespaces);
 static void _gdata_feed_add_category (GDataFeed *self, GDataCategory *category);
 static void _gdata_feed_add_link (GDataFeed *self, GDataLink *link);
 static void _gdata_feed_add_author (GDataFeed *self, GDataAuthor *author);
+
+static gboolean parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error);
+static gboolean post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error);
 
 struct _GDataFeedPrivate {
 	GList *entries;
@@ -111,6 +115,9 @@ gdata_feed_class_init (GDataFeedClass *klass)
 	parsable_class->get_xml = get_xml;
 	parsable_class->get_namespaces = get_namespaces;
 	parsable_class->element_name = "feed";
+
+	parsable_class->parse_json = parse_json;
+	parsable_class->post_parse_json = post_parse_json;
 
 	/**
 	 * GDataFeed:title:
@@ -406,7 +413,6 @@ typedef struct {
 	GDataQueryProgressCallback progress_callback;
 	gpointer progress_user_data;
 	guint entry_i;
-	gboolean is_async;
 } ParseData;
 
 static gboolean
@@ -484,7 +490,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			if (total_results_string == NULL)
 				return gdata_parser_error_required_content_missing (node, error);
 
-			self->priv->total_results = strtoul ((gchar*) total_results_string, NULL, 10);
+			self->priv->total_results = g_ascii_strtoull ((gchar*) total_results_string, NULL, 10);
 			xmlFree (total_results_string);
 		} else if (xmlStrcmp (node->name, (xmlChar*) "startIndex") == 0) {
 			/* openSearch:startIndex */
@@ -499,7 +505,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			if (start_index_string == NULL)
 				return gdata_parser_error_required_content_missing (node, error);
 
-			self->priv->start_index = strtoul ((gchar*) start_index_string, NULL, 10);
+			self->priv->start_index = g_ascii_strtoull ((gchar*) start_index_string, NULL, 10);
 			xmlFree (start_index_string);
 		} else if (xmlStrcmp (node->name, (xmlChar*) "itemsPerPage") == 0) {
 			/* openSearch:itemsPerPage */
@@ -514,7 +520,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 			if (items_per_page_string == NULL)
 				return gdata_parser_error_required_content_missing (node, error);
 
-			self->priv->items_per_page = strtoul ((gchar*) items_per_page_string, NULL, 10);
+			self->priv->items_per_page = g_ascii_strtoull ((gchar*) items_per_page_string, NULL, 10);
 			xmlFree (items_per_page_string);
 		} else {
 			return GDATA_PARSABLE_CLASS (gdata_feed_parent_class)->parse_xml (parsable, doc, node, user_data, error);
@@ -584,28 +590,102 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
 		GDATA_PARSABLE_GET_CLASS (i->data)->get_namespaces (GDATA_PARSABLE (i->data), namespaces);
 }
 
+static gboolean
+parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error)
+{
+	GDataFeed *self = GDATA_FEED (parsable);
+	ParseData *data = user_data;
+
+	if (g_strcmp0 (json_reader_get_member_name (reader), "items") == 0) {
+		gint i, elements;
+
+		/* Loop through the elements array. */
+		for (i = 0, elements = json_reader_count_elements (reader); i < elements; i++) {
+			GDataEntry *entry;
+			GType entry_type;
+
+			json_reader_read_element (reader, i);
+
+			/* Allow @data to be %NULL, and assume we're parsing a vanilla feed, so that we can test #GDataFeed in tests/general.c.
+			 * A little hacky, but not too much so, and valuable for testing. */
+			entry_type = (data != NULL) ? data->entry_type : GDATA_TYPE_ENTRY;
+
+			/* Parse the node, passing it the reader cursor. */
+			entry = GDATA_ENTRY (_gdata_parsable_new_from_json_node (entry_type, reader, NULL, error));
+			if (entry == NULL) {
+				json_reader_end_element (reader);
+				return FALSE;
+			}
+
+			/* Calls the callbacks in the main thread */
+			if (data != NULL)
+				_gdata_feed_call_progress_callback (self, data, entry);
+			_gdata_feed_add_entry (self, entry);
+			g_object_unref (entry);
+
+			json_reader_end_element (reader);
+		}
+	} else if (g_strcmp0 (json_reader_get_member_name (reader), "kind") == 0) {
+		/* Ignore. */
+	} else if (g_strcmp0 (json_reader_get_member_name (reader), "etag") == 0) {
+		GDATA_FEED (parsable)->priv->etag = g_strdup (json_reader_get_string_value (reader));
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_feed_parent_class)->parse_json (parsable, reader, user_data, error);
+	}
+
+	return TRUE;
+}
+
+static gboolean
+post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error)
+{
+	GDataFeedPrivate *priv = GDATA_FEED (parsable)->priv;
+
+	/* Reverse our lists of stuff. */
+	priv->entries = g_list_reverse (priv->entries);
+
+	return TRUE;
+}
+
+/* Internal helper method to set these properties. */
+void
+_gdata_feed_set_page_info (GDataFeed *self, guint total_results,
+                           guint items_per_page)
+{
+	g_return_if_fail (GDATA_IS_FEED (self));
+
+	self->priv->total_results = total_results;
+	self->priv->items_per_page = items_per_page;
+}
+
 /*
  * _gdata_feed_new:
+ * @feed_type: the type of #GDataFeed subclass
  * @title: the feed's title
  * @id: the feed's ID
  * @updated: when the feed was last updated
  *
- * Creates a new #GDataFeed with the bare minimum of data to be valid.
+ * Creates a new #GDataFeed or subclass with the bare minimum of data to be
+ * valid.
  *
  * Return value: a new #GDataFeed
  *
- * Since: 0.6.0
+ * Since: 0.17.0
  */
 GDataFeed *
-_gdata_feed_new (const gchar *title, const gchar *id, gint64 updated)
+_gdata_feed_new (GType feed_type,
+                 const gchar *title,
+                 const gchar *id,
+                 gint64 updated)
 {
 	GDataFeed *feed;
 
+	g_return_val_if_fail (g_type_is_a (feed_type, GDATA_TYPE_FEED), NULL);
 	g_return_val_if_fail (title != NULL, NULL);
 	g_return_val_if_fail (id != NULL, NULL);
 	g_return_val_if_fail (updated >= 0, NULL);
 
-	feed = g_object_new (GDATA_TYPE_FEED, NULL);
+	feed = g_object_new (feed_type, NULL);
 	feed->priv->title = g_strdup (title);
 	feed->priv->id = g_strdup (id);
 	feed->priv->updated = updated;
@@ -615,7 +695,7 @@ _gdata_feed_new (const gchar *title, const gchar *id, gint64 updated)
 
 GDataFeed *
 _gdata_feed_new_from_xml (GType feed_type, const gchar *xml, gint length, GType entry_type,
-                          GDataQueryProgressCallback progress_callback, gpointer progress_user_data, gboolean is_async, GError **error)
+                          GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error)
 {
 	ParseData *data;
 	GDataFeed *feed;
@@ -625,8 +705,27 @@ _gdata_feed_new_from_xml (GType feed_type, const gchar *xml, gint length, GType 
 	g_return_val_if_fail (g_type_is_a (entry_type, GDATA_TYPE_ENTRY), NULL);
 	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
-	data = _gdata_feed_parse_data_new (entry_type, progress_callback, progress_user_data, is_async);
+	data = _gdata_feed_parse_data_new (entry_type, progress_callback, progress_user_data);
 	feed = GDATA_FEED (_gdata_parsable_new_from_xml (feed_type, xml, length, data, error));
+	_gdata_feed_parse_data_free (data);
+
+	return feed;
+}
+
+GDataFeed *
+_gdata_feed_new_from_json (GType feed_type, const gchar *json, gint length, GType entry_type,
+                          GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error)
+{
+	ParseData *data;
+	GDataFeed *feed;
+
+	g_return_val_if_fail (g_type_is_a (feed_type, GDATA_TYPE_FEED), NULL);
+	g_return_val_if_fail (json != NULL, NULL);
+	g_return_val_if_fail (g_type_is_a (entry_type, GDATA_TYPE_ENTRY), NULL);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+	data = _gdata_feed_parse_data_new (entry_type, progress_callback, progress_user_data);
+	feed = GDATA_FEED (_gdata_parsable_new_from_json (feed_type, json, length, data, error));
 	_gdata_feed_parse_data_free (data);
 
 	return feed;
@@ -968,7 +1067,7 @@ _gdata_feed_add_entry (GDataFeed *self, GDataEntry *entry)
 }
 
 gpointer
-_gdata_feed_parse_data_new (GType entry_type, GDataQueryProgressCallback progress_callback, gpointer progress_user_data, gboolean is_async)
+_gdata_feed_parse_data_new (GType entry_type, GDataQueryProgressCallback progress_callback, gpointer progress_user_data)
 {
 	ParseData *data;
 	data = g_slice_new (ParseData);
@@ -976,7 +1075,6 @@ _gdata_feed_parse_data_new (GType entry_type, GDataQueryProgressCallback progres
 	data->progress_callback = progress_callback;
 	data->progress_user_data = progress_user_data;
 	data->entry_i = 0;
-	data->is_async = is_async;
 
 	return data;
 }
@@ -991,9 +1089,15 @@ static gboolean
 progress_callback_idle (ProgressCallbackData *data)
 {
 	data->progress_callback (data->entry, data->entry_i, data->total_results, data->progress_user_data);
+
+	return G_SOURCE_REMOVE;
+}
+
+static void
+progress_callback_data_free (ProgressCallbackData *data)
+{
 	g_object_unref (data->entry);
 	g_slice_free (ProgressCallbackData, data);
-	return FALSE;
 }
 
 void
@@ -1012,14 +1116,12 @@ _gdata_feed_call_progress_callback (GDataFeed *self, gpointer user_data, GDataEn
 		progress_data->entry_i = data->entry_i;
 		progress_data->total_results = MIN (self->priv->items_per_page, self->priv->total_results);
 
-		if (data->is_async == TRUE) {
-			/* Send the callback; use G_PRIORITY_DEFAULT rather than G_PRIORITY_DEFAULT_IDLE
-			* to contend with the priorities used by the callback functions in GAsyncResult */
-			g_idle_add_full (G_PRIORITY_DEFAULT, (GSourceFunc) progress_callback_idle, progress_data, NULL);
-		} else {
-			/* If we're running synchronously, just call the callbacks directly */
-			progress_callback_idle (progress_data);
-		}
+		/* Send the callback; use G_PRIORITY_DEFAULT rather than G_PRIORITY_DEFAULT_IDLE
+		 * to contend with the priorities used by the callback functions in GAsyncResult */
+		g_main_context_invoke_full (NULL, G_PRIORITY_DEFAULT,
+		                            (GSourceFunc) progress_callback_idle,
+		                            progress_data,
+		                            (GDestroyNotify) progress_callback_data_free);
 	}
 	data->entry_i++;
 }

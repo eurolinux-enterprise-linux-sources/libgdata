@@ -61,10 +61,17 @@ typedef struct {
 typedef struct {
 	/*< private >*/
 	GObjectClass parent_class;
+
+	/*< private >*/
+	/* Padding for future expansion */
+	void (*_g_reserved0) (void);
+	void (*_g_reserved1) (void);
 } GDataGoaAuthorizerClass;
 
 GType gdata_goa_authorizer_get_type (void) G_GNUC_CONST;
 GDataGoaAuthorizer *gdata_goa_authorizer_new (GoaObject *goa_object) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 GoaObject *gdata_goa_authorizer_get_goa_object (GDataGoaAuthorizer *self) G_GNUC_PURE;
+
+G_END_DECLS
 
 #endif /* GDATA_GOA_AUTHORIZER_H */

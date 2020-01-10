@@ -2,36 +2,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GDataDownloadStream</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<title>GDataDownloadStream: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch02.html" title="Core API">
 <link rel="prev" href="GDataParsable.html" title="GDataParsable">
 <link rel="next" href="GDataUploadStream.html" title="GDataUploadStream">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="GDataParsable.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="GDataUploadStream.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#GDataDownloadStream.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#GDataDownloadStream.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#GDataDownloadStream.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#GDataDownloadStream.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
-                   | 
-                  <a href="#GDataDownloadStream.properties" class="shortcut">Properties</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataDownloadStream.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataDownloadStream.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_interfaces">  <span class="dim">|</span> 
+                  <a href="#GDataDownloadStream.implemented-interfaces" class="shortcut">Implemented Interfaces</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#GDataDownloadStream.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataParsable.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="GDataUploadStream.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="GDataDownloadStream"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -39,105 +32,195 @@
 <h2><span class="refentrytitle"><a name="GDataDownloadStream.top_of_page"></a>GDataDownloadStream</span></h2>
 <p>GDataDownloadStream — GData download stream object</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
 <a name="GDataDownloadStream.stability-level"></a><h2>Stability Level</h2>
-Unstable, unless otherwise indicated
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
-<a name="GDataDownloadStream.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#include &lt;gdata/gdata-download-stream.h&gt;
-
-                    <a class="link" href="GDataDownloadStream.html#GDataDownloadStream-struct" title="GDataDownloadStream">GDataDownloadStream</a>;
-                    <a class="link" href="GDataDownloadStream.html#GDataDownloadStreamClass" title="GDataDownloadStreamClass">GDataDownloadStreamClass</a>;
-<a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="returnvalue">GInputStream</span></a> *      <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()">gdata_download_stream_new</a>           (<em class="parameter"><code><a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *service</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> *domain</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *download_uri</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>);
-<a class="link" href="GDataService.html" title="GDataService"><span class="returnvalue">GDataService</span></a> *      <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-service" title="gdata_download_stream_get_service ()">gdata_download_stream_get_service</a>   (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
-<a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="returnvalue">GDataAuthorizationDomain</span></a> * <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-authorization-domain" title="gdata_download_stream_get_authorization_domain ()">gdata_download_stream_get_authorization_domain</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
-<a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="returnvalue">GCancellable</span></a> *      <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-cancellable" title="gdata_download_stream_get_cancellable ()">gdata_download_stream_get_cancellable</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-download-uri" title="gdata_download_stream_get_download_uri ()">gdata_download_stream_get_download_uri</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-content-type" title="gdata_download_stream_get_content_type ()">gdata_download_stream_get_content_type</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gssize"><span class="returnvalue">gssize</span></a>              <a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-content-length" title="gdata_download_stream_get_content_length ()">gdata_download_stream_get_content_length</a>
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);
-</pre>
+<div class="refsect1">
+<a name="GDataDownloadStream.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="returnvalue">GInputStream</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()">gdata_download_stream_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataService.html" title="GDataService"><span class="returnvalue">GDataService</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-service" title="gdata_download_stream_get_service ()">gdata_download_stream_get_service</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="returnvalue">GDataAuthorizationDomain</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-authorization-domain" title="gdata_download_stream_get_authorization_domain ()">gdata_download_stream_get_authorization_domain</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="returnvalue">GCancellable</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-cancellable" title="gdata_download_stream_get_cancellable ()">gdata_download_stream_get_cancellable</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-download-uri" title="gdata_download_stream_get_download_uri ()">gdata_download_stream_get_download_uri</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-content-type" title="gdata_download_stream_get_content_type ()">gdata_download_stream_get_content_type</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gssize"><span class="returnvalue">gssize</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-content-length" title="gdata_download_stream_get_content_length ()">gdata_download_stream_get_content_length</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataDownloadStream.properties"></a><h2>Properties</h2>
+<div class="informaltable"><table border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody>
+<tr>
+<td class="property_type">
+<a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataDownloadStream.html#GDataDownloadStream--authorization-domain" title="The “authorization-domain” property">authorization-domain</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr>
+<tr>
+<td class="property_type">
+<a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataDownloadStream.html#GDataDownloadStream--cancellable" title="The “cancellable” property">cancellable</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr>
+<tr>
+<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#glong"><span class="type">glong</span></a></td>
+<td class="property_name"><a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-length" title="The “content-length” property">content-length</a></td>
+<td class="property_flags">Read</td>
+</tr>
+<tr>
+<td class="property_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-type" title="The “content-type” property">content-type</a></td>
+<td class="property_flags">Read</td>
+</tr>
+<tr>
+<td class="property_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataDownloadStream.html#GDataDownloadStream--download-uri" title="The “download-uri” property">download-uri</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr>
+<tr>
+<td class="property_type">
+<a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataDownloadStream.html#GDataDownloadStream--service" title="The “service” property">service</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataDownloadStream.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataDownloadStream.html#GDataDownloadStream-struct" title="GDataDownloadStream">GDataDownloadStream</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataDownloadStream.html#GDataDownloadStreamClass" title="GDataDownloadStreamClass">GDataDownloadStreamClass</a></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="GDataDownloadStream.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----<a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html">GInputStream</a>
-         +----GDataDownloadStream
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a href="https://developer.gnome.org/gio/unstable/GInputStream.html">GInputStream</a>
+        <span class="lineart">╰──</span> GDataDownloadStream
 </pre>
 </div>
 <div class="refsect1">
 <a name="GDataDownloadStream.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GDataDownloadStream implements
- <a href="http://library.gnome.org/devel/gio/unstable/GSeekable.html">GSeekable</a>.</p>
+ <a href="https://developer.gnome.org/gio/unstable/GSeekable.html">GSeekable</a>.</p>
 </div>
 <div class="refsect1">
-<a name="GDataDownloadStream.properties"></a><h2>Properties</h2>
-<pre class="synopsis">
-  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--authorization-domain" title='The "authorization-domain" property'>authorization-domain</a>"     <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a>*  : Read / Write / Construct Only
-  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--cancellable" title='The "cancellable" property'>cancellable</a>"              <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>*         : Read / Write / Construct Only
-  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-length" title='The "content-length" property'>content-length</a>"           <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"><span class="type">glong</span></a>                 : Read
-  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-type" title='The "content-type" property'>content-type</a>"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
-  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--download-uri" title='The "download-uri" property'>download-uri</a>"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
-  "<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--service" title='The "service" property'>service</a>"                  <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>*         : Read / Write / Construct Only
+<a name="GDataDownloadStream.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/gdata-download-stream.h&gt;
 </pre>
 </div>
 <div class="refsect1">
 <a name="GDataDownloadStream.description"></a><h2>Description</h2>
-<p>
-<a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> is a <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> subclass to allow downloading of files from GData services with authorization from a <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> under
+<p><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> is a <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> subclass to allow downloading of files from GData services with authorization from a <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> under
 the given <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a>. If authorization is not required to perform the download, a <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> doesn't have to be
-specified.
-</p>
-<p>
-Once a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> is instantiated with <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>, the standard <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API can be used on the stream to download
-the file. Network communication may not actually begin until the first call to <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a>, so having a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> around is no
-guarantee that the file is being downloaded.
-</p>
-<p>
-The content type and length of the file being downloaded are made available through <a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-type" title='The "content-type" property'><span class="type">"content-type"</span></a> and
-<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-length" title='The "content-length" property'><span class="type">"content-length"</span></a> as soon as the appropriate data is received from the server. Connect to the
-<a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-notify"><span class="type">"notify"</span></a> <code class="code">content-type</code> and <code class="code">content-length</code> details to be notified as
-soon as the data is available.
-</p>
-<p>
-The entire download operation can be cancelled using the <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> instance provided to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>, or returned by
-<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-cancellable" title="gdata_download_stream_get_cancellable ()"><code class="function">gdata_download_stream_get_cancellable()</code></a>. Cancelling this at any time will cause all future <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> method calls to return
-<a href="http://library.gnome.org/devel/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a>. If any <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> methods are in the process of being called, they will be cancelled and return <a href="http://library.gnome.org/devel/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> as
-soon as possible.
-</p>
-<p>
-Note that cancelling an individual method call (such as a call to <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a>) using the <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> parameter of the method will not
-cancel the download as a whole — just that particular method call. In the case of <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a>, this will cause it to successfully return
-any data that it has in memory at the moment (up to the requested number of bytes), or return a <a href="http://library.gnome.org/devel/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> if it was blocking on receiving
-data from the network. This is also the behaviour of <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a> when the download operation as a whole is cancelled.
-</p>
-<p>
-In the case of <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html#g-input-stream-close"><code class="function">g_input_stream_close()</code></a>, the call will return immediately if network activity hasn't yet started. If it has, the network activity will
-be cancelled, regardless of whether the call to <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html#g-input-stream-close"><code class="function">g_input_stream_close()</code></a> is cancelled. Cancelling a pending call to <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html#g-input-stream-close"><code class="function">g_input_stream_close()</code></a> (either
-using the method's <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>, or by cancelling the download stream as a whole) will cause it to stop waiting for the network activity to finish,
-and return <a href="http://library.gnome.org/devel/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> immediately. Network activity will continue to be shut down in the background.
-</p>
-<p>
-If the server returns an error message (for example, if the user is not correctly authenticated/authorized or doesn't have suitable permissions to
-download from the given URI), it will be returned as a <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> by the first call to <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a>.
-</p>
-<p>
-</p>
+specified.</p>
+<p>Once a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> is instantiated with <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>, the standard <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API can be used on the stream to download
+the file. Network communication may not actually begin until the first call to <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a>, so having a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> around is no
+guarantee that the file is being downloaded.</p>
+<p>The content type and length of the file being downloaded are made available through <a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-type" title="The “content-type” property"><span class="type">“content-type”</span></a> and
+<a class="link" href="GDataDownloadStream.html#GDataDownloadStream--content-length" title="The “content-length” property"><span class="type">“content-length”</span></a> as soon as the appropriate data is received from the server. Connect to the
+<a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-notify"><span class="type">“notify”</span></a> <code class="code">content-type</code> and <code class="code">content-length</code> details to be notified as
+soon as the data is available.</p>
+<p>The entire download operation can be cancelled using the <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> instance provided to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>, or returned by
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-cancellable" title="gdata_download_stream_get_cancellable ()"><code class="function">gdata_download_stream_get_cancellable()</code></a>. Cancelling this at any time will cause all future <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> method calls to return
+<a href="https://developer.gnome.org/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a>. If any <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> methods are in the process of being called, they will be cancelled and return <a href="https://developer.gnome.org/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> as
+soon as possible.</p>
+<p>Note that cancelling an individual method call (such as a call to <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a>) using the <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> parameter of the method will not
+cancel the download as a whole — just that particular method call. In the case of <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a>, this will cause it to successfully return
+any data that it has in memory at the moment (up to the requested number of bytes), or return a <a href="https://developer.gnome.org/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> if it was blocking on receiving
+data from the network. This is also the behaviour of <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a> when the download operation as a whole is cancelled.</p>
+<p>In the case of <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#g-input-stream-close"><code class="function">g_input_stream_close()</code></a>, the call will return immediately if network activity hasn't yet started. If it has, the network activity will
+be cancelled, regardless of whether the call to <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#g-input-stream-close"><code class="function">g_input_stream_close()</code></a> is cancelled. Cancelling a pending call to <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#g-input-stream-close"><code class="function">g_input_stream_close()</code></a> (either
+using the method's <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>, or by cancelling the download stream as a whole) will cause it to stop waiting for the network activity to finish,
+and return <a href="https://developer.gnome.org/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> immediately. Network activity will continue to be shut down in the background.</p>
+<p>If the server returns an error message (for example, if the user is not correctly authenticated/authorized or doesn't have suitable permissions to
+download from the given URI), it will be returned as a <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> by the first call to <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#g-input-stream-read"><code class="function">g_input_stream_read()</code></a>.</p>
 <div class="example">
-<a name="id572767"></a><p class="title"><b>Example 2. Downloading to a File</b></p>
+<a name="id-1.3.2.9.10.9"></a><p class="title"><b>Example 2. Downloading to a File</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -179,60 +262,287 @@ download from the given URI), it will be returned as a <a class="link" href="GDa
 35
 36
 37</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
-<span class="usertype">GDataAuthorizationDomain</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">domain</span><span class="symbol">;</span>
-<span class="usertype">GCancellable</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cancellable</span><span class="symbol">;</span>
-<span class="usertype">GInputStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">download_stream</span><span class="symbol">;</span>
-<span class="usertype">GOutputStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">output_stream</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting">GDataService <span class="gtkdoc opt">*</span>service<span class="gtkdoc opt">;</span>
+GDataAuthorizationDomain <span class="gtkdoc opt">*</span>domain<span class="gtkdoc opt">;</span>
+GCancellable <span class="gtkdoc opt">*</span>cancellable<span class="gtkdoc opt">;</span>
+GInputStream <span class="gtkdoc opt">*</span>download_stream<span class="gtkdoc opt">;</span>
+GOutputStream <span class="gtkdoc opt">*</span>output_stream<span class="gtkdoc opt">;</span>
 
 <span class="comment">/* Create the download stream */</span>
-<span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_my_service</span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">domain </span><span class="symbol">=</span><span class="normal"> </span><span class="function">get_my_authorization_domain_from_service</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
-<span class="normal">cancellable </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html#g-cancellable-new">g_cancellable_new</a></span><span class="normal"> </span><span class="symbol">();</span><span class="normal"> </span><span class="comment">/* cancel this to cancel the entire download operation */</span>
-<span class="normal">download_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDownloadStream.html#gdata-download-stream-new">gdata_download_stream_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> domain</span><span class="symbol">,</span><span class="normal"> download_uri</span><span class="symbol">,</span><span class="normal"> cancellable</span><span class="symbol">);</span>
-<span class="normal">output_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_file_and_return_output_stream</span><span class="normal"> </span><span class="symbol">();</span>
+service <span class="gtkdoc opt">=</span> <span class="function">create_my_service</span> <span class="gtkdoc opt">();</span>
+domain <span class="gtkdoc opt">=</span> <span class="function">get_my_authorization_domain_from_service</span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
+cancellable <span class="gtkdoc opt">=</span> <span class="function"><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-new">g_cancellable_new</a></span> <span class="gtkdoc opt">();</span> <span class="comment">/* cancel this to cancel the entire download operation */</span>
+download_stream <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataDownloadStream.html#gdata-download-stream-new">gdata_download_stream_new</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">,</span> domain<span class="gtkdoc opt">,</span> download_uri<span class="gtkdoc opt">,</span> cancellable<span class="gtkdoc opt">);</span>
+output_stream <span class="gtkdoc opt">=</span> <span class="function">create_file_and_return_output_stream</span> <span class="gtkdoc opt">();</span>
 
 <span class="comment">/* Perform the download asynchronously */</span>
-<span class="function"><a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html#g-output-stream-splice-async">g_output_stream_splice_async</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">output_stream</span><span class="symbol">,</span><span class="normal"> download_stream</span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-SOURCE:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE</a> </span><span class="symbol">|</span><span class="normal"> <a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-TARGET:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</a></span><span class="symbol">,</span>
-<span class="normal">                              <a href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#G-PRIORITY-DEFAULT:CAPS">G_PRIORITY_DEFAULT</a></span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback">GAsyncReadyCallback</a></span><span class="symbol">)</span><span class="normal"> download_splice_cb</span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice-async">g_output_stream_splice_async</a></span> <span class="gtkdoc opt">(</span>output_stream<span class="gtkdoc opt">,</span> download_stream<span class="gtkdoc opt">,</span> G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE <span class="gtkdoc opt">|</span> G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET<span class="gtkdoc opt">,</span>
+                              G_PRIORITY_DEFAULT<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">, (</span>GAsyncReadyCallback<span class="gtkdoc opt">)</span> download_splice_cb<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">);</span>
 
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">output_stream</span><span class="symbol">);</span>
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">download_stream</span><span class="symbol">);</span>
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cancellable</span><span class="symbol">);</span>
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">domain</span><span class="symbol">);</span>
-<span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>output_stream<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>download_stream<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>cancellable<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>domain<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
 
-<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">download_splice_cb</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GOutputStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">output_stream</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">GAsyncResult</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">result</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">gpointer</span><span class="normal"> user_data</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">    </span><span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
+<span class="gtkdoc kwb">static void</span>
+<span class="function">download_splice_cb</span> <span class="gtkdoc opt">(</span>GOutputStream <span class="gtkdoc opt">*</span>output_stream<span class="gtkdoc opt">,</span> GAsyncResult <span class="gtkdoc opt">*</span>result<span class="gtkdoc opt">,</span> gpointer user_data<span class="gtkdoc opt">)</span>
+<span class="gtkdoc opt">{</span>
+	GError <span class="gtkdoc opt">*</span>error <span class="gtkdoc opt">=</span> NULL<span class="gtkdoc opt">;</span>
 
-<span class="normal">    </span><span class="function"><a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html#g-output-stream-splice-finish">g_output_stream_splice_finish</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">output_stream</span><span class="symbol">,</span><span class="normal"> result</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+	<span class="function"><a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice-finish">g_output_stream_splice_finish</a></span> <span class="gtkdoc opt">(</span>output_stream<span class="gtkdoc opt">,</span> result<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">);</span>
 
-<span class="normal">    </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a> </span><span class="symbol">&amp;&amp;</span><span class="normal"> </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#g-error-matches">g_error_matches</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/gio/unstable/gio-GIOError.html#G-IO-ERROR:CAPS">G_IO_ERROR</a></span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS">G_IO_ERROR_CANCELLED</a></span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS">FALSE</a></span><span class="symbol">))</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">        </span><span class="comment">/* Error downloading the file; potentially an I/O error (GIOError), or an error response from the server</span>
-<span class="comment">         * (GDataServiceError). You might want to delete the newly created file because of the error. */</span>
-<span class="normal">        </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error downloading file: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">        </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-<span class="cbracket">}</span></pre></td>
+	<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL <span class="gtkdoc opt">&amp;&amp;</span> <span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-matches">g_error_matches</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">,</span> G_IO_ERROR<span class="gtkdoc opt">,</span> G_IO_ERROR_CANCELLED<span class="gtkdoc opt">) ==</span> FALSE<span class="gtkdoc opt">)) {</span>
+		<span class="comment">/* Error downloading the file; potentially an I/O error (GIOError), or an error response from the server</span>
+<span class="comment">		 * (GDataServiceError). You might want to delete the newly created file because of the error. */</span>
+		<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error downloading file: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
+		<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
+	<span class="gtkdoc opt">}</span>
+<span class="gtkdoc opt">}</span></pre></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 </div>
-<p><br class="example-break">
-</p>
+<br class="example-break">
 </div>
 <div class="refsect1">
-<a name="GDataDownloadStream.details"></a><h2>Details</h2>
+<a name="GDataDownloadStream.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="gdata-download-stream-new"></a><h3>gdata_download_stream_new ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="returnvalue">GInputStream</span></a> *
+gdata_download_stream_new (<em class="parameter"><code><a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *service</code></em>,
+                           <em class="parameter"><code><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> *domain</code></em>,
+                           <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *download_uri</code></em>,
+                           <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>);</pre>
+<p>Creates a new <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>, allowing a file to be downloaded from a GData service using standard <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API.</p>
+<p>As well as the standard GIO errors, calls to the <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API on a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> can also return any relevant specific error from
+<a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a>, or <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-PROTOCOL-ERROR:CAPS"><code class="literal">GDATA_SERVICE_ERROR_PROTOCOL_ERROR</code></a> in the general case.</p>
+<p>If a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> is provided in <em class="parameter"><code>cancellable</code></em>
+, the download operation may be cancelled at any time from another thread using <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>.
+In this case, any ongoing network activity will be stopped, and any pending or future calls to <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API on the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> will
+return <a href="https://developer.gnome.org/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a>. Note that the <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> objects which can be passed to individual <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> operations will not cancel the
+download operation proper if cancelled — they will merely cancel that API call. The only way to cancel the download operation completely is using
+this <em class="parameter"><code>cancellable</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.2.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>service</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>domain</p></td>
+<td class="parameter_description"><p> the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> to authorize the download, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>download_uri</p></td>
+<td class="parameter_description"><p>the URI to download</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>cancellable</p></td>
+<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> for the entire download stream, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.2.8"></a><h4>Returns</h4>
+<p> a new <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+</div>
+<p class="since">Since 0.9.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-download-stream-get-service"></a><h3>gdata_download_stream_get_service ()</h3>
+<pre class="programlisting"><a class="link" href="GDataService.html" title="GDataService"><span class="returnvalue">GDataService</span></a> *
+gdata_download_stream_get_service (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
+<p>Gets the service used to authorize the download, as passed to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.3.6"></a><h4>Returns</h4>
+<p> the <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> used to authorize the download. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-download-stream-get-authorization-domain"></a><h3>gdata_download_stream_get_authorization_domain ()</h3>
+<pre class="programlisting"><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="returnvalue">GDataAuthorizationDomain</span></a> *
+gdata_download_stream_get_authorization_domain
+                               (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
+<p>Gets the authorization domain used to authorize the download, as passed to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>. It may be <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if authorization is not
+needed for the download.</p>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.4.6"></a><h4>Returns</h4>
+<p> the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> used to authorize the download, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.9.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-download-stream-get-cancellable"></a><h3>gdata_download_stream_get_cancellable ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="returnvalue">GCancellable</span></a> *
+gdata_download_stream_get_cancellable (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
+<p>Gets the <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> for the entire download operation, <a class="link" href="GDataDownloadStream.html#GDataDownloadStream--cancellable" title="The “cancellable” property"><span class="type">“cancellable”</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.5.6"></a><h4>Returns</h4>
+<p> the <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> for the entire download operation. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 0.8.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-download-stream-get-download-uri"></a><h3>gdata_download_stream_get_download_uri ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_download_stream_get_download_uri
+                               (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
+<p>Gets the URI of the file being downloaded, as passed to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.6.6"></a><h4>Returns</h4>
+<p> the URI of the file being downloaded</p>
+</div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-download-stream-get-content-type"></a><h3>gdata_download_stream_get_content_type ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_download_stream_get_content_type
+                               (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
+<p>Gets the content type of the file being downloaded. If the <code class="literal">Content-Type</code> header has not yet
+been received, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> will be returned.</p>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.7.6"></a><h4>Returns</h4>
+<p> the content type of the file being downloaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
+</div>
+<p class="since">Since 0.5.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-download-stream-get-content-length"></a><h3>gdata_download_stream_get_content_length ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gssize"><span class="returnvalue">gssize</span></a>
+gdata_download_stream_get_content_length
+                               (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
+<p>Gets the length (in bytes) of the file being downloaded. If the <code class="literal">Content-Length</code> header has not yet
+been received from the server, <code class="code">-1</code> will be returned.</p>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.3.2.9.11.8.6"></a><h4>Returns</h4>
+<p> the content length of the file being downloaded, or <code class="code">-1</code></p>
+</div>
+<p class="since">Since 0.5.0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataDownloadStream.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="GDataDownloadStream-struct"></a><h3>GDataDownloadStream</h3>
 <pre class="programlisting">typedef struct _GDataDownloadStream GDataDownloadStream;</pre>
-<p>
-All the fields in the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> structure are private and should never be accessed directly.
-</p>
+<p>All the fields in the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
@@ -241,300 +551,83 @@ All the fields in the <a class="link" href="GDataDownloadStream.html" title="GDa
 <pre class="programlisting">typedef struct {
 } GDataDownloadStreamClass;
 </pre>
-<p>
-All the fields in the <a class="link" href="GDataDownloadStream.html#GDataDownloadStreamClass" title="GDataDownloadStreamClass"><span class="type">GDataDownloadStreamClass</span></a> structure are private and should never be accessed directly.
-</p>
-<p class="since">Since 0.5.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-download-stream-new"></a><h3>gdata_download_stream_new ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="returnvalue">GInputStream</span></a> *      gdata_download_stream_new           (<em class="parameter"><code><a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *service</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> *domain</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *download_uri</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>);</pre>
-<p>
-Creates a new <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>, allowing a file to be downloaded from a GData service using standard <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API.
-</p>
-<p>
-As well as the standard GIO errors, calls to the <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API on a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> can also return any relevant specific error from
-<a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a>, or <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-PROTOCOL-ERROR:CAPS"><code class="literal">GDATA_SERVICE_ERROR_PROTOCOL_ERROR</code></a> in the general case.
-</p>
-<p>
-If a <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> is provided in <em class="parameter"><code>cancellable</code></em>, the download operation may be cancelled at any time from another thread using <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>.
-In this case, any ongoing network activity will be stopped, and any pending or future calls to <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API on the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> will
-return <a href="http://library.gnome.org/devel/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a>. Note that the <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> objects which can be passed to individual <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> operations will not cancel the
-download operation proper if cancelled — they will merely cancel that API call. The only way to cancel the download operation completely is using
-this <em class="parameter"><code>cancellable</code></em>.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>service</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>domain</code></em> :</span></p></td>
-<td>the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> to authorize the download, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>download_uri</code></em> :</span></p></td>
-<td>the URI to download</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>a <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> for the entire download stream, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a>, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.9.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-download-stream-get-service"></a><h3>gdata_download_stream_get_service ()</h3>
-<pre class="programlisting"><a class="link" href="GDataService.html" title="GDataService"><span class="returnvalue">GDataService</span></a> *      gdata_download_stream_get_service   (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
-<p>
-Gets the service used to authorize the download, as passed to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> used to authorize the download. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.5.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-download-stream-get-authorization-domain"></a><h3>gdata_download_stream_get_authorization_domain ()</h3>
-<pre class="programlisting"><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="returnvalue">GDataAuthorizationDomain</span></a> * gdata_download_stream_get_authorization_domain
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
-<p>
-Gets the authorization domain used to authorize the download, as passed to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>. It may be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if authorization is not
-needed for the download.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> used to authorize the download, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.9.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-download-stream-get-cancellable"></a><h3>gdata_download_stream_get_cancellable ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="returnvalue">GCancellable</span></a> *      gdata_download_stream_get_cancellable
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> for the entire download operation, <a class="link" href="GDataDownloadStream.html#GDataDownloadStream--cancellable" title='The "cancellable" property'><span class="type">"cancellable"</span></a>.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> for the entire download operation. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.8.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-download-stream-get-download-uri"></a><h3>gdata_download_stream_get_download_uri ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_download_stream_get_download_uri
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
-<p>
-Gets the URI of the file being downloaded, as passed to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the URI of the file being downloaded</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.5.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-download-stream-get-content-type"></a><h3>gdata_download_stream_get_content_type ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_download_stream_get_content_type
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
-<p>
-Gets the content type of the file being downloaded. If the <code class="literal">Content-Type</code> header has not yet
-been received, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> will be returned.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the content type of the file being downloaded, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.5.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-download-stream-get-content-length"></a><h3>gdata_download_stream_get_content_length ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gssize"><span class="returnvalue">gssize</span></a>              gdata_download_stream_get_content_length
-                                                        (<em class="parameter"><code><a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> *self</code></em>);</pre>
-<p>
-Gets the length (in bytes) of the file being downloaded. If the <code class="literal">Content-Length</code> header has not yet
-been received from the server, <code class="code">-1</code> will be returned.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the content length of the file being downloaded, or <code class="code">-1</code>
-</td>
-</tr>
-</tbody>
-</table></div>
+<p>All the fields in the <a class="link" href="GDataDownloadStream.html#GDataDownloadStreamClass" title="GDataDownloadStreamClass"><span class="type">GDataDownloadStreamClass</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.5.0</p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataDownloadStream.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
-<a name="GDataDownloadStream--authorization-domain"></a><h3>The <code class="literal">"authorization-domain"</code> property</h3>
-<pre class="programlisting">  "authorization-domain"     <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a>*  : Read / Write / Construct Only</pre>
-<p>
-The authorization domain for the download, against which the <a class="link" href="GDataService.html#GDataService--authorizer" title='The "authorizer" property'><span class="type">"authorizer"</span></a> for the <a class="link" href="GDataDownloadStream.html#GDataDownloadStream--service" title='The "service" property'><span class="type">"service"</span></a> should be
-authorized. This may be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if authorization is not needed for the download.
-</p>
+<a name="GDataDownloadStream--authorization-domain"></a><h3>The <code class="literal">“authorization-domain”</code> property</h3>
+<pre class="programlisting">  “authorization-domain”     <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> *</pre>
+<p>The authorization domain for the download, against which the <a class="link" href="GDataService.html#GDataService--authorizer" title="The “authorizer” property"><span class="type">“authorizer”</span></a> for the <a class="link" href="GDataDownloadStream.html#GDataDownloadStream--service" title="The “service” property"><span class="type">“service”</span></a> should be
+authorized. This may be <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if authorization is not needed for the download.</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since 0.9.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataDownloadStream--cancellable"></a><h3>The <code class="literal">"cancellable"</code> property</h3>
-<pre class="programlisting">  "cancellable"              <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>*         : Read / Write / Construct Only</pre>
-<p>
-An optional cancellable used to cancel the entire download operation. If a <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> instance isn't provided for this property at
-construction time (i.e. to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>), one will be created internally and can be retrieved using
-<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-cancellable" title="gdata_download_stream_get_cancellable ()"><code class="function">gdata_download_stream_get_cancellable()</code></a> and used to cancel the download operation with <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a> just as if it was passed to
-<a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>.
-</p>
-<p>
-If the download operation is cancelled using this <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>, any ongoing network activity will be stopped, and any pending or future
-calls to <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API on the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> will return <a href="http://library.gnome.org/devel/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a>. Note that the <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> objects which can be
-passed to individual <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> operations will not cancel the download operation proper if cancelled — they will merely cancel that API
-call. The only way to cancel the download operation completely is using <a class="link" href="GDataDownloadStream.html#GDataDownloadStream--cancellable" title='The "cancellable" property'><span class="type">"cancellable"</span></a>.
-</p>
+<a name="GDataDownloadStream--cancellable"></a><h3>The <code class="literal">“cancellable”</code> property</h3>
+<pre class="programlisting">  “cancellable”              <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *</pre>
+<p>An optional cancellable used to cancel the entire download operation. If a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> instance isn't provided for this property at
+construction time (i.e. to <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>), one will be created internally and can be retrieved using
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-get-cancellable" title="gdata_download_stream_get_cancellable ()"><code class="function">gdata_download_stream_get_cancellable()</code></a> and used to cancel the download operation with <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a> just as if it was passed to
+<a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a>.</p>
+<p>If the download operation is cancelled using this <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>, any ongoing network activity will be stopped, and any pending or future
+calls to <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> API on the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> will return <a href="https://developer.gnome.org/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a>. Note that the <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> objects which can be
+passed to individual <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> operations will not cancel the download operation proper if cancelled — they will merely cancel that API
+call. The only way to cancel the download operation completely is using <a class="link" href="GDataDownloadStream.html#GDataDownloadStream--cancellable" title="The “cancellable” property"><span class="type">“cancellable”</span></a>.</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since 0.8.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataDownloadStream--content-length"></a><h3>The <code class="literal">"content-length"</code> property</h3>
-<pre class="programlisting">  "content-length"           <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"><span class="type">glong</span></a>                 : Read</pre>
-<p>
-The length (in bytes) of the file being downloaded. This will initially be <code class="code">-1</code>, and will be populated as soon as
-the appropriate header is received from the server. Its value will never change after this.
-</p>
-<p>
-Note that change notifications for this property (<a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-notify"><span class="type">"notify"</span></a> emissions) may be emitted in threads other than the one which created
+<a name="GDataDownloadStream--content-length"></a><h3>The <code class="literal">“content-length”</code> property</h3>
+<pre class="programlisting">  “content-length”           <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#glong"><span class="type">glong</span></a></pre>
+<p>The length (in bytes) of the file being downloaded. This will initially be <code class="code">-1</code>, and will be populated as soon as
+the appropriate header is received from the server. Its value will never change after this.</p>
+<p>Note that change notifications for this property (<a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-notify"><span class="type">“notify”</span></a> emissions) may be emitted in threads other than the one which created
 the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>. It is the client's responsibility to ensure that any notification signal handlers are either multi-thread safe
-or marshal the notification to the thread which owns the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> as appropriate.
-</p>
+or marshal the notification to the thread which owns the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> as appropriate.</p>
+<p>Flags: Read</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataDownloadStream--content-type"></a><h3>The <code class="literal">"content-type"</code> property</h3>
-<pre class="programlisting">  "content-type"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
-<p>
-The content type of the file being downloaded. This will initially be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, and will be populated as soon as the appropriate header is
-received from the server. Its value will never change after this.
-</p>
-<p>
-Note that change notifications for this property (<a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-notify"><span class="type">"notify"</span></a> emissions) may be emitted in threads other than the one which created
+<a name="GDataDownloadStream--content-type"></a><h3>The <code class="literal">“content-type”</code> property</h3>
+<pre class="programlisting">  “content-type”             <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<p>The content type of the file being downloaded. This will initially be <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, and will be populated as soon as the appropriate header is
+received from the server. Its value will never change after this.</p>
+<p>Note that change notifications for this property (<a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-notify"><span class="type">“notify”</span></a> emissions) may be emitted in threads other than the one which created
 the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a>. It is the client's responsibility to ensure that any notification signal handlers are either multi-thread safe
-or marshal the notification to the thread which owns the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> as appropriate.
-</p>
+or marshal the notification to the thread which owns the <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream"><span class="type">GDataDownloadStream</span></a> as appropriate.</p>
+<p>Flags: Read</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataDownloadStream--download-uri"></a><h3>The <code class="literal">"download-uri"</code> property</h3>
-<pre class="programlisting">  "download-uri"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
-<p>
-The URI of the file to download.
-</p>
+<a name="GDataDownloadStream--download-uri"></a><h3>The <code class="literal">“download-uri”</code> property</h3>
+<pre class="programlisting">  “download-uri”             <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<p>The URI of the file to download.</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.5.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataDownloadStream--service"></a><h3>The <code class="literal">"service"</code> property</h3>
-<pre class="programlisting">  "service"                  <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a>*         : Read / Write / Construct Only</pre>
-<p>
-The service which is used to authorize the download, and to which the download relates.
-</p>
+<a name="GDataDownloadStream--service"></a><h3>The <code class="literal">“service”</code> property</h3>
+<pre class="programlisting">  “service”                  <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *</pre>
+<p>The service which is used to authorize the download, and to which the download relates.</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since 0.5.0</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

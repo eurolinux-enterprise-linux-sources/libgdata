@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-media-thumbnail
  * @short_description: Media RSS thumbnail element
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/media/gdata-media-thumbnail.h
  *
  * #GDataMediaThumbnail represents a "thumbnail" element from the
@@ -43,6 +43,9 @@ static void gdata_media_thumbnail_finalize (GObject *object);
 static void gdata_media_thumbnail_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static gboolean pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error);
 static void get_namespaces (GDataParsable *parsable, GHashTable *namespaces);
+static gboolean
+parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data,
+            GError **error);
 
 struct _GDataMediaThumbnailPrivate {
 	gchar *uri;
@@ -73,6 +76,7 @@ gdata_media_thumbnail_class_init (GDataMediaThumbnailClass *klass)
 
 	parsable_class->pre_parse_xml = pre_parse_xml;
 	parsable_class->get_namespaces = get_namespaces;
+	parsable_class->parse_json = parse_json;
 	parsable_class->element_name = "thumbnail";
 	parsable_class->element_namespace = "media";
 
@@ -200,11 +204,11 @@ parse_time (const gchar *time_string)
 
 	g_return_val_if_fail (time_string != NULL, 0);
 
-	hours = strtoul (time_string, &end_pointer, 10);
+	hours = g_ascii_strtoull (time_string, &end_pointer, 10);
 	if (end_pointer != time_string + 2)
 		return -1;
 
-	minutes = strtoul (time_string + 3, &end_pointer, 10);
+	minutes = g_ascii_strtoull (time_string + 3, &end_pointer, 10);
 	if (end_pointer != time_string + 5)
 		return -1;
 
@@ -251,11 +255,11 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 
 	/* Get the width and height */
 	width = xmlGetProp (root_node, (xmlChar*) "width");
-	width_uint = (width == NULL) ? 0 : strtoul ((gchar*) width, NULL, 10);
+	width_uint = (width == NULL) ? 0 : g_ascii_strtoull ((gchar*) width, NULL, 10);
 	xmlFree (width);
 
 	height = xmlGetProp (root_node, (xmlChar*) "height");
-	height_uint = (height == NULL) ? 0 : strtoul ((gchar*) height, NULL, 10);
+	height_uint = (height == NULL) ? 0 : g_ascii_strtoull ((gchar*) height, NULL, 10);
 	xmlFree (height);
 
 	/* Get and parse the time */
@@ -291,6 +295,31 @@ static void
 get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
 {
 	g_hash_table_insert (namespaces, (gchar*) "media", (gchar*) "http://search.yahoo.com/mrss/");
+}
+
+/* Reference:
+ * https://developers.google.com/youtube/v3/docs/videos#snippet.thumbnails */
+static gboolean
+parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data,
+            GError **error)
+{
+	gboolean success;
+	GDataMediaThumbnail *self = GDATA_MEDIA_THUMBNAIL (parsable);
+	GDataMediaThumbnailPrivate *priv = self->priv;
+
+	if (gdata_parser_string_from_json_member (reader, "url", P_DEFAULT,
+	                                          &priv->uri, &success,
+	                                          error) ||
+	    gdata_parser_int_from_json_member (reader, "width", P_DEFAULT,
+	                                       (gint64 *) &priv->width,
+	                                       &success, error) ||
+	    gdata_parser_int_from_json_member (reader, "height", P_DEFAULT,
+	                                       (gint64 *) &priv->height,
+	                                       &success, error)) {
+		return success;
+	} else {
+		return GDATA_PARSABLE_CLASS (gdata_media_thumbnail_parent_class)->parse_json (parsable, reader, user_data, error);
+	}
 }
 
 /**

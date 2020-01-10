@@ -2,36 +2,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GDataGDWho</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<title>GDataGDWho: GData Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch09.html" title="GData API">
 <link rel="prev" href="GDataGDWhere.html" title="GDataGDWhere">
 <link rel="next" href="ch10.html" title="GContact API">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="GDataGDWhere.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch09.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">GData Reference Manual</th>
-<td><a accesskey="n" href="ch10.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#GDataGDWho.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#GDataGDWho.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#GDataGDWho.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#GDataGDWho.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
-                   | 
-                  <a href="#GDataGDWho.properties" class="shortcut">Properties</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#GDataGDWho.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#GDataGDWho.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_interfaces">  <span class="dim">|</span> 
+                  <a href="#GDataGDWho.implemented-interfaces" class="shortcut">Implemented Interfaces</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#GDataGDWho.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch09.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="GDataGDWhere.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="ch10.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="GDataGDWho"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -39,43 +32,152 @@
 <h2><span class="refentrytitle"><a name="GDataGDWho.top_of_page"></a>GDataGDWho</span></h2>
 <p>GDataGDWho — GData who element</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
 <a name="GDataGDWho.stability-level"></a><h2>Stability Level</h2>
-Unstable, unless otherwise indicated
+<acronym title="The intention of a Stable interface is to enable arbitrary third parties to
+develop applications to these interfaces, release them, and have confidence that
+they will run on all minor releases of the product (after the one in which the
+interface was introduced, and within the same major release). Even at a major
+release, incompatible changes are expected to be rare, and to have strong
+justifications.
+"><span class="acronym">Stable</span></acronym>, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
-<a name="GDataGDWho.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#include &lt;gdata/gd/gdata-gd-who.h&gt;
-
-#define             <a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-ATTENDEE:CAPS" title="GDATA_GD_WHO_EVENT_ATTENDEE">GDATA_GD_WHO_EVENT_ATTENDEE</a>
-#define             <a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-ORGANIZER:CAPS" title="GDATA_GD_WHO_EVENT_ORGANIZER">GDATA_GD_WHO_EVENT_ORGANIZER</a>
-#define             <a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-PERFORMER:CAPS" title="GDATA_GD_WHO_EVENT_PERFORMER">GDATA_GD_WHO_EVENT_PERFORMER</a>
-#define             <a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-SPEAKER:CAPS" title="GDATA_GD_WHO_EVENT_SPEAKER">GDATA_GD_WHO_EVENT_SPEAKER</a>
-                    <a class="link" href="GDataGDWho.html#GDataGDWho-struct" title="GDataGDWho">GDataGDWho</a>;
-                    <a class="link" href="GDataGDWho.html#GDataGDWhoClass" title="GDataGDWhoClass">GDataGDWhoClass</a>;
-<a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="returnvalue">GDataGDWho</span></a> *        <a class="link" href="GDataGDWho.html#gdata-gd-who-new" title="gdata_gd_who_new ()">gdata_gd_who_new</a>                    (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value_string</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGDWho.html#gdata-gd-who-get-relation-type" title="gdata_gd_who_get_relation_type ()">gdata_gd_who_get_relation_type</a>      (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="GDataGDWho.html#gdata-gd-who-set-relation-type" title="gdata_gd_who_set_relation_type ()">gdata_gd_who_set_relation_type</a>      (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGDWho.html#gdata-gd-who-get-value-string" title="gdata_gd_who_get_value_string ()">gdata_gd_who_get_value_string</a>       (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="GDataGDWho.html#gdata-gd-who-set-value-string" title="gdata_gd_who_set_value_string ()">gdata_gd_who_set_value_string</a>       (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value_string</code></em>);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="GDataGDWho.html#gdata-gd-who-get-email-address" title="gdata_gd_who_get_email_address ()">gdata_gd_who_get_email_address</a>      (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="GDataGDWho.html#gdata-gd-who-set-email-address" title="gdata_gd_who_set_email_address ()">gdata_gd_who_set_email_address</a>      (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);
-</pre>
+<div class="refsect1">
+<a name="GDataGDWho.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="returnvalue">GDataGDWho</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataGDWho.html#gdata-gd-who-new" title="gdata_gd_who_new ()">gdata_gd_who_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataGDWho.html#gdata-gd-who-get-relation-type" title="gdata_gd_who_get_relation_type ()">gdata_gd_who_get_relation_type</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataGDWho.html#gdata-gd-who-set-relation-type" title="gdata_gd_who_set_relation_type ()">gdata_gd_who_set_relation_type</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataGDWho.html#gdata-gd-who-get-value-string" title="gdata_gd_who_get_value_string ()">gdata_gd_who_get_value_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataGDWho.html#gdata-gd-who-set-value-string" title="gdata_gd_who_set_value_string ()">gdata_gd_who_set_value_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataGDWho.html#gdata-gd-who-get-email-address" title="gdata_gd_who_get_email_address ()">gdata_gd_who_get_email_address</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataGDWho.html#gdata-gd-who-set-email-address" title="gdata_gd_who_set_email_address ()">gdata_gd_who_set_email_address</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataGDWho.properties"></a><h2>Properties</h2>
+<div class="informaltable"><table border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody>
+<tr>
+<td class="property_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataGDWho.html#GDataGDWho--email-address" title="The “email-address” property">email-address</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataGDWho.html#GDataGDWho--relation-type" title="The “relation-type” property">relation-type</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<td class="property_name"><a class="link" href="GDataGDWho.html#GDataGDWho--value-string" title="The “value-string” property">value-string</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="GDataGDWho.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-ATTENDEE:CAPS" title="GDATA_GD_WHO_EVENT_ATTENDEE">GDATA_GD_WHO_EVENT_ATTENDEE</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-ORGANIZER:CAPS" title="GDATA_GD_WHO_EVENT_ORGANIZER">GDATA_GD_WHO_EVENT_ORGANIZER</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-PERFORMER:CAPS" title="GDATA_GD_WHO_EVENT_PERFORMER">GDATA_GD_WHO_EVENT_PERFORMER</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-SPEAKER:CAPS" title="GDATA_GD_WHO_EVENT_SPEAKER">GDATA_GD_WHO_EVENT_SPEAKER</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataGDWho.html#GDataGDWho-struct" title="GDataGDWho">GDataGDWho</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="GDataGDWho.html#GDataGDWhoClass" title="GDataGDWhoClass">GDataGDWhoClass</a></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="GDataGDWho.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----<a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
-         +----GDataGDWho
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
+        <span class="lineart">╰──</span> GDataGDWho
 </pre>
 </div>
 <div class="refsect1">
@@ -85,29 +187,250 @@ GDataGDWho implements
  <a class="link" href="GDataComparable.html" title="GDataComparable">GDataComparable</a>.</p>
 </div>
 <div class="refsect1">
-<a name="GDataGDWho.properties"></a><h2>Properties</h2>
-<pre class="synopsis">
-  "<a class="link" href="GDataGDWho.html#GDataGDWho--email-address" title='The "email-address" property'>email-address</a>"            <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
-  "<a class="link" href="GDataGDWho.html#GDataGDWho--relation-type" title='The "relation-type" property'>relation-type</a>"            <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
-  "<a class="link" href="GDataGDWho.html#GDataGDWho--value-string" title='The "value-string" property'>value-string</a>"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+<a name="GDataGDWho.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;gdata/gd/gdata-gd-who.h&gt;
 </pre>
 </div>
 <div class="refsect1">
 <a name="GDataGDWho.description"></a><h2>Description</h2>
-<p>
-<a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> represents an "who" element from the
+<p><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> represents an "who" element from the</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho" target="_top">GData specification</a>.
-</p>
+
 </div>
 <div class="refsect1">
-<a name="GDataGDWho.details"></a><h2>Details</h2>
+<a name="GDataGDWho.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="gdata-gd-who-new"></a><h3>gdata_gd_who_new ()</h3>
+<pre class="programlisting"><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="returnvalue">GDataGDWho</span></a> *
+gdata_gd_who_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>,
+                  <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value_string</code></em>,
+                  <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
+<p>Creates a new <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>. More information is available in the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho" target="_top">GData specification</a>.</p>
+<p>Currently, entryLink functionality is not implemented in <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.2.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>relation_type</p></td>
+<td class="parameter_description"><p> the relationship between the item and this person, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>value_string</p></td>
+<td class="parameter_description"><p> a string to represent the person, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>email_address</p></td>
+<td class="parameter_description"><p> the person's e-mail address, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.2.7"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+</div>
+<p class="since">Since 0.2.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-gd-who-get-relation-type"></a><h3>gdata_gd_who_get_relation_type ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_gd_who_get_relation_type (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>);</pre>
+<p>Gets the <a class="link" href="GDataGDWho.html#GDataGDWho--relation-type" title="The “relation-type” property"><span class="type">“relation-type”</span></a> property.</p>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.3.6"></a><h4>Returns</h4>
+<p> the relation type, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-gd-who-set-relation-type"></a><h3>gdata_gd_who_set_relation_type ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_gd_who_set_relation_type (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>);</pre>
+<p>Sets the <a class="link" href="GDataGDWho.html#GDataGDWho--relation-type" title="The “relation-type” property"><span class="type">“relation-type”</span></a> property to <em class="parameter"><code>relation_type</code></em>
+.</p>
+<p>Set <em class="parameter"><code>relation_type</code></em>
+ to <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.</p>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.4.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>relation_type</p></td>
+<td class="parameter_description"><p> the new relation type, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-gd-who-get-value-string"></a><h3>gdata_gd_who_get_value_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_gd_who_get_value_string (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>);</pre>
+<p>Gets the <a class="link" href="GDataGDWho.html#GDataGDWho--value-string" title="The “value-string” property"><span class="type">“value-string”</span></a> property.</p>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.5.6"></a><h4>Returns</h4>
+<p> the value string, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-gd-who-set-value-string"></a><h3>gdata_gd_who_set_value_string ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_gd_who_set_value_string (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>,
+                               <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value_string</code></em>);</pre>
+<p>Sets the <a class="link" href="GDataGDWho.html#GDataGDWho--value-string" title="The “value-string” property"><span class="type">“value-string”</span></a> property to <em class="parameter"><code>value_string</code></em>
+.</p>
+<p>Set <em class="parameter"><code>value_string</code></em>
+ to <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.</p>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.6.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>value_string</p></td>
+<td class="parameter_description"><p> the new value string, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-gd-who-get-email-address"></a><h3>gdata_gd_who_get_email_address ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+gdata_gd_who_get_email_address (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>);</pre>
+<p>Gets the <a class="link" href="GDataGDWho.html#GDataGDWho--email-address" title="The “email-address” property"><span class="type">“email-address”</span></a> property.</p>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.7.6"></a><h4>Returns</h4>
+<p> the e-mail address, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-gd-who-set-email-address"></a><h3>gdata_gd_who_set_email_address ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_gd_who_set_email_address (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
+<p>Sets the <a class="link" href="GDataGDWho.html#GDataGDWho--email-address" title="The “email-address” property"><span class="type">“email-address”</span></a> property to <em class="parameter"><code>email_address</code></em>
+.</p>
+<p>Set <em class="parameter"><code>email_address</code></em>
+ to <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.</p>
+<div class="refsect3">
+<a name="id-1.4.4.11.11.8.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>email_address</p></td>
+<td class="parameter_description"><p> the new e-mail address, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 0.4.0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GDataGDWho.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="GDATA-GD-WHO-EVENT-ATTENDEE:CAPS"></a><h3>GDATA_GD_WHO_EVENT_ATTENDEE</h3>
 <pre class="programlisting">#define GDATA_GD_WHO_EVENT_ATTENDEE "http://schemas.google.com/g/2005#event.attendee"
 </pre>
-<p>
-The relation type URI for a general meeting or event attendee.
-</p>
+<p>The relation type URI for a general meeting or event attendee.</p>
 <p class="since">Since 0.7.0</p>
 </div>
 <hr>
@@ -115,9 +438,7 @@ The relation type URI for a general meeting or event attendee.
 <a name="GDATA-GD-WHO-EVENT-ORGANIZER:CAPS"></a><h3>GDATA_GD_WHO_EVENT_ORGANIZER</h3>
 <pre class="programlisting">#define GDATA_GD_WHO_EVENT_ORGANIZER "http://schemas.google.com/g/2005#event.organizer"
 </pre>
-<p>
-The relation type URI for an event organizer (not necessarily an attendee).
-</p>
+<p>The relation type URI for an event organizer (not necessarily an attendee).</p>
 <p class="since">Since 0.7.0</p>
 </div>
 <hr>
@@ -125,9 +446,7 @@ The relation type URI for an event organizer (not necessarily an attendee).
 <a name="GDATA-GD-WHO-EVENT-PERFORMER:CAPS"></a><h3>GDATA_GD_WHO_EVENT_PERFORMER</h3>
 <pre class="programlisting">#define GDATA_GD_WHO_EVENT_PERFORMER "http://schemas.google.com/g/2005#event.performer"
 </pre>
-<p>
-The relation type URI for an event performer, which is similar to <a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-SPEAKER:CAPS" title="GDATA_GD_WHO_EVENT_SPEAKER"><code class="literal">GDATA_GD_WHO_EVENT_SPEAKER</code></a>, but with more emphasis on art rather than speaking.
-</p>
+<p>The relation type URI for an event performer, which is similar to <a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-SPEAKER:CAPS" title="GDATA_GD_WHO_EVENT_SPEAKER"><code class="literal">GDATA_GD_WHO_EVENT_SPEAKER</code></a>, but with more emphasis on art rather than speaking.</p>
 <p class="since">Since 0.7.0</p>
 </div>
 <hr>
@@ -135,18 +454,14 @@ The relation type URI for an event performer, which is similar to <a class="link
 <a name="GDATA-GD-WHO-EVENT-SPEAKER:CAPS"></a><h3>GDATA_GD_WHO_EVENT_SPEAKER</h3>
 <pre class="programlisting">#define GDATA_GD_WHO_EVENT_SPEAKER "http://schemas.google.com/g/2005#event.speaker"
 </pre>
-<p>
-The relation type URI for a speaker at an event.
-</p>
+<p>The relation type URI for a speaker at an event.</p>
 <p class="since">Since 0.7.0</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataGDWho-struct"></a><h3>GDataGDWho</h3>
 <pre class="programlisting">typedef struct _GDataGDWho GDataGDWho;</pre>
-<p>
-All the fields in the <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> structure are private and should never be accessed directly.
-</p>
+<p>All the fields in the <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.2.0</p>
 </div>
 <hr>
@@ -155,248 +470,42 @@ All the fields in the <a class="link" href="GDataGDWho.html" title="GDataGDWho">
 <pre class="programlisting">typedef struct {
 } GDataGDWhoClass;
 </pre>
-<p>
-All the fields in the <a class="link" href="GDataGDWho.html#GDataGDWhoClass" title="GDataGDWhoClass"><span class="type">GDataGDWhoClass</span></a> structure are private and should never be accessed directly.
-</p>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-gd-who-new"></a><h3>gdata_gd_who_new ()</h3>
-<pre class="programlisting"><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="returnvalue">GDataGDWho</span></a> *        gdata_gd_who_new                    (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value_string</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
-<p>
-Creates a new <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>. More information is available in the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho" target="_top">GData specification</a>.
-</p>
-<p>
-Currently, entryLink functionality is not implemented in <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>relation_type</code></em> :</span></p></td>
-<td>the relationship between the item and this person, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>value_string</code></em> :</span></p></td>
-<td>a string to represent the person, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>email_address</code></em> :</span></p></td>
-<td>the person's e-mail address, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>; unref with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.2.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-gd-who-get-relation-type"></a><h3>gdata_gd_who_get_relation_type ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_gd_who_get_relation_type      (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a class="link" href="GDataGDWho.html#GDataGDWho--relation-type" title='The "relation-type" property'><span class="type">"relation-type"</span></a> property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the relation type, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-gd-who-set-relation-type"></a><h3>gdata_gd_who_set_relation_type ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdata_gd_who_set_relation_type      (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>);</pre>
-<p>
-Sets the <a class="link" href="GDataGDWho.html#GDataGDWho--relation-type" title='The "relation-type" property'><span class="type">"relation-type"</span></a> property to <em class="parameter"><code>relation_type</code></em>.
-</p>
-<p>
-Set <em class="parameter"><code>relation_type</code></em> to <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>relation_type</code></em> :</span></p></td>
-<td>the new relation type, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-gd-who-get-value-string"></a><h3>gdata_gd_who_get_value_string ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_gd_who_get_value_string       (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a class="link" href="GDataGDWho.html#GDataGDWho--value-string" title='The "value-string" property'><span class="type">"value-string"</span></a> property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the value string, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-gd-who-set-value-string"></a><h3>gdata_gd_who_set_value_string ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdata_gd_who_set_value_string       (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value_string</code></em>);</pre>
-<p>
-Sets the <a class="link" href="GDataGDWho.html#GDataGDWho--value-string" title='The "value-string" property'><span class="type">"value-string"</span></a> property to <em class="parameter"><code>value_string</code></em>.
-</p>
-<p>
-Set <em class="parameter"><code>value_string</code></em> to <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>value_string</code></em> :</span></p></td>
-<td>the new value string, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-gd-who-get-email-address"></a><h3>gdata_gd_who_get_email_address ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdata_gd_who_get_email_address      (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>);</pre>
-<p>
-Gets the <a class="link" href="GDataGDWho.html#GDataGDWho--email-address" title='The "email-address" property'><span class="type">"email-address"</span></a> property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the e-mail address, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-<p class="since">Since 0.4.0</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="gdata-gd-who-set-email-address"></a><h3>gdata_gd_who_set_email_address ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdata_gd_who_set_email_address      (<em class="parameter"><code><a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a> *self</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
-<p>
-Sets the <a class="link" href="GDataGDWho.html#GDataGDWho--email-address" title='The "email-address" property'><span class="type">"email-address"</span></a> property to <em class="parameter"><code>email_address</code></em>.
-</p>
-<p>
-Set <em class="parameter"><code>email_address</code></em> to <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
-<td>a <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>email_address</code></em> :</span></p></td>
-<td>the new e-mail address, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
+<p>All the fields in the <a class="link" href="GDataGDWho.html#GDataGDWhoClass" title="GDataGDWhoClass"><span class="type">GDataGDWhoClass</span></a> structure are private and should never be accessed directly.</p>
 <p class="since">Since 0.4.0</p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataGDWho.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
-<a name="GDataGDWho--email-address"></a><h3>The <code class="literal">"email-address"</code> property</h3>
-<pre class="programlisting">  "email-address"            <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
-<p>
-The e-mail address of the person represented by the <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>.
-</p>
-<p>
-For more information, see the
+<a name="GDataGDWho--email-address"></a><h3>The <code class="literal">“email-address”</code> property</h3>
+<pre class="programlisting">  “email-address”            <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<p>The e-mail address of the person represented by the <a class="link" href="GDataGDWho.html" title="GDataGDWho"><span class="type">GDataGDWho</span></a>.</p>
+<p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho" target="_top">GData specification</a>.
-</p>
+<p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataGDWho--relation-type"></a><h3>The <code class="literal">"relation-type"</code> property</h3>
-<pre class="programlisting">  "relation-type"            <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
-<p>
-Specifies the relationship between the containing entity and the contained person. For example: <a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-PERFORMER:CAPS" title="GDATA_GD_WHO_EVENT_PERFORMER"><code class="literal">GDATA_GD_WHO_EVENT_PERFORMER</code></a> or
-<a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-ATTENDEE:CAPS" title="GDATA_GD_WHO_EVENT_ATTENDEE"><code class="literal">GDATA_GD_WHO_EVENT_ATTENDEE</code></a>.
-</p>
-<p>
-For more information, see the
+<a name="GDataGDWho--relation-type"></a><h3>The <code class="literal">“relation-type”</code> property</h3>
+<pre class="programlisting">  “relation-type”            <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<p>Specifies the relationship between the containing entity and the contained person. For example: <a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-PERFORMER:CAPS" title="GDATA_GD_WHO_EVENT_PERFORMER"><code class="literal">GDATA_GD_WHO_EVENT_PERFORMER</code></a> or
+<a class="link" href="GDataGDWho.html#GDATA-GD-WHO-EVENT-ATTENDEE:CAPS" title="GDATA_GD_WHO_EVENT_ATTENDEE"><code class="literal">GDATA_GD_WHO_EVENT_ATTENDEE</code></a>.</p>
+<p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho" target="_top">GData specification</a>.
-</p>
+<p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="GDataGDWho--value-string"></a><h3>The <code class="literal">"value-string"</code> property</h3>
-<pre class="programlisting">  "value-string"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
-<p>
-A simple string representation of this person.
-</p>
-<p>
-For more information, see the
+<a name="GDataGDWho--value-string"></a><h3>The <code class="literal">“value-string”</code> property</h3>
+<pre class="programlisting">  “value-string”             <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<p>A simple string representation of this person.</p>
+<p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdWho" target="_top">GData specification</a>.
-</p>
+<p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since 0.4.0</p>
 </div>
@@ -404,6 +513,6 @@ For more information, see the
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

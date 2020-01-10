@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-goa-authorizer
  * @short_description: GData GOA authorization interface
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gdata-goa-authorizer.h
  *
  * #GDataGoaAuthorizer provides an implementation of the #GDataAuthorizer interface for authentication and authorization using GNOME Online Accounts
@@ -71,13 +71,15 @@
 #include "services/calendar/gdata-calendar-service.h"
 #include "services/contacts/gdata-contacts-service.h"
 #include "services/documents/gdata-documents-service.h"
+#include "services/picasaweb/gdata-picasaweb-service.h"
+#include "services/freebase/gdata-freebase-service.h"
 
 #define HMAC_SHA1_LEN 20 /* bytes, raw */
 
 static void gdata_goa_authorizer_interface_init (GDataAuthorizerInterface *interface);
 
 /* GDataAuthorizer methods must be thread-safe. */
-static GStaticMutex mutex = G_STATIC_MUTEX_INIT;
+static GMutex mutex;
 
 struct _GDataGoaAuthorizerPrivate {
 	/* GoaObject is already thread-safe. */
@@ -312,7 +314,7 @@ gdata_goa_authorizer_add_oauth2_authorization (GDataAuthorizer *authorizer, Soup
 		return;
 	}
 
-	authorization = g_string_new ("OAuth ");
+	authorization = g_string_new ("Bearer ");
 	g_string_append (authorization, priv->access_token);
 
 	/* Use replace here, not append, to make sure there's only one "Authorization" header. */
@@ -385,6 +387,12 @@ gdata_goa_authorizer_set_goa_object (GDataGoaAuthorizer *self, GoaObject *goa_ob
 	if (goa_object_peek_documents (goa_object) != NULL) {
 		add_authorization_domains (self, GDATA_TYPE_DOCUMENTS_SERVICE);
 	}
+	
+	if (goa_object_peek_photos (goa_object) != NULL) {
+		add_authorization_domains (self, GDATA_TYPE_PICASAWEB_SERVICE);
+	}
+
+	add_authorization_domains (self, GDATA_TYPE_FREEBASE_SERVICE);
 }
 
 static void
@@ -447,13 +455,13 @@ gdata_goa_authorizer_finalize (GObject *object)
 static void
 gdata_goa_authorizer_process_request (GDataAuthorizer *authorizer, GDataAuthorizationDomain *domain, SoupMessage *message)
 {
-	g_static_mutex_lock (&mutex);
+	g_mutex_lock (&mutex);
 
 	if (gdata_goa_authorizer_is_authorized (authorizer, domain)) {
 		gdata_goa_authorizer_add_authorization (authorizer, message);
 	}
 
-	g_static_mutex_unlock (&mutex);
+	g_mutex_unlock (&mutex);
 }
 
 static gboolean
@@ -461,11 +469,11 @@ gdata_goa_authorizer_is_authorized_for_domain (GDataAuthorizer *authorizer, GDat
 {
 	gboolean authorized;
 
-	g_static_mutex_lock (&mutex);
+	g_mutex_lock (&mutex);
 
 	authorized = gdata_goa_authorizer_is_authorized (authorizer, domain);
 
-	g_static_mutex_unlock (&mutex);
+	g_mutex_unlock (&mutex);
 
 	return authorized;
 }
@@ -481,7 +489,7 @@ gdata_goa_authorizer_refresh_authorization (GDataAuthorizer *authorizer, GCancel
 
 	priv = GDATA_GOA_AUTHORIZER (authorizer)->priv;
 
-	g_static_mutex_lock (&mutex);
+	g_mutex_lock (&mutex);
 
 	g_free (priv->access_token);
 	priv->access_token = NULL;
@@ -514,7 +522,7 @@ exit:
 	g_clear_object (&goa_oauth1_based);
 	g_clear_object (&goa_oauth2_based);
 
-	g_static_mutex_unlock (&mutex);
+	g_mutex_unlock (&mutex);
 
 	return success;
 }

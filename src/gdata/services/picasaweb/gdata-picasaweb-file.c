@@ -21,7 +21,7 @@
 /**
  * SECTION:gdata-picasaweb-file
  * @short_description: GData PicasaWeb file object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/services/picasaweb/gdata-picasaweb-file.h
  *
  * #GDataPicasaWebFile is a subclass of #GDataEntry to represent a file (photo or video) in an album on Google PicasaWeb.
@@ -696,7 +696,7 @@ gdata_picasaweb_file_constructor (GType type, guint n_construct_params, GObjectC
 		/* Set the edited and timestamp properties to the current time (creation time). bgo#599140
 		 * We don't do this in *_init() since that would cause setting it from parse_xml() to fail (duplicate element). */
 		g_get_current_time (&time_val);
-		priv->timestamp = time_val.tv_sec * 1000;
+		priv->timestamp = (gint64) time_val.tv_sec * 1000;
 		priv->edited = time_val.tv_sec;
 	}
 
@@ -921,17 +921,17 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 		} else if (xmlStrcmp (node->name, (xmlChar*) "width") == 0) {
 			/* gphoto:width */
 			xmlChar *width = xmlNodeListGetString (doc, node->children, TRUE);
-			self->priv->width = strtoul ((gchar*) width, NULL, 10);
+			self->priv->width = g_ascii_strtoull ((gchar*) width, NULL, 10);
 			xmlFree (width);
 		} else if (xmlStrcmp (node->name, (xmlChar*) "height") == 0) {
 			/* gphoto:height */
 			xmlChar *height = xmlNodeListGetString (doc, node->children, TRUE);
-			self->priv->height = strtoul ((gchar*) height, NULL, 10);
+			self->priv->height = g_ascii_strtoull ((gchar*) height, NULL, 10);
 			xmlFree (height);
 		} else if (xmlStrcmp (node->name, (xmlChar*) "size") == 0) {
 			/* gphoto:size */
 			xmlChar *size = xmlNodeListGetString (doc, node->children, TRUE);
-			self->priv->size = strtoul ((gchar*) size, NULL, 10);
+			self->priv->size = g_ascii_strtoull ((gchar*) size, NULL, 10);
 			xmlFree (size);
 		} else if (xmlStrcmp (node->name, (xmlChar*) "timestamp") == 0) {
 			/* gphoto:timestamp */
@@ -953,7 +953,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 		} else if (xmlStrcmp (node->name, (xmlChar*) "commentCount") == 0) {
 			/* gphoto:commentCount */
 			xmlChar *comment_count = xmlNodeListGetString (doc, node->children, TRUE);
-			self->priv->comment_count = strtoul ((gchar*) comment_count, NULL, 10);
+			self->priv->comment_count = g_ascii_strtoull ((gchar*) comment_count, NULL, 10);
 			xmlFree (comment_count);
 		} else if (xmlStrcmp (node->name, (xmlChar*) "access") == 0) {
 			/* gphoto:access */
@@ -963,7 +963,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 		} else if (xmlStrcmp (node->name, (xmlChar*) "rotation") == 0) {
 			/* gphoto:rotation */
 			xmlChar *rotation = xmlNodeListGetString (doc, node->children, TRUE);
-			gdata_picasaweb_file_set_rotation (self, strtoul ((gchar*) rotation, NULL, 10));
+			gdata_picasaweb_file_set_rotation (self, g_ascii_strtoull ((gchar*) rotation, NULL, 10));
 			xmlFree (rotation);
 		} else {
 			return GDATA_PARSABLE_CLASS (gdata_picasaweb_file_parent_class)->parse_xml (parsable, doc, node, user_data, error);

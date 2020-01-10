@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008–2010 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008, 2009, 2010, 2014 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,7 +20,7 @@
 /**
  * SECTION:gdata-service
  * @short_description: GData service object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gdata-service.h
  *
  * #GDataService represents a GData API service, typically a website using the GData API, such as YouTube or Google Calendar. One
@@ -45,7 +45,6 @@
 #include <stdarg.h>
 
 #ifdef HAVE_GNOME
-#include <libsoup/soup-gnome-features.h>
 #define GCR_API_SUBJECT_TO_CHANGE
 #include <gcr/gcr-base.h>
 #endif /* HAVE_GNOME */
@@ -69,6 +68,16 @@ static void gdata_service_set_property (GObject *object, guint property_id, cons
 static void real_append_query_headers (GDataService *self, GDataAuthorizationDomain *domain, SoupMessage *message);
 static void real_parse_error_response (GDataService *self, GDataOperationType operation_type, guint status, const gchar *reason_phrase,
                                        const gchar *response_body, gint length, GError **error);
+static GDataFeed *
+real_parse_feed (GDataService *self,
+                 GDataAuthorizationDomain *domain,
+                 GDataQuery *query,
+                 GType entry_type,
+                 SoupMessage *message,
+                 GCancellable *cancellable,
+                 GDataQueryProgressCallback progress_callback,
+                 gpointer progress_user_data,
+                 GError **error);
 static void notify_proxy_uri_cb (GObject *gobject, GParamSpec *pspec, GObject *self);
 static void notify_timeout_cb (GObject *gobject, GParamSpec *pspec, GObject *self);
 static void debug_handler (const char *log_domain, GLogLevelFlags log_level, const char *message, gpointer user_data);
@@ -76,12 +85,16 @@ static void soup_log_printer (SoupLogger *logger, SoupLoggerLogLevel level, char
 
 static GDataFeed *__gdata_service_query (GDataService *self, GDataAuthorizationDomain *domain, const gchar *feed_uri, GDataQuery *query,
                                          GType entry_type, GCancellable *cancellable, GDataQueryProgressCallback progress_callback,
-                                         gpointer progress_user_data, GError **error, gboolean is_async);
+                                         gpointer progress_user_data, GError **error);
+
+static SoupURI *_get_proxy_uri (GDataService *self);
+static void _set_proxy_uri (GDataService *self, SoupURI *proxy_uri);
 
 struct _GDataServicePrivate {
 	SoupSession *session;
 	gchar *locale;
 	GDataAuthorizer *authorizer;
+	GProxyResolver *proxy_resolver;
 };
 
 enum {
@@ -89,6 +102,7 @@ enum {
 	PROP_TIMEOUT,
 	PROP_LOCALE,
 	PROP_AUTHORIZER,
+	PROP_PROXY_RESOLVER,
 };
 
 G_DEFINE_TYPE (GDataService, gdata_service, G_TYPE_OBJECT)
@@ -109,6 +123,7 @@ gdata_service_class_init (GDataServiceClass *klass)
 	klass->feed_type = GDATA_TYPE_FEED;
 	klass->append_query_headers = real_append_query_headers;
 	klass->parse_error_response = real_parse_error_response;
+	klass->parse_feed = real_parse_feed;
 	klass->get_authorization_domains = NULL; /* equivalent to returning an empty list of domains */
 
 	/**
@@ -119,6 +134,7 @@ gdata_service_class_init (GDataServiceClass *klass)
 	 * Note that if a #GDataAuthorizer is being used with this #GDataService, the authorizer might also need its proxy URI setting.
 	 *
 	 * Since: 0.2.0
+	 * Deprecated: 0.15.0: Use #GDataService:proxy-resolver instead, which gives more flexibility over the proxy used.
 	 **/
 	g_object_class_install_property (gobject_class, PROP_PROXY_URI,
 	                                 g_param_spec_boxed ("proxy-uri",
@@ -186,6 +202,19 @@ gdata_service_class_init (GDataServiceClass *klass)
 	                                                      "Authorizer", "An authorizer object to provide an authorization token for each request.",
 	                                                      GDATA_TYPE_AUTHORIZER,
 	                                                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GDataService:proxy-resolver:
+	 *
+	 * The #GProxyResolver used to determine a proxy URI.  Setting this will clear the #GDataService:proxy-uri property.
+	 *
+	 * Since: 0.15.0
+	 */
+	g_object_class_install_property (gobject_class, PROP_PROXY_RESOLVER,
+	                                 g_param_spec_object ("proxy-resolver",
+	                                                      "Proxy Resolver", "A GProxyResolver used to determine a proxy URI.",
+	                                                      G_TYPE_PROXY_RESOLVER,
+	                                                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void
@@ -194,12 +223,15 @@ gdata_service_init (GDataService *self)
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_SERVICE, GDataServicePrivate);
 	self->priv->session = _gdata_service_build_session ();
 
-	/* Debug log handling */
-	g_log_set_handler (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, (GLogFunc) debug_handler, self);
+	/* Log handling for all message types except debug */
+	g_log_set_handler (G_LOG_DOMAIN, G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_ERROR | G_LOG_LEVEL_INFO | G_LOG_LEVEL_MESSAGE | G_LOG_LEVEL_WARNING, (GLogFunc) debug_handler, self);
 
 	/* Proxy the SoupSession's proxy-uri and timeout properties */
 	g_signal_connect (self->priv->session, "notify::proxy-uri", (GCallback) notify_proxy_uri_cb, self);
 	g_signal_connect (self->priv->session, "notify::timeout", (GCallback) notify_timeout_cb, self);
+
+	/* Keep our GProxyResolver synchronized with SoupSession's. */
+	g_object_bind_property (self->priv->session, "proxy-resolver", self, "proxy-resolver", G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 }
 
 static void
@@ -214,6 +246,8 @@ gdata_service_dispose (GObject *object)
 	if (priv->session != NULL)
 		g_object_unref (priv->session);
 	priv->session = NULL;
+
+	g_clear_object (&priv->proxy_resolver);
 
 	/* Chain up to the parent class */
 	G_OBJECT_CLASS (gdata_service_parent_class)->dispose (object);
@@ -237,7 +271,7 @@ gdata_service_get_property (GObject *object, guint property_id, GValue *value, G
 
 	switch (property_id) {
 		case PROP_PROXY_URI:
-			g_value_set_boxed (value, gdata_service_get_proxy_uri (GDATA_SERVICE (object)));
+			g_value_set_boxed (value, _get_proxy_uri (GDATA_SERVICE (object)));
 			break;
 		case PROP_TIMEOUT:
 			g_value_set_uint (value, gdata_service_get_timeout (GDATA_SERVICE (object)));
@@ -247,6 +281,9 @@ gdata_service_get_property (GObject *object, guint property_id, GValue *value, G
 			break;
 		case PROP_AUTHORIZER:
 			g_value_set_object (value, priv->authorizer);
+			break;
+		case PROP_PROXY_RESOLVER:
+			g_value_set_object (value, priv->proxy_resolver);
 			break;
 		default:
 			/* We don't have any other property... */
@@ -260,7 +297,7 @@ gdata_service_set_property (GObject *object, guint property_id, const GValue *va
 {
 	switch (property_id) {
 		case PROP_PROXY_URI:
-			gdata_service_set_proxy_uri (GDATA_SERVICE (object), g_value_get_boxed (value));
+			_set_proxy_uri (GDATA_SERVICE (object), g_value_get_boxed (value));
 			break;
 		case PROP_TIMEOUT:
 			gdata_service_set_timeout (GDATA_SERVICE (object), g_value_get_uint (value));
@@ -270,6 +307,9 @@ gdata_service_set_property (GObject *object, guint property_id, const GValue *va
 			break;
 		case PROP_AUTHORIZER:
 			gdata_service_set_authorizer (GDATA_SERVICE (object), g_value_get_object (value));
+			break;
+		case PROP_PROXY_RESOLVER:
+			gdata_service_set_proxy_resolver (GDATA_SERVICE (object), g_value_get_object (value));
 			break;
 		default:
 			/* We don't have any other property... */
@@ -539,9 +579,13 @@ _gdata_service_build_message (GDataService *self, GDataAuthorizationDomain *doma
 {
 	SoupMessage *message;
 	GDataServiceClass *klass;
+	SoupURI *_uri;
 
-	/* Create the message */
-	message = soup_message_new (method, uri);
+	/* Create the message. Allow changing the HTTPS port just for testing. */
+	_uri = soup_uri_new (uri);
+	soup_uri_set_port (_uri, _gdata_service_get_https_port ());
+	message = soup_message_new_from_uri (method, _uri);
+	soup_uri_free (_uri);
 
 	/* Make sure subclasses set their headers */
 	klass = GDATA_SERVICE_GET_CLASS (self);
@@ -619,8 +663,13 @@ _gdata_service_actually_send_message (SoupSession *session, SoupMessage *message
 	 * sent. */
 	if (cancellable == NULL || g_cancellable_is_cancelled (cancellable) == FALSE)
 		soup_session_send_message (session, message);
-	else
+	else {
+		if (cancellable != NULL) {
+			g_mutex_unlock (&data.mutex);
+		}
+
 		soup_message_set_status (message, SOUP_STATUS_CANCELLED);
+	}
 
 	/* Clean up the cancellation code */
 	if (cancellable != NULL) {
@@ -639,7 +688,9 @@ _gdata_service_actually_send_message (SoupSession *session, SoupMessage *message
 	g_assert (message->status_code != SOUP_STATUS_NONE);
 
 	if (message->status_code == SOUP_STATUS_CANCELLED ||
-	    (message->status_code == SOUP_STATUS_IO_ERROR && cancellable != NULL && g_cancellable_is_cancelled (cancellable) == TRUE)) {
+	    ((message->status_code == SOUP_STATUS_IO_ERROR || message->status_code == SOUP_STATUS_SSL_FAILED ||
+	      message->status_code == SOUP_STATUS_CANT_CONNECT || message->status_code == SOUP_STATUS_CANT_RESOLVE) &&
+	     cancellable != NULL && g_cancellable_is_cancelled (cancellable) == TRUE)) {
 		/* We hackily create and cancel a new GCancellable so that we can set the error using it and therefore save ourselves a translatable
 		 * string and the associated maintenance. */
 		GCancellable *error_cancellable = g_cancellable_new ();
@@ -688,6 +739,9 @@ _gdata_service_send_message (GDataService *self, SoupMessage *message, GCancella
 			return SOUP_STATUS_NONE;
 		}
 
+		/* Allow overriding the URI for testing. */
+		soup_uri_set_port (new_uri, _gdata_service_get_https_port ());
+
 		soup_message_set_uri (message, new_uri);
 		soup_uri_free (new_uri);
 
@@ -700,7 +754,9 @@ _gdata_service_send_message (GDataService *self, SoupMessage *message, GCancella
 	 *
 	 * Note that we have to re-process the message with the authoriser so that its authorisation headers get updated after the refresh
 	 * (bgo#653535). */
-	if (message->status_code == SOUP_STATUS_UNAUTHORIZED) {
+	if (message->status_code == SOUP_STATUS_UNAUTHORIZED ||
+	    message->status_code == SOUP_STATUS_FORBIDDEN ||
+	    message->status_code == SOUP_STATUS_NOT_FOUND) {
 		GDataAuthorizer *authorizer = self->priv->authorizer;
 
 		if (authorizer != NULL && gdata_authorizer_refresh_authorization (authorizer, cancellable, NULL) == TRUE) {
@@ -758,7 +814,7 @@ query_thread (GSimpleAsyncResult *result, GDataService *service, GCancellable *c
 
 	/* Execute the query and return */
 	data->feed = __gdata_service_query (service, data->domain, data->feed_uri, data->query, data->entry_type, cancellable,
-	                                    data->progress_callback, data->progress_user_data, &error, TRUE);
+	                                    data->progress_callback, data->progress_user_data, &error);
 	if (data->feed == NULL && error != NULL) {
 		g_simple_async_result_set_from_error (result, error);
 		g_error_free (error);
@@ -901,25 +957,74 @@ _gdata_service_query (GDataService *self, GDataAuthorizationDomain *domain, cons
 
 static GDataFeed *
 __gdata_service_query (GDataService *self, GDataAuthorizationDomain *domain, const gchar *feed_uri, GDataQuery *query, GType entry_type,
-                       GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error,
-                       gboolean is_async)
+                       GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error)
 {
 	GDataServiceClass *klass;
-	GDataFeed *feed;
 	SoupMessage *message;
+	GDataFeed *feed;
 
+	klass = GDATA_SERVICE_GET_CLASS (self);
+
+	/* Are we off the end of the final page? */
+	if (query != NULL && _gdata_query_is_finished (query)) {
+		GTimeVal updated;
+
+		/* Build an empty dummy feed to signify the end of the list. */
+		g_get_current_time (&updated);
+		return _gdata_feed_new (klass->feed_type, "Empty feed", "feed1",
+		                        updated.tv_sec);
+	}
+
+	/* Send the request. */
 	message = _gdata_service_query (self, domain, feed_uri, query, cancellable, error);
 	if (message == NULL)
 		return NULL;
 
 	g_assert (message->response_body->data != NULL);
-	klass = GDATA_SERVICE_GET_CLASS (self);
-	feed = _gdata_feed_new_from_xml (klass->feed_type, message->response_body->data, message->response_body->length, entry_type,
-	                                 progress_callback, progress_user_data, is_async, error);
+	g_assert (klass->parse_feed != NULL);
+
+	/* Parse the response. */
+	feed = klass->parse_feed (self, domain, query, entry_type,
+	                          message, cancellable, progress_callback,
+	                          progress_user_data, error);
+
 	g_object_unref (message);
 
-	if (feed == NULL)
-		return NULL;
+	return feed;
+}
+
+static GDataFeed *
+real_parse_feed (GDataService *self,
+                 GDataAuthorizationDomain *domain,
+                 GDataQuery *query,
+                 GType entry_type,
+                 SoupMessage *message,
+                 GCancellable *cancellable,
+                 GDataQueryProgressCallback progress_callback,
+                 gpointer progress_user_data,
+                 GError **error)
+{
+	GDataServiceClass *klass;
+	GDataFeed *feed = NULL;
+	SoupMessageHeaders *headers;
+	const gchar *content_type;
+
+	klass = GDATA_SERVICE_GET_CLASS (self);
+	headers = message->response_headers;
+	content_type = soup_message_headers_get_content_type (headers, NULL);
+
+	if (content_type != NULL && strcmp (content_type, "application/json") == 0) {
+		/* Definitely JSON. */
+		g_debug("JSON content type detected.");
+		feed = _gdata_feed_new_from_json (klass->feed_type, message->response_body->data, message->response_body->length, entry_type,
+		                                  progress_callback, progress_user_data, error);
+	} else {
+		/* Potentially XML. Don't bother checking the Content-Type, since the parser
+		 * will fail gracefully if the response body is not valid XML. */
+		g_debug("XML content type detected.");
+		feed = _gdata_feed_new_from_xml (klass->feed_type, message->response_body->data, message->response_body->length, entry_type,
+		                                 progress_callback, progress_user_data, error);
+	}
 
 	/* Update the query with the feed's ETag */
 	if (query != NULL && feed != NULL && gdata_feed_get_etag (feed) != NULL)
@@ -929,10 +1034,10 @@ __gdata_service_query (GDataService *self, GDataAuthorizationDomain *domain, con
 	if (query != NULL && feed != NULL) {
 		GDataLink *_link;
 
-		_link = gdata_feed_look_up_link (feed, "next");
+		_link = gdata_feed_look_up_link (feed, "http://www.iana.org/assignments/relation/next");
 		if (_link != NULL)
 			_gdata_query_set_next_uri (query, gdata_link_get_uri (_link));
-		_link = gdata_feed_look_up_link (feed, "previous");
+		_link = gdata_feed_look_up_link (feed, "http://www.iana.org/assignments/relation/previous");
 		if (_link != NULL)
 			_gdata_query_set_previous_uri (query, gdata_link_get_uri (_link));
 	}
@@ -987,7 +1092,7 @@ gdata_service_query (GDataService *self, GDataAuthorizationDomain *domain, const
 	g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
-	return __gdata_service_query (self, domain, feed_uri, query, entry_type, cancellable, progress_callback, progress_user_data, error, FALSE);
+	return __gdata_service_query (self, domain, feed_uri, query, entry_type, cancellable, progress_callback, progress_user_data, error);
 }
 
 /**
@@ -1021,6 +1126,8 @@ gdata_service_query_single_entry (GDataService *self, GDataAuthorizationDomain *
 	GDataEntry *entry;
 	gchar *entry_uri;
 	SoupMessage *message;
+	SoupMessageHeaders *headers;
+	const gchar *content_type;
 
 	g_return_val_if_fail (GDATA_IS_SERVICE (self), NULL);
 	g_return_val_if_fail (domain == NULL || GDATA_IS_AUTHORIZATION_DOMAIN (domain), NULL);
@@ -1044,7 +1151,16 @@ gdata_service_query_single_entry (GDataService *self, GDataAuthorizationDomain *
 	}
 
 	g_assert (message->response_body->data != NULL);
-	entry = GDATA_ENTRY (gdata_parsable_new_from_xml (entry_type, message->response_body->data, message->response_body->length, error));
+
+	headers = message->response_headers;
+	content_type = soup_message_headers_get_content_type (headers, NULL);
+
+	if (g_strcmp0 (content_type, "application/json") == 0) {
+		entry = GDATA_ENTRY (gdata_parsable_new_from_json (entry_type, message->response_body->data, message->response_body->length, error));
+	} else {
+		entry = GDATA_ENTRY (gdata_parsable_new_from_xml (entry_type, message->response_body->data, message->response_body->length, error));
+	}
+
 	g_object_unref (message);
 	g_type_class_unref (klass);
 
@@ -1280,10 +1396,9 @@ gdata_service_insert_entry_finish (GDataService *self, GAsyncResult *async_resul
 		return NULL;
 
 	entry = g_simple_async_result_get_op_res_gpointer (result);
-	if (entry != NULL)
-		return g_object_ref (entry);
+	g_assert (entry != NULL);
 
-	g_assert_not_reached ();
+	return g_object_ref (entry);
 }
 
 /**
@@ -1325,6 +1440,7 @@ gdata_service_insert_entry (GDataService *self, GDataAuthorizationDomain *domain
 	SoupMessage *message;
 	gchar *upload_data;
 	guint status;
+	GDataParsableClass *klass;
 
 	g_return_val_if_fail (GDATA_IS_SERVICE (self), NULL);
 	g_return_val_if_fail (domain == NULL || GDATA_IS_AUTHORIZATION_DOMAIN (domain), NULL);
@@ -1342,8 +1458,15 @@ gdata_service_insert_entry (GDataService *self, GDataAuthorizationDomain *domain
 	message = _gdata_service_build_message (self, domain, SOUP_METHOD_POST, upload_uri, NULL, FALSE);
 
 	/* Append the data */
-	upload_data = gdata_parsable_get_xml (GDATA_PARSABLE (entry));
-	soup_message_set_request (message, "application/atom+xml", SOUP_MEMORY_TAKE, upload_data, strlen (upload_data));
+	klass = GDATA_PARSABLE_GET_CLASS (entry);
+	g_assert (klass->get_content_type != NULL);
+	if (g_strcmp0 (klass->get_content_type (), "application/json") == 0) {
+		upload_data = gdata_parsable_get_json (GDATA_PARSABLE (entry));
+		soup_message_set_request (message, "application/json", SOUP_MEMORY_TAKE, upload_data, strlen (upload_data));
+	} else {
+		upload_data = gdata_parsable_get_xml (GDATA_PARSABLE (entry));
+		soup_message_set_request (message, "application/atom+xml", SOUP_MEMORY_TAKE, upload_data, strlen (upload_data));
+	}
 
 	/* Send the message */
 	status = _gdata_service_send_message (self, message, cancellable, error);
@@ -1352,20 +1475,25 @@ gdata_service_insert_entry (GDataService *self, GDataAuthorizationDomain *domain
 		/* Redirect error or cancelled */
 		g_object_unref (message);
 		return NULL;
-	} else if (status != SOUP_STATUS_CREATED) {
-		/* Error */
-		GDataServiceClass *klass = GDATA_SERVICE_GET_CLASS (self);
-		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (self, GDATA_OPERATION_INSERTION, status, message->reason_phrase, message->response_body->data,
-		                             message->response_body->length, error);
+	} else if (status != SOUP_STATUS_CREATED && status != SOUP_STATUS_OK) {
+		/* Error: for XML APIs Google returns CREATED and for JSON it returns OK. */
+		GDataServiceClass *service_klass = GDATA_SERVICE_GET_CLASS (self);
+		g_assert (service_klass->parse_error_response != NULL);
+		service_klass->parse_error_response (self, GDATA_OPERATION_INSERTION, status, message->reason_phrase, message->response_body->data,
+		                                     message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
 
-	/* Parse the XML; create and return a new GDataEntry of the same type as @entry */
+	/* Parse the XML or JSON according to GDataEntry type; create and return a new GDataEntry of the same type as @entry */
 	g_assert (message->response_body->data != NULL);
-	updated_entry = GDATA_ENTRY (gdata_parsable_new_from_xml (G_OBJECT_TYPE (entry), message->response_body->data, message->response_body->length,
-	                                                          error));
+	if (g_strcmp0 (klass->get_content_type (), "application/json") == 0) {
+		updated_entry = GDATA_ENTRY (gdata_parsable_new_from_json (G_OBJECT_TYPE (entry), message->response_body->data,
+		                             message->response_body->length, error));
+	} else {
+		updated_entry = GDATA_ENTRY (gdata_parsable_new_from_xml (G_OBJECT_TYPE (entry), message->response_body->data,
+		                             message->response_body->length, error));
+	}
 	g_object_unref (message);
 
 	return updated_entry;
@@ -1476,10 +1604,9 @@ gdata_service_update_entry_finish (GDataService *self, GAsyncResult *async_resul
 		return NULL;
 
 	entry = g_simple_async_result_get_op_res_gpointer (result);
-	if (entry != NULL)
-		return g_object_ref (entry);
+	g_assert (entry != NULL);
 
-	g_assert_not_reached ();
+	return g_object_ref (entry);
 }
 
 /**
@@ -1517,6 +1644,7 @@ gdata_service_update_entry (GDataService *self, GDataAuthorizationDomain *domain
 	SoupMessage *message;
 	gchar *upload_data;
 	guint status;
+	GDataParsableClass *klass;
 
 	g_return_val_if_fail (GDATA_IS_SERVICE (self), NULL);
 	g_return_val_if_fail (domain == NULL || GDATA_IS_AUTHORIZATION_DOMAIN (domain), NULL);
@@ -1524,14 +1652,24 @@ gdata_service_update_entry (GDataService *self, GDataAuthorizationDomain *domain
 	g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
-	/* Get the edit URI */
-	_link = gdata_entry_look_up_link (entry, GDATA_LINK_EDIT);
-	g_assert (_link != NULL);
-	message = _gdata_service_build_message (self, domain, SOUP_METHOD_PUT, gdata_link_get_uri (_link), gdata_entry_get_etag (entry), TRUE);
-
 	/* Append the data */
-	upload_data = gdata_parsable_get_xml (GDATA_PARSABLE (entry));
-	soup_message_set_request (message, "application/atom+xml", SOUP_MEMORY_TAKE, upload_data, strlen (upload_data));
+	klass = GDATA_PARSABLE_GET_CLASS (entry);
+	g_assert (klass->get_content_type != NULL);
+	if (g_strcmp0 (klass->get_content_type (), "application/json") == 0) {
+		/* Get the edit URI */
+		_link = gdata_entry_look_up_link (entry, GDATA_LINK_SELF);
+		g_assert (_link != NULL);
+		message = _gdata_service_build_message (self, domain, SOUP_METHOD_PUT, gdata_link_get_uri (_link), gdata_entry_get_etag (entry), TRUE);
+		upload_data = gdata_parsable_get_json (GDATA_PARSABLE (entry));
+		soup_message_set_request (message, "application/json", SOUP_MEMORY_TAKE, upload_data, strlen (upload_data));
+	} else {
+		/* Get the edit URI */
+		_link = gdata_entry_look_up_link (entry, GDATA_LINK_EDIT);
+		g_assert (_link != NULL);
+		message = _gdata_service_build_message (self, domain, SOUP_METHOD_PUT, gdata_link_get_uri (_link), gdata_entry_get_etag (entry), TRUE);
+		upload_data = gdata_parsable_get_xml (GDATA_PARSABLE (entry));
+		soup_message_set_request (message, "application/atom+xml", SOUP_MEMORY_TAKE, upload_data, strlen (upload_data));
+	}
 
 	/* Send the message */
 	status = _gdata_service_send_message (self, message, cancellable, error);
@@ -1542,18 +1680,22 @@ gdata_service_update_entry (GDataService *self, GDataAuthorizationDomain *domain
 		return NULL;
 	} else if (status != SOUP_STATUS_OK) {
 		/* Error */
-		GDataServiceClass *klass = GDATA_SERVICE_GET_CLASS (self);
-		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (self, GDATA_OPERATION_UPDATE, status, message->reason_phrase, message->response_body->data,
-		                             message->response_body->length, error);
+		GDataServiceClass *service_klass = GDATA_SERVICE_GET_CLASS (self);
+		g_assert (service_klass->parse_error_response != NULL);
+		service_klass->parse_error_response (self, GDATA_OPERATION_UPDATE, status, message->reason_phrase, message->response_body->data,
+		                                     message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
 
 	/* Parse the XML; create and return a new GDataEntry of the same type as @entry */
-	g_assert (message->response_body->data != NULL);
-	updated_entry = GDATA_ENTRY (gdata_parsable_new_from_xml (G_OBJECT_TYPE (entry), message->response_body->data, message->response_body->length,
-	                                                          error));
+	if (g_strcmp0 (klass->get_content_type (), "application/json") == 0) {
+		updated_entry = GDATA_ENTRY (gdata_parsable_new_from_json (G_OBJECT_TYPE (entry), message->response_body->data,
+		                         message->response_body->length, error));
+	} else {
+		updated_entry = GDATA_ENTRY (gdata_parsable_new_from_xml (G_OBJECT_TYPE (entry), message->response_body->data,
+		                             message->response_body->length, error));
+	}
 	g_object_unref (message);
 
 	return updated_entry;
@@ -1697,6 +1839,7 @@ gdata_service_delete_entry (GDataService *self, GDataAuthorizationDomain *domain
 	SoupMessage *message;
 	guint status;
 	gchar *fixed_uri;
+	GDataParsableClass *klass;
 
 	g_return_val_if_fail (GDATA_IS_SERVICE (self), FALSE);
 	g_return_val_if_fail (domain == NULL || GDATA_IS_AUTHORIZATION_DOMAIN (domain), FALSE);
@@ -1705,7 +1848,13 @@ gdata_service_delete_entry (GDataService *self, GDataAuthorizationDomain *domain
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
 	/* Get the edit URI. We have to fix it to always use HTTPS as YouTube videos appear to incorrectly return a HTTP URI as their edit URI. */
-	_link = gdata_entry_look_up_link (entry, GDATA_LINK_EDIT);
+	klass = GDATA_PARSABLE_GET_CLASS (entry);
+	g_assert (klass->get_content_type != NULL);
+	if (g_strcmp0 (klass->get_content_type (), "application/json") == 0) {
+		_link = gdata_entry_look_up_link (entry, GDATA_LINK_SELF);
+	} else {
+		_link = gdata_entry_look_up_link (entry, GDATA_LINK_EDIT);
+	}
 	g_assert (_link != NULL);
 
 	fixed_uri = _gdata_service_fix_uri_scheme (gdata_link_get_uri (_link));
@@ -1719,12 +1868,12 @@ gdata_service_delete_entry (GDataService *self, GDataAuthorizationDomain *domain
 		/* Redirect error or cancelled */
 		g_object_unref (message);
 		return FALSE;
-	} else if (status != SOUP_STATUS_OK) {
+	} else if (status != SOUP_STATUS_OK && status != SOUP_STATUS_NO_CONTENT) {
 		/* Error */
-		GDataServiceClass *klass = GDATA_SERVICE_GET_CLASS (self);
-		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (self, GDATA_OPERATION_DELETION, status, message->reason_phrase, message->response_body->data,
-		                             message->response_body->length, error);
+		GDataServiceClass *service_klass = GDATA_SERVICE_GET_CLASS (self);
+		g_assert (service_klass->parse_error_response != NULL);
+		service_klass->parse_error_response (self, GDATA_OPERATION_DELETION, status, message->reason_phrase, message->response_body->data,
+		                                     message->response_body->length, error);
 		g_object_unref (message);
 		return FALSE;
 	}
@@ -1740,18 +1889,9 @@ notify_proxy_uri_cb (GObject *gobject, GParamSpec *pspec, GObject *self)
 	g_object_notify (self, "proxy-uri");
 }
 
-/**
- * gdata_service_get_proxy_uri:
- * @self: a #GDataService
- *
- * Gets the proxy URI on the #GDataService's #SoupSession.
- *
- * Return value: (transfer none): the proxy URI, or %NULL
- *
- * Since: 0.2.0
- **/
-SoupURI *
-gdata_service_get_proxy_uri (GDataService *self)
+/* Static function which isn't deprecated so we can continue using it internally. */
+static SoupURI *
+_get_proxy_uri (GDataService *self)
 {
 	SoupURI *proxy_uri;
 
@@ -1761,6 +1901,32 @@ gdata_service_get_proxy_uri (GDataService *self)
 	g_object_unref (proxy_uri); /* remove the ref added by g_object_get */
 
 	return proxy_uri;
+}
+
+/**
+ * gdata_service_get_proxy_uri:
+ * @self: a #GDataService
+ *
+ * Gets the proxy URI on the #GDataService's #SoupSession.
+ *
+ * Return value: (transfer none): the proxy URI, or %NULL
+ *
+ * Since: 0.2.0
+ * Deprecated: 0.15.0: Use gdata_service_get_proxy_resolver() instead, which gives more flexibility over the proxy used.
+ **/
+SoupURI *
+gdata_service_get_proxy_uri (GDataService *self)
+{
+	return _get_proxy_uri (self);
+}
+
+/* Static function which isn't deprecated so we can continue using it internally. */
+static void
+_set_proxy_uri (GDataService *self, SoupURI *proxy_uri)
+{
+	g_return_if_fail (GDATA_IS_SERVICE (self));
+	g_object_set (self->priv->session, SOUP_SESSION_PROXY_URI, proxy_uri, NULL);
+	g_object_notify (G_OBJECT (self), "proxy-uri");
 }
 
 /**
@@ -1776,13 +1942,57 @@ gdata_service_get_proxy_uri (GDataService *self)
  * Note that if a #GDataAuthorizer is being used with this #GDataService, the authorizer might also need its proxy URI setting.
  *
  * Since: 0.2.0
+ * Deprecated: 0.15.0: Use gdata_service_set_proxy_resolver() instead, which gives more flexibility over the proxy used.
  **/
 void
 gdata_service_set_proxy_uri (GDataService *self, SoupURI *proxy_uri)
 {
+	_set_proxy_uri (self, proxy_uri);
+}
+
+/**
+ * gdata_service_get_proxy_resolver:
+ * @self: a #GDataService
+ *
+ * Gets the #GProxyResolver on the #GDataService's #SoupSession.
+ *
+ * Return value: (transfer none) (allow-none): a #GProxyResolver, or %NULL
+ *
+ * Since: 0.15.0
+ */
+GProxyResolver *
+gdata_service_get_proxy_resolver (GDataService *self)
+{
+	g_return_val_if_fail (GDATA_IS_SERVICE (self), NULL);
+
+	return self->priv->proxy_resolver;
+}
+
+/**
+ * gdata_service_set_proxy_resolver:
+ * @self: a #GDataService
+ * @proxy_resolver: (allow-none): a #GProxyResolver, or %NULL
+ *
+ * Sets the #GProxyResolver on the #SoupSession used internally by the given #GDataService.
+ *
+ * Setting this will clear the #GDataService:proxy-uri property.
+ *
+ * Since: 0.15.0
+ */
+void
+gdata_service_set_proxy_resolver (GDataService *self, GProxyResolver *proxy_resolver)
+{
 	g_return_if_fail (GDATA_IS_SERVICE (self));
-	g_object_set (self->priv->session, SOUP_SESSION_PROXY_URI, proxy_uri, NULL);
-	g_object_notify (G_OBJECT (self), "proxy-uri");
+	g_return_if_fail (proxy_resolver == NULL || G_IS_PROXY_RESOLVER (proxy_resolver));
+
+	if (proxy_resolver != NULL) {
+		g_object_ref (proxy_resolver);
+	}
+
+	g_clear_object (&self->priv->proxy_resolver);
+	self->priv->proxy_resolver = proxy_resolver;
+
+	g_object_notify (G_OBJECT (self), "proxy-resolver");
 }
 
 static void
@@ -1957,6 +2167,40 @@ _gdata_service_fix_uri_scheme (const gchar *uri)
 	return g_strdup (uri);
 }
 
+/**
+ * _gdata_service_get_https_port:
+ *
+ * Gets the destination TCP/IP port number which libgdata should use for all outbound HTTPS traffic.
+ * This defaults to 443, but may be overridden using the <code class="literal">LIBGDATA_HTTPS_PORT</code>
+ * environment variable. This is intended to allow network traffic to be redirected to a local server for
+ * unit testing, with a listening port above 1024 so the tests don't need root privileges.
+ *
+ * The value returned by this function may change at any time (e.g. between unit tests), so callers must not cache the result.
+ *
+ * Return value: port number to use for HTTPS traffic
+ */
+guint
+_gdata_service_get_https_port (void)
+{
+	const gchar *port_string;
+
+	/* Allow changing the HTTPS port just for testing. */
+	port_string = g_getenv ("LIBGDATA_HTTPS_PORT");
+	if (port_string != NULL) {
+		const gchar *end;
+
+		guint64 port = g_ascii_strtoull (port_string, (gchar **) &end, 10);
+
+		if (port != 0 && *end == '\0') {
+			g_debug ("Overriding message port to %" G_GUINT64_FORMAT ".", port);
+			return port;
+		}
+	}
+
+	/* Return the default. */
+	return 443;
+}
+
 /*
  * debug_handler:
  *
@@ -2099,6 +2343,24 @@ _gdata_service_get_log_level (void)
 	return level;
 }
 
+/* Build a User-Agent value to send to the server.
+ *
+ * If we support gzip, we can request gzip from the server by both including
+ * the appropriate Accept-Encoding header and putting 'gzip' in the User-Agent
+ * header:
+ *  - https://developers.google.com/drive/web/performance#gzip
+ *  - http://googleappsdeveloper.blogspot.co.uk/2011/12/optimizing-bandwidth-usage-with-gzip.html
+ */
+static gchar *
+build_user_agent (gboolean supports_gzip)
+{
+	if (supports_gzip) {
+		return g_strdup_printf ("libgdata/%s - gzip", VERSION);
+	} else {
+		return g_strdup_printf ("libgdata/%s", VERSION);
+	}
+}
+
 /**
  * _gdata_service_build_session:
  *
@@ -2112,11 +2374,24 @@ _gdata_service_get_log_level (void)
 SoupSession *
 _gdata_service_build_session (void)
 {
-	SoupSession *session = soup_session_sync_new_with_options (SOUP_SESSION_SSL_USE_SYSTEM_CA_FILE, TRUE, NULL);
+	SoupSession *session;
+	gboolean ssl_strict = TRUE;
+	gchar *user_agent;
 
-#ifdef HAVE_GNOME
-	soup_session_add_feature_by_type (session, SOUP_TYPE_GNOME_FEATURES_2_26);
-#endif /* HAVE_GNOME */
+	/* Iff LIBGDATA_LAX_SSL_CERTIFICATES=1, relax SSL certificate validation to allow using invalid/unsigned certificates for testing. */
+	if (g_strcmp0 (g_getenv ("LIBGDATA_LAX_SSL_CERTIFICATES"), "1") == 0) {
+		ssl_strict = FALSE;
+	}
+
+	session = soup_session_new_with_options ("ssl-strict", ssl_strict,
+	                                         "timeout", 0,
+	                                         NULL);
+
+	user_agent = build_user_agent (soup_session_has_feature (session, SOUP_TYPE_CONTENT_DECODER));
+	g_object_set (session, "user-agent", user_agent, NULL);
+	g_free (user_agent);
+
+	soup_session_add_feature_by_type (session, SOUP_TYPE_PROXY_RESOLVER_DEFAULT);
 
 	/* Log all libsoup traffic if debugging's turned on */
 	if (_gdata_service_get_log_level () > GDATA_LOG_MESSAGES) {

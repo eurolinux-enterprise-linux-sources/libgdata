@@ -21,7 +21,7 @@
 /**
  * SECTION:gdata-picasaweb-user
  * @short_description: GData PicasaWeb User object
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/services/picasaweb/gdata-picasaweb-user.h
  *
  * #GDataPicasaWebUser is a subclass of #GDataEntry to represent properties for a PicasaWeb user. It adds a couple of
@@ -241,7 +241,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 	} else if (xmlStrcmp (node->name, (xmlChar*) "maxPhotosPerAlbum") == 0) {
 		/* gphoto:max-photos-per-album */
 		xmlChar *max_photos_per_album = xmlNodeListGetString (doc, node->children, TRUE);
-		self->priv->max_photos_per_album = strtol ((char*) max_photos_per_album, NULL, 10);
+		self->priv->max_photos_per_album = g_ascii_strtoll ((char*) max_photos_per_album, NULL, 10);
 		xmlFree (max_photos_per_album);
 	} else if (xmlStrcmp (node->name, (xmlChar*) "x-allowDownloads") == 0) { /* RHSTODO: see if this comes with the user */
 		/* gphoto:allowDownloads */

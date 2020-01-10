@@ -36,6 +36,7 @@ gdata_youtube_service_error_get_type (void)
     static const GEnumValue values[] = {
       { GDATA_YOUTUBE_SERVICE_ERROR_API_QUOTA_EXCEEDED, "GDATA_YOUTUBE_SERVICE_ERROR_API_QUOTA_EXCEEDED", "api-quota-exceeded" },
       { GDATA_YOUTUBE_SERVICE_ERROR_ENTRY_QUOTA_EXCEEDED, "GDATA_YOUTUBE_SERVICE_ERROR_ENTRY_QUOTA_EXCEEDED", "entry-quota-exceeded" },
+      { GDATA_YOUTUBE_SERVICE_ERROR_CHANNEL_REQUIRED, "GDATA_YOUTUBE_SERVICE_ERROR_CHANNEL_REQUIRED", "channel-required" },
       { 0, NULL, NULL }
     };
     etype = g_enum_register_static ("GDataYouTubeServiceError", values);

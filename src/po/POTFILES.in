@@ -2,12 +2,14 @@
 # Please keep this file sorted alphabetically.
 [encoding: UTF-8]
 gdata/gdata-access-handler.c
+gdata/gdata-access-rule.c
 gdata/gdata-client-login-authorizer.c
 gdata/gdata-commentable.c
 gdata/gdata-download-stream.c
 gdata/gdata-entry.c
 gdata/gdata-feed.c
 gdata/gdata-oauth1-authorizer.c
+gdata/gdata-oauth2-authorizer.c
 gdata/gdata-parsable.c
 gdata/gdata-parser.c
 gdata/gdata-service.c
@@ -18,7 +20,10 @@ gdata/services/calendar/gdata-calendar-service.c
 gdata/services/contacts/gdata-contacts-service.c
 gdata/services/documents/gdata-documents-document.c
 gdata/services/documents/gdata-documents-entry.c
+gdata/services/documents/gdata-documents-feed.c
 gdata/services/documents/gdata-documents-service.c
+gdata/services/freebase/gdata-freebase-service.c
 gdata/services/picasaweb/gdata-picasaweb-service.c
+gdata/services/tasks/gdata-tasks-service.c
 gdata/services/youtube/gdata-youtube-service.c
 gdata/services/youtube/gdata-youtube-video.c

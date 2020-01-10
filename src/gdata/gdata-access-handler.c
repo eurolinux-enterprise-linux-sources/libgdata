@@ -2,6 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Philip Withnall 2009–2010 <philip@tecnocode.co.uk>
+ * Copyright (C) Red Hat, Inc. 2015
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,7 +21,7 @@
 /**
  * SECTION:gdata-access-handler
  * @short_description: GData access handler interface
- * @stability: Unstable
+ * @stability: Stable
  * @include: gdata/gdata-access-handler.h
  *
  * #GDataAccessHandler is an interface which can be implemented by #GDataEntry<!-- -->s which can have their permissions controlled by an
@@ -81,13 +82,15 @@ get_rules_async_data_free (GetRulesAsyncData *self)
 
 static GDataFeed *
 _gdata_access_handler_get_rules (GDataAccessHandler *self, GDataService *service, GCancellable *cancellable,
-                                 GDataQueryProgressCallback progress_callback, gpointer progress_user_data, gboolean is_async, GError **error)
+                                 GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error)
 {
 	GDataAccessHandlerIface *iface;
 	GDataAuthorizationDomain *domain = NULL;
 	GDataFeed *feed;
 	GDataLink *_link;
 	SoupMessage *message;
+	SoupMessageHeaders *headers;
+	const gchar *content_type;
 
 	_link = gdata_entry_look_up_link (GDATA_ENTRY (self), GDATA_LINK_ACCESS_CONTROL_LIST);
 	g_assert (_link != NULL);
@@ -103,8 +106,23 @@ _gdata_access_handler_get_rules (GDataAccessHandler *self, GDataService *service
 	}
 
 	g_assert (message->response_body->data != NULL);
-	feed = _gdata_feed_new_from_xml (GDATA_TYPE_FEED, message->response_body->data, message->response_body->length, GDATA_TYPE_ACCESS_RULE,
-	                                 progress_callback, progress_user_data, is_async, error);
+
+	headers = message->response_headers;
+	content_type = soup_message_headers_get_content_type (headers, NULL);
+
+	if (g_strcmp0 (content_type, "application/json") == 0) {
+		/* Definitely JSON. */
+		g_debug("JSON content type detected.");
+		feed = _gdata_feed_new_from_json (GDATA_TYPE_FEED, message->response_body->data, message->response_body->length, GDATA_TYPE_ACCESS_RULE,
+		                                  progress_callback, progress_user_data, error);
+	} else {
+		/* Potentially XML. Don't bother checking the Content-Type, since the parser
+		 * will fail gracefully if the response body is not valid XML. */
+		g_debug("XML content type detected.");
+		feed = _gdata_feed_new_from_xml (GDATA_TYPE_FEED, message->response_body->data, message->response_body->length, GDATA_TYPE_ACCESS_RULE,
+		                                 progress_callback, progress_user_data, error);
+	}
+
 	g_object_unref (message);
 
 	return feed;
@@ -118,7 +136,7 @@ get_rules_thread (GSimpleAsyncResult *result, GDataAccessHandler *access_handler
 
 	/* Execute the query and return */
 	data->feed = _gdata_access_handler_get_rules (access_handler, data->service, cancellable, data->progress_callback, data->progress_user_data,
-	                                              TRUE, &error);
+	                                              &error);
 	if (data->feed == NULL && error != NULL) {
 		g_simple_async_result_set_from_error (result, error);
 		g_error_free (error);
@@ -211,5 +229,5 @@ gdata_access_handler_get_rules (GDataAccessHandler *self, GDataService *service,
 	g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), NULL);
 	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
-	return _gdata_access_handler_get_rules (self, service, cancellable, progress_callback, progress_user_data, FALSE, error);
+	return _gdata_access_handler_get_rules (self, service, cancellable, progress_callback, progress_user_data, error);
 }
