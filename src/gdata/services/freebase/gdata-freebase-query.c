@@ -31,6 +31,7 @@
  * online documentation</ulink>.
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 
 #include <config.h>
@@ -42,6 +43,9 @@
 #include "gdata-freebase-query.h"
 #include "gdata-query.h"
 #include "gdata-parser.h"
+#include "gdata-private.h"
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 static void gdata_freebase_query_finalize (GObject *self);
 static void gdata_freebase_query_set_property (GObject *self, guint prop_id, const GValue *value, GParamSpec *pspec);
@@ -81,19 +85,25 @@ gdata_freebase_query_class_init (GDataFreebaseQueryClass *klass)
 	 * containing (possibly nested) Freebase schema types and values.
 	 *
 	 * Since: 0.15.1
-	 **/
+	 * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+	 */
 	g_object_class_install_property (gobject_class, PROP_VARIANT,
 	                                 g_param_spec_variant ("variant",
 							       "Variant",
 							       "Variant to construct the query from.",
 							       G_VARIANT_TYPE ("a{smv}"), NULL,
-							       G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+							       G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS |
+							       G_PARAM_DEPRECATED));
 }
 
 static void
 gdata_freebase_query_init (GDataFreebaseQuery *self)
 {
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_FREEBASE_QUERY, GDataFreebaseQueryPrivate);
+
+	/* https://developers.google.com/freebase/v1/search#cursor */
+	_gdata_query_set_pagination_type (GDATA_QUERY (self),
+	                                  GDATA_QUERY_PAGINATION_INDEXED);
 }
 
 static void
@@ -209,6 +219,7 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
  * Return value: (transfer full): a new #GDataFreebaseQuery
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 GDataFreebaseQuery *
 gdata_freebase_query_new (const gchar *mql)
@@ -233,6 +244,7 @@ gdata_freebase_query_new (const gchar *mql)
  * Return value: (transfer full): a new #GDataFreebaseQuery
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 GDataFreebaseQuery *
 gdata_freebase_query_new_from_variant (GVariant *variant)
@@ -243,3 +255,5 @@ gdata_freebase_query_new_from_variant (GVariant *variant)
 			     "variant", g_variant_ref_sink (variant),
 			     NULL);
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS

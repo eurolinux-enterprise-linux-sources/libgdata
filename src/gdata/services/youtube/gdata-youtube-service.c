@@ -242,7 +242,7 @@
  *	g_object_unref (feed);
  * 	</programlisting>
  * </example>
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -268,6 +268,7 @@ gdata_youtube_service_error_quark (void)
 	return g_quark_from_static_string ("gdata-youtube-service-error-quark");
 }
 
+static void gdata_youtube_service_batchable_init (GDataBatchableIface *iface);
 static void gdata_youtube_service_finalize (GObject *object);
 static void gdata_youtube_service_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void gdata_youtube_service_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
@@ -288,7 +289,11 @@ enum {
 /* Reference: https://developers.google.com/youtube/v3/guides/authentication */
 _GDATA_DEFINE_AUTHORIZATION_DOMAIN (youtube, "youtube",
                                     "https://www.googleapis.com/auth/youtube")
-G_DEFINE_TYPE_WITH_CODE (GDataYouTubeService, gdata_youtube_service, GDATA_TYPE_SERVICE, G_IMPLEMENT_INTERFACE (GDATA_TYPE_BATCHABLE, NULL))
+_GDATA_DEFINE_AUTHORIZATION_DOMAIN (youtube_force_ssl, "youtube-force-ssl",
+                                    "https://www.googleapis.com/auth/youtube.force-ssl")
+G_DEFINE_TYPE_WITH_CODE (GDataYouTubeService, gdata_youtube_service, GDATA_TYPE_SERVICE,
+                         G_IMPLEMENT_INTERFACE (GDATA_TYPE_BATCHABLE,
+                                                gdata_youtube_service_batchable_init))
 
 static void
 gdata_youtube_service_class_init (GDataYouTubeServiceClass *klass)
@@ -316,12 +321,26 @@ gdata_youtube_service_class_init (GDataYouTubeServiceClass *klass)
 	 * With the port from v2 to v3 of the YouTube API in libgdata
 	 * 0.17.0, it might be necessary to update your application’s
 	 * developer key.
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_DEVELOPER_KEY,
 	                                 g_param_spec_string ("developer-key",
 	                                                      "Developer key", "Your YouTube developer API key.",
 	                                                      NULL,
 	                                                      G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+}
+
+static gboolean
+gdata_youtube_service_batchable_is_supported (GDataBatchOperationType operation_type)
+{
+	/* Batch operation support was removed with v3 of the API:
+	 * https://developers.google.com/youtube/v3/guides/implementation/deprecated#Batch_Processing */
+	return FALSE;
+}
+
+static void
+gdata_youtube_service_batchable_init (GDataBatchableIface *iface)
+{
+	iface->is_supported = gdata_youtube_service_batchable_is_supported;
 }
 
 static void
@@ -596,7 +615,12 @@ parent:
 static GList *
 get_authorization_domains (void)
 {
-	return g_list_prepend (NULL, get_youtube_authorization_domain ());
+	GList *authorization_domains = NULL;
+
+	authorization_domains = g_list_prepend (authorization_domains, get_youtube_authorization_domain ());
+	authorization_domains = g_list_prepend (authorization_domains, get_youtube_force_ssl_authorization_domain ());
+
+	return authorization_domains;
 }
 
 /**
@@ -702,7 +726,7 @@ standard_feed_type_to_feed_uri (GDataYouTubeStandardFeedType feed_type)
  * Parameters and errors are as for gdata_service_query().
  *
  * Return value: (transfer full): a #GDataFeed of query results, or %NULL; unref with g_object_unref()
- **/
+ */
 GDataFeed *
 gdata_youtube_service_query_standard_feed (GDataYouTubeService *self, GDataYouTubeStandardFeedType feed_type, GDataQuery *query,
                                            GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -750,7 +774,7 @@ gdata_youtube_service_query_standard_feed (GDataYouTubeService *self, GDataYouTu
  * to get the results of the operation.
  *
  * Since: 0.9.1
- **/
+ */
 void
 gdata_youtube_service_query_standard_feed_async (GDataYouTubeService *self, GDataYouTubeStandardFeedType feed_type, GDataQuery *query,
                                                  GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -790,7 +814,7 @@ gdata_youtube_service_query_standard_feed_async (GDataYouTubeService *self, GDat
  * Parameters and errors are as for gdata_service_query().
  *
  * Return value: (transfer full): a #GDataFeed of query results, or %NULL; unref with g_object_unref()
- **/
+ */
 GDataFeed *
 gdata_youtube_service_query_videos (GDataYouTubeService *self, GDataQuery *query,
                                     GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -832,7 +856,7 @@ gdata_youtube_service_query_videos (GDataYouTubeService *self, GDataQuery *query
  * to get the results of the operation.
  *
  * Since: 0.9.1
- **/
+ */
 void
 gdata_youtube_service_query_videos_async (GDataYouTubeService *self, GDataQuery *query,
                                           GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -870,7 +894,7 @@ gdata_youtube_service_query_videos_async (GDataYouTubeService *self, GDataQuery 
  * Parameters and other errors are as for gdata_service_query().
  *
  * Return value: (transfer full): a #GDataFeed of query results; unref with g_object_unref()
- **/
+ */
 GDataFeed *
 gdata_youtube_service_query_related (GDataYouTubeService *self, GDataYouTubeVideo *video, GDataQuery *query,
                                      GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -923,7 +947,7 @@ gdata_youtube_service_query_related (GDataYouTubeService *self, GDataYouTubeVide
  * to get the results of the operation.
  *
  * Since: 0.9.1
- **/
+ */
 void
 gdata_youtube_service_query_related_async (GDataYouTubeService *self, GDataYouTubeVideo *video, GDataQuery *query,
                                            GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -979,7 +1003,7 @@ gdata_youtube_service_query_related_async (GDataYouTubeService *self, GDataYouTu
  * Return value: (transfer full): a #GDataUploadStream to write the video data to, or %NULL; unref with g_object_unref()
  *
  * Since: 0.8.0
- **/
+ */
 GDataUploadStream *
 gdata_youtube_service_upload_video (GDataYouTubeService *self, GDataYouTubeVideo *video, const gchar *slug, const gchar *content_type,
                                     GCancellable *cancellable, GError **error)
@@ -1016,10 +1040,7 @@ gdata_youtube_service_upload_video (GDataYouTubeService *self, GDataYouTubeVideo
 	                                            SOUP_METHOD_POST,
 	                                            "https://www.googleapis.com/upload/youtube/v3/videos"
 	                                            "?part=snippet,status,"
-	                                                  "recordingDetails,"
-	                                                  "contentDetails,id,"
-	                                                  "statistics,"
-	                                                  "processingDetails",
+	                                                  "recordingDetails",
 	                                            GDATA_ENTRY (video), slug,
 	                                            content_type,
 	                                            cancellable);
@@ -1072,7 +1093,7 @@ gdata_youtube_service_finish_video_upload (GDataYouTubeService *self, GDataUploa
  * Gets the #GDataYouTubeService:developer-key property from the #GDataYouTubeService.
  *
  * Return value: the developer key property
- **/
+ */
 const gchar *
 gdata_youtube_service_get_developer_key (GDataYouTubeService *self)
 {
@@ -1094,7 +1115,7 @@ gdata_youtube_service_get_developer_key (GDataYouTubeService *self)
  * Return value: (transfer full): a #GDataAPPCategories, or %NULL; unref with g_object_unref()
  *
  * Since: 0.7.0
- **/
+ */
 GDataAPPCategories *
 gdata_youtube_service_get_categories (GDataYouTubeService *self, GCancellable *cancellable, GError **error)
 {
@@ -1170,7 +1191,7 @@ get_categories_thread (GSimpleAsyncResult *result, GDataYouTubeService *service,
  * operation.
  *
  * Since: 0.7.0
- **/
+ */
 void
 gdata_youtube_service_get_categories_async (GDataYouTubeService *self, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data)
 {
@@ -1196,7 +1217,7 @@ gdata_youtube_service_get_categories_async (GDataYouTubeService *self, GCancella
  * Return value: (transfer full): a #GDataAPPCategories, or %NULL; unref with g_object_unref()
  *
  * Since: 0.7.0
- **/
+ */
 GDataAPPCategories *
 gdata_youtube_service_get_categories_finish (GDataYouTubeService *self, GAsyncResult *async_result, GError **error)
 {

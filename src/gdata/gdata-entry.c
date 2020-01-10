@@ -26,7 +26,7 @@
  * #GDataEntry represents a single object on the online service, such as a playlist, video or calendar event. It is a snapshot of the
  * state of that object at the time of querying the service, so modifications made to a #GDataEntry will not be automatically or
  * magically propagated to the server.
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -127,7 +127,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 *
 	 * For more information, see the <ulink type="http"
 	 * url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.title">Atom specification</ulink>.
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_TITLE,
 	                                 g_param_spec_string ("title",
 	                                                      "Title", "A human-readable title for the entry.",
@@ -143,7 +143,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 * url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.summary">Atom specification</ulink>.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_SUMMARY,
 	                                 g_param_spec_string ("summary",
 	                                                      "Summary", "A short summary, abstract, or excerpt of the entry.",
@@ -153,11 +153,12 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	/**
 	 * GDataEntry:id:
 	 *
-	 * A permanent, universally unique identifier for the entry, in IRI form.
+	 * A permanent, universally unique identifier for the entry, in IRI form. This is %NULL for new entries (i.e. ones which haven't yet been
+	 * inserted on the server, created with gdata_entry_new()), and a non-empty IRI string for all other entries.
 	 *
 	 * For more information, see the <ulink type="http" url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.id">
 	 * Atom specification</ulink>.
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_ID,
 	                                 g_param_spec_string ("id",
 	                                                      "ID", "A permanent, universally unique identifier for the entry, in IRI form.",
@@ -174,7 +175,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 * GData specification</ulink>.
 	 *
 	 * Since: 0.2.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_ETAG,
 	                                 g_param_spec_string ("etag",
 	                                                      "ETag", "An identifier for a particular version of the entry.",
@@ -188,7 +189,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 *
 	 * For more information, see the <ulink type="http"
 	 * url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.updated">Atom specification</ulink>.
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_UPDATED,
 	                                 g_param_spec_int64 ("updated",
 	                                                     "Updated", "The date and time when the entry was most recently updated significantly.",
@@ -202,7 +203,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 *
 	 * For more information, see the <ulink type="http"
 	 * url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.published">Atom specification</ulink>.
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_PUBLISHED,
 	                                 g_param_spec_int64 ("published",
 	                                                     "Published", "The date and time the entry was first published or made available.",
@@ -216,7 +217,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 *
 	 * For more information, see the <ulink type="http"
 	 * url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.content">Atom specification</ulink>.
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_CONTENT,
 	                                 g_param_spec_string ("content",
 	                                                      "Content", "The content of the entry.",
@@ -232,7 +233,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 * <ulink type="http" url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.content">Atom specification</ulink>.
 	 *
 	 * Since: 0.7.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_CONTENT_URI,
 	                                 g_param_spec_string ("content-uri",
 	                                                      "Content URI", "A URI pointing to the location of the content of the entry.",
@@ -244,7 +245,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 *
 	 * Whether the entry has been inserted on the server. This is %FALSE for entries which have just been created using gdata_entry_new() and
 	 * %TRUE for entries returned from the server by queries. It is set to %TRUE when an entry is inserted using gdata_service_insert_entry().
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_IS_INSERTED,
 	                                 g_param_spec_boolean ("is-inserted",
 	                                                       "Inserted?", "Whether the entry has been inserted on the server.",
@@ -260,7 +261,7 @@ gdata_entry_class_init (GDataEntryClass *klass)
 	 * url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.rights">Atom specification</ulink>.
 	 *
 	 * Since: 0.5.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_RIGHTS,
 	                                 g_param_spec_string ("rights",
 	                                                      "Rights", "The ownership rights pertaining to the entry.",
@@ -433,7 +434,7 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 	GDataEntryPrivate *priv = GDATA_ENTRY (parsable)->priv;
 
 	if (gdata_parser_is_namespace (node, "http://www.w3.org/2005/Atom") == TRUE) {
-		if (gdata_parser_string_from_element (node, "title", P_DEFAULT, &(priv->title), &success, error) == TRUE ||
+		if (gdata_parser_string_from_element (node, "title", P_DEFAULT | P_NO_DUPES, &(priv->title), &success, error) == TRUE ||
 		    gdata_parser_string_from_element (node, "id", P_REQUIRED | P_NON_EMPTY | P_NO_DUPES, &(priv->id), &success, error) == TRUE ||
 		    gdata_parser_string_from_element (node, "summary", P_NONE, &(priv->summary), &success, error) == TRUE ||
 		    gdata_parser_string_from_element (node, "rights", P_NONE, &(priv->rights), &success, error) == TRUE ||
@@ -652,6 +653,11 @@ get_json (GDataParsable *parsable, JsonBuilder *builder)
 		json_builder_add_string_value (builder, priv->id);
 	}
 
+	if (priv->summary != NULL) {
+		json_builder_set_member_name (builder, "description");
+		json_builder_add_string_value (builder, priv->summary);
+	}
+
 	if (priv->updated != -1) {
 		gchar *updated = gdata_parser_int64_to_iso8601 (priv->updated);
 		json_builder_set_member_name (builder, "updated");
@@ -690,21 +696,26 @@ get_json (GDataParsable *parsable, JsonBuilder *builder)
  * Creates a new #GDataEntry with the given ID and default properties.
  *
  * Return value: a new #GDataEntry; unref with g_object_unref()
- **/
+ */
 GDataEntry *
 gdata_entry_new (const gchar *id)
 {
-	return g_object_new (GDATA_TYPE_ENTRY, "id", id, NULL);
+	GDataEntry *entry = GDATA_ENTRY (g_object_new (GDATA_TYPE_ENTRY, "id", id, NULL));
+
+	/* Set this here, as it interferes with P_NO_DUPES when parsing */
+	entry->priv->title = g_strdup (""); /* title can't be NULL */
+
+	return entry;
 }
 
 /**
  * gdata_entry_get_title:
  * @self: a #GDataEntry
  *
- * Returns the title of the entry.
+ * Returns the title of the entry. This will never be %NULL, but may be an empty string.
  *
  * Return value: the entry's title
- **/
+ */
 const gchar *
 gdata_entry_get_title (GDataEntry *self)
 {
@@ -718,7 +729,7 @@ gdata_entry_get_title (GDataEntry *self)
  * @title: (allow-none): the new entry title, or %NULL
  *
  * Sets the title of the entry.
- **/
+ */
 void
 gdata_entry_set_title (GDataEntry *self, const gchar *title)
 {
@@ -738,7 +749,7 @@ gdata_entry_set_title (GDataEntry *self, const gchar *title)
  * Return value: the entry's summary, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_entry_get_summary (GDataEntry *self)
 {
@@ -754,7 +765,7 @@ gdata_entry_get_summary (GDataEntry *self)
  * Sets the summary of the entry.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_entry_set_summary (GDataEntry *self, const gchar *summary)
 {
@@ -771,8 +782,10 @@ gdata_entry_set_summary (GDataEntry *self, const gchar *summary)
  *
  * Returns the URN ID of the entry; a unique and permanent identifier for the object the entry represents.
  *
- * Return value: the entry's ID
- **/
+ * The ID may be %NULL if and only if the #GDataEntry has been newly created, and hasn't yet been inserted on the server.
+ *
+ * Return value: (nullable): the entry's ID, or %NULL
+ */
 const gchar *
 gdata_entry_get_id (GDataEntry *self)
 {
@@ -797,10 +810,12 @@ gdata_entry_get_id (GDataEntry *self)
  * Returns the ETag of the entry; a unique identifier for each version of the entry. For more information, see the
  * <ulink type="http" url="http://code.google.com/apis/gdata/docs/2.0/reference.html#ResourceVersioning">online documentation</ulink>.
  *
- * Return value: the entry's ETag
+ * The ETag will never be empty; it's either %NULL or a valid ETag.
+ *
+ * Return value: (nullable): the entry's ETag, or %NULL
  *
  * Since: 0.2.0
- **/
+ */
 const gchar *
 gdata_entry_get_etag (GDataEntry *self)
 {
@@ -819,6 +834,24 @@ gdata_entry_get_etag (GDataEntry *self)
 	return NULL;
 }
 
+/*
+ * _gdata_entry_set_etag:
+ * @self: a #GDataEntry
+ * @etag: the new ETag value
+ *
+ * Sets the value of the #GDataEntry:etag property to @etag.
+ *
+ * Since: 0.17.2
+ */
+void
+_gdata_entry_set_etag (GDataEntry *self, const gchar *etag)
+{
+	g_return_if_fail (GDATA_IS_ENTRY (self));
+
+	g_free (self->priv->etag);
+	self->priv->etag = g_strdup (etag);
+}
+
 /**
  * gdata_entry_get_updated:
  * @self: a #GDataEntry
@@ -826,7 +859,7 @@ gdata_entry_get_etag (GDataEntry *self)
  * Gets the time the entry was last updated.
  *
  * Return value: the UNIX timestamp for the last update of the entry
- **/
+ */
 gint64
 gdata_entry_get_updated (GDataEntry *self)
 {
@@ -891,7 +924,7 @@ _gdata_entry_set_id (GDataEntry *self, const gchar *id)
  * Gets the time the entry was originally published.
  *
  * Return value: the UNIX timestamp for the original publish time of the entry
- **/
+ */
 gint64
 gdata_entry_get_published (GDataEntry *self)
 {
@@ -907,7 +940,7 @@ gdata_entry_get_published (GDataEntry *self)
  * Adds @category to the list of categories in the given #GDataEntry, and increments its reference count.
  *
  * Duplicate categories will not be added to the list.
- **/
+ */
 void
 gdata_entry_add_category (GDataEntry *self, GDataCategory *category)
 {
@@ -920,8 +953,12 @@ gdata_entry_add_category (GDataEntry *self, GDataCategory *category)
 		GList *element;
 
 		if (klass->kind_term != NULL && g_strcmp0 (gdata_category_get_term (category), klass->kind_term) != 0) {
-			g_warning ("Adding a kind category term, '%s', to an entry of kind '%s'.",
-			           gdata_category_get_term (category), klass->kind_term);
+			/* This used to make sense as a warning, but the new
+			 * JSON APIs use a lot of different kinds for very
+			 * highly related JSON schemas, which libgdata uses a
+			 * single class for…so it makes less sense now. */
+			g_debug ("Adding a kind category term, '%s', to an entry of kind '%s'.",
+			         gdata_category_get_term (category), klass->kind_term);
 		}
 
 		/* If it is a kind category, remove the entry’s existing kind category to allow the new one
@@ -952,7 +989,7 @@ gdata_entry_add_category (GDataEntry *self, GDataCategory *category)
  * Return value: (element-type GData.Category) (transfer none): a #GList of #GDataCategory<!-- -->s
  *
  * Since: 0.2.0
- **/
+ */
 GList *
 gdata_entry_get_categories (GDataEntry *self)
 {
@@ -969,7 +1006,7 @@ gdata_entry_get_categories (GDataEntry *self)
  * Return value: (element-type GData.Author) (transfer none): a #GList of #GDataAuthor<!-- -->s
  *
  * Since: 0.7.0
- **/
+ */
 GList *
 gdata_entry_get_authors (GDataEntry *self)
 {
@@ -985,7 +1022,7 @@ gdata_entry_get_authors (GDataEntry *self)
  * returned by gdata_entry_get_content_uri().
  *
  * Return value: the entry's content, or %NULL
- **/
+ */
 const gchar *
 gdata_entry_get_content (GDataEntry *self)
 {
@@ -999,7 +1036,7 @@ gdata_entry_get_content (GDataEntry *self)
  * @content: (allow-none): the new content for the entry, or %NULL
  *
  * Sets the entry's content to @content. This unsets #GDataEntry:content-uri.
- **/
+ */
 void
 gdata_entry_set_content (GDataEntry *self, const gchar *content)
 {
@@ -1025,7 +1062,7 @@ gdata_entry_set_content (GDataEntry *self, const gchar *content)
  * Return value: a URI pointing to the entry's content, or %NULL
  *
  * Since: 0.7.0
- **/
+ */
 const gchar *
 gdata_entry_get_content_uri (GDataEntry *self)
 {
@@ -1041,7 +1078,7 @@ gdata_entry_get_content_uri (GDataEntry *self)
  * Sets the URI pointing to the entry's content to @content. This unsets #GDataEntry:content.
  *
  * Since: 0.7.0
- **/
+ */
 void
 gdata_entry_set_content_uri (GDataEntry *self, const gchar *content_uri)
 {
@@ -1065,7 +1102,7 @@ gdata_entry_set_content_uri (GDataEntry *self, const gchar *content_uri)
  * Adds @_link to the list of links in the given #GDataEntry and increments its reference count.
  *
  * Duplicate links will not be added to the list.
- **/
+ */
 void
 gdata_entry_add_link (GDataEntry *self, GDataLink *_link)
 {
@@ -1128,7 +1165,7 @@ link_compare_cb (const GDataLink *_link, const gchar *rel)
  * Return value: (transfer none): a #GDataLink, or %NULL if one was not found
  *
  * Since: 0.1.1
- **/
+ */
 GDataLink *
 gdata_entry_look_up_link (GDataEntry *self, const gchar *rel)
 {
@@ -1157,7 +1194,7 @@ gdata_entry_look_up_link (GDataEntry *self, const gchar *rel)
  * g_list_free()
  *
  * Since: 0.4.0
- **/
+ */
 GList *
 gdata_entry_look_up_links (GDataEntry *self, const gchar *rel)
 {
@@ -1183,7 +1220,7 @@ gdata_entry_look_up_links (GDataEntry *self, const gchar *rel)
  * Adds @author to the list of authors in the given #GDataEntry and increments its reference count.
  *
  * Duplicate authors will not be added to the list.
- **/
+ */
 void
 gdata_entry_add_author (GDataEntry *self, GDataAuthor *author)
 {
@@ -1202,7 +1239,7 @@ gdata_entry_add_author (GDataEntry *self, GDataAuthor *author)
  * Returns whether the entry is marked as having been inserted on (uploaded to) the server already.
  *
  * Return value: %TRUE if the entry has been inserted already, %FALSE otherwise
- **/
+ */
 gboolean
 gdata_entry_is_inserted (GDataEntry *self)
 {
@@ -1222,7 +1259,7 @@ gdata_entry_is_inserted (GDataEntry *self)
  * Return value: the entry's rights information
  *
  * Since: 0.5.0
- **/
+ */
 const gchar *
 gdata_entry_get_rights (GDataEntry *self)
 {
@@ -1238,7 +1275,7 @@ gdata_entry_get_rights (GDataEntry *self)
  * Sets the rights for this entry.
  *
  * Since: 0.5.0
- **/
+ */
 void
 gdata_entry_set_rights (GDataEntry *self, const gchar *rights)
 {

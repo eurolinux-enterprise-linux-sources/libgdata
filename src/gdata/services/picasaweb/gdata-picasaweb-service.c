@@ -107,7 +107,7 @@
  *
  *
  * Since: 0.4.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -226,7 +226,7 @@ create_uri (GDataPicasaWebService *self, const gchar *username, const gchar *typ
  * Return value: (transfer full): a #GDataPicasaWebUser; unref with g_object_unref()
  *
  * Since: 0.6.0
- **/
+ */
 GDataPicasaWebUser *
 gdata_picasaweb_service_get_user (GDataPicasaWebService *self, const gchar *username, GCancellable *cancellable, GError **error)
 {
@@ -368,7 +368,7 @@ gdata_picasaweb_service_get_user_finish (GDataPicasaWebService *self, GAsyncResu
  * Return value: (transfer full): a #GDataFeed of query results; unref with g_object_unref()
  *
  * Since: 0.4.0
- **/
+ */
 GDataFeed *
 gdata_picasaweb_service_query_all_albums (GDataPicasaWebService *self, GDataQuery *query, const gchar *username, GCancellable *cancellable,
                                           GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error)
@@ -424,7 +424,7 @@ gdata_picasaweb_service_query_all_albums (GDataPicasaWebService *self, GDataQuer
  * this function, and gdata_service_query_async(), which is the base asynchronous query function.
  *
  * Since: 0.9.1
- **/
+ */
 void
 gdata_picasaweb_service_query_all_albums_async (GDataPicasaWebService *self, GDataQuery *query, const gchar *username,
                                                 GCancellable *cancellable, GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -502,7 +502,7 @@ get_query_files_uri (GDataPicasaWebAlbum *album, GError **error)
  * Return value: (transfer full): a #GDataFeed of query results; unref with g_object_unref()
  *
  * Since: 0.4.0
- **/
+ */
 GDataFeed *
 gdata_picasaweb_service_query_files (GDataPicasaWebService *self, GDataPicasaWebAlbum *album, GDataQuery *query, GCancellable *cancellable,
                                      GDataQueryProgressCallback progress_callback, gpointer progress_user_data, GError **error)
@@ -545,7 +545,7 @@ gdata_picasaweb_service_query_files (GDataPicasaWebService *self, GDataPicasaWeb
  * which is the base asynchronous query function.
  *
  * Since: 0.9.1
- **/
+ */
 void
 gdata_picasaweb_service_query_files_async (GDataPicasaWebService *self, GDataPicasaWebAlbum *album, GDataQuery *query, GCancellable *cancellable,
                                            GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -586,8 +586,10 @@ gdata_picasaweb_service_query_files_async (GDataPicasaWebService *self, GDataPic
  * #GDataUploadStream. If @album is %NULL, the file will be uploaded to the currently-authenticated user's "Drop Box" album. A user must be
  * authenticated to use this function.
  *
- * If @file has already been inserted, a %GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED error will be returned. If no user is authenticated
- * with the service, %GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED will be returned.
+ * If @file has already been inserted, a %GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED error will be returned.
+ *
+ * If no user is authenticated with the service, %GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED will be returned. It is recommended to retry the
+ * upload after refreshing the authorization tokens held by the associated #GDataAuthorizer using gdata_authorizer_refresh_authorization().
  *
  * The stream returned by this function should be written to using the standard #GOutputStream methods, asychronously or synchronously. Once the stream
  * is closed (using g_output_stream_close()), gdata_picasaweb_service_finish_file_upload() should be called on it to parse and return the updated
@@ -602,7 +604,7 @@ gdata_picasaweb_service_query_files_async (GDataPicasaWebService *self, GDataPic
  * Return value: (transfer full): a #GDataUploadStream to write the file data to, or %NULL; unref with g_object_unref()
  *
  * Since: 0.8.0
- **/
+ */
 GDataUploadStream *
 gdata_picasaweb_service_upload_file (GDataPicasaWebService *self, GDataPicasaWebAlbum *album, GDataPicasaWebFile *file_entry, const gchar *slug,
                                      const gchar *content_type, GCancellable *cancellable, GError **error)
@@ -693,7 +695,7 @@ gdata_picasaweb_service_finish_file_upload (GDataPicasaWebService *self, GDataUp
  * g_object_unref()
  *
  * Since: 0.6.0
- **/
+ */
 GDataPicasaWebAlbum *
 gdata_picasaweb_service_insert_album (GDataPicasaWebService *self, GDataPicasaWebAlbum *album, GCancellable *cancellable, GError **error)
 {
@@ -738,7 +740,7 @@ gdata_picasaweb_service_insert_album (GDataPicasaWebService *self, GDataPicasaWe
  * gdata_service_insert_entry_async(), which is the base asynchronous insertion function.
  *
  * Since: 0.8.0
- **/
+ */
 void
 gdata_picasaweb_service_insert_album_async (GDataPicasaWebService *self, GDataPicasaWebAlbum *album, GCancellable *cancellable,
                                             GAsyncReadyCallback callback, gpointer user_data)

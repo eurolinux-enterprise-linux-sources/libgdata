@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
 <book xmlns="http://www.devhelp.net/book" title="GData Reference Manual" link="index.html" author="" name="gdata" version="2" language="c">
   <chapters>
     <sub name="GData Overview" link="pt01.html">
@@ -99,6 +98,7 @@
         <sub name="GDataCalendarQuery" link="GDataCalendarQuery.html"/>
         <sub name="GDataCalendarCalendar" link="GDataCalendarCalendar.html"/>
         <sub name="GDataCalendarEvent" link="GDataCalendarEvent.html"/>
+        <sub name="GDataCalendarAccessRule" link="GDataCalendarAccessRule.html"/>
       </sub>
       <sub name="Google Contacts API" link="ch15.html">
         <sub name="GDataContactsService" link="GDataContactsService.html"/>
@@ -119,6 +119,7 @@
         <sub name="GDataDocumentsPresentation" link="GDataDocumentsPresentation.html"/>
         <sub name="GDataDocumentsSpreadsheet" link="GDataDocumentsSpreadsheet.html"/>
         <sub name="GDataDocumentsText" link="GDataDocumentsText.html"/>
+        <sub name="GDataDocumentsAccessRule" link="GDataDocumentsAccessRule.html"/>
       </sub>
       <sub name="Google PicasaWeb API" link="ch17.html">
         <sub name="GDataPicasaWebService" link="GDataPicasaWebService.html"/>
@@ -146,8 +147,8 @@
       </sub>
     </sub>
     <sub name="Appendices" link="pt05.html">
-      <sub name="API Index" link="api-index-full.html"/>
-      <sub name="Index of deprecated symbols" link="api-index-deprecated.html"/>
+      <sub name="API Index" link="ix01.html"/>
+      <sub name="Index of deprecated symbols" link="ix02.html"/>
       <sub name="Index of new symbols in 0.1.1" link="ix03.html"/>
       <sub name="Index of new symbols in 0.2.0" link="ix04.html"/>
       <sub name="Index of new symbols in 0.3.0" link="ix05.html"/>
@@ -168,25 +169,12 @@
       <sub name="Index of new symbols in 0.15.1" link="ix20.html"/>
       <sub name="Index of new symbols in 0.16.0" link="ix21.html"/>
       <sub name="Index of new symbols in 0.17.0" link="ix22.html"/>
+      <sub name="Index of new symbols in 0.17.2" link="ix23.html"/>
+      <sub name="Index of new symbols in 0.17.7" link="ix24.html"/>
       <sub name="Annotation Glossary" link="annotation-glossary.html"/>
     </sub>
   </chapters>
   <functions>
-    <keyword type="" name="Protocols" link="gdata-overview.html#id-1.2.2.3.3"/>
-    <keyword type="" name="XML protocol" link="gdata-overview.html#id-1.2.2.3.4"/>
-    <keyword type="" name="JSON protocol" link="gdata-overview.html#id-1.2.2.3.5"/>
-    <keyword type="" name="Structure" link="gdata-overview.html#id-1.2.2.3.6"/>
-    <keyword type="" name="Enumerable Properties" link="gdata-overview.html#enumerable-properties"/>
-    <keyword type="" name="String Constants" link="gdata-overview.html#id-1.2.2.4.4"/>
-    <keyword type="" name="New Services" link="gdata-overview.html#id-1.2.2.4.5"/>
-    <keyword type="" name="Cancellable Support" link="gdata-overview.html#cancellable-support"/>
-    <keyword type="" name="Privacy" link="gdata-overview.html#id-1.2.2.4.7"/>
-    <keyword type="" name="Environment variables" link="gdata-running.html#id-1.2.3.3.2"/>
-    <keyword type="" name="Debugging Advice" link="gdata-running.html#id-1.2.3.3.3"/>
-    <keyword type="macro" name="GDATA_MAJOR_VERSION" link="gdata-Version-Information.html#GDATA-MAJOR-VERSION:CAPS" since="0.11.0"/>
-    <keyword type="macro" name="GDATA_MINOR_VERSION" link="gdata-Version-Information.html#GDATA-MINOR-VERSION:CAPS" since="0.11.0"/>
-    <keyword type="macro" name="GDATA_MICRO_VERSION" link="gdata-Version-Information.html#GDATA-MICRO-VERSION:CAPS" since="0.11.0"/>
-    <keyword type="macro" name="GDATA_CHECK_VERSION()" link="gdata-Version-Information.html#GDATA-CHECK-VERSION:CAPS" since="0.11.0"/>
     <keyword type="function" name="GDataQueryProgressCallback ()" link="GDataService.html#GDataQueryProgressCallback"/>
     <keyword type="function" name="gdata_service_is_authorized ()" link="GDataService.html#gdata-service-is-authorized" since="0.9.0"/>
     <keyword type="function" name="gdata_service_get_authorizer ()" link="GDataService.html#gdata-service-get-authorizer" since="0.9.0"/>
@@ -283,6 +271,7 @@
     <keyword type="function" name="gdata_feed_get_start_index ()" link="GDataFeed.html#gdata-feed-get-start-index"/>
     <keyword type="function" name="gdata_feed_get_total_results ()" link="GDataFeed.html#gdata-feed-get-total-results"/>
     <keyword type="function" name="gdata_feed_get_items_per_page ()" link="GDataFeed.html#gdata-feed-get-items-per-page"/>
+    <keyword type="function" name="gdata_feed_get_next_page_token ()" link="GDataFeed.html#gdata-feed-get-next-page-token" since="0.17.7"/>
     <keyword type="struct" name="GDataFeed" link="GDataFeed.html#GDataFeed-struct"/>
     <keyword type="struct" name="GDataFeedClass" link="GDataFeed.html#GDataFeedClass"/>
     <keyword type="property" name="The “etag” property" link="GDataFeed.html#GDataFeed--etag"/>
@@ -291,6 +280,7 @@
     <keyword type="property" name="The “id” property" link="GDataFeed.html#GDataFeed--id"/>
     <keyword type="property" name="The “items-per-page” property" link="GDataFeed.html#GDataFeed--items-per-page"/>
     <keyword type="property" name="The “logo” property" link="GDataFeed.html#GDataFeed--logo"/>
+    <keyword type="property" name="The “next-page-token” property" link="GDataFeed.html#GDataFeed--next-page-token"/>
     <keyword type="property" name="The “rights” property" link="GDataFeed.html#GDataFeed--rights"/>
     <keyword type="property" name="The “start-index” property" link="GDataFeed.html#GDataFeed--start-index"/>
     <keyword type="property" name="The “subtitle” property" link="GDataFeed.html#GDataFeed--subtitle"/>
@@ -336,6 +326,7 @@
     <keyword type="function" name="gdata_color_from_hexadecimal ()" link="gdata-GData-Types.html#gdata-color-from-hexadecimal"/>
     <keyword type="function" name="gdata_color_to_hexadecimal ()" link="gdata-GData-Types.html#gdata-color-to-hexadecimal" since="0.3.0"/>
     <keyword type="struct" name="GDataColor" link="gdata-GData-Types.html#GDataColor-struct"/>
+    <keyword type="function" name="gdata_parsable_get_content_type ()" link="GDataParsable.html#gdata-parsable-get-content-type" since="0.17.7"/>
     <keyword type="function" name="gdata_parsable_new_from_xml ()" link="GDataParsable.html#gdata-parsable-new-from-xml" since="0.4.0"/>
     <keyword type="function" name="gdata_parsable_get_xml ()" link="GDataParsable.html#gdata-parsable-get-xml" since="0.4.0"/>
     <keyword type="function" name="gdata_parsable_new_from_json ()" link="GDataParsable.html#gdata-parsable-new-from-json" since="0.15.0"/>
@@ -504,6 +495,8 @@
     <keyword type="function" name="gdata_oauth2_authorizer_get_client_id ()" link="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-client-id" since="0.17.0"/>
     <keyword type="function" name="gdata_oauth2_authorizer_get_redirect_uri ()" link="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-redirect-uri" since="0.17.0"/>
     <keyword type="function" name="gdata_oauth2_authorizer_get_client_secret ()" link="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-client-secret" since="0.17.0"/>
+    <keyword type="function" name="gdata_oauth2_authorizer_dup_refresh_token ()" link="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-dup-refresh-token" since="0.17.2"/>
+    <keyword type="function" name="gdata_oauth2_authorizer_set_refresh_token ()" link="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-set-refresh-token" since="0.17.2"/>
     <keyword type="function" name="gdata_oauth2_authorizer_get_locale ()" link="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-locale" since="0.17.0"/>
     <keyword type="function" name="gdata_oauth2_authorizer_set_locale ()" link="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-set-locale" since="0.17.0"/>
     <keyword type="function" name="gdata_oauth2_authorizer_get_timeout ()" link="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-timeout" since="0.17.0"/>
@@ -519,6 +512,7 @@
     <keyword type="property" name="The “locale” property" link="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--locale"/>
     <keyword type="property" name="The “proxy-resolver” property" link="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--proxy-resolver"/>
     <keyword type="property" name="The “redirect-uri” property" link="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--redirect-uri"/>
+    <keyword type="property" name="The “refresh-token” property" link="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--refresh-token"/>
     <keyword type="property" name="The “timeout” property" link="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--timeout"/>
     <keyword type="function" name="gdata_commentable_query_comments ()" link="GDataCommentable.html#gdata-commentable-query-comments" since="0.10.0"/>
     <keyword type="function" name="gdata_commentable_query_comments_async ()" link="GDataCommentable.html#gdata-commentable-query-comments-async" since="0.10.0"/>
@@ -1229,12 +1223,14 @@
     <keyword type="function" name="gdata_calendar_service_query_own_calendars_async ()" link="GDataCalendarService.html#gdata-calendar-service-query-own-calendars-async" since="0.9.1"/>
     <keyword type="function" name="gdata_calendar_service_query_events ()" link="GDataCalendarService.html#gdata-calendar-service-query-events"/>
     <keyword type="function" name="gdata_calendar_service_query_events_async ()" link="GDataCalendarService.html#gdata-calendar-service-query-events-async" since="0.9.1"/>
-    <keyword type="function" name="gdata_calendar_service_insert_event ()" link="GDataCalendarService.html#gdata-calendar-service-insert-event" since="0.2.0"/>
-    <keyword type="function" name="gdata_calendar_service_insert_event_async ()" link="GDataCalendarService.html#gdata-calendar-service-insert-event-async" since="0.8.0"/>
+    <keyword type="function" name="gdata_calendar_service_insert_event ()" link="GDataCalendarService.html#gdata-calendar-service-insert-event" deprecated="" since="0.2.0"/>
+    <keyword type="function" name="gdata_calendar_service_insert_event_async ()" link="GDataCalendarService.html#gdata-calendar-service-insert-event-async" deprecated="" since="0.8.0"/>
+    <keyword type="function" name="gdata_calendar_service_insert_calendar_event ()" link="GDataCalendarService.html#gdata-calendar-service-insert-calendar-event" deprecated="" since="0.17.2"/>
+    <keyword type="function" name="gdata_calendar_service_insert_calendar_event_async ()" link="GDataCalendarService.html#gdata-calendar-service-insert-calendar-event-async" since="0.17.2"/>
     <keyword type="struct" name="GDataCalendarService" link="GDataCalendarService.html#GDataCalendarService-struct"/>
     <keyword type="struct" name="GDataCalendarServiceClass" link="GDataCalendarService.html#GDataCalendarServiceClass"/>
-    <keyword type="function" name="gdata_calendar_feed_get_timezone ()" link="GDataCalendarFeed.html#gdata-calendar-feed-get-timezone" since="0.3.0"/>
-    <keyword type="function" name="gdata_calendar_feed_get_times_cleaned ()" link="GDataCalendarFeed.html#gdata-calendar-feed-get-times-cleaned" since="0.3.0"/>
+    <keyword type="function" name="gdata_calendar_feed_get_timezone ()" link="GDataCalendarFeed.html#gdata-calendar-feed-get-timezone" deprecated="" since="0.3.0"/>
+    <keyword type="function" name="gdata_calendar_feed_get_times_cleaned ()" link="GDataCalendarFeed.html#gdata-calendar-feed-get-times-cleaned" deprecated="" since="0.3.0"/>
     <keyword type="struct" name="GDataCalendarFeed" link="GDataCalendarFeed.html#GDataCalendarFeed-struct"/>
     <keyword type="struct" name="GDataCalendarFeedClass" link="GDataCalendarFeed.html#GDataCalendarFeedClass" since="0.3.0"/>
     <keyword type="property" name="The “times-cleaned” property" link="GDataCalendarFeed.html#GDataCalendarFeed--times-cleaned"/>
@@ -1247,16 +1243,16 @@
     <keyword type="function" name="gdata_calendar_query_set_single_events ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-single-events"/>
     <keyword type="function" name="gdata_calendar_query_get_order_by ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-order-by"/>
     <keyword type="function" name="gdata_calendar_query_set_order_by ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-order-by"/>
-    <keyword type="function" name="gdata_calendar_query_get_sort_order ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-sort-order"/>
-    <keyword type="function" name="gdata_calendar_query_set_sort_order ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-sort-order"/>
+    <keyword type="function" name="gdata_calendar_query_get_sort_order ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-sort-order" deprecated="0.17.7: Manually sort the results after retrieving them, as this is no longer supported on the server."/>
+    <keyword type="function" name="gdata_calendar_query_set_sort_order ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-sort-order" deprecated="0.17.7: Manually sort the results after retrieving them, as this is no longer supported on the server."/>
     <keyword type="function" name="gdata_calendar_query_get_start_min ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-start-min"/>
     <keyword type="function" name="gdata_calendar_query_set_start_min ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-start-min"/>
     <keyword type="function" name="gdata_calendar_query_get_start_max ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-start-max"/>
     <keyword type="function" name="gdata_calendar_query_set_start_max ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-start-max"/>
-    <keyword type="function" name="gdata_calendar_query_get_recurrence_expansion_start ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-start"/>
-    <keyword type="function" name="gdata_calendar_query_set_recurrence_expansion_start ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-start"/>
-    <keyword type="function" name="gdata_calendar_query_get_recurrence_expansion_end ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-end"/>
-    <keyword type="function" name="gdata_calendar_query_set_recurrence_expansion_end ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-end"/>
+    <keyword type="function" name="gdata_calendar_query_get_recurrence_expansion_start ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-start" deprecated="0.17.7: Use #GDataCalendarQuery:single-events instead, as this is no longer supported on the server."/>
+    <keyword type="function" name="gdata_calendar_query_set_recurrence_expansion_start ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-start" deprecated="0.17.7: Use #GDataCalendarQuery:single-events instead, as this is no longer supported on the server."/>
+    <keyword type="function" name="gdata_calendar_query_get_recurrence_expansion_end ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-recurrence-expansion-end" deprecated="0.17.7: Use #GDataCalendarQuery:single-events instead, as this is no longer supported on the server."/>
+    <keyword type="function" name="gdata_calendar_query_set_recurrence_expansion_end ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-recurrence-expansion-end" deprecated="0.17.7: Use #GDataCalendarQuery:single-events instead, as this is no longer supported on the server."/>
     <keyword type="function" name="gdata_calendar_query_get_timezone ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-timezone" since="0.2.0"/>
     <keyword type="function" name="gdata_calendar_query_set_timezone ()" link="GDataCalendarQuery.html#gdata-calendar-query-set-timezone" since="0.2.0"/>
     <keyword type="function" name="gdata_calendar_query_get_max_attendees ()" link="GDataCalendarQuery.html#gdata-calendar-query-get-max-attendees" since="0.9.1"/>
@@ -1285,14 +1281,9 @@
     <keyword type="function" name="gdata_calendar_calendar_set_is_selected ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-set-is-selected" since="0.2.0"/>
     <keyword type="function" name="gdata_calendar_calendar_get_timezone ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-timezone"/>
     <keyword type="function" name="gdata_calendar_calendar_set_timezone ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-set-timezone"/>
-    <keyword type="function" name="gdata_calendar_calendar_get_edited ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-edited"/>
-    <keyword type="function" name="gdata_calendar_calendar_get_times_cleaned ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-times-cleaned"/>
+    <keyword type="function" name="gdata_calendar_calendar_get_edited ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-edited" deprecated=""/>
+    <keyword type="function" name="gdata_calendar_calendar_get_times_cleaned ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-times-cleaned" deprecated=""/>
     <keyword type="function" name="gdata_calendar_calendar_get_access_level ()" link="GDataCalendarCalendar.html#gdata-calendar-calendar-get-access-level"/>
-    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_READ" link="GDataCalendarCalendar.html#GDATA-CALENDAR-ACCESS-ROLE-READ:CAPS" since="0.7.0"/>
-    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_FREE_BUSY" link="GDataCalendarCalendar.html#GDATA-CALENDAR-ACCESS-ROLE-FREE-BUSY:CAPS" since="0.7.0"/>
-    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_EDITOR" link="GDataCalendarCalendar.html#GDATA-CALENDAR-ACCESS-ROLE-EDITOR:CAPS" since="0.7.0"/>
-    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_OWNER" link="GDataCalendarCalendar.html#GDATA-CALENDAR-ACCESS-ROLE-OWNER:CAPS" since="0.7.0"/>
-    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_ROOT" link="GDataCalendarCalendar.html#GDATA-CALENDAR-ACCESS-ROLE-ROOT:CAPS" since="0.7.0"/>
     <keyword type="struct" name="GDataCalendarCalendar" link="GDataCalendarCalendar.html#GDataCalendarCalendar-struct"/>
     <keyword type="struct" name="GDataCalendarCalendarClass" link="GDataCalendarCalendar.html#GDataCalendarCalendarClass"/>
     <keyword type="property" name="The “access-level” property" link="GDataCalendarCalendar.html#GDataCalendarCalendar--access-level"/>
@@ -1348,6 +1339,14 @@
     <keyword type="property" name="The “transparency” property" link="GDataCalendarEvent.html#GDataCalendarEvent--transparency"/>
     <keyword type="property" name="The “uid” property" link="GDataCalendarEvent.html#GDataCalendarEvent--uid"/>
     <keyword type="property" name="The “visibility” property" link="GDataCalendarEvent.html#GDataCalendarEvent--visibility"/>
+    <keyword type="function" name="gdata_calendar_access_rule_new ()" link="GDataCalendarAccessRule.html#gdata-calendar-access-rule-new" since="0.17.2"/>
+    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_READ" link="GDataCalendarAccessRule.html#GDATA-CALENDAR-ACCESS-ROLE-READ:CAPS" since="0.7.0"/>
+    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_FREE_BUSY" link="GDataCalendarAccessRule.html#GDATA-CALENDAR-ACCESS-ROLE-FREE-BUSY:CAPS" since="0.7.0"/>
+    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_EDITOR" link="GDataCalendarAccessRule.html#GDATA-CALENDAR-ACCESS-ROLE-EDITOR:CAPS" since="0.7.0"/>
+    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_OWNER" link="GDataCalendarAccessRule.html#GDATA-CALENDAR-ACCESS-ROLE-OWNER:CAPS" since="0.7.0"/>
+    <keyword type="macro" name="GDATA_CALENDAR_ACCESS_ROLE_ROOT" link="GDataCalendarAccessRule.html#GDATA-CALENDAR-ACCESS-ROLE-ROOT:CAPS" since="0.7.0"/>
+    <keyword type="struct" name="GDataCalendarAccessRule" link="GDataCalendarAccessRule.html#GDataCalendarAccessRule-struct"/>
+    <keyword type="struct" name="GDataCalendarAccessRuleClass" link="GDataCalendarAccessRule.html#GDataCalendarAccessRuleClass" since="0.17.2"/>
     <keyword type="function" name="gdata_contacts_service_new ()" link="GDataContactsService.html#gdata-contacts-service-new" since="0.9.0"/>
     <keyword type="function" name="gdata_contacts_service_get_primary_authorization_domain ()" link="GDataContactsService.html#gdata-contacts-service-get-primary-authorization-domain" since="0.9.0"/>
     <keyword type="function" name="gdata_contacts_service_query_contacts ()" link="GDataContactsService.html#gdata-contacts-service-query-contacts" since="0.2.0"/>
@@ -1582,6 +1581,7 @@
     <keyword type="function" name="gdata_documents_entry_get_last_modified_by ()" link="GDataDocumentsEntry.html#gdata-documents-entry-get-last-modified-by" since="0.4.0"/>
     <keyword type="function" name="gdata_documents_entry_get_last_viewed ()" link="GDataDocumentsEntry.html#gdata-documents-entry-get-last-viewed" deprecated="" since="0.4.0"/>
     <keyword type="function" name="gdata_documents_entry_get_quota_used ()" link="GDataDocumentsEntry.html#gdata-documents-entry-get-quota-used" since="0.13.0"/>
+    <keyword type="function" name="gdata_documents_entry_get_file_size ()" link="GDataDocumentsEntry.html#gdata-documents-entry-get-file-size" since="0.17.7"/>
     <keyword type="function" name="gdata_documents_entry_writers_can_invite ()" link="GDataDocumentsEntry.html#gdata-documents-entry-writers-can-invite" since="0.4.0"/>
     <keyword type="function" name="gdata_documents_entry_set_writers_can_invite ()" link="GDataDocumentsEntry.html#gdata-documents-entry-set-writers-can-invite" since="0.4.0"/>
     <keyword type="function" name="gdata_documents_entry_is_deleted ()" link="GDataDocumentsEntry.html#gdata-documents-entry-is-deleted" since="0.5.0"/>
@@ -1592,6 +1592,7 @@
     <keyword type="struct" name="GDataDocumentsEntryClass" link="GDataDocumentsEntry.html#GDataDocumentsEntryClass" since="0.4.0"/>
     <keyword type="property" name="The “document-id” property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--document-id"/>
     <keyword type="property" name="The “edited” property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--edited"/>
+    <keyword type="property" name="The “file-size” property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--file-size"/>
     <keyword type="property" name="The “is-deleted” property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--is-deleted"/>
     <keyword type="property" name="The “last-modified-by” property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--last-modified-by"/>
     <keyword type="property" name="The “last-viewed” property" link="GDataDocumentsEntry.html#GDataDocumentsEntry--last-viewed"/>
@@ -1647,6 +1648,9 @@
     <keyword type="macro" name="GDATA_DOCUMENTS_TEXT_ZIP" link="GDataDocumentsText.html#GDATA-DOCUMENTS-TEXT-ZIP:CAPS" since="0.7.0"/>
     <keyword type="struct" name="GDataDocumentsText" link="GDataDocumentsText.html#GDataDocumentsText-struct"/>
     <keyword type="struct" name="GDataDocumentsTextClass" link="GDataDocumentsText.html#GDataDocumentsTextClass" since="0.4.0"/>
+    <keyword type="function" name="gdata_documents_access_rule_new ()" link="GDataDocumentsAccessRule.html#gdata-documents-access-rule-new" since="0.17.2"/>
+    <keyword type="struct" name="GDataDocumentsAccessRule" link="GDataDocumentsAccessRule.html#GDataDocumentsAccessRule-struct"/>
+    <keyword type="struct" name="GDataDocumentsAccessRuleClass" link="GDataDocumentsAccessRule.html#GDataDocumentsAccessRuleClass" since="0.17.2"/>
     <keyword type="function" name="gdata_picasaweb_service_new ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-new" since="0.9.0"/>
     <keyword type="function" name="gdata_picasaweb_service_get_primary_authorization_domain ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-get-primary-authorization-domain" since="0.9.0"/>
     <keyword type="function" name="gdata_picasaweb_service_get_user ()" link="GDataPicasaWebService.html#gdata-picasaweb-service-get-user" since="0.6.0"/>
@@ -1886,91 +1890,91 @@
     <keyword type="property" name="The “parent” property" link="GDataTasksTask.html#GDataTasksTask--parent"/>
     <keyword type="property" name="The “position” property" link="GDataTasksTask.html#GDataTasksTask--position"/>
     <keyword type="property" name="The “status” property" link="GDataTasksTask.html#GDataTasksTask--status"/>
-    <keyword type="function" name="gdata_freebase_service_new ()" link="GDataFreebaseService.html#gdata-freebase-service-new" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_service_get_primary_authorization_domain ()" link="GDataFreebaseService.html#gdata-freebase-service-get-primary-authorization-domain" since="0.9.0"/>
-    <keyword type="function" name="gdata_freebase_service_query ()" link="GDataFreebaseService.html#gdata-freebase-service-query" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_service_query_async ()" link="GDataFreebaseService.html#gdata-freebase-service-query-async" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_service_get_topic ()" link="GDataFreebaseService.html#gdata-freebase-service-get-topic" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_service_get_topic_async ()" link="GDataFreebaseService.html#gdata-freebase-service-get-topic-async" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_service_search ()" link="GDataFreebaseService.html#gdata-freebase-service-search" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_service_search_async ()" link="GDataFreebaseService.html#gdata-freebase-service-search-async" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_service_get_image ()" link="GDataFreebaseService.html#gdata-freebase-service-get-image" since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_service_new ()" link="GDataFreebaseService.html#gdata-freebase-service-new" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_service_get_primary_authorization_domain ()" link="GDataFreebaseService.html#gdata-freebase-service-get-primary-authorization-domain" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_service_query ()" link="GDataFreebaseService.html#gdata-freebase-service-query" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_service_query_async ()" link="GDataFreebaseService.html#gdata-freebase-service-query-async" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_service_get_topic ()" link="GDataFreebaseService.html#gdata-freebase-service-get-topic" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_service_get_topic_async ()" link="GDataFreebaseService.html#gdata-freebase-service-get-topic-async" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_service_search ()" link="GDataFreebaseService.html#gdata-freebase-service-search" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_service_search_async ()" link="GDataFreebaseService.html#gdata-freebase-service-search-async" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_service_get_image ()" link="GDataFreebaseService.html#gdata-freebase-service-get-image" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
     <keyword type="struct" name="GDataFreebaseService" link="GDataFreebaseService.html#GDataFreebaseService-struct"/>
-    <keyword type="struct" name="GDataFreebaseServiceClass" link="GDataFreebaseService.html#GDataFreebaseServiceClass" since="0.15.1"/>
+    <keyword type="struct" name="GDataFreebaseServiceClass" link="GDataFreebaseService.html#GDataFreebaseServiceClass" deprecated="" since="0.15.1"/>
     <keyword type="property" name="The “developer-key” property" link="GDataFreebaseService.html#GDataFreebaseService--developer-key"/>
-    <keyword type="function" name="gdata_freebase_query_new ()" link="GDataFreebaseQuery.html#gdata-freebase-query-new" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_query_new_from_variant ()" link="GDataFreebaseQuery.html#gdata-freebase-query-new-from-variant" since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_query_new ()" link="GDataFreebaseQuery.html#gdata-freebase-query-new" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_query_new_from_variant ()" link="GDataFreebaseQuery.html#gdata-freebase-query-new-from-variant" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
     <keyword type="struct" name="GDataFreebaseQuery" link="GDataFreebaseQuery.html#GDataFreebaseQuery-struct"/>
-    <keyword type="struct" name="GDataFreebaseQueryClass" link="GDataFreebaseQuery.html#GDataFreebaseQueryClass" since="0.15.1"/>
+    <keyword type="struct" name="GDataFreebaseQueryClass" link="GDataFreebaseQuery.html#GDataFreebaseQueryClass" deprecated="" since="0.15.1"/>
     <keyword type="property" name="The “variant” property" link="GDataFreebaseQuery.html#GDataFreebaseQuery--variant"/>
-    <keyword type="function" name="gdata_freebase_result_new ()" link="GDataFreebaseResult.html#gdata-freebase-result-new" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_result_dup_variant ()" link="GDataFreebaseResult.html#gdata-freebase-result-dup-variant" since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_result_new ()" link="GDataFreebaseResult.html#gdata-freebase-result-new" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_result_dup_variant ()" link="GDataFreebaseResult.html#gdata-freebase-result-dup-variant" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
     <keyword type="struct" name="GDataFreebaseResult" link="GDataFreebaseResult.html#GDataFreebaseResult-struct"/>
-    <keyword type="struct" name="GDataFreebaseResultClass" link="GDataFreebaseResult.html#GDataFreebaseResultClass" since="0.15.1"/>
+    <keyword type="struct" name="GDataFreebaseResultClass" link="GDataFreebaseResult.html#GDataFreebaseResultClass" deprecated="" since="0.15.1"/>
     <keyword type="property" name="The “variant” property" link="GDataFreebaseResult.html#GDataFreebaseResult--variant"/>
-    <keyword type="function" name="gdata_freebase_topic_query_new ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-new" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_query_set_filter ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-set-filter" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_query_get_filter ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-get-filter" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_query_set_language ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-set-language" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_query_get_language ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-get-language" since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_query_new ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-new" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_query_set_filter ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-set-filter" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_query_get_filter ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-get-filter" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_query_set_language ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-set-language" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_query_get_language ()" link="GDataFreebaseTopicQuery.html#gdata-freebase-topic-query-get-language" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
     <keyword type="struct" name="GDataFreebaseTopicQuery" link="GDataFreebaseTopicQuery.html#GDataFreebaseTopicQuery-struct"/>
-    <keyword type="struct" name="GDataFreebaseTopicQueryClass" link="GDataFreebaseTopicQuery.html#GDataFreebaseTopicQueryClass" since="0.15.1"/>
+    <keyword type="struct" name="GDataFreebaseTopicQueryClass" link="GDataFreebaseTopicQuery.html#GDataFreebaseTopicQueryClass" deprecated="" since="0.15.1"/>
     <keyword type="property" name="The “filter” property" link="GDataFreebaseTopicQuery.html#GDataFreebaseTopicQuery--filter"/>
     <keyword type="property" name="The “language” property" link="GDataFreebaseTopicQuery.html#GDataFreebaseTopicQuery--language"/>
-    <keyword type="function" name="gdata_freebase_topic_result_new ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-result-new" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_result_dup_object ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-result-dup-object" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_object_ref ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-ref" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_object_unref ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-unref" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_object_list_properties ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-list-properties" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_object_get_id ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-id" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_object_get_property_count ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-count" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_object_get_property_hits ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-hits" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_object_get_property_value ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-value" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_ref ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-ref" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_unref ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-unref" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_property ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-property" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_text ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-text" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_language ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-language" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_creator ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-creator" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_timestamp ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-timestamp" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_value_type ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-value-type" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_copy_value ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-copy-value" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_int ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-int" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_double ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-double" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_string ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-string" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_get_object ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-object" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_topic_value_is_image ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-is-image" since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_result_new ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-result-new" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_result_dup_object ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-result-dup-object" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_object_ref ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-ref" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_object_unref ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-unref" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_object_list_properties ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-list-properties" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_object_get_id ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-id" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_object_get_property_count ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-count" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_object_get_property_hits ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-hits" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_object_get_property_value ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-object-get-property-value" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_ref ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-ref" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_unref ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-unref" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_property ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-property" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_text ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-text" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_language ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-language" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_creator ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-creator" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_timestamp ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-timestamp" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_value_type ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-value-type" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_copy_value ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-copy-value" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_int ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-int" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_double ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-double" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_string ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-string" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_get_object ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-get-object" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_topic_value_is_image ()" link="GDataFreebaseTopicResult.html#gdata-freebase-topic-value-is-image" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
     <keyword type="struct" name="GDataFreebaseTopicResult" link="GDataFreebaseTopicResult.html#GDataFreebaseTopicResult-struct"/>
-    <keyword type="struct" name="GDataFreebaseTopicResultClass" link="GDataFreebaseTopicResult.html#GDataFreebaseTopicResultClass" since="0.15.1"/>
+    <keyword type="struct" name="GDataFreebaseTopicResultClass" link="GDataFreebaseTopicResult.html#GDataFreebaseTopicResultClass" deprecated="" since="0.15.1"/>
     <keyword type="struct" name="GDataFreebaseTopicObject" link="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject-struct"/>
     <keyword type="struct" name="GDataFreebaseTopicValue" link="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue-struct"/>
-    <keyword type="function" name="gdata_freebase_search_query_new ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-new" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_query_set_language ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-set-language" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_query_get_language ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-get-language" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_query_set_stemmed ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-set-stemmed" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_query_get_stemmed ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-get-stemmed" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_query_open_filter ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-open-filter" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_query_close_filter ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-close-filter" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_query_add_filter ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-filter" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_query_add_location ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-location" since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_query_new ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-new" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_query_set_language ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-set-language" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_query_get_language ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-get-language" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_query_set_stemmed ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-set-stemmed" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_query_get_stemmed ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-get-stemmed" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_query_open_filter ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-open-filter" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_query_close_filter ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-close-filter" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_query_add_filter ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-filter" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_query_add_location ()" link="GDataFreebaseSearchQuery.html#gdata-freebase-search-query-add-location" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
     <keyword type="struct" name="GDataFreebaseSearchQuery" link="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQuery-struct"/>
-    <keyword type="struct" name="GDataFreebaseSearchQueryClass" link="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQueryClass" since="0.15.1"/>
-    <keyword type="enum" name="enum GDataFreebaseSearchFilterType" link="GDataFreebaseSearchQuery.html#GDataFreebaseSearchFilterType" since="0.15.1"/>
+    <keyword type="struct" name="GDataFreebaseSearchQueryClass" link="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQueryClass" deprecated="" since="0.15.1"/>
+    <keyword type="enum" name="enum GDataFreebaseSearchFilterType" link="GDataFreebaseSearchQuery.html#GDataFreebaseSearchFilterType" deprecated="" since="0.15.1"/>
     <keyword type="property" name="The “language” property" link="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQuery--language"/>
     <keyword type="property" name="The “stemmed” property" link="GDataFreebaseSearchQuery.html#GDataFreebaseSearchQuery--stemmed"/>
-    <keyword type="function" name="gdata_freebase_search_result_new ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-new" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_get_num_items ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-get-num-items" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_get_total_hits ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-get-total-hits" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_get_item ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-get-item" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_item_get_mid ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-mid" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_item_get_id ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-id" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_item_get_name ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-name" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_item_get_language ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-language" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_item_get_notable_id ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-notable-id" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_item_get_notable_name ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-notable-name" since="0.15.1"/>
-    <keyword type="function" name="gdata_freebase_search_result_item_get_score ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-score" since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_new ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-new" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_get_num_items ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-get-num-items" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_get_total_hits ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-get-total-hits" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_get_item ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-get-item" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_item_get_mid ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-mid" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_item_get_id ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-id" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_item_get_name ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-name" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_item_get_language ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-language" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_item_get_notable_id ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-notable-id" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_item_get_notable_name ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-notable-name" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
+    <keyword type="function" name="gdata_freebase_search_result_item_get_score ()" link="GDataFreebaseSearchResult.html#gdata-freebase-search-result-item-get-score" deprecated="0.17.7: Google Freebase has been permanently shut down." since="0.15.1"/>
     <keyword type="struct" name="GDataFreebaseSearchResult" link="GDataFreebaseSearchResult.html#GDataFreebaseSearchResult-struct"/>
-    <keyword type="struct" name="GDataFreebaseSearchResultClass" link="GDataFreebaseSearchResult.html#GDataFreebaseSearchResultClass" since="0.15.1"/>
+    <keyword type="struct" name="GDataFreebaseSearchResultClass" link="GDataFreebaseSearchResult.html#GDataFreebaseSearchResultClass" deprecated="" since="0.15.1"/>
     <keyword type="struct" name="GDataFreebaseSearchResultItem" link="GDataFreebaseSearchResult.html#GDataFreebaseSearchResultItem-struct"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_UNAVAILABLE" link="GDataService.html#GDATA-SERVICE-ERROR-UNAVAILABLE:CAPS"/>
     <keyword type="constant" name="GDATA_SERVICE_ERROR_PROTOCOL_ERROR" link="GDataService.html#GDATA-SERVICE-ERROR-PROTOCOL-ERROR:CAPS"/>
@@ -2054,5 +2058,50 @@
     <keyword type="constant" name="GDATA_FREEBASE_SEARCH_FILTER_ALL" link="GDataFreebaseSearchQuery.html#GDATA-FREEBASE-SEARCH-FILTER-ALL:CAPS"/>
     <keyword type="constant" name="GDATA_FREEBASE_SEARCH_FILTER_ANY" link="GDataFreebaseSearchQuery.html#GDATA-FREEBASE-SEARCH-FILTER-ANY:CAPS"/>
     <keyword type="constant" name="GDATA_FREEBASE_SEARCH_FILTER_NOT" link="GDataFreebaseSearchQuery.html#GDATA-FREEBASE-SEARCH-FILTER-NOT:CAPS"/>
+    <keyword type="member" name="GDataServiceClass.parent" link="GDataService.html#GDataServiceClass.parent"/>
+    <keyword type="member" name="GDataServiceClass.api-version" link="GDataService.html#GDataServiceClass.api-version"/>
+    <keyword type="member" name="GDataServiceClass.feed-type" link="GDataService.html#GDataServiceClass.feed-type"/>
+    <keyword type="member" name="GDataServiceClass.append-query-headers" link="GDataService.html#GDataServiceClass.append-query-headers"/>
+    <keyword type="member" name="GDataServiceClass.parse-error-response" link="GDataService.html#GDataServiceClass.parse-error-response"/>
+    <keyword type="member" name="GDataServiceClass.get-authorization-domains" link="GDataService.html#GDataServiceClass.get-authorization-domains"/>
+    <keyword type="member" name="GDataServiceClass.parse-feed" link="GDataService.html#GDataServiceClass.parse-feed"/>
+    <keyword type="member" name="GDataEntryClass.parent" link="GDataEntry.html#GDataEntryClass.parent"/>
+    <keyword type="member" name="GDataEntryClass.get-entry-uri" link="GDataEntry.html#GDataEntryClass.get-entry-uri"/>
+    <keyword type="member" name="GDataEntryClass.kind-term" link="GDataEntry.html#GDataEntryClass.kind-term"/>
+    <keyword type="member" name="GDataColor-struct.red" link="gdata-GData-Types.html#GDataColor-struct.red"/>
+    <keyword type="member" name="GDataColor-struct.green" link="gdata-GData-Types.html#GDataColor-struct.green"/>
+    <keyword type="member" name="GDataColor-struct.blue" link="gdata-GData-Types.html#GDataColor-struct.blue"/>
+    <keyword type="member" name="GDataParsableClass.parent" link="GDataParsable.html#GDataParsableClass.parent"/>
+    <keyword type="member" name="GDataParsableClass.pre-parse-xml" link="GDataParsable.html#GDataParsableClass.pre-parse-xml"/>
+    <keyword type="member" name="GDataParsableClass.parse-xml" link="GDataParsable.html#GDataParsableClass.parse-xml"/>
+    <keyword type="member" name="GDataParsableClass.post-parse-xml" link="GDataParsable.html#GDataParsableClass.post-parse-xml"/>
+    <keyword type="member" name="GDataParsableClass.pre-get-xml" link="GDataParsable.html#GDataParsableClass.pre-get-xml"/>
+    <keyword type="member" name="GDataParsableClass.get-xml" link="GDataParsable.html#GDataParsableClass.get-xml"/>
+    <keyword type="member" name="GDataParsableClass.get-namespaces" link="GDataParsable.html#GDataParsableClass.get-namespaces"/>
+    <keyword type="member" name="GDataParsableClass.parse-json" link="GDataParsable.html#GDataParsableClass.parse-json"/>
+    <keyword type="member" name="GDataParsableClass.post-parse-json" link="GDataParsable.html#GDataParsableClass.post-parse-json"/>
+    <keyword type="member" name="GDataParsableClass.get-json" link="GDataParsable.html#GDataParsableClass.get-json"/>
+    <keyword type="member" name="GDataParsableClass.get-content-type" link="GDataParsable.html#GDataParsableClass.get-content-type"/>
+    <keyword type="member" name="GDataParsableClass.element-name" link="GDataParsable.html#GDataParsableClass.element-name"/>
+    <keyword type="member" name="GDataParsableClass.element-namespace" link="GDataParsable.html#GDataParsableClass.element-namespace"/>
+    <keyword type="member" name="GDataComparableIface.parent" link="GDataComparable.html#GDataComparableIface.parent"/>
+    <keyword type="member" name="GDataComparableIface.compare-with" link="GDataComparable.html#GDataComparableIface.compare-with"/>
+    <keyword type="member" name="GDataAccessHandlerIface.parent" link="GDataAccessHandler.html#GDataAccessHandlerIface.parent"/>
+    <keyword type="member" name="GDataAccessHandlerIface.is-owner-rule" link="GDataAccessHandler.html#GDataAccessHandlerIface.is-owner-rule"/>
+    <keyword type="member" name="GDataAccessHandlerIface.get-authorization-domain" link="GDataAccessHandler.html#GDataAccessHandlerIface.get-authorization-domain"/>
+    <keyword type="member" name="GDataAccessHandlerIface.get-rules" link="GDataAccessHandler.html#GDataAccessHandlerIface.get-rules"/>
+    <keyword type="member" name="GDataBatchableIface.is-supported" link="GDataBatchable.html#GDataBatchableIface.is-supported"/>
+    <keyword type="member" name="GDataAuthorizerInterface.parent" link="GDataAuthorizer.html#GDataAuthorizerInterface.parent"/>
+    <keyword type="member" name="GDataAuthorizerInterface.process-request" link="GDataAuthorizer.html#GDataAuthorizerInterface.process-request"/>
+    <keyword type="member" name="GDataAuthorizerInterface.is-authorized-for-domain" link="GDataAuthorizer.html#GDataAuthorizerInterface.is-authorized-for-domain"/>
+    <keyword type="member" name="GDataAuthorizerInterface.refresh-authorization" link="GDataAuthorizer.html#GDataAuthorizerInterface.refresh-authorization"/>
+    <keyword type="member" name="GDataAuthorizerInterface.refresh-authorization-async" link="GDataAuthorizer.html#GDataAuthorizerInterface.refresh-authorization-async"/>
+    <keyword type="member" name="GDataAuthorizerInterface.refresh-authorization-finish" link="GDataAuthorizer.html#GDataAuthorizerInterface.refresh-authorization-finish"/>
+    <keyword type="member" name="GDataCommentableInterface.parent" link="GDataCommentable.html#GDataCommentableInterface.parent"/>
+    <keyword type="member" name="GDataCommentableInterface.comment-type" link="GDataCommentable.html#GDataCommentableInterface.comment-type"/>
+    <keyword type="member" name="GDataCommentableInterface.get-authorization-domain" link="GDataCommentable.html#GDataCommentableInterface.get-authorization-domain"/>
+    <keyword type="member" name="GDataCommentableInterface.get-query-comments-uri" link="GDataCommentable.html#GDataCommentableInterface.get-query-comments-uri"/>
+    <keyword type="member" name="GDataCommentableInterface.get-insert-comment-uri" link="GDataCommentable.html#GDataCommentableInterface.get-insert-comment-uri"/>
+    <keyword type="member" name="GDataCommentableInterface.is-comment-deletable" link="GDataCommentable.html#GDataCommentableInterface.is-comment-deletable"/>
   </functions>
 </book>

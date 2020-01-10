@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataTasksService: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch18.html" title="Google Tasks API">
 <link rel="prev" href="ch18.html" title="Google Tasks API">
 <link rel="next" href="GDataTasksQuery.html" title="GDataTasksQuery">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -44,7 +44,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataTasksService.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -132,7 +132,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="GDataTasksService.html#gdata-tasks-service-delete-task" title="gdata_tasks_service_delete_task ()">gdata_tasks_service_delete_task</a> <span class="c_punctuation">()</span>
@@ -148,7 +148,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="GDataTasksService.html#gdata-tasks-service-delete-tasklist" title="gdata_tasks_service_delete_tasklist ()">gdata_tasks_service_delete_tasklist</a> <span class="c_punctuation">()</span>
@@ -199,7 +199,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataTasksService.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -218,7 +218,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataTasksService.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataService.html" title="GDataService">GDataService</a>
         <span class="lineart">╰──</span> GDataTasksService
 </pre>
@@ -242,10 +242,10 @@ online documentation</a>.</p>
 <pre class="programlisting"><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="returnvalue">GDataTasksService</span></a> *
 gdata_tasks_service_new (<em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *authorizer</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> using the given <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>. If <em class="parameter"><code>authorizer</code></em>
- is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, all requests are made as an unauthenticated user.</p>
+ is <code class="literal">NULL</code>, all requests are made as an unauthenticated user.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.2.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -253,16 +253,16 @@ gdata_tasks_service_new (<em class="parameter"><code><a class="link" href="GData
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>authorizer</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.2.6"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<a name="gdata-tasks-service-new.returns"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -275,11 +275,11 @@ by the <a class="link" href="GDataTasksService.html" title="GDataTasksService"><
 does not support natively, then this domain may be needed to authorize the requests.</p>
 <p>The domain never changes, and is interned so that pointer comparison can be used to differentiate it from other authorization domains.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.3.6"></a><h4>Returns</h4>
+<a name="gdata-tasks-service-get-primary-authorization-domain.returns"></a><h4>Returns</h4>
 <p> the service's authorization domain. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -288,17 +288,17 @@ does not support natively, then this domain may be needed to authorize the reque
 gdata_tasks_service_query_all_tasklists
                                (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Queries the service to return a list of all tasklists from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>
 . It will return all tasklists the user has read access to.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.4.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-query-all-tasklists.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -312,17 +312,17 @@ gdata_tasks_service_query_all_tasklists
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -333,18 +333,18 @@ function. </p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.4.7"></a><h4>Returns</h4>
+<a name="gdata-tasks-service-query-all-tasklists.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -353,12 +353,12 @@ function. </p></td>
 gdata_tasks_service_query_all_tasklists_async
                                (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Queries the service to return a list of all tasklists from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>
 . <em class="parameter"><code>self</code></em>
@@ -368,8 +368,8 @@ this function returns.</p>
 <p>For more details, see <a class="link" href="GDataTasksService.html#gdata-tasks-service-query-all-tasklists" title="gdata_tasks_service_query_all_tasklists ()"><code class="function">gdata_tasks_service_query_all_tasklists()</code></a>, which is the synchronous version of
 this function, and <a class="link" href="GDataService.html#gdata-service-query-async" title="gdata_service_query_async ()"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.5.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-query-all-tasklists-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -383,17 +383,17 @@ this function, and <a class="link" href="GDataService.html#gdata-service-query-a
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -405,7 +405,7 @@ function. </p></td>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
 <td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
+will not be called any more, or <code class="literal">NULL</code>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
@@ -424,7 +424,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -433,17 +433,17 @@ function. </p></td>
 gdata_tasks_service_query_tasks (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                  <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
                                  <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                  <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                 <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Queries the service to return a list of tasks in the given <em class="parameter"><code>tasklist</code></em>
 , which match <em class="parameter"><code>query</code></em>
 .</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.6.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-query-tasks.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -462,17 +462,17 @@ gdata_tasks_service_query_tasks (<em class="parameter"><code><a class="link" hre
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -483,18 +483,18 @@ function. </p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.6.7"></a><h4>Returns</h4>
+<a name="gdata-tasks-service-query-tasks.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -503,12 +503,12 @@ function. </p></td>
 gdata_tasks_service_query_tasks_async (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                       <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                       <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
                                        <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                       <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Queries the service to return a list of tasks in the given <em class="parameter"><code>tasklist</code></em>
 , which match <em class="parameter"><code>query</code></em>
 . <em class="parameter"><code>self</code></em>
@@ -521,8 +521,8 @@ function is called, so can safely be unreffed after this function returns.</p>
 <p>For more details, see <a class="link" href="GDataTasksService.html#gdata-tasks-service-query-tasks" title="gdata_tasks_service_query_tasks ()"><code class="function">gdata_tasks_service_query_tasks()</code></a>, which is the synchronous version of this function, and <a class="link" href="GDataService.html#gdata-service-query-async" title="gdata_service_query_async ()"><code class="function">gdata_service_query_async()</code></a>,
 which is the base asynchronous query function.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.7.7"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-query-tasks-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -541,17 +541,17 @@ which is the base asynchronous query function.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -563,7 +563,7 @@ function. </p></td>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
 <td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
+will not be called any more, or <code class="literal">NULL</code>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
@@ -582,7 +582,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -591,16 +591,16 @@ function. </p></td>
 gdata_tasks_service_insert_task (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                  <em class="parameter"><code><a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a> *task</code></em>,
                                  <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Inserts <em class="parameter"><code>task</code></em>
  by uploading it to the online tasks service into tasklist <em class="parameter"><code>tasklist</code></em>
 . It is safe to unref <em class="parameter"><code>tasklist</code></em>
  after function returns.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.8.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-insert-task.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -624,23 +624,23 @@ gdata_tasks_service_insert_task (<em class="parameter"><code><a class="link" hre
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.8.7"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<a name="gdata-tasks-service-insert-task.returns"></a><h4>Returns</h4>
+<p> an updated <a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -649,9 +649,9 @@ gdata_tasks_service_insert_task (<em class="parameter"><code><a class="link" hre
 gdata_tasks_service_insert_task_async (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a> *task</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                        <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                       <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Inserts <em class="parameter"><code>task</code></em>
  by uploading it to the online tasks service into tasklist <em class="parameter"><code>tasklist</code></em>
 . <em class="parameter"><code>self</code></em>
@@ -665,8 +665,8 @@ errors.</p>
 <p>For more details, see <a class="link" href="GDataTasksService.html#gdata-tasks-service-insert-task" title="gdata_tasks_service_insert_task ()"><code class="function">gdata_tasks_service_insert_task()</code></a>, which is the synchronous version of this function, and
 <a class="link" href="GDataService.html#gdata-service-insert-entry-async" title="gdata_service_insert_entry_async ()"><code class="function">gdata_service_insert_entry_async()</code></a>, which is the base asynchronous insertion function.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.9.7"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-insert-task-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -690,7 +690,7 @@ errors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -707,7 +707,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -715,14 +715,14 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="returnvalue">GDataTasksTasklist</span></a> *
 gdata_tasks_service_insert_tasklist (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Inserts <em class="parameter"><code>tasklist</code></em>
  by uploading it to the online tasks service.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.10.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-insert-tasklist.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -741,23 +741,23 @@ gdata_tasks_service_insert_tasklist (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.10.7"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<a name="gdata-tasks-service-insert-tasklist.returns"></a><h4>Returns</h4>
+<p> an updated <a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -766,9 +766,9 @@ gdata_tasks_service_insert_tasklist (<em class="parameter"><code><a class="link"
 gdata_tasks_service_insert_tasklist_async
                                (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Inserts <em class="parameter"><code>tasklist</code></em>
  by uploading it to the online tasks service. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>tasklist</code></em>
@@ -780,8 +780,8 @@ errors.</p>
 <p>For more details, see <a class="link" href="GDataTasksService.html#gdata-tasks-service-insert-tasklist" title="gdata_tasks_service_insert_tasklist ()"><code class="function">gdata_tasks_service_insert_tasklist()</code></a>, which is the synchronous version of this function, and
 <a class="link" href="GDataService.html#gdata-service-insert-entry-async" title="gdata_service_insert_entry_async ()"><code class="function">gdata_service_insert_entry_async()</code></a>, which is the base asynchronous insertion function.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.11.7"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-insert-tasklist-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -800,7 +800,7 @@ errors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -817,22 +817,22 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-tasks-service-delete-task"></a><h3>gdata_tasks_service_delete_task ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 gdata_tasks_service_delete_task (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                  <em class="parameter"><code><a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a> *task</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Delete <em class="parameter"><code>task</code></em>
  from online tasks service.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-delete-entry" title="gdata_service_delete_entry ()"><code class="function">gdata_service_delete_entry()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.12.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-delete-task.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -851,22 +851,22 @@ gdata_tasks_service_delete_task (<em class="parameter"><code><a class="link" hre
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.12.7"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+<a name="gdata-tasks-service-delete-task.returns"></a><h4>Returns</h4>
+<p> <code class="literal">TRUE</code> on success, <code class="literal">FALSE</code> otherwise</p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -874,9 +874,9 @@ gdata_tasks_service_delete_task (<em class="parameter"><code><a class="link" hre
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_tasks_service_delete_task_async (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a> *task</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                        <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                       <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Deletes <em class="parameter"><code>task</code></em>
  from online tasks service. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>task</code></em>
@@ -888,8 +888,8 @@ errors.</p>
 <p>For more details, see <a class="link" href="GDataTasksService.html#gdata-tasks-service-delete-task" title="gdata_tasks_service_delete_task ()"><code class="function">gdata_tasks_service_delete_task()</code></a>, which is the synchronous version of this function, and
 <a class="link" href="GDataService.html#gdata-service-delete-entry-async" title="gdata_service_delete_entry_async ()"><code class="function">gdata_service_delete_entry_async()</code></a>, which is the base asynchronous insertion function.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.13.7"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-delete-task-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -908,7 +908,7 @@ errors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -925,22 +925,22 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-tasks-service-delete-tasklist"></a><h3>gdata_tasks_service_delete_tasklist ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 gdata_tasks_service_delete_tasklist (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Delete <em class="parameter"><code>tasklist</code></em>
  from online tasks service.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-delete-entry" title="gdata_service_delete_entry ()"><code class="function">gdata_service_delete_entry()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.14.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-delete-tasklist.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -959,22 +959,22 @@ gdata_tasks_service_delete_tasklist (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.14.7"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+<a name="gdata-tasks-service-delete-tasklist.returns"></a><h4>Returns</h4>
+<p> <code class="literal">TRUE</code> on success, <code class="literal">FALSE</code> otherwise</p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -983,9 +983,9 @@ gdata_tasks_service_delete_tasklist (<em class="parameter"><code><a class="link"
 gdata_tasks_service_delete_tasklist_async
                                (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Deletes <em class="parameter"><code>tasklist</code></em>
  from online tasks service. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>tasklist</code></em>
@@ -997,8 +997,8 @@ errors.</p>
 <p>For more details, see <a class="link" href="GDataTasksService.html#gdata-tasks-service-delete-tasklist" title="gdata_tasks_service_delete_tasklist ()"><code class="function">gdata_tasks_service_delete_tasklist()</code></a>, which is the synchronous version of this function, and
 <a class="link" href="GDataService.html#gdata-service-delete-entry-async" title="gdata_service_delete_entry_async ()"><code class="function">gdata_service_delete_entry_async()</code></a>, which is the base asynchronous insertion function.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.15.7"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-delete-tasklist-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1017,7 +1017,7 @@ errors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1034,7 +1034,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1042,14 +1042,14 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="returnvalue">GDataTasksTask</span></a> *
 gdata_tasks_service_update_task (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                  <em class="parameter"><code><a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a> *task</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Update <em class="parameter"><code>task</code></em>
  in online tasks service.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-update-entry" title="gdata_service_update_entry ()"><code class="function">gdata_service_update_entry()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.16.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-update-task.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1068,23 +1068,23 @@ gdata_tasks_service_update_task (<em class="parameter"><code><a class="link" hre
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.16.7"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<a name="gdata-tasks-service-update-task.returns"></a><h4>Returns</h4>
+<p> an updated <a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1092,9 +1092,9 @@ gdata_tasks_service_update_task (<em class="parameter"><code><a class="link" hre
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_tasks_service_update_task_async (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataTasksTask.html" title="GDataTasksTask"><span class="type">GDataTasksTask</span></a> *task</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                        <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                       <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Updates <em class="parameter"><code>task</code></em>
  to online tasks service. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>task</code></em>
@@ -1106,8 +1106,8 @@ errors.</p>
 <p>For more details, see <a class="link" href="GDataTasksService.html#gdata-tasks-service-update-task" title="gdata_tasks_service_update_task ()"><code class="function">gdata_tasks_service_update_task()</code></a>, which is the synchronous version of this function, and
 <a class="link" href="GDataService.html#gdata-service-update-entry-async" title="gdata_service_update_entry_async ()"><code class="function">gdata_service_update_entry_async()</code></a>, which is the base asynchronous insertion function.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.17.7"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-update-task-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1126,7 +1126,7 @@ errors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1143,7 +1143,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1151,14 +1151,14 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="returnvalue">GDataTasksTasklist</span></a> *
 gdata_tasks_service_update_tasklist (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Update <em class="parameter"><code>tasklist</code></em>
  in online tasks service.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-update-entry" title="gdata_service_update_entry ()"><code class="function">gdata_service_update_entry()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.18.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-update-tasklist.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1177,23 +1177,23 @@ gdata_tasks_service_update_tasklist (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.18.7"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<a name="gdata-tasks-service-update-tasklist.returns"></a><h4>Returns</h4>
+<p> an updated <a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1202,9 +1202,9 @@ gdata_tasks_service_update_tasklist (<em class="parameter"><code><a class="link"
 gdata_tasks_service_update_tasklist_async
                                (<em class="parameter"><code><a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataTasksTasklist.html" title="GDataTasksTasklist"><span class="type">GDataTasksTasklist</span></a> *tasklist</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Updates <em class="parameter"><code>tasklist</code></em>
  from online tasks service. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>tasklist</code></em>
@@ -1216,8 +1216,8 @@ errors.</p>
 <p>For more details, see <a class="link" href="GDataTasksService.html#gdata-tasks-service-update-tasklist" title="gdata_tasks_service_update_tasklist ()"><code class="function">gdata_tasks_service_update_tasklist()</code></a>, which is the synchronous version of this function, and
 <a class="link" href="GDataService.html#gdata-service-update-entry-async" title="gdata_service_update_entry_async ()"><code class="function">gdata_service_update_entry_async()</code></a>, which is the base asynchronous insertion function.</p>
 <div class="refsect3">
-<a name="id-1.5.7.2.9.19.7"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-tasks-service-update-tasklist-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1236,7 +1236,7 @@ errors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1253,7 +1253,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -1262,7 +1262,7 @@ function. </p></td>
 <a name="GDataTasksService-struct"></a><h3>GDataTasksService</h3>
 <pre class="programlisting">typedef struct _GDataTasksService GDataTasksService;</pre>
 <p>All the fields in the <a class="link" href="GDataTasksService.html" title="GDataTasksService"><span class="type">GDataTasksService</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1271,12 +1271,11 @@ function. </p></td>
 } GDataTasksServiceClass;
 </pre>
 <p>All the fields in the <a class="link" href="GDataTasksService.html#GDataTasksServiceClass" title="GDataTasksServiceClass"><span class="type">GDataTasksServiceClass</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

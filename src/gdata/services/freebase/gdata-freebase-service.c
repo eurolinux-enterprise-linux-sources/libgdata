@@ -32,7 +32,12 @@
  * For more details of Google Freebase API, see the <ulink type="http" url="https://developers.google.com/freebase/v1/">
  * online documentation</ulink>.
  *
+ * Since August 2016, [Google has retired Freebase](https://developers.google.com/freebase/),
+ * so all of these APIs will return an error if used; and should be considered
+ * deprecated.
+ *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 
 #include <config.h>
@@ -47,6 +52,8 @@
 #include "gdata-private.h"
 #include "gdata-query.h"
 #include "gdata-feed.h"
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 /* Standards reference at https://developers.google.com/freebase/v1/ */
 
@@ -93,12 +100,14 @@ gdata_freebase_service_class_init (GDataFreebaseServiceClass *klass)
 	 * url="https://developers.google.com/freebase/v1/how-tos/authorizing">online documentation</ulink>.
 	 *
 	 * Since: 0.15.1
-	 **/
+	 * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+	 */
 	g_object_class_install_property (gobject_class, PROP_DEVELOPER_KEY,
 	                                 g_param_spec_string ("developer-key",
 	                                                      "Developer key", "Your Freebase developer API key.",
 	                                                      NULL,
-							      G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+	                                                      G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS |
+	                                                      G_PARAM_DEPRECATED));
 }
 
 static void
@@ -198,6 +207,7 @@ gdata_freebase_service_finalize (GObject *self)
  * Return value: (transfer full): a new #GDataFreebaseService; unref with g_object_unref()
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 GDataFreebaseService *
 gdata_freebase_service_new (const gchar *developer_key, GDataAuthorizer *authorizer)
@@ -221,7 +231,8 @@ gdata_freebase_service_new (const gchar *developer_key, GDataAuthorizer *authori
  *
  * Return value: (transfer none): the service's authorization domain
  *
- * Since: 0.9.0
+ * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 GDataAuthorizationDomain *
 gdata_freebase_service_get_primary_authorization_domain (void)
@@ -241,6 +252,7 @@ gdata_freebase_service_get_primary_authorization_domain (void)
  * Return value: (transfer full): a #GDataFreebaseResult containing the query result; unref with g_object_unref()
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 GDataFreebaseResult *
 gdata_freebase_service_query (GDataFreebaseService *self, GDataFreebaseQuery *query,
@@ -277,6 +289,7 @@ gdata_freebase_service_query (GDataFreebaseService *self, GDataFreebaseQuery *qu
  * this function.
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 void
 gdata_freebase_service_query_async (GDataFreebaseService *self, GDataFreebaseQuery *query, GCancellable *cancellable,
@@ -304,6 +317,7 @@ gdata_freebase_service_query_async (GDataFreebaseService *self, GDataFreebaseQue
  * Return value: (transfer full): a #GDataFreebaseTopicResult containing information about the topic; unref with g_object_unref()
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 GDataFreebaseTopicResult *
 gdata_freebase_service_get_topic (GDataFreebaseService *self, GDataFreebaseTopicQuery *query, GCancellable *cancellable, GError **error)
@@ -339,6 +353,7 @@ gdata_freebase_service_get_topic (GDataFreebaseService *self, GDataFreebaseTopic
  * this function.
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 void
 gdata_freebase_service_get_topic_async (GDataFreebaseService *self, GDataFreebaseTopicQuery *query,
@@ -367,6 +382,7 @@ gdata_freebase_service_get_topic_async (GDataFreebaseService *self, GDataFreebas
  * Return value: (transfer full): a #GDataFreebaseSearchResult containing the results for the given search query; unref with g_object_unref()
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 GDataFreebaseSearchResult *
 gdata_freebase_service_search (GDataFreebaseService *self, GDataFreebaseSearchQuery *query, GCancellable *cancellable, GError **error)
@@ -401,6 +417,7 @@ gdata_freebase_service_search (GDataFreebaseService *self, GDataFreebaseSearchQu
  * this function.
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 void
 gdata_freebase_service_search_async (GDataFreebaseService *self, GDataFreebaseSearchQuery *query,
@@ -458,7 +475,8 @@ compose_image_uri (GDataFreebaseTopicValue *value, guint max_width, guint max_he
  * Return value: (transfer full): a #GInputStream opened to the image; unref with g_object_unref()
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 GInputStream *
 gdata_freebase_service_get_image (GDataFreebaseService *self, GDataFreebaseTopicValue *value,
 				  GCancellable *cancellable, guint max_width, guint max_height, GError **error)
@@ -476,7 +494,7 @@ gdata_freebase_service_get_image (GDataFreebaseService *self, GDataFreebaseTopic
 		g_set_error (error,
 			     GDATA_SERVICE_ERROR,
 			     GDATA_SERVICE_ERROR_BAD_QUERY_PARAMETER,
-			     _("Property '%s' does not hold an image"),
+			     _("Property ‘%s’ does not hold an image"),
 			     gdata_freebase_topic_value_get_property (value));
 		return NULL;
 	}
@@ -487,3 +505,5 @@ gdata_freebase_service_get_image (GDataFreebaseService *self, GDataFreebaseTopic
 
 	return stream;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS

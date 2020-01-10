@@ -35,7 +35,7 @@
 static void
 open_in_web_browser (GtkWidget *widget, gchar *uri) /* quicky wrapper for gtk_show_uri */
 {
-	gtk_show_uri			(gtk_widget_get_screen (widget), uri, GDK_CURRENT_TIME, NULL);
+	gtk_show_uri_on_window (GTK_WINDOW (gtk_widget_get_toplevel (widget)), uri, GDK_CURRENT_TIME, NULL);
 }
 
 static void
@@ -644,9 +644,6 @@ main(int argc, char **argv)
 	scrapbook = g_slice_new (struct _ScrapData);
 	scrapbook->max_rows			= 5;
 
-#if !GLIB_CHECK_VERSION (2, 35, 0)
-	g_type_init ();
-#endif
 	gtk_init	(&argc, &argv);
 
 	scrapbook->currentCol 							= 0;

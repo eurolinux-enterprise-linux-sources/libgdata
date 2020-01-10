@@ -107,6 +107,7 @@
 #include <gdata/services/calendar/gdata-calendar-calendar.h>
 #include <gdata/services/calendar/gdata-calendar-event.h>
 #include <gdata/services/calendar/gdata-calendar-query.h>
+#include <gdata/services/calendar/gdata-calendar-access-rule.h>
 
 /* Google PicasaWeb */
 #include <gdata/services/picasaweb/gdata-picasaweb-service.h>
@@ -138,6 +139,7 @@
 #include <gdata/services/documents/gdata-documents-pdf.h>
 #include <gdata/services/documents/gdata-documents-enums.h>
 #include <gdata/services/documents/gdata-documents-upload-query.h>
+#include <gdata/services/documents/gdata-documents-access-rule.h>
 
 /* Google Tasks */
 #include <gdata/services/tasks/gdata-tasks-service.h>

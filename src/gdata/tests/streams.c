@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2010, 2015 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -30,7 +30,7 @@
 #include "gdata.h"
 #include "common.h"
 
-#ifdef HAVE_LIBSOUP_2_47_3
+#ifdef HAVE_LIBSOUP_2_55_90
 static gpointer
 run_server_thread (GMainLoop *loop)
 {
@@ -40,7 +40,7 @@ run_server_thread (GMainLoop *loop)
 
 	return NULL;
 }
-#else /* if !HAVE_LIBSOUP_2_47_3 */
+#else /* if !HAVE_LIBSOUP_2_55_90 */
 static gpointer
 run_server_thread (SoupServer *server)
 {
@@ -48,7 +48,7 @@ run_server_thread (SoupServer *server)
 
 	return NULL;
 }
-#endif /* !HAVE_LIBSOUP_2_47_3 */
+#endif /* !HAVE_LIBSOUP_2_55_90 */
 
 static GThread *
 run_server (SoupServer *server, GMainLoop *loop)
@@ -58,16 +58,16 @@ run_server (SoupServer *server, GMainLoop *loop)
 	GError *error = NULL;
 	guint16 port;
 
-#ifdef HAVE_LIBSOUP_2_47_3
+#ifdef HAVE_LIBSOUP_2_55_90
 	thread = g_thread_try_new ("server-thread", (GThreadFunc) run_server_thread, loop, &error);
-#else /* if !HAVE_LIBSOUP_2_47_3 */
+#else /* if !HAVE_LIBSOUP_2_55_90 */
 	thread = g_thread_try_new ("server-thread", (GThreadFunc) run_server_thread, server, &error);
-#endif /* !HAVE_LIBSOUP_2_47_3 */
+#endif /* !HAVE_LIBSOUP_2_55_90 */
 	g_assert_no_error (error);
 	g_assert (thread != NULL);
 
 	/* Set the port so that libgdata doesn't override it. */
-#ifdef HAVE_LIBSOUP_2_47_3
+#ifdef HAVE_LIBSOUP_2_55_90
 {
 	GSList *uris;  /* owned */
 
@@ -77,9 +77,9 @@ run_server (SoupServer *server, GMainLoop *loop)
 
 	g_slist_free_full (uris, (GDestroyNotify) soup_uri_free);
 }
-#else /* if !HAVE_LIBSOUP_2_47_3 */
+#else /* if !HAVE_LIBSOUP_2_55_90 */
 	port = soup_server_get_port (server);
-#endif /* !HAVE_LIBSOUP_2_47_3 */
+#endif /* !HAVE_LIBSOUP_2_55_90 */
 
 	port_string = g_strdup_printf ("%u", port);
 	g_setenv ("LIBGDATA_HTTPS_PORT", port_string, TRUE);
@@ -88,7 +88,7 @@ run_server (SoupServer *server, GMainLoop *loop)
 	return thread;
 }
 
-#ifdef HAVE_LIBSOUP_2_47_3
+#ifdef HAVE_LIBSOUP_2_55_90
 static gboolean
 quit_server_cb (GMainLoop *loop)
 {
@@ -103,7 +103,7 @@ stop_server (SoupServer *server, GMainLoop *loop)
 	soup_add_completion (g_main_loop_get_context (loop),
 	                     (GSourceFunc) quit_server_cb, loop);
 }
-#else /* if !HAVE_LIBSOUP_2_47_3 */
+#else /* if !HAVE_LIBSOUP_2_55_90 */
 static gboolean
 quit_server_cb (SoupServer *server)
 {
@@ -118,7 +118,7 @@ stop_server (SoupServer *server, GMainLoop *loop)
 	soup_add_completion (g_main_loop_get_context (loop),
 	                     (GSourceFunc) quit_server_cb, server);
 }
-#endif /* !HAVE_LIBSOUP_2_47_3 */
+#endif /* !HAVE_LIBSOUP_2_55_90 */
 
 static gchar *
 get_test_string (guint start_num, guint end_num)
@@ -126,9 +126,11 @@ get_test_string (guint start_num, guint end_num)
 	GString *test_string;
 	guint i;
 
+	g_return_val_if_fail (end_num < G_MAXUINT, NULL);
+
 	test_string = g_string_new (NULL);
 
-	for (i = start_num; i <= end_num; i++)
+	for (i = start_num; i < end_num + 1; i++)
 		g_string_append_printf (test_string, "%u\n", i);
 
 	return g_string_free (test_string, FALSE);
@@ -158,34 +160,44 @@ create_server (SoupServerCallback callback, gpointer user_data, GMainLoop **main
 {
 	GMainContext *context;
 	SoupServer *server;
-#ifdef HAVE_LIBSOUP_2_47_3
+#ifdef HAVE_LIBSOUP_2_55_90
+	gchar *cert_path = NULL, *key_path = NULL;
 	GError *error = NULL;
-#else /* if !HAVE_LIBSOUP_2_47_3 */
+#else /* if !HAVE_LIBSOUP_2_55_90 */
 	union {
 		struct sockaddr_in in;
 		struct sockaddr norm;
 	} sock;
 	SoupAddress *addr;
-#endif /* HAVE_LIBSOUP_2_47_3 */
+#endif /* HAVE_LIBSOUP_2_55_90 */
 
 	/* Create the server */
 	g_assert (main_loop != NULL);
 	context = g_main_context_new ();
 	*main_loop = g_main_loop_new (context, FALSE);
 
-#ifdef HAVE_LIBSOUP_2_47_3
+#ifdef HAVE_LIBSOUP_2_55_90
 	server = soup_server_new (NULL, NULL);
+
+	cert_path = g_test_build_filename (G_TEST_DIST, "cert.pem", NULL);
+	key_path = g_test_build_filename (G_TEST_DIST, "key.pem", NULL);
+
+	soup_server_set_ssl_cert_file (server, cert_path, key_path, &error);
+	g_assert_no_error (error);
+
+	g_free (key_path);
+	g_free (cert_path);
 
 	soup_server_add_handler (server, NULL, callback, user_data, NULL);
 
 	g_main_context_push_thread_default (context);
 
 	soup_server_listen_local (server, 0  /* random port */,
-	                          0  /* no options */, &error);
+	                          SOUP_SERVER_LISTEN_HTTPS, &error);
 	g_assert_no_error (error);
 
 	g_main_context_pop_thread_default (context);
-#else /* if !HAVE_LIBSOUP_2_47_3 */
+#else /* if !HAVE_LIBSOUP_2_55_90 */
 	memset (&sock, 0, sizeof (sock));
 	sock.in.sin_family = AF_INET;
 	sock.in.sin_addr.s_addr = htonl (INADDR_LOOPBACK);
@@ -201,7 +213,7 @@ create_server (SoupServerCallback callback, gpointer user_data, GMainLoop **main
 	soup_server_add_handler (server, NULL, callback, user_data, NULL);
 
 	g_object_unref (addr);
-#endif /* !HAVE_LIBSOUP_2_47_3 */
+#endif /* !HAVE_LIBSOUP_2_55_90 */
 
 	g_assert (server != NULL);
 	g_main_context_unref (context);
@@ -212,25 +224,29 @@ create_server (SoupServerCallback callback, gpointer user_data, GMainLoop **main
 static gchar *
 build_server_uri (SoupServer *server)
 {
-#ifdef HAVE_LIBSOUP_2_47_3
+#ifdef HAVE_LIBSOUP_2_55_90
 	GSList *uris;  /* owned */
+	GSList *l;  /* unowned */
 	gchar *retval = NULL;  /* owned */
 
 	uris = soup_server_get_uris (server);
-	if (uris == NULL) {
-		return NULL;
-	}
 
-	retval = soup_uri_to_string (uris->data, FALSE);
+	for (l = uris; l != NULL && retval == NULL; l = l->next) {
+		if (soup_uri_get_scheme (l->data) == SOUP_URI_SCHEME_HTTPS) {
+			retval = soup_uri_to_string (l->data, FALSE);
+		}
+	}
 
 	g_slist_free_full (uris, (GDestroyNotify) soup_uri_free);
 
+	g_assert (retval != NULL);
+
 	return retval;
-#else /* if !HAVE_LIBSOUP_2_47_3 */
-	return g_strdup_printf ("http://%s:%u/",
+#else /* if !HAVE_LIBSOUP_2_55_90 */
+	return g_strdup_printf ("https://%s:%u/",
 	                        soup_address_get_physical (soup_socket_get_local_address (soup_server_get_listener (server))),
 	                        soup_server_get_port (server));
-#endif /* !HAVE_LIBSOUP_2_47_3 */
+#endif /* !HAVE_LIBSOUP_2_55_90 */
 }
 
 static void
@@ -728,29 +744,22 @@ test_upload_stream_resumable_server_handler_cb (SoupServer *server, SoupMessage 
 				break;
 			case CONTENT_AND_METADATA:
 			case METADATA_ONLY:
-				/* Check the XML sent by the client. */
-				g_assert_cmpstr (soup_message_headers_get_content_type (message->request_headers, NULL), ==, "application/atom+xml");
+				/* Check the JSON sent by the client. */
+				g_assert_cmpstr (soup_message_headers_get_content_type (message->request_headers, NULL), ==, "application/json");
 
 				g_assert (message->request_body->data[message->request_body->length] == '\0');
-				g_assert (gdata_test_compare_xml_strings (message->request_body->data,
-					"<?xml version='1.0' encoding='UTF-8'?>"
-					"<entry xmlns='http://www.w3.org/2005/Atom' "
-					       "xmlns:app='http://www.w3.org/2007/app' "
-					       "xmlns:georss='http://www.georss.org/georss' "
-					       "xmlns:gml='http://www.opengis.net/gml' "
-					       "xmlns:gd='http://schemas.google.com/g/2005' "
-					       "xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-					       "xmlns:media='http://search.yahoo.com/mrss/'>"
-						"<title type='text'>Test title!</title>"
-						"<category term='http://gdata.youtube.com/schemas/2007#video' "
-						          "scheme='http://schemas.google.com/g/2005#kind'/>"
-						"<media:group>"
-							"<media:title type='plain'>Test title!</media:title>"
-						"</media:group>"
-						"<app:control>"
-							"<app:draft>no</app:draft>"
-						"</app:control>"
-					"</entry>", TRUE) == TRUE);
+				g_assert (gdata_test_compare_json_strings (message->request_body->data,
+					"{"
+						"'title': 'Test title!',"
+						"'kind': 'youtube#video',"
+						"'snippet': {"
+							"'title': 'Test title!'"
+						"},"
+						"'status': {"
+							"'privacyStatus': 'public'"
+						"},"
+						"'recordingDetails': {}"
+					"}", TRUE) == TRUE);
 
 				break;
 			default:
@@ -849,14 +858,20 @@ test_upload_stream_resumable_server_handler_cb (SoupServer *server, SoupMessage 
 
 error: {
 		const gchar *error_response =
-			"<?xml version='1.0' encoding='UTF-8'?>"
-			"<errors>"
-				"<error>"
-					"<domain>yt:authentication</domain>"
-					"<code>InvalidToken</code>"
-					"<location type='header'>Authorization: GoogleLogin</location>"
-				"</error>"
-			"</errors>";
+			"{"
+				"'error': {"
+					"'errors': ["
+						"{"
+							"'domain': 'global',"
+							"'reason': 'authError',"
+							"'message': 'Invalid token.',"
+							"'location': 'Authorization: GoogleLogin'"
+						"}"
+					"],"
+					"'code': 400,"
+					"'message': 'Invalid token.'"
+				"}"
+			"}";
 
 		/* Error. */
 		soup_message_set_status (message, SOUP_STATUS_UNAUTHORIZED); /* arbitrary error status code */
@@ -888,39 +903,23 @@ continuation: {
 
 completion: {
 		const gchar *completion_response =
-			"<?xml version='1.0' encoding='UTF-8'?>"
-			"<entry xmlns='http://www.w3.org/2005/Atom' "
-			       "xmlns:media='http://search.yahoo.com/mrss/' "
-			       "xmlns:gd='http://schemas.google.com/g/2005' "
-			       "xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-			       "xmlns:app='http://www.w3.org/2007/app' "
-			       "xmlns:georss='http://www.georss.org/georss' "
-			       "xmlns:gml='http://www.opengis.net/gml' "
-			       "gd:etag='W/\"testfulness.\"'>"
-				"<title type='text'>Test title!</title>"
-				"<id>tag:youtube.com,2008:video:fooishbar</id>"
-				"<updated>2009-03-23T12:46:58Z</updated>"
-				"<published>2006-05-16T14:06:37Z</published>"
-				"<category term='http://gdata.youtube.com/schemas/2007#video' scheme='http://schemas.google.com/g/2005#kind'/>"
-				"<link href='http://www.youtube.com/watch?v=fooishbar' rel='http://www.iana.org/assignments/relation/alternate' type='text/html'/>"
-				"<link href='http://gdata.youtube.com/feeds/api/videos/fooishbar' rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml'/>"
-				"<author>"
-					"<name>Brian</name>"
-					"<uri>http://gdata.youtube.com/feeds/api/users/brian</uri>"
-				"</author>"
-				"<media:group>"
-					"<media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat' label='Music'>Music</media:category>"
-					"<media:title type='plain'>Test title!</media:title>"
-				"</media:group>"
-				"<yt:recorded>2005-10-02</yt:recorded>"
-				"<app:control>"
-					"<app:draft>no</app:draft>"
-				"</app:control>"
-			"</entry>";
+			"{"
+				"'kind': 'youtube#video',"
+				"'snippet': {"
+					"'title': 'Test title!',"
+					"'categoryId': '10'"  /* Music */
+				"},"
+				"'status': {"
+					"'privacyStatus': 'public'"
+				"},"
+				"'recordingDetails': {"
+					"'recordingDate': '2005-10-02'"
+				"}"
+			"}";
 
 		/* Completion. */
 		soup_message_set_status (message, SOUP_STATUS_CREATED);
-		soup_message_headers_set_content_type (message->response_headers, "application/atom+xml", NULL);
+		soup_message_headers_set_content_type (message->response_headers, "application/json", NULL);
 		soup_message_body_append (message->response_body, SOUP_MEMORY_STATIC, completion_response, strlen (completion_response));
 	}
 }

@@ -25,7 +25,7 @@
  *
  * #GDataGenerator represents a "generator" element from the
  * <ulink type="http" url="http://www.atomenabled.org/developers/syndication/atom-format-spec.php">Atom specification</ulink>.
- **/
+ */
 
 #include <glib.h>
 #include <libxml/parser.h>
@@ -81,7 +81,7 @@ gdata_generator_class_init (GDataGeneratorClass *klass)
 	 * Atom specification</ulink>.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_NAME,
 	                                 g_param_spec_string ("name",
 	                                                      "Name", "A human-readable name for the generating agent.",
@@ -98,7 +98,7 @@ gdata_generator_class_init (GDataGeneratorClass *klass)
 	 * Atom specification</ulink>.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_URI,
 	                                 g_param_spec_string ("uri",
 	                                                      "URI", "An IRI reference that is relevant to the agent.",
@@ -115,7 +115,7 @@ gdata_generator_class_init (GDataGeneratorClass *klass)
 	 * Atom specification</ulink>.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_VERSION,
 	                                 g_param_spec_string ("version",
 	                                                      "Version", "Indicates the version of the generating agent.",
@@ -179,7 +179,7 @@ gdata_generator_get_property (GObject *object, guint property_id, GValue *value,
 static gboolean
 pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointer user_data, GError **error)
 {
-	xmlChar *uri;
+	xmlChar *uri, *name;
 	GDataGeneratorPrivate *priv = GDATA_GENERATOR (parsable)->priv;
 
 	uri = xmlGetProp (root_node, (xmlChar*) "uri");
@@ -187,9 +187,16 @@ pre_parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *root_node, gpointe
 		xmlFree (uri);
 		return gdata_parser_error_required_property_missing (root_node, "uri", error);
 	}
-	priv->uri = (gchar*) uri;
 
-	priv->name = (gchar*) xmlNodeListGetString (doc, root_node->children, TRUE);
+	name = xmlNodeListGetString (doc, root_node->children, TRUE);
+	if (name != NULL && *name == '\0') {
+		xmlFree (uri);
+		xmlFree (name);
+		return gdata_parser_error_required_content_missing (root_node, error);
+	}
+
+	priv->uri = (gchar*) uri;
+	priv->name = (gchar*) name;
 	priv->version = (gchar*) xmlGetProp (root_node, (xmlChar*) "version");
 
 	return TRUE;
@@ -209,12 +216,12 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
  * gdata_generator_get_name:
  * @self: a #GDataGenerator
  *
- * Gets the #GDataGenerator:name property.
+ * Gets the #GDataGenerator:name property. The name will be %NULL or non-empty.
  *
- * Return value: the generator's name
+ * Return value: (nullable): the generator's name
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_generator_get_name (GDataGenerator *self)
 {
@@ -226,12 +233,12 @@ gdata_generator_get_name (GDataGenerator *self)
  * gdata_generator_get_uri:
  * @self: a #GDataGenerator
  *
- * Gets the #GDataGenerator:uri property.
+ * Gets the #GDataGenerator:uri property. The URI will be %NULL or non-empty.
  *
- * Return value: the generator's URI, or %NULL
+ * Return value: (nullable): the generator's URI, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_generator_get_uri (GDataGenerator *self)
 {
@@ -248,7 +255,7 @@ gdata_generator_get_uri (GDataGenerator *self)
  * Return value: the generator's version, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_generator_get_version (GDataGenerator *self)
 {

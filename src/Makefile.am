@@ -1,10 +1,6 @@
-SUBDIRS = . po docs
+SUBDIRS = . po docs gdata/tests
 
-if ENABLE_TESTS
-SUBDIRS += gdata/tests
-endif
-
-ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+ACLOCAL_AMFLAGS = --install -I m4 ${ACLOCAL_FLAGS}
 
 DISTCHECK_CONFIGURE_FLAGS =
 MAINTAINERCLEANFILES =
@@ -272,7 +268,9 @@ gdatacalendarinclude_HEADERS = \
 	gdata/services/calendar/gdata-calendar-calendar.h	\
 	gdata/services/calendar/gdata-calendar-event.h		\
 	gdata/services/calendar/gdata-calendar-query.h		\
-	gdata/services/calendar/gdata-calendar-feed.h
+	gdata/services/calendar/gdata-calendar-feed.h \
+	gdata/services/calendar/gdata-calendar-access-rule.h \
+	$(NULL)
 
 gdatacontactsincludedir = $(gdataincludedir)/services/contacts
 gdatacontactsinclude_HEADERS = \
@@ -294,7 +292,9 @@ gdata_documents_headers = \
 	gdata/services/documents/gdata-documents-drawing.h	\
 	gdata/services/documents/gdata-documents-pdf.h		\
 	gdata/services/documents/gdata-documents-spreadsheet.h	\
-	gdata/services/documents/gdata-documents-upload-query.h
+	gdata/services/documents/gdata-documents-upload-query.h	\
+	gdata/services/documents/gdata-documents-access-rule.h
+private_headers += gdata/services/documents/gdata-documents-utils.h
 gdatadocumentsinclude_HEADERS = \
 	$(gdata_documents_headers)				\
 	gdata/services/documents/gdata-documents-enums.h
@@ -414,6 +414,7 @@ gdata_sources = \
 	gdata/services/calendar/gdata-calendar-event.c		\
 	gdata/services/calendar/gdata-calendar-query.c		\
 	gdata/services/calendar/gdata-calendar-feed.c		\
+	gdata/services/calendar/gdata-calendar-access-rule.c \
 	\
 	gdata/services/contacts/gdata-contacts-service.c	\
 	gdata/services/contacts/gdata-contacts-contact.c	\
@@ -432,6 +433,8 @@ gdata_sources = \
 	gdata/services/documents/gdata-documents-pdf.c	\
 	gdata/services/documents/gdata-documents-query.c	\
 	gdata/services/documents/gdata-documents-upload-query.c	\
+	gdata/services/documents/gdata-documents-access-rule.c	\
+	gdata/services/documents/gdata-documents-utils.c	\
 	\
 	gdata/services/picasaweb/gdata-picasaweb-album.c	\
 	gdata/services/picasaweb/gdata-picasaweb-query.c	\
@@ -526,11 +529,22 @@ gdata_libgdata_la_LIBADD = \
 
 gdata_libgdata_la_LDFLAGS = \
 	-version-info $(GDATA_LT_VERSION)	\
-	-export-symbols $(srcdir)/gdata/gdata.symbols	\
+	-export-symbols $(builddir)/gdata/gdata.symbols \
 	-no-undefined				\
+	$(WARN_LDFLAGS) \
 	$(AM_LDFLAGS)
 
-EXTRA_DIST += gdata/gdata.symbols
+# Symbols file
+gdata/gdata.symbols: $(top_srcdir)/gdata/gdata-core.symbols $(top_srcdir)/gdata/gdata-goa.symbols
+if ENABLE_GOA
+	$(AM_V_GEN)cat $(top_srcdir)/gdata/gdata-core.symbols $(top_srcdir)/gdata/gdata-goa.symbols > $@
+else
+	$(AM_V_GEN)cat $(top_srcdir)/gdata/gdata-core.symbols > $@
+endif
+
+EXTRA_gdata_libgdata_la_DEPENDENCIES = gdata/gdata.symbols
+EXTRA_DIST += gdata/gdata-core.symbols gdata/gdata-goa.symbols
+CLEANFILES += gdata/gdata.symbols
 
 # Check if gdata.h includes all the public headers
 check-local: check-headers
@@ -566,7 +580,9 @@ gdata_GData_@GDATA_API_VERSION_MAJOR@_@GDATA_API_VERSION_MINOR@_gir_EXPORT_PACKA
 gdata_GData_@GDATA_API_VERSION_MAJOR@_@GDATA_API_VERSION_MINOR@_gir_SCANNERFLAGS = \
 	--nsversion=$(GDATA_API_VERSION) \
 	--symbol-prefix=gdata \
-	--c-include="gdata/gdata.h"
+	--c-include="gdata/gdata.h" \
+	$(WARN_SCANNERFLAGS) \
+	$(NULL)
 
 INTROSPECTION_GIRS += gdata/GData-$(GDATA_API_VERSION).gir
 
@@ -589,6 +605,9 @@ gdata/libgdata.vapi: gdata/GData-@GDATA_API_VERSION_MAJOR@.@GDATA_API_VERSION_MI
 VAPIGEN_VAPIS = gdata/libgdata.vapi
 
 gdata_libgdata_vapi_DEPS = libxml-2.0 libsoup-2.4 json-glib-1.0
+if ENABLE_GOA
+gdata_libgdata_vapi_DEPS += goa-1.0
+endif
 gdata_libgdata_vapi_METADATADIRS = $(srcdir)/gdata
 gdata_libgdata_vapi_FILES = gdata/GData-@GDATA_API_VERSION_MAJOR@.@GDATA_API_VERSION_MINOR@.gir
 
@@ -612,7 +631,11 @@ CODE_COVERAGE_DIRECTORY = $(top_builddir)/gdata
 CODE_COVERAGE_LCOV_OPTIONS = --base-directory $(abs_top_srcdir)
 
 # Demo programs
-noinst_PROGRAMS = demos/youtube/youtube-cli
+noinst_PROGRAMS = \
+	demos/youtube/youtube-cli \
+	demos/calendar/calendar-cli \
+	demos/tasks/tasks-cli \
+	$(NULL)
 
 if ENABLE_GOA
 noinst_PROGRAMS += demos/docs-list/docs-list
@@ -620,8 +643,7 @@ endif
 
 if HAVE_GTK
 noinst_PROGRAMS += 			\
-	demos/scrapbook/scrapbook	\
-	demos/freebase/freebase-cli
+	demos/scrapbook/scrapbook
 endif
 
 demos_docs_list_docs_list_SOURCES = \
@@ -642,6 +664,11 @@ demos_docs_list_docs_list_CFLAGS = \
 	$(GDATA_CFLAGS) \
 	$(GNOME_CFLAGS) \
 	$(AM_CFLAGS) \
+	$(NULL)
+
+demos_docs_list_docs_list_LDFLAGS = \
+	$(WARN_LDFLAGS) \
+	$(AM_LDFLAGS) \
 	$(NULL)
 
 demos_docs_list_docs_list_LDADD = \
@@ -673,36 +700,14 @@ demos_scrapbook_scrapbook_CFLAGS = \
 	$(AM_CFLAGS) \
 	$(NULL)
 
+demos_scrapbook_scrapbook_LDFLAGS = \
+	$(WARN_LDFLAGS) \
+	$(AM_LDFLAGS) \
+	$(NULL)
+
 demos_scrapbook_scrapbook_LDADD = \
 	$(top_builddir)/gdata/libgdata.la \
 	$(GTK_LIBS) \
-	$(GDATA_LIBS) \
-	$(GNOME_LIBS) \
-	$(AM_LDADD) \
-	$(NULL)
-
-demos_freebase_freebase_cli_SOURCES = \
-	demos/freebase/freebase-cli.c  \
-	$(NULL)
-
-demos_freebase_freebase_cli_CPPFLAGS = \
-	-I$(top_srcdir)/ \
-	-I$(top_srcdir)/gdata \
-	-DG_LOG_DOMAIN=\"freebase\" \
-	-DLIBGDATA_DISABLE_DEPRECATED \
-	$(DISABLE_DEPRECATED) \
-	$(AM_CPPFLAGS) \
-	$(NULL)
-
-demos_freebase_freebase_cli_CFLAGS = \
-	$(WARN_CFLAGS) \
-	$(GDATA_CFLAGS) \
-	$(GNOME_CFLAGS) \
-	$(AM_CFLAGS) \
-	$(NULL)
-
-demos_freebase_freebase_cli_LDADD = \
-	$(top_builddir)/gdata/libgdata.la \
 	$(GDATA_LIBS) \
 	$(GNOME_LIBS) \
 	$(AM_LDADD) \
@@ -728,7 +733,76 @@ demos_youtube_youtube_cli_CFLAGS = \
 	$(AM_CFLAGS) \
 	$(NULL)
 
+demos_youtube_youtube_cli_LDFLAGS = \
+	$(WARN_LDFLAGS) \
+	$(AM_LDFLAGS) \
+	$(NULL)
+
 demos_youtube_youtube_cli_LDADD = \
+	$(top_builddir)/gdata/libgdata.la \
+	$(GDATA_LIBS) \
+	$(GNOME_LIBS) \
+	$(AM_LDADD) \
+	$(NULL)
+
+demos_calendar_calendar_cli_SOURCES = \
+	demos/calendar/calendar-cli.c  \
+	$(NULL)
+
+demos_calendar_calendar_cli_CPPFLAGS = \
+	-I$(top_srcdir)/ \
+	-I$(top_srcdir)/gdata \
+	-DG_LOG_DOMAIN=\"calendar\" \
+	-DLIBGDATA_DISABLE_DEPRECATED \
+	$(DISABLE_DEPRECATED) \
+	$(AM_CPPFLAGS) \
+	$(NULL)
+
+demos_calendar_calendar_cli_CFLAGS = \
+	$(WARN_CFLAGS) \
+	$(GDATA_CFLAGS) \
+	$(GNOME_CFLAGS) \
+	$(AM_CFLAGS) \
+	$(NULL)
+
+demos_calendar_calendar_cli_LDFLAGS = \
+	$(WARN_LDFLAGS) \
+	$(AM_LDFLAGS) \
+	$(NULL)
+
+demos_calendar_calendar_cli_LDADD = \
+	$(top_builddir)/gdata/libgdata.la \
+	$(GDATA_LIBS) \
+	$(GNOME_LIBS) \
+	$(AM_LDADD) \
+	$(NULL)
+
+demos_tasks_tasks_cli_SOURCES = \
+	demos/tasks/tasks-cli.c  \
+	$(NULL)
+
+demos_tasks_tasks_cli_CPPFLAGS = \
+	-I$(top_srcdir)/ \
+	-I$(top_srcdir)/gdata \
+	-DG_LOG_DOMAIN=\"tasks\" \
+	-DLIBGDATA_DISABLE_DEPRECATED \
+	$(DISABLE_DEPRECATED) \
+	$(AM_CPPFLAGS) \
+	$(NULL)
+
+demos_tasks_tasks_cli_CFLAGS = \
+	$(WARN_CFLAGS) \
+	$(GDATA_CFLAGS) \
+	$(GNOME_CFLAGS) \
+	$(AM_CFLAGS) \
+	$(NULL)
+
+demos_tasks_tasks_cli_LDFLAGS = \
+	$(WARN_LDFLAGS) \
+	$(AM_LDFLAGS) \
+	$(NULL)
+
+demos_tasks_tasks_cli_LDADD = \
 	$(top_builddir)/gdata/libgdata.la \
 	$(GDATA_LIBS) \
 	$(GNOME_LIBS) \
@@ -741,15 +815,18 @@ EXTRA_DIST += \
 	HACKING			\
 	gtk-doc.make		\
 	libgdata.doap \
-	m4/ax_code_coverage.m4 \
-	m4/gnome-compiler-flags.m4 \
+	glib-tap.mk \
+	tap-driver.sh \
+	tap-test \
 	$(NULL)
 
 CLEANFILES += \
 	`find "$(srcdir)" -type f -name .dirstamp -print`
 
 DISTCLEANFILES = \
-	gtk-doc.make
+	gtk-doc.make \
+	default.profraw \
+	$(NULL)
 
 MAINTAINERCLEANFILES += \
 	$(GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL) \
@@ -784,23 +861,7 @@ EXTRA_DIST += libgdata.pc.in \
 	gdata/gdata-version.h.in
 
 # ChangeLog
-ChangeLog: $(srcdir)/ChangeLog
-$(srcdir)/ChangeLog:
-	@echo Creating $@
-	@if test -d "$(srcdir)/.git"; then \
-	  (GIT_DIR=$(top_srcdir)/.git ./build-aux/missing --run \
-	   git log --stat) | fmt --split-only > $@.tmp \
-	  && mv -f $@.tmp $@ \
-	  || ($(RM) $@.tmp; \
-	      echo Failed to generate ChangeLog, your ChangeLog may be outdated >&2; \
-	      (test -f $@ || echo git-log is required to generate this file >> $@)); \
-	else \
-	  test -f $@ || \
-	  (echo A git checkout and git-log is required to generate ChangeLog >&2 && \
-	  echo A git checkout and git-log is required to generate this file >> $@); \
-	fi
-.PHONY: $(srcdir)/ChangeLog
-
-MAINTAINERCLEANFILES += ChangeLog
+@GENERATE_CHANGELOG_RULES@
+dist-hook: dist-ChangeLog
 
 -include $(top_srcdir)/git.mk

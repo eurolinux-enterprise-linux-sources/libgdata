@@ -90,14 +90,16 @@
  * </example>
  *
  * Since: 0.7.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
+#include <glib/gi18n-lib.h>
 #include <string.h>
 
 #include "gdata-batch-operation.h"
 #include "gdata-batch-feed.h"
+#include "gdata-batchable.h"
 #include "gdata-private.h"
 #include "gdata-batch-private.h"
 
@@ -145,7 +147,7 @@ gdata_batch_operation_class_init (GDataBatchOperationClass *klass)
 	 * The service this batch operation is attached to.
 	 *
 	 * Since: 0.7.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_SERVICE,
 	                                 g_param_spec_object ("service",
 	                                                      "Service", "The service this batch operation is attached to.",
@@ -175,7 +177,7 @@ gdata_batch_operation_class_init (GDataBatchOperationClass *klass)
 	 * The feed URI that this batch operation will be sent to.
 	 *
 	 * Since: 0.7.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_FEED_URI,
 	                                 g_param_spec_string ("feed-uri",
 	                                                      "Feed URI", "The feed URI that this batch operation will be sent to.",
@@ -274,7 +276,7 @@ gdata_batch_operation_finalize (GObject *object)
  * Return value: (transfer none): the batch operation's attached service
  *
  * Since: 0.7.0
- **/
+ */
 GDataService *
 gdata_batch_operation_get_service (GDataBatchOperation *self)
 {
@@ -309,7 +311,7 @@ gdata_batch_operation_get_authorization_domain (GDataBatchOperation *self)
  * Return value: the batch operation's feed URI
  *
  * Since: 0.7.0
- **/
+ */
 const gchar *
 gdata_batch_operation_get_feed_uri (GDataBatchOperation *self)
 {
@@ -347,7 +349,7 @@ add_operation (GDataBatchOperation *self, GDataBatchOperationType type, GDataEnt
  * Return value: the relevant #BatchOperation, or %NULL
  *
  * Since: 0.7.0
- **/
+ */
 BatchOperation *
 _gdata_batch_operation_get_operation (GDataBatchOperation *self, guint id)
 {
@@ -386,7 +388,7 @@ run_callback_cb (BatchOperation *op)
  * #GDataBatchOperation was run with gdata_batch_operation_run() or gdata_batch_operation_run_async().
  *
  * Since: 0.7.0
- **/
+ */
 void
 _gdata_batch_operation_run_callback (GDataBatchOperation *self, BatchOperation *op, GDataEntry *entry, GError *error)
 {
@@ -456,7 +458,7 @@ operation_free (BatchOperation *op)
  * Return value: operation ID for the added query, or <code class="literal">0</code>
  *
  * Since: 0.7.0
- **/
+ */
 guint
 gdata_batch_operation_add_query (GDataBatchOperation *self, const gchar *id, GType entry_type,
                                  GDataBatchOperationCallback callback, gpointer user_data)
@@ -499,7 +501,7 @@ gdata_batch_operation_add_query (GDataBatchOperation *self, const gchar *id, GTy
  * Return value: operation ID for the added insertion, or <code class="literal">0</code>
  *
  * Since: 0.7.0
- **/
+ */
 guint
 gdata_batch_operation_add_insertion (GDataBatchOperation *self, GDataEntry *entry, GDataBatchOperationCallback callback, gpointer user_data)
 {
@@ -529,7 +531,7 @@ gdata_batch_operation_add_insertion (GDataBatchOperation *self, GDataEntry *entr
  * Return value: operation ID for the added update, or <code class="literal">0</code>
  *
  * Since: 0.7.0
- **/
+ */
 guint
 gdata_batch_operation_add_update (GDataBatchOperation *self, GDataEntry *entry, GDataBatchOperationCallback callback, gpointer user_data)
 {
@@ -559,7 +561,7 @@ gdata_batch_operation_add_update (GDataBatchOperation *self, GDataEntry *entry, 
  * Return value: operation ID for the added deletion, or <code class="literal">0</code>
  *
  * Since: 0.7.0
- **/
+ */
 guint
 gdata_batch_operation_add_deletion (GDataBatchOperation *self, GDataEntry *entry, GDataBatchOperationCallback callback, gpointer user_data)
 {
@@ -592,7 +594,7 @@ gdata_batch_operation_add_deletion (GDataBatchOperation *self, GDataEntry *entry
  * Return value: %TRUE on success, %FALSE otherwise
  *
  * Since: 0.7.0
- **/
+ */
 gboolean
 gdata_batch_operation_run (GDataBatchOperation *self, GCancellable *cancellable, GError **error)
 {
@@ -611,6 +613,30 @@ gdata_batch_operation_run (GDataBatchOperation *self, GCancellable *cancellable,
 	g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 	g_return_val_if_fail (priv->has_run == FALSE, FALSE);
+
+	/* Check for early cancellation. */
+	if (g_cancellable_set_error_if_cancelled (cancellable, error)) {
+		return FALSE;
+	}
+
+	/* Check whether the service actually supports these kinds of
+	 * operations. */
+	g_hash_table_iter_init (&iter, priv->operations);
+	while (g_hash_table_iter_next (&iter, &op_id, (gpointer*) &op) == TRUE) {
+		GDataBatchable *batchable = GDATA_BATCHABLE (priv->service);
+		GDataBatchableIface *batchable_iface;
+
+		batchable_iface = GDATA_BATCHABLE_GET_IFACE (batchable);
+
+		if (batchable_iface->is_supported != NULL &&
+		    !batchable_iface->is_supported (op->type)) {
+			g_set_error (error, GDATA_SERVICE_ERROR,
+			             GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION,
+			             _("Batch operations are unsupported by "
+			               "this service."));
+			return FALSE;
+		}
+	}
 
 	message = _gdata_service_build_message (priv->service, priv->authorization_domain, SOUP_METHOD_POST, priv->feed_uri, NULL, TRUE);
 
@@ -731,7 +757,7 @@ run_thread (GSimpleAsyncResult *result, GDataBatchOperation *operation, GCancell
  * the batch operation.
  *
  * Since: 0.7.0
- **/
+ */
 void
 gdata_batch_operation_run_async (GDataBatchOperation *self, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data)
 {
@@ -767,7 +793,7 @@ gdata_batch_operation_run_async (GDataBatchOperation *self, GCancellable *cancel
  * Return value: %TRUE on success, %FALSE otherwise
  *
  * Since: 0.7.0
- **/
+ */
 gboolean
 gdata_batch_operation_run_finish (GDataBatchOperation *self, GAsyncResult *async_result, GError **error)
 {

@@ -29,7 +29,7 @@
  * It allows methods to be defined for handling the root XML node, each of its child nodes, and a method to be called after parsing is complete.
  *
  * Since: 0.3.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -92,7 +92,7 @@ gdata_parsable_class_init (GDataParsableClass *klass)
 	 * Specifies whether the object was constructed by parsing XML or manually.
 	 *
 	 * Since: 0.7.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_CONSTRUCTED_FROM_XML,
 	                                 g_param_spec_boolean ("constructed-from-xml",
 	                                                       "Constructed from XML?",
@@ -306,7 +306,7 @@ get_content_type (void) {
  * Return value: a new #GDataParsable, or %NULL; unref with g_object_unref()
  *
  * Since: 0.4.0
- **/
+ */
 GDataParsable *
 gdata_parsable_new_from_xml (GType parsable_type, const gchar *xml, gint length, GError **error)
 {
@@ -547,6 +547,29 @@ _gdata_parsable_new_from_json_node (GType parsable_type, JsonReader *reader, gpo
 	return parsable;
 }
 
+/**
+ * gdata_parsable_get_content_type:
+ * @self: a #GDataParsable
+ *
+ * Returns the content type upon which the #GDataParsable is built. For example, `application/atom+xml` or `application/json`.
+ *
+ * Return value: the parsable's content type
+ *
+ * Since: 0.17.7
+ */
+const gchar *
+gdata_parsable_get_content_type (GDataParsable *self)
+{
+	GDataParsableClass *klass;
+
+	g_return_val_if_fail (GDATA_IS_PARSABLE (self), NULL);
+
+	klass = GDATA_PARSABLE_GET_CLASS (self);
+	g_assert (klass->get_content_type != NULL);
+
+	return klass->get_content_type ();
+}
+
 static void
 build_namespaces_cb (gchar *prefix, gchar *href, GString *output)
 {
@@ -571,7 +594,7 @@ filter_namespaces_cb (gchar *prefix, gchar *href, GHashTable *canonical_namespac
  * Return value: the object's XML; free with g_free()
  *
  * Since: 0.4.0
- **/
+ */
 gchar *
 gdata_parsable_get_xml (GDataParsable *self)
 {

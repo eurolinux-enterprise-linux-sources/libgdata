@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2009 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2009, 2015 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -39,7 +39,7 @@ G_BEGIN_DECLS
  * <ulink type="http" url="http://code.google.com/apis/calendar/data/2.0/developers_guide_protocol.html#SharingACalendar">ACL specification</ulink>.
  *
  * Since: 0.7.0
- **/
+ */
 #define GDATA_LINK_ACCESS_CONTROL_LIST "http://schemas.google.com/acl/2007#accessControlList"
 
 #define GDATA_TYPE_ACCESS_HANDLER		(gdata_access_handler_get_type ())
@@ -54,7 +54,7 @@ G_BEGIN_DECLS
  * All the fields in the #GDataAccessHandler structure are private and should never be accessed directly.
  *
  * Since: 0.3.0
- **/
+ */
 typedef struct _GDataAccessHandler		GDataAccessHandler; /* dummy typedef */
 
 /**
@@ -64,6 +64,9 @@ typedef struct _GDataAccessHandler		GDataAccessHandler; /* dummy typedef */
  * @get_authorization_domain: (allow-none): a function to return the #GDataAuthorizationDomain to be used for all operations on the access rules
  * belonging to this access handler; not implementing this function is equivalent to returning %NULL from it, which signifies that operations on the
  * access rules don't require authorization; new in version 0.9.0
+ * @get_rules: (nullable): a function to query, parse and return a #GDataFeed of
+ *   #GDataAccessRules for a given entry — the virtual function for
+ *   gdata_access_handler_get_rules(); new in version 0.17.2
  *
  * The class structure for the #GDataAccessHandler interface.
  *
@@ -75,9 +78,15 @@ typedef struct {
 	gboolean (*is_owner_rule) (GDataAccessRule *rule);
 	GDataAuthorizationDomain *(*get_authorization_domain) (GDataAccessHandler *self);
 
+	GDataFeed *(*get_rules) (GDataAccessHandler *self,
+	                         GDataService *service,
+	                         GCancellable *cancellable,
+	                         GDataQueryProgressCallback progress_callback,
+	                         gpointer progress_user_data,
+	                         GError **error);
+
 	/*< private >*/
 	/* Padding for future expansion */
-	void (*_g_reserved0) (void);
 	void (*_g_reserved1) (void);
 	void (*_g_reserved2) (void);
 	void (*_g_reserved3) (void);

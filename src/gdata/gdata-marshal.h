@@ -6,7 +6,7 @@
 
 G_BEGIN_DECLS
 
-/* VOID:OBJECT,OBJECT,POINTER (gdata/gdata-marshal.list:1) */
+/* VOID:OBJECT,OBJECT,POINTER (/opt/gnome/source/libgdata/gdata/gdata-marshal.list:1) */
 extern void gdata_marshal_VOID__OBJECT_OBJECT_POINTER (GClosure     *closure,
                                                        GValue       *return_value,
                                                        guint         n_param_values,
@@ -14,7 +14,7 @@ extern void gdata_marshal_VOID__OBJECT_OBJECT_POINTER (GClosure     *closure,
                                                        gpointer      invocation_hint,
                                                        gpointer      marshal_data);
 
-/* STRING:OBJECT,STRING (gdata/gdata-marshal.list:2) */
+/* STRING:OBJECT,STRING (/opt/gnome/source/libgdata/gdata/gdata-marshal.list:2) */
 extern void gdata_marshal_STRING__OBJECT_STRING (GClosure     *closure,
                                                  GValue       *return_value,
                                                  guint         n_param_values,

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataOAuth2Authorizer: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch05.html" title="Authentication/Authorization API">
 <link rel="prev" href="GDataOAuth1Authorizer.html" title="GDataOAuth1Authorizer">
 <link rel="next" href="ch06.html" title="Comment API">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -46,7 +46,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataOAuth2Authorizer.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -70,7 +70,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-build-authentication-uri" title="gdata_oauth2_authorizer_build_authentication_uri ()">gdata_oauth2_authorizer_build_authentication_uri</a> <span class="c_punctuation">()</span>
@@ -78,7 +78,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-request-authorization" title="gdata_oauth2_authorizer_request_authorization ()">gdata_oauth2_authorizer_request_authorization</a> <span class="c_punctuation">()</span>
@@ -94,35 +94,51 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-request-authorization-finish" title="gdata_oauth2_authorizer_request_authorization_finish ()">gdata_oauth2_authorizer_request_authorization_finish</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-client-id" title="gdata_oauth2_authorizer_get_client_id ()">gdata_oauth2_authorizer_get_client_id</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-redirect-uri" title="gdata_oauth2_authorizer_get_redirect_uri ()">gdata_oauth2_authorizer_get_redirect_uri</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-client-secret" title="gdata_oauth2_authorizer_get_client_secret ()">gdata_oauth2_authorizer_get_client_secret</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-dup-refresh-token" title="gdata_oauth2_authorizer_dup_refresh_token ()">gdata_oauth2_authorizer_dup_refresh_token</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-set-refresh-token" title="gdata_oauth2_authorizer_set_refresh_token ()">gdata_oauth2_authorizer_set_refresh_token</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-locale" title="gdata_oauth2_authorizer_get_locale ()">gdata_oauth2_authorizer_get_locale</a> <span class="c_punctuation">()</span>
@@ -138,7 +154,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>
+<span class="returnvalue">guint</span>
 </td>
 <td class="function_name">
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-timeout" title="gdata_oauth2_authorizer_get_timeout ()">gdata_oauth2_authorizer_get_timeout</a> <span class="c_punctuation">()</span>
@@ -154,7 +170,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="returnvalue">GProxyResolver</span></a> *
+<a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="returnvalue">GProxyResolver</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-get-proxy-resolver" title="gdata_oauth2_authorizer_get_proxy_resolver ()">gdata_oauth2_authorizer_get_proxy_resolver</a> <span class="c_punctuation">()</span>
@@ -173,7 +189,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataOAuth2Authorizer.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table border="0">
+<div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
@@ -182,36 +198,42 @@ justifications.
 <tbody>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--client-id" title="The “client-id” property">client-id</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--client-secret" title="The “client-secret” property">client-secret</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--locale" title="The “locale” property">locale</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="type">GProxyResolver</span></a> *</td>
+<a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="type">GProxyResolver</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--proxy-resolver" title="The “proxy-resolver” property">proxy-resolver</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--redirect-uri" title="The “redirect-uri” property">redirect-uri</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a></td>
+<td class="property_type">
+<span class="type">gchar</span> *</td>
+<td class="property_name"><a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--refresh-token" title="The “refresh-token” property">refresh-token</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><span class="type">guint</span></td>
 <td class="property_name"><a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--timeout" title="The “timeout” property">timeout</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -220,7 +242,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataOAuth2Authorizer.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -247,7 +269,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataOAuth2Authorizer.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> GDataOAuth2Authorizer
 </pre>
 </div>
@@ -275,7 +297,7 @@ Google’s control.</p>
 <p>The OAuth 2.0 process as implemented by Google follows the</p>
 <a class="ulink" href="http://tools.ietf.org/html/rfc6749" target="_top">OAuth 2.0
 protocol as specified by IETF in RFC 6749</a>, with a few additions to
-<p>support scopes (implemented in libgdata by <a href="GDataAuthorizationDomain.html"><span class="type">GDataAuthorizationDomains</span></a>),
+<p>support scopes (implemented in libgdata by <a href="GDataAuthorizationDomain.html#GDataAuthorizationDomain-struct"><span class="type">GDataAuthorizationDomains</span></a>),
 locales and custom domains. Briefly, the process is initiated by building an
 authentication URI (using <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-build-authentication-uri" title="gdata_oauth2_authorizer_build_authentication_uri ()"><code class="function">gdata_oauth2_authorizer_build_authentication_uri()</code></a>)
 and opening it in the user’s web browser. The user authenticates and
@@ -286,6 +308,12 @@ application, which then converts the code into an access and refresh token
 then attached to all future requests to the online service, and the refresh
 token can be used in future (with <a class="link" href="GDataAuthorizer.html#gdata-authorizer-refresh-authorization" title="gdata_authorizer_refresh_authorization ()"><code class="function">gdata_authorizer_refresh_authorization()</code></a>)
 to refresh authorization after the access token expires.</p>
+<p>The refresh token may also be accessed as
+<a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--refresh-token" title="The “refresh-token” property"><span class="type">“refresh-token”</span></a> and saved by the application. It may
+later be set on a new instance of <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>, and
+<a class="link" href="GDataAuthorizer.html#gdata-authorizer-refresh-authorization-async" title="gdata_authorizer_refresh_authorization_async ()"><code class="function">gdata_authorizer_refresh_authorization_async()</code></a> called to establish a new
+access token without requiring the user to re-authenticate unless they have
+explicitly revoked the refresh token.</p>
 <p>For an overview of the standard OAuth 2.0 flow, see</p>
 <a class="ulink" href="http://tools.ietf.org/html/rfc6749#section-1.2" target="_top">RFC 6749</a>.
 <p>Before an application can be authorized using OAuth 2.0, it must be
@@ -297,7 +325,7 @@ will allow any application to impersonate yours, so it is recommended that
 they are kept secret (e.g. as a configure-time option).</p>
 <p>libgdata supports</p>
 <a class="ulink" href="https://developers.google.com/accounts/docs/OAuth2InstalledApp#incrementalAuth" target="_top">incremental
-authorization</a>, where multiple <a href="GDataOAuth2Authorizer.html"><span class="type">GDataOAuth2Authorizers</span></a> can be used to
+authorization</a>, where multiple <a href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer-struct"><span class="type">GDataOAuth2Authorizers</span></a> can be used to
 <p>incrementally build up authorizations against multiple scopes. Typically,
 you should use one <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> per <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> your application
 uses, limit the scope of each authorizer, and enable incremental
@@ -307,7 +335,7 @@ authorization when calling
 <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>. It is supported using
 <a class="link" href="GDataAuthorizer.html#gdata-authorizer-refresh-authorization" title="gdata_authorizer_refresh_authorization ()"><code class="function">gdata_authorizer_refresh_authorization()</code></a>.</p>
 <div class="example">
-<a name="id-1.3.5.7.10.19"></a><p class="title"><b>Example 9. Authenticating Asynchronously Using OAuth 2.0</b></p>
+<a name="id-1.3.5.7.10.20"></a><p class="title"><b>Example 9. Authenticating Asynchronously Using OAuth 2.0</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -361,55 +389,55 @@ authorization when calling
 47
 48
 49</pre></td>
-        <td class="listing_code"><pre class="programlisting">GDataSomeService <span class="gtkdoc opt">*</span>service<span class="gtkdoc opt">;</span>
-GDataOAuth2Authorizer <span class="gtkdoc opt">*</span>authorizer<span class="gtkdoc opt">;</span>
-gchar <span class="gtkdoc opt">*</span>authentication_uri<span class="gtkdoc opt">, *</span>authorization_code<span class="gtkdoc opt">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataSomeService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
+<span class="usertype">GDataOAuth2Authorizer</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">authorizer</span><span class="symbol">;</span>
+<span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">authentication_uri</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">authorization_code</span><span class="symbol">;</span>
 
 <span class="comment">/* Create an authorizer and authenticate and authorize the service we're using, asynchronously. */</span>
-authorizer <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-new">gdata_oauth2_authorizer_new</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;some-client-id&quot;</span><span class="gtkdoc opt">,</span> <span class="string">&quot;some-client-secret&quot;</span><span class="gtkdoc opt">,</span>
-                                          GDATA_OAUTH2_REDIRECT_URI_OOB<span class="gtkdoc opt">,</span> GDATA_TYPE_SOME_SERVICE<span class="gtkdoc opt">);</span>
-authentication_uri <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-build-authentication-uri">gdata_oauth2_authorizer_build_authentication_uri</a></span> <span class="gtkdoc opt">(</span>authorizer<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">,</span> FALSE<span class="gtkdoc opt">);</span>
+<span class="normal">authorizer </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-new">gdata_oauth2_authorizer_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"some-client-id"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"some-client-secret"</span><span class="symbol">,</span>
+<span class="normal">                                          <a href="GDataOAuth2Authorizer.html#GDATA-OAUTH2-REDIRECT-URI-OOB:CAPS">GDATA_OAUTH2_REDIRECT_URI_OOB</a></span><span class="symbol">,</span><span class="normal"> GDATA_TYPE_SOME_SERVICE</span><span class="symbol">);</span>
+<span class="normal">authentication_uri </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-build-authentication-uri">gdata_oauth2_authorizer_build_authentication_uri</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
 
 <span class="comment">/* (Present the page at the authentication URI to the user, either in an embedded or stand-alone web browser, and</span>
 <span class="comment"> * ask them to grant access to the application and return the code Google gives them.) */</span>
-authorization_code <span class="gtkdoc opt">=</span> <span class="function">ask_user_for_code</span> <span class="gtkdoc opt">(</span>authentication_uri<span class="gtkdoc opt">);</span>
+<span class="normal">authorization_code </span><span class="symbol">=</span><span class="normal"> </span><span class="function">ask_user_for_code</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authentication_uri</span><span class="symbol">);</span>
 
-<span class="function"><a href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-request-authorization-async">gdata_oauth2_authorizer_request_authorization_async</a></span> <span class="gtkdoc opt">(</span>authorizer<span class="gtkdoc opt">,</span> authorization_code<span class="gtkdoc opt">,</span> cancellable<span class="gtkdoc opt">,</span>
-                                                     <span class="gtkdoc opt">(</span>GAsyncReadyCallback<span class="gtkdoc opt">)</span> request_authorization_cb<span class="gtkdoc opt">,</span> user_data<span class="gtkdoc opt">);</span>
+<span class="function"><a href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-request-authorization-async">gdata_oauth2_authorizer_request_authorization_async</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">,</span><span class="normal"> authorization_code</span><span class="symbol">,</span><span class="normal"> cancellable</span><span class="symbol">,</span>
+<span class="normal">                                                     </span><span class="symbol">(</span><span class="normal"><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback">GAsyncReadyCallback</a></span><span class="symbol">)</span><span class="normal"> request_authorization_cb</span><span class="symbol">,</span><span class="normal"> user_data</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free">g_free</a></span> <span class="gtkdoc opt">(</span>authentication_uri<span class="gtkdoc opt">);</span>
+<span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authentication_uri</span><span class="symbol">);</span>
 
 <span class="comment">/* Zero out the code before freeing. */</span>
-<span class="keyword">if</span> <span class="gtkdoc opt">(</span>token_secret <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
-	<span class="function">memset</span> <span class="gtkdoc opt">(</span>authorization_code<span class="gtkdoc opt">,</span> <span class="number">0</span><span class="gtkdoc opt">,</span> <span class="function">strlen</span> <span class="gtkdoc opt">(</span>authorization_code<span class="gtkdoc opt">));</span>
-<span class="gtkdoc opt">}</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">token_secret </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function">memset</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorization_code</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="function">strlen</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorization_code</span><span class="symbol">));</span>
+<span class="cbracket">}</span>
 
-<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free">g_free</a></span> <span class="gtkdoc opt">(</span>authorization_code<span class="gtkdoc opt">);</span>
+<span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorization_code</span><span class="symbol">);</span>
 
 <span class="comment">/* Create a service object and link it with the authorizer */</span>
-service <span class="gtkdoc opt">=</span> <span class="function">gdata_some_service_new</span> <span class="gtkdoc opt">(</span><span class="function">GDATA_AUTHORIZER</span> <span class="gtkdoc opt">(</span>authorizer<span class="gtkdoc opt">));</span>
+<span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gdata_some_service_new</span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_AUTHORIZER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">));</span>
 
-<span class="gtkdoc kwb">static void</span>
-<span class="function">request_authorization_cb</span> <span class="gtkdoc opt">(</span>GDataOAuth2Authorizer <span class="gtkdoc opt">*</span>authorizer<span class="gtkdoc opt">,</span> GAsyncResult <span class="gtkdoc opt">*</span>async_result<span class="gtkdoc opt">,</span> gpointer user_data<span class="gtkdoc opt">)</span>
-<span class="gtkdoc opt">{</span>
-	GError <span class="gtkdoc opt">*</span>error <span class="gtkdoc opt">=</span> NULL<span class="gtkdoc opt">;</span>
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">request_authorization_cb</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GDataOAuth2Authorizer</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">authorizer</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">GAsyncResult</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">async_result</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">gpointer</span><span class="normal"> user_data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">    </span><span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
 
-	<span class="keyword">if</span> <span class="gtkdoc opt">(</span><span class="function"><a href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-request-authorization-finish">gdata_oauth2_authorizer_request_authorization_finish</a></span> <span class="gtkdoc opt">(</span>authorizer<span class="gtkdoc opt">,</span> async_result<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">) ==</span> FALSE<span class="gtkdoc opt">) {</span>
-		<span class="comment">/* Notify the user of all errors except cancellation errors */</span>
-		<span class="keyword">if</span> <span class="gtkdoc opt">(!</span><span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-matches">g_error_matches</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">,</span> G_IO_ERROR<span class="gtkdoc opt">,</span> G_IO_ERROR_CANCELLED<span class="gtkdoc opt">)) {</span>
-			<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Authorization failed: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
-		<span class="gtkdoc opt">}</span>
+<span class="normal">    </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-request-authorization-finish">gdata_oauth2_authorizer_request_authorization_finish</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">,</span><span class="normal"> async_result</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> FALSE</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="comment">/* Notify the user of all errors except cancellation errors */</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="function">g_error_matches</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/gio-GIOError.html#G-IO-ERROR:CAPS">G_IO_ERROR</a></span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS">G_IO_ERROR_CANCELLED</a></span><span class="symbol">))</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Authorization failed: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="cbracket">}</span>
 
-		<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
-		<span class="keyword">return</span><span class="gtkdoc opt">;</span>
-	<span class="gtkdoc opt">}</span>
+<span class="normal">        </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
 
-	<span class="comment">/* (The client is now authenticated and authorized against the service.</span>
-<span class="comment">	 * It can now proceed to execute queries on the service object which require the user to be authenticated.) */</span>
-<span class="gtkdoc opt">}</span>
+<span class="normal">    </span><span class="comment">/* (The client is now authenticated and authorized against the service.</span>
+<span class="comment">     * It can now proceed to execute queries on the service object which require the user to be authenticated.) */</span>
+<span class="cbracket">}</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>authorizer<span class="gtkdoc opt">);</span></pre></td>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -423,9 +451,9 @@ service <span class="gtkdoc opt">=</span> <span class="function">gdata_some_serv
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-new"></a><h3>gdata_oauth2_authorizer_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="returnvalue">GDataOAuth2Authorizer</span></a> *
-gdata_oauth2_authorizer_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client_id</code></em>,
-                             <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client_secret</code></em>,
-                             <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *redirect_uri</code></em>,
+gdata_oauth2_authorizer_new (<em class="parameter"><code>const <span class="type">gchar</span> *client_id</code></em>,
+                             <em class="parameter"><code>const <span class="type">gchar</span> *client_secret</code></em>,
+                             <em class="parameter"><code>const <span class="type">gchar</span> *redirect_uri</code></em>,
                              <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> service_type</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>. The <em class="parameter"><code>client_id</code></em>
  must be unique for your
@@ -433,8 +461,8 @@ application, and as registered with Google, and the <em class="parameter"><code>
  must be
 paired with it.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.2.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -466,30 +494,30 @@ paired with it.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.2.6"></a><h4>Returns</h4>
+<a name="gdata-oauth2-authorizer-new.returns"></a><h4>Returns</h4>
 <p> a new <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>; unref with
 <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-new-for-authorization-domains"></a><h3>gdata_oauth2_authorizer_new_for_authorization_domains ()</h3>
 <pre class="programlisting"><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="returnvalue">GDataOAuth2Authorizer</span></a> *
 gdata_oauth2_authorizer_new_for_authorization_domains
-                               (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client_id</code></em>,
-                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *client_secret</code></em>,
-                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *redirect_uri</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> *authorization_domains</code></em>);</pre>
+                               (<em class="parameter"><code>const <span class="type">gchar</span> *client_id</code></em>,
+                                <em class="parameter"><code>const <span class="type">gchar</span> *client_secret</code></em>,
+                                <em class="parameter"><code>const <span class="type">gchar</span> *redirect_uri</code></em>,
+                                <em class="parameter"><code><span class="type">GList</span> *authorization_domains</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>. The <em class="parameter"><code>client_id</code></em>
  must be unique for your
 application, and as registered with Google, and the <em class="parameter"><code>client_secret</code></em>
  must be
 paired with it.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.3.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-new-for-authorization-domains.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -513,7 +541,7 @@ paired with it.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>authorization_domains</p></td>
-<td class="parameter_description"><p>a non-empty list of <a href="GDataAuthorizationDomain.html"><span class="type">GDataAuthorizationDomains</span></a> to be authorized against by
+<td class="parameter_description"><p>a non-empty list of <a href="GDataAuthorizationDomain.html#GDataAuthorizationDomain-struct"><span class="type">GDataAuthorizationDomains</span></a> to be authorized against by
 the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GDataAuthorizationDomain][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></td>
 </tr>
@@ -521,21 +549,21 @@ the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authoriz
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.3.6"></a><h4>Returns</h4>
+<a name="gdata-oauth2-authorizer-new-for-authorization-domains.returns"></a><h4>Returns</h4>
 <p> a new <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>; unref with
 <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-build-authentication-uri"></a><h3>gdata_oauth2_authorizer_build_authentication_uri ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
 gdata_oauth2_authorizer_build_authentication_uri
                                (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>,
-                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *login_hint</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> include_granted_scopes</code></em>);</pre>
+                                <em class="parameter"><code>const <span class="type">gchar</span> *login_hint</code></em>,
+                                <em class="parameter"><code><span class="type">gboolean</span> include_granted_scopes</code></em>);</pre>
 <p>Build an authentication URI to open in the user’s web browser (or an embedded
 browser widget). This will display an authentication page from Google,
 including an authentication form and confirmation of the authorisation
@@ -544,24 +572,24 @@ in the browser, then an authorisation code will be returned via the
 <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--redirect-uri" title="The “redirect-uri” property"><span class="type">“redirect-uri”</span></a>, ready to be passed to
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-request-authorization" title="gdata_oauth2_authorizer_request_authorization ()"><code class="function">gdata_oauth2_authorizer_request_authorization()</code></a>.</p>
 <p>If <em class="parameter"><code>login_hint</code></em>
- is non-<a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, it will be passed to the server as a hint of
+ is non-<code class="literal">NULL</code>, it will be passed to the server as a hint of
 which user is attempting to authenticate, which can be used to pre-fill the
 e-mail address box in the authentication form.</p>
 <p>If <em class="parameter"><code>include_granted_scopes</code></em>
- is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>, the authentication request will
+ is <code class="literal">TRUE</code>, the authentication request will
 automatically include all authorisation domains previously granted to this
 user/application pair, allowing for incremental authentication — asking for
 permissions as needed, rather than all in one large bundle at the first
 opportunity. If <em class="parameter"><code>include_granted_scopes</code></em>
- is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>, incremental authentication
+ is <code class="literal">FALSE</code>, incremental authentication
 will not be enabled, and only the domains passed to the
 <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> constructor will eventually be authenticated.
 See the</p>
 <a class="ulink" href="https://developers.google.com/accounts/docs/OAuth2WebServer#incrementalAuth" target="_top">reference
 documentation</a> for more details.
 <div class="refsect3">
-<a name="id-1.3.5.7.11.4.8"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-build-authentication-uri.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -581,29 +609,29 @@ user. </p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>include_granted_scopes</p></td>
-<td class="parameter_description"><p><a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> to enable incremental authorisation</p></td>
+<td class="parameter_description"><p><code class="literal">TRUE</code> to enable incremental authorisation</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.4.9"></a><h4>Returns</h4>
+<a name="gdata-oauth2-authorizer-build-authentication-uri.returns"></a><h4>Returns</h4>
 <p> the authentication URI to open in a web
-browser; free with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
+browser; free with <code class="function">g_free()</code>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-request-authorization"></a><h3>gdata_oauth2_authorizer_request_authorization ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 gdata_oauth2_authorizer_request_authorization
                                (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>,
-                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *authorization_code</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                <em class="parameter"><code>const <span class="type">gchar</span> *authorization_code</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Request an authorisation code from the user’s web browser is converted to
 authorisation (access and refresh) tokens. This is the final step in the
 authentication process; once complete, the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> should be
@@ -615,8 +643,8 @@ will be returned if the server didn’t follow the expected protocol.
 <em class="parameter"><code>cancellable</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.5.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-request-authorization.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -635,22 +663,22 @@ will be returned if the server didn’t follow the expected protocol.
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>return location for a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>return location for a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.5.7"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+<a name="gdata-oauth2-authorizer-request-authorization.returns"></a><h4>Returns</h4>
+<p> <code class="literal">TRUE</code> on success, <code class="literal">FALSE</code> otherwise</p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -658,14 +686,14 @@ will be returned if the server didn’t follow the expected protocol.
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_oauth2_authorizer_request_authorization_async
                                (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>,
-                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *authorization_code</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code>const <span class="type">gchar</span> *authorization_code</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Asynchronous version of <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-request-authorization" title="gdata_oauth2_authorizer_request_authorization ()"><code class="function">gdata_oauth2_authorizer_request_authorization()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.6.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-request-authorization-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -684,7 +712,7 @@ gdata_oauth2_authorizer_request_authorization_async
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> an optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> an optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -701,21 +729,21 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-request-authorization-finish"></a><h3>gdata_oauth2_authorizer_request_authorization_finish ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 gdata_oauth2_authorizer_request_authorization_finish
                                (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *async_result</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> *async_result</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Finishes an asynchronous authorization operation started with
 <a class="link" href="GDataOAuth2Authorizer.html#gdata-oauth2-authorizer-request-authorization-async" title="gdata_oauth2_authorizer_request_authorization_async ()"><code class="function">gdata_oauth2_authorizer_request_authorization_async()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.7.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-request-authorization-finish.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -729,33 +757,33 @@ gdata_oauth2_authorizer_request_authorization_finish
 </tr>
 <tr>
 <td class="parameter_name"><p>async_result</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.7.6"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if authorization was successful, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+<a name="gdata-oauth2-authorizer-request-authorization-finish.returns"></a><h4>Returns</h4>
+<p> <code class="literal">TRUE</code> if authorization was successful, <code class="literal">FALSE</code> otherwise</p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-get-client-id"></a><h3>gdata_oauth2_authorizer_get_client_id ()</h3>
-<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 gdata_oauth2_authorizer_get_client_id (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>);</pre>
 <p>Returns the authorizer's client ID, <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--client-id" title="The “client-id” property"><span class="type">“client-id”</span></a>, as
 specified on constructing the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.8.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-get-client-id.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -769,22 +797,22 @@ specified on constructing the <a class="link" href="GDataOAuth2Authorizer.html" 
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.8.6"></a><h4>Returns</h4>
+<a name="gdata-oauth2-authorizer-get-client-id.returns"></a><h4>Returns</h4>
 <p> the authorizer's client ID</p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-get-redirect-uri"></a><h3>gdata_oauth2_authorizer_get_redirect_uri ()</h3>
-<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 gdata_oauth2_authorizer_get_redirect_uri
                                (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>);</pre>
 <p>Returns the authorizer’s redirect URI, <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--redirect-uri" title="The “redirect-uri” property"><span class="type">“redirect-uri”</span></a>,
 as specified on constructing the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.9.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-get-redirect-uri.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -798,22 +826,22 @@ as specified on constructing the <a class="link" href="GDataOAuth2Authorizer.htm
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.9.6"></a><h4>Returns</h4>
+<a name="gdata-oauth2-authorizer-get-redirect-uri.returns"></a><h4>Returns</h4>
 <p> the authorizer’s redirect URI</p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-get-client-secret"></a><h3>gdata_oauth2_authorizer_get_client_secret ()</h3>
-<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 gdata_oauth2_authorizer_get_client_secret
                                (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>);</pre>
 <p>Returns the authorizer's client secret, <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--client-secret" title="The “client-secret” property"><span class="type">“client-secret”</span></a>,
 as specified on constructing the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.10.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-get-client-secret.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -827,21 +855,87 @@ as specified on constructing the <a class="link" href="GDataOAuth2Authorizer.htm
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.10.6"></a><h4>Returns</h4>
+<a name="gdata-oauth2-authorizer-get-client-secret.returns"></a><h4>Returns</h4>
 <p> the authorizer's client secret</p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-oauth2-authorizer-dup-refresh-token"></a><h3>gdata_oauth2_authorizer_dup_refresh_token ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+gdata_oauth2_authorizer_dup_refresh_token
+                               (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>);</pre>
+<p>Returns the authorizer's refresh token, <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--refresh-token" title="The “refresh-token” property"><span class="type">“refresh-token”</span></a>,
+as set by client code previously on the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>, or as
+returned by the most recent authentication operation.</p>
+<div class="refsect3">
+<a name="gdata-oauth2-authorizer-dup-refresh-token.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="gdata-oauth2-authorizer-dup-refresh-token.returns"></a><h4>Returns</h4>
+<p> the authorizer's refresh token. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix23.html#api-index-0.17.2">0.17.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-oauth2-authorizer-set-refresh-token"></a><h3>gdata_oauth2_authorizer_set_refresh_token ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_oauth2_authorizer_set_refresh_token
+                               (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>,
+                                <em class="parameter"><code>const <span class="type">gchar</span> *refresh_token</code></em>);</pre>
+<p>Sets the authorizer's refresh token, <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--refresh-token" title="The “refresh-token” property"><span class="type">“refresh-token”</span></a>.
+This is used to periodically refresh the access token. Set it to <code class="literal">NULL</code> to
+clear the current authentication from the authorizer.</p>
+<div class="refsect3">
+<a name="gdata-oauth2-authorizer-set-refresh-token.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>refresh_token</p></td>
+<td class="parameter_description"><p> the new refresh token, or <code class="literal">NULL</code> to clear
+authorization. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix23.html#api-index-0.17.2">0.17.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-get-locale"></a><h3>gdata_oauth2_authorizer_get_locale ()</h3>
-<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 gdata_oauth2_authorizer_get_locale (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>);</pre>
-<p>Returns the locale currently being used for network requests, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the
+<p>Returns the locale currently being used for network requests, or <code class="literal">NULL</code> if the
 locale is the default.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.11.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-get-locale.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -855,18 +949,18 @@ locale is the default.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.11.6"></a><h4>Returns</h4>
+<a name="gdata-oauth2-authorizer-get-locale.returns"></a><h4>Returns</h4>
 <p> the current locale. </p>
 <p><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-set-locale"></a><h3>gdata_oauth2_authorizer_set_locale ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_oauth2_authorizer_set_locale (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>,
-                                    <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *locale</code></em>);</pre>
+                                    <em class="parameter"><code>const <span class="type">gchar</span> *locale</code></em>);</pre>
 <p>Set the locale used for network requests to <em class="parameter"><code>locale</code></em>
 , given in standard UNIX
 locale format. See <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--locale" title="The “locale” property"><span class="type">“locale”</span></a> for more details.</p>
@@ -876,8 +970,8 @@ the first time), it is unsupported, as the server-side software may behave
 unexpectedly. The only supported use of this method is after creation of the
 authorizer, but before any network requests are made.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.12.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-set-locale.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -891,25 +985,25 @@ authorizer, but before any network requests are made.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>locale</p></td>
-<td class="parameter_description"><p> the new locale in UNIX locale format, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the
+<td class="parameter_description"><p> the new locale in UNIX locale format, or <code class="literal">NULL</code> for the
 default locale. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-get-timeout"></a><h3>gdata_oauth2_authorizer_get_timeout ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>
+<pre class="programlisting"><span class="returnvalue">guint</span>
 gdata_oauth2_authorizer_get_timeout (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>);</pre>
 <p>Gets the <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--timeout" title="The “timeout” property"><span class="type">“timeout”</span></a> property; the network timeout, in
 seconds.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.13.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-get-timeout.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -923,25 +1017,25 @@ seconds.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.13.6"></a><h4>Returns</h4>
+<a name="gdata-oauth2-authorizer-get-timeout.returns"></a><h4>Returns</h4>
 <p> the timeout, or <code class="code">0</code></p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-set-timeout"></a><h3>gdata_oauth2_authorizer_set_timeout ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_oauth2_authorizer_set_timeout (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> timeout</code></em>);</pre>
+                                     <em class="parameter"><code><span class="type">guint</span> timeout</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2Authorizer--timeout" title="The “timeout” property"><span class="type">“timeout”</span></a> property; the network timeout, in
 seconds.</p>
 <p>If <em class="parameter"><code>timeout</code></em>
  is <code class="code">0</code>, network operations will never
 time out.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.14.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-set-timeout.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -961,18 +1055,18 @@ time out.</p>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-oauth2-authorizer-get-proxy-resolver"></a><h3>gdata_oauth2_authorizer_get_proxy_resolver ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="returnvalue">GProxyResolver</span></a> *
+<pre class="programlisting"><a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="returnvalue">GProxyResolver</span></a> *
 gdata_oauth2_authorizer_get_proxy_resolver
                                (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>);</pre>
-<p>Gets the <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="type">GProxyResolver</span></a> on the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>'s <span class="type">SoupSession</span>.</p>
+<p>Gets the <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="type">GProxyResolver</span></a> on the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>'s <span class="type">SoupSession</span>.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.15.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-get-proxy-resolver.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -986,11 +1080,11 @@ gdata_oauth2_authorizer_get_proxy_resolver
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.15.6"></a><h4>Returns</h4>
-<p> a <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="type">GProxyResolver</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p>
+<a name="gdata-oauth2-authorizer-get-proxy-resolver.returns"></a><h4>Returns</h4>
+<p> a <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="type">GProxyResolver</span></a>, or <code class="literal">NULL</code>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -998,12 +1092,12 @@ gdata_oauth2_authorizer_get_proxy_resolver
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_oauth2_authorizer_set_proxy_resolver
                                (<em class="parameter"><code><a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="type">GProxyResolver</span></a> *proxy_resolver</code></em>);</pre>
-<p>Sets the <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="type">GProxyResolver</span></a> on the <span class="type">SoupSession</span> used internally by the given
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="type">GProxyResolver</span></a> *proxy_resolver</code></em>);</pre>
+<p>Sets the <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="type">GProxyResolver</span></a> on the <span class="type">SoupSession</span> used internally by the given
 <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.3.5.7.11.16.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-oauth2-authorizer-set-proxy-resolver.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1017,13 +1111,13 @@ gdata_oauth2_authorizer_set_proxy_resolver
 </tr>
 <tr>
 <td class="parameter_name"><p>proxy_resolver</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="type">GProxyResolver</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="type">GProxyResolver</span></a>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -1037,7 +1131,7 @@ user is shown the authorisation code and asked to copy it.</p>
 <p>See</p>
 <a class="ulink" href="https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi" target="_top">reference
 documentation</a> for details.
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1049,14 +1143,14 @@ user is not shown the authorisation code or asked to copy it.</p>
 <p>See</p>
 <a class="ulink" href="https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi" target="_top">reference
 documentation</a> for details.
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataOAuth2Authorizer-struct"></a><h3>GDataOAuth2Authorizer</h3>
 <pre class="programlisting">typedef struct _GDataOAuth2Authorizer GDataOAuth2Authorizer;</pre>
 <p>All the fields in the <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1065,14 +1159,14 @@ documentation</a> for details.
 } GDataOAuth2AuthorizerClass;
 </pre>
 <p>All the fields in the <a class="link" href="GDataOAuth2Authorizer.html#GDataOAuth2AuthorizerClass" title="GDataOAuth2AuthorizerClass"><span class="type">GDataOAuth2AuthorizerClass</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataOAuth2Authorizer.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataOAuth2Authorizer--client-id"></a><h3>The <code class="literal">“client-id”</code> property</h3>
-<pre class="programlisting">  “client-id”                <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “client-id”                <span class="type">gchar</span> *</pre>
 <p>A client ID for your application (see the</p>
 <a class="ulink" href="https://developers.google.com/accounts/docs/OAuth2InstalledApp#handlingtheresponse" target="_top">reference documentation</a>).
 <p>It is recommended that the ID is of the form
@@ -1081,12 +1175,12 @@ documentation</a> for details.
 <em class="replaceable"><code>version ID</code></em></code>.</p>
 <p>Flags: Read / Write / Construct Only</p>
 <p>Default value: NULL</p>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataOAuth2Authorizer--client-secret"></a><h3>The <code class="literal">“client-secret”</code> property</h3>
-<pre class="programlisting">  “client-secret”            <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “client-secret”            <span class="type">gchar</span> *</pre>
 <p>Client secret provided by Google. This is unique for each application
 and is accessible from Google’s Developer Console when registering
 an application. It must be paired with the
@@ -1096,14 +1190,14 @@ an application. It must be paired with the
 documentation</a> for details.
 <p>Flags: Read / Write / Construct Only</p>
 <p>Default value: NULL</p>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataOAuth2Authorizer--locale"></a><h3>The <code class="literal">“locale”</code> property</h3>
-<pre class="programlisting">  “locale”                   <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “locale”                   <span class="type">gchar</span> *</pre>
 <p>The locale to use for network requests, in UNIX locale format.
-(e.g. "en_GB", "cs", "de_DE".) Use <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the default "C" locale
+(e.g. "en_GB", "cs", "de_DE".) Use <code class="literal">NULL</code> for the default "C" locale
 (typically "en_US").</p>
 <p>This locale will be used by the server-side software to localise the
 authentication and authorization pages at the URI returned by
@@ -1112,20 +1206,20 @@ authentication and authorization pages at the URI returned by
 locale.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataOAuth2Authorizer--proxy-resolver"></a><h3>The <code class="literal">“proxy-resolver”</code> property</h3>
-<pre class="programlisting">  “proxy-resolver”           <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="type">GProxyResolver</span></a> *</pre>
-<p>The <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html"><span class="type">GProxyResolver</span></a> used to determine a proxy URI.</p>
+<pre class="programlisting">  “proxy-resolver”           <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="type">GProxyResolver</span></a> *</pre>
+<p>The <a href="https://developer.gnome.org/gio/unstable/GProxyResolver.html#GProxyResolver-struct"><span class="type">GProxyResolver</span></a> used to determine a proxy URI.</p>
 <p>Flags: Read / Write</p>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataOAuth2Authorizer--redirect-uri"></a><h3>The <code class="literal">“redirect-uri”</code> property</h3>
-<pre class="programlisting">  “redirect-uri”             <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “redirect-uri”             <span class="type">gchar</span> *</pre>
 <p>Redirect URI to send the response from the authorisation request to.
 This must either be <a class="link" href="GDataOAuth2Authorizer.html#GDATA-OAUTH2-REDIRECT-URI-OOB:CAPS" title="GDATA_OAUTH2_REDIRECT_URI_OOB"><code class="literal">GDATA_OAUTH2_REDIRECT_URI_OOB</code></a>,
 <a class="link" href="GDataOAuth2Authorizer.html#GDATA-OAUTH2-REDIRECT-URI-OOB-AUTO:CAPS" title="GDATA_OAUTH2_REDIRECT_URI_OOB_AUTO"><code class="literal">GDATA_OAUTH2_REDIRECT_URI_OOB_AUTO</code></a>, or a</p>
@@ -1152,12 +1246,25 @@ Google’s Developer Console for your application.</p>
 documentation</a> for details about choosing a redirect URI.</p>
 <p>Flags: Read / Write / Construct Only</p>
 <p>Default value: NULL</p>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GDataOAuth2Authorizer--refresh-token"></a><h3>The <code class="literal">“refresh-token”</code> property</h3>
+<pre class="programlisting">  “refresh-token”            <span class="type">gchar</span> *</pre>
+<p>The server provided refresh token, which can be stored and passed in
+to new <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer"><span class="type">GDataOAuth2Authorizer</span></a> instances before calling
+<a class="link" href="GDataAuthorizer.html#gdata-authorizer-refresh-authorization-async" title="gdata_authorizer_refresh_authorization_async ()"><code class="function">gdata_authorizer_refresh_authorization_async()</code></a> to create a new
+short-lived access token.</p>
+<p>The refresh token is opaque data and must not be parsed.</p>
+<p>Flags: Read / Write</p>
+<p>Default value: NULL</p>
+<p class="since">Since: <a class="link" href="ix23.html#api-index-0.17.2">0.17.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataOAuth2Authorizer--timeout"></a><h3>The <code class="literal">“timeout”</code> property</h3>
-<pre class="programlisting">  “timeout”                  <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a></pre>
+<pre class="programlisting">  “timeout”                  <span class="type">guint</span></pre>
 <p>A timeout, in seconds, for network operations. If the timeout is
 exceeded, the operation will be cancelled and
 <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-NETWORK-ERROR:CAPS"><code class="literal">GDATA_SERVICE_ERROR_NETWORK_ERROR</code></a> will be returned.</p>
@@ -1165,12 +1272,11 @@ exceeded, the operation will be cancelled and
 never time out.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
-<p class="since">Since 0.17.0</p>
+<p class="since">Since: <a class="link" href="ix22.html#api-index-0.17.0">0.17.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

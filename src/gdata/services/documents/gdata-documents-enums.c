@@ -9,7 +9,7 @@
 #include "gdata-documents-presentation.h"
 #include "gdata-documents-enums.h"
 
-/* enumerations from "./gdata/services/documents/gdata-documents-service.h" */
+/* enumerations from "/opt/gnome/source/libgdata/gdata/services/documents/gdata-documents-service.h" */
 GType
 gdata_documents_service_error_get_type (void)
 {

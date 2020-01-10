@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataParsable: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch02.html" title="Core API">
 <link rel="prev" href="gdata-GData-Types.html" title="GData Types">
 <link rel="next" href="GDataDownloadStream.html" title="GDataDownloadStream">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -45,12 +45,19 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataParsable.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
 </colgroup>
 <tbody>
+<tr>
+<td class="function_type">const <span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataParsable.html#gdata-parsable-get-content-type" title="gdata_parsable_get_content_type ()">gdata_parsable_get_content_type</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
 <tr>
 <td class="function_type">
 <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="returnvalue">GDataParsable</span></a> *
@@ -61,7 +68,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataParsable.html#gdata-parsable-get-xml" title="gdata_parsable_get_xml ()">gdata_parsable_get_xml</a> <span class="c_punctuation">()</span>
@@ -77,7 +84,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataParsable.html#gdata-parsable-get-json" title="gdata_parsable_get_json ()">gdata_parsable_get_json</a> <span class="c_punctuation">()</span>
@@ -88,14 +95,14 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataParsable.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table border="0">
+<div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
 <col width="200px" class="properties_flags">
 </colgroup>
 <tbody><tr>
-<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
+<td class="property_type"><span class="type">gboolean</span></td>
 <td class="property_name"><a class="link" href="GDataParsable.html#GDataParsable--constructed-from-xml" title="The “constructed-from-xml” property">constructed-from-xml</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr></tbody>
@@ -103,7 +110,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataParsable.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -122,7 +129,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataParsable.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> GDataParsable
         <span class="lineart">├──</span> <a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
         <span class="lineart">├──</span> <a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories">GDataAPPCategories</a>
@@ -169,12 +176,39 @@ both of which require XML parsing which can be extended by subclassing.</p>
 <div class="refsect1">
 <a name="GDataParsable.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
+<a name="gdata-parsable-get-content-type"></a><h3>gdata_parsable_get_content_type ()</h3>
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+gdata_parsable_get_content_type (<em class="parameter"><code><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> *self</code></em>);</pre>
+<p>Returns the content type upon which the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> is built. For example, <code class="literal">application/atom+xml</code> or <code class="literal">application/json</code>.</p>
+<div class="refsect3">
+<a name="gdata-parsable-get-content-type.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="gdata-parsable-get-content-type.returns"></a><h4>Returns</h4>
+<p> the parsable's content type</p>
+</div>
+<p class="since">Since: <a class="link" href="ix24.html#api-index-0.17.7">0.17.7</a></p>
+</div>
+<hr>
+<div class="refsect2">
 <a name="gdata-parsable-new-from-xml"></a><h3>gdata_parsable_new_from_xml ()</h3>
 <pre class="programlisting"><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="returnvalue">GDataParsable</span></a> *
 gdata_parsable_new_from_xml (<em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> parsable_type</code></em>,
-                             <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *xml</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> length</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                             <em class="parameter"><code>const <span class="type">gchar</span> *xml</code></em>,
+                             <em class="parameter"><code><span class="type">gint</span> length</code></em>,
+                             <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> subclass (of the given <em class="parameter"><code>parsable_type</code></em>
 ) from the given <em class="parameter"><code>xml</code></em>
 .</p>
@@ -189,8 +223,8 @@ each of the child nodes of the root node.</p>
  will be assumed to be null-terminated.</p>
 <p>If an error occurs during parsing, a suitable error from <a class="link" href="GDataService.html#GDataParserError" title="enum GDataParserError"><span class="type">GDataParserError</span></a> will be returned.</p>
 <div class="refsect3">
-<a name="id-1.3.2.8.10.2.8"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-parsable-new-from-xml.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -215,28 +249,28 @@ each of the child nodes of the root node.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.2.8.10.2.9"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<a name="gdata-parsable-new-from-xml.returns"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
-<p class="since">Since 0.4.0</p>
+<p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-parsable-get-xml"></a><h3>gdata_parsable_get_xml ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
 gdata_parsable_get_xml (<em class="parameter"><code><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> *self</code></em>);</pre>
 <p>Builds an XML representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, such that it could be inserted on the server. The XML is guaranteed
 to have all its namespaces declared properly in a self-contained fashion, and is valid for stand-alone use.</p>
 <div class="refsect3">
-<a name="id-1.3.2.8.10.3.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-parsable-get-xml.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -250,19 +284,19 @@ to have all its namespaces declared properly in a self-contained fashion, and is
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.2.8.10.3.6"></a><h4>Returns</h4>
-<p> the object's XML; free with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a></p>
+<a name="gdata-parsable-get-xml.returns"></a><h4>Returns</h4>
+<p> the object's XML; free with <code class="function">g_free()</code></p>
 </div>
-<p class="since">Since 0.4.0</p>
+<p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-parsable-new-from-json"></a><h3>gdata_parsable_new_from_json ()</h3>
 <pre class="programlisting"><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="returnvalue">GDataParsable</span></a> *
 gdata_parsable_new_from_json (<em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> parsable_type</code></em>,
-                              <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *json</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> length</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                              <em class="parameter"><code>const <span class="type">gchar</span> *json</code></em>,
+                              <em class="parameter"><code><span class="type">gint</span> length</code></em>,
+                              <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> subclass (of the given <em class="parameter"><code>parsable_type</code></em>
 ) from the given <em class="parameter"><code>json</code></em>
 .</p>
@@ -277,8 +311,8 @@ each of the node's members.</p>
  will be assumed to be nul-terminated.</p>
 <p>If an error occurs during parsing, a suitable error from <a class="link" href="GDataService.html#GDataParserError" title="enum GDataParserError"><span class="type">GDataParserError</span></a> will be returned.</p>
 <div class="refsect3">
-<a name="id-1.3.2.8.10.4.8"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-parsable-new-from-json.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -303,28 +337,28 @@ each of the node's members.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.2.8.10.4.9"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<a name="gdata-parsable-new-from-json.returns"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-parsable-get-json"></a><h3>gdata_parsable_get_json ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
 gdata_parsable_get_json (<em class="parameter"><code><a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> *self</code></em>);</pre>
 <p>Builds a JSON representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, such that it could be inserted on the server. The JSON
 is valid for stand-alone use.</p>
 <div class="refsect3">
-<a name="id-1.3.2.8.10.5.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-parsable-get-json.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -338,10 +372,10 @@ is valid for stand-alone use.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.3.2.8.10.5.6"></a><h4>Returns</h4>
-<p> the object's JSON; free with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a></p>
+<a name="gdata-parsable-get-json.returns"></a><h4>Returns</h4>
+<p> the object's JSON; free with <code class="function">g_free()</code></p>
 </div>
-<p class="since">Since 0.15.0</p>
+<p class="since">Since: <a class="link" href="ix19.html#api-index-0.15.0">0.15.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -350,7 +384,7 @@ is valid for stand-alone use.</p>
 <a name="GDataParsable-struct"></a><h3>GDataParsable</h3>
 <pre class="programlisting">typedef struct _GDataParsable GDataParsable;</pre>
 <p>All the fields in the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.3.0</p>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-0.3.0">0.3.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -379,8 +413,8 @@ is valid for stand-alone use.</p>
 <p>The class structure for the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> class. Note that JSON and XML functions are mutually exclusive:
 a given implementation of <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> is represented as exactly one of JSON and XML.</p>
 <div class="refsect3">
-<a name="id-1.3.2.8.11.3.5"></a><h4>Members</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="GDataParsableClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="300px" class="struct_members_name">
 <col class="struct_members_description">
@@ -420,7 +454,7 @@ XML node to be added to <em class="parameter"><code>xml_string</code></em>
 </tr>
 <tr>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.get-xml"></a>get_xml</code></em> ()</p></td>
-<td class="struct_member_description"><p>a function to build an XML representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, appending it to the provided <a href="https://developer.gnome.org/glib/unstable/glib-Strings.html#GString"><span class="type">GString</span></a></p></td>
+<td class="struct_member_description"><p>a function to build an XML representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, appending it to the provided <span class="type">GString</span></p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
@@ -443,7 +477,7 @@ to validate the parsed properties</p></td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GDataParsableClass.get-json"></a>get_json</code></em> ()</p></td>
-<td class="struct_member_description"><p>a function to build a JSON representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, appending it to the provided <span class="type">JsonBuilder</span></p></td>
+<td class="struct_member_description"><p>a function to build a JSON representation of the <a class="link" href="GDataParsable.html" title="GDataParsable"><span class="type">GDataParsable</span></a> in its current state, appending it to the provided <a href="/opt/gnome/install/share/gtk-doc/html/json-glib/JsonBuilder.html#JsonBuilder-struct"><span class="type">JsonBuilder</span></a></p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
@@ -452,35 +486,34 @@ to validate the parsed properties</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *<em class="structfield"><code><a name="GDataParsableClass.element-name"></a>element_name</code></em>;</p></td>
+<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GDataParsableClass.element-name"></a>element_name</code></em>;</p></td>
 <td class="struct_member_description"><p>the name of the XML element which represents this parsable</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *<em class="structfield"><code><a name="GDataParsableClass.element-namespace"></a>element_namespace</code></em>;</p></td>
+<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GDataParsableClass.element-namespace"></a>element_namespace</code></em>;</p></td>
 <td class="struct_member_description"><p>the prefix of the XML namespace used for the parsable</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.3.0</p>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-0.3.0">0.3.0</a></p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataParsable.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataParsable--constructed-from-xml"></a><h3>The <code class="literal">“constructed-from-xml”</code> property</h3>
-<pre class="programlisting">  “constructed-from-xml”     <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
+<pre class="programlisting">  “constructed-from-xml”     <span class="type">gboolean</span></pre>
 <p>Specifies whether the object was constructed by parsing XML or manually.</p>
 <p>Flags: Read / Write / Construct Only</p>
 <p>Default value: FALSE</p>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

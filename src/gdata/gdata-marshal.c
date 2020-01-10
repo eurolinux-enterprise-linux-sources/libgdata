@@ -53,7 +53,7 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* VOID:OBJECT,OBJECT,POINTER (gdata/gdata-marshal.list:1) */
+/* VOID:OBJECT,OBJECT,POINTER (/opt/gnome/source/libgdata/gdata/gdata-marshal.list:1) */
 extern void gdata_marshal_VOID__OBJECT_OBJECT_POINTER (GClosure     *closure,
                                                        GValue       *return_value,
                                                        guint         n_param_values,
@@ -73,9 +73,9 @@ gdata_marshal_VOID__OBJECT_OBJECT_POINTER (GClosure     *closure,
                                                             gpointer     arg_2,
                                                             gpointer     arg_3,
                                                             gpointer     data2);
-  register GMarshalFunc_VOID__OBJECT_OBJECT_POINTER callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  GMarshalFunc_VOID__OBJECT_OBJECT_POINTER callback;
+  GCClosure *cc = (GCClosure*) closure;
+  gpointer data1, data2;
 
   g_return_if_fail (n_param_values == 4);
 
@@ -98,7 +98,7 @@ gdata_marshal_VOID__OBJECT_OBJECT_POINTER (GClosure     *closure,
             data2);
 }
 
-/* STRING:OBJECT,STRING (gdata/gdata-marshal.list:2) */
+/* STRING:OBJECT,STRING (/opt/gnome/source/libgdata/gdata/gdata-marshal.list:2) */
 extern void gdata_marshal_STRING__OBJECT_STRING (GClosure     *closure,
                                                  GValue       *return_value,
                                                  guint         n_param_values,
@@ -117,9 +117,9 @@ gdata_marshal_STRING__OBJECT_STRING (GClosure     *closure,
                                                         gpointer     arg_1,
                                                         gpointer     arg_2,
                                                         gpointer     data2);
-  register GMarshalFunc_STRING__OBJECT_STRING callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  GMarshalFunc_STRING__OBJECT_STRING callback;
+  GCClosure *cc = (GCClosure*) closure;
+  gpointer data1, data2;
   gchar* v_return;
 
   g_return_if_fail (return_value != NULL);

@@ -2,17 +2,17 @@
 # Copyright (C) 2011 libgdata's COPYRIGHT HOLDER
 # This file is distributed under the same license as the libgdata package.
 #
-# Changwoo Ryu <cwryu@debian.org>, 2011-2014.
+# Changwoo Ryu <cwryu@debian.org>, 2011-2017.
 #
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libgdata master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libgdata&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-06 09:24+0000\n"
-"PO-Revision-Date: 2014-09-06 18:27+0900\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=libgdata&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-02-24 23:45+0000\n"
+"PO-Revision-Date: 2017-03-04 03:35+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -21,24 +21,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../gdata/gdata-client-login-authorizer.c:627
-#: ../gdata/gdata-oauth1-authorizer.c:839
-#: ../gdata/gdata-oauth1-authorizer.c:1115
+#: ../gdata/gdata-batch-operation.c:635
+#, c-format
+msgid "Batch operations are unsupported by this service."
+msgstr "이 서비스에서는 일괄 작업을 지원하지 않습니다."
+
+#: ../gdata/gdata-client-login-authorizer.c:629
+#: ../gdata/gdata-oauth1-authorizer.c:840
+#: ../gdata/gdata-oauth1-authorizer.c:1116
+#: ../gdata/gdata-oauth2-authorizer.c:953
+#: ../gdata/gdata-oauth2-authorizer.c:964
+#: ../gdata/gdata-oauth2-authorizer.c:983
+#: ../gdata/gdata-oauth2-authorizer.c:999
+#: ../gdata/gdata-oauth2-authorizer.c:1064
+#: ../gdata/gdata-oauth2-authorizer.c:1076
+#: ../gdata/gdata-oauth2-authorizer.c:1087
+#: ../gdata/gdata-oauth2-authorizer.c:1102
+#: ../gdata/gdata-oauth2-authorizer.c:1118
 msgid "The server returned a malformed response."
 msgstr "서버의 응답 형식이 잘못되었습니다."
 
-#: ../gdata/gdata-client-login-authorizer.c:647 ../gdata/gdata-service.c:350
+#: ../gdata/gdata-client-login-authorizer.c:649 ../gdata/gdata-service.c:361
 #, c-format
-msgid "Cannot connect to the service's server."
+msgid "Cannot connect to the service’s server."
 msgstr "서비스 서버에 연결할 수 없습니다."
 
-#: ../gdata/gdata-client-login-authorizer.c:652 ../gdata/gdata-service.c:355
+#: ../gdata/gdata-client-login-authorizer.c:654 ../gdata/gdata-service.c:366
 #, c-format
 msgid "Cannot connect to the proxy server."
 msgstr "프록시 서버에 연결할 수 없습니다."
 
 #. Translators: the parameter is an error message returned by the server.
-#: ../gdata/gdata-client-login-authorizer.c:658 ../gdata/gdata-service.c:361
+#. Translators: the parameter is an
+#. * error message returned by the
+#. * server.
+#: ../gdata/gdata-client-login-authorizer.c:660 ../gdata/gdata-service.c:372
+#: ../gdata/services/calendar/gdata-calendar-service.c:325
 #, c-format
 msgid "Invalid request URI or header, or unsupported nonstandard parameter: %s"
 msgstr ""
@@ -46,62 +64,69 @@ msgstr ""
 "%s"
 
 #. Translators: the parameter is an error message returned by the server.
-#: ../gdata/gdata-client-login-authorizer.c:664 ../gdata/gdata-service.c:367
+#: ../gdata/gdata-client-login-authorizer.c:666 ../gdata/gdata-service.c:378
 #, c-format
 msgid "Authentication required: %s"
 msgstr "인증이 필요합니다: %s"
 
 #. Translators: the parameter is an error message returned by the server.
-#: ../gdata/gdata-client-login-authorizer.c:669 ../gdata/gdata-service.c:372
+#. Translators: the parameter is an
+#. * error message returned by the
+#. * server.
+#. Translators: the parameter is an error message returned by the server.
+#: ../gdata/gdata-client-login-authorizer.c:671 ../gdata/gdata-service.c:383
+#: ../gdata/services/calendar/gdata-calendar-service.c:313
+#: ../gdata/services/youtube/gdata-youtube-video.c:1013
 #, c-format
 msgid "The requested resource was not found: %s"
 msgstr "요청한 리소스가 없습니다: %s"
 
 #. Translators: the parameter is an error message returned by the server.
-#: ../gdata/gdata-client-login-authorizer.c:675 ../gdata/gdata-service.c:378
+#: ../gdata/gdata-client-login-authorizer.c:677 ../gdata/gdata-service.c:389
 #, c-format
 msgid "The entry has been modified since it was downloaded: %s"
 msgstr "해당 항목은 다운로드한 후에 수정되었습니다.: %s"
 
 #. Translators: the first parameter is an HTTP status,
 #. * and the second is an error message returned by the server.
-#: ../gdata/gdata-client-login-authorizer.c:687 ../gdata/gdata-service.c:392
+#: ../gdata/gdata-client-login-authorizer.c:689 ../gdata/gdata-service.c:403
 #, c-format
 msgid "Error code %u when authenticating: %s"
 msgstr "인증할 때 오류 코드 %u번: %s"
 
-#: ../gdata/gdata-client-login-authorizer.c:786
+#. Translators: see http://en.wikipedia.org/wiki/CAPTCHA for information about CAPTCHAs
+#: ../gdata/gdata-client-login-authorizer.c:788
 msgid "A CAPTCHA must be filled out to log in."
 msgstr "로그인하려면 CAPTCHA를 작성해야 합니다."
 
 # 구글 비밀번호를 말하는 것이므로 비밀번호라고 번역
 # 구글 애플리케이션을 말하는 것이므로 애플리케이션이라고 번역
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-client-login-authorizer.c:824
+#: ../gdata/gdata-client-login-authorizer.c:826
 #, c-format
 msgid "This account requires an application-specific password. (%s)"
 msgstr "이 계정은 애플리케이션별 비밀번호가 필요합니다. (%s)"
 
 # 구글 비밀번호를 말하는 것이므로 비밀번호라고 번역
-#: ../gdata/gdata-client-login-authorizer.c:831
+#: ../gdata/gdata-client-login-authorizer.c:833
 msgid "Your username or password were incorrect."
 msgstr "사용자 이름과 비밀번호가 틀렸습니다."
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-client-login-authorizer.c:852
+#: ../gdata/gdata-client-login-authorizer.c:854
 #, c-format
-msgid "Your account's e-mail address has not been verified. (%s)"
+msgid "Your account’s e-mail address has not been verified. (%s)"
 msgstr "계정의 전자메일 주소를 확인하지 못했습니다. (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-client-login-authorizer.c:857
+#: ../gdata/gdata-client-login-authorizer.c:859
 #, c-format
-msgid "You have not agreed to the service's terms and conditions. (%s)"
+msgid "You have not agreed to the service’s terms and conditions. (%s)"
 msgstr "서비스 약관에 동의하지 않았습니다. (%s)"
 
 # 구글 비밀번호를 말하는 것이므로 비밀번호라고 번역
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-client-login-authorizer.c:863
+#: ../gdata/gdata-client-login-authorizer.c:865
 #, c-format
 msgid ""
 "This account has been migrated. Please log in online to receive your new "
@@ -111,37 +136,41 @@ msgstr ""
 "하십시오. (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-client-login-authorizer.c:868
+#: ../gdata/gdata-client-login-authorizer.c:870
 #, c-format
 msgid "This account has been deleted. (%s)"
 msgstr "이 계정은 삭제되었습니다. (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-client-login-authorizer.c:873
+#: ../gdata/gdata-client-login-authorizer.c:875
 #, c-format
 msgid "This account has been disabled. (%s)"
 msgstr "이 계정은 제한되었습니다. (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-client-login-authorizer.c:878
+#: ../gdata/gdata-client-login-authorizer.c:880
 #, c-format
-msgid "This account's access to this service has been disabled. (%s)"
+msgid "This account’s access to this service has been disabled. (%s)"
 msgstr "이 계정의 이 서비스 접근이 제한되었습니다. (%s)"
 
 #. Translators: the parameter is a URI for further information.
-#: ../gdata/gdata-client-login-authorizer.c:883
+#: ../gdata/gdata-client-login-authorizer.c:885
 #, c-format
 msgid "This service is not available at the moment. (%s)"
 msgstr "현재 서비스를 사용할 수 없습니다. (%s)"
 
 #. Translators: This is an error message for if a user attempts to retrieve comments from an entry (such as a video) which doesn't
 #. * support comments.
+#. Translators: This is an error message for if a user attempts to retrieve comments from an entry
+#. * (such as a video) which doesn't support comments.
 #: ../gdata/gdata-commentable.c:172 ../gdata/gdata-commentable.c:262
 msgid "This entry does not support comments."
 msgstr "이 항목은 댓글을 지원하지 않습니다."
 
 #. Translators: This is an error message for if a user attempts to add a comment to an entry (such as a video) which doesn't support
 #. * comments.
+#. Translators: This is an error message for if a user attempts to add a comment to an entry
+#. * (such as a video) which doesn't support comments.
 #: ../gdata/gdata-commentable.c:349 ../gdata/gdata-commentable.c:435
 msgid "Comments may not be added to this entry."
 msgstr "이 항목에는 댓글을 추가할 수 없습니다."
@@ -152,38 +181,59 @@ msgid "This comment may not be deleted."
 msgstr "이 댓글은 삭제할 수 없습니다."
 
 #. Tried to seek too far
-#: ../gdata/gdata-download-stream.c:762
+#: ../gdata/gdata-download-stream.c:763
 msgid "Invalid seek request"
 msgstr "잘못된 seek 요청"
 
-#: ../gdata/gdata-oauth1-authorizer.c:814
+#: ../gdata/gdata-oauth1-authorizer.c:815
 msgid "The server rejected the temporary credentials request."
 msgstr "서버에서 임시 비밀글 요청을 거부했습니다."
 
 #. Server returned an error. This either means that there was a server error or, more likely, the server doesn't trust the client
 #. * or the user denied authorization to the token on the authorization web page.
-#: ../gdata/gdata-oauth1-authorizer.c:1089
+#: ../gdata/gdata-oauth1-authorizer.c:1090
+#: ../gdata/gdata-oauth2-authorizer.c:1113
+#: ../gdata/services/calendar/gdata-calendar-service.c:340
+#, c-format
 msgid "Access was denied by the user or server."
 msgstr "사용자나 서버가 접근을 거부했습니다."
 
 #. Translators: the parameter is an error message
-#: ../gdata/gdata-parsable.c:349 ../gdata/gdata-parsable.c:360
+#: ../gdata/gdata-parsable.c:352 ../gdata/gdata-parsable.c:363
 #, c-format
 msgid "Error parsing XML: %s"
 msgstr "XML 파싱에 오류: %s"
 
 #. Translators: this is a dummy error message to be substituted into "Error parsing XML: %s".
-#: ../gdata/gdata-parsable.c:362
+#: ../gdata/gdata-parsable.c:365
 msgid "Empty document."
 msgstr "빈 문서입니다."
 
 #. Translators: the parameter is an error message
-#: ../gdata/gdata-parsable.c:480 ../gdata/gdata-parsable.c:518
+#: ../gdata/gdata-parsable.c:483 ../gdata/gdata-parsable.c:521
+#: ../gdata/services/documents/gdata-documents-access-rule.c:144
+#: ../gdata/services/documents/gdata-documents-access-rule.c:154
+#: ../gdata/services/documents/gdata-documents-document.c:286
+#: ../gdata/services/documents/gdata-documents-entry.c:478
+#: ../gdata/services/documents/gdata-documents-entry.c:489
+#: ../gdata/services/documents/gdata-documents-entry.c:500
+#: ../gdata/services/documents/gdata-documents-entry.c:547
+#: ../gdata/services/documents/gdata-documents-entry.c:558
+#: ../gdata/services/documents/gdata-documents-entry.c:666
+#: ../gdata/services/documents/gdata-documents-entry.c:701
+#: ../gdata/services/documents/gdata-documents-entry.c:716
+#: ../gdata/services/documents/gdata-documents-entry.c:731
+#: ../gdata/services/documents/gdata-documents-entry.c:761
+#: ../gdata/services/documents/gdata-documents-entry.c:777
+#: ../gdata/services/documents/gdata-documents-feed.c:81
+#: ../gdata/services/documents/gdata-documents-feed.c:92
+#: ../gdata/services/documents/gdata-documents-feed.c:142
+#: ../gdata/services/documents/gdata-documents-feed.c:160
 #, c-format
 msgid "Error parsing JSON: %s"
 msgstr "JSON 파싱에 오류: %s"
 
-#: ../gdata/gdata-parsable.c:519
+#: ../gdata/gdata-parsable.c:522
 msgid "Outermost JSON node is not an object."
 msgstr "가장 바깥의 JSON 노드가 오브젝트가 아닙니다."
 
@@ -200,31 +250,31 @@ msgstr "%s 엘리먼트에 필요한 내용이 없습니다."
 #. * and the second parameter is the erroneous value (which was not in ISO 8601 format).
 #. *
 #. * For example:
-#. *  The content of a <media:group/media:uploaded> element ("2009-05-06 26:30Z") was not in ISO 8601 format.
+#. *  The content of a <media:group/media:uploaded> element (‘2009-05-06 26:30Z’) was not in ISO 8601 format.
 #: ../gdata/gdata-parser.c:85
 #, c-format
-msgid "The content of a %s element (\"%s\") was not in ISO 8601 format."
-msgstr "%s 엘리먼트의 내용이(\"%s\") ISO 8601 형식이 아닙니다."
+msgid "The content of a %s element (‘%s’) was not in ISO 8601 format."
+msgstr "%s 엘리먼트의 내용이 (‘%s’) ISO 8601 형식이 아닙니다."
 
 #. Translators: the first parameter is the name of an XML property, the second is the name of an XML element
 #. * (including the angle brackets ("<" and ">")) to which the property belongs, and the third is the unknown value.
 #. *
 #. * For example:
-#. *  The value of the @time property of a <media:group/media:thumbnail> element ("00:01:42.500") was unknown.
+#. *  The value of the @time property of a <media:group/media:thumbnail> element (‘00:01:42.500’) was unknown.
 #: ../gdata/gdata-parser.c:105
 #, c-format
-msgid "The value of the %s property of a %s element (\"%s\") was unknown."
-msgstr "%s 프로퍼티의(%s 엘리먼트) 값을(\"%s\") 알 수 없습니다."
+msgid "The value of the %s property of a %s element (‘%s’) was unknown."
+msgstr "%s 프로퍼티의 (%s 엘리먼트) 값을 (‘%s’) 알 수 없습니다."
 
 #. Translators: the first parameter is the name of an XML element (including the angle brackets ("<" and ">")),
 #. * and the second parameter is the unknown content of that element.
 #. *
 #. * For example:
-#. *  The content of a <gphoto:access> element ("protected") was unknown.
+#. *  The content of a <gphoto:access> element (‘protected’) was unknown.
 #: ../gdata/gdata-parser.c:123
 #, c-format
-msgid "The content of a %s element (\"%s\") was unknown."
-msgstr "%s 엘리먼트의 내용을(\"%s\") 알 수 없습니다."
+msgid "The content of a %s element (‘%s’) was unknown."
+msgstr "%s 엘리먼트의 내용을 (‘%s’) 알 수 없습니다."
 
 #. Translators: the first parameter is the name of an XML element (including the angle brackets ("<" and ">")),
 #. * and the second is the name of an XML property which it should have contained.
@@ -268,7 +318,7 @@ msgstr "필요한 엘리먼트가(%s) 없습니다."
 #. *
 #. * For example:
 #. *  A singleton element (title) was duplicated.
-#: ../gdata/gdata-parser.c:200 ../gdata/gdata-parser.c:305
+#: ../gdata/gdata-parser.c:200 ../gdata/gdata-parser.c:287
 #, c-format
 msgid "A singleton element (%s) was duplicated."
 msgstr "하나만 쓸 수 있는 엘리먼트가(%s) 중복되었습니다."
@@ -276,127 +326,138 @@ msgstr "하나만 쓸 수 있는 엘리먼트가(%s) 중복되었습니다."
 #. Translators: the parameter is the name of an JSON element.
 #. *
 #. * For example:
-#. *  A 'title' element was missing required content.
-#: ../gdata/gdata-parser.c:291
+#. *  A ‘title’ element was missing required content.
+#: ../gdata/gdata-parser.c:273
 #, c-format
-msgid "A '%s' element was missing required content."
-msgstr "'%s' 엘리먼트에 필요한 내용이 없습니다."
+msgid "A ‘%s’ element was missing required content."
+msgstr "‘%s’ 엘리먼트에 필요한 내용이 없습니다."
 
 #. Translators: the first parameter is the name of an JSON element,
 #. * and the second parameter is the erroneous value (which was not in ISO 8601 format).
 #. *
 #. * For example:
-#. *  The content of a 'uploaded' element ("2009-05-06 26:30Z") was not in ISO 8601 format.
-#: ../gdata/gdata-parser.c:321
+#. *  The content of a ‘uploaded’ element (‘2009-05-06 26:30Z’) was not in ISO 8601 format.
+#: ../gdata/gdata-parser.c:303
 #, c-format
-msgid "The content of a '%s' element (\"%s\") was not in ISO 8601 format."
-msgstr "'%s' 엘리먼트의 내용이(\"%s\") ISO 8601 형식이 아닙니다."
+msgid "The content of a ‘%s’ element (‘%s’) was not in ISO 8601 format."
+msgstr "‘%s’ 엘리먼트의 내용이 (‘%s’) ISO 8601 형식이 아닙니다."
 
 #. Translators: the parameter is an error message.
-#: ../gdata/gdata-parser.c:331
+#: ../gdata/gdata-parser.c:314
 #, c-format
 msgid "Invalid JSON was received from the server: %s"
 msgstr "서버에서 잘못된 JSON을 받았습니다: %s"
-
-#. Translators: the first parameter is an HTTP status,
-#. * and the second is an error message returned by the server.
-#: ../gdata/gdata-service.c:398
-#, c-format
-msgid "Error code %u when querying: %s"
-msgstr "질의할 때 오류 코드 %u번: %s"
-
-#. Translators: the first parameter is an HTTP status,
-#. * and the second is an error message returned by the server.
-#: ../gdata/gdata-service.c:404
-#, c-format
-msgid "Error code %u when inserting an entry: %s"
-msgstr "항목을 추가할 때 오류 코드 %u번: %s"
-
-#. Translators: the first parameter is an HTTP status,
-#. * and the second is an error message returned by the server.
-#: ../gdata/gdata-service.c:410
-#, c-format
-msgid "Error code %u when updating an entry: %s"
-msgstr "항목을 업데이트할 때 오류 코드 %u번: %s"
-
-#. Translators: the first parameter is an HTTP status,
-#. * and the second is an error message returned by the server.
-#: ../gdata/gdata-service.c:416
-#, c-format
-msgid "Error code %u when deleting an entry: %s"
-msgstr "항목을 삭제할 때 오류 코드 %u번: %s"
-
-#. Translators: the first parameter is an HTTP status,
-#. * and the second is an error message returned by the server.
-#: ../gdata/gdata-service.c:422
-#, c-format
-msgid "Error code %u when downloading: %s"
-msgstr "다운로드할 때 오류 코드 %u번: %s"
-
-#. Translators: the first parameter is an HTTP status,
-#. * and the second is an error message returned by the server.
-#: ../gdata/gdata-service.c:428
-#, c-format
-msgid "Error code %u when uploading: %s"
-msgstr "업로드할 때 오류 코드 %u번: %s"
-
-#. Translators: the first parameter is a HTTP status,
-#. * and the second is an error message returned by the server.
-#: ../gdata/gdata-service.c:434
-#, c-format
-msgid "Error code %u when running a batch operation: %s"
-msgstr "일괄 작업을 실행할 때 오류 코드 %u번: %s"
-
-#. Translators: the parameter is the URI which is invalid.
-#: ../gdata/gdata-service.c:721
-#, c-format
-msgid "Invalid redirect URI: %s"
-msgstr "리다이렉트 URI이 올바르지 않습니다: %s"
-
-#: ../gdata/gdata-service.c:1401
-#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:624
-#: ../gdata/services/youtube/gdata-youtube-service.c:888
-msgid "The entry has already been inserted."
-msgstr "해당 항목을 이미 추가했습니다."
-
-#. Resumable upload error.
-#: ../gdata/gdata-upload-stream.c:748 ../gdata/gdata-upload-stream.c:830
-#, c-format
-msgid "Error received from server after uploading a resumable upload chunk."
-msgstr ""
-"재시작 가능한 업로드 청크를 업로드한 후 서버에서 오류 메시지를 받았습니다."
-
-#: ../gdata/gdata-upload-stream.c:896
-msgid "Stream is already closed"
-msgstr "스트림을 이미 닫았습니다"
 
 #. Translators: the first parameter is the name of an XML element (including the angle brackets
 #. * ("<" and ">"), and the second parameter is the erroneous value (which was not in hexadecimal
 #. * RGB format).
 #. *
 #. * For example:
-#. *  The content of a <entry/gCal:color> element ("00FG56") was not in hexadecimal RGB format.
-#: ../gdata/services/calendar/gdata-calendar-calendar.c:406
+#. *  The content of a <entry/gCal:color> element (‘00FG56’) was not in hexadecimal RGB format.
+#: ../gdata/gdata-parser.c:1179
 #, c-format
-msgid "The content of a %s element (\"%s\") was not in hexadecimal RGB format."
-msgstr "%s 엘리먼트의 내용이(\"%s\") RGB 16진수 형식이 아닙니다."
+msgid "The content of a %s element (‘%s’) was not in hexadecimal RGB format."
+msgstr "%s 엘리먼트의 내용이 (‘%s’) RGB 16진수 형식이 아닙니다."
 
-#: ../gdata/services/calendar/gdata-calendar-service.c:315
-#: ../gdata/services/calendar/gdata-calendar-service.c:366
+#. Translators: the first parameter is an HTTP status,
+#. * and the second is an error message returned by the server.
+#: ../gdata/gdata-service.c:409
+#, c-format
+msgid "Error code %u when querying: %s"
+msgstr "질의할 때 오류 코드 %u번: %s"
+
+#. Translators: the first parameter is an HTTP status,
+#. * and the second is an error message returned by the server.
+#: ../gdata/gdata-service.c:415
+#, c-format
+msgid "Error code %u when inserting an entry: %s"
+msgstr "항목을 추가할 때 오류 코드 %u번: %s"
+
+#. Translators: the first parameter is an HTTP status,
+#. * and the second is an error message returned by the server.
+#: ../gdata/gdata-service.c:421
+#, c-format
+msgid "Error code %u when updating an entry: %s"
+msgstr "항목을 업데이트할 때 오류 코드 %u번: %s"
+
+#. Translators: the first parameter is an HTTP status,
+#. * and the second is an error message returned by the server.
+#: ../gdata/gdata-service.c:427
+#, c-format
+msgid "Error code %u when deleting an entry: %s"
+msgstr "항목을 삭제할 때 오류 코드 %u번: %s"
+
+#. Translators: the first parameter is an HTTP status,
+#. * and the second is an error message returned by the server.
+#: ../gdata/gdata-service.c:433
+#, c-format
+msgid "Error code %u when downloading: %s"
+msgstr "다운로드할 때 오류 코드 %u번: %s"
+
+#. Translators: the first parameter is an HTTP status,
+#. * and the second is an error message returned by the server.
+#: ../gdata/gdata-service.c:439
+#, c-format
+msgid "Error code %u when uploading: %s"
+msgstr "업로드할 때 오류 코드 %u번: %s"
+
+#. Translators: the first parameter is a HTTP status,
+#. * and the second is an error message returned by the server.
+#: ../gdata/gdata-service.c:445
+#, c-format
+msgid "Error code %u when running a batch operation: %s"
+msgstr "일괄 작업을 실행할 때 오류 코드 %u번: %s"
+
+#. Translators: the parameter is the URI which is invalid.
+#: ../gdata/gdata-service.c:739
+#, c-format
+msgid "Invalid redirect URI: %s"
+msgstr "리다이렉트 URI이 올바르지 않습니다: %s"
+
+#: ../gdata/gdata-service.c:1466
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:626
+#: ../gdata/services/youtube/gdata-youtube-service.c:1022
+msgid "The entry has already been inserted."
+msgstr "해당 항목을 이미 추가했습니다."
+
+#. Resumable upload error.
+#: ../gdata/gdata-upload-stream.c:794 ../gdata/gdata-upload-stream.c:876
+#, c-format
+msgid "Error received from server after uploading a resumable upload chunk."
+msgstr ""
+"재시작 가능한 업로드 청크를 업로드한 후 서버에서 오류 메시지를 받았습니다."
+
+#: ../gdata/gdata-upload-stream.c:942
+msgid "Stream is already closed"
+msgstr "스트림을 이미 닫았습니다"
+
+#: ../gdata/services/calendar/gdata-calendar-service.c:302
+#: ../gdata/services/tasks/gdata-tasks-service.c:195
+#: ../gdata/services/youtube/gdata-youtube-service.c:541
+#, c-format
+msgid ""
+"You have made too many API calls recently. Please wait a few minutes and try "
+"again."
+msgstr "최근에 API 호출을 너무 많이 했습니다. 몇 분 뒤에 다시 시도하십시오."
+
+#: ../gdata/services/calendar/gdata-calendar-service.c:334
+#: ../gdata/services/tasks/gdata-tasks-service.c:204
+#: ../gdata/services/youtube/gdata-youtube-service.c:557
+#, c-format
+msgid "You must be authenticated to do this."
+msgstr "이 일을 하려면 인증해야 합니다."
+
+#: ../gdata/services/calendar/gdata-calendar-service.c:465
+#: ../gdata/services/calendar/gdata-calendar-service.c:516
 msgid "You must be authenticated to query all calendars."
 msgstr "모든 달력을 요청하려면 인증해야 합니다."
 
-#: ../gdata/services/calendar/gdata-calendar-service.c:412
-#: ../gdata/services/calendar/gdata-calendar-service.c:463
-#: ../gdata/services/calendar/gdata-calendar-service.c:508
-#: ../gdata/services/calendar/gdata-calendar-service.c:568
+#: ../gdata/services/calendar/gdata-calendar-service.c:562
+#: ../gdata/services/calendar/gdata-calendar-service.c:613
+#: ../gdata/services/calendar/gdata-calendar-service.c:675
+#: ../gdata/services/calendar/gdata-calendar-service.c:734
 msgid "You must be authenticated to query your own calendars."
 msgstr "자기 달력을 요청하려면 인증해야 합니다."
-
-#: ../gdata/services/calendar/gdata-calendar-service.c:517
-#: ../gdata/services/calendar/gdata-calendar-service.c:581
-msgid "The calendar did not have a content URI."
-msgstr "달력에 content URI가 없습니다."
 
 #: ../gdata/services/contacts/gdata-contacts-service.c:258
 #: ../gdata/services/contacts/gdata-contacts-service.c:308
@@ -416,46 +477,58 @@ msgstr "해당 그룹을 이미 추가했습니다."
 msgid "You must be authenticated to insert a group."
 msgstr "그룹을 추가하려면 인증해야 합니다."
 
-#: ../gdata/services/documents/gdata-documents-document.c:300
+#: ../gdata/services/documents/gdata-documents-document.c:392
 msgid "You must be authenticated to download documents."
 msgstr "문서를 다운로드하려면 인증해야 합니다."
 
-#: ../gdata/services/documents/gdata-documents-service.c:461
-#: ../gdata/services/documents/gdata-documents-service.c:511
+#: ../gdata/services/documents/gdata-documents-document.c:401
+#, c-format
+msgid "Unknown or unsupported document export format ‘%s’."
+msgstr "알 수 없거나 지원하지 않는 문서 내보내기 형식 '%s'."
+
+#: ../gdata/services/documents/gdata-documents-service.c:454
+#: ../gdata/services/documents/gdata-documents-service.c:504
 msgid "You must be authenticated to query documents."
 msgstr "문서를 요청하려면 인증해야 합니다."
 
-#: ../gdata/services/documents/gdata-documents-service.c:556
+#: ../gdata/services/documents/gdata-documents-service.c:569
 msgid "You must be authenticated to upload documents."
 msgstr "문서를 업로드하려면 인증해야 합니다."
 
-#: ../gdata/services/documents/gdata-documents-service.c:562
+#: ../gdata/services/documents/gdata-documents-service.c:575
 msgid "The document has already been uploaded."
 msgstr "문서를 이미 업로드했습니다."
 
-#: ../gdata/services/documents/gdata-documents-service.c:706
+#: ../gdata/services/documents/gdata-documents-service.c:720
 msgid "You must be authenticated to update documents."
 msgstr "문서를 업데이트하려면 인증해야 합니다."
 
-#: ../gdata/services/documents/gdata-documents-service.c:888
+#: ../gdata/services/documents/gdata-documents-service.c:887
 #, c-format
 msgid ""
-"The content type of the supplied document ('%s') could not be recognized."
-msgstr "제공한 문서의 content type이('%s') 알 수 없는 형식입니다."
+"The content type of the supplied document (‘%s’) could not be recognized."
+msgstr "제공한 문서의 content type이 (‘%s’) 알 수 없는 형식입니다."
 
-#: ../gdata/services/documents/gdata-documents-service.c:928
+#: ../gdata/services/documents/gdata-documents-service.c:927
 msgid "You must be authenticated to copy documents."
 msgstr "문서를 복사하려면 인증해야 합니다."
 
-#: ../gdata/services/documents/gdata-documents-service.c:1090
-#: ../gdata/services/documents/gdata-documents-service.c:1273
+#: ../gdata/services/documents/gdata-documents-service.c:955
+msgid "Parent folder not found"
+msgstr "상위 폴더가 없습니다"
+
+#: ../gdata/services/documents/gdata-documents-service.c:1102
+msgid "You must be authenticated to insert or move documents and folders."
+msgstr "문서와 폴더를 넣거나 옮기려면 인증해야 합니다."
+
+#: ../gdata/services/documents/gdata-documents-service.c:1303
 msgid "You must be authenticated to move documents and folders."
 msgstr "문서와 폴더를 옮기려면 인증해야 합니다."
 
-#: ../gdata/services/freebase/gdata-freebase-service.c:445
+#: ../gdata/services/freebase/gdata-freebase-service.c:479
 #, c-format
-msgid "Property '%s' does not hold an image"
-msgstr "'%s' 속성에는 그림이 들어 있지 않습니다"
+msgid "Property ‘%s’ does not hold an image"
+msgstr "‘%s’ 속성에는 그림이 들어 있지 않습니다"
 
 #: ../gdata/services/picasaweb/gdata-picasaweb-service.c:244
 msgid "You must specify a username or be authenticated to query a user."
@@ -475,35 +548,36 @@ msgstr "앨범을 요청하려면 사용자 이름을 지정하거나 인증해�
 msgid "The album did not have a feed link."
 msgstr "앨범에 피드 링크가 없습니다."
 
-#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:631
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:633
 msgid "You must be authenticated to upload a file."
 msgstr "파일을 업로드하려면 인증해야 합니다."
 
-#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:707
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:709
 msgid "The album has already been inserted."
 msgstr "해당 앨범을 이미 추가했습니다."
 
-#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:714
+#: ../gdata/services/picasaweb/gdata-picasaweb-service.c:716
 msgid "You must be authenticated to insert an album."
 msgstr "앨범을 추가하려면 인증해야 합니다."
 
-#: ../gdata/services/tasks/gdata-tasks-service.c:145
-#: ../gdata/services/tasks/gdata-tasks-service.c:196
+#: ../gdata/services/tasks/gdata-tasks-service.c:330
+#: ../gdata/services/tasks/gdata-tasks-service.c:381
 msgid "You must be authenticated to query all tasklists."
 msgstr "모든 작업 목록을 요청하려면 인증해야 합니다."
 
-#: ../gdata/services/tasks/gdata-tasks-service.c:244
-#: ../gdata/services/tasks/gdata-tasks-service.c:300
+#: ../gdata/services/tasks/gdata-tasks-service.c:430
+#: ../gdata/services/tasks/gdata-tasks-service.c:487
 msgid "You must be authenticated to query your own tasks."
 msgstr "자기 작업을 요청하려면 인증해야 합니다."
 
-#: ../gdata/services/youtube/gdata-youtube-service.c:457
+#: ../gdata/services/youtube/gdata-youtube-service.c:548
 #, c-format
-msgid "This service is not available at the moment."
-msgstr "현재 서비스를 사용할 수 없습니다."
+msgid ""
+"You have exceeded your entry quota. Please delete some entries and try again."
+msgstr "항목의 제한을 초과했습니다. 지운 다음 다시 시도하십시오."
 
 #. Translators: the parameter is a URI.
-#: ../gdata/services/youtube/gdata-youtube-service.c:462
+#: ../gdata/services/youtube/gdata-youtube-service.c:565
 #, c-format
 msgid ""
 "Your Google Account must be associated with a YouTube channel to do this. "
@@ -512,45 +586,6 @@ msgstr ""
 "구글 계정을 유튜브 채널과 연결해야 합니다. 유튜브 채널을 만드려면 %s 사이트"
 "를 보십시오."
 
-#. Translators: the first parameter is an error code, which is a coded string.
-#. * The second parameter is an error domain, which is another coded string.
-#. * The third parameter is the location of the error, which is either a URI or an XPath.
-#: ../gdata/services/youtube/gdata-youtube-service.c:467
-#: ../gdata/services/youtube/gdata-youtube-service.c:488
-#: ../gdata/services/youtube/gdata-youtube-service.c:494
-#, c-format
-msgid ""
-"Unknown error code \"%s\" in domain \"%s\" received with location \"%s\"."
-msgstr "알 수 없는 \"%s\" 오류 코드를 받았습니다(도메인 \"%s\", 위치 \"%s\")."
-
-#: ../gdata/services/youtube/gdata-youtube-service.c:473
-#, c-format
-msgid "You must be authenticated to do this."
-msgstr "이 일을 하려면 인증해야 합니다."
-
-#: ../gdata/services/youtube/gdata-youtube-service.c:478
-#, c-format
-msgid ""
-"You have made too many API calls recently. Please wait a few minutes and try "
-"again."
-msgstr "최근에 API 호출을 너무 많이 했습니다. 몇 분 뒤에 다시 시도하십시오."
-
-#: ../gdata/services/youtube/gdata-youtube-service.c:481
-#, c-format
-msgid ""
-"You have exceeded your entry quota. Please delete some entries and try again."
-msgstr "항목의 제한을 초과했습니다. 지운 다음 다시 시도하십시오."
-
-#: ../gdata/services/youtube/gdata-youtube-service.c:512
-#, c-format
-msgid "Unknown and unparsable error received."
-msgstr "알 수 없는 파싱 불가능한 오류를 받았습니다."
-
-#: ../gdata/services/youtube/gdata-youtube-service.c:776
-#: ../gdata/services/youtube/gdata-youtube-service.c:833
-msgid "The video did not have a related videos <link>."
-msgstr "영상에 관련 영상 <link>가 없습니다."
-
-#: ../gdata/services/youtube/gdata-youtube-service.c:895
+#: ../gdata/services/youtube/gdata-youtube-service.c:1031
 msgid "You must be authenticated to upload a video."
 msgstr "영상을 업로드하려면 인증해야 합니다."

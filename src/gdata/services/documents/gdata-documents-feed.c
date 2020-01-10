@@ -32,7 +32,7 @@
  * spreadsheet document or a folder, and the #GDataDocumentsFeed represents a collection of those objects.
  *
  * Since: 0.4.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -40,13 +40,7 @@
 #include <string.h>
 
 #include "gdata-documents-feed.h"
-#include "gdata-documents-entry.h"
-#include "gdata-documents-spreadsheet.h"
-#include "gdata-documents-text.h"
-#include "gdata-documents-presentation.h"
-#include "gdata-documents-folder.h"
-#include "gdata-documents-drawing.h"
-#include "gdata-documents-pdf.h"
+#include "gdata-documents-utils.h"
 #include "gdata-types.h"
 #include "gdata-private.h"
 #include "gdata-service.h"
@@ -123,10 +117,23 @@ get_kind_and_mime_type (JsonReader *reader, gchar **out_kind, gchar **out_mime_t
 static gboolean
 parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error)
 {
+	gboolean success = TRUE;
+	gchar *next_uri = NULL;
+
 	/* JSON format: https://developers.google.com/drive/v2/reference/files/list */
 
-	if (g_strcmp0 (json_reader_get_member_name (reader), "items") == 0) {
-		gboolean success = TRUE;
+	if (gdata_parser_string_from_json_member (reader, "nextLink", P_DEFAULT, &next_uri, &success, error) == TRUE) {
+		if (success && next_uri != NULL && next_uri[0] != '\0') {
+			GDataLink *_link;
+
+			_link = gdata_link_new (next_uri, "http://www.iana.org/assignments/relation/next");
+			_gdata_feed_add_link (GDATA_FEED (parsable), _link);
+			g_object_unref (_link);
+		}
+
+		g_free (next_uri);
+		return success;
+	} else if (g_strcmp0 (json_reader_get_member_name (reader), "items") == 0) {
 		guint i, elements;
 
 		if (json_reader_is_array (reader) == FALSE) {
@@ -164,24 +171,7 @@ parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GEr
 			}
 
 			if (g_strcmp0 (kind, "drive#file") == 0) {
-
-				/* MIME types: https://developers.google.com/drive/web/mime-types */
-
-				if (g_strcmp0 (mime_type, "application/vnd.google-apps.folder") == 0) {
-					entry_type = GDATA_TYPE_DOCUMENTS_FOLDER;
-				} else if (g_strcmp0 (mime_type, "application/pdf") == 0) {
-					entry_type = GDATA_TYPE_DOCUMENTS_PDF;
-				} else if (g_strcmp0 (mime_type, "application/vnd.google-apps.document") == 0) {
-					entry_type = GDATA_TYPE_DOCUMENTS_TEXT;
-				} else if (g_strcmp0 (mime_type, "application/vnd.google-apps.drawing") == 0) {
-					entry_type = GDATA_TYPE_DOCUMENTS_DRAWING;
-				} else if (g_strcmp0 (mime_type, "application/vnd.google-apps.presentation") == 0) {
-					entry_type = GDATA_TYPE_DOCUMENTS_PRESENTATION;
-				} else if (g_strcmp0 (mime_type, "application/vnd.google-apps.spreadsheet") == 0) {
-					entry_type = GDATA_TYPE_DOCUMENTS_SPREADSHEET;
-				} else {
-					entry_type = GDATA_TYPE_DOCUMENTS_DOCUMENT;
-				}
+				entry_type = gdata_documents_utils_get_type_from_content_type (mime_type);
 			} else {
 				g_warning ("%s files are not handled yet", kind);
 			}

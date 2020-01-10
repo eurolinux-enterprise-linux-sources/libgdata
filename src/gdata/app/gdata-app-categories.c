@@ -27,7 +27,7 @@
  * <ulink type="http" url="http://www.atomenabled.org/developers/protocol/#category">Atom Publishing Protocol Category Document</ulink>.
  *
  * Since: 0.7.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -45,6 +45,8 @@ parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data,
             GError **error);
 static gboolean
 post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error);
+static const gchar *
+get_content_type (void);
 
 struct _GDataAPPCategoriesPrivate {
 	GList *categories;
@@ -72,6 +74,7 @@ gdata_app_categories_class_init (GDataAPPCategoriesClass *klass)
 
 	parsable_class->parse_json = parse_json;
 	parsable_class->post_parse_json = post_parse_json;
+	parsable_class->get_content_type = get_content_type;
 
 	parsable_class->element_name = "categories";
 	parsable_class->element_namespace = "app";
@@ -84,7 +87,7 @@ gdata_app_categories_class_init (GDataAPPCategoriesClass *klass)
 	 * API reference: <ulink type="http" url="http://www.atomenabled.org/developers/protocol/#appCategories2">app:categories</ulink>
 	 *
 	 * Since: 0.7.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_IS_FIXED,
 	                                 g_param_spec_boolean ("is-fixed",
 	                                                       "Fixed?", "Whether entries may use categories not in this category list.",
@@ -146,6 +149,10 @@ parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GEr
 {
 	GDataAPPCategories *self = GDATA_APP_CATEGORIES (parsable);
 	GDataAPPCategoriesPrivate *priv = self->priv;
+	GType category_type;
+
+	category_type = (user_data == NULL) ?
+		GDATA_TYPE_CATEGORY : GPOINTER_TO_SIZE (user_data);
 
 	if (g_strcmp0 (json_reader_get_member_name (reader), "items") == 0) {
 		guint i, elements;
@@ -177,7 +184,10 @@ parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GEr
 			}
 
 			/* Create the category. */
-			category = gdata_category_new (id, NULL, title);
+			category = g_object_new (category_type,
+			                         "term", id,
+			                         "label", title,
+			                         NULL);
 			priv->categories = g_list_prepend (priv->categories,
 			                                   category);
 
@@ -207,6 +217,12 @@ post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error)
 	return TRUE;
 }
 
+static const gchar *
+get_content_type (void)
+{
+	return "application/json";
+}
+
 /**
  * gdata_app_categories_get_categories:
  * @self: a #GDataAPPCategories
@@ -216,7 +232,7 @@ post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error)
  * Return value: (element-type GData.Category) (transfer none): a #GList of #GDataCategory<!-- -->s
  *
  * Since: 0.7.0
- **/
+ */
 GList *
 gdata_app_categories_get_categories (GDataAPPCategories *self)
 {
@@ -233,7 +249,7 @@ gdata_app_categories_get_categories (GDataAPPCategories *self)
  * Return value: whether entries may use categories not in this category list
  *
  * Since: 0.7.0
- **/
+ */
 gboolean
 gdata_app_categories_is_fixed (GDataAPPCategories *self)
 {

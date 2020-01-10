@@ -24,6 +24,7 @@
 
 #include <gio/gio.h>
 #include <glib.h>
+#include <locale.h>
 
 #define GOA_API_IS_SUBJECT_TO_CHANGE
 #include <gdata/gdata.h>
@@ -40,11 +41,15 @@ main (void)
 	GList *entries;
 	GList *l;
 	GoaClient *client = NULL;
+	gint retval;
+
+	setlocale (LC_ALL, "");
 
 	client = goa_client_new_sync (NULL, &error);
 	if (error != NULL) {
 		g_warning ("%s", error->message);
 		g_error_free (error);
+		retval = 1;
 		goto out;
 	}
 
@@ -68,6 +73,7 @@ main (void)
 
 	if (service == NULL) {
 		g_warning ("Account not found");
+		retval = 1;
 		goto out;
 	}
 
@@ -79,11 +85,13 @@ main (void)
 		if (error != NULL) {
 			g_warning ("%s", error->message);
 			g_error_free (error);
+			retval = 1;
 			goto out;
 		}
 
 		entries = gdata_feed_get_entries (GDATA_FEED (feed));
 		if (entries == NULL) {
+			retval = 0;
 			goto out;
 		}
 
@@ -99,6 +107,8 @@ main (void)
 		g_object_unref (feed);
 	}
 
+	retval = 0;
+
 out:
 	g_clear_object (&feed);
 	g_clear_object (&query);
@@ -106,5 +116,5 @@ out:
 	g_clear_object (&client);
 	g_list_free_full (accounts, g_object_unref);
 
-	return 0;
+	return retval;
 }

@@ -142,7 +142,7 @@
  * </example>
  *
  * Since: 0.5.0
- **/
+ */
 
 /*
  * We have a network thread which does all the uploading work. We send the message encoded as chunks, but cannot use the SoupMessageBody as a
@@ -178,7 +178,7 @@
 #define BOUNDARY_STRING "0003Z5W789deadbeefRTE456KlemsnoZV"
 #define MAX_RESUMABLE_CHUNK_SIZE (512 * 1024) /* bytes = 512 KiB */
 
-static GObject *gdata_upload_stream_constructor (GType type, guint n_construct_params, GObjectConstructParam *construct_params);
+static void gdata_upload_stream_constructed (GObject *object);
 static void gdata_upload_stream_dispose (GObject *object);
 static void gdata_upload_stream_finalize (GObject *object);
 static void gdata_upload_stream_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
@@ -252,7 +252,7 @@ gdata_upload_stream_class_init (GDataUploadStreamClass *klass)
 
 	g_type_class_add_private (klass, sizeof (GDataUploadStreamPrivate));
 
-	gobject_class->constructor = gdata_upload_stream_constructor;
+	gobject_class->constructed = gdata_upload_stream_constructed;
 	gobject_class->dispose = gdata_upload_stream_dispose;
 	gobject_class->finalize = gdata_upload_stream_finalize;
 	gobject_class->get_property = gdata_upload_stream_get_property;
@@ -270,7 +270,7 @@ gdata_upload_stream_class_init (GDataUploadStreamClass *klass)
 	 * The service which is used to authorize the upload, and to which the upload relates.
 	 *
 	 * Since: 0.5.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_SERVICE,
 	                                 g_param_spec_object ("service",
 	                                                      "Service", "The service which is used to authorize the upload.",
@@ -297,7 +297,7 @@ gdata_upload_stream_class_init (GDataUploadStreamClass *klass)
 	 * The HTTP request method to use when uploading the file.
 	 *
 	 * Since: 0.7.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_METHOD,
 	                                 g_param_spec_string ("method",
 	                                                      "Method", "The HTTP request method to use when uploading the file.",
@@ -307,10 +307,10 @@ gdata_upload_stream_class_init (GDataUploadStreamClass *klass)
 	/**
 	 * GDataUploadStream:upload-uri:
 	 *
-	 * The URI to upload the data and metadata to.
+	 * The URI to upload the data and metadata to. This must be HTTPS.
 	 *
 	 * Since: 0.5.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_UPLOAD_URI,
 	                                 g_param_spec_string ("upload-uri",
 	                                                      "Upload URI", "The URI to upload the data and metadata to.",
@@ -323,7 +323,7 @@ gdata_upload_stream_class_init (GDataUploadStreamClass *klass)
 	 * The entry used for metadata to upload.
 	 *
 	 * Since: 0.5.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_ENTRY,
 	                                 g_param_spec_object ("entry",
 	                                                      "Entry", "The entry used for metadata to upload.",
@@ -336,7 +336,7 @@ gdata_upload_stream_class_init (GDataUploadStreamClass *klass)
 	 * The slug of the file being uploaded. This is usually the display name of the file (i.e. as returned by g_file_info_get_display_name()).
 	 *
 	 * Since: 0.5.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_SLUG,
 	                                 g_param_spec_string ("slug",
 	                                                      "Slug", "The slug of the file being uploaded.",
@@ -365,7 +365,7 @@ gdata_upload_stream_class_init (GDataUploadStreamClass *klass)
 	 * The content type of the file being uploaded (i.e. as returned by g_file_info_get_content_type()).
 	 *
 	 * Since: 0.5.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_CONTENT_TYPE,
 	                                 g_param_spec_string ("content-type",
 	                                                      "Content type", "The content type of the file being uploaded.",
@@ -386,7 +386,7 @@ gdata_upload_stream_class_init (GDataUploadStreamClass *klass)
 	 * The only way to cancel the upload operation completely is using #GDataUploadStream:cancellable.
 	 *
 	 * Since: 0.8.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_CANCELLABLE,
 	                                 g_param_spec_object ("cancellable",
 	                                                      "Cancellable", "An optional cancellable used to cancel the entire upload operation.",
@@ -423,16 +423,21 @@ build_message (GDataUploadStream *self, const gchar *method, const gchar *upload
 	return new_message;
 }
 
-static GObject *
-gdata_upload_stream_constructor (GType type, guint n_construct_params, GObjectConstructParam *construct_params)
+static void
+gdata_upload_stream_constructed (GObject *object)
 {
 	GDataUploadStreamPrivate *priv;
 	GDataServiceClass *service_klass;
-	GObject *object;
+	SoupURI *uri = NULL;
 
 	/* Chain up to the parent class */
-	object = G_OBJECT_CLASS (gdata_upload_stream_parent_class)->constructor (type, n_construct_params, construct_params);
+	G_OBJECT_CLASS (gdata_upload_stream_parent_class)->constructed (object);
 	priv = GDATA_UPLOAD_STREAM (object)->priv;
+
+	/* The upload URI must be HTTPS. */
+	uri = soup_uri_new (priv->upload_uri);
+	g_assert_cmpstr (soup_uri_get_scheme (uri), ==, SOUP_URI_SCHEME_HTTPS);
+	soup_uri_free (uri);
 
 	/* Create a #GCancellable for the entire upload operation if one wasn't specified for #GDataUploadStream:cancellable during construction */
 	if (priv->cancellable == NULL)
@@ -559,8 +564,6 @@ gdata_upload_stream_constructor (GType type, guint n_construct_params, GObjectCo
 		soup_message_headers_append (priv->message->request_headers, "If-Match", gdata_entry_get_etag (priv->entry));
 
 	/* Uploading doesn't actually start until the first call to write() */
-
-	return object;
 }
 
 static void
@@ -1303,7 +1306,7 @@ create_network_thread (GDataUploadStream *self, GError **error)
  * @service: a #GDataService
  * @domain: (allow-none): the #GDataAuthorizationDomain to authorize the upload, or %NULL
  * @method: the HTTP method to use
- * @upload_uri: the URI to upload
+ * @upload_uri: the URI to upload, which must be HTTPS
  * @entry: (allow-none): the entry to upload as metadata, or %NULL
  * @slug: the file's slug (filename)
  * @content_type: the content type of the file being uploaded
@@ -1335,7 +1338,7 @@ create_network_thread (GDataUploadStream *self, GError **error)
  * Return value: a new #GOutputStream, or %NULL; unref with g_object_unref()
  *
  * Since: 0.9.0
- **/
+ */
 GOutputStream *
 gdata_upload_stream_new (GDataService *service, GDataAuthorizationDomain *domain, const gchar *method, const gchar *upload_uri, GDataEntry *entry,
                          const gchar *slug, const gchar *content_type, GCancellable *cancellable)
@@ -1454,7 +1457,7 @@ gdata_upload_stream_new_resumable (GDataService *service, GDataAuthorizationDoma
  * Return value: the server's response to the upload, or %NULL
  *
  * Since: 0.5.0
- **/
+ */
 const gchar *
 gdata_upload_stream_get_response (GDataUploadStream *self, gssize *length)
 {
@@ -1495,7 +1498,7 @@ gdata_upload_stream_get_response (GDataUploadStream *self, gssize *length)
  * Return value: (transfer none): the #GDataService used to authorize the upload
  *
  * Since: 0.5.0
- **/
+ */
 GDataService *
 gdata_upload_stream_get_service (GDataUploadStream *self)
 {
@@ -1530,7 +1533,7 @@ gdata_upload_stream_get_authorization_domain (GDataUploadStream *self)
  * Return value: the HTTP request method in use
  *
  * Since: 0.7.0
- **/
+ */
 const gchar *
 gdata_upload_stream_get_method (GDataUploadStream *self)
 {
@@ -1547,7 +1550,7 @@ gdata_upload_stream_get_method (GDataUploadStream *self)
  * Return value: the URI which the file is being uploaded to
  *
  * Since: 0.5.0
- **/
+ */
 const gchar *
 gdata_upload_stream_get_upload_uri (GDataUploadStream *self)
 {
@@ -1564,7 +1567,7 @@ gdata_upload_stream_get_upload_uri (GDataUploadStream *self)
  * Return value: (transfer none): the entry used for metadata, or %NULL
  *
  * Since: 0.5.0
- **/
+ */
 GDataEntry *
 gdata_upload_stream_get_entry (GDataUploadStream *self)
 {
@@ -1581,7 +1584,7 @@ gdata_upload_stream_get_entry (GDataUploadStream *self)
  * Return value: the slug of the file being uploaded
  *
  * Since: 0.5.0
- **/
+ */
 const gchar *
 gdata_upload_stream_get_slug (GDataUploadStream *self)
 {
@@ -1598,7 +1601,7 @@ gdata_upload_stream_get_slug (GDataUploadStream *self)
  * Return value: the content type of the file being uploaded
  *
  * Since: 0.5.0
- **/
+ */
 const gchar *
 gdata_upload_stream_get_content_type (GDataUploadStream *self)
 {
@@ -1633,7 +1636,7 @@ gdata_upload_stream_get_content_length (GDataUploadStream *self)
  * Return value: (transfer none): the #GCancellable for the entire upload operation
  *
  * Since: 0.8.0
- **/
+ */
 GCancellable *
 gdata_upload_stream_get_cancellable (GDataUploadStream *self)
 {

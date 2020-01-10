@@ -6,7 +6,7 @@
 #include "gdata-freebase-result.h"
 #include "gdata-freebase-enums.h"
 
-/* enumerations from "./gdata/services/freebase/gdata-freebase-search-query.h" */
+/* enumerations from "/opt/gnome/source/libgdata/gdata/services/freebase/gdata-freebase-search-query.h" */
 GType
 gdata_freebase_search_filter_type_get_type (void)
 {

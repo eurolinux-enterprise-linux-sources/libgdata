@@ -1,7 +1,10 @@
-include $(top_srcdir)/gtester.mk
+include $(top_srcdir)/glib-tap.mk
+
+installed_testdir = $(libexecdir)/installed-tests/$(PACKAGE_TARNAME)
+installed_test_metadir = $(datadir)/installed-tests/$(PACKAGE_TARNAME)
 
 # Helper library.
-noinst_LTLIBRARIES = libgdata-test.la
+test_ltlibraries = libgdata-test.la
 
 libgdata_test_la_SOURCES = \
 	common.c \
@@ -20,7 +23,6 @@ libgdata_test_la_LIBADD = \
 AM_CPPFLAGS = \
 	-I$(top_srcdir)/ \
 	-I$(top_srcdir)/gdata \
-	-DTEST_FILE_DIR="\"$(top_srcdir)/gdata/tests/\"" \
 	-DG_LOG_DOMAIN=\"libgdata\" \
 	$(DISABLE_DEPRECATED) \
 	$(NULL)
@@ -30,6 +32,9 @@ AM_CFLAGS = \
 	$(GDATA_CFLAGS) \
 	$(GNOME_CFLAGS) \
 	$(UHTTPMOCK_CFLAGS) \
+	$(NULL)
+AM_LDFLAGS = \
+	$(WARN_LDFLAGS) \
 	$(NULL)
 
 LDADD = \
@@ -41,29 +46,29 @@ LDADD = \
 	$(UHTTPMOCK_LIBS) \
 	$(NULL)
 
-noinst_PROGRAMS = $(TESTS) $(DISABLED_TESTS)
-
-TESTS = \
+test_programs = \
+	buffer \
 	general \
 	calendar \
 	contacts \
-	picasaweb \
 	tasks \
 	perf \
 	authorization \
-	client-login-authorizer \
 	oauth1-authorizer \
 	oauth2-authorizer \
+	streams \
+	youtube \
 	$(NULL)
 
 # FIXME: Temporarily disabled until they are ported for the changes in the v2
 # to v3 API transitions.
-DISABLED_TESTS = youtube documents streams freebase
+#all_test_programs += documents
 
-# FIXME: Temporarily disabled until https://bugzilla.gnome.org/show_bug.cgi?id=705303 is fixed.
-#TESTS += memory
+# PicasaWeb does not work since Google made the API read-only:
+# https://developers.google.com/picasa-web/docs/3.0/releasenotes#picasa-is-retiring-february-12-2016
+#all_test_programs += picasaweb
 
-EXTRA_DIST += \
+dist_test_data = \
 	photo.jpg \
 	sample.ogg \
 	test.doc \
@@ -83,9 +88,6 @@ EXTRA_DIST += \
 	traces/calendar/authentication \
 	traces/calendar/authentication-async \
 	traces/calendar/authentication-async-cancellation \
-	traces/calendar/batch \
-	traces/calendar/batch-async \
-	traces/calendar/batch-async-cancellation \
 	traces/calendar/event-insert \
 	traces/calendar/event_insert-async \
 	traces/calendar/event_insert-async-cancellation \
@@ -102,26 +104,15 @@ EXTRA_DIST += \
 	traces/calendar/query_own_calendars-async \
 	traces/calendar/query_own_calendars-async-cancellation \
 	traces/calendar/query-own-calendars-async-progress-closure \
-	traces/calendar/setup-batch-async \
 	traces/calendar/setup-query-calendars \
 	traces/calendar/setup-query-events \
 	traces/calendar/setup-temp-calendar \
 	traces/calendar/setup-temp-calendar-acls \
-	traces/calendar/teardown-batch-async \
 	traces/calendar/teardown-insert-event \
 	traces/calendar/teardown-query-calendars \
 	traces/calendar/teardown-query-events \
 	traces/calendar/teardown-temp-calendar \
 	traces/calendar/teardown-temp-calendar-acls \
-	\
-	traces/client-login-authorizer/client-login-authorizer-authenticate-async \
-	traces/client-login-authorizer/client-login-authorizer-authenticate-async-cancellation \
-	traces/client-login-authorizer/client-login-authorizer-authenticate-async-multiple-domains \
-	traces/client-login-authorizer/client-login-authorizer-authenticate-sync \
-	traces/client-login-authorizer/client-login-authorizer-authenticate-sync-bad-password \
-	traces/client-login-authorizer/client-login-authorizer-authenticate-sync-cancellation \
-	traces/client-login-authorizer/client-login-authorizer-authenticate-sync-multiple-domains \
-	traces/client-login-authorizer/setup-client-login-authorizer-data-authenticated \
 	\
 	traces/contacts/authentication \
 	traces/contacts/authentication-async \
@@ -411,5 +402,8 @@ EXTRA_DIST += \
 	traces/tasks/teardown-update-task \
 	traces/tasks/teardown-update-tasklist \
 	$(NULL)
+
+# Clang code coverage
+DISTCLEANFILES += default.profraw
 
 -include $(top_srcdir)/git.mk

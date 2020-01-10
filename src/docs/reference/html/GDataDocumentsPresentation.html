@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataDocumentsPresentation: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch16.html" title="Google Documents API">
 <link rel="prev" href="GDataDocumentsPdf.html" title="GDataDocumentsPdf">
 <link rel="next" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -45,7 +45,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsPresentation.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -62,7 +62,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsPresentation.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -101,7 +101,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsPresentation.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
         <span class="lineart">╰──</span> <a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
             <span class="lineart">╰──</span> <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry">GDataDocumentsEntry</a>
@@ -132,11 +132,11 @@ GDataDocumentsPresentation implements
 <div class="refsect2">
 <a name="gdata-documents-presentation-new"></a><h3>gdata_documents_presentation_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="returnvalue">GDataDocumentsPresentation</span></a> *
-gdata_documents_presentation_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
+gdata_documents_presentation_new (<em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a> with the given entry ID (<a class="link" href="GDataEntry.html#GDataEntry--id" title="The “id” property"><span class="type">“id”</span></a>).</p>
 <div class="refsect3">
-<a name="id-1.5.5.11.10.2.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-documents-presentation-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -144,17 +144,17 @@ gdata_documents_presentation_new (<em class="parameter"><code>const <a href="htt
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>id</p></td>
-<td class="parameter_description"><p> the entry's ID (not the document ID of the presentation), or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> the entry's ID (not the document ID of the presentation), or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.5.11.10.2.6"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<a name="gdata-documents-presentation-new.returns"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.4.0</p>
+<p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -167,7 +167,7 @@ gdata_documents_presentation_new (<em class="parameter"><code>const <a href="htt
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -178,7 +178,7 @@ GData protocol specification</a>.
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -189,7 +189,7 @@ GData protocol specification</a>.
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -205,7 +205,7 @@ recommended instead. (Since: 0.11.0.)</p>
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -217,14 +217,14 @@ GData protocol specification</a>.
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_presentations" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataDocumentsPresentation-struct"></a><h3>GDataDocumentsPresentation</h3>
 <pre class="programlisting">typedef struct _GDataDocumentsPresentation GDataDocumentsPresentation;</pre>
 <p>All the fields in the <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.4.0</p>
+<p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -233,12 +233,11 @@ GData protocol specification</a>.
 } GDataDocumentsPresentationClass;
 </pre>
 <p>All the fields in the <a class="link" href="GDataDocumentsPresentation.html#GDataDocumentsPresentationClass" title="GDataDocumentsPresentationClass"><span class="type">GDataDocumentsPresentationClass</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.4.0</p>
+<p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

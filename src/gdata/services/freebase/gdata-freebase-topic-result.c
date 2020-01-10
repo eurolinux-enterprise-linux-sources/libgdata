@@ -30,6 +30,7 @@
  * online documentation</ulink>.
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 
 typedef struct _GDataFreebaseTopicValueArray GDataFreebaseTopicValueArray;
@@ -43,6 +44,8 @@ typedef struct _GDataFreebaseTopicValueArray GDataFreebaseTopicValueArray;
 #include "gdata-download-stream.h"
 #include "gdata-private.h"
 #include "gdata-types.h"
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 typedef enum {
 	TYPE_NONE,
@@ -557,6 +560,7 @@ parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GEr
  * Return value: (transfer full): a new #GDataFreebaseTopicResult; unref with g_object_unref()
  *
  * Since: 0.15.1
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
  */
 GDataFreebaseTopicResult *
 gdata_freebase_topic_result_new (void)
@@ -575,7 +579,8 @@ gdata_freebase_topic_result_new (void)
  *   gdata_freebase_topic_object_unref()
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 GDataFreebaseTopicObject *
 gdata_freebase_topic_result_dup_object (GDataFreebaseTopicResult *self)
 {
@@ -593,7 +598,8 @@ gdata_freebase_topic_result_dup_object (GDataFreebaseTopicResult *self)
  * Returns: (transfer full): @object, with an extra reference.
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 GDataFreebaseTopicObject *
 gdata_freebase_topic_object_ref (GDataFreebaseTopicObject *object)
 {
@@ -611,7 +617,8 @@ gdata_freebase_topic_object_ref (GDataFreebaseTopicObject *object)
  * the object is freed.
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 void
 gdata_freebase_topic_object_unref (GDataFreebaseTopicObject *object)
 {
@@ -633,7 +640,8 @@ gdata_freebase_topic_object_unref (GDataFreebaseTopicObject *object)
  * Returns: (transfer container) (element-type gchar*): An array of property names, free with g_ptr_array_unref().
  *
  * Since: 0.15.1
- **/
+Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 GPtrArray *
 gdata_freebase_topic_object_list_properties (const GDataFreebaseTopicObject *object)
 {
@@ -663,7 +671,8 @@ gdata_freebase_topic_object_list_properties (const GDataFreebaseTopicObject *obj
  * Returns: The number of values contained for @property
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 guint64
 gdata_freebase_topic_object_get_property_count (const GDataFreebaseTopicObject *object, const gchar *property)
 {
@@ -695,7 +704,8 @@ gdata_freebase_topic_object_get_property_count (const GDataFreebaseTopicObject *
  * Returns: the total number of hits for this property
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 guint64
 gdata_freebase_topic_object_get_property_hits (const GDataFreebaseTopicObject *object, const gchar *property)
 {
@@ -725,7 +735,8 @@ gdata_freebase_topic_object_get_property_hits (const GDataFreebaseTopicObject *o
  * Returns: (allow-none) (transfer none): the value for this property/item
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 GDataFreebaseTopicValue *
 gdata_freebase_topic_object_get_property_value (const GDataFreebaseTopicObject *object, const gchar *property, gint64 item)
 {
@@ -753,7 +764,8 @@ gdata_freebase_topic_object_get_property_value (const GDataFreebaseTopicObject *
  * Returns: (transfer none): the Freebase ID of this object
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 const gchar *
 gdata_freebase_topic_object_get_id (const GDataFreebaseTopicObject *object)
 {
@@ -770,7 +782,8 @@ gdata_freebase_topic_object_get_id (const GDataFreebaseTopicObject *object)
  * Returns: (transfer full): @value, with an extra reference.
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 GDataFreebaseTopicValue *
 gdata_freebase_topic_value_ref (GDataFreebaseTopicValue *value)
 {
@@ -788,7 +801,8 @@ gdata_freebase_topic_value_ref (GDataFreebaseTopicValue *value)
  * the object is freed.
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 void
 gdata_freebase_topic_value_unref (GDataFreebaseTopicValue *value)
 {
@@ -807,7 +821,8 @@ gdata_freebase_topic_value_unref (GDataFreebaseTopicValue *value)
  * Returns: the property name of @value
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 const gchar *
 gdata_freebase_topic_value_get_property (GDataFreebaseTopicValue *value)
 {
@@ -826,7 +841,8 @@ gdata_freebase_topic_value_get_property (GDataFreebaseTopicValue *value)
  * Returns: a textual representation of @value
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 const gchar *
 gdata_freebase_topic_value_get_text (GDataFreebaseTopicValue *value)
 {
@@ -843,7 +859,8 @@ gdata_freebase_topic_value_get_text (GDataFreebaseTopicValue *value)
  * Returns: the language @value is written in
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 const gchar *
 gdata_freebase_topic_value_get_language (GDataFreebaseTopicValue *value)
 {
@@ -860,7 +877,8 @@ gdata_freebase_topic_value_get_language (GDataFreebaseTopicValue *value)
  * Returns: the creator of this value, as a Freebase ID
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 const gchar *
 gdata_freebase_topic_value_get_creator (GDataFreebaseTopicValue *value)
 {
@@ -879,7 +897,8 @@ gdata_freebase_topic_value_get_creator (GDataFreebaseTopicValue *value)
  * Returns: The creation time of @value, or -1
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 gint64
 gdata_freebase_topic_value_get_timestamp (GDataFreebaseTopicValue *value)
 {
@@ -896,7 +915,8 @@ gdata_freebase_topic_value_get_timestamp (GDataFreebaseTopicValue *value)
  * Returns: the #GType of the contained value
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 GType
 gdata_freebase_topic_value_get_value_type (GDataFreebaseTopicValue *value)
 {
@@ -912,7 +932,8 @@ gdata_freebase_topic_value_get_value_type (GDataFreebaseTopicValue *value)
  * Copies in @gvalue the value held in @value. the #GValue must be later freed through g_value_unset()
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 void
 gdata_freebase_topic_value_copy_value (GDataFreebaseTopicValue *value, GValue *gvalue)
 {
@@ -930,7 +951,8 @@ gdata_freebase_topic_value_copy_value (GDataFreebaseTopicValue *value, GValue *g
  * Returns: the #gint64 value
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 gint64
 gdata_freebase_topic_value_get_int (GDataFreebaseTopicValue *value)
 {
@@ -949,7 +971,8 @@ gdata_freebase_topic_value_get_int (GDataFreebaseTopicValue *value)
  * Returns: the #gdouble value
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 gdouble
 gdata_freebase_topic_value_get_double (GDataFreebaseTopicValue *value)
 {
@@ -968,7 +991,8 @@ gdata_freebase_topic_value_get_double (GDataFreebaseTopicValue *value)
  * Returns: the string value
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 const gchar *
 gdata_freebase_topic_value_get_string (GDataFreebaseTopicValue *value)
 {
@@ -988,7 +1012,8 @@ gdata_freebase_topic_value_get_string (GDataFreebaseTopicValue *value)
  * Returns: (transfer none): the compound value as a #GDataFreebaseTopicObject
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 const GDataFreebaseTopicObject *
 gdata_freebase_topic_value_get_object (GDataFreebaseTopicValue *value)
 {
@@ -1009,7 +1034,8 @@ gdata_freebase_topic_value_get_object (GDataFreebaseTopicValue *value)
  * Returns: Whether @value holds a Freebase image object
  *
  * Since: 0.15.1
- **/
+ * Deprecated: 0.17.7: Google Freebase has been permanently shut down.
+ */
 gboolean
 gdata_freebase_topic_value_is_image (GDataFreebaseTopicValue *value)
 {
@@ -1017,3 +1043,5 @@ gdata_freebase_topic_value_is_image (GDataFreebaseTopicValue *value)
 
 	return (strcmp (value->property, "/common/topic/image") == 0);
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS

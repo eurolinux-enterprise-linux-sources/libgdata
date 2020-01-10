@@ -50,13 +50,10 @@ gdata_test_init (int argc, char **argv)
 {
 	GTlsCertificate *cert;
 	GError *child_error = NULL;
+	gchar *cert_path = NULL, *key_path = NULL;
 	gint i;
 
 	setlocale (LC_ALL, "");
-
-#if !GLIB_CHECK_VERSION (2, 35, 0)
-	g_type_init ();
-#endif
 
 	/* Parse the custom options */
 	for (i = 1; i < argc; i++) {
@@ -130,8 +127,15 @@ gdata_test_init (int argc, char **argv)
 	uhm_server_set_enable_online (mock_server, write_traces || compare_traces);
 
 	/* Build the certificate. */
-	cert = g_tls_certificate_new_from_files (TEST_FILE_DIR "cert.pem", TEST_FILE_DIR "key.pem", &child_error);
+	cert_path = g_test_build_filename (G_TEST_DIST, "cert.pem", NULL);
+	key_path = g_test_build_filename (G_TEST_DIST, "key.pem", NULL);
+
+	cert = g_tls_certificate_new_from_files (cert_path, key_path, &child_error);
 	g_assert_no_error (child_error);
+
+	g_free (key_path);
+	g_free (cert_path);
+
 	/* Set it as the property. */
 	uhm_server_set_tls_certificate (mock_server, cert);
 	g_object_unref (cert);
@@ -871,6 +875,30 @@ gdata_tear_down_async_test_data (GDataAsyncTestData *async_data, gconstpointer t
 	g_main_loop_unref (async_data->main_loop);
 }
 
+/* Output a log message. Note the output is prefixed with ‘# ’ so that it
+ * doesn’t interfere with TAP output. */
+static void
+output_commented_lines (const gchar *message)
+{
+	const gchar *i, *next_newline;
+
+	for (i = message; i != NULL && i != '\0'; i = next_newline) {
+		gchar *line;
+
+		next_newline = strchr (i, '\n');
+		if (next_newline != NULL) {
+			line = g_strndup (i, next_newline - i);
+			next_newline++;
+		} else {
+			line = g_strdup (i);
+		}
+
+		printf ("# %s\n", line);
+
+		g_free (line);
+	}
+}
+
 static void
 output_log_message (const gchar *message)
 {
@@ -887,12 +915,12 @@ output_log_message (const gchar *message)
 		xml_doc = xmlParseDoc ((const xmlChar*) message);
 		xmlDocDumpFormatMemory (xml_doc, &xml_buff, &buffer_size, 1);
 		/* print out structured xml - if it's not xml, it will get error in output */
-		printf("%s", (gchar*) xml_buff);
+		output_commented_lines ((gchar*) xml_buff);
 		/* free xml structs */
 		xmlFree (xml_buff);
 		xmlFreeDoc (xml_doc);
 	} else {
-		printf ("%s\n", (gchar*) message);
+		output_commented_lines ((gchar*) message);
 	}
 }
 

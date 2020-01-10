@@ -31,7 +31,7 @@
  * url="http://code.google.com/apis/picasaweb/reference.html#Parameters">online documentation</ulink>.
  *
  * Since: 0.4.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -41,6 +41,7 @@
 #include "gdata-picasaweb-query.h"
 #include "gdata-query.h"
 #include "gdata-picasaweb-enums.h"
+#include "gdata-private.h"
 
 static void gdata_picasaweb_query_finalize (GObject *object);
 static void gdata_picasaweb_query_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
@@ -98,7 +99,7 @@ gdata_picasaweb_query_class_init (GDataPicasaWebQueryClass *klass)
 	 * online documentation</ulink>.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_VISIBILITY,
 	                                 g_param_spec_int ("visibility",
 	                                                   "Visibility", "Specifies which albums should be listed, in terms of their visibility.",
@@ -113,7 +114,7 @@ gdata_picasaweb_query_class_init (GDataPicasaWebQueryClass *klass)
 	 * <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#Parameters">online documentation</ulink>.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_THUMBNAIL_SIZE,
 	                                 g_param_spec_string ("thumbnail-size",
 	                                                      "Thumbnail size", "A comma-separated list of thumbnail width (in pixels) to return.",
@@ -128,7 +129,7 @@ gdata_picasaweb_query_class_init (GDataPicasaWebQueryClass *klass)
 	 * <ulink type="http" url="http://code.google.com/apis/picasaweb/reference.html#Parameters">online documentation</ulink>.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_IMAGE_SIZE,
 	                                 g_param_spec_string ("image-size",
 	                                                      "Image size", "A comma-separated list of image sizes (width in pixels) to return.",
@@ -141,7 +142,7 @@ gdata_picasaweb_query_class_init (GDataPicasaWebQueryClass *klass)
 	 * A tag which returned results must contain.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_TAG,
 	                                 g_param_spec_string ("tag",
 	                                                      "Tag", "A tag which returned results must contain.",
@@ -154,7 +155,7 @@ gdata_picasaweb_query_class_init (GDataPicasaWebQueryClass *klass)
 	 * A location to search for photos, e.g. "London".
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_LOCATION,
 	                                 g_param_spec_string ("location",
 	                                                      "Location", "A location to search for photos, e.g. \"London\".",
@@ -166,6 +167,10 @@ static void
 gdata_picasaweb_query_init (GDataPicasaWebQuery *self)
 {
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_PICASAWEB_QUERY, GDataPicasaWebQueryPrivate);
+
+	/* https://developers.google.com/picasa-web/docs/3.0/reference#Parameters */
+	_gdata_query_set_pagination_type (GDATA_QUERY (self),
+	                                  GDATA_QUERY_PAGINATION_INDEXED);
 }
 
 static void
@@ -305,7 +310,7 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
  * Return value: a new #GDataPicasaWebQuery
  *
  * Since: 0.4.0
- **/
+ */
 GDataPicasaWebQuery *
 gdata_picasaweb_query_new (const gchar *q)
 {
@@ -329,7 +334,7 @@ gdata_picasaweb_query_new (const gchar *q)
  * Return value: a new #GDataPicasaWebQuery
  *
  * Since: 0.6.0
- **/
+ */
 GDataPicasaWebQuery *
 gdata_picasaweb_query_new_with_limits (const gchar *q, guint start_index, guint max_results)
 {
@@ -349,7 +354,7 @@ gdata_picasaweb_query_new_with_limits (const gchar *q, guint start_index, guint 
  * Return value: the visibility of the objects to retrieve, or <code class="literal">0</code> to retrieve all objects
  *
  * Since: 0.4.0
- **/
+ */
 GDataPicasaWebVisibility
 gdata_picasaweb_query_get_visibility (GDataPicasaWebQuery *self)
 {
@@ -365,7 +370,7 @@ gdata_picasaweb_query_get_visibility (GDataPicasaWebQuery *self)
  * Sets the #GDataPicasaWebQuery:visibility property to @visibility.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_picasaweb_query_set_visibility (GDataPicasaWebQuery *self, GDataPicasaWebVisibility visibility)
 {
@@ -386,7 +391,7 @@ gdata_picasaweb_query_set_visibility (GDataPicasaWebQuery *self, GDataPicasaWebV
  * Return value: a comma-separated list of thumbnail sizes to retrieve, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_picasaweb_query_get_thumbnail_size (GDataPicasaWebQuery *self)
 {
@@ -404,7 +409,7 @@ gdata_picasaweb_query_get_thumbnail_size (GDataPicasaWebQuery *self)
  * Set @thumbnail_size to %NULL to unset the property.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_picasaweb_query_set_thumbnail_size (GDataPicasaWebQuery *self, const gchar *thumbnail_size)
 {
@@ -427,7 +432,7 @@ gdata_picasaweb_query_set_thumbnail_size (GDataPicasaWebQuery *self, const gchar
  * Return value: the currently set desired image size for retrieval, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_picasaweb_query_get_image_size (GDataPicasaWebQuery *self)
 {
@@ -447,7 +452,7 @@ gdata_picasaweb_query_get_image_size (GDataPicasaWebQuery *self)
  * Set @image_size to %NULL to unset the property.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_picasaweb_query_set_image_size (GDataPicasaWebQuery *self, const gchar *image_size)
 {
@@ -470,7 +475,7 @@ gdata_picasaweb_query_set_image_size (GDataPicasaWebQuery *self, const gchar *im
  * Return value: a tag which retrieved objects must have, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_picasaweb_query_get_tag (GDataPicasaWebQuery *self)
 {
@@ -488,7 +493,7 @@ gdata_picasaweb_query_get_tag (GDataPicasaWebQuery *self)
  * Set @tag to %NULL to unset the property.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_picasaweb_query_set_tag (GDataPicasaWebQuery *self, const gchar *tag)
 {
@@ -513,7 +518,7 @@ gdata_picasaweb_query_set_tag (GDataPicasaWebQuery *self, const gchar *tag)
  * Gets the latitudes and longitudes of a bounding box, inside which all the results must lie.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_picasaweb_query_get_bounding_box (GDataPicasaWebQuery *self, gdouble *north, gdouble *east, gdouble *south, gdouble *west)
 {
@@ -542,7 +547,7 @@ gdata_picasaweb_query_get_bounding_box (GDataPicasaWebQuery *self, gdouble *nort
  * Set @north, @east, @south and @west to <code class="literal">0</code> to unset the property.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_picasaweb_query_set_bounding_box (GDataPicasaWebQuery *self, gdouble north, gdouble east, gdouble south, gdouble west)
 {
@@ -570,7 +575,7 @@ gdata_picasaweb_query_set_bounding_box (GDataPicasaWebQuery *self, gdouble north
  * Return value: a location which returned objects must be near, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_picasaweb_query_get_location (GDataPicasaWebQuery *self)
 {
@@ -588,7 +593,7 @@ gdata_picasaweb_query_get_location (GDataPicasaWebQuery *self)
  * Set @location to %NULL to unset the property.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_picasaweb_query_set_location (GDataPicasaWebQuery *self, const gchar *location)
 {

@@ -3,6 +3,7 @@
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
  * Copyright (C) Philip Withnall 2010, 2014 <philip@tecnocode.co.uk>
+ * Copyright (C) Red Hat, Inc. 2015, 2016
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -246,7 +247,7 @@
  * </example>
  *
  * Since: 0.4.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -255,11 +256,7 @@
 #include <string.h>
 
 #include "gdata-documents-service.h"
-#include "gdata-documents-spreadsheet.h"
-#include "gdata-documents-text.h"
-#include "gdata-documents-drawing.h"
-#include "gdata-documents-pdf.h"
-#include "gdata-documents-presentation.h"
+#include "gdata-documents-utils.h"
 #include "gdata-batchable.h"
 #include "gdata-service.h"
 #include "gdata-private.h"
@@ -273,18 +270,6 @@ gdata_documents_service_error_quark (void)
 
 static void append_query_headers (GDataService *self, GDataAuthorizationDomain *domain, SoupMessage *message);
 static GList *get_authorization_domains (void);
-static GDataFeed *
-parse_feed (GDataService *self,
-            GDataAuthorizationDomain *domain,
-            GDataQuery *query,
-            GType entry_type,
-            SoupMessage *message,
-            GCancellable *cancellable,
-            GDataQueryProgressCallback progress_callback,
-            gpointer progress_user_data,
-            GError **error);
-
-static gchar *_build_v2_upload_uri (GDataDocumentsFolder *folder) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 static gchar *_get_upload_uri_for_query_and_folder (GDataDocumentsUploadQuery *query,
                                                     GDataDocumentsFolder *folder) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 
@@ -300,7 +285,6 @@ gdata_documents_service_class_init (GDataDocumentsServiceClass *klass)
 
 	service_class->append_query_headers = append_query_headers;
 	service_class->get_authorization_domains = get_authorization_domains;
-	service_class->parse_feed = parse_feed;
 
 	service_class->api_version = "3";
 }
@@ -363,53 +347,6 @@ get_authorization_domains (void)
 	authorization_domains = g_list_prepend (authorization_domains, get_spreadsheets_authorization_domain ());
 
 	return authorization_domains;
-}
-
-static GDataFeed *
-parse_feed (GDataService *self,
-            GDataAuthorizationDomain *domain,
-            GDataQuery *query,
-            GType entry_type,
-            SoupMessage *message,
-            GCancellable *cancellable,
-            GDataQueryProgressCallback progress_callback,
-            gpointer progress_user_data,
-            GError **error)
-{
-	GDataServiceClass *klass;  /* unowned */
-	GDataFeed *feed = NULL;  /* owned */
-
-	klass = GDATA_SERVICE_CLASS (gdata_documents_service_parent_class);
-
-	/* Parse the feed. */
-	feed = klass->parse_feed (self, domain, query, entry_type, message,
-	                          cancellable, progress_callback,
-	                          progress_user_data, error);
-
-	/* Update the query with the next and previous URIs from the feed. If
-	 * they are not present, we are on the first or final page of the
-	 * feed. (This behaviour is specific to Google Docs.) */
-	if (query != NULL && feed != NULL) {
-		GDataLink *_link;
-
-		_link = gdata_feed_look_up_link (feed, "http://www.iana.org/assignments/relation/next");
-
-		if (_link != NULL) {
-			_gdata_query_set_next_uri (query, gdata_link_get_uri (_link));
-		} else {
-			_gdata_query_set_next_uri_end (query);
-		}
-
-		_link = gdata_feed_look_up_link (feed, "http://www.iana.org/assignments/relation/previous");
-
-		if (_link != NULL) {
-			_gdata_query_set_previous_uri (query, gdata_link_get_uri (_link));
-		} else {
-			_gdata_query_set_previous_uri_end (query);
-		}
-	}
-
-	return feed;
 }
 
 /**
@@ -496,7 +433,7 @@ _query_documents_build_request_uri (GDataDocumentsQuery *query)
  * Return value: (transfer full): a #GDataDocumentsFeed of query results; unref with g_object_unref()
  *
  * Since: 0.4.0
- **/
+ */
 GDataDocumentsFeed *
 gdata_documents_service_query_documents (GDataDocumentsService *self, GDataDocumentsQuery *query, GCancellable *cancellable,
                                          GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -545,7 +482,7 @@ gdata_documents_service_query_documents (GDataDocumentsService *self, GDataDocum
  * and gdata_service_query_async(), which is the base asynchronous query function.
  *
  * Since: 0.9.1
- **/
+ */
 void
 gdata_documents_service_query_documents_async (GDataDocumentsService *self, GDataDocumentsQuery *query, GCancellable *cancellable,
                                                GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
@@ -578,9 +515,26 @@ gdata_documents_service_query_documents_async (GDataDocumentsService *self, GDat
 	g_free (request_uri);
 }
 
+static void
+add_folder_link_to_entry (GDataDocumentsEntry *entry, GDataDocumentsFolder *folder)
+{
+	GDataLink *_link;
+	const gchar *id;
+	gchar *uri;
+
+	/* HACK: Build the GDataLink:uri from the ID by adding the prefix. */
+	id = gdata_entry_get_id (GDATA_ENTRY (folder));
+	uri = g_strconcat (GDATA_DOCUMENTS_URI_PREFIX, id, NULL);
+	_link = gdata_link_new (uri, GDATA_LINK_PARENT);
+	gdata_entry_add_link (GDATA_ENTRY (entry), _link);
+	g_object_unref (_link);
+	g_free (uri);
+}
+
 static GDataUploadStream *
 upload_update_document (GDataDocumentsService *self, GDataDocumentsDocument *document, const gchar *slug, const gchar *content_type,
-                        goffset content_length, const gchar *method, const gchar *upload_uri, GCancellable *cancellable)
+                        GDataDocumentsFolder *folder, goffset content_length, const gchar *method, const gchar *upload_uri,
+			GCancellable *cancellable)
 {
 	/* HACK: Corrects a bug on spreadsheet content types handling
 	 * The content type for ODF spreadsheets is "application/vnd.oasis.opendocument.spreadsheet" for my ODF spreadsheet;
@@ -589,6 +543,9 @@ upload_update_document (GDataDocumentsService *self, GDataDocumentsDocument *doc
 	 * Bug filed with Google: http://code.google.com/p/gdata-issues/issues/detail?id=1127 */
 	if (strcmp (content_type, "application/vnd.oasis.opendocument.spreadsheet") == 0)
 		content_type = "application/x-vnd.oasis.opendocument.spreadsheet";
+
+	if (folder != NULL)
+		add_folder_link_to_entry (GDATA_DOCUMENTS_ENTRY (document), folder);
 
 	/* We need streaming file I/O: GDataUploadStream */
 	if (content_length == -1) {
@@ -655,13 +612,14 @@ _upload_checks (GDataDocumentsService *self, GDataDocumentsDocument *document, G
  * Return value: (transfer full): a #GDataUploadStream to write the document data to, or %NULL; unref with g_object_unref()
  *
  * Since: 0.8.0
- **/
+ */
 GDataUploadStream *
 gdata_documents_service_upload_document (GDataDocumentsService *self, GDataDocumentsDocument *document, const gchar *slug, const gchar *content_type,
                                          GDataDocumentsFolder *folder, GCancellable *cancellable, GError **error)
 {
 	GDataUploadStream *upload_stream;
 	gchar *upload_uri;
+	gchar *upload_uri_prefix;
 
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
 	g_return_val_if_fail (document == NULL || GDATA_IS_DOCUMENTS_DOCUMENT (document), NULL);
@@ -675,11 +633,11 @@ gdata_documents_service_upload_document (GDataDocumentsService *self, GDataDocum
 		return NULL;
 	}
 
-	/* HACK: Since we're using non-resumable upload, we have to use the v2 API upload URI to work around
-	 * http://code.google.com/a/google.com/p/apps-api-issues/issues/detail?id=3033 */
-	upload_uri = _build_v2_upload_uri (folder);
-	upload_stream = upload_update_document (self, document, slug, content_type, -1, SOUP_METHOD_POST, upload_uri, cancellable);
+	upload_uri_prefix = gdata_documents_service_get_upload_uri (folder);
+	upload_uri = g_strconcat (upload_uri_prefix, "?uploadType=multipart", NULL);
+	upload_stream = upload_update_document (self, document, slug, content_type, folder, -1, SOUP_METHOD_POST, upload_uri, cancellable);
 	g_free (upload_uri);
+	g_free (upload_uri_prefix);
 
 	return upload_stream;
 }
@@ -747,7 +705,7 @@ gdata_documents_service_upload_document_resumable (GDataDocumentsService *self, 
 	}
 
 	upload_uri = _get_upload_uri_for_query_and_folder (query, NULL);
-	upload_stream = upload_update_document (self, document, slug, content_type, content_length, SOUP_METHOD_POST, upload_uri, cancellable);
+	upload_stream = upload_update_document (self, document, slug, content_type, NULL, content_length, SOUP_METHOD_POST, upload_uri, cancellable);
 	g_free (upload_uri);
 
 	return upload_stream;
@@ -797,12 +755,15 @@ _update_checks (GDataDocumentsService *self, GError **error)
  * Return value: (transfer full): a #GDataUploadStream to write the document data to; unref with g_object_unref()
  *
  * Since: 0.8.0
- **/
+ */
 GDataUploadStream *
 gdata_documents_service_update_document (GDataDocumentsService *self, GDataDocumentsDocument *document, const gchar *slug, const gchar *content_type,
                                          GCancellable *cancellable, GError **error)
 {
-	GDataLink *update_link;
+	GDataUploadStream *update_stream;
+	const gchar *id;
+	gchar *update_uri;
+	gchar *update_uri_prefix;
 
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_DOCUMENT (document), NULL);
@@ -815,11 +776,14 @@ gdata_documents_service_update_document (GDataDocumentsService *self, GDataDocum
 		return NULL;
 	}
 
-	update_link = gdata_entry_look_up_link (GDATA_ENTRY (document), GDATA_LINK_EDIT_MEDIA);
-	g_assert (update_link != NULL);
+	update_uri_prefix = gdata_documents_service_get_upload_uri (NULL);
+	id = gdata_entry_get_id (GDATA_ENTRY (document));
+	update_uri = g_strconcat (update_uri_prefix, "/", id, "?uploadType=multipart", NULL);
+	update_stream = upload_update_document (self, document, slug, content_type, NULL, -1, SOUP_METHOD_PUT, update_uri, cancellable);
+	g_free (update_uri);
+	g_free (update_uri_prefix);
 
-	return upload_update_document (self, document, slug, content_type, -1, SOUP_METHOD_PUT, gdata_link_get_uri (update_link),
-	                               cancellable);
+	return update_stream;
 }
 
 /**
@@ -875,7 +839,7 @@ gdata_documents_service_update_document_resumable (GDataDocumentsService *self, 
 	update_link = gdata_entry_look_up_link (GDATA_ENTRY (document), GDATA_LINK_RESUMABLE_EDIT_MEDIA);
 	g_assert (update_link != NULL);
 
-	return upload_update_document (self, document, slug, content_type, content_length, SOUP_METHOD_PUT, gdata_link_get_uri (update_link),
+	return upload_update_document (self, document, slug, content_type, NULL, content_length, SOUP_METHOD_PUT, gdata_link_get_uri (update_link),
 	                               cancellable);
 }
 
@@ -903,7 +867,8 @@ gdata_documents_service_update_document_resumable (GDataDocumentsService *self, 
 GDataDocumentsDocument *
 gdata_documents_service_finish_upload (GDataDocumentsService *self, GDataUploadStream *upload_stream, GError **error)
 {
-	const gchar *response_body, *term_pos;
+	const gchar *content_type;
+	const gchar *response_body;
 	gssize response_length;
 	GType new_document_type = G_TYPE_INVALID;
 
@@ -914,39 +879,17 @@ gdata_documents_service_finish_upload (GDataDocumentsService *self, GDataUploadS
 		return NULL;
 	}
 
-	/* Hackily determine the document format the server chose, and then parse the XML accordingly. The full parse will pick up any errors in
-	 * our choice of format. */
-	#define TERM_MARKER "<category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/docs/2007#"
-	term_pos = g_strstr_len (response_body, response_length, TERM_MARKER);
-	if (term_pos == NULL) {
-		goto done;
-	}
+	content_type = gdata_upload_stream_get_content_type (upload_stream);
+	new_document_type = gdata_documents_utils_get_type_from_content_type (content_type);
 
-	term_pos += strlen (TERM_MARKER);
-
-	if (g_str_has_prefix (term_pos, "file'") == TRUE) {
-		new_document_type = GDATA_TYPE_DOCUMENTS_DOCUMENT;
-	} else if (g_str_has_prefix (term_pos, "spreadsheet'") == TRUE) {
-		new_document_type = GDATA_TYPE_DOCUMENTS_SPREADSHEET;
-	} else if (g_str_has_prefix (term_pos, "presentation'") == TRUE) {
-		new_document_type = GDATA_TYPE_DOCUMENTS_PRESENTATION;
-	} else if (g_str_has_prefix (term_pos, "document'") == TRUE) {
-		new_document_type = GDATA_TYPE_DOCUMENTS_TEXT;
-	} else if (g_str_has_prefix (term_pos, "drawing'") == TRUE) {
-		new_document_type = GDATA_TYPE_DOCUMENTS_DRAWING;
-	} else if (g_str_has_prefix (term_pos, "pdf'") == TRUE) {
-		new_document_type = GDATA_TYPE_DOCUMENTS_PDF;
-	}
-
-done:
 	if (g_type_is_a (new_document_type, GDATA_TYPE_DOCUMENTS_DOCUMENT) == FALSE) {
 		g_set_error (error, GDATA_DOCUMENTS_SERVICE_ERROR, GDATA_DOCUMENTS_SERVICE_ERROR_INVALID_CONTENT_TYPE,
-		             _("The content type of the supplied document ('%s') could not be recognized."),
-		             gdata_upload_stream_get_content_type (upload_stream));
+		             _("The content type of the supplied document (‘%s’) could not be recognized."),
+		             content_type);
 		return NULL;
 	}
 
-	return GDATA_DOCUMENTS_DOCUMENT (gdata_parsable_new_from_xml (new_document_type, response_body, (gint) response_length, error));
+	return GDATA_DOCUMENTS_DOCUMENT (gdata_parsable_new_from_json (new_document_type, response_body, (gint) response_length, error));
 }
 
 /**
@@ -956,8 +899,7 @@ done:
  * @cancellable: (allow-none): optional #GCancellable object, or %NULL
  * @error: a #GError, or %NULL
  *
- * Copy the given @document, producing a duplicate document in the same folder and returning its #GDataDocumentsDocument. Note that @document
- * may only be a document, not an arbitrary file; i.e. @document must be an instance of a subclass of #GDataDocumentsDocument.
+ * Copy the given @document, producing a duplicate document in the same folder and returning its #GDataDocumentsDocument.
  *
  * Errors from #GDataServiceError can be returned for exceptional conditions, as determined by the server.
  *
@@ -969,9 +911,10 @@ GDataDocumentsDocument *
 gdata_documents_service_copy_document (GDataDocumentsService *self, GDataDocumentsDocument *document, GCancellable *cancellable, GError **error)
 {
 	GDataDocumentsDocument *new_document;
-	gchar *upload_data;
-	SoupMessage *message;
-	guint status;
+	GDataEntry *parent = NULL;
+	GList *i;
+	GList *parent_folders_list;
+	const gchar *parent_id = NULL;
 
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_DOCUMENT (document), NULL);
@@ -985,35 +928,40 @@ gdata_documents_service_copy_document (GDataDocumentsService *self, GDataDocumen
 		return NULL;
 	}
 
-	message = _gdata_service_build_message (GDATA_SERVICE (self), get_documents_authorization_domain (), SOUP_METHOD_POST,
-	                                        "https://docs.google.com/feeds/default/private/full", NULL, TRUE);
+	parent_folders_list = gdata_entry_look_up_links (GDATA_ENTRY (document), GDATA_LINK_PARENT);
+	for (i = parent_folders_list; i != NULL; i = i->next) {
+		GDataLink *_link = GDATA_LINK (i->data);
+		const gchar *uri;
+		gsize uri_prefix_len;
 
-	/* Append the data */
-	upload_data = gdata_parsable_get_xml (GDATA_PARSABLE (document));
-	soup_message_set_request (message, "application/atom+xml", SOUP_MEMORY_TAKE, upload_data, strlen (upload_data));
+		/* HACK: Extract the ID from the GDataLink:uri by removing the prefix. Ignore links which
+		 * don't have the prefix. */
+		uri = gdata_link_get_uri (_link);
+		uri_prefix_len = strlen (GDATA_DOCUMENTS_URI_PREFIX);
+		if (g_str_has_prefix (uri, GDATA_DOCUMENTS_URI_PREFIX)) {
+			const gchar *id;
 
-	/* Send the message */
-	status = _gdata_service_send_message (GDATA_SERVICE (self), message, cancellable, error);
+			id = uri + uri_prefix_len;
+			if (id[0] != '\0') {
+				parent_id = id;
+				break;
+			}
+		}
+	}
 
-	if (status == SOUP_STATUS_NONE || status == SOUP_STATUS_CANCELLED) {
-		/* Redirect error or cancelled */
-		g_object_unref (message);
-		return NULL;
-	} else if (status != SOUP_STATUS_CREATED) {
-		/* Error */
-		GDataServiceClass *klass = GDATA_SERVICE_GET_CLASS (self);
-		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (GDATA_SERVICE (self), GDATA_OPERATION_UPDATE, status, message->reason_phrase,
-		                             message->response_body->data, message->response_body->length, error);
-		g_object_unref (message);
+	g_list_free (parent_folders_list);
+
+	if (parent_id == NULL) {
+		g_set_error_literal (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_NOT_FOUND, _("Parent folder not found"));
 		return NULL;
 	}
 
-	/* Parse the XML; and update the entry */
-	g_assert (message->response_body->data != NULL);
-	new_document = GDATA_DOCUMENTS_DOCUMENT (gdata_parsable_new_from_xml (G_OBJECT_TYPE (document), message->response_body->data,
-	                                                                      message->response_body->length, error));
-	g_object_unref (message);
+	parent = gdata_service_query_single_entry (GDATA_SERVICE (self), get_documents_authorization_domain (), parent_id, NULL, GDATA_TYPE_DOCUMENTS_FOLDER, cancellable, error);
+	if (parent == NULL)
+		return NULL;
+
+	new_document = GDATA_DOCUMENTS_DOCUMENT (gdata_documents_service_add_entry_to_folder (self, GDATA_DOCUMENTS_ENTRY (document), GDATA_DOCUMENTS_FOLDER (parent), cancellable, error));
+	g_object_unref (parent);
 
 	return new_document;
 }
@@ -1109,28 +1057,36 @@ gdata_documents_service_copy_document_finish (GDataDocumentsService *self, GAsyn
 /**
  * gdata_documents_service_add_entry_to_folder:
  * @self: an authenticated #GDataDocumentsService
- * @entry: the #GDataDocumentsEntry to move
- * @folder: the #GDataDocumentsFolder to move @entry into
+ * @entry: the #GDataDocumentsEntry to copy
+ * @folder: the #GDataDocumentsFolder to copy @entry into
  * @cancellable: (allow-none): optional #GCancellable object, or %NULL
  * @error: a #GError, or %NULL
  *
- * Add the given @entry to the specified @folder, and return an updated #GDataDocumentsEntry for @entry. If the @entry is already in another folder, it
- * will be added to the new folder, but will also remain  in its other folders. Note that @entry can be either a #GDataDocumentsDocument or a
- * #GDataDocumentsFolder.
+ * Add the given @entry to the specified @folder, and return an updated #GDataDocumentsEntry for @entry. If the @entry is already in another folder,
+ * a copy will be added to the new folder. The copy and original will have different IDs. Note that @entry can't be a #GDataDocumentsFolder that
+ * already exists on the server. It can be a new #GDataDocumentsFolder, or a #GDataDocumentsDocument that is either new or already present on the
+ * server.
  *
  * Errors from #GDataServiceError can be returned for exceptional conditions, as determined by the server.
  *
  * Return value: (transfer full): an updated #GDataDocumentsEntry, or %NULL; unref with g_object_unref()
  *
  * Since: 0.8.0
- **/
+ */
 GDataDocumentsEntry *
 gdata_documents_service_add_entry_to_folder (GDataDocumentsService *self, GDataDocumentsEntry *entry, GDataDocumentsFolder *folder,
                                              GCancellable *cancellable, GError **error)
 {
 	GDataDocumentsEntry *new_entry;
+	GDataDocumentsEntry *local_entry;
+	GDataOperationType operation_type;
+	GType entry_type;
+	const gchar *content_type;
+	const gchar *etag;
+	const gchar *title;
+	const gchar *uri_prefix = "https://www.googleapis.com/drive/v2/files";
 	gchar *upload_data;
-	const gchar *uri;
+	gchar *uri;
 	SoupMessage *message;
 	guint status;
 
@@ -1143,18 +1099,36 @@ gdata_documents_service_add_entry_to_folder (GDataDocumentsService *self, GDataD
 	if (gdata_authorizer_is_authorized_for_domain (gdata_service_get_authorizer (GDATA_SERVICE (self)),
 	                                               get_documents_authorization_domain ()) == FALSE) {
 		g_set_error_literal (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED,
-		                     _("You must be authenticated to move documents and folders."));
+		                     _("You must be authenticated to insert or move documents and folders."));
 		return NULL;
 	}
 
-	/* NOTE: adding a document to a folder doesn't have server-side ETag support (throws "noPostConcurrency" error) */
-	uri = gdata_entry_get_content_uri (GDATA_ENTRY (folder));
-	g_assert (uri != NULL);
-	message = _gdata_service_build_message (GDATA_SERVICE (self), get_documents_authorization_domain (), SOUP_METHOD_POST, uri, NULL, TRUE);
+	if (gdata_entry_is_inserted (GDATA_ENTRY (entry)) == TRUE) {
+		const gchar *id;
+
+		id = gdata_entry_get_id (GDATA_ENTRY (entry));
+		uri = g_strconcat (uri_prefix, "/", id, "/copy", NULL);
+		operation_type = GDATA_OPERATION_UPDATE;
+	} else {
+		uri = g_strdup (uri_prefix);
+		operation_type = GDATA_OPERATION_INSERTION;
+	}
+
+	entry_type = G_OBJECT_TYPE (entry);
+	content_type = gdata_documents_utils_get_content_type (entry);
+	etag = gdata_entry_get_etag (GDATA_ENTRY (entry));
+	title = gdata_entry_get_title (GDATA_ENTRY (entry));
+	local_entry = g_object_new (entry_type, "etag", etag, "title", title, NULL);
+	gdata_documents_utils_add_content_type (local_entry, content_type);
+	add_folder_link_to_entry (local_entry, folder);
+
+	message = _gdata_service_build_message (GDATA_SERVICE (self), get_documents_authorization_domain (), SOUP_METHOD_POST, uri, NULL, FALSE);
+	g_free (uri);
 
 	/* Append the data */
-	upload_data = gdata_parsable_get_xml (GDATA_PARSABLE (entry));
-	soup_message_set_request (message, "application/atom+xml", SOUP_MEMORY_TAKE, upload_data, strlen (upload_data));
+	upload_data = gdata_parsable_get_json (GDATA_PARSABLE (local_entry));
+	soup_message_set_request (message, "application/json", SOUP_MEMORY_TAKE, upload_data, strlen (upload_data));
+	g_object_unref (local_entry);
 
 	/* Send the message */
 	status = _gdata_service_send_message (GDATA_SERVICE (self), message, cancellable, error);
@@ -1163,20 +1137,20 @@ gdata_documents_service_add_entry_to_folder (GDataDocumentsService *self, GDataD
 		/* Redirect error or cancelled */
 		g_object_unref (message);
 		return NULL;
-	} else if (status != SOUP_STATUS_CREATED) {
+	} else if (status != SOUP_STATUS_OK) {
 		/* Error */
 		GDataServiceClass *klass = GDATA_SERVICE_GET_CLASS (self);
 		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (GDATA_SERVICE (self), GDATA_OPERATION_UPDATE, status, message->reason_phrase,
-		                             message->response_body->data, message->response_body->length, error);
+		klass->parse_error_response (GDATA_SERVICE (self), operation_type, status, message->reason_phrase, message->response_body->data,
+					     message->response_body->length, error);
 		g_object_unref (message);
 		return NULL;
 	}
 
-	/* Parse the XML; and update the entry */
+	/* Parse the JSON; and update the entry */
 	g_assert (message->response_body->data != NULL);
-	new_entry = GDATA_DOCUMENTS_ENTRY (gdata_parsable_new_from_xml (G_OBJECT_TYPE (entry), message->response_body->data,
-	                                                                message->response_body->length, error));
+	new_entry = GDATA_DOCUMENTS_ENTRY (gdata_parsable_new_from_json (entry_type, message->response_body->data, message->response_body->length,
+									 error));
 	g_object_unref (message);
 
 	return new_entry;
@@ -1234,7 +1208,7 @@ add_entry_to_folder_thread (GSimpleAsyncResult *result, GDataDocumentsService *s
  * of the operation.
  *
  * Since: 0.8.0
- **/
+ */
 void
 gdata_documents_service_add_entry_to_folder_async (GDataDocumentsService *self, GDataDocumentsEntry *entry, GDataDocumentsFolder *folder,
                                                    GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data)
@@ -1268,7 +1242,7 @@ gdata_documents_service_add_entry_to_folder_async (GDataDocumentsService *self, 
  * Return value: (transfer full): an updated #GDataDocumentsEntry, or %NULL; unref with g_object_unref()
  *
  * Since: 0.8.0
- **/
+ */
 GDataDocumentsEntry *
 gdata_documents_service_add_entry_to_folder_finish (GDataDocumentsService *self, GAsyncResult *async_result, GError **error)
 {
@@ -1307,7 +1281,7 @@ gdata_documents_service_add_entry_to_folder_finish (GDataDocumentsService *self,
  * Return value: (transfer full): an updated #GDataDocumentsEntry, or %NULL; unref with g_object_unref()
  *
  * Since: 0.8.0
- **/
+ */
 GDataDocumentsEntry *
 gdata_documents_service_remove_entry_from_folder (GDataDocumentsService *self, GDataDocumentsEntry *entry, GDataDocumentsFolder *folder,
                                                   GCancellable *cancellable, GError **error)
@@ -1419,7 +1393,7 @@ remove_entry_from_folder_thread (GSimpleAsyncResult *result, GDataDocumentsServi
  * results of the operation.
  *
  * Since: 0.8.0
- **/
+ */
 void
 gdata_documents_service_remove_entry_from_folder_async (GDataDocumentsService *self, GDataDocumentsEntry *entry, GDataDocumentsFolder *folder,
                                                         GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data)
@@ -1454,7 +1428,7 @@ gdata_documents_service_remove_entry_from_folder_async (GDataDocumentsService *s
  * Return value: (transfer full): an updated #GDataDocumentsEntry, or %NULL; unref with g_object_unref()
  *
  * Since: 0.8.0
- **/
+ */
 GDataDocumentsEntry *
 gdata_documents_service_remove_entry_from_folder_finish (GDataDocumentsService *self, GAsyncResult *async_result, GError **error)
 {
@@ -1475,22 +1449,6 @@ gdata_documents_service_remove_entry_from_folder_finish (GDataDocumentsService *
 		return g_object_ref (entry);
 
 	g_assert_not_reached ();
-}
-
-/* HACK: Work around http://code.google.com/a/google.com/p/apps-api-issues/issues/detail?id=3033 by also using the upload URI for the v2 API. Grrr. */
-static gchar *
-_build_v2_upload_uri (GDataDocumentsFolder *folder)
-{
-	g_return_val_if_fail (folder == NULL || GDATA_IS_DOCUMENTS_FOLDER (folder), NULL);
-
-	/* If we have a folder, return the folder's upload URI */
-	if (folder != NULL) {
-		return _gdata_service_build_uri ("%s://docs.google.com/feeds/default/private/full/%s/contents",
-		                                 _gdata_service_get_scheme (), gdata_documents_entry_get_resource_id (GDATA_DOCUMENTS_ENTRY (folder)));
-	}
-
-	/* Otherwise return the default upload URI */
-	return g_strconcat (_gdata_service_get_scheme (), "://docs.google.com/feeds/default/private/full", NULL);
 }
 
 /* NOTE: query may be NULL. */
@@ -1519,11 +1477,12 @@ _get_upload_uri_for_query_and_folder (GDataDocumentsUploadQuery *query, GDataDoc
  * Return value: the URI permitting the upload of documents to @folder, or %NULL; free with g_free()
  *
  * Since: 0.5.0
- **/
+ */
 gchar *
 gdata_documents_service_get_upload_uri (GDataDocumentsFolder *folder)
 {
 	g_return_val_if_fail (folder == NULL || GDATA_IS_DOCUMENTS_FOLDER (folder), NULL);
 
-	return _get_upload_uri_for_query_and_folder (NULL, folder);
+	/* Upload URI: https://developers.google.com/drive/web/manage-uploads */
+	return g_strdup ("https://www.googleapis.com/upload/drive/v2/files");
 }

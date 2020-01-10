@@ -39,7 +39,7 @@ G_BEGIN_DECLS
  * logs, and don't redact usernames, passwords and auth. tokens
  *
  * Logging level.
- **/
+ */
 typedef enum {
 	GDATA_LOG_NONE = 0,
 	GDATA_LOG_MESSAGES = 1,
@@ -71,11 +71,21 @@ G_GNUC_INTERNAL GDataSecureString _gdata_service_secure_strndup (const gchar *st
 G_GNUC_INTERNAL void _gdata_service_secure_strfree (GDataSecureString str);
 
 #include "gdata-query.h"
+typedef enum {
+	GDATA_QUERY_PAGINATION_INDEXED,
+	GDATA_QUERY_PAGINATION_URIS,
+	GDATA_QUERY_PAGINATION_TOKENS,
+} GDataQueryPaginationType;
+
+G_GNUC_INTERNAL void _gdata_query_add_q_internal (GDataQuery *self, const gchar *q);
+G_GNUC_INTERNAL void _gdata_query_clear_q_internal (GDataQuery *self);
+G_GNUC_INTERNAL void _gdata_query_clear_pagination (GDataQuery *self);
+G_GNUC_INTERNAL void _gdata_query_set_pagination_type (GDataQuery               *self,
+                                                       GDataQueryPaginationType  type);
+G_GNUC_INTERNAL void _gdata_query_set_next_page_token (GDataQuery  *self, const gchar *next_page_token);
 G_GNUC_INTERNAL void _gdata_query_set_next_uri (GDataQuery *self, const gchar *next_uri);
-G_GNUC_INTERNAL void _gdata_query_set_next_uri_end (GDataQuery *self);
 G_GNUC_INTERNAL gboolean _gdata_query_is_finished (GDataQuery *self);
 G_GNUC_INTERNAL void _gdata_query_set_previous_uri (GDataQuery *self, const gchar *previous_uri);
-G_GNUC_INTERNAL void _gdata_query_set_previous_uri_end (GDataQuery *self);
 
 #include "gdata-parsable.h"
 G_GNUC_INTERNAL GDataParsable *_gdata_parsable_new_from_xml (GType parsable_type, const gchar *xml, gint length, gpointer user_data,
@@ -103,6 +113,7 @@ G_GNUC_INTERNAL GDataFeed *_gdata_feed_new_from_json (GType feed_type, const gch
                                                      GDataQueryProgressCallback progress_callback, gpointer progress_user_data,
                                                      GError **error) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;
 G_GNUC_INTERNAL void _gdata_feed_add_entry (GDataFeed *self, GDataEntry *entry);
+G_GNUC_INTERNAL void _gdata_feed_add_link (GDataFeed *self, GDataLink *_link);
 G_GNUC_INTERNAL gpointer _gdata_feed_parse_data_new (GType entry_type, GDataQueryProgressCallback progress_callback, gpointer progress_user_data);
 G_GNUC_INTERNAL void _gdata_feed_parse_data_free (gpointer data);
 G_GNUC_INTERNAL void _gdata_feed_call_progress_callback (GDataFeed *self, gpointer user_data, GDataEntry *entry);
@@ -115,7 +126,11 @@ _gdata_feed_set_page_info (GDataFeed *self, guint total_results,
 G_GNUC_INTERNAL void _gdata_entry_set_updated (GDataEntry *self, gint64 updated);
 G_GNUC_INTERNAL void _gdata_entry_set_published (GDataEntry *self, gint64 published);
 G_GNUC_INTERNAL void _gdata_entry_set_id (GDataEntry *self, const gchar *id);
+G_GNUC_INTERNAL void _gdata_entry_set_etag (GDataEntry *self, const gchar *etag);
 G_GNUC_INTERNAL void _gdata_entry_set_batch_data (GDataEntry *self, guint id, GDataBatchOperationType type);
+
+#include "gdata-access-rule.h"
+G_GNUC_INTERNAL void _gdata_access_rule_set_key (GDataAccessRule *self, const gchar *key);
 
 #include "gdata-parser.h"
 

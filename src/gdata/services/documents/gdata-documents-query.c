@@ -3,6 +3,7 @@
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
  * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
+ * Copyright (C) Red Hat, Inc. 2015
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -78,7 +79,7 @@
  * </example>
  *
  * Since: 0.4.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -87,6 +88,7 @@
 
 #include "gd/gdata-gd-email-address.h"
 #include "gdata-documents-query.h"
+#include "gdata-private.h"
 #include "gdata-query.h"
 
 #include <gdata/services/documents/gdata-documents-spreadsheet.h>
@@ -141,7 +143,7 @@ gdata_documents_query_class_init (GDataDocumentsQueryClass *klass)
 	 * A shortcut to request all documents that have been deleted.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_SHOW_DELETED,
 	                                 g_param_spec_boolean ("show-deleted",
 	                                                       "Show deleted?", "A shortcut to request all documents that have been deleted.",
@@ -154,7 +156,7 @@ gdata_documents_query_class_init (GDataDocumentsQueryClass *klass)
 	 * Specifies if the request also returns folders.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_SHOW_FOLDERS,
 	                                 g_param_spec_boolean ("show-folders",
 	                                                       "Show folders?", "Specifies if the request also returns folders.",
@@ -167,7 +169,7 @@ gdata_documents_query_class_init (GDataDocumentsQueryClass *klass)
 	 * Specifies whether the query should search for an exact title match for the #GDataDocumentsQuery:title parameter.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_EXACT_TITLE,
 	                                 g_param_spec_boolean ("exact-title",
 	                                                       "Exact title?", "Specifies whether the query should search for an exact title match.",
@@ -180,7 +182,7 @@ gdata_documents_query_class_init (GDataDocumentsQueryClass *klass)
 	 * Specifies the ID of the folder in which to search.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_FOLDER_ID,
 	                                 g_param_spec_string ("folder-id",
 	                                                      "Folder ID", "Specifies the ID of the folder in which to search.",
@@ -194,7 +196,7 @@ gdata_documents_query_class_init (GDataDocumentsQueryClass *klass)
 	 * title match will be searched for, otherwise substring matches will also be returned.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_TITLE,
 	                                 g_param_spec_string ("title",
 	                                                      "Title", "A title (or title fragment) to be searched for.",
@@ -206,6 +208,10 @@ static void
 gdata_documents_query_init (GDataDocumentsQuery *self)
 {
 	self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GDATA_TYPE_DOCUMENTS_QUERY, GDataDocumentsQueryPrivate);
+
+	/* https://developers.google.com/drive/v3/reference/files/list#q */
+	_gdata_query_set_pagination_type (GDATA_QUERY (self),
+	                                  GDATA_QUERY_PAGINATION_TOKENS);
 }
 
 static void
@@ -298,6 +304,7 @@ static void
 get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboolean *params_started)
 {
 	GDataDocumentsQueryPrivate *priv = GDATA_DOCUMENTS_QUERY (self)->priv;
+	guint max_results;
 
 	#define APPEND_SEP g_string_append_c (query_uri, (*params_started == FALSE) ? '?' : '&'); *params_started = TRUE;
 
@@ -306,53 +313,97 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
 		g_string_append_uri_escaped (query_uri, priv->folder_id, NULL, FALSE);
 	}
 
-	/* Chain up to the parent class */
-	GDATA_QUERY_CLASS (gdata_documents_query_parent_class)->get_query_uri (self, feed_uri, query_uri, params_started);
+	/* Search parameters: https://developers.google.com/drive/web/search-parameters */
+
+	_gdata_query_clear_q_internal (self);
 
 	if  (priv->collaborator_addresses != NULL) {
-		GList *address;
-		APPEND_SEP
-		address = priv->collaborator_addresses;
+		GList *i;
+		GString *str;
 
-		g_string_append (query_uri, "writer=");
-		g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (address->data), NULL, FALSE);
-		for (address = address->next; address != NULL; address = address->next) {
-			g_string_append_c (query_uri, ';');
-			g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (address->data), NULL, FALSE);
+		str = g_string_new (NULL);
+
+		for (i = priv->collaborator_addresses; i != NULL; i = i->next) {
+			GDataGDEmailAddress *email_address = GDATA_GD_EMAIL_ADDRESS (i->data);
+			const gchar *address;
+
+			address = gdata_gd_email_address_get_address (email_address);
+			g_string_append_printf (str, "'%s' in writers", address);
+			if (i->next != NULL)
+				g_string_append (str, " or ");
 		}
+
+		_gdata_query_add_q_internal (self, str->str);
+		g_string_free (str, TRUE);
 	}
 
 	if  (priv->reader_addresses != NULL) {
-		GList *address;
-		APPEND_SEP
-		address = priv->reader_addresses;
+		GList *i;
+		GString *str;
 
-		g_string_append (query_uri, "reader=");
-		g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (address->data), NULL, FALSE);
-		for (address = address->next; address != NULL; address = address->next) {
-			g_string_append_c (query_uri, ';');
-			g_string_append_uri_escaped (query_uri, gdata_gd_email_address_get_address (address->data), NULL, FALSE);
+		str = g_string_new (NULL);
+
+		for (i = priv->reader_addresses; i != NULL; i = i->next) {
+			GDataGDEmailAddress *email_address = GDATA_GD_EMAIL_ADDRESS (i->data);
+			const gchar *address;
+
+			address = gdata_gd_email_address_get_address (email_address);
+			g_string_append_printf (str, "'%s' in readers", address);
+			if (i->next != NULL)
+				g_string_append (str, " or ");
 		}
+
+		_gdata_query_add_q_internal (self, str->str);
+		g_string_free (str, TRUE);
 	}
+
+	if (priv->show_deleted == TRUE)
+		_gdata_query_add_q_internal (self, "trashed=true");
+	else
+		_gdata_query_add_q_internal (self, "trashed=false");
+
+	if (priv->show_folders == FALSE)
+		_gdata_query_add_q_internal (self, "mimeType!='application/vnd.google-apps.folder'");
 
 	if (priv->title != NULL) {
-		APPEND_SEP
-		g_string_append (query_uri, "title=");
-		g_string_append_uri_escaped (query_uri, priv->title, NULL, FALSE);
-		if (priv->exact_title == TRUE)
-			g_string_append (query_uri, "&title-exact=true");
+		GString *title_query;
+		const gchar *ptr, *ptr_end;
+
+		title_query = g_string_new ("title");
+		if (priv->exact_title) {
+			g_string_append_c (title_query, '=');
+		} else {
+			g_string_append (title_query, " contains ");
+		}
+		g_string_append_c (title_query, '\'');
+
+		for (ptr = priv->title; ptr != NULL; ptr = ptr_end) {
+			/* Escape any "'" and "\" found in the title with a "\" */
+			ptr_end = strpbrk (ptr, "\'\\");
+			if (ptr_end == NULL) {
+				g_string_append (title_query, ptr);
+			} else {
+				g_string_append_len (title_query, ptr, ptr_end - ptr);
+				g_string_append_c (title_query, '\\');
+				g_string_append_c (title_query, *ptr_end);
+			}
+		}
+
+		g_string_append_c (title_query, '\'');
+		_gdata_query_add_q_internal (self, title_query->str);
+		g_string_free (title_query, TRUE);
 	}
 
-	APPEND_SEP
-	if (priv->show_deleted == TRUE)
-		g_string_append (query_uri, "showdeleted=true");
-	else
-		g_string_append (query_uri, "showdeleted=false");
+	/* Chain up to the parent class */
+	GDATA_QUERY_CLASS (gdata_documents_query_parent_class)->get_query_uri (self, feed_uri, query_uri, params_started);
 
-	if (priv->show_folders == TRUE)
-		g_string_append (query_uri, "&showfolders=true");
-	else
-		g_string_append (query_uri, "&showfolders=false");
+	/* https://developers.google.com/drive/v2/reference/files/list */
+	max_results = gdata_query_get_max_results (self);
+	if (max_results > 0) {
+		APPEND_SEP
+		max_results = max_results > 1000 ? 1000 : max_results;
+		g_string_append_printf (query_uri, "maxResults=%u", max_results);
+	}
 }
 
 /**
@@ -364,7 +415,7 @@ get_query_uri (GDataQuery *self, const gchar *feed_uri, GString *query_uri, gboo
  * Return value: a new #GDataDocumentsQuery
  *
  * Since: 0.4.0
- **/
+ */
 GDataDocumentsQuery *
 gdata_documents_query_new (const gchar *q)
 {
@@ -383,7 +434,7 @@ gdata_documents_query_new (const gchar *q)
  * Return value: a new #GDataDocumentsQuery
  *
  * Since: 0.4.0
- **/
+ */
 GDataDocumentsQuery *
 gdata_documents_query_new_with_limits (const gchar *q, guint start_index, guint max_results)
 {
@@ -403,7 +454,7 @@ gdata_documents_query_new_with_limits (const gchar *q, guint start_index, guint 
  * Return value: %TRUE if the request should return deleted entries, %FALSE otherwise
  *
  * Since: 0.4.0
- **/
+ */
 gboolean
 gdata_documents_query_show_deleted (GDataDocumentsQuery *self)
 {
@@ -419,7 +470,7 @@ gdata_documents_query_show_deleted (GDataDocumentsQuery *self)
  * Sets the #GDataDocumentsQuery:show_deleted property to @show_deleted.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_documents_query_set_show_deleted (GDataDocumentsQuery *self, gboolean show_deleted)
 {
@@ -440,7 +491,7 @@ gdata_documents_query_set_show_deleted (GDataDocumentsQuery *self, gboolean show
  * Return value: %TRUE if the request should return folders, %FALSE otherwise
  *
  * Since: 0.4.0
- **/
+ */
 gboolean
 gdata_documents_query_show_folders (GDataDocumentsQuery *self)
 {
@@ -456,7 +507,7 @@ gdata_documents_query_show_folders (GDataDocumentsQuery *self)
  * Sets the #GDataDocumentsQuery:show-folders property to show_folders.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_documents_query_set_show_folders (GDataDocumentsQuery *self, gboolean show_folders)
 {
@@ -477,7 +528,7 @@ gdata_documents_query_set_show_folders (GDataDocumentsQuery *self, gboolean show
  * Return value: the ID of the folder to be queried, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_documents_query_get_folder_id (GDataDocumentsQuery *self)
 {
@@ -495,7 +546,7 @@ gdata_documents_query_get_folder_id (GDataDocumentsQuery *self)
  * Set @folder_id to %NULL to unset the property in the query URI.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_documents_query_set_folder_id (GDataDocumentsQuery *self, const gchar *folder_id)
 {
@@ -518,7 +569,7 @@ gdata_documents_query_set_folder_id (GDataDocumentsQuery *self, const gchar *fol
  * Return value: the title (or title fragment) being queried for, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 const gchar *
 gdata_documents_query_get_title (GDataDocumentsQuery *self)
 {
@@ -535,7 +586,7 @@ gdata_documents_query_get_title (GDataDocumentsQuery *self)
  * Return value: %TRUE if the query matches the exact title of documents with #GDataDocumentsQuery:title, %FALSE otherwise
  *
  * Since: 0.4.0
- **/
+ */
 gboolean
 gdata_documents_query_get_exact_title (GDataDocumentsQuery *self)
 {
@@ -554,7 +605,7 @@ gdata_documents_query_get_exact_title (GDataDocumentsQuery *self)
  * Set @title to %NULL to unset the property in the query URI.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_documents_query_set_title (GDataDocumentsQuery *self, const gchar *title, gboolean exact_title)
 {
@@ -583,7 +634,7 @@ gdata_documents_query_set_title (GDataDocumentsQuery *self, const gchar *title, 
  * query, or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 GList *
 gdata_documents_query_get_collaborator_addresses (GDataDocumentsQuery *self)
 {
@@ -601,7 +652,7 @@ gdata_documents_query_get_collaborator_addresses (GDataDocumentsQuery *self)
  * or %NULL
  *
  * Since: 0.4.0
- **/
+ */
 GList *
 gdata_documents_query_get_reader_addresses (GDataDocumentsQuery *self)
 {
@@ -617,7 +668,7 @@ gdata_documents_query_get_reader_addresses (GDataDocumentsQuery *self)
  * Add @email_address as a #GDataGDEmailAddress to the list of readers, the documents readable by whom will be queried.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_documents_query_add_reader (GDataDocumentsQuery *self, const gchar *email_address)
 {
@@ -641,7 +692,7 @@ gdata_documents_query_add_reader (GDataDocumentsQuery *self, const gchar *email_
  * Add @email_address as a #GDataGDEmailAddress to the list of collaborators whose edited documents will be queried.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_documents_query_add_collaborator (GDataDocumentsQuery *self, const gchar *email_address)
 {

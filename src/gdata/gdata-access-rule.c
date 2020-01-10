@@ -34,11 +34,14 @@
  * <example>
  * 	<title>Adding a Rule to the Access Control List for an Entry</title>
  * 	<programlisting>
+ * 	GDataAuthorizationDomain *domain;
  *	GDataService *service;
  *	GDataEntry *entry;
  *	GDataFeed *acl_feed;
  *	GDataAccessRule *rule, *new_rule;
  *	GError *error = NULL;
+ *
+ *	domain = gdata_documents_service_get_primary_authorization_domain ();
  *
  *	/<!-- -->* Retrieve a GDataEntry which will have a new rule inserted into its ACL. *<!-- -->/
  *	service = build_my_service ();
@@ -53,9 +56,8 @@
  *	gdata_access_rule_set_scope (rule, GDATA_ACCESS_SCOPE_USER, "example@gmail.com"); /<!-- -->* e-mail address of the user the ACL applies to *<!-- -->/
  *
  *	acl_link = gdata_entry_look_up_link (entry, GDATA_LINK_ACCESS_CONTROL_LIST);
- *	new_rule = GDATA_ACCESS_RULE (gdata_service_insert_entry (GDATA_SERVICE (service), gdata_link_get_uri (acl_link), GDATA_ENTRY (rule),
- *	                                                          NULL, &error));
- *	g_object_unref (acl_link);
+ *	new_rule = GDATA_ACCESS_RULE (gdata_service_insert_entry (GDATA_SERVICE (service), domain, gdata_link_get_uri (acl_link),
+ *	                                                          GDATA_ENTRY (rule), NULL, &error));
  *
  *	g_object_unref (rule);
  *	g_object_unref (entry);
@@ -74,11 +76,10 @@
  * </example>
  *
  * Since: 0.3.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
-#include <glib/gi18n-lib.h>
 #include <libxml/parser.h>
 #include <string.h>
 
@@ -94,12 +95,9 @@ static void get_xml (GDataParsable *parsable, GString *xml_string);
 static void gdata_access_rule_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 static void gdata_access_rule_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static gboolean parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_data, GError **error);
-static gboolean parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error);
-static gboolean post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error);
+static gboolean post_parse_xml (GDataParsable *parsable, gpointer user_data, GError **error);
 
 struct _GDataAccessRulePrivate {
-	gchar *domain;
-	gchar *email;
 	gchar *role;
 	gchar *scope_type;
 	gchar *scope_value;
@@ -133,11 +131,9 @@ gdata_access_rule_class_init (GDataAccessRuleClass *klass)
 	gobject_class->set_property = gdata_access_rule_set_property;
 
 	parsable_class->parse_xml = parse_xml;
+	parsable_class->post_parse_xml = post_parse_xml;
 	parsable_class->get_xml = get_xml;
 	parsable_class->get_namespaces = get_namespaces;
-
-	parsable_class->parse_json = parse_json;
-	parsable_class->post_parse_json = post_parse_json;
 
 	entry_class->kind_term = "http://schemas.google.com/acl/2007#accessRule";
 
@@ -148,7 +144,7 @@ gdata_access_rule_class_init (GDataAccessRuleClass *klass)
 	 * their own namespaced roles.
 	 *
 	 * Since: 0.3.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_ROLE,
 	                                 g_param_spec_string ("role",
 	                                                      "Role", "The role of the person concerned by this ACL.",
@@ -161,7 +157,7 @@ gdata_access_rule_class_init (GDataAccessRuleClass *klass)
 	 * Specifies to whom this access rule applies. For example, %GDATA_ACCESS_SCOPE_USER or %GDATA_ACCESS_SCOPE_DEFAULT.
 	 *
 	 * Since: 0.3.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_SCOPE_TYPE,
 	                                 g_param_spec_string ("scope-type",
 	                                                      "Scope type", "Specifies to whom this access rule applies.",
@@ -177,7 +173,7 @@ gdata_access_rule_class_init (GDataAccessRuleClass *klass)
 	 * This must be %NULL if and only if #GDataAccessRule:scope-type is %GDATA_ACCESS_SCOPE_DEFAULT.
 	 *
 	 * Since: 0.3.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_SCOPE_VALUE,
 	                                 g_param_spec_string ("scope-value",
 	                                                      "Scope value", "The scope value for this access rule.",
@@ -193,7 +189,7 @@ gdata_access_rule_class_init (GDataAccessRuleClass *klass)
 	 * Atom Publishing Protocol specification</ulink>.
 	 *
 	 * Since: 0.7.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_EDITED,
 	                                 g_param_spec_int64 ("edited",
 	                                                     "Edited", "The last time the access rule was edited.",
@@ -283,8 +279,6 @@ gdata_access_rule_finalize (GObject *object)
 {
 	GDataAccessRulePrivate *priv = GDATA_ACCESS_RULE (object)->priv;
 
-	g_free (priv->domain);
-	g_free (priv->email);
 	g_free (priv->role);
 	g_free (priv->scope_type);
 	g_free (priv->scope_value);
@@ -349,10 +343,7 @@ gdata_access_rule_set_property (GObject *object, guint property_id, const GValue
 			/* Never set an ETag (note that this doesn't stop it being set in GDataEntry due to XML parsing) */
 			break;
 		case PROP_KEY:
-			g_free (self->priv->key);
-			self->priv->key = g_value_dup_string (value);
-			g_object_notify (object, "key");
-			break;
+			/* Read only; fall through */
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -373,16 +364,20 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 		if (xmlStrcmp (node->name, (xmlChar*) "role") == 0) {
 			/* gAcl:role */
 			xmlChar *role = xmlGetProp (node, (xmlChar*) "value");
-			if (role == NULL)
+			if (role == NULL || *role == '\0') {
+				xmlFree (role);
 				return gdata_parser_error_required_property_missing (node, "value", error);
+			}
 			self->priv->role = (gchar*) role;
 		} else if (xmlStrcmp (node->name, (xmlChar*) "scope") == 0) {
 			/* gAcl:scope */
 			xmlChar *scope_type, *scope_value;
 
 			scope_type = xmlGetProp (node, (xmlChar*) "type");
-			if (scope_type == NULL)
+			if (scope_type == NULL || *scope_type == '\0') {
+				xmlFree (scope_type);
 				return gdata_parser_error_required_property_missing (node, "type", error);
+			}
 
 			scope_value = xmlGetProp (node, (xmlChar*) "value");
 
@@ -445,6 +440,20 @@ parse_xml (GDataParsable *parsable, xmlDoc *doc, xmlNode *node, gpointer user_da
 	return TRUE;
 }
 
+static gboolean
+post_parse_xml (GDataParsable *parsable, gpointer user_data, GError **error)
+{
+	GDataAccessRulePrivate *priv = GDATA_ACCESS_RULE (parsable)->priv;
+
+	/* Check for missing required elements */
+	if (gdata_entry_get_title (GDATA_ENTRY (parsable)) == NULL || *gdata_entry_get_title (GDATA_ENTRY (parsable)) == '\0')
+		return gdata_parser_error_required_element_missing ("role", "entry", error);
+	if (priv->scope_type == NULL)
+		return gdata_parser_error_required_element_missing ("scope", "entry", error);
+
+	return TRUE;
+}
+
 static void
 get_xml (GDataParsable *parsable, GString *xml_string)
 {
@@ -491,65 +500,6 @@ get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
 	g_hash_table_insert (namespaces, (gchar*) "gAcl", (gchar*) "http://schemas.google.com/acl/2007");
 }
 
-static gboolean
-parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error)
-{
-	GDataAccessRulePrivate *priv = GDATA_ACCESS_RULE (parsable)->priv;
-	gboolean success;
-	gchar *scope_type = NULL;
-
-	if (gdata_parser_string_from_json_member (reader, "authKey", P_REQUIRED | P_NON_EMPTY, &(priv->key), &success, error) == TRUE ||
-	    gdata_parser_string_from_json_member (reader, "emailAddress", P_REQUIRED | P_NON_EMPTY, &(priv->email), &success, error) == TRUE ||
-	    gdata_parser_string_from_json_member (reader, "domain", P_REQUIRED | P_NON_EMPTY, &(priv->domain), &success, error) == TRUE ||
-	    gdata_parser_string_from_json_member (reader, "role", P_REQUIRED | P_NON_EMPTY, &(priv->role), &success, error) == TRUE) {
-		return success;
-	} else if (gdata_parser_string_from_json_member (reader, "type", P_REQUIRED | P_NON_EMPTY, &scope_type, &success, error) == TRUE) {
-		if (g_strcmp0 (scope_type, "anyone") == 0) {
-			priv->scope_type = g_strdup (GDATA_ACCESS_SCOPE_DEFAULT);
-		} else {
-			priv->scope_type = scope_type;
-			scope_type = NULL;
-		}
-
-		g_free (scope_type);
-		return success;
-	}
-
-	return GDATA_PARSABLE_CLASS (gdata_access_rule_parent_class)->parse_json (parsable, reader, user_data, error);
-}
-
-static gboolean
-post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error)
-{
-	GDataAccessRulePrivate *priv = GDATA_ACCESS_RULE (parsable)->priv;
-
-	if (g_strcmp0 (priv->scope_type, "group") == 0 || g_strcmp0 (priv->scope_type, "user") == 0) {
-		if (priv->email == NULL || priv->email[0] == '\0') {
-			g_set_error (error, GDATA_PARSER_ERROR, GDATA_PARSER_ERROR_PARSING_STRING,
-			             /* Translators: the parameter is an error message */
-			             _("Error parsing JSON: %s"),
-			             "Permission type ‘group’ or ‘user’ needs an ‘emailAddress’ property.");
-			return FALSE;
-		} else {
-			priv->scope_value = priv->email;
-			priv->email = NULL;
-		}
-	} else if (g_strcmp0 (priv->scope_type, "domain") == 0) {
-		if (priv->domain == NULL || priv->domain[0] == '\0') {
-			g_set_error (error, GDATA_PARSER_ERROR, GDATA_PARSER_ERROR_PARSING_STRING,
-			             /* Translators: the parameter is an error message */
-			             _("Error parsing JSON: %s"),
-			             "Permission type ‘domain’ needs a ‘domain’ property.");
-			return FALSE;
-		} else {
-			priv->scope_value = priv->domain;
-			priv->domain = NULL;
-		}
-	}
-
-	return TRUE;
-}
-
 /**
  * gdata_access_rule_new:
  * @id: the access rule's ID, or %NULL
@@ -559,7 +509,7 @@ post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error)
  * Return value: a new #GDataAccessRule; unref with g_object_unref()
  *
  * Since: 0.3.0
- **/
+ */
 GDataAccessRule *
 gdata_access_rule_new (const gchar *id)
 {
@@ -571,16 +521,17 @@ gdata_access_rule_new (const gchar *id)
  * @self: a #GDataAccessRule
  * @role: a new role, or %NULL
  *
- * Sets the #GDataAccessRule:role property to @role.
+ * Sets the #GDataAccessRule:role property to @role. @role must be a non-empty string, such as %GDATA_ACCESS_ROLE_NONE.
  *
  * Set @role to %NULL to unset the property in the access rule.
  *
  * Since: 0.3.0
- **/
+ */
 void
 gdata_access_rule_set_role (GDataAccessRule *self, const gchar *role)
 {
 	g_return_if_fail (GDATA_IS_ACCESS_RULE (self));
+	g_return_if_fail (role == NULL || *role != '\0');
 
 	g_free (self->priv->role);
 	self->priv->role = g_strdup (role);
@@ -596,7 +547,7 @@ gdata_access_rule_set_role (GDataAccessRule *self, const gchar *role)
  * Return value: the access rule's role, or %NULL
  *
  * Since: 0.3.0
- **/
+ */
 const gchar *
 gdata_access_rule_get_role (GDataAccessRule *self)
 {
@@ -616,16 +567,17 @@ gdata_access_rule_get_role (GDataAccessRule *self)
  * Set @scope_value to %NULL to unset the #GDataAccessRule:scope-value property in the access rule. @type cannot
  * be %NULL. @scope_value must be %NULL if @type is <literal>default</literal>, and non-%NULL otherwise.
  *
- * See the <ulink type="http" url="http://code.google.com/apis/calendar/docs/2.0/reference.html#gacl_reference">online documentation</ulink>
- * for more information.
+ * See the
+ * <ulink type="http" url="https://developers.google.com/google-apps/calendar/v3/reference/acl">online
+ * documentation</ulink> for more information.
  *
  * Since: 0.3.0
- **/
+ */
 void
 gdata_access_rule_set_scope (GDataAccessRule *self, const gchar *type, const gchar *value)
 {
 	g_return_if_fail (GDATA_IS_ACCESS_RULE (self));
-	g_return_if_fail (type != NULL);
+	g_return_if_fail (type != NULL && *type != '\0');
 	g_return_if_fail ((strcmp (type, GDATA_ACCESS_SCOPE_DEFAULT) == 0 && value == NULL) || value != NULL);
 
 	g_free (self->priv->scope_type);
@@ -649,7 +601,7 @@ gdata_access_rule_set_scope (GDataAccessRule *self, const gchar *type, const gch
  * Gets the #GDataAccessRule:scope-type and #GDataAccessRule:scope-value properties.
  *
  * Since: 0.3.0
- **/
+ */
 void
 gdata_access_rule_get_scope (GDataAccessRule *self, const gchar **type, const gchar **value)
 {
@@ -669,12 +621,26 @@ gdata_access_rule_get_scope (GDataAccessRule *self, const gchar **type, const gc
  * Return value: the UNIX timestamp for the time the access rule was last edited, or <code class="literal">-1</code>
  *
  * Since: 0.7.0
- **/
+ */
 gint64
 gdata_access_rule_get_edited (GDataAccessRule *self)
 {
 	g_return_val_if_fail (GDATA_IS_ACCESS_RULE (self), -1);
 	return self->priv->edited;
+}
+
+void
+_gdata_access_rule_set_key (GDataAccessRule *self, const gchar *key)
+{
+	g_return_if_fail (GDATA_IS_ACCESS_RULE (self));
+
+	if (g_strcmp0 (key, self->priv->key) == 0)
+		return;
+
+	g_free (self->priv->key);
+	self->priv->key = g_strdup (key);
+
+	g_object_notify (G_OBJECT (self), "key");
 }
 
 /**

@@ -4,7 +4,7 @@
 #include "gdata-media-content.h"
 #include "gdata-media-enums.h"
 
-/* enumerations from "./gdata/media/gdata-media-content.h" */
+/* enumerations from "/opt/gnome/source/libgdata/gdata/media/gdata-media-content.h" */
 GType
 gdata_media_expression_get_type (void)
 {

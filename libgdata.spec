@@ -1,12 +1,11 @@
 Name:           libgdata
-Version:        0.17.1
+Version:        0.17.8
 Release:        1%{?dist}
 Summary:        Library for the GData protocol
 
-Group:          System Environment/Libraries
 License:        LGPLv2+
-URL:            http://live.gnome.org/libgdata
-Source0:        http://download.gnome.org/sources/%{name}/0.17/%{name}-%{version}.tar.xz
+URL:            https://wiki.gnome.org/Projects/libgdata
+Source0:        https://download.gnome.org/sources/%{name}/0.17/%{name}-%{version}.tar.xz
 
 BuildRequires:  gcr-devel
 BuildRequires:  glib2-devel
@@ -22,9 +21,11 @@ BuildRequires:  liboauth-devel
 BuildRequires:  libsoup-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  vala-devel
-BuildRequires:  vala-tools
+BuildRequires:  vala
 
-Requires:       gobject-introspection
+%if 0%{?fedora}
+Obsoletes:      compat-libgdata19 < 0.17.1
+%endif
 
 %description
 libgdata is a GLib-based library for accessing online service APIs using the
@@ -33,7 +34,6 @@ the common Google services, and has full asynchronous support.
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
@@ -46,13 +46,14 @@ developing applications that use %{name}.
 %build
 %configure \
 %if 0%{?rhel}
-  --disable-tests \
+  --disable-always-build-tests \
 %endif
+  --disable-silent-rules \
   --disable-static
 make %{?_smp_mflags} CFLAGS="$CFLAGS -fno-strict-aliasing"
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
+%make_install
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 %find_lang gdata
@@ -70,8 +71,10 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %files -f gdata.lang
-%doc COPYING NEWS README AUTHORS
+%license COPYING
+%doc NEWS README AUTHORS
 %{_libdir}/libgdata.so.22*
+%dir %{_libdir}/girepository-1.0
 %{_libdir}/girepository-1.0/GData-0.0.typelib
 
 %files devel
@@ -79,10 +82,23 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_libdir}/libgdata.so
 %{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/gtk-doc/
+%dir %{_datadir}/gir-1.0
 %{_datadir}/gir-1.0/GData-0.0.gir
 %{_datadir}/vala/
 
 %changelog
+* Mon Apr 24 2017 Debarshi Ray <rishi@fedoraproject.org> - 0.17.8-1
+- Update to 0.17.8
+- Resolves: #1387002
+
+* Wed Mar 08 2017 Debarshi Ray <rishi@fedoraproject.org> - 0.17.7-1
+- Update to 0.17.7
+- Resolves: #1387002, #1427087
+
+* Wed Sep 21 2016 Kalev Lember <klember@redhat.com> - 0.17.6-1
+- Update to 0.17.6
+- Resolves: #1387002
+
 * Mon May 04 2015 Debarshi Ray <rishi@fedoraproject.org> - 0.17.1-1
 - Update to 0.17.1
 - Resolves: #1174599

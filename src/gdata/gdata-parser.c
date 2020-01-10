@@ -18,7 +18,6 @@
  */
 
 #include <config.h>
-#include <errno.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
 #include <sys/time.h>
@@ -29,6 +28,7 @@
 
 #include "gdata-parser.h"
 #include "gdata-service.h"
+#include "gdata-types.h"
 #include "gdata-private.h"
 
 static gchar *
@@ -81,8 +81,8 @@ gdata_parser_error_not_iso8601_format (xmlNode *element, const gchar *actual_val
 	              * and the second parameter is the erroneous value (which was not in ISO 8601 format).
 	              *
 	              * For example:
-	              *  The content of a <media:group/media:uploaded> element ("2009-05-06 26:30Z") was not in ISO 8601 format. */
-	             _("The content of a %s element (\"%s\") was not in ISO 8601 format."), element_string, actual_value);
+	              *  The content of a <media:group/media:uploaded> element (‘2009-05-06 26:30Z’) was not in ISO 8601 format. */
+	             _("The content of a %s element (‘%s’) was not in ISO 8601 format."), element_string, actual_value);
 	g_free (element_string);
 
 	return FALSE;
@@ -101,8 +101,8 @@ gdata_parser_error_unknown_property_value (xmlNode *element, const gchar *proper
 	              * (including the angle brackets ("<" and ">")) to which the property belongs, and the third is the unknown value.
 	              *
 	              * For example:
-	              *  The value of the @time property of a <media:group/media:thumbnail> element ("00:01:42.500") was unknown. */
-	             _("The value of the %s property of a %s element (\"%s\") was unknown."), property_string, element_string, actual_value);
+	              *  The value of the @time property of a <media:group/media:thumbnail> element (‘00:01:42.500’) was unknown. */
+	             _("The value of the %s property of a %s element (‘%s’) was unknown."), property_string, element_string, actual_value);
 	g_free (property_string);
 	g_free (element_string);
 
@@ -119,8 +119,8 @@ gdata_parser_error_unknown_content (xmlNode *element, const gchar *actual_conten
 	              * and the second parameter is the unknown content of that element.
 	              *
 	              * For example:
-	              *  The content of a <gphoto:access> element ("protected") was unknown. */
-	             _("The content of a %s element (\"%s\") was unknown."), element_string, actual_content);
+	              *  The content of a <gphoto:access> element (‘protected’) was unknown. */
+	             _("The content of a %s element (‘%s’) was unknown."), element_string, actual_content);
 	g_free (element_string);
 
 	return FALSE;
@@ -248,6 +248,37 @@ gdata_parser_int64_to_iso8601 (gint64 _time)
 	return g_time_val_to_iso8601 (&time_val);
 }
 
+gchar *
+gdata_parser_int64_to_iso8601_numeric_timezone (gint64 _time)
+{
+	GTimeVal time_val;
+	gchar *iso8601;
+	gchar **date_time_components;
+	gchar *retval;
+
+	time_val.tv_sec = _time;
+	time_val.tv_usec = 0;
+
+	iso8601 = g_time_val_to_iso8601 (&time_val);
+
+	/* FIXME: Work around for Google's incorrect ISO 8601 implementation.
+	 * They appear to not like dates in the format ‘2014-08-09T21:07:05Z’
+	 * which specify a timezone using ‘Z’ and no microseconds. This varies
+	 * between services.
+	 *
+	 * See: https://bugzilla.gnome.org/show_bug.cgi?id=732809
+	 * https://bugzilla.gnome.org/show_bug.cgi?id=780067
+	 * https://code.google.com/a/google.com/p/apps-api-issues/issues/detail?id=3595
+	 * http://stackoverflow.com/a/17630320/2931197 */
+	date_time_components = g_strsplit (iso8601, "Z", 2);
+	retval = g_strjoinv (".000001+00:00", date_time_components);
+	g_strfreev (date_time_components);
+
+	g_free (iso8601);
+
+	return retval;
+}
+
 gboolean
 gdata_parser_int64_from_iso8601 (const gchar *date, gint64 *_time)
 {
@@ -269,8 +300,8 @@ gdata_parser_error_required_json_content_missing (JsonReader *reader, GError **e
 	/* Translators: the parameter is the name of an JSON element.
 	 *
 	 * For example:
-	 *  A 'title' element was missing required content. */
-	g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR, _("A \'%s\' element was missing required content."), element_string);
+	 *  A ‘title’ element was missing required content. */
+	g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR, _("A ‘%s’ element was missing required content."), element_string);
 
 	return FALSE;
 }
@@ -299,8 +330,8 @@ gdata_parser_error_not_iso8601_format_json (JsonReader *reader, const gchar *act
 	              * and the second parameter is the erroneous value (which was not in ISO 8601 format).
 	              *
 	              * For example:
-	              *  The content of a 'uploaded' element ("2009-05-06 26:30Z") was not in ISO 8601 format. */
-	             _("The content of a \'%s\' element (\"%s\") was not in ISO 8601 format."), element_string, actual_value);
+	              *  The content of a ‘uploaded’ element (‘2009-05-06 26:30Z’) was not in ISO 8601 format. */
+	             _("The content of a ‘%s’ element (‘%s’) was not in ISO 8601 format."), element_string, actual_value);
 
 	return FALSE;
 }
@@ -573,10 +604,8 @@ gdata_parser_int64_from_element (xmlNode *element, const gchar *element_name, GD
 	}
 
 	/* Attempt to parse the string as a 64-bit integer */
-	errno = 0;
 	val = g_ascii_strtoll ((const gchar*) text, &end_ptr, 10);
-
-	if (errno != 0 || end_ptr == (gchar*) text) {
+	if (*end_ptr != '\0') {
 		*success = gdata_parser_error_unknown_content (element, (gchar*) text, error);
 		xmlFree (text);
 		return TRUE;
@@ -1085,8 +1114,108 @@ gdata_parser_strv_from_json_member (JsonReader *reader,
 		json_reader_end_element (reader);
 	}
 
+	/* NULL terminator. */
+	g_ptr_array_add (out, NULL);
+
 	/* Success! */
 	*output = (gchar **) g_ptr_array_free (out, FALSE);
+	*success = TRUE;
+
+	return TRUE;
+}
+
+/*
+ * gdata_parser_color_from_json_member:
+ * @reader: #JsonReader cursor object to read JSON node from
+ * @element_name: the name of the element to parse
+ * @options: a bitwise combination of parsing options from #GDataParserOptions,
+ *   or %P_NONE
+ * @output: (out caller-allocates): the return location for the parsed colour
+ *   value
+ * @success: the return location for a value which is %TRUE if the colour was
+ *   parsed successfully, %FALSE if an error was encountered, and undefined if
+ *   @element didn't match @element_name
+ * @error: a #GError, or %NULL
+ *
+ * Gets the colour value of @element if its name is @element_name, subject to
+ * various checks specified by @options. It expects the text content of
+ * @element to be an RGB colour in hexadecimal format, with an optional leading
+ * hash symbol (for example, `#RRGGBB` or `RRGGBB`).
+ *
+ * If @element doesn't match @element_name, %FALSE will be returned, @error
+ * will be unset and @success will be unset.
+ *
+ * If @element matches @element_name but one of the checks specified by
+ * @options fails, %TRUE will be returned, @error will be set to a
+ * %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error and @success will be set to %FALSE.
+ *
+ * If @element matches @element_name and all of the checks specified by
+ * @options pass, %TRUE will be returned, @error will be unset and @success
+ * will be set to %TRUE.
+ *
+ * The reason for returning the success of the parsing in @success is so that
+ * calls to gdata_parser_color_from_json_member() can be chained together in a
+ * large "or" statement based on their return values, for the purposes of
+ * determining whether any of the calls matched a given @element. If any of the
+ * calls to gdata_parser_color_from_json_member() return %TRUE, the value of
+ * @success can be examined.
+ *
+ * Return value: %TRUE if @element matched @element_name, %FALSE otherwise
+ *
+ * Since: 0.17.2
+ */
+gboolean
+gdata_parser_color_from_json_member (JsonReader *reader,
+                                     const gchar *member_name,
+                                     GDataParserOptions options,
+                                     GDataColor *output,
+                                     gboolean *success,
+                                     GError **error)
+{
+	const gchar *text;
+	GDataColor colour;
+	const GError *child_error = NULL;
+
+	/* Check if there's such an element */
+	if (g_strcmp0 (json_reader_get_member_name (reader), member_name) != 0) {
+		return FALSE;
+	}
+
+	/* Check if the output colour has already been set. The JSON parser
+	 * guarantees this can't happen. */
+	g_assert (!(options & P_NO_DUPES) ||
+	          (output->red == 0 && output->green == 0 && output->blue == 0));
+
+	/* Get the string and check it for NULLness. Check for errors first. */
+	text = json_reader_get_string_value (reader);
+	child_error = json_reader_get_error (reader);
+	if (child_error != NULL) {
+		*success = gdata_parser_error_from_json_error (reader, child_error, error);
+		return TRUE;
+	} else if (options & P_REQUIRED && (text == NULL || *text == '\0')) {
+		*success = gdata_parser_error_required_json_content_missing (reader, error);
+		return TRUE;
+	}
+
+	/* Attempt to parse the string as a hexadecimal colour. */
+	if (gdata_color_from_hexadecimal (text, &colour) == FALSE) {
+		/* Error */
+		g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR,
+		             /* Translators: the first parameter is the name of an XML element (including the angle brackets
+		              * ("<" and ">"), and the second parameter is the erroneous value (which was not in hexadecimal
+		              * RGB format).
+		              *
+		              * For example:
+		              *  The content of a <entry/gCal:color> element (‘00FG56’) was not in hexadecimal RGB format. */
+		             _("The content of a %s element (‘%s’) was not in hexadecimal RGB format."),
+		             member_name, text);
+		*success = FALSE;
+
+		return TRUE;
+	}
+
+	/* Success! */
+	*output = colour;
 	*success = TRUE;
 
 	return TRUE;

@@ -121,12 +121,15 @@ test_query_uri (void)
 	                                       "http://example.com");
 	g_assert_cmpstr (query_uri, ==,
 	                 "http://example.com"
-	                 "?maxResults=10"
-	                 "&updatedMin=1970-01-01T01:53:09Z"
-	                 "&completedMin=1970-01-01T01:34:38Z"
-	                 "&completedMax=1970-01-01T00:20:34Z"
-	                 "&dueMin=1970-01-01T00:39:05Z"
-	                 "&dueMax=1970-01-01T00:57:36Z"
+	                 /* FIXME: First two are outdated fallbacks */
+	                 "?updated-min=1970-01-01T01:53:09Z"
+	                 "&max-results=10"
+	                 "&maxResults=10"
+	                 "&updatedMin=1970-01-01T01:53:09.000001+00:00"
+	                 "&completedMin=1970-01-01T01:34:38.000001+00:00"
+	                 "&completedMax=1970-01-01T00:20:34.000001+00:00"
+	                 "&dueMin=1970-01-01T00:39:05.000001+00:00"
+	                 "&dueMax=1970-01-01T00:57:36.000001+00:00"
 	                 "&showCompleted=true"
 	                 "&showDeleted=true"
 	                 "&showHidden=true");
@@ -147,12 +150,14 @@ test_query_uri (void)
 	                                       "http://example.com");
 	g_assert_cmpstr (query_uri, ==,
 	                 "http://example.com"
-	                 "?maxResults=10"
-	                 "&updatedMin=1970-01-01T01:53:09Z"
-	                 "&completedMin=1970-01-01T01:34:38Z"
-	                 "&completedMax=1970-01-01T00:20:34Z"
-	                 "&dueMin=1970-01-01T00:39:05Z"
-	                 "&dueMax=1970-01-01T00:57:36Z"
+	                 "?updated-min=1970-01-01T01:53:09Z"
+	                 "&max-results=10"
+	                 "&maxResults=10"
+	                 "&updatedMin=1970-01-01T01:53:09.000001+00:00"
+	                 "&completedMin=1970-01-01T01:34:38.000001+00:00"
+	                 "&completedMax=1970-01-01T00:20:34.000001+00:00"
+	                 "&dueMin=1970-01-01T00:39:05.000001+00:00"
+	                 "&dueMax=1970-01-01T00:57:36.000001+00:00"
 	                 "&showCompleted=false"
 	                 "&showDeleted=false"
 	                 "&showHidden=false");
@@ -317,8 +322,8 @@ test_task_properties (void)
 			"\"title\": \"some-other-title\","
 			"\"notes\": \"more-notes\","
 			"\"status\": \"completed\","
-			"\"due\": \"2014-08-30T17:20:00Z\","
-			"\"completed\": \"2014-08-30T17:20:00Z\","
+			"\"due\": \"2014-08-30T17:20:00.000001+00:00\","
+			"\"completed\": \"2014-08-30T17:20:00.000001+00:00\","
 			"\"deleted\": true,"
 			"\"hidden\": false"
 		"}");
@@ -332,8 +337,8 @@ test_task_properties (void)
 			"\"title\": \"some-other-title\","
 			"\"notes\": \"more-notes\","
 			"\"status\": \"completed\","
-			"\"due\": \"2014-08-30T17:20:00Z\","
-			"\"completed\": \"2014-08-30T17:20:00Z\","
+			"\"due\": \"2014-08-30T17:20:00.000001+00:00\","
+			"\"completed\": \"2014-08-30T17:20:00.000001+00:00\","
 			"\"deleted\": false,"
 			"\"hidden\": false"
 		"}");
@@ -496,14 +501,14 @@ test_task_parser_normal (void)
 			"\"id\": \"some-id\","
 			"\"etag\": \"some-etag\","
 			"\"title\": \"some-title \\\"with quotes\\\"\","
-			"\"updated\": \"2014-08-30T19:40:00Z\","
+			"\"updated\": \"2014-08-30T19:40:00.000001+00:00\","
 			"\"selfLink\": \"http://some-uri/\","
 			"\"parent\": \"some-parent-id\","
 			"\"position\": \"some-position\","
 			"\"notes\": \"Some notes!\","
 			"\"status\": \"needsAction\","
-			"\"due\": \"2014-08-30T20:00:00Z\","
-			"\"completed\": \"2014-08-30T20:10:05Z\","
+			"\"due\": \"2014-08-30T20:00:00.000001+00:00\","
+			"\"completed\": \"2014-08-30T20:10:05.000001+00:00\","
 			"\"deleted\": false,"
 			"\"hidden\": true,"
 			/* Unhandled for the moment: */
@@ -1317,12 +1322,7 @@ create_global_authorizer (void)
 	g_assert (authentication_uri != NULL);
 
 	/* Get the authorisation code off the user. */
-	if (uhm_server_get_enable_online (mock_server)) {
-		authorisation_code = gdata_test_query_user_for_verifier (authentication_uri);
-	} else {
-		/* Hard coded, extracted from the trace file. */
-		authorisation_code = g_strdup ("4/hmXZtrXmXMqK1hwiWPZs9F_N6DK-.Ap4OICAUIe0WoiIBeO6P2m8IDoMxkQI");
-	}
+	authorisation_code = gdata_test_query_user_for_verifier (authentication_uri);
 
 	g_free (authentication_uri);
 
@@ -1354,13 +1354,16 @@ main (int argc, char *argv[])
 	GDataService *service = NULL;  /* owned */
 	GDataService *unauthorised_service = NULL;  /* owned */
 	GFile *trace_directory = NULL;  /* owned */
+	gchar *path = NULL;
 
 	gdata_test_init (argc, argv);
 
 	mock_server = gdata_test_get_mock_server ();
 	g_signal_connect (G_OBJECT (mock_server), "notify::resolver",
 	                  (GCallback) mock_server_notify_resolver_cb, NULL);
-	trace_directory = g_file_new_for_path (TEST_FILE_DIR "traces/tasks");
+	path = g_test_build_filename (G_TEST_DIST, "traces/tasks", NULL);
+	trace_directory = g_file_new_for_path (path);
+	g_free (path);
 	uhm_server_set_trace_directory (mock_server, trace_directory);
 	g_object_unref (trace_directory);
 

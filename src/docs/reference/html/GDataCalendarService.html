@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataCalendarService: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch14.html" title="Google Calendar API">
 <link rel="prev" href="ch14.html" title="Google Calendar API">
 <link rel="next" href="GDataCalendarFeed.html" title="GDataCalendarFeed">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -45,7 +45,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataCalendarService.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -131,12 +131,28 @@ justifications.
 <a class="link" href="GDataCalendarService.html#gdata-calendar-service-insert-event-async" title="gdata_calendar_service_insert_event_async ()">gdata_calendar_service_insert_event_async</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="returnvalue">GDataCalendarEvent</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataCalendarService.html#gdata-calendar-service-insert-calendar-event" title="gdata_calendar_service_insert_calendar_event ()">gdata_calendar_service_insert_calendar_event</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataCalendarService.html#gdata-calendar-service-insert-calendar-event-async" title="gdata_calendar_service_insert_calendar_event_async ()">gdata_calendar_service_insert_calendar_event_async</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect1">
 <a name="GDataCalendarService.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -155,7 +171,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataCalendarService.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataService.html" title="GDataService">GDataService</a>
         <span class="lineart">╰──</span> GDataCalendarService
 </pre>
@@ -175,14 +191,15 @@ GDataCalendarService implements
 <a name="GDataCalendarService.description"></a><h2>Description</h2>
 <p><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> is a subclass of <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> for communicating with the GData API of Google Calendar. It supports querying
 for, inserting, editing and deleting events from calendars, as well as operations on the calendars themselves.</p>
-<p>For more details of Google Calendar's GData API, see the <a class="ulink" href="http://code.google.com/apis/calendar/docs/2.0/reference.html" target="_top">
-online documentation</a>.</p>
+<p>For more details of Google Calendar's GData API, see the</p>
+<a class="ulink" href="https://developers.google.com/google-apps/calendar/v3/reference/" target="_top">
+online documentation</a>.
 <p>Each calendar accessible through the service has an access control list (ACL) which defines the level of access to the calendar to each user, and
 which users the calendar is shared with. For more information about ACLs for calendars, see the</p>
-<a class="ulink" href="http://code.google.com/apis/calendar/data/2.0/developers_guide_protocol.html#SharingACalendar" target="_top">online documentation on
+<a class="ulink" href="https://developers.google.com/google-apps/calendar/v3/reference/acl" target="_top">online documentation on
 sharing calendars</a>.
 <div class="example">
-<a name="id-1.5.3.2.9.6"></a><p class="title"><b>Example 16. Retrieving the Access Control List for a Calendar</b></p>
+<a name="id-1.5.3.2.9.7"></a><p class="title"><b>Example 16. Retrieving the Access Control List for a Calendar</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -275,238 +292,103 @@ sharing calendars</a>.
 86
 87
 88</pre></td>
-        <td class="listing_code"><pre class="programlisting">GDataCalendarService <span class="gtkdoc opt">*</span>service<span class="gtkdoc opt">;</span>
-GDataCalendarCalendar <span class="gtkdoc opt">*</span>calendar<span class="gtkdoc opt">;</span>
-GDataFeed <span class="gtkdoc opt">*</span>acl_feed<span class="gtkdoc opt">;</span>
-GDataAccessRule <span class="gtkdoc opt">*</span>rule<span class="gtkdoc opt">, *</span>new_rule<span class="gtkdoc opt">;</span>
-GDataLink <span class="gtkdoc opt">*</span>acl_link<span class="gtkdoc opt">;</span>
-GList <span class="gtkdoc opt">*</span>i<span class="gtkdoc opt">;</span>
-GError <span class="gtkdoc opt">*</span>error <span class="gtkdoc opt">=</span> NULL<span class="gtkdoc opt">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataCalendarService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
+<span class="usertype">GDataCalendarCalendar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">calendar</span><span class="symbol">;</span>
+<span class="usertype">GDataFeed</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">acl_feed</span><span class="symbol">;</span>
+<span class="usertype">GDataAccessRule</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">rule</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">new_rule</span><span class="symbol">;</span>
+<span class="usertype">GDataLink</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">acl_link</span><span class="symbol">;</span>
+<span class="usertype">GList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">i</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service and retrieve a calendar to work on */</span>
-service <span class="gtkdoc opt">=</span> <span class="function">create_calendar_service</span> <span class="gtkdoc opt">();</span>
-calendar <span class="gtkdoc opt">=</span> <span class="function">get_calendar</span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
+<span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_calendar_service</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="normal">calendar </span><span class="symbol">=</span><span class="normal"> </span><span class="function">get_calendar</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
 <span class="comment">/* Query the service for the ACL for the given calendar */</span>
-acl_feed <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataAccessHandler.html#gdata-access-handler-get-rules">gdata_access_handler_get_rules</a></span> <span class="gtkdoc opt">(</span><span class="function">GDATA_ACCESS_HANDLER</span> <span class="gtkdoc opt">(</span>calendar<span class="gtkdoc opt">),</span> <span class="function">GDATA_SERVICE</span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">),</span> NULL<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">);</span>
+<span class="normal">acl_feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataAccessHandler.html#gdata-access-handler-get-rules">gdata_access_handler_get_rules</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ACCESS_HANDLER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">calendar</span><span class="symbol">),</span><span class="normal"> </span><span class="function">GDATA_SERVICE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error getting ACL feed for calendar: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
-	<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>calendar<span class="gtkdoc opt">);</span>
-	<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
-	<span class="keyword">return</span><span class="gtkdoc opt">;</span>
-<span class="gtkdoc opt">}</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting ACL feed for calendar: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">calendar</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
+<span class="cbracket">}</span>
 
 <span class="comment">/* Iterate through the ACL */</span>
-<span class="keyword">for</span> <span class="gtkdoc opt">(</span>i <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span> <span class="gtkdoc opt">(</span>acl_feed<span class="gtkdoc opt">);</span> i <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">;</span> i <span class="gtkdoc opt">=</span> i<span class="gtkdoc opt">-&gt;</span>next<span class="gtkdoc opt">) {</span>
-	<span class="gtkdoc kwb">const</span> gchar <span class="gtkdoc opt">*</span>scope_value<span class="gtkdoc opt">;</span>
+<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">acl_feed</span><span class="symbol">);</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">scope_value</span><span class="symbol">;</span>
 
-	rule <span class="gtkdoc opt">=</span> <span class="function">GDATA_ACCESS_RULE</span> <span class="gtkdoc opt">(</span>i<span class="gtkdoc opt">-&gt;</span>data<span class="gtkdoc opt">);</span>
+<span class="normal">    rule </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_ACCESS_RULE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i</span><span class="symbol">-&gt;</span><span class="normal">data</span><span class="symbol">);</span>
 
-	<span class="comment">/* Do something with the access rule here. As an example, we update the rule applying to test&#64;gmail.com and delete all</span>
-<span class="comment">	 * the other rules. We then insert another rule for example&#64;gmail.com below. */</span>
-	<span class="function"><a href="GDataAccessRule.html#gdata-access-rule-get-scope">gdata_access_rule_get_scope</a></span> <span class="gtkdoc opt">(</span>rule<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">, &amp;</span>scope_value<span class="gtkdoc opt">);</span>
-	<span class="keyword">if</span> <span class="gtkdoc opt">(</span>scope_value <span class="gtkdoc opt">!=</span> NULL <span class="gtkdoc opt">&amp;&amp;</span> <span class="function">strcmp</span> <span class="gtkdoc opt">(</span>scope_value<span class="gtkdoc opt">,</span> <span class="string">&quot;test&#64;gmail.com&quot;</span><span class="gtkdoc opt">) ==</span> <span class="number">0</span><span class="gtkdoc opt">) {</span>
-		GDataAccessRule <span class="gtkdoc opt">*</span>updated_rule<span class="gtkdoc opt">;</span>
+<span class="normal">    </span><span class="comment">/* Do something with the access rule here. As an example, we update the rule applying to </span><span class="url"><a href="test@gmail.com">test@gmail.com</a></span><span class="comment"> and delete all</span>
+<span class="comment">     * the other rules. We then insert another rule for </span><span class="url"><a href="example@gmail.com">example@gmail.com</a></span><span class="comment"> below. */</span>
+<span class="normal">    </span><span class="function"><a href="GDataAccessRule.html#gdata-access-rule-get-scope">gdata_access_rule_get_scope</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">rule</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">scope_value</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">scope_value </span><span class="symbol">!=</span><span class="normal"> NULL </span><span class="symbol">&amp;&amp;</span><span class="normal"> </span><span class="function">strcmp</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">scope_value</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"test@gmail.com"</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="usertype">GDataAccessRule</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">updated_rule</span><span class="symbol">;</span>
 
-		<span class="comment">/* Update the rule to make test&#64;gmail.com an editor (full read/write access to the calendar, but they can't change</span>
-<span class="comment">		 * the ACL). */</span>
-		<span class="function"><a href="GDataAccessRule.html#gdata-access-rule-set-role">gdata_access_rule_set_role</a></span> <span class="gtkdoc opt">(</span>rule<span class="gtkdoc opt">,</span> GDATA_CALENDAR_ACCESS_ROLE_EDITOR<span class="gtkdoc opt">);</span>
-		updated_rule <span class="gtkdoc opt">=</span> <span class="function">GDATA_ACCESS_RULE</span> <span class="gtkdoc opt">(</span><span class="function"><a href="GDataService.html#gdata-service-update-entry">gdata_service_update_entry</a></span> <span class="gtkdoc opt">(</span><span class="function">GDATA_SERVICE</span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">),</span> <span class="function">GDATA_ENTRY</span> <span class="gtkdoc opt">(</span>rule<span class="gtkdoc opt">),</span> NULL<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">));</span>
+<span class="normal">        </span><span class="comment">/* Update the rule to make </span><span class="url"><a href="test@gmail.com">test@gmail.com</a></span><span class="comment"> an editor (full read/write access to the calendar, but they can't change</span>
+<span class="comment">         * the ACL). */</span>
+<span class="normal">        </span><span class="function"><a href="GDataAccessRule.html#gdata-access-rule-set-role">gdata_access_rule_set_role</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">rule</span><span class="symbol">,</span><span class="normal"> <a href="GDataCalendarAccessRule.html#GDATA-CALENDAR-ACCESS-ROLE-EDITOR:CAPS">GDATA_CALENDAR_ACCESS_ROLE_EDITOR</a></span><span class="symbol">);</span>
+<span class="normal">        updated_rule </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_ACCESS_RULE</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataService.html#gdata-service-update-entry">gdata_service_update_entry</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_SERVICE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> </span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">rule</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">));</span>
 
-		<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
-			<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error updating access rule for %s: %s&quot;</span><span class="gtkdoc opt">,</span> scope_value<span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
-			<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
-			<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>acl_feed<span class="gtkdoc opt">);</span>
-			<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>calendar<span class="gtkdoc opt">);</span>
-			<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
-			<span class="keyword">return</span><span class="gtkdoc opt">;</span>
-		<span class="gtkdoc opt">}</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error updating access rule for %s: %s"</span><span class="symbol">,</span><span class="normal"> scope_value</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">acl_feed</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">calendar</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="keyword">return</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="cbracket">}</span>
 
-		<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>updated_rule<span class="gtkdoc opt">);</span>
-	<span class="gtkdoc opt">}</span> <span class="keyword">else</span> <span class="gtkdoc opt">{</span>
-		<span class="comment">/* Delete any rule which doesn't apply to test&#64;gmail.com */</span>
-		<span class="function"><a href="GDataService.html#gdata-service-delete-entry">gdata_service_delete_entry</a></span> <span class="gtkdoc opt">(</span><span class="function">GDATA_SERVICE</span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">),</span> <span class="function">GDATA_ENTRY</span> <span class="gtkdoc opt">(</span>rule<span class="gtkdoc opt">),</span> NULL<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">);</span>
+<span class="normal">        </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">updated_rule</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span><span class="normal"> </span><span class="keyword">else</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="comment">/* Delete any rule which doesn't apply to </span><span class="url"><a href="test@gmail.com">test@gmail.com</a></span><span class="comment"> */</span>
+<span class="normal">        </span><span class="function"><a href="GDataService.html#gdata-service-delete-entry">gdata_service_delete_entry</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_SERVICE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> </span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">rule</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-		<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
-			<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error deleting access rule for %s: %s&quot;</span><span class="gtkdoc opt">,</span> scope_value<span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
-			<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
-			<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>acl_feed<span class="gtkdoc opt">);</span>
-			<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>calendar<span class="gtkdoc opt">);</span>
-			<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
-			<span class="keyword">return</span><span class="gtkdoc opt">;</span>
-		<span class="gtkdoc opt">}</span>
-	<span class="gtkdoc opt">}</span>
-<span class="gtkdoc opt">}</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error deleting access rule for %s: %s"</span><span class="symbol">,</span><span class="normal"> scope_value</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">acl_feed</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">calendar</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="keyword">return</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>acl_feed<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">acl_feed</span><span class="symbol">);</span>
 
-<span class="comment">/* Create and insert a new access rule for example&#64;gmail.com which allows them to view free/busy information for events in the</span>
+<span class="comment">/* Create and insert a new access rule for </span><span class="url"><a href="example@gmail.com">example@gmail.com</a></span><span class="comment"> which allows them to view free/busy information for events in the</span>
 <span class="comment"> * calendar, but doesn't allow them to view the full event details. */</span>
-rule <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataAccessRule.html#gdata-access-rule-new">gdata_access_rule_new</a></span> <span class="gtkdoc opt">(</span>NULL<span class="gtkdoc opt">);</span>
-<span class="function"><a href="GDataAccessRule.html#gdata-access-rule-set-role">gdata_access_rule_set_role</a></span> <span class="gtkdoc opt">(</span>rule<span class="gtkdoc opt">,</span> GDATA_CALENDAR_ACCESS_ROLE_FREE_BUSY<span class="gtkdoc opt">);</span>
-<span class="function"><a href="GDataAccessRule.html#gdata-access-rule-set-scope">gdata_access_rule_set_scope</a></span> <span class="gtkdoc opt">(</span>rule<span class="gtkdoc opt">,</span> GDATA_ACCESS_SCOPE_USER<span class="gtkdoc opt">,</span> <span class="string">&quot;example&#64;gmail.com&quot;</span><span class="gtkdoc opt">);</span>
+<span class="normal">rule </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataAccessRule.html#gdata-access-rule-new">gdata_access_rule_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="function"><a href="GDataAccessRule.html#gdata-access-rule-set-role">gdata_access_rule_set_role</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">rule</span><span class="symbol">,</span><span class="normal"> <a href="GDataCalendarAccessRule.html#GDATA-CALENDAR-ACCESS-ROLE-FREE-BUSY:CAPS">GDATA_CALENDAR_ACCESS_ROLE_FREE_BUSY</a></span><span class="symbol">);</span>
+<span class="function"><a href="GDataAccessRule.html#gdata-access-rule-set-scope">gdata_access_rule_set_scope</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">rule</span><span class="symbol">,</span><span class="normal"> <a href="GDataAccessRule.html#GDATA-ACCESS-SCOPE-USER:CAPS">GDATA_ACCESS_SCOPE_USER</a></span><span class="symbol">,</span><span class="normal"> </span><span class="string">"example@gmail.com"</span><span class="symbol">);</span>
 
-acl_link <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataEntry.html#gdata-entry-look-up-link">gdata_entry_look_up_link</a></span> <span class="gtkdoc opt">(</span><span class="function">GDATA_ENTRY</span> <span class="gtkdoc opt">(</span>calendar<span class="gtkdoc opt">),</span> GDATA_LINK_ACCESS_CONTROL_LIST<span class="gtkdoc opt">);</span>
-new_rule <span class="gtkdoc opt">=</span> <span class="function">GDATA_ACCESS_RULE</span> <span class="gtkdoc opt">(</span><span class="function"><a href="GDataService.html#gdata-service-insert-entry">gdata_service_insert_entry</a></span> <span class="gtkdoc opt">(</span><span class="function">GDATA_SERVICE</span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">),</span> <span class="function"><a href="GDataLink.html#gdata-link-get-uri">gdata_link_get_uri</a></span> <span class="gtkdoc opt">(</span>acl_link<span class="gtkdoc opt">),</span> <span class="function">GDATA_ENTRY</span> <span class="gtkdoc opt">(</span>rule<span class="gtkdoc opt">),</span>
-                                                          NULL<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">));</span>
+<span class="normal">acl_link </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataEntry.html#gdata-entry-look-up-link">gdata_entry_look_up_link</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">calendar</span><span class="symbol">),</span><span class="normal"> <a href="GDataAccessHandler.html#GDATA-LINK-ACCESS-CONTROL-LIST:CAPS">GDATA_LINK_ACCESS_CONTROL_LIST</a></span><span class="symbol">);</span>
+<span class="normal">new_rule </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_ACCESS_RULE</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataService.html#gdata-service-insert-entry">gdata_service_insert_entry</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_SERVICE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> </span><span class="function"><a href="GDataLink.html#gdata-link-get-uri">gdata_link_get_uri</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">acl_link</span><span class="symbol">),</span><span class="normal"> </span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">rule</span><span class="symbol">),</span>
+<span class="normal">                                                          NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">));</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>rule<span class="gtkdoc opt">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>calendar<span class="gtkdoc opt">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">rule</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">calendar</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error inserting access rule: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
-	<span class="keyword">return</span><span class="gtkdoc opt">;</span>
-<span class="gtkdoc opt">}</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error inserting access rule: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
+<span class="cbracket">}</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>acl_link<span class="gtkdoc opt">);</span></pre></td>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">acl_link</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 </div>
-<br class="example-break"><p>The Calendar service can be manipulated using batch operations, too. See the</p>
-<a class="ulink" href="http://code.google.com/apis/calendar/data/2.0/developers_guide_protocol.html#Batch" target="_top">online documentation on batch
-operations</a> for more information.
-<div class="example">
-<a name="id-1.5.3.2.9.9"></a><p class="title"><b>Example 17. Performing a Batch Operation on a Calendar</b></p>
-<div class="example-contents">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61</pre></td>
-        <td class="listing_code"><pre class="programlisting">GDataCalendarService <span class="gtkdoc opt">*</span>service<span class="gtkdoc opt">;</span>
-GDataCalendarCalendar <span class="gtkdoc opt">*</span>calendar<span class="gtkdoc opt">;</span>
-GDataBatchOperation <span class="gtkdoc opt">*</span>operation<span class="gtkdoc opt">;</span>
-GDataLink <span class="gtkdoc opt">*</span>batch_link<span class="gtkdoc opt">;</span>
-GList <span class="gtkdoc opt">*</span>i<span class="gtkdoc opt">;</span>
-GError <span class="gtkdoc opt">*</span>error <span class="gtkdoc opt">=</span> NULL<span class="gtkdoc opt">;</span>
-
-<span class="comment">/* Create a service and retrieve a calendar to work on */</span>
-service <span class="gtkdoc opt">=</span> <span class="function">create_calendar_service</span> <span class="gtkdoc opt">();</span>
-calendar <span class="gtkdoc opt">=</span> <span class="function">get_calendar</span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
-
-<span class="comment">/* Create the batch operation */</span>
-batch_link <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataEntry.html#gdata-entry-look-up-link">gdata_entry_look_up_link</a></span> <span class="gtkdoc opt">(</span><span class="function">GDATA_ENTRY</span> <span class="gtkdoc opt">(</span>calendar<span class="gtkdoc opt">),</span> GDATA_LINK_BATCH<span class="gtkdoc opt">);</span>
-operation <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataBatchable.html#gdata-batchable-create-operation">gdata_batchable_create_operation</a></span> <span class="gtkdoc opt">(</span><span class="function">GDATA_BATCHABLE</span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">),</span> <span class="function"><a href="GDataLink.html#gdata-link-get-uri">gdata_link_get_uri</a></span> <span class="gtkdoc opt">(</span>batch_link<span class="gtkdoc opt">));</span>
-
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>calendar<span class="gtkdoc opt">);</span>
-
-<span class="function"><a href="GDataBatchOperation.html#gdata-batch-operation-add-query">gdata_batch_operation_add_query</a></span> <span class="gtkdoc opt">(</span>operation<span class="gtkdoc opt">,</span> event_entry_id_to_query<span class="gtkdoc opt">,</span> GDATA_TYPE_CALENDAR_EVENT<span class="gtkdoc opt">,</span>
-                                 <span class="gtkdoc opt">(</span>GDataBatchOperationCallback<span class="gtkdoc opt">)</span> batch_query_cb<span class="gtkdoc opt">,</span> user_data<span class="gtkdoc opt">);</span>
-<span class="function"><a href="GDataBatchOperation.html#gdata-batch-operation-add-insertion">gdata_batch_operation_add_insertion</a></span> <span class="gtkdoc opt">(</span>operation<span class="gtkdoc opt">,</span> new_entry<span class="gtkdoc opt">, (</span>GDataBatchOperationCallback<span class="gtkdoc opt">)</span> batch_insertion_cb<span class="gtkdoc opt">,</span> user_data<span class="gtkdoc opt">);</span>
-<span class="function"><a href="GDataBatchOperation.html#gdata-batch-operation-add-update">gdata_batch_operation_add_update</a></span> <span class="gtkdoc opt">(</span>operation<span class="gtkdoc opt">,</span> old_entry<span class="gtkdoc opt">, (</span>GDataBatchOperationCallback<span class="gtkdoc opt">)</span> batch_update_cb<span class="gtkdoc opt">,</span> user_data<span class="gtkdoc opt">);</span>
-<span class="function"><a href="GDataBatchOperation.html#gdata-batch-operation-add-deletion">gdata_batch_operation_add_deletion</a></span> <span class="gtkdoc opt">(</span>operation<span class="gtkdoc opt">,</span> entry_to_delete<span class="gtkdoc opt">, (</span>GDataBatchOperationCallback<span class="gtkdoc opt">)</span> batch_deletion_cb<span class="gtkdoc opt">,</span> user_data<span class="gtkdoc opt">);</span>
-
-<span class="comment">/* Run the batch operation and handle the results in the various callbacks */</span>
-<span class="function">gdata_test_batch_operation_run</span> <span class="gtkdoc opt">(</span>operation<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">);</span>
-
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>operation<span class="gtkdoc opt">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
-
-<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error running batch operation: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
-	<span class="keyword">return</span><span class="gtkdoc opt">;</span>
-<span class="gtkdoc opt">}</span>
-
-<span class="gtkdoc kwb">static void</span>
-<span class="function">batch_query_cb</span> <span class="gtkdoc opt">(</span>guint operation_id<span class="gtkdoc opt">,</span> GDataBatchOperationType operation_type<span class="gtkdoc opt">,</span> GDataEntry <span class="gtkdoc opt">*</span>entry<span class="gtkdoc opt">,</span> GError <span class="gtkdoc opt">*</span>error<span class="gtkdoc opt">,</span> gpointer user_data<span class="gtkdoc opt">)</span>
-<span class="gtkdoc opt">{</span>
-	<span class="comment">/* operation_type == GDATA_BATCH_OPERATION_QUERY */</span>
-	<span class="comment">/* Reference and do something with the returned entry. */</span>
-<span class="gtkdoc opt">}</span>
-
-<span class="gtkdoc kwb">static void</span>
-<span class="function">batch_insertion_cb</span> <span class="gtkdoc opt">(</span>guint operation_id<span class="gtkdoc opt">,</span> GDataBatchOperationType operation_type<span class="gtkdoc opt">,</span> GDataEntry <span class="gtkdoc opt">*</span>entry<span class="gtkdoc opt">,</span> GError <span class="gtkdoc opt">*</span>error<span class="gtkdoc opt">,</span> gpointer user_data<span class="gtkdoc opt">)</span>
-<span class="gtkdoc opt">{</span>
-	<span class="comment">/* operation_type == GDATA_BATCH_OPERATION_INSERTION */</span>
-	<span class="comment">/* Reference and do something with the returned entry. */</span>
-<span class="gtkdoc opt">}</span>
-
-<span class="gtkdoc kwb">static void</span>
-<span class="function">batch_update_cb</span> <span class="gtkdoc opt">(</span>guint operation_id<span class="gtkdoc opt">,</span> GDataBatchOperationType operation_type<span class="gtkdoc opt">,</span> GDataEntry <span class="gtkdoc opt">*</span>entry<span class="gtkdoc opt">,</span> GError <span class="gtkdoc opt">*</span>error<span class="gtkdoc opt">,</span> gpointer user_data<span class="gtkdoc opt">)</span>
-<span class="gtkdoc opt">{</span>
-	<span class="comment">/* operation_type == GDATA_BATCH_OPERATION_UPDATE */</span>
-	<span class="comment">/* Reference and do something with the returned entry. */</span>
-<span class="gtkdoc opt">}</span>
-
-<span class="gtkdoc kwb">static void</span>
-<span class="function">batch_deletion_cb</span> <span class="gtkdoc opt">(</span>guint operation_id<span class="gtkdoc opt">,</span> GDataBatchOperationType operation_type<span class="gtkdoc opt">,</span> GDataEntry <span class="gtkdoc opt">*</span>entry<span class="gtkdoc opt">,</span> GError <span class="gtkdoc opt">*</span>error<span class="gtkdoc opt">,</span> gpointer user_data<span class="gtkdoc opt">)</span>
-<span class="gtkdoc opt">{</span>
-	<span class="comment">/* operation_type == GDATA_BATCH_OPERATION_DELETION, entry == NULL */</span>
-<span class="gtkdoc opt">}</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-</div>
-<br class="example-break">
+<br class="example-break"><p>Before version 0.17.2, the Calendar service could be manipulated using
+batch operations. That is no longer supported, and any batch operations
+created on the calendar will fail.</p>
 </div>
 <div class="refsect1">
 <a name="GDataCalendarService.functions_details"></a><h2>Functions</h2>
@@ -515,10 +397,10 @@ operation <span class="gtkdoc opt">=</span> <span class="function"><a href="GDat
 <pre class="programlisting"><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="returnvalue">GDataCalendarService</span></a> *
 gdata_calendar_service_new (<em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *authorizer</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> using the given <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>. If <em class="parameter"><code>authorizer</code></em>
- is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, all requests are made as an unauthenticated user.</p>
+ is <code class="literal">NULL</code>, all requests are made as an unauthenticated user.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.2.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-service-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -526,16 +408,16 @@ gdata_calendar_service_new (<em class="parameter"><code><a class="link" href="GD
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>authorizer</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.2.6"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<a name="gdata-calendar-service-new.returns"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
-<p class="since">Since 0.9.0</p>
+<p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -548,11 +430,11 @@ by the <a class="link" href="GDataCalendarService.html" title="GDataCalendarServ
 does not support natively, then this domain may be needed to authorize the requests.</p>
 <p>The domain never changes, and is interned so that pointer comparison can be used to differentiate it from other authorization domains.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.3.6"></a><h4>Returns</h4>
+<a name="gdata-calendar-service-get-primary-authorization-domain.returns"></a><h4>Returns</h4>
 <p> the service's authorization domain. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.9.0</p>
+<p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -561,18 +443,18 @@ does not support natively, then this domain may be needed to authorize the reque
 gdata_calendar_service_query_all_calendars
                                (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Queries the service to return a list of all calendars from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>
 . It will return all calendars the user has read access to, including primary, secondary and imported
 calendars.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.4.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-service-query-all-calendars.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -586,17 +468,17 @@ calendars.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -607,14 +489,14 @@ function. </p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.4.7"></a><h4>Returns</h4>
+<a name="gdata-calendar-service-query-all-calendars.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -626,12 +508,12 @@ function. </p></td>
 gdata_calendar_service_query_all_calendars_async
                                (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Queries the service to return a list of all calendars from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>
 . <em class="parameter"><code>self</code></em>
@@ -641,8 +523,8 @@ this function returns.</p>
 <p>For more details, see <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-all-calendars" title="gdata_calendar_service_query_all_calendars ()"><code class="function">gdata_calendar_service_query_all_calendars()</code></a>, which is the synchronous version of
 this function, and <a class="link" href="GDataService.html#gdata-service-query-async" title="gdata_service_query_async ()"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.5.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-service-query-all-calendars-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -656,17 +538,17 @@ this function, and <a class="link" href="GDataService.html#gdata-service-query-a
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -678,7 +560,7 @@ function. </p></td>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
 <td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
+will not be called any more, or <code class="literal">NULL</code>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
@@ -697,7 +579,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.9.1</p>
+<p class="since">Since: <a class="link" href="ix12.html#api-index-0.9.1">0.9.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -706,18 +588,18 @@ function. </p></td>
 gdata_calendar_service_query_own_calendars
                                (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Queries the service to return a list of calendars from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>
 , and the authenticated user owns. (i.e. They have full read/write access to the calendar, as well
 as the ability to set permissions on the calendar.)</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.6.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-service-query-own-calendars.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -731,17 +613,17 @@ as the ability to set permissions on the calendar.)</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -752,14 +634,14 @@ function. </p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.6.7"></a><h4>Returns</h4>
+<a name="gdata-calendar-service-query-own-calendars.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -771,12 +653,12 @@ function. </p></td>
 gdata_calendar_service_query_own_calendars_async
                                (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Queries the service to return a list of calendars from the authenticated account which match the given
 <em class="parameter"><code>query</code></em>
 , and the authenticated user owns. <em class="parameter"><code>self</code></em>
@@ -786,8 +668,8 @@ so can safely be unreffed after this function returns.</p>
 <p>For more details, see <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-own-calendars" title="gdata_calendar_service_query_own_calendars ()"><code class="function">gdata_calendar_service_query_own_calendars()</code></a>, which is the synchronous version of
 this function, and <a class="link" href="GDataService.html#gdata-service-query-async" title="gdata_service_query_async ()"><code class="function">gdata_service_query_async()</code></a>, which is the base asynchronous query function.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.7.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-service-query-own-calendars-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -801,17 +683,17 @@ this function, and <a class="link" href="GDataService.html#gdata-service-query-a
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -823,7 +705,7 @@ function. </p></td>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
 <td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
+will not be called any more, or <code class="literal">NULL</code>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
@@ -842,7 +724,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.9.1</p>
+<p class="since">Since: <a class="link" href="ix12.html#api-index-0.9.1">0.9.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -851,17 +733,17 @@ function. </p></td>
 gdata_calendar_service_query_events (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar"><span class="type">GDataCalendarCalendar</span></a> *calendar</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                     <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Queries the service to return a list of events in the given <em class="parameter"><code>calendar</code></em>
 , which match <em class="parameter"><code>query</code></em>
 .</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.8.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-service-query-events.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -880,17 +762,17 @@ gdata_calendar_service_query_events (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -901,14 +783,14 @@ function. </p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.8.7"></a><h4>Returns</h4>
+<a name="gdata-calendar-service-query-events.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -921,12 +803,12 @@ gdata_calendar_service_query_events_async
                                (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar"><span class="type">GDataCalendarCalendar</span></a> *calendar</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Queries the service to return a list of events in the given <em class="parameter"><code>calendar</code></em>
 , which match <em class="parameter"><code>query</code></em>
 . <em class="parameter"><code>self</code></em>
@@ -939,8 +821,8 @@ function is called, so can safely be unreffed after this function returns.</p>
 <p>For more details, see <a class="link" href="GDataCalendarService.html#gdata-calendar-service-query-events" title="gdata_calendar_service_query_events ()"><code class="function">gdata_calendar_service_query_events()</code></a>, which is the synchronous version of this function, and <a class="link" href="GDataService.html#gdata-service-query-async" title="gdata_service_query_async ()"><code class="function">gdata_service_query_async()</code></a>,
 which is the base asynchronous query function.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.9.7"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-service-query-events-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -959,17 +841,17 @@ which is the base asynchronous query function.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
@@ -981,7 +863,7 @@ function. </p></td>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
 <td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
+will not be called any more, or <code class="literal">NULL</code>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
@@ -1000,7 +882,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.9.1</p>
+<p class="since">Since: <a class="link" href="ix12.html#api-index-0.9.1">0.9.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1008,14 +890,20 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="returnvalue">GDataCalendarEvent</span></a> *
 gdata_calendar_service_insert_event (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> *event</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_calendar_service_insert_event</code> has been deprecated since version 0.17.2 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="GDataCalendarService.html#gdata-calendar-service-insert-calendar-event" title="gdata_calendar_service_insert_calendar_event ()"><code class="function">gdata_calendar_service_insert_calendar_event()</code></a>
+  instead to be able to specify the calendar to add the event to; otherwise
+  the default calendar will be used.</p>
+</div>
 <p>Inserts <em class="parameter"><code>event</code></em>
  by uploading it to the online calendar service.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.10.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-service-insert-event.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1034,23 +922,23 @@ gdata_calendar_service_insert_event (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.10.7"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<a name="gdata-calendar-service-insert-event.returns"></a><h4>Returns</h4>
+<p> an updated <a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.2.0</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-0.2.0">0.2.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1059,9 +947,16 @@ gdata_calendar_service_insert_event (<em class="parameter"><code><a class="link"
 gdata_calendar_service_insert_event_async
                                (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> *event</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_calendar_service_insert_event_async</code> has been deprecated since version 0.17.2 and should not be used in newly-written code.</p>
+<p>Use
+  <a class="link" href="GDataCalendarService.html#gdata-calendar-service-insert-calendar-event-async" title="gdata_calendar_service_insert_calendar_event_async ()"><code class="function">gdata_calendar_service_insert_calendar_event_async()</code></a> instead to be able to
+  specify the calendar to add the event to; otherwise the default calendar
+  will be used.</p>
+</div>
 <p>Inserts <em class="parameter"><code>event</code></em>
  by uploading it to the online calendar service. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>event</code></em>
@@ -1073,8 +968,8 @@ errors.</p>
 <p>For more details, see <a class="link" href="GDataCalendarService.html#gdata-calendar-service-insert-event" title="gdata_calendar_service_insert_event ()"><code class="function">gdata_calendar_service_insert_event()</code></a>, which is the synchronous version of this function, and
 <a class="link" href="GDataService.html#gdata-service-insert-entry-async" title="gdata_service_insert_entry_async ()"><code class="function">gdata_service_insert_entry_async()</code></a>, which is the base asynchronous insertion function.</p>
 <div class="refsect3">
-<a name="id-1.5.3.2.10.11.7"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-service-insert-event-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1093,7 +988,7 @@ errors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1110,7 +1005,138 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.8.0</p>
+<p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-calendar-service-insert-calendar-event"></a><h3>gdata_calendar_service_insert_calendar_event ()</h3>
+<pre class="programlisting"><a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="returnvalue">GDataCalendarEvent</span></a> *
+gdata_calendar_service_insert_calendar_event
+                               (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                <em class="parameter"><code><a class="link" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar"><span class="type">GDataCalendarCalendar</span></a> *calendar</code></em>,
+                                <em class="parameter"><code><a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> *event</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<div class="warning"><p><code class="literal">gdata_calendar_service_insert_calendar_event</code> is deprecated and should not be used in newly-written code.</p></div>
+<p>Inserts <em class="parameter"><code>event</code></em>
+ by uploading it to the online calendar service, adding it to
+the specified <em class="parameter"><code>calendar</code></em>
+.</p>
+<p>For more details, see <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a>.</p>
+<div class="refsect3">
+<a name="gdata-calendar-service-insert-calendar-event.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>calendar</p></td>
+<td class="parameter_description"><p>the <a class="link" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar"><span class="type">GDataCalendarCalendar</span></a> to insert the event into</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>event</p></td>
+<td class="parameter_description"><p>the <a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> to insert</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>cancellable</p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="gdata-calendar-service-insert-calendar-event.returns"></a><h4>Returns</h4>
+<p> an updated <a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a>, or <code class="literal">NULL</code>;
+unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix23.html#api-index-0.17.2">0.17.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-calendar-service-insert-calendar-event-async"></a><h3>gdata_calendar_service_insert_calendar_event_async ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_calendar_service_insert_calendar_event_async
+                               (<em class="parameter"><code><a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a> *self</code></em>,
+                                <em class="parameter"><code><a class="link" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar"><span class="type">GDataCalendarCalendar</span></a> *calendar</code></em>,
+                                <em class="parameter"><code><a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> *event</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+<p>Inserts <em class="parameter"><code>event</code></em>
+ by uploading it to the online calendar service, adding it to
+the specified <em class="parameter"><code>calendar</code></em>
+. <em class="parameter"><code>self</code></em>
+ and <em class="parameter"><code>event</code></em>
+ are both reffed when this function
+is called, so can safely be unreffed after this function returns.</p>
+<p><em class="parameter"><code>callback</code></em>
+ should call <a class="link" href="GDataService.html#gdata-service-insert-entry-finish" title="gdata_service_insert_entry_finish ()"><code class="function">gdata_service_insert_entry_finish()</code></a> to obtain a
+<a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> representing the inserted event and to check for possible
+errors.</p>
+<p>For more details, see <a class="link" href="GDataCalendarService.html#gdata-calendar-service-insert-event" title="gdata_calendar_service_insert_event ()"><code class="function">gdata_calendar_service_insert_event()</code></a>, which is the
+synchronous version of this function, and <a class="link" href="GDataService.html#gdata-service-insert-entry-async" title="gdata_service_insert_entry_async ()"><code class="function">gdata_service_insert_entry_async()</code></a>,
+which is the base asynchronous insertion function.</p>
+<div class="refsect3">
+<a name="gdata-calendar-service-insert-calendar-event-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataCalendarService.html" title="GDataCalendarService"><span class="type">GDataCalendarService</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>calendar</p></td>
+<td class="parameter_description"><p>the <a class="link" href="GDataCalendarCalendar.html" title="GDataCalendarCalendar"><span class="type">GDataCalendarCalendar</span></a> to insert the event into</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>event</p></td>
+<td class="parameter_description"><p>the <a class="link" href="GDataCalendarEvent.html" title="GDataCalendarEvent"><span class="type">GDataCalendarEvent</span></a> to insert</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>cancellable</p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>callback</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when insertion is finished</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>user_data</p></td>
+<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+function. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix23.html#api-index-0.17.2">0.17.2</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -1131,7 +1157,6 @@ function. </p></td>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

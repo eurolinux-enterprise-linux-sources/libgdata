@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Running GData Applications: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="pt01.html" title="Part I. GData Overview">
 <link rel="prev" href="gdata-overview.html" title="GData Overview">
 <link rel="next" href="ch01.html" title="Object Hierarchy">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -74,7 +74,7 @@
 <p>If debugging using the environment variables and log output is not possible, it is sometimes possible to diagnose problems
 			      by examining the error responses sent by the Google servers to libgdata. These are exposed as the error messages returned
 			      by libgdata methods; so when handling errors from libgdata method calls, it is a good idea to output the message from
-			      the <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to a debug log, or even as a warning in the user's
+			      the <span class="type">GError</span> to a debug log, or even as a warning in the user's
 			      <code class="filename">.xsession-errors</code> file.</p>
 <div class="example">
 <a name="id-1.2.3.3.3.4"></a><p class="title"><b>Example 1. Error Handling when Uploading a Document</b></p>
@@ -99,23 +99,23 @@
 15
 16
 17</pre></td>
-        <td class="listing_code"><pre class="programlisting">GDataUploadStream <span class="gtkdoc opt">*</span>upload_stream<span class="gtkdoc opt">;</span>
-GError <span class="gtkdoc opt">*</span>error <span class="gtkdoc opt">=</span> NULL<span class="gtkdoc opt">;</span> <span class="comment">/* make sure to initialise the GError to NULL */</span>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataUploadStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">upload_stream</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span><span class="normal"> </span><span class="comment">/* make sure to initialise the GError to NULL */</span>
 
 <span class="comment">/* Other code goes here. */</span>
 
-upload_stream <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-upload-document">gdata_documents_service_upload_document</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">,</span> document<span class="gtkdoc opt">,</span> slug<span class="gtkdoc opt">,</span> content_type<span class="gtkdoc opt">,</span> destination_folder<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">,</span>
-                                                         <span class="gtkdoc opt">&amp;</span>error<span class="gtkdoc opt">);</span>
+<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-upload-document">gdata_documents_service_upload_document</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> document</span><span class="symbol">,</span><span class="normal"> slug</span><span class="symbol">,</span><span class="normal"> content_type</span><span class="symbol">,</span><span class="normal"> destination_folder</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span>
+<span class="normal">                                                         </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
 <span class="comment">/* Handle any errors. */</span>
-<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
-	<span class="comment">/* Note that the error message is outputted to the terminal/logs.</span>
-<span class="comment">	 * It will contain important debugging information from the Google servers. */</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error getting upload stream: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="comment">/* Note that the error message is outputted to the terminal/logs.</span>
+<span class="comment">     * It will contain important debugging information from the Google servers. */</span>
+<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting upload stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 
-	<span class="keyword">return</span><span class="gtkdoc opt">;</span>
-<span class="gtkdoc opt">}</span></pre></td>
+<span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -127,7 +127,6 @@ upload_stream <span class="gtkdoc opt">=</span> <span class="function"><a href="
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataGContactEvent: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch10.html" title="GContact API">
 <link rel="prev" href="GDataGContactCalendar.html" title="GDataGContactCalendar">
 <link rel="next" href="GDataGContactExternalID.html" title="GDataGContactExternalID">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -45,7 +45,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataGContactEvent.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -76,7 +76,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataGContactEvent.html#gdata-gcontact-event-get-relation-type" title="gdata_gcontact_event_get_relation_type ()">gdata_gcontact_event_get_relation_type</a> <span class="c_punctuation">()</span>
@@ -91,7 +91,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataGContactEvent.html#gdata-gcontact-event-get-label" title="gdata_gcontact_event_get_label ()">gdata_gcontact_event_get_label</a> <span class="c_punctuation">()</span>
@@ -110,7 +110,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataGContactEvent.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table border="0">
+<div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
@@ -119,19 +119,19 @@ justifications.
 <tbody>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Date-and-Time-Functions.html#GDate"><span class="type">GDate</span></a> *</td>
+<span class="type">GDate</span> *</td>
 <td class="property_name"><a class="link" href="GDataGContactEvent.html#GDataGContactEvent--date" title="The “date” property">date</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GDataGContactEvent.html#GDataGContactEvent--label" title="The “label” property">label</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GDataGContactEvent.html#GDataGContactEvent--relation-type" title="The “relation-type” property">relation-type</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -140,7 +140,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataGContactEvent.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -167,7 +167,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataGContactEvent.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
         <span class="lineart">╰──</span> GDataGContactEvent
 </pre>
@@ -188,16 +188,16 @@ justifications.
 <div class="refsect2">
 <a name="gdata-gcontact-event-new"></a><h3>gdata_gcontact_event_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="returnvalue">GDataGContactEvent</span></a> *
-gdata_gcontact_event_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Date-and-Time-Functions.html#GDate"><span class="type">GDate</span></a> *date</code></em>,
-                          <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>,
-                          <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *label</code></em>);</pre>
+gdata_gcontact_event_new (<em class="parameter"><code>const <span class="type">GDate</span> *date</code></em>,
+                          <em class="parameter"><code>const <span class="type">gchar</span> *relation_type</code></em>,
+                          <em class="parameter"><code>const <span class="type">gchar</span> *label</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a>. More information is available in the <a class="ulink" href="http://code.google.com/apis/contacts/docs/3.0/reference.html#gcEvent" target="_top">gContact specification</a>.</p>
 <p>Exactly one of <em class="parameter"><code>relation_type</code></em>
  and <em class="parameter"><code>label</code></em>
- should be provided; the other must be <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
+ should be provided; the other must be <code class="literal">NULL</code>.</p>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.2.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-gcontact-event-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -211,33 +211,33 @@ gdata_gcontact_event_new (<em class="parameter"><code>const <a href="https://dev
 </tr>
 <tr>
 <td class="parameter_name"><p>relation_type</p></td>
-<td class="parameter_description"><p> the relationship between the event and its owner, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> the relationship between the event and its owner, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>label</p></td>
-<td class="parameter_description"><p> a human-readable label for the event, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a human-readable label for the event, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.2.7"></a><h4>Returns</h4>
+<a name="gdata-gcontact-event-new.returns"></a><h4>Returns</h4>
 <p> a new <a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-gcontact-event-get-date"></a><h3>gdata_gcontact_event_get_date ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_gcontact_event_get_date (<em class="parameter"><code><a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> *self</code></em>,
-                               <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Date-and-Time-Functions.html#GDate"><span class="type">GDate</span></a> *date</code></em>);</pre>
+                               <em class="parameter"><code><span class="type">GDate</span> *date</code></em>);</pre>
 <p>Gets the <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--date" title="The “date” property"><span class="type">“date”</span></a> property.</p>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.3.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-gcontact-event-get-date.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -257,19 +257,19 @@ gdata_gcontact_event_get_date (<em class="parameter"><code><a class="link" href=
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-gcontact-event-set-date"></a><h3>gdata_gcontact_event_set_date ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_gcontact_event_set_date (<em class="parameter"><code><a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> *self</code></em>,
-                               <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Date-and-Time-Functions.html#GDate"><span class="type">GDate</span></a> *date</code></em>);</pre>
+                               <em class="parameter"><code>const <span class="type">GDate</span> *date</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--date" title="The “date” property"><span class="type">“date”</span></a> property to <em class="parameter"><code>date</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.4.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-gcontact-event-set-date.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -289,18 +289,18 @@ gdata_gcontact_event_set_date (<em class="parameter"><code><a class="link" href=
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-gcontact-event-get-relation-type"></a><h3>gdata_gcontact_event_get_relation_type ()</h3>
-<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 gdata_gcontact_event_get_relation_type
                                (<em class="parameter"><code><a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> *self</code></em>);</pre>
 <p>Gets the <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--relation-type" title="The “relation-type” property"><span class="type">“relation-type”</span></a> property.</p>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.5.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-gcontact-event-get-relation-type.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -314,10 +314,10 @@ gdata_gcontact_event_get_relation_type
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.5.6"></a><h4>Returns</h4>
-<p> the event's relation type, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
+<a name="gdata-gcontact-event-get-relation-type.returns"></a><h4>Returns</h4>
+<p> the event's relation type, or <code class="literal">NULL</code></p>
 </div>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -325,16 +325,16 @@ gdata_gcontact_event_get_relation_type
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_gcontact_event_set_relation_type
                                (<em class="parameter"><code><a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> *self</code></em>,
-                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *relation_type</code></em>);</pre>
+                                <em class="parameter"><code>const <span class="type">gchar</span> *relation_type</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--relation-type" title="The “relation-type” property"><span class="type">“relation-type”</span></a> property to <em class="parameter"><code>relation_type</code></em>
 
 such as <a class="link" href="GDataGContactEvent.html#GDATA-GCONTACT-EVENT-ANNIVERSARY:CAPS" title="GDATA_GCONTACT_EVENT_ANNIVERSARY"><code class="literal">GDATA_GCONTACT_EVENT_ANNIVERSARY</code></a> or <a class="link" href="GDataGContactEvent.html#GDATA-GCONTACT-EVENT-OTHER:CAPS" title="GDATA_GCONTACT_EVENT_OTHER"><code class="literal">GDATA_GCONTACT_EVENT_OTHER</code></a>.</p>
 <p>If <em class="parameter"><code>relation_type</code></em>
- is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the relation type will be unset. When the <a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> is used in a query, however,
-exactly one of <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--relation-type" title="The “relation-type” property"><span class="type">“relation-type”</span></a> and <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--label" title="The “label” property"><span class="type">“label”</span></a> must be <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
+ is <code class="literal">NULL</code>, the relation type will be unset. When the <a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> is used in a query, however,
+exactly one of <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--relation-type" title="The “relation-type” property"><span class="type">“relation-type”</span></a> and <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--label" title="The “label” property"><span class="type">“label”</span></a> must be <code class="literal">NULL</code>.</p>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.6.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-gcontact-event-set-relation-type.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -348,23 +348,23 @@ exactly one of <a class="link" href="GDataGContactEvent.html#GDataGContactEvent-
 </tr>
 <tr>
 <td class="parameter_name"><p>relation_type</p></td>
-<td class="parameter_description"><p> the new relation type for the event, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> the new relation type for the event, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-gcontact-event-get-label"></a><h3>gdata_gcontact_event_get_label ()</h3>
-<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 gdata_gcontact_event_get_label (<em class="parameter"><code><a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> *self</code></em>);</pre>
 <p>Gets the <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--label" title="The “label” property"><span class="type">“label”</span></a> property.</p>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.7.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-gcontact-event-get-label.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -378,25 +378,25 @@ gdata_gcontact_event_get_label (<em class="parameter"><code><a class="link" href
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.7.6"></a><h4>Returns</h4>
-<p> the event's label, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
+<a name="gdata-gcontact-event-get-label.returns"></a><h4>Returns</h4>
+<p> the event's label, or <code class="literal">NULL</code></p>
 </div>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-gcontact-event-set-label"></a><h3>gdata_gcontact_event_set_label ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_gcontact_event_set_label (<em class="parameter"><code><a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> *self</code></em>,
-                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *label</code></em>);</pre>
+                                <em class="parameter"><code>const <span class="type">gchar</span> *label</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--label" title="The “label” property"><span class="type">“label”</span></a> property to <em class="parameter"><code>label</code></em>
 .</p>
 <p>If <em class="parameter"><code>label</code></em>
- is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the label will be unset. When the <a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> is used in a query, however,
-exactly one of <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--relation-type" title="The “relation-type” property"><span class="type">“relation-type”</span></a> and <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--label" title="The “label” property"><span class="type">“label”</span></a> must be <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
+ is <code class="literal">NULL</code>, the label will be unset. When the <a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> is used in a query, however,
+exactly one of <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--relation-type" title="The “relation-type” property"><span class="type">“relation-type”</span></a> and <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--label" title="The “label” property"><span class="type">“label”</span></a> must be <code class="literal">NULL</code>.</p>
 <div class="refsect3">
-<a name="id-1.4.5.3.10.8.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-gcontact-event-set-label.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -410,13 +410,13 @@ exactly one of <a class="link" href="GDataGContactEvent.html#GDataGContactEvent-
 </tr>
 <tr>
 <td class="parameter_name"><p>label</p></td>
-<td class="parameter_description"><p> the new label for the event, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> the new label for the event, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -428,7 +428,7 @@ exactly one of <a class="link" href="GDataGContactEvent.html#GDataGContactEvent-
 <p>The relation type URI for an anniversary event.</p>
 <p>For more information, see the <a class="ulink" href="http://code.google.com/apis/contacts/docs/3.0/reference.html#gcEvent" target="_top">
 gContact specification</a>.</p>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -438,14 +438,14 @@ gContact specification</a>.</p>
 <p>The relation type URI for a miscellaneous event.</p>
 <p>For more information, see the <a class="ulink" href="http://code.google.com/apis/contacts/docs/3.0/reference.html#gcEvent" target="_top">
 gContact specification</a>.</p>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataGContactEvent-struct"></a><h3>GDataGContactEvent</h3>
 <pre class="programlisting">typedef struct _GDataGContactEvent GDataGContactEvent;</pre>
 <p>All the fields in the <a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent"><span class="type">GDataGContactEvent</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -454,48 +454,47 @@ gContact specification</a>.</p>
 } GDataGContactEventClass;
 </pre>
 <p>All the fields in the <a class="link" href="GDataGContactEvent.html#GDataGContactEventClass" title="GDataGContactEventClass"><span class="type">GDataGContactEventClass</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataGContactEvent.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataGContactEvent--date"></a><h3>The <code class="literal">“date”</code> property</h3>
-<pre class="programlisting">  “date”                     <a href="https://developer.gnome.org/glib/unstable/glib-Date-and-Time-Functions.html#GDate"><span class="type">GDate</span></a> *</pre>
+<pre class="programlisting">  “date”                     <span class="type">GDate</span> *</pre>
 <p>The date of the event.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/contacts/docs/3.0/reference.html#gcEvent" target="_top">GContact specification</a>.
 <p>Flags: Read / Write</p>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataGContactEvent--label"></a><h3>The <code class="literal">“label”</code> property</h3>
-<pre class="programlisting">  “label”                    <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “label”                    <span class="type">gchar</span> *</pre>
 <p>A simple string value used to name this event. It is mutually exclusive with <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--relation-type" title="The “relation-type” property"><span class="type">“relation-type”</span></a>.
 It allows UIs to display a label such as "Wedding anniversary".</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/contacts/docs/3.0/reference.html#gcEvent" target="_top">gContact specification</a>.
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataGContactEvent--relation-type"></a><h3>The <code class="literal">“relation-type”</code> property</h3>
-<pre class="programlisting">  “relation-type”            <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “relation-type”            <span class="type">gchar</span> *</pre>
 <p>A programmatic value that identifies the type of event. It is mutually exclusive with <a class="link" href="GDataGContactEvent.html#GDataGContactEvent--label" title="The “label” property"><span class="type">“label”</span></a>.
 Examples are <a class="link" href="GDataGContactEvent.html#GDATA-GCONTACT-EVENT-ANNIVERSARY:CAPS" title="GDATA_GCONTACT_EVENT_ANNIVERSARY"><code class="literal">GDATA_GCONTACT_EVENT_ANNIVERSARY</code></a> or <a class="link" href="GDataGContactEvent.html#GDATA-GCONTACT-EVENT-OTHER:CAPS" title="GDATA_GCONTACT_EVENT_OTHER"><code class="literal">GDATA_GCONTACT_EVENT_OTHER</code></a>.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/contacts/docs/3.0/reference.html#gcEvent" target="_top">gContact specification</a>.
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

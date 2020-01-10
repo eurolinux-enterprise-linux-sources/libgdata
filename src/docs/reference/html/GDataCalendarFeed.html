@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataCalendarFeed: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch14.html" title="Google Calendar API">
 <link rel="prev" href="GDataCalendarService.html" title="GDataCalendarService">
 <link rel="next" href="GDataCalendarQuery.html" title="GDataCalendarQuery">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -45,14 +45,14 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataCalendarFeed.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
 </colgroup>
 <tbody>
 <tr>
-<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataCalendarFeed.html#gdata-calendar-feed-get-timezone" title="gdata_calendar_feed_get_timezone ()">gdata_calendar_feed_get_timezone</a> <span class="c_punctuation">()</span>
@@ -60,7 +60,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>
+<span class="returnvalue">guint</span>
 </td>
 <td class="function_name">
 <a class="link" href="GDataCalendarFeed.html#gdata-calendar-feed-get-times-cleaned" title="gdata_calendar_feed_get_times_cleaned ()">gdata_calendar_feed_get_times_cleaned</a> <span class="c_punctuation">()</span>
@@ -71,7 +71,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataCalendarFeed.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table border="0">
+<div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
@@ -79,13 +79,13 @@ justifications.
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a></td>
+<td class="property_type"><span class="type">guint</span></td>
 <td class="property_name"><a class="link" href="GDataCalendarFeed.html#GDataCalendarFeed--times-cleaned" title="The “times-cleaned” property">times-cleaned</a></td>
 <td class="property_flags">Read</td>
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GDataCalendarFeed.html#GDataCalendarFeed--timezone" title="The “timezone” property">timezone</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -94,7 +94,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataCalendarFeed.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -113,7 +113,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataCalendarFeed.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
         <span class="lineart">╰──</span> <a class="link" href="GDataFeed.html" title="GDataFeed">GDataFeed</a>
             <span class="lineart">╰──</span> GDataCalendarFeed
@@ -133,12 +133,17 @@ properties which are specific to the Google Calendar API.</p>
 <a name="GDataCalendarFeed.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="gdata-calendar-feed-get-timezone"></a><h3>gdata_calendar_feed_get_timezone ()</h3>
-<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 gdata_calendar_feed_get_timezone (<em class="parameter"><code><a class="link" href="GDataCalendarFeed.html" title="GDataCalendarFeed"><span class="type">GDataCalendarFeed</span></a> *self</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_calendar_feed_get_timezone</code> has been deprecated since version 0.17.2 and should not be used in newly-written code.</p>
+<p>Unsupported by the online API any more. There is no
+  replacement; this will always return <code class="literal">NULL</code>.</p>
+</div>
 <p>Gets the <a class="link" href="GDataCalendarFeed.html#GDataCalendarFeed--timezone" title="The “timezone” property"><span class="type">“timezone”</span></a> property.</p>
 <div class="refsect3">
-<a name="id-1.5.3.3.10.2.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-feed-get-timezone.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -152,20 +157,25 @@ gdata_calendar_feed_get_timezone (<em class="parameter"><code><a class="link" hr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.3.3.10.2.6"></a><h4>Returns</h4>
-<p> the feed's timezone, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
+<a name="gdata-calendar-feed-get-timezone.returns"></a><h4>Returns</h4>
+<p> the feed's timezone, or <code class="literal">NULL</code></p>
 </div>
-<p class="since">Since 0.3.0</p>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-0.3.0">0.3.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-calendar-feed-get-times-cleaned"></a><h3>gdata_calendar_feed_get_times_cleaned ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>
+<pre class="programlisting"><span class="returnvalue">guint</span>
 gdata_calendar_feed_get_times_cleaned (<em class="parameter"><code><a class="link" href="GDataCalendarFeed.html" title="GDataCalendarFeed"><span class="type">GDataCalendarFeed</span></a> *self</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_calendar_feed_get_times_cleaned</code> has been deprecated since version 0.17.2 and should not be used in newly-written code.</p>
+<p>Unsupported by the online API any more. There is no
+  replacement; this will always return <code class="literal">NULL</code>.</p>
+</div>
 <p>Gets the <a class="link" href="GDataCalendarFeed.html#GDataCalendarFeed--times-cleaned" title="The “times-cleaned” property"><span class="type">“times-cleaned”</span></a> property.</p>
 <div class="refsect3">
-<a name="id-1.5.3.3.10.3.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-calendar-feed-get-times-cleaned.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -179,10 +189,10 @@ gdata_calendar_feed_get_times_cleaned (<em class="parameter"><code><a class="lin
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.3.3.10.3.6"></a><h4>Returns</h4>
+<a name="gdata-calendar-feed-get-times-cleaned.returns"></a><h4>Returns</h4>
 <p> the number of times the feed has been totally emptied</p>
 </div>
-<p class="since">Since 0.3.0</p>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-0.3.0">0.3.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -191,7 +201,7 @@ gdata_calendar_feed_get_times_cleaned (<em class="parameter"><code><a class="lin
 <a name="GDataCalendarFeed-struct"></a><h3>GDataCalendarFeed</h3>
 <pre class="programlisting">typedef struct _GDataCalendarFeed GDataCalendarFeed;</pre>
 <p>All the fields in the <a class="link" href="GDataCalendarFeed.html" title="GDataCalendarFeed"><span class="type">GDataCalendarFeed</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.3.0</p>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-0.3.0">0.3.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -200,32 +210,41 @@ gdata_calendar_feed_get_times_cleaned (<em class="parameter"><code><a class="lin
 } GDataCalendarFeedClass;
 </pre>
 <p>All the fields in the <a class="link" href="GDataCalendarFeed.html#GDataCalendarFeedClass" title="GDataCalendarFeedClass"><span class="type">GDataCalendarFeedClass</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.3.0</p>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-0.3.0">0.3.0</a></p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataCalendarFeed.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataCalendarFeed--times-cleaned"></a><h3>The <code class="literal">“times-cleaned”</code> property</h3>
-<pre class="programlisting">  “times-cleaned”            <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a></pre>
+<pre class="programlisting">  “times-cleaned”            <span class="type">guint</span></pre>
 <p>The number of times the feed has been completely cleared of entries.</p>
+<div class="warning">
+<p><code class="literal">GDataCalendarFeed:times-cleaned</code> has been deprecated since version 0.17.2 and should not be used in newly-written code.</p>
+<p>Unsupported by the online API any more. There
+  is no replacement; this will always return 0.</p>
+</div>
 <p>Flags: Read</p>
 <p>Default value: 0</p>
-<p class="since">Since 0.3.0</p>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-0.3.0">0.3.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataCalendarFeed--timezone"></a><h3>The <code class="literal">“timezone”</code> property</h3>
-<pre class="programlisting">  “timezone”                 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “timezone”                 <span class="type">gchar</span> *</pre>
 <p>The timezone in which the feed's times are given. This is a timezone name in tz database notation: <a class="ulink" href="http://en.wikipedia.org/wiki/Tz_database#Names_of_time_zones" target="_top">reference</a>.</p>
+<div class="warning">
+<p><code class="literal">GDataCalendarFeed:timezone</code> has been deprecated since version 0.17.2 and should not be used in newly-written code.</p>
+<p>Unsupported by the online API any more. There
+  is no replacement; this will always return <code class="literal">NULL</code>.</p>
+</div>
 <p>Flags: Read</p>
 <p>Default value: NULL</p>
-<p class="since">Since 0.3.0</p>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-0.3.0">0.3.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

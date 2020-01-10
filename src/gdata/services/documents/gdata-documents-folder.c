@@ -3,6 +3,7 @@
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
  * Copyright (C) Philip Withnall 2010 <philip@tecnocode.co.uk>
+ * Copyright (C) Red Hat, Inc. 2015, 2016
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -32,24 +33,34 @@
  * <example>
  * 	<title>Adding a Folder</title>
  * 	<programlisting>
+ * 	GDataAuthorizationDomain *domain;
  *	GDataDocumentsService *service;
- *	GDataDocumentsFolder *folder, *new_folder;
- *	gchar *upload_uri;
+ *	GDataDocumentsFolder *folder, *new_folder, *parent_folder;
  *	GError *error = NULL;
+ *
+ *	domain = gdata_documents_service_get_primary_authorization_domain ();
  *
  *	/<!-- -->* Create a service *<!-- -->/
  *	service = create_documents_service ();
+ *
+ *	parent_folder = GDATA_DOCUMENTS_FOLDER (gdata_service_query_single_entry (GDATA_SERVICE (service), domain, "root", NULL,
+ *	                                                                          GDATA_TYPE_DOCUMENTS_FOLDER, NULL, &error));
+ *	if (error != NULL) {
+ *		g_error ("Error getting root folder");
+ *		g_error_free (error);
+ *		return;
+ *	}
  *
  *	/<!-- -->* Create the new folder *<!-- -->/
  *	folder = gdata_documents_folder_new (NULL);
  *	gdata_entry_set_title (GDATA_ENTRY (folder), "Folder Name");
  *
  *	/<!-- -->* Insert the folder *<!-- -->/
- *	upload_uri = gdata_documents_service_get_upload_uri (NULL);
- *	new_folder = GDATA_DOCUMENTS_FOLDER (gdata_service_insert_entry (GDATA_SERVICE (service), upload_uri, GDATA_ENTRY (folder), NULL, &error));
- *	g_free (upload_uri);
+ *	new_folder = GDATA_DOCUMENTS_FOLDER (gdata_documents_service_add_entry_to_folder (GDATA_SERVICE (service), GDATA_DOCUMENTS_ENTRY (folder),
+ *	parent_folder, NULL, &error));
  *
  *	g_object_unref (folder);
+ *	g_object_unref (parent_folder);
  *	g_object_unref (service);
  *
  *	if (error != NULL) {
@@ -65,7 +76,7 @@
  * </example>
  *
  * Since: 0.4.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -74,17 +85,22 @@
 #include <string.h>
 
 #include "gdata-documents-folder.h"
+#include "gdata-documents-utils.h"
 #include "gdata-parser.h"
 #include "gdata-types.h"
 #include "gdata-private.h"
+
+static void gdata_documents_folder_constructed (GObject *object);
 
 G_DEFINE_TYPE (GDataDocumentsFolder, gdata_documents_folder, GDATA_TYPE_DOCUMENTS_ENTRY)
 
 static void
 gdata_documents_folder_class_init (GDataDocumentsFolderClass *klass)
 {
+	GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 	GDataEntryClass *entry_class = GDATA_ENTRY_CLASS (klass);
 
+	gobject_class->constructed = gdata_documents_folder_constructed;
 	entry_class->kind_term = "http://schemas.google.com/docs/2007#folder";
 }
 
@@ -92,6 +108,15 @@ static void
 gdata_documents_folder_init (GDataDocumentsFolder *self)
 {
 	/* Why am I writing it? */
+}
+
+static void
+gdata_documents_folder_constructed (GObject *object)
+{
+	G_OBJECT_CLASS (gdata_documents_folder_parent_class)->constructed (object);
+
+	if (!_gdata_parsable_is_constructed_from_xml (GDATA_PARSABLE (object)))
+		gdata_documents_utils_add_content_type (GDATA_DOCUMENTS_ENTRY (object), "application/vnd.google-apps.folder");
 }
 
 /**
@@ -103,7 +128,7 @@ gdata_documents_folder_init (GDataDocumentsFolder *self)
  * Return value: a new #GDataDocumentsFolder, or %NULL; unref with g_object_unref()
  *
  * Since: 0.4.0
- **/
+ */
 GDataDocumentsFolder *
 gdata_documents_folder_new (const gchar *id)
 {

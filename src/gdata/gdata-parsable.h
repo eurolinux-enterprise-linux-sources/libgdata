@@ -29,11 +29,11 @@ G_BEGIN_DECLS
 
 /**
  * GDataParserError:
- * @GDATA_PARSER_ERROR_PARSING_STRING: Error parsing the XML syntax itself
+ * @GDATA_PARSER_ERROR_PARSING_STRING: Error parsing the XML or JSON syntax itself
  * @GDATA_PARSER_ERROR_EMPTY_DOCUMENT: Empty document
  *
- * Error codes for XML parsing operations.
- **/
+ * Error codes for XML or JSON parsing operations.
+ */
 typedef enum {
 	GDATA_PARSER_ERROR_PARSING_STRING = 1,
 	GDATA_PARSER_ERROR_EMPTY_DOCUMENT
@@ -57,7 +57,7 @@ typedef struct _GDataParsablePrivate	GDataParsablePrivate;
  * All the fields in the #GDataParsable structure are private and should never be accessed directly.
  *
  * Since: 0.3.0
- **/
+ */
 typedef struct {
 	GObject parent;
 	GDataParsablePrivate *priv;
@@ -85,7 +85,7 @@ typedef struct {
  * a given implementation of #GDataParsable is represented as exactly one of JSON and XML.
  *
  * Since: 0.3.0
- **/
+ */
 typedef struct {
 	GObjectClass parent;
 
@@ -119,6 +119,8 @@ typedef struct {
 } GDataParsableClass;
 
 GType gdata_parsable_get_type (void) G_GNUC_CONST;
+
+const gchar *gdata_parsable_get_content_type (GDataParsable *self);
 
 GDataParsable *gdata_parsable_new_from_xml (GType parsable_type, const gchar *xml, gint length,
                                             GError **error) G_GNUC_WARN_UNUSED_RESULT G_GNUC_MALLOC;

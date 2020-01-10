@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * GData Client
- * Copyright (C) Philip Withnall 2008–2010 <philip@tecnocode.co.uk>
+ * Copyright (C) Philip Withnall 2008–2010, 2015 <philip@tecnocode.co.uk>
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,10 +23,16 @@
 
 #include "gdata.h"
 #include "common.h"
-
-#define DEVELOPER_KEY "AI39si7Me3Q7zYs6hmkFvpRBD2nrkVjYYsUO5lh_3HdOkGRc9g6Z4nzxZatk_aAo2EsA21k7vrda0OO6oFg2rnhMedZXPyXoEw"
+#include "gdata-dummy-authorizer.h"
 
 static UhmServer *mock_server = NULL;
+
+#undef CLIENT_ID  /* from common.h */
+
+#define DEVELOPER_KEY "AI39si7Me3Q7zYs6hmkFvpRBD2nrkVjYYsUO5lh_3HdOkGRc9g6Z4nzxZatk_aAo2EsA21k7vrda0OO6oFg2rnhMedZXPyXoEw"
+#define CLIENT_ID "352818697630-nqu2cmt5quqd6lr17ouoqmb684u84l1f.apps.googleusercontent.com"
+#define CLIENT_SECRET "-fA4pHQJxR3zJ-FyAMPQsikg"
+#define REDIRECT_URI "urn:ietf:wg:oauth:2.0:oob"
 
 /* Effectively gdata_test_mock_server_start_trace() but calling uhm_server_run() instead of uhm_server_start_trace(). */
 static void
@@ -53,214 +59,49 @@ gdata_test_mock_server_run (UhmServer *server)
 static void
 test_authentication (void)
 {
-	gboolean retval;
-	GDataClientLoginAuthorizer *authorizer;
-	GError *error = NULL;
+	GDataOAuth2Authorizer *authorizer = NULL;  /* owned */
+	gchar *authentication_uri, *authorisation_code;
 
 	gdata_test_mock_server_start_trace (mock_server, "authentication");
 
-	/* Create an authorizer */
-	authorizer = gdata_client_login_authorizer_new (CLIENT_ID, GDATA_TYPE_YOUTUBE_SERVICE);
+	authorizer = gdata_oauth2_authorizer_new (CLIENT_ID, CLIENT_SECRET,
+	                                          REDIRECT_URI,
+	                                          GDATA_TYPE_YOUTUBE_SERVICE);
 
-	g_assert_cmpstr (gdata_client_login_authorizer_get_client_id (authorizer), ==, CLIENT_ID);
+	/* Get an authentication URI. */
+	authentication_uri = gdata_oauth2_authorizer_build_authentication_uri (authorizer, NULL, FALSE);
+	g_assert (authentication_uri != NULL);
 
-	/* Log in */
-	retval = gdata_client_login_authorizer_authenticate (authorizer, USERNAME, PASSWORD, NULL, &error);
-	g_assert_no_error (error);
-	g_assert (retval == TRUE);
-	g_clear_error (&error);
+	/* Get the authorisation code off the user. */
+	if (uhm_server_get_enable_online (mock_server)) {
+		authorisation_code = gdata_test_query_user_for_verifier (authentication_uri);
+	} else {
+		/* Hard coded, extracted from the trace file. */
+		authorisation_code = g_strdup ("4/9qV_LanNEOUOL4sftMwUp4cfa_yeF"
+		                               "assB6-ys5EkA5o.4rgOzrZMXgcboiIB"
+		                               "eO6P2m-GWLMXmgI");
+	}
+
+	g_free (authentication_uri);
+
+	if (authorisation_code == NULL) {
+		/* Skip tests. */
+		goto skip_test;
+	}
+
+	/* Authorise the token */
+	g_assert (gdata_oauth2_authorizer_request_authorization (authorizer, authorisation_code, NULL, NULL) == TRUE);
 
 	/* Check all is as it should be */
-	g_assert_cmpstr (gdata_client_login_authorizer_get_username (authorizer), ==, USERNAME);
-	g_assert_cmpstr (gdata_client_login_authorizer_get_password (authorizer), ==, PASSWORD);
-
 	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (authorizer),
 	                                                     gdata_youtube_service_get_primary_authorization_domain ()) == TRUE);
 
+skip_test:
+	g_free (authorisation_code);
 	g_object_unref (authorizer);
 
 	uhm_server_end_trace (mock_server);
 }
-
-/* HTTP message responses and the expected associated GData error domain/code. */
-static const GDataTestRequestErrorData authentication_errors[] = {
-	/* Generic network errors. */
-	{ SOUP_STATUS_BAD_REQUEST, "Bad Request", "Invalid parameter ‘foobar’.",
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
-	{ SOUP_STATUS_NOT_FOUND, "Not Found", "Login page wasn't found for no good reason at all.",
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_NOT_FOUND },
-	{ SOUP_STATUS_PRECONDITION_FAILED, "Precondition Failed", "Not allowed to log in at this time, possibly.",
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_CONFLICT },
-	{ SOUP_STATUS_INTERNAL_SERVER_ERROR, "Internal Server Error", "Whoops.",
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
-	/* Specific authentication errors. */
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=BadAuthentication\n",
-	  gdata_client_login_authorizer_error_quark, GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_BAD_AUTHENTICATION },
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=BadAuthentication\nInfo=InvalidSecondFactor\n",
-	  gdata_client_login_authorizer_error_quark, GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_INVALID_SECOND_FACTOR },
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=NotVerified\nUrl=http://example.com/\n",
-	  gdata_client_login_authorizer_error_quark, GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_NOT_VERIFIED },
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=TermsNotAgreed\nUrl=http://example.com/\n",
-	  gdata_client_login_authorizer_error_quark, GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_TERMS_NOT_AGREED },
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=Unknown\nUrl=http://example.com/\n",
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED },
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=AccountDeleted\nUrl=http://example.com/\n",
-	  gdata_client_login_authorizer_error_quark, GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DELETED },
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=AccountDisabled\nUrl=http://example.com/\n",
-	  gdata_client_login_authorizer_error_quark, GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DISABLED },
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=AccountMigrated\nUrl=http://example.com/\n",
-	  gdata_client_login_authorizer_error_quark, GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_MIGRATED },
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=ServiceDisabled\nUrl=http://example.com/\n",
-	  gdata_client_login_authorizer_error_quark, GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_SERVICE_DISABLED },
-	{ SOUP_STATUS_FORBIDDEN, "Access Forbidden", "Error=ServiceUnavailable\nUrl=http://example.com/\n",
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_UNAVAILABLE },
-	/* Malformed authentication errors to test parser error handling. */
-	{ SOUP_STATUS_INTERNAL_SERVER_ERROR, "Access Forbidden", "Error=BadAuthentication", /* missing Error delimiter */
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
-	{ SOUP_STATUS_INTERNAL_SERVER_ERROR, "Access Forbidden", "Error=AccountDeleted\n", /* missing Url */
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
-	{ SOUP_STATUS_INTERNAL_SERVER_ERROR, "Access Forbidden", "Error=AccountDeleted\nUrl=http://example.com/", /* missing Url delimiter */
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
-	{ SOUP_STATUS_INTERNAL_SERVER_ERROR, "Access Forbidden", "", /* missing Error */
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
-	{ SOUP_STATUS_INTERNAL_SERVER_ERROR, "Access Forbidden", "Error=", /* missing Error */
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
-	{ SOUP_STATUS_INTERNAL_SERVER_ERROR, "Access Forbidden", "Error=Foobar\nUrl=http://example.com/\n", /* unknown Error */
-	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
-};
-
-static void
-test_authentication_error (void)
-{
-	gboolean retval;
-	GDataClientLoginAuthorizer *authorizer;
-	GError *error = NULL;
-	gulong handler_id;
-	guint i;
-
-	if (uhm_server_get_enable_logging (mock_server) == TRUE) {
-		g_test_message ("Ignoring test due to logging being enabled.");
-		return;
-	} else if (uhm_server_get_enable_online (mock_server) == TRUE) {
-		g_test_message ("Ignoring test due to running online and test not being reproducible.");
-		return;
-	}
-
-	for (i = 0; i < G_N_ELEMENTS (authentication_errors); i++) {
-		const GDataTestRequestErrorData *data = &authentication_errors[i];
-
-		handler_id = g_signal_connect (mock_server, "handle-message", (GCallback) gdata_test_mock_server_handle_message_error, (gpointer) data);
-		gdata_test_mock_server_run (mock_server);
-
-		/* Create an authorizer */
-		authorizer = gdata_client_login_authorizer_new (CLIENT_ID, GDATA_TYPE_YOUTUBE_SERVICE);
-
-		g_assert_cmpstr (gdata_client_login_authorizer_get_client_id (authorizer), ==, CLIENT_ID);
-
-		/* Log in */
-		retval = gdata_client_login_authorizer_authenticate (authorizer, USERNAME, PASSWORD, NULL, &error);
-		g_assert_error (error, data->error_domain_func (), data->error_code);
-		g_assert (retval == FALSE);
-		g_clear_error (&error);
-
-		/* Check nothing's changed in the authoriser. */
-		g_assert_cmpstr (gdata_client_login_authorizer_get_username (authorizer), ==, NULL);
-		g_assert_cmpstr (gdata_client_login_authorizer_get_password (authorizer), ==, NULL);
-
-		g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (authorizer),
-		                                                     gdata_youtube_service_get_primary_authorization_domain ()) == FALSE);
-
-		g_object_unref (authorizer);
-
-		uhm_server_stop (mock_server);
-		g_signal_handler_disconnect (mock_server, handler_id);
-	}
-}
-
-static void
-test_authentication_timeout (void)
-{
-	gboolean retval;
-	GDataClientLoginAuthorizer *authorizer;
-	GError *error = NULL;
-	gulong handler_id;
-
-	if (uhm_server_get_enable_logging (mock_server) == TRUE) {
-		g_test_message ("Ignoring test due to logging being enabled.");
-		return;
-	} else if (uhm_server_get_enable_online (mock_server) == TRUE) {
-		g_test_message ("Ignoring test due to running online and test not being reproducible.");
-		return;
-	}
-
-	handler_id = g_signal_connect (mock_server, "handle-message", (GCallback) gdata_test_mock_server_handle_message_timeout, NULL);
-	uhm_server_run (mock_server);
-	gdata_test_set_https_port (mock_server);
-
-	/* Create an authorizer and set its timeout as low as possible (1 second). */
-	authorizer = gdata_client_login_authorizer_new (CLIENT_ID, GDATA_TYPE_YOUTUBE_SERVICE);
-	gdata_client_login_authorizer_set_timeout (authorizer, 1);
-
-	g_assert_cmpstr (gdata_client_login_authorizer_get_client_id (authorizer), ==, CLIENT_ID);
-
-	/* Log in */
-	retval = gdata_client_login_authorizer_authenticate (authorizer, USERNAME, PASSWORD, NULL, &error);
-	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_NETWORK_ERROR);
-	g_assert (retval == FALSE);
-	g_clear_error (&error);
-
-	/* Check nothing's changed in the authoriser. */
-	g_assert_cmpstr (gdata_client_login_authorizer_get_username (authorizer), ==, NULL);
-	g_assert_cmpstr (gdata_client_login_authorizer_get_password (authorizer), ==, NULL);
-
-	g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (authorizer),
-	                                                     gdata_youtube_service_get_primary_authorization_domain ()) == FALSE);
-
-	g_object_unref (authorizer);
-
-	uhm_server_stop (mock_server);
-	g_signal_handler_disconnect (mock_server, handler_id);
-}
-
-GDATA_ASYNC_TEST_FUNCTIONS (authentication, void,
-G_STMT_START {
-	GDataClientLoginAuthorizer *authorizer;
-
-	/* Create an authorizer */
-	authorizer = gdata_client_login_authorizer_new (CLIENT_ID, GDATA_TYPE_YOUTUBE_SERVICE);
-
-	g_assert_cmpstr (gdata_client_login_authorizer_get_client_id (authorizer), ==, CLIENT_ID);
-
-	gdata_client_login_authorizer_authenticate_async (authorizer, USERNAME, PASSWORD, cancellable, async_ready_callback, async_data);
-
-	g_object_unref (authorizer);
-} G_STMT_END,
-G_STMT_START {
-	gboolean retval;
-	GDataClientLoginAuthorizer *authorizer = GDATA_CLIENT_LOGIN_AUTHORIZER (obj);
-
-	retval = gdata_client_login_authorizer_authenticate_finish (authorizer, async_result, &error);
-
-	if (error == NULL) {
-		g_assert (retval == TRUE);
-
-		/* Check all is as it should be */
-		g_assert_cmpstr (gdata_client_login_authorizer_get_username (authorizer), ==, USERNAME);
-		g_assert_cmpstr (gdata_client_login_authorizer_get_password (authorizer), ==, PASSWORD);
-
-		g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (authorizer),
-		                                                     gdata_youtube_service_get_primary_authorization_domain ()) == TRUE);
-	} else {
-		g_assert (retval == FALSE);
-
-		/* Check nothing's changed */
-		g_assert_cmpstr (gdata_client_login_authorizer_get_username (authorizer), ==, NULL);
-		g_assert_cmpstr (gdata_client_login_authorizer_get_password (authorizer), ==, NULL);
-
-		g_assert (gdata_authorizer_is_authorized_for_domain (GDATA_AUTHORIZER (authorizer),
-		                                                     gdata_youtube_service_get_primary_authorization_domain ()) == FALSE);
-	}
-} G_STMT_END);
 
 static void
 test_service_properties (void)
@@ -283,37 +124,42 @@ test_query_standard_feeds (gconstpointer service)
 	GDataFeed *feed;
 	GError *error = NULL;
 	guint i;
-	struct {
-		GDataYouTubeStandardFeedType feed_type;
-		const gchar *expected_title;
-	} feeds[] = {
+	gulong filter_id;
+	GDataYouTubeStandardFeedType feeds[] = {
 		/* This must be kept up-to-date with GDataYouTubeStandardFeedType. */
-		{ GDATA_YOUTUBE_TOP_RATED_FEED, "Top Rated" },
-		{ GDATA_YOUTUBE_TOP_FAVORITES_FEED, "Top Favorites" },
-		{ GDATA_YOUTUBE_MOST_VIEWED_FEED, "Most Popular" },
-		{ GDATA_YOUTUBE_MOST_POPULAR_FEED, "Most Popular" },
-		{ GDATA_YOUTUBE_MOST_RECENT_FEED, "Most Recent" },
-		{ GDATA_YOUTUBE_MOST_DISCUSSED_FEED, "Most Discussed" },
-		{ GDATA_YOUTUBE_MOST_LINKED_FEED, NULL },
-		{ GDATA_YOUTUBE_MOST_RESPONDED_FEED, "Most Responded" },
-		{ GDATA_YOUTUBE_RECENTLY_FEATURED_FEED, "Spotlight Videos" },
-		{ GDATA_YOUTUBE_WATCH_ON_MOBILE_FEED, NULL },
+		GDATA_YOUTUBE_TOP_RATED_FEED,
+		GDATA_YOUTUBE_TOP_FAVORITES_FEED,
+		GDATA_YOUTUBE_MOST_VIEWED_FEED,
+		GDATA_YOUTUBE_MOST_POPULAR_FEED,
+		GDATA_YOUTUBE_MOST_RECENT_FEED,
+		GDATA_YOUTUBE_MOST_DISCUSSED_FEED,
+		GDATA_YOUTUBE_MOST_LINKED_FEED,
+		GDATA_YOUTUBE_MOST_RESPONDED_FEED,
+		GDATA_YOUTUBE_RECENTLY_FEATURED_FEED,
+		GDATA_YOUTUBE_WATCH_ON_MOBILE_FEED,
+	};
+	const gchar *ignore_query_param_values[] = {
+		"publishedAfter",
+		NULL,
 	};
 
+	filter_id = uhm_server_filter_ignore_parameter_values (mock_server,
+	                                                       ignore_query_param_values);
 	gdata_test_mock_server_start_trace (mock_server, "query-standard-feeds");
 
 	for (i = 0; i < G_N_ELEMENTS (feeds); i++) {
-		feed = gdata_youtube_service_query_standard_feed (GDATA_YOUTUBE_SERVICE (service), feeds[i].feed_type, NULL, NULL, NULL, NULL, &error);
+		feed = gdata_youtube_service_query_standard_feed (GDATA_YOUTUBE_SERVICE (service), feeds[i], NULL, NULL, NULL, NULL, &error);
 		g_assert_no_error (error);
 		g_assert (GDATA_IS_FEED (feed));
 		g_clear_error (&error);
 
-		g_assert_cmpstr (gdata_feed_get_title (feed), ==, feeds[i].expected_title);
+		g_assert_cmpuint (g_list_length (gdata_feed_get_entries (feed)), >, 0);
 
 		g_object_unref (feed);
 	}
 
 	uhm_server_end_trace (mock_server);
+	uhm_server_compare_messages_remove_filter (mock_server, filter_id);
 }
 
 static void
@@ -321,7 +167,14 @@ test_query_standard_feed (gconstpointer service)
 {
 	GDataFeed *feed;
 	GError *error = NULL;
+	gulong filter_id;
+	const gchar *ignore_query_param_values[] = {
+		"publishedAfter",
+		NULL,
+	};
 
+	filter_id = uhm_server_filter_ignore_parameter_values (mock_server,
+	                                                       ignore_query_param_values);
 	gdata_test_mock_server_start_trace (mock_server, "query-standard-feed");
 
 	feed = gdata_youtube_service_query_standard_feed (GDATA_YOUTUBE_SERVICE (service), GDATA_YOUTUBE_TOP_RATED_FEED, NULL, NULL, NULL, NULL, &error);
@@ -329,11 +182,12 @@ test_query_standard_feed (gconstpointer service)
 	g_assert (GDATA_IS_FEED (feed));
 	g_clear_error (&error);
 
-	g_assert_cmpstr (gdata_feed_get_title (feed), ==, "Top Rated");
+	g_assert_cmpuint (g_list_length (gdata_feed_get_entries (feed)), >, 0);
 
 	g_object_unref (feed);
 
 	uhm_server_end_trace (mock_server);
+	uhm_server_compare_messages_remove_filter (mock_server, filter_id);
 }
 
 static void
@@ -342,6 +196,14 @@ test_query_standard_feed_with_query (gconstpointer service)
 	GDataYouTubeQuery *query;
 	GDataFeed *feed;
 	GError *error = NULL;
+	gulong filter_id;
+	const gchar *ignore_query_param_values[] = {
+		"publishedAfter",
+		NULL,
+	};
+
+	filter_id = uhm_server_filter_ignore_parameter_values (mock_server,
+	                                                       ignore_query_param_values);
 
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
@@ -355,12 +217,13 @@ test_query_standard_feed_with_query (gconstpointer service)
 	g_assert (GDATA_IS_FEED (feed));
 	g_clear_error (&error);
 
-	g_assert_cmpstr (gdata_feed_get_title (feed), ==, "Top Rated");
+	g_assert_cmpuint (g_list_length (gdata_feed_get_entries (feed)), >, 0);
 
 	g_object_unref (query);
 	g_object_unref (feed);
 
 	uhm_server_end_trace (mock_server);
+	uhm_server_compare_messages_remove_filter (mock_server, filter_id);
 
 	G_GNUC_END_IGNORE_DEPRECATIONS
 }
@@ -376,6 +239,8 @@ static const GDataTestRequestErrorData query_standard_feed_errors[] = {
 	  gdata_service_error_quark, GDATA_SERVICE_ERROR_CONFLICT },
 	{ SOUP_STATUS_INTERNAL_SERVER_ERROR, "Internal Server Error", "Whoops.",
 	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
+#if 0
+FIXME
 	/* Specific query errors. */
 	{ SOUP_STATUS_FORBIDDEN, "Too Many Calls",
 	  "<?xml version='1.0' encoding='UTF-8'?><errors><error><domain>yt:quota</domain><code>too_many_recent_calls</code></error></errors>",
@@ -414,6 +279,7 @@ static const GDataTestRequestErrorData query_standard_feed_errors[] = {
 	{ SOUP_STATUS_FORBIDDEN, "Unknown Error Domain",
 	  "<?xml version='1.0' encoding='UTF-8'?><errors><error><domain>yt:foobaz</domain><code>TokenExpired</code></error></errors>",
 	  gdata_service_error_quark, GDATA_SERVICE_ERROR_PROTOCOL_ERROR },
+#endif
 };
 
 static void
@@ -421,8 +287,12 @@ test_query_standard_feed_error (gconstpointer service)
 {
 	GDataFeed *feed;
 	GError *error = NULL;
-	gulong handler_id;
+	gulong handler_id, filter_id;
 	guint i;
+	const gchar *ignore_query_param_values[] = {
+		"publishedAfter",
+		NULL,
+	};
 
 	if (uhm_server_get_enable_logging (mock_server) == TRUE) {
 		g_test_message ("Ignoring test due to logging being enabled.");
@@ -431,6 +301,9 @@ test_query_standard_feed_error (gconstpointer service)
 		g_test_message ("Ignoring test due to running online and test not being reproducible.");
 		return;
 	}
+
+	filter_id = uhm_server_filter_ignore_parameter_values (mock_server,
+	                                                       ignore_query_param_values);
 
 	for (i = 0; i < G_N_ELEMENTS (query_standard_feed_errors); i++) {
 		const GDataTestRequestErrorData *data = &query_standard_feed_errors[i];
@@ -447,6 +320,8 @@ test_query_standard_feed_error (gconstpointer service)
 		uhm_server_stop (mock_server);
 		g_signal_handler_disconnect (mock_server, handler_id);
 	}
+
+	uhm_server_compare_messages_remove_filter (mock_server, filter_id);
 }
 
 static void
@@ -454,7 +329,11 @@ test_query_standard_feed_timeout (gconstpointer service)
 {
 	GDataFeed *feed;
 	GError *error = NULL;
-	gulong handler_id;
+	gulong handler_id, filter_id;
+	const gchar *ignore_query_param_values[] = {
+		"publishedAfter",
+		NULL,
+	};
 
 	if (uhm_server_get_enable_logging (mock_server) == TRUE) {
 		g_test_message ("Ignoring test due to logging being enabled.");
@@ -464,6 +343,8 @@ test_query_standard_feed_timeout (gconstpointer service)
 		return;
 	}
 
+	filter_id = uhm_server_filter_ignore_parameter_values (mock_server,
+	                                                       ignore_query_param_values);
 	handler_id = g_signal_connect (mock_server, "handle-message", (GCallback) gdata_test_mock_server_handle_message_timeout, NULL);
 	gdata_test_mock_server_run (mock_server);
 
@@ -478,6 +359,38 @@ test_query_standard_feed_timeout (gconstpointer service)
 
 	uhm_server_stop (mock_server);
 	g_signal_handler_disconnect (mock_server, handler_id);
+	uhm_server_compare_messages_remove_filter (mock_server, filter_id);
+}
+
+typedef struct {
+	GDataAsyncTestData async_data;
+	gulong filter_id;
+} StandardFeedData;
+
+static void
+set_up_standard_feed_async (StandardFeedData *standard_feed_data,
+                            gconstpointer test_data)
+{
+	const gchar *ignore_query_param_values[] = {
+		"publishedAfter",
+		NULL,
+	};
+
+	gdata_set_up_async_test_data (&standard_feed_data->async_data,
+	                              test_data);
+	standard_feed_data->filter_id =
+		uhm_server_filter_ignore_parameter_values (mock_server,
+		                                           ignore_query_param_values);
+}
+
+static void
+tear_down_standard_feed_async (StandardFeedData *standard_feed_data,
+                               gconstpointer test_data)
+{
+	uhm_server_compare_messages_remove_filter (mock_server,
+	                                           standard_feed_data->filter_id);
+	gdata_tear_down_async_test_data (&standard_feed_data->async_data,
+	                                 test_data);
 }
 
 GDATA_ASYNC_TEST_FUNCTIONS (query_standard_feed, void,
@@ -492,7 +405,8 @@ G_STMT_START {
 
 	if (error == NULL) {
 		g_assert (GDATA_IS_FEED (feed));
-		/* TODO: Tests? */
+
+		g_assert_cmpuint (g_list_length (gdata_feed_get_entries (feed)), >, 0);
 
 		g_object_unref (feed);
 	} else {
@@ -504,9 +418,16 @@ static void
 test_query_standard_feed_async_progress_closure (gconstpointer service)
 {
 	GDataAsyncProgressClosure *data = g_slice_new0 (GDataAsyncProgressClosure);
+	gulong filter_id;
+	const gchar *ignore_query_param_values[] = {
+		"publishedAfter",
+		NULL,
+	};
 
 	g_assert (service != NULL);
 
+	filter_id = uhm_server_filter_ignore_parameter_values (mock_server,
+	                                                       ignore_query_param_values);
 	gdata_test_mock_server_start_trace (mock_server, "query-standard-feed-async-progress-closure");
 
 	data->main_loop = g_main_loop_new (NULL, TRUE);
@@ -525,6 +446,7 @@ test_query_standard_feed_async_progress_closure (gconstpointer service)
 	g_slice_free (GDataAsyncProgressClosure, data);
 
 	uhm_server_end_trace (mock_server);
+	uhm_server_compare_messages_remove_filter (mock_server, filter_id);
 }
 
 static GDataYouTubeVideo *
@@ -533,62 +455,11 @@ get_video_for_related (void)
 	GDataYouTubeVideo *video;
 	GError *error = NULL;
 
-	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-			"xmlns:media='http://search.yahoo.com/mrss/' "
-			"xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-			"xmlns:georss='http://www.georss.org/georss' "
-			"xmlns:gd='http://schemas.google.com/g/2005' "
-			"xmlns:gml='http://www.opengis.net/gml'>"
-			"<id>http://gdata.youtube.com/feeds/api/videos/q1UPMEmCqZo</id>"
-			"<published>2009-02-12T20:34:08.000Z</published>"
-			"<updated>2009-02-21T13:00:13.000Z</updated>"
-			"<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat' term='part one'/>"
-			"<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat' term='Film' label='Film &amp; Animation'/>"
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"
-			"<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat' term='ian purchase'/>"
-			"<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat' term='purchase brothers'/>"
-			"<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat' term='half life 2'/>"
-			"<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat' term='escape from city 17'/>"
-			"<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat' term='Half Life'/>"
-			"<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat' term='david purchase'/>"
-			"<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat' term='half-life'/>"
-			"<title type='text'>Escape From City 17 - Part One</title>"
-			"<content type='text'>Directed by The Purchase Brothers. *snip*</content>"
-			"<link rel='http://www.iana.org/assignments/relation/alternate' type='text/html' href='http://www.youtube.com/watch?v=q1UPMEmCqZo'/>"
-			"<link rel='http://gdata.youtube.com/schemas/2007#video.related' type='application/atom+xml' href='http://gdata.youtube.com/feeds/api/videos/q1UPMEmCqZo/related'/>"
-			"<link rel='http://gdata.youtube.com/schemas/2007#mobile' type='text/html' href='http://m.youtube.com/details?v=q1UPMEmCqZo'/>"
-			"<link rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml' href='http://gdata.youtube.com/feeds/api/standardfeeds/top_rated/v/q1UPMEmCqZo'/>"
-			"<author>"
-				"<name>PurchaseBrothers</name>"
-				"<uri>http://gdata.youtube.com/feeds/api/users/purchasebrothers</uri>"
-			"</author>"
-			"<media:group>"
-				"<media:title type='plain'>Escape From City 17 - Part One</media:title>"
-				"<media:description type='plain'>Directed by The Purchase Brothers. *snip*</media:description>"
-				"<media:keywords>Half Life, escape from city 17, half-life, half life 2, part one, purchase brothers, david purchase, ian purchase</media:keywords>"
-				"<yt:duration seconds='330'/>"
-				"<media:category label='Film &amp; Animation' scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Film</media:category>"
-				"<media:content url='http://www.youtube.com/v/q1UPMEmCqZo&amp;f=standard&amp;app=youtube_gdata' type='application/x-shockwave-flash' medium='video' isDefault='true' expression='full' duration='330' yt:format='5'/>"
-				"<media:content url='rtsp://rtsp2.youtube.com/CiQLENy73wIaGwmaqYJJMA9VqxMYDSANFEgGUghzdGFuZGFyZAw=/0/0/0/video.3gp' type='video/3gpp' medium='video' expression='full' duration='330' yt:format='1'/>"
-				"<media:content url='rtsp://rtsp2.youtube.com/CiQLENy73wIaGwmaqYJJMA9VqxMYESARFEgGUghzdGFuZGFyZAw=/0/0/0/video.3gp' type='video/3gpp' medium='video' expression='full' duration='330' yt:format='6'/>"
-				"<media:thumbnail url='http://i.ytimg.com/vi/q1UPMEmCqZo/2.jpg' height='97' width='130' time='00:02:45'/>"
-				"<media:thumbnail url='http://i.ytimg.com/vi/q1UPMEmCqZo/1.jpg' height='97' width='130' time='00:01:22.500'/>"
-				"<media:thumbnail url='http://i.ytimg.com/vi/q1UPMEmCqZo/3.jpg' height='97' width='130' time='00:04:07.500'/>"
-				"<media:thumbnail url='http://i.ytimg.com/vi/q1UPMEmCqZo/0.jpg' height='240' width='320' time='00:02:45'/>"
-				"<media:player url='http://www.youtube.com/watch?v=q1UPMEmCqZo'/>"
-			"</media:group>"
-			"<yt:statistics viewCount='1683289' favoriteCount='29963'/>"
-			"<gd:rating min='1' max='5' numRaters='24550' average='4.95'/>"
-			"<georss:where>"
-				"<gml:Point>"
-					"<gml:pos>43.661911057260674 -79.37759399414062</gml:pos>"
-				"</gml:Point>"
-			"</georss:where>"
-			"<gd:comments>"
-				"<gd:feedLink href='http://gdata.youtube.com/feeds/api/videos/q1UPMEmCqZo/comments' countHint='13021'/>"
-			"</gd:comments>"
-		"</entry>", -1, &error));
+	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_json (GDATA_TYPE_YOUTUBE_VIDEO,
+		"{"
+			"'kind': 'youtube#video',"
+			"'id': 'q1UPMEmCqZo'"
+		"}", -1, &error));
 	g_assert_no_error (error);
 	g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
 	g_clear_error (&error);
@@ -689,6 +560,7 @@ set_up_upload (UploadData *data, gconstpointer service)
 	GDataMediaCategory *category;
 	GFileInfo *file_info;
 	const gchar * const tags[] = { "toast", "wedding", NULL };
+	gchar *path = NULL;
 	GError *error = NULL;
 
 	data->service = g_object_ref ((gpointer) service);
@@ -698,14 +570,16 @@ set_up_upload (UploadData *data, gconstpointer service)
 
 	gdata_entry_set_title (GDATA_ENTRY (data->video), "Bad Wedding Toast");
 	gdata_youtube_video_set_description (data->video, "I gave a bad toast at my friend's wedding.");
-	category = gdata_media_category_new ("People", "http://gdata.youtube.com/schemas/2007/categories.cat", NULL);
+	category = gdata_media_category_new ("22", NULL, NULL);
 	gdata_youtube_video_set_category (data->video, category);
 	g_object_unref (category);
 	gdata_youtube_video_set_keywords (data->video, tags);
 
 	/* Get a file to upload */
 	/* TODO: fix the path */
-	data->video_file = g_file_new_for_path (TEST_FILE_DIR "sample.ogg");
+	path = g_test_build_filename (G_TEST_DIST, "sample.ogg", NULL);
+	data->video_file = g_file_new_for_path (path);
+	g_free (path);
 
 	/* Get the file's info */
 	file_info = g_file_query_info (data->video_file, G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME "," G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
@@ -870,33 +744,316 @@ test_parsing_app_control (void)
 	GDataYouTubeState *state;
 	GError *error = NULL;
 
-	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-			"xmlns:media='http://search.yahoo.com/mrss/' "
-			"xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-			"xmlns:gd='http://schemas.google.com/g/2005' "
-			"gd:etag='W/\"CEMFSX47eCp7ImA9WxVUGEw.\"'>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<published>2006-05-16T14:06:37.000Z</published>"
-			"<updated>2009-03-23T12:46:58.000Z</updated>"
-			"<app:control xmlns:app='http://www.w3.org/2007/app'>"
-				"<app:draft>yes</app:draft>"
-				"<yt:state name='blacklisted'>This video is not available in your country</yt:state>"
-			"</app:control>"
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"
-			"<title>Judas Priest - Painkiller</title>"
-			"<link rel='http://www.iana.org/assignments/relation/alternate' type='text/html' href='http://www.youtube.com/watch?v=JAagedeKdcQ'/>"
-			"<link rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml' href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo'/>"
-			"<author>"
-				"<name>eluves</name>"
-				"<uri>http://gdata.youtube.com/feeds/api/users/eluves</uri>"
-			"</author>"
-			"<media:group>"
-				"<media:title type='plain'>Judas Priest - Painkiller</media:title>"
-				"<media:credit role='uploader' scheme='urn:youtube'>eluves</media:credit>"
-				"<media:category label='Music' scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Music</media:category>"
-			"</media:group>"
-		"</entry>", -1, &error));
+	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_json (GDATA_TYPE_YOUTUBE_VIDEO,
+		"{"
+			"'kind': 'youtube#video',"
+			"'etag': '\"tbWC5XrSXxe1WOAx6MK9z4hHSU8/X_byq2BdOVgHzCA-ScpZbTWmgfQ\"',"
+			"'id': 'JAagedeKdcQ',"
+			"'snippet': {"
+				"'publishedAt': '2006-05-16T14:06:37.000Z',"
+				"'channelId': 'UCCS6UQvicRHyn1whEUDEMUQ',"
+				"'title': 'Judas Priest - Painkiller',"
+				"'description': 'Videoclip de Judas Priest',"
+				"'thumbnails': {"
+					"'default': {"
+						"'url': 'https://i.ytimg.com/vi/JAagedeKdcQ/default.jpg',"
+						"'width': 120,"
+						"'height': 90"
+					"},"
+					"'medium': {"
+						"'url': 'https://i.ytimg.com/vi/JAagedeKdcQ/mqdefault.jpg',"
+						"'width': 320,"
+						"'height': 180"
+					"},"
+					"'high': {"
+						"'url': 'https://i.ytimg.com/vi/JAagedeKdcQ/hqdefault.jpg',"
+						"'width': 480,"
+						"'height': 360"
+					"}"
+				"},"
+				"'channelTitle': 'eluves',"
+				"'categoryId': '10',"
+				"'liveBroadcastContent': 'none',"
+				"'localized': {"
+					"'title': 'Judas Priest - Painkiller',"
+					"'description': 'Videoclip de Judas Priest'"
+				"}"
+			"},"
+			"'contentDetails': {"
+				"'duration': 'PT6M',"
+				"'dimension': '2d',"
+				"'definition': 'sd',"
+				"'caption': 'false',"
+				"'licensedContent': false,"
+				"'regionRestriction': {"
+					"'blocked': ["
+						"'RU',"
+						"'RW',"
+						"'RS',"
+						"'RO',"
+						"'RE',"
+						"'BL',"
+						"'BM',"
+						"'BN',"
+						"'BO',"
+						"'JP',"
+						"'BI',"
+						"'BJ',"
+						"'BD',"
+						"'BE',"
+						"'BF',"
+						"'BG',"
+						"'YT',"
+						"'BB',"
+						"'CX',"
+						"'JE',"
+						"'BY',"
+						"'BZ',"
+						"'BT',"
+						"'JM',"
+						"'BV',"
+						"'BW',"
+						"'YE',"
+						"'BQ',"
+						"'BR',"
+						"'BS',"
+						"'IM',"
+						"'IL',"
+						"'IO',"
+						"'IN',"
+						"'IE',"
+						"'ID',"
+						"'QA',"
+						"'TM',"
+						"'IQ',"
+						"'IS',"
+						"'IR',"
+						"'IT',"
+						"'TK',"
+						"'AE',"
+						"'AD',"
+						"'AG',"
+						"'AF',"
+						"'AI',"
+						"'AM',"
+						"'AL',"
+						"'AO',"
+						"'AQ',"
+						"'AS',"
+						"'AR',"
+						"'AU',"
+						"'AT',"
+						"'AW',"
+						"'TG',"
+						"'AX',"
+						"'AZ',"
+						"'PR',"
+						"'HK',"
+						"'HN',"
+						"'PW',"
+						"'PT',"
+						"'HM',"
+						"'PY',"
+						"'PA',"
+						"'PF',"
+						"'PG',"
+						"'PE',"
+						"'HR',"
+						"'PK',"
+						"'PH',"
+						"'PN',"
+						"'HT',"
+						"'HU',"
+						"'OM',"
+						"'WS',"
+						"'WF',"
+						"'BH',"
+						"'KP',"
+						"'TT',"
+						"'GG',"
+						"'GF',"
+						"'GE',"
+						"'GD',"
+						"'GB',"
+						"'VN',"
+						"'VA',"
+						"'GM',"
+						"'VC',"
+						"'VE',"
+						"'GI',"
+						"'VG',"
+						"'GW',"
+						"'GU',"
+						"'GT',"
+						"'GS',"
+						"'GR',"
+						"'GQ',"
+						"'GP',"
+						"'VU',"
+						"'GY',"
+						"'NA',"
+						"'NC',"
+						"'NE',"
+						"'NF',"
+						"'NG',"
+						"'NI',"
+						"'NL',"
+						"'BA',"
+						"'NO',"
+						"'NP',"
+						"'NR',"
+						"'NU',"
+						"'NZ',"
+						"'PM',"
+						"'UM',"
+						"'TV',"
+						"'UG',"
+						"'UA',"
+						"'FI',"
+						"'FJ',"
+						"'FK',"
+						"'UY',"
+						"'FM',"
+						"'CN',"
+						"'UZ',"
+						"'US',"
+						"'ME',"
+						"'MD',"
+						"'MG',"
+						"'MF',"
+						"'MA',"
+						"'MC',"
+						"'VI',"
+						"'MM',"
+						"'ML',"
+						"'MO',"
+						"'FO',"
+						"'MH',"
+						"'MK',"
+						"'MU',"
+						"'MT',"
+						"'MW',"
+						"'MV',"
+						"'MQ',"
+						"'MP',"
+						"'MS',"
+						"'MR',"
+						"'CO',"
+						"'CV',"
+						"'MY',"
+						"'MX',"
+						"'MZ',"
+						"'TN',"
+						"'TO',"
+						"'TL',"
+						"'JO',"
+						"'TJ',"
+						"'GA',"
+						"'TH',"
+						"'TF',"
+						"'ET',"
+						"'TD',"
+						"'TC',"
+						"'ES',"
+						"'ER',"
+						"'TZ',"
+						"'EH',"
+						"'GN',"
+						"'EE',"
+						"'TW',"
+						"'EG',"
+						"'TR',"
+						"'CA',"
+						"'EC',"
+						"'GL',"
+						"'LB',"
+						"'LC',"
+						"'LA',"
+						"'MN',"
+						"'LK',"
+						"'LI',"
+						"'LV',"
+						"'LT',"
+						"'LU',"
+						"'LR',"
+						"'LS',"
+						"'PS',"
+						"'KZ',"
+						"'GH',"
+						"'LY',"
+						"'DZ',"
+						"'DO',"
+						"'DM',"
+						"'DJ',"
+						"'PL',"
+						"'DK',"
+						"'DE',"
+						"'SZ',"
+						"'SY',"
+						"'SX',"
+						"'SS',"
+						"'SR',"
+						"'SV',"
+						"'ST',"
+						"'SK',"
+						"'SJ',"
+						"'SI',"
+						"'SH',"
+						"'SO',"
+						"'SN',"
+						"'SM',"
+						"'SL',"
+						"'SC',"
+						"'SB',"
+						"'SA',"
+						"'FR',"
+						"'SG',"
+						"'SE',"
+						"'SD',"
+						"'CK',"
+						"'KR',"
+						"'CI',"
+						"'CH',"
+						"'KW',"
+						"'ZA',"
+						"'CM',"
+						"'CL',"
+						"'CC',"
+						"'ZM',"
+						"'KY',"
+						"'CG',"
+						"'CF',"
+						"'CD',"
+						"'CZ',"
+						"'CY',"
+						"'ZW',"
+						"'KG',"
+						"'CU',"
+						"'KE',"
+						"'CR',"
+						"'KI',"
+						"'KH',"
+						"'CW',"
+						"'KN',"
+						"'KM'"
+					"]"
+				"}"
+			"},"
+			"'status': {"
+				"'uploadStatus': 'processed',"
+				"'privacyStatus': 'private',"
+				"'license': 'youtube',"
+				"'embeddable': true,"
+				"'publicStatsViewable': true"
+			"},"
+			"'statistics': {"
+				"'viewCount': '4369107',"
+				"'likeCount': '13619',"
+				"'dislikeCount': '440',"
+				"'favoriteCount': '0',"
+				"'commentCount': '11181'"
+			"}"
+		"}", -1, &error));
 	g_assert_no_error (error);
 	g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
 	g_clear_error (&error);
@@ -907,8 +1064,8 @@ test_parsing_app_control (void)
 	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	state = gdata_youtube_video_get_state (video);
-	g_assert_cmpstr (gdata_youtube_state_get_name (state), ==, "blacklisted");
-	g_assert_cmpstr (gdata_youtube_state_get_message (state), ==, "This video is not available in your country");
+	g_assert_cmpstr (gdata_youtube_state_get_name (state), ==, NULL);
+	g_assert_cmpstr (gdata_youtube_state_get_message (state), ==, NULL);
 	g_assert (gdata_youtube_state_get_reason_code (state) == NULL);
 	g_assert (gdata_youtube_state_get_help_uri (state) == NULL);
 
@@ -924,30 +1081,28 @@ test_parsing_yt_recorded (void)
 	gint64 recorded;
 	GError *error = NULL;
 
-	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-			"xmlns:media='http://search.yahoo.com/mrss/' "
-			"xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-			"xmlns:gd='http://schemas.google.com/g/2005' "
-			"gd:etag='W/\"CEMFSX47eCp7ImA9WxVUGEw.\"'>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<published>2006-05-16T14:06:37.000Z</published>"
-			"<updated>2009-03-23T12:46:58.000Z</updated>"
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"
-			"<title>Judas Priest - Painkiller</title>"
-			"<link rel='http://www.iana.org/assignments/relation/alternate' type='text/html' href='http://www.youtube.com/watch?v=JAagedeKdcQ'/>"
-			"<link rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml' href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo'/>"
-			"<author>"
-				"<name>eluves</name>"
-				"<uri>http://gdata.youtube.com/feeds/api/users/eluves</uri>"
-			"</author>"
-			"<media:group>"
-				"<media:title type='plain'>Judas Priest - Painkiller</media:title>"
-				"<media:credit role='uploader' scheme='urn:youtube'>eluves</media:credit>"
-				"<media:category label='Music' scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Music</media:category>"
-			"</media:group>"
-			"<yt:recorded>2003-08-03</yt:recorded>"
-		"</entry>", -1, &error));
+	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_json (GDATA_TYPE_YOUTUBE_VIDEO,
+		"{"
+			"'kind': 'youtube#video',"
+			"'etag': '\"tbWC5XrSXxe1WOAx6MK9z4hHSU8/X_byq2BdOVgHzCA-ScpZbTWmgfQ\"',"
+			"'id': 'JAagedeKdcQ',"
+			"'snippet': {"
+				"'publishedAt': '2006-05-16T14:06:37.000Z',"
+				"'channelId': 'UCCS6UQvicRHyn1whEUDEMUQ',"
+				"'title': 'Judas Priest - Painkiller',"
+				"'description': 'Videoclip de Judas Priest',"
+				"'channelTitle': 'eluves',"
+				"'categoryId': '10',"
+				"'liveBroadcastContent': 'none',"
+				"'localized': {"
+					"'title': 'Judas Priest - Painkiller',"
+					"'description': 'Videoclip de Judas Priest'"
+				"}"
+			"},"
+			"'recordingDetails': {"
+				"'recordingDate': '2003-08-03'"
+			"}"
+		"}", -1, &error));
 	g_assert_no_error (error);
 	g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
 	g_clear_error (&error);
@@ -961,36 +1116,26 @@ test_parsing_yt_recorded (void)
 	gdata_youtube_video_set_recorded (video, recorded);
 
 	/* Check the XML */
-	gdata_test_assert_xml (video,
-			 "<?xml version='1.0' encoding='UTF-8'?>"
-			 "<entry xmlns='http://www.w3.org/2005/Atom' "
-				"xmlns:media='http://search.yahoo.com/mrss/' "
-				"xmlns:gd='http://schemas.google.com/g/2005' "
-				"xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-				"xmlns:app='http://www.w3.org/2007/app' "
-				"xmlns:georss='http://www.georss.org/georss' "
-				"xmlns:gml='http://www.opengis.net/gml' "
-				"gd:etag='W/\"CEMFSX47eCp7ImA9WxVUGEw.\"'>"
-				"<title type='text'>Judas Priest - Painkiller</title>"
-				"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-				"<updated>2009-03-23T12:46:58Z</updated>"
-				"<published>2006-05-16T14:06:37Z</published>"
-				"<category term='http://gdata.youtube.com/schemas/2007#video' scheme='http://schemas.google.com/g/2005#kind'/>"
-				"<link href='http://www.youtube.com/watch?v=JAagedeKdcQ' rel='http://www.iana.org/assignments/relation/alternate' type='text/html'/>"
-				"<link href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo' rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml'/>"
-				"<author>"
-					"<name>eluves</name>"
-					"<uri>http://gdata.youtube.com/feeds/api/users/eluves</uri>"
-				"</author>"
-				"<media:group>"
-					"<media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat' label='Music'>Music</media:category>"
-					"<media:title type='plain'>Judas Priest - Painkiller</media:title>"
-				"</media:group>"
-				"<yt:recorded>2005-10-02</yt:recorded>"
-				"<app:control>"
-					"<app:draft>no</app:draft>"
-				"</app:control>"
-			 "</entry>");
+	gdata_test_assert_json (video,
+		"{"
+			"'kind': 'youtube#video',"
+			"'etag': '\"tbWC5XrSXxe1WOAx6MK9z4hHSU8/X_byq2BdOVgHzCA-ScpZbTWmgfQ\"',"
+			"'id': 'JAagedeKdcQ',"
+			"'selfLink': 'https://www.googleapis.com/youtube/v3/videos?id=JAagedeKdcQ',"
+			"'title': 'Judas Priest - Painkiller',"
+			"'description': 'Videoclip de Judas Priest',"
+			"'snippet': {"
+				"'title': 'Judas Priest - Painkiller',"
+				"'description': 'Videoclip de Judas Priest',"
+				"'categoryId': '10'"
+			"},"
+			"'status': {"
+				"'privacyStatus': 'public'"
+			"},"
+			"'recordingDetails': {"
+				"'recordingDate': '2005-10-02'"
+			"}"
+		"}");
 
 	/* TODO: more tests on entry properties */
 
@@ -1003,88 +1148,46 @@ test_parsing_yt_access_control (void)
 	GDataYouTubeVideo *video;
 	GError *error = NULL;
 
-	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-			"xmlns:media='http://search.yahoo.com/mrss/' "
-			"xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-			"xmlns:gd='http://schemas.google.com/g/2005' "
-			"gd:etag='W/\"CEMFSX47eCp7ImA9WxVUGEw.\"'>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<published>2006-05-16T14:06:37.000Z</published>"
-			"<updated>2009-03-23T12:46:58.000Z</updated>"
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"
-			"<title>Judas Priest - Painkiller</title>"
-			"<link rel='http://www.iana.org/assignments/relation/alternate' type='text/html' href='http://www.youtube.com/watch?v=JAagedeKdcQ'/>"
-			"<link rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml' href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo'/>"
-			"<author>"
-				"<name>eluves</name>"
-				"<uri>http://gdata.youtube.com/feeds/api/users/eluves</uri>"
-			"</author>"
-			"<media:group>"
-				"<media:title type='plain'>Judas Priest - Painkiller</media:title>"
-				"<media:credit role='uploader' scheme='urn:youtube'>eluves</media:credit>"
-				"<media:category label='Music' scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Music</media:category>"
-			"</media:group>"
-			"<yt:accessControl action='rate' permission='allowed'/>"
-			"<yt:accessControl action='comment' permission='moderated'/>"
-			"<yt:accessControl action='commentVote' permission='denied'/>"
-			"<yt:accessControl action='videoRespond' permission='allowed'/>"
-			"<yt:accessControl action='syndicate' permission='denied'/>"
-			"<yt:accessControl action='random' permission='moderated'/>"
-		"</entry>", -1, &error));
+	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_json (GDATA_TYPE_YOUTUBE_VIDEO,
+		"{"
+			"'kind': 'youtube#video',"
+			"'id': 'JAagedeKdcQ',"
+			"'status': {"
+				"'privacyStatus': 'public',"
+				"'embeddable': false"
+			"}"
+		"}", -1, &error));
 	g_assert_no_error (error);
 	g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
 	g_clear_error (&error);
 
 	/* Test the access controls */
-	g_assert_cmpint (gdata_youtube_video_get_access_control (video, GDATA_YOUTUBE_ACTION_RATE), ==, GDATA_YOUTUBE_PERMISSION_ALLOWED);
-	g_assert_cmpint (gdata_youtube_video_get_access_control (video, GDATA_YOUTUBE_ACTION_COMMENT), ==, GDATA_YOUTUBE_PERMISSION_MODERATED);
+	g_assert_cmpint (gdata_youtube_video_get_access_control (video, GDATA_YOUTUBE_ACTION_RATE), ==, GDATA_YOUTUBE_PERMISSION_DENIED);
+	g_assert_cmpint (gdata_youtube_video_get_access_control (video, GDATA_YOUTUBE_ACTION_COMMENT), ==, GDATA_YOUTUBE_PERMISSION_DENIED);
 	g_assert_cmpint (gdata_youtube_video_get_access_control (video, GDATA_YOUTUBE_ACTION_COMMENT_VOTE), ==, GDATA_YOUTUBE_PERMISSION_DENIED);
-	g_assert_cmpint (gdata_youtube_video_get_access_control (video, GDATA_YOUTUBE_ACTION_VIDEO_RESPOND), ==, GDATA_YOUTUBE_PERMISSION_ALLOWED);
+	g_assert_cmpint (gdata_youtube_video_get_access_control (video, GDATA_YOUTUBE_ACTION_VIDEO_RESPOND), ==, GDATA_YOUTUBE_PERMISSION_DENIED);
 	g_assert_cmpint (gdata_youtube_video_get_access_control (video, GDATA_YOUTUBE_ACTION_EMBED), ==, GDATA_YOUTUBE_PERMISSION_DENIED);
 	g_assert_cmpint (gdata_youtube_video_get_access_control (video, GDATA_YOUTUBE_ACTION_SYNDICATE), ==, GDATA_YOUTUBE_PERMISSION_DENIED);
+	g_assert_cmpint (gdata_youtube_video_get_access_control (video, "list"), ==, GDATA_YOUTUBE_PERMISSION_ALLOWED);
 
-	/* Update some of them and see if the XML's written out OK */
-	gdata_youtube_video_set_access_control (video, GDATA_YOUTUBE_ACTION_RATE, GDATA_YOUTUBE_PERMISSION_MODERATED);
-	gdata_youtube_video_set_access_control (video, GDATA_YOUTUBE_ACTION_EMBED, GDATA_YOUTUBE_PERMISSION_DENIED);
+	/* Update some of them and see if the JSON’s written out OK */
+	gdata_youtube_video_set_access_control (video, "list", GDATA_YOUTUBE_PERMISSION_DENIED);
+	gdata_youtube_video_set_access_control (video, GDATA_YOUTUBE_ACTION_EMBED, GDATA_YOUTUBE_PERMISSION_ALLOWED);
 
-	/* Check the XML */
-	gdata_test_assert_xml (video,
-			 "<?xml version='1.0' encoding='UTF-8'?>"
-			 "<entry xmlns='http://www.w3.org/2005/Atom' "
-				"xmlns:media='http://search.yahoo.com/mrss/' "
-				"xmlns:gd='http://schemas.google.com/g/2005' "
-				"xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-				"xmlns:app='http://www.w3.org/2007/app' "
-				"xmlns:georss='http://www.georss.org/georss' "
-				"xmlns:gml='http://www.opengis.net/gml' "
-				"gd:etag='W/\"CEMFSX47eCp7ImA9WxVUGEw.\"'>"
-				"<title type='text'>Judas Priest - Painkiller</title>"
-				"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-				"<updated>2009-03-23T12:46:58Z</updated>"
-				"<published>2006-05-16T14:06:37Z</published>"
-				"<category term='http://gdata.youtube.com/schemas/2007#video' scheme='http://schemas.google.com/g/2005#kind'/>"
-				"<link href='http://www.youtube.com/watch?v=JAagedeKdcQ' rel='http://www.iana.org/assignments/relation/alternate' type='text/html'/>"
-				"<link href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo' rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml'/>"
-				"<author>"
-					"<name>eluves</name>"
-					"<uri>http://gdata.youtube.com/feeds/api/users/eluves</uri>"
-				"</author>"
-				"<media:group>"
-					"<media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat' label='Music'>Music</media:category>"
-					"<media:title type='plain'>Judas Priest - Painkiller</media:title>"
-				"</media:group>"
-				"<yt:accessControl action='embed' permission='denied'/>"
-				"<yt:accessControl action='random' permission='moderated'/>"
-				"<yt:accessControl action='commentVote' permission='denied'/>"
-				"<yt:accessControl action='rate' permission='moderated'/>"
-				"<yt:accessControl action='comment' permission='moderated'/>"
-				"<yt:accessControl action='syndicate' permission='denied'/>"
-				"<yt:accessControl action='videoRespond' permission='allowed'/>"
-				"<app:control>"
-					"<app:draft>no</app:draft>"
-				"</app:control>"
-			 "</entry>");
+	/* Check the JSON */
+	gdata_test_assert_json (video,
+		"{"
+			"'kind': 'youtube#video',"
+			"'id': 'JAagedeKdcQ',"
+			"'selfLink': 'https://www.googleapis.com/youtube/v3/videos?id=JAagedeKdcQ',"
+			"'title': null,"
+			"'snippet': {},"
+			"'status': {"
+				"'privacyStatus': 'unlisted',"
+				"'embeddable': true"
+			"},"
+			"'recordingDetails': {}"
+		"}");
 
 	g_object_unref (video);
 }
@@ -1143,56 +1246,6 @@ test_parsing_yt_category (void)
 	g_object_unref (category);
 }
 
-/*static void
-test_parsing_comments_feed_link (void)
-{
-	GDataYouTubeVideo *video;
-	GDataGDFeedLink *feed_link;
-	GError *error = NULL;
-
-	video = gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-			"xmlns:media='http://search.yahoo.com/mrss/' "
-			"xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-			"xmlns:gd='http://schemas.google.com/g/2005' "
-			"gd:etag='W/\"CEMFSX47eCp7ImA9WxVUGEw.\"'>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<published>2006-05-16T14:06:37.000Z</published>"
-			"<updated>2009-03-23T12:46:58.000Z</updated>"
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"
-			"<title>Judas Priest - Painkiller</title>"
-			"<link rel='http://www.iana.org/assignments/relation/alternate' type='text/html' href='http://www.youtube.com/watch?v=JAagedeKdcQ'/>"
-			"<link rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml' href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo'/>"
-			"<author>"
-				"<name>eluves</name>"
-				"<uri>http://gdata.youtube.com/feeds/api/users/eluves</uri>"
-			"</author>"
-			"<media:group>"
-				"<media:title type='plain'>Judas Priest - Painkiller</media:title>"
-				"<media:credit role='uploader' scheme='urn:youtube'>eluves</media:credit>"
-				"<media:category label='Music' scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Music</media:category>"
-			"</media:group>"
-			"<gd:comments>"
-				"<gd:feedLink href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ/comments' countHint='13021'/>"
-			"</gd:comments>"
-		"</entry>", -1, &error);
-	g_assert_no_error (error);
-	g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
-	g_clear_error (&error);
-
-	* Test the feed link *
-	feed_link = gdata_youtube_video_get_comments_feed_link (video);
-	g_assert (feed_link != NULL);
-	g_assert (feed_link->rel == NULL);
-	g_assert_cmpstr (feed_link->href, ==, "http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ/comments");
-	g_assert_cmpuint (feed_link->count_hint, ==, 13021);
-	g_assert (feed_link->read_only == FALSE);
-
-	* TODO: more tests on entry properties *
-
-	g_object_unref (video);
-}*/
-
 static void
 test_parsing_georss_where (void)
 {
@@ -1200,35 +1253,17 @@ test_parsing_georss_where (void)
 	gdouble latitude, longitude;
 	GError *error = NULL;
 
-	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-		       "xmlns:media='http://search.yahoo.com/mrss/' "
-		       "xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-		       "xmlns:gd='http://schemas.google.com/g/2005' "
-		       "xmlns:georss='http://www.georss.org/georss' "
-		       "xmlns:gml='http://www.opengis.net/gml'>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<published>2006-05-16T14:06:37.000Z</published>"
-			"<updated>2009-03-23T12:46:58.000Z</updated>"
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"
-			"<title>Some video somewhere</title>"
-			"<link rel='http://www.iana.org/assignments/relation/alternate' type='text/html' href='http://www.youtube.com/watch?v=JAagedeKdcQ'/>"
-			"<link rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml' href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo'/>"
-			"<author>"
-				"<name>Foo</name>"
-				"<uri>http://gdata.youtube.com/feeds/api/users/Foo</uri>"
-			"</author>"
-			"<media:group>"
-				"<media:title type='plain'>Some video somewhere</media:title>"
-				"<media:credit role='uploader' scheme='urn:youtube'>Foo</media:credit>"
-				"<media:category label='Music' scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Music</media:category>"
-			"</media:group>"
-			"<georss:where>"
-				"<gml:Point>"
-					"<gml:pos>41.14556884765625 -8.63525390625</gml:pos>"
-				"</gml:Point>"
-			"</georss:where>"
-		"</entry>", -1, &error));
+	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_json (GDATA_TYPE_YOUTUBE_VIDEO,
+		"{"
+			"'kind': 'youtube#video',"
+			"'id': 'JAagedeKdcQ',"
+			"'recordingDetails': {"
+				"'location': {"
+					"'latitude': 41.14556884765625,"
+					"'longitude': -8.63525390625"
+				"}"
+			"}"
+		"}", -1, &error));
 	g_assert_no_error (error);
 	g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
 	g_clear_error (&error);
@@ -1238,7 +1273,7 @@ test_parsing_georss_where (void)
 	g_assert_cmpfloat (latitude, ==, 41.14556884765625);
 	g_assert_cmpfloat (longitude, ==, -8.63525390625);
 
-	/* Update them and see if they're set OK and the XML's written out OK */
+	/* Update them and see if they're set OK and the JSON’s written out OK */
 	gdata_youtube_video_set_coordinates (video, 5.5, 6.5);
 
 	g_object_get (G_OBJECT (video),
@@ -1249,165 +1284,72 @@ test_parsing_georss_where (void)
 	g_assert_cmpfloat (latitude, ==, 5.5);
 	g_assert_cmpfloat (longitude, ==, 6.5);
 
-	/* Check the XML */
-	gdata_test_assert_xml (video,
-		"<?xml version='1.0' encoding='UTF-8'?>"
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-		       "xmlns:app='http://www.w3.org/2007/app' "
-		       "xmlns:media='http://search.yahoo.com/mrss/' "
-		       "xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-		       "xmlns:gd='http://schemas.google.com/g/2005' "
-		       "xmlns:georss='http://www.georss.org/georss' "
-		       "xmlns:gml='http://www.opengis.net/gml'>"
-			"<title type='text'>Some video somewhere</title>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<updated>2009-03-23T12:46:58Z</updated>"
-			"<published>2006-05-16T14:06:37Z</published>"
-			"<category term='http://gdata.youtube.com/schemas/2007#video' scheme='http://schemas.google.com/g/2005#kind'/>"
-			"<link href='http://www.youtube.com/watch?v=JAagedeKdcQ' rel='http://www.iana.org/assignments/relation/alternate' type='text/html'/>"
-			"<link href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo' rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml'/>"
-			"<author>"
-				"<name>Foo</name>"
-				"<uri>http://gdata.youtube.com/feeds/api/users/Foo</uri>"
-			"</author>"
-			"<media:group>"
-				"<media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat' label='Music'>Music</media:category>"
-				"<media:title type='plain'>Some video somewhere</media:title>"
-			"</media:group>"
-			"<app:control><app:draft>no</app:draft></app:control>"
-			"<georss:where>"
-				"<gml:Point>"
-					"<gml:pos>5.5 6.5</gml:pos>"
-				"</gml:Point>"
-			"</georss:where>"
-		"</entry>");
+	/* Check the JSON */
+	gdata_test_assert_json (video,
+		"{"
+			"'kind': 'youtube#video',"
+			"'id': 'JAagedeKdcQ',"
+			"'selfLink': 'https://www.googleapis.com/youtube/v3/videos?id=JAagedeKdcQ',"
+			"'title': null,"
+			"'snippet': {},"
+			"'status': {"
+				"'privacyStatus': 'public'"
+			"},"
+			"'recordingDetails': {"
+				"'location': {"
+					"'latitude': 5.5,"
+					"'longitude': 6.5"
+				"}"
+			"}"
+		"}");
 
-	/* Unset the properties and ensure they're removed from the XML */
+	/* Unset the properties and ensure they’re removed from the JSON */
 	gdata_youtube_video_set_coordinates (video, G_MAXDOUBLE, G_MAXDOUBLE);
 
 	gdata_youtube_video_get_coordinates (video, &latitude, &longitude);
 	g_assert_cmpfloat (latitude, ==, G_MAXDOUBLE);
 	g_assert_cmpfloat (longitude, ==, G_MAXDOUBLE);
 
-	/* Check the XML */
-	gdata_test_assert_xml (video,
-		"<?xml version='1.0' encoding='UTF-8'?>"
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-		       "xmlns:app='http://www.w3.org/2007/app' "
-		       "xmlns:media='http://search.yahoo.com/mrss/' "
-		       "xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-		       "xmlns:gd='http://schemas.google.com/g/2005' "
-		       "xmlns:georss='http://www.georss.org/georss' "
-		       "xmlns:gml='http://www.opengis.net/gml'>"
-			"<title type='text'>Some video somewhere</title>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<updated>2009-03-23T12:46:58Z</updated>"
-			"<published>2006-05-16T14:06:37Z</published>"
-			"<category term='http://gdata.youtube.com/schemas/2007#video' scheme='http://schemas.google.com/g/2005#kind'/>"
-			"<link href='http://www.youtube.com/watch?v=JAagedeKdcQ' rel='http://www.iana.org/assignments/relation/alternate' type='text/html'/>"
-			"<link href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo' rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml'/>"
-			"<author>"
-				"<name>Foo</name>"
-				"<uri>http://gdata.youtube.com/feeds/api/users/Foo</uri>"
-			"</author>"
-			"<media:group>"
-				"<media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat' label='Music'>Music</media:category>"
-				"<media:title type='plain'>Some video somewhere</media:title>"
-			"</media:group>"
-			"<app:control><app:draft>no</app:draft></app:control>"
-		"</entry>");
+	/* Check the JSON */
+	gdata_test_assert_json (video,
+		"{"
+			"'kind': 'youtube#video',"
+			"'id': 'JAagedeKdcQ',"
+			"'selfLink': 'https://www.googleapis.com/youtube/v3/videos?id=JAagedeKdcQ',"
+			"'title': null,"
+			"'snippet': {},"
+			"'status': {"
+				"'privacyStatus': 'public'"
+			"},"
+			"'recordingDetails': {}"
+		"}");
 
 	g_object_unref (video);
 }
 
 static void
-test_parsing_media_group (void)
-{
-	GDataYouTubeVideo *video;
-	GError *error = NULL;
-
-	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-		       "xmlns:media='http://search.yahoo.com/mrss/' "
-		       "xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-		       "xmlns:gd='http://schemas.google.com/g/2005'>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<published>2006-05-16T14:06:37.000Z</published>"
-			"<updated>2009-03-23T12:46:58.000Z</updated>"
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"
-			"<title>Some video somewhere</title>"
-			"<link rel='http://www.iana.org/assignments/relation/alternate' type='text/html' href='http://www.youtube.com/watch?v=JAagedeKdcQ'/>"
-			"<link rel='http://www.iana.org/assignments/relation/self' type='application/atom+xml' href='http://gdata.youtube.com/feeds/api/videos/JAagedeKdcQ?client=ytapi-google-jsdemo'/>"
-			"<author>"
-				"<name>Foo</name>"
-				"<uri>http://gdata.youtube.com/feeds/api/users/Foo</uri>"
-			"</author>"
-			"<media:group>"
-				"<media:category label='Shows' scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Shows</media:category>"
-				"<media:category scheme='http://gdata.youtube.com/schemas/2007/releasemediums.cat'>6</media:category>"
-				"<media:category scheme='http://gdata.youtube.com/schemas/2007/mediatypes.cat'>3</media:category>"
-				"<media:content url='http://www.youtube.com/v/aklRlKH4R94?f=related&amp;d=ARK7_SyB_5iKQvGvwsk-0D4O88HsQjpE1a8d1GxQnGDm&amp;app=youtube_gdata' type='application/x-shockwave-flash' medium='video' isDefault='true' expression='full' duration='163' yt:format='5'/>"
-				"<media:content url='rtsp://v3.cache6.c.youtube.com/CkYLENy73wIaPQneR_ihlFFJahMYDSANFEgGUgdyZWxhdGVkciEBErv9LIH_mIpC8a_CyT7QPg7zwexCOkTVrx3UbFCcYOYM/0/0/0/video.3gp' type='video/3gpp' medium='video' expression='full' duration='163' yt:format='1'/>"
-				"<media:content url='rtsp://v3.cache3.c.youtube.com/CkYLENy73wIaPQneR_ihlFFJahMYESARFEgGUgdyZWxhdGVkciEBErv9LIH_mIpC8a_CyT7QPg7zwexCOkTVrx3UbFCcYOYM/0/0/0/video.3gp' type='video/3gpp' medium='video' expression='full' duration='163' yt:format='6'/>"
-				"<media:credit role='uploader' scheme='urn:youtube' yt:type='partner'>machinima</media:credit>"
-				"<media:credit role='Producer' scheme='urn:ebu'>Machinima</media:credit>"
-				"<media:credit role='info' scheme='urn:ebu'>season 1 episode 4 air date 08/22/10</media:credit>"
-				"<media:credit role='Producer' scheme='urn:ebu'>Machinima</media:credit>"
-				"<media:credit role='info' scheme='urn:ebu'>season 1 episode 4 air date 08/22/10</media:credit>"
-				"<media:description type='plain'>www.youtube.com Click here to watch If It Were Realistic: Melee If It Were Realistic: Gravity Gun (Half Life 2 Machinima) What if gravity guns were realistic? Created by Renaldoxx from Massive X Productions Directors Channel: www.youtube.com www.youtube.com - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Follow Machinima on Twitter! Machinima twitter.com Inside Gaming twitter.com Machinima Respawn twitter.com Machinima Entertainment, Technology, Culture twitter.com FOR MORE MACHINIMA, GO TO: www.youtube.com FOR MORE GAMEPLAY, GO TO: www.youtube.com FOR MORE SPORTS GAMEPLAY, GO TO: www.youtube.com FOR MORE TRAILERS, GO TO: www.youtube.com</media:description>"
-				"<media:keywords>Half, Life, If, It, Were, Realistic, Gravity, Gun, Renaldoxx, Sniper, Game, Machinima, Action, Gordon, Freeman, drift0r, Euphorian, Films, Combine, Rebel, Dark, Citizen, Diary, massivex, Productions, Massive, yt:quality=high, Half-Life, [2], HL2, fortress, gmod, left dead, tf2</media:keywords>"
-				"<media:player url='http://www.youtube.com/watch?v=aklRlKH4R94&amp;feature=youtube_gdata_player'/>"
-				"<media:rating scheme='urn:mpaa'>pg</media:rating>"
-				"<media:thumbnail url='http://i.ytimg.com/vi/aklRlKH4R94/default.jpg' height='90' width='120' time='00:01:21.500' yt:name='default'/>"
-				"<media:thumbnail url='http://i.ytimg.com/vi/aklRlKH4R94/hqdefault.jpg' height='360' width='480' yt:name='hqdefault'/>"
-				"<media:thumbnail url='http://i.ytimg.com/vi/aklRlKH4R94/1.jpg' height='90' width='120' time='00:00:40.750' yt:name='start'/>"
-				"<media:thumbnail url='http://i.ytimg.com/vi/aklRlKH4R94/2.jpg' height='90' width='120' time='00:01:21.500' yt:name='middle'/>"
-				"<media:thumbnail url='http://i.ytimg.com/vi/aklRlKH4R94/3.jpg' height='90' width='120' time='00:02:02.250' yt:name='end'/>"
-				"<media:title type='plain'>If It Were Realistic - Gravity Gun (Half Life 2 Machinima)</media:title>"
-				"<yt:aspectRatio>widescreen</yt:aspectRatio>"
-				"<yt:duration seconds='163'/>"
-				"<yt:uploaded>2010-08-22T14:04:18.000Z</yt:uploaded>"
-				"<yt:videoid>aklRlKH4R94</yt:videoid>"
-			"</media:group>"
-		"</entry>", -1, &error));
-	g_assert_no_error (error);
-	g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
-	g_clear_error (&error);
-
-	/* TODO: For the moment, we just check that parsing the XML didn't fail. Later, we might actually support outputting the XML again. */
-
-	g_object_unref (video);
-}
-
-static void
-test_parsing_media_group_ratings (void)
+test_parsing_ratings (void)
 {
 	GDataYouTubeVideo *video;
 	GError *error = NULL;
 
 	/* Parse all ratings */
-	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-		       "xmlns:media='http://search.yahoo.com/mrss/' "
-		       "xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-		       "xmlns:gd='http://schemas.google.com/g/2005'>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<published>2006-05-16T14:06:37.000Z</published>"
-			"<updated>2009-03-23T12:46:58.000Z</updated>"
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"
-			"<title>Some video somewhere</title>"
-			"<media:group>"
-				"<media:rating scheme='urn:simple'>nonadult</media:rating>"
-				"<media:rating scheme='urn:mpaa'>pg</media:rating>"
-				"<media:rating scheme='urn:v-chip'>tv-pg</media:rating>"
-			"</media:group>"
-		"</entry>", -1, &error));
+	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_json (GDATA_TYPE_YOUTUBE_VIDEO,
+		"{"
+			"'kind': 'youtube#video',"
+			"'id': 'JAagedeKdcQ',"
+			"'contentDetails': {"
+				"'contentRating': {"
+					"'mpaaRating': 'mpaaPg',"
+					"'tvpgRating': 'tvpgPg'"
+				"}"
+			"}"
+		"}", -1, &error));
 	g_assert_no_error (error);
 	g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
 	g_clear_error (&error);
 
 	/* Check the ratings, and check that we haven't ended up with a country restriction */
-	g_assert_cmpstr (gdata_youtube_video_get_media_rating (video, GDATA_YOUTUBE_RATING_TYPE_SIMPLE), ==, "nonadult");
 	g_assert_cmpstr (gdata_youtube_video_get_media_rating (video, GDATA_YOUTUBE_RATING_TYPE_MPAA), ==, "pg");
 	g_assert_cmpstr (gdata_youtube_video_get_media_rating (video, GDATA_YOUTUBE_RATING_TYPE_V_CHIP), ==, "tv-pg");
 
@@ -1416,76 +1358,30 @@ test_parsing_media_group_ratings (void)
 	g_object_unref (video);
 
 	/* Parse a video with one rating missing and see what happens */
-	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,
-		"<entry xmlns='http://www.w3.org/2005/Atom' "
-		       "xmlns:media='http://search.yahoo.com/mrss/' "
-		       "xmlns:yt='http://gdata.youtube.com/schemas/2007' "
-		       "xmlns:gd='http://schemas.google.com/g/2005'>"
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"
-			"<published>2006-05-16T14:06:37.000Z</published>"
-			"<updated>2009-03-23T12:46:58.000Z</updated>"
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"
-			"<title>Some video somewhere</title>"
-			"<media:group>"
-				"<media:rating scheme='urn:v-chip'>tv-y7-fv</media:rating>"
-				"<media:rating>adult</media:rating>"
-			"</media:group>"
-		"</entry>", -1, &error));
+	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_json (GDATA_TYPE_YOUTUBE_VIDEO,
+		"{"
+			"'kind': 'youtube#video',"
+			"'id': 'JAagedeKdcQ',"
+			"'contentDetails': {"
+				"'contentRating': {"
+					"'tvpgRating': 'tvpgY7Fv'"
+				"}"
+			"}"
+		"}", -1, &error));
 	g_assert_no_error (error);
 	g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
 	g_clear_error (&error);
 
 	/* Check the ratings again */
-	g_assert_cmpstr (gdata_youtube_video_get_media_rating (video, GDATA_YOUTUBE_RATING_TYPE_SIMPLE), ==, "adult");
 	g_assert_cmpstr (gdata_youtube_video_get_media_rating (video, GDATA_YOUTUBE_RATING_TYPE_MPAA), ==, NULL);
 	g_assert_cmpstr (gdata_youtube_video_get_media_rating (video, GDATA_YOUTUBE_RATING_TYPE_V_CHIP), ==, "tv-y7-fv");
 
-	/* Check that calling with an arbitrary rating type returns NULL */
+	/* Check that calling with an arbitrary rating type returns NULL.
+	 * %GDATA_YOUTUBE_RATING_TYPE_SIMPLE is no longer supported. */
 	g_assert_cmpstr (gdata_youtube_video_get_media_rating (video, "fooish bar"), ==, NULL);
+	g_assert_cmpstr (gdata_youtube_video_get_media_rating (video, GDATA_YOUTUBE_RATING_TYPE_SIMPLE), ==, NULL);
 
 	g_object_unref (video);
-}
-
-static void
-test_parsing_media_group_ratings_error_handling (void)
-{
-	GDataYouTubeVideo *video;
-	GError *error = NULL;
-
-#define TEST_XML_ERROR_HANDLING(x) \
-	video = GDATA_YOUTUBE_VIDEO (gdata_parsable_new_from_xml (GDATA_TYPE_YOUTUBE_VIDEO,\
-		"<entry xmlns='http://www.w3.org/2005/Atom' "\
-		       "xmlns:media='http://search.yahoo.com/mrss/' "\
-		       "xmlns:yt='http://gdata.youtube.com/schemas/2007' "\
-		       "xmlns:gd='http://schemas.google.com/g/2005'>"\
-			"<id>tag:youtube.com,2008:video:JAagedeKdcQ</id>"\
-			"<published>2006-05-16T14:06:37.000Z</published>"\
-			"<updated>2009-03-23T12:46:58.000Z</updated>"\
-			"<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video'/>"\
-			"<title>Some video somewhere</title>"\
-			"<media:group>"\
-				x\
-			"</media:group>"\
-		"</entry>", -1, &error));\
-	g_assert_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_PROTOCOL_ERROR);\
-	g_assert (video == NULL);\
-	g_clear_error (&error)
-
-	/* Missing content */
-	TEST_XML_ERROR_HANDLING ("<media:rating scheme='urn:simple'/>");
-	TEST_XML_ERROR_HANDLING ("<media:rating scheme='urn:mpaa'/>");
-	TEST_XML_ERROR_HANDLING ("<media:rating scheme='urn:v-chip'/>");
-
-	/* Empty content */
-	TEST_XML_ERROR_HANDLING ("<media:rating scheme='urn:simple'></media:rating>");
-	TEST_XML_ERROR_HANDLING ("<media:rating scheme='urn:mpaa'></media:rating>");
-	TEST_XML_ERROR_HANDLING ("<media:rating scheme='urn:v-chip'></media:rating>");
-
-	/* Unknown/Empty scheme */
-	TEST_XML_ERROR_HANDLING ("<media:rating scheme=''>foo</media:rating>");
-	TEST_XML_ERROR_HANDLING ("<media:rating scheme='urn:baz'>bob</media:rating>");
-
-#undef TEST_XML_ERROR_HANDLING
 }
 
 static void
@@ -1495,51 +1391,92 @@ test_video_escaping (void)
 	const gchar * const keywords[] = { "<keyword1>", "keyword2 & stuff, things", NULL };
 
 	video = gdata_youtube_video_new (NULL);
-	gdata_youtube_video_set_location (video, "Here & there");
+	gdata_youtube_video_set_location (video, "\"Here\" & 'there'");
 	gdata_youtube_video_set_access_control (video, "<action>", GDATA_YOUTUBE_PERMISSION_ALLOWED);
 	gdata_youtube_video_set_keywords (video, keywords);
-	gdata_youtube_video_set_description (video, "Description & stuff.");
+	gdata_youtube_video_set_description (video, "Description & 'stuff'.");
 	gdata_youtube_video_set_aspect_ratio (video, "4 & 3");
 
-	/* Check the outputted XML is escaped properly */
-	gdata_test_assert_xml (video,
-	                 "<?xml version='1.0' encoding='UTF-8'?>"
-	                 "<entry xmlns='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/' "
-	                        "xmlns:gd='http://schemas.google.com/g/2005' "
-	                        "xmlns:yt='http://gdata.youtube.com/schemas/2007' xmlns:app='http://www.w3.org/2007/app' "
-	                        "xmlns:georss='http://www.georss.org/georss' xmlns:gml='http://www.opengis.net/gml'>"
-				"<title type='text'></title>"
-				"<category term='http://gdata.youtube.com/schemas/2007#video' scheme='http://schemas.google.com/g/2005#kind'/>"
-				"<media:group>"
-					"<media:description type='plain'>Description &amp; stuff.</media:description>"
-					"<media:keywords>&lt;keyword1&gt;,keyword2 &amp; stuff%2C things</media:keywords>"
-					"<yt:aspectratio>4 &amp; 3</yt:aspectratio>"
-				"</media:group>"
-				"<yt:location>Here &amp; there</yt:location>"
-				"<yt:accessControl action='&lt;action&gt;' permission='allowed'/>"
-				"<app:control><app:draft>no</app:draft></app:control>"
-	                 "</entry>");
+	/* Check the outputted JSON is escaped properly */
+	gdata_test_assert_json (video,
+		"{"
+			"'kind': 'youtube#video',"
+			"'title': null,"
+			"'description': \"Description & 'stuff'.\","
+			"'snippet': {"
+				"'description': \"Description & 'stuff'.\","
+				"'tags': ["
+					"'<keyword1>',"
+					"'keyword2 & stuff, things'"
+				"]"
+			"},"
+			"'status': {"
+				"'privacyStatus': 'public'"
+			"},"
+			"'recordingDetails': {"
+				"'locationDescription': \"\\\"Here\\\" & 'there'\""
+			"}"
+		"}");
+	g_object_unref (video);
+}
+
+/* Check that a newly-constructed video does not output a location in its
+ * JSON or properties. */
+static void
+test_video_location (void)
+{
+	GDataYouTubeVideo *video;
+	gdouble latitude, longitude;
+
+	video = gdata_youtube_video_new (NULL);
+
+	g_assert_null (gdata_youtube_video_get_location (video));
+
+	/* Latitude and longitude should be outside the valid ranges. */
+	gdata_youtube_video_get_coordinates (video, &latitude, &longitude);
+	g_assert (latitude < -90.0 || latitude > 90.0);
+	g_assert (longitude < -180.0 || longitude > 180.0);
+
+	/* Check the outputted JSON is escaped properly */
+	gdata_test_assert_json (video,
+		"{"
+			"'title': null,"
+			"'kind': 'youtube#video',"
+			"'snippet': {},"
+			"'status': {"
+				"'privacyStatus': 'public'"
+			"},"
+			"'recordingDetails': {}"
+		"}");
+
 	g_object_unref (video);
 }
 
 static void
-test_comment_get_xml (void)
+test_comment_get_json (void)
 {
 	GDataYouTubeComment *comment_;
 
 	comment_ = gdata_youtube_comment_new (NULL);
-	gdata_entry_set_content (GDATA_ENTRY (comment_), "This is a comment with <markup> & stüff.");
-	gdata_youtube_comment_set_parent_comment_uri (comment_, "http://example.com/?foo=bar&baz=shizzle");
+	gdata_entry_set_content (GDATA_ENTRY (comment_),
+	                         "This is a comment with <markup> & 'stüff'.");
+	gdata_youtube_comment_set_parent_comment_uri (comment_,
+	                                              "http://example.com/?foo=bar&baz=shizzle");
 
-	/* Check the outputted XML is OK */
-	gdata_test_assert_xml (comment_,
-		"<?xml version='1.0' encoding='UTF-8'?>"
-		"<entry xmlns='http://www.w3.org/2005/Atom' xmlns:gd='http://schemas.google.com/g/2005'>"
-			"<title type='text'></title>"
-			"<content type='text'>This is a comment with &lt;markup&gt; &amp; stüff.</content>"
-			"<category term='http://gdata.youtube.com/schemas/2007#comment' scheme='http://schemas.google.com/g/2005#kind'/>"
-			"<link href='http://example.com/?foo=bar&amp;baz=shizzle' rel='http://gdata.youtube.com/schemas/2007#in-reply-to'/>"
-		"</entry>");
+	/* Check the outputted JSON is OK */
+	gdata_test_assert_json (comment_,
+		"{"
+			"'kind': 'youtube#commentThread',"
+			"'snippet' : {"
+				"'topLevelComment': {"
+					"'kind': 'youtube#comment',"
+					"'snippet': {"
+						"'textOriginal': \"This is a comment with <markup> & 'stüff'.\","
+						"'parentId': 'http://example.com/?foo=bar&baz=shizzle'"
+					"}"
+				"}"
+			"}"
+		"}");
 
 	g_object_unref (comment_);
 }
@@ -1597,6 +1534,18 @@ test_comment_properties_parent_comment_uri (void)
 	g_object_unref (comment_);
 }
 
+static gchar *
+build_this_week_date_str (void)
+{
+	GTimeVal tv;
+
+	g_get_current_time (&tv);
+	tv.tv_sec -= 7 * 24 * 60 * 60;  /* this week */
+	tv.tv_usec = 0;  /* pointless accuracy */
+
+	return g_time_val_to_iso8601 (&tv);
+}
+
 static void
 test_query_uri (void)
 {
@@ -1604,9 +1553,11 @@ test_query_uri (void)
 	gboolean has_location;
 	gchar *query_uri;
 	GDataYouTubeQuery *query = gdata_youtube_query_new ("q");
+	gchar *this_week_date_str, *expected_uri;
 
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
+	/* This should not appear in the query because it is deprecated. */
 	gdata_youtube_query_set_format (query, GDATA_YOUTUBE_FORMAT_RTSP_H263_AMR);
 	g_assert_cmpuint (gdata_youtube_query_get_format (query), ==, 1);
 
@@ -1620,22 +1571,26 @@ test_query_uri (void)
 	g_assert (has_location == TRUE);
 
 	query_uri = gdata_query_get_query_uri (GDATA_QUERY (query), "http://example.com");
-	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&time=all_time&safeSearch=none&format=1&location=45.013640000000002,-97.123559999999998!&location-radius=112.5m");
+	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&safeSearch=none&location=45.013640000000002,-97.123559999999998&locationRadius=112.5m");
 	g_free (query_uri);
 
+	/* This used to set the has-location parameter in the query, but that’s
+	 * no longer supported by Google, so it should be the same as the
+	 * following query. */
 	gdata_youtube_query_set_location (query, G_MAXDOUBLE, 0.6672, 52.8, TRUE);
 
 	query_uri = gdata_query_get_query_uri (GDATA_QUERY (query), "http://example.com");
-	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&time=all_time&safeSearch=none&format=1&location=!");
+	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&safeSearch=none");
 	g_free (query_uri);
 
 	gdata_youtube_query_set_location (query, G_MAXDOUBLE, G_MAXDOUBLE, 0.0, FALSE);
 
 	query_uri = gdata_query_get_query_uri (GDATA_QUERY (query), "http://example.com");
-	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&time=all_time&safeSearch=none&format=1");
+	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&safeSearch=none");
 	g_free (query_uri);
 
-	/* Language */
+	/* Language; this should not appear in the query as it is no longer
+	 * supported. */
 	gdata_youtube_query_set_language (query, "fr");
 	g_assert_cmpstr (gdata_youtube_query_get_language (query), ==, "fr");
 
@@ -1646,22 +1601,24 @@ test_query_uri (void)
 	g_assert_cmpstr (gdata_youtube_query_get_restriction (query), ==, "192.168.0.1");
 
 	query_uri = gdata_query_get_query_uri (GDATA_QUERY (query), "http://example.com");
-	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&time=all_time&safeSearch=none&format=1&lr=fr&orderby=relevance_lang_fr&restriction=192.168.0.1");
+	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&safeSearch=none&order=relevance&regionCode=192.168.0.1");
 	g_free (query_uri);
 
 	gdata_youtube_query_set_safe_search (query, GDATA_YOUTUBE_SAFE_SEARCH_STRICT);
 	g_assert_cmpuint (gdata_youtube_query_get_safe_search (query), ==, GDATA_YOUTUBE_SAFE_SEARCH_STRICT);
 
 	query_uri = gdata_query_get_query_uri (GDATA_QUERY (query), "http://example.com");
-	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&time=all_time&safeSearch=strict&format=1&lr=fr&orderby=relevance_lang_fr&restriction=192.168.0.1");
+	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&safeSearch=strict&order=relevance&regionCode=192.168.0.1");
 	g_free (query_uri);
 
+	/* Deprecated and unused: */
 	gdata_youtube_query_set_sort_order (query, GDATA_YOUTUBE_SORT_ASCENDING);
 	g_assert_cmpuint (gdata_youtube_query_get_sort_order (query), ==, GDATA_YOUTUBE_SORT_ASCENDING);
 
 	gdata_youtube_query_set_age (query, GDATA_YOUTUBE_AGE_THIS_WEEK);
 	g_assert_cmpuint (gdata_youtube_query_get_age (query), ==, GDATA_YOUTUBE_AGE_THIS_WEEK);
 
+	/* Deprecated and unused: */
 	gdata_youtube_query_set_uploader (query, GDATA_YOUTUBE_UPLOADER_PARTNER);
 	g_assert_cmpuint (gdata_youtube_query_get_uploader (query), ==, GDATA_YOUTUBE_UPLOADER_PARTNER);
 
@@ -1670,12 +1627,22 @@ test_query_uri (void)
 
 	/* Check the built URI with a normal feed URI */
 	query_uri = gdata_query_get_query_uri (GDATA_QUERY (query), "http://example.com");
-	g_assert_cmpstr (query_uri, ==, "http://example.com?q=q&time=this_week&safeSearch=strict&format=1&lr=fr&orderby=relevance_lang_fr&restriction=192.168.0.1&sortorder=ascending&uploader=partner&license=cc");
+	this_week_date_str = build_this_week_date_str ();
+	expected_uri = g_strdup_printf ("http://example.com?q=q&publishedAfter=%s&safeSearch=strict&order=relevance&regionCode=192.168.0.1&videoLicense=creativeCommon", this_week_date_str);
+	g_assert_cmpstr (query_uri, ==, expected_uri);
+
+	g_free (this_week_date_str);
+	g_free (expected_uri);
 	g_free (query_uri);
 
 	/* …and with a feed URI with pre-existing arguments */
 	query_uri = gdata_query_get_query_uri (GDATA_QUERY (query), "http://example.com?foobar=shizzle");
-	g_assert_cmpstr (query_uri, ==, "http://example.com?foobar=shizzle&q=q&time=this_week&safeSearch=strict&format=1&lr=fr&orderby=relevance_lang_fr&restriction=192.168.0.1&sortorder=ascending&uploader=partner&license=cc");
+	this_week_date_str = build_this_week_date_str ();
+	expected_uri = g_strdup_printf ("http://example.com?foobar=shizzle&q=q&publishedAfter=%s&safeSearch=strict&order=relevance&regionCode=192.168.0.1&videoLicense=creativeCommon", this_week_date_str);
+	g_assert_cmpstr (query_uri, ==, expected_uri);
+
+	g_free (this_week_date_str);
+	g_free (expected_uri);
 	g_free (query_uri);
 
 	g_object_unref (query);
@@ -1735,7 +1702,7 @@ test_query_single (gconstpointer service)
 
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	g_assert_cmpstr (gdata_youtube_video_get_video_id (video), ==, "_LeQuMpwbW4");
-	g_assert_cmpstr (gdata_entry_get_id (GDATA_ENTRY (video)), ==, "tag:youtube.com,2008:video:_LeQuMpwbW4");
+	g_assert_cmpstr (gdata_entry_get_id (GDATA_ENTRY (video)), ==, "_LeQuMpwbW4");
 	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	g_clear_error (&error);
@@ -1760,7 +1727,7 @@ G_STMT_START {
 		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 		g_assert (GDATA_IS_YOUTUBE_VIDEO (video));
 		g_assert_cmpstr (gdata_youtube_video_get_video_id (video), ==, "_LeQuMpwbW4");
-		g_assert_cmpstr (gdata_entry_get_id (GDATA_ENTRY (video)), ==, "tag:youtube.com,2008:video:_LeQuMpwbW4");
+		g_assert_cmpstr (gdata_entry_get_id (GDATA_ENTRY (video)), ==, "_LeQuMpwbW4");
 		G_GNUC_END_IGNORE_DEPRECATIONS
 
 		g_object_unref (video);
@@ -1807,7 +1774,6 @@ assert_comments_feed (GDataFeed *comments_feed)
 
 		/* We can't do much more than this, since we can't reasonably add test comments to public videos, and can't upload a new video
 		 * for each test since it has to go through moderation. */
-		g_assert_cmpstr (gdata_entry_get_title (GDATA_ENTRY (comment_)), !=, NULL);
 		g_assert_cmpstr (gdata_entry_get_content (GDATA_ENTRY (comment_)), !=, NULL);
 
 		g_assert_cmpuint (g_list_length (gdata_entry_get_authors (GDATA_ENTRY (comment_))), >, 0);
@@ -1928,7 +1894,9 @@ tear_down_insert_comment (InsertCommentData *data, gconstpointer service)
 }
 
 static void
-assert_comments_equal (GDataComment *new_comment, GDataYouTubeComment *original_comment)
+assert_comments_equal (GDataComment *new_comment,
+                       GDataYouTubeComment *original_comment,
+                       gboolean allow_empty)
 {
 	GList *authors;
 	GDataAuthor *author;
@@ -1937,7 +1905,16 @@ assert_comments_equal (GDataComment *new_comment, GDataYouTubeComment *original_
 	g_assert (GDATA_IS_YOUTUBE_COMMENT (original_comment));
 	g_assert (GDATA_YOUTUBE_COMMENT (new_comment) != original_comment);
 
-	g_assert_cmpstr (gdata_entry_get_content (GDATA_ENTRY (new_comment)), ==, gdata_entry_get_content (GDATA_ENTRY (original_comment)));
+	/* Comments can be "" if they’ve just been inserted and are pending
+	 * moderation. Not much we can do about that without waiting a few
+	 * minutes, which would suck in a unit test. */
+	if (g_strcmp0 (gdata_entry_get_content (GDATA_ENTRY (new_comment)), "") != 0) {
+		g_assert_cmpstr (gdata_entry_get_content (GDATA_ENTRY (new_comment)), ==,
+		                 gdata_entry_get_content (GDATA_ENTRY (original_comment)));
+	} else {
+		g_assert (allow_empty);
+	}
+
 	g_assert_cmpstr (gdata_youtube_comment_get_parent_comment_uri (GDATA_YOUTUBE_COMMENT (new_comment)), ==,
 	                 gdata_youtube_comment_get_parent_comment_uri (original_comment));
 
@@ -1948,7 +1925,7 @@ assert_comments_equal (GDataComment *new_comment, GDataYouTubeComment *original_
 	author = GDATA_AUTHOR (authors->data);
 
 	g_assert_cmpstr (gdata_author_get_name (author), ==, "GDataTest");
-	g_assert_cmpstr (gdata_author_get_uri (author), ==, "https://gdata.youtube.com/feeds/api/users/GDataTest");
+	g_assert_cmpstr (gdata_author_get_uri (author), ==, "http://www.youtube.com/user/GDataTest");
 }
 
 static void
@@ -1964,7 +1941,7 @@ test_comment_insert (InsertCommentData *data, gconstpointer service)
 	g_assert_no_error (error);
 	g_clear_error (&error);
 
-	assert_comments_equal (new_comment, data->comment);
+	assert_comments_equal (new_comment, data->comment, TRUE);
 
 	g_object_unref (new_comment);
 
@@ -1984,7 +1961,7 @@ G_STMT_START {
 	new_comment = gdata_commentable_insert_comment_finish (GDATA_COMMENTABLE (obj), async_result, &error);
 
 	if (error == NULL) {
-		assert_comments_equal (new_comment, data->comment);
+		assert_comments_equal (new_comment, data->comment, TRUE);
 
 		g_object_unref (new_comment);
 	} else {
@@ -2072,7 +2049,8 @@ test_categories (gconstpointer service)
 	GDataAPPCategories *app_categories;
 	GList *categories;
 	GError *error = NULL;
-	gchar *category_label, *old_locale;
+	gchar *old_locale;
+	guint old_n_results;
 
 	gdata_test_mock_server_start_trace (mock_server, "categories");
 
@@ -2085,14 +2063,14 @@ test_categories (gconstpointer service)
 	g_assert_cmpint (g_list_length (categories), >, 0);
 	g_assert (GDATA_IS_YOUTUBE_CATEGORY (categories->data));
 
-	/* Save a label for comparison against a different locale */
-	category_label = g_strdup (gdata_category_get_label (GDATA_CATEGORY (categories->data)));
+	/* Save the number of results for comparison against a different locale */
+	old_n_results = g_list_length (categories);
 
 	g_object_unref (app_categories);
 
 	/* Test with a different locale */
 	old_locale = g_strdup (gdata_service_get_locale (GDATA_SERVICE (service)));
-	gdata_service_set_locale (GDATA_SERVICE (service), "it");
+	gdata_service_set_locale (GDATA_SERVICE (service), "TR");
 
 	app_categories = gdata_youtube_service_get_categories (GDATA_YOUTUBE_SERVICE (service), NULL, &error);
 	g_assert_no_error (error);
@@ -2103,11 +2081,10 @@ test_categories (gconstpointer service)
 	g_assert_cmpint (g_list_length (categories), >, 0);
 	g_assert (GDATA_IS_YOUTUBE_CATEGORY (categories->data));
 
-	/* Compare the labels */
-	g_assert_cmpstr (category_label, !=, gdata_category_get_label (GDATA_CATEGORY (categories->data)));
+	/* Compare the number of results */
+	g_assert_cmpuint (old_n_results, !=, g_list_length (categories));
 
 	g_object_unref (app_categories);
-	g_free (category_label);
 
 	/* Reset the locale */
 	gdata_service_set_locale (GDATA_SERVICE (service), old_locale);
@@ -2204,11 +2181,14 @@ test_batch (BatchData *data, gconstpointer service)
 	g_object_unref (service2);
 	g_free (feed_uri);
 
-	/* Run a singleton batch operation to query one of the entries */
+	/* Run a singleton batch operation to query one of the entries. This
+	 * should now always fail, as batch operations were deprecated by v3
+	 * of the YouTube API. */
 	gdata_test_batch_operation_query (operation, gdata_entry_get_id (data->new_video), GDATA_TYPE_YOUTUBE_VIDEO, data->new_video, NULL, NULL);
 
-	g_assert (gdata_batch_operation_run (operation, NULL, &error) == TRUE);
-	g_assert_no_error (error);
+	g_assert (!gdata_batch_operation_run (operation, NULL, &error));
+	g_assert_error (error, GDATA_SERVICE_ERROR,
+	                GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION);
 
 	g_clear_error (&error);
 	g_object_unref (operation);
@@ -2222,8 +2202,9 @@ test_batch (BatchData *data, gconstpointer service)
 	                                           NULL);
 	g_assert_cmpuint (op_id, !=, op_id2);
 
-	g_assert (gdata_batch_operation_run (operation, NULL, &error) == TRUE);
-	g_assert_no_error (error);
+	g_assert (!gdata_batch_operation_run (operation, NULL, &error));
+	g_assert_error (error, GDATA_SERVICE_ERROR,
+	                GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION);
 
 	g_clear_error (&error);
 	g_object_unref (operation);
@@ -2236,8 +2217,9 @@ test_batch_async_cb (GDataBatchOperation *operation, GAsyncResult *async_result,
 {
 	GError *error = NULL;
 
-	g_assert (gdata_batch_operation_run_finish (operation, async_result, &error) == TRUE);
-	g_assert_no_error (error);
+	g_assert (!gdata_batch_operation_run_finish (operation, async_result, &error));
+	g_assert_error (error, GDATA_SERVICE_ERROR,
+	                GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION);
 	g_clear_error (&error);
 
 	g_main_loop_quit (main_loop);
@@ -2248,13 +2230,14 @@ test_batch_async (BatchData *data, gconstpointer service)
 {
 	GDataBatchOperation *operation;
 	GMainLoop *main_loop;
+	GError *error = NULL;
 
 	gdata_test_mock_server_start_trace (mock_server, "batch-async");
 
 	/* Run an async query operation on the video */
 	operation = gdata_batchable_create_operation (GDATA_BATCHABLE (service), gdata_youtube_service_get_primary_authorization_domain (),
 	                                              "https://gdata.youtube.com/feeds/api/videos/batch");
-	gdata_test_batch_operation_query (operation, gdata_entry_get_id (data->new_video), GDATA_TYPE_YOUTUBE_VIDEO, data->new_video, NULL, NULL);
+	gdata_test_batch_operation_query (operation, gdata_entry_get_id (data->new_video), GDATA_TYPE_YOUTUBE_VIDEO, data->new_video, NULL, &error);
 
 	main_loop = g_main_loop_new (NULL, TRUE);
 
@@ -2262,6 +2245,10 @@ test_batch_async (BatchData *data, gconstpointer service)
 
 	g_main_loop_run (main_loop);
 	g_main_loop_unref (main_loop);
+
+	g_assert_error (error, GDATA_SERVICE_ERROR,
+	                GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION);
+	g_clear_error (&error);
 
 	uhm_server_end_trace (mock_server);
 }
@@ -2334,55 +2321,106 @@ mock_server_notify_resolver_cb (GObject *object, GParamSpec *pspec, gpointer use
 		const gchar *ip_address = uhm_server_get_address (server);
 
 		uhm_resolver_add_A (resolver, "www.google.com", ip_address);
-		uhm_resolver_add_A (resolver, "gdata.youtube.com", ip_address);
-		uhm_resolver_add_A (resolver, "uploads.gdata.youtube.com", ip_address);
-		uhm_resolver_add_A (resolver, "lh3.googleusercontent.com", ip_address);
-		uhm_resolver_add_A (resolver, "lh5.googleusercontent.com", ip_address);
-		uhm_resolver_add_A (resolver, "lh6.googleusercontent.com", ip_address);
+		uhm_resolver_add_A (resolver, "www.googleapis.com", ip_address);
+		uhm_resolver_add_A (resolver, "accounts.google.com",
+		                    ip_address);
 	}
+}
+
+/* Set up a global GDataAuthorizer to be used for all the tests. Unfortunately,
+ * the YouTube API is limited to OAuth2 authorisation, so this requires user
+ * interaction when online.
+ *
+ * If not online, use a dummy authoriser. */
+static GDataAuthorizer *
+create_global_authorizer (void)
+{
+	GDataOAuth2Authorizer *authorizer = NULL;  /* owned */
+	gchar *authentication_uri, *authorisation_code;
+	GError *error = NULL;
+
+	/* If not online, just return a dummy authoriser. */
+	if (!uhm_server_get_enable_online (mock_server)) {
+		return GDATA_AUTHORIZER (gdata_dummy_authorizer_new (GDATA_TYPE_YOUTUBE_SERVICE));
+	}
+
+	/* Otherwise, go through the interactive OAuth dance. */
+	gdata_test_mock_server_start_trace (mock_server, "global-authentication");
+	authorizer = gdata_oauth2_authorizer_new (CLIENT_ID, CLIENT_SECRET,
+	                                          REDIRECT_URI,
+	                                          GDATA_TYPE_YOUTUBE_SERVICE);
+
+	/* Get an authentication URI */
+	authentication_uri = gdata_oauth2_authorizer_build_authentication_uri (authorizer, NULL, FALSE);
+	g_assert (authentication_uri != NULL);
+
+	/* Get the authorisation code off the user. */
+	authorisation_code = gdata_test_query_user_for_verifier (authentication_uri);
+
+	g_free (authentication_uri);
+
+	if (authorisation_code == NULL) {
+		/* Skip tests. */
+		g_object_unref (authorizer);
+		authorizer = NULL;
+		goto skip_test;
+	}
+
+	/* Authorise the token */
+	g_assert (gdata_oauth2_authorizer_request_authorization (authorizer,
+	                                                         authorisation_code,
+	                                                         NULL, &error));
+	g_assert_no_error (error);
+
+skip_test:
+	g_free (authorisation_code);
+
+	uhm_server_end_trace (mock_server);
+
+	return GDATA_AUTHORIZER (authorizer);
 }
 
 int
 main (int argc, char *argv[])
 {
 	gint retval;
-	GDataAuthorizer *authorizer = NULL;
-	GDataService *service = NULL;
-	GFile *trace_directory;
+	GDataAuthorizer *authorizer = NULL;  /* owned */
+	GDataService *service = NULL;  /* owned */
+	GFile *trace_directory = NULL;  /* owned */
+	gchar *path = NULL;
 
 	gdata_test_init (argc, argv);
 
 	mock_server = gdata_test_get_mock_server ();
-	g_signal_connect (G_OBJECT (mock_server), "notify::resolver", (GCallback) mock_server_notify_resolver_cb, NULL);
-	trace_directory = g_file_new_for_path (TEST_FILE_DIR "traces/youtube");
+	g_signal_connect (G_OBJECT (mock_server), "notify::resolver",
+	                  (GCallback) mock_server_notify_resolver_cb, NULL);
+	path = g_test_build_filename (G_TEST_DIST, "traces/youtube", NULL);
+	trace_directory = g_file_new_for_path (path);
+	g_free (path);
 	uhm_server_set_trace_directory (mock_server, trace_directory);
 	g_object_unref (trace_directory);
 
-	gdata_test_mock_server_start_trace (mock_server, "global-authentication");
-	authorizer = GDATA_AUTHORIZER (gdata_client_login_authorizer_new (CLIENT_ID, GDATA_TYPE_YOUTUBE_SERVICE));
-	gdata_client_login_authorizer_authenticate (GDATA_CLIENT_LOGIN_AUTHORIZER (authorizer), USERNAME, PASSWORD, NULL, NULL);
-	uhm_server_end_trace (mock_server);
-
-	service = GDATA_SERVICE (gdata_youtube_service_new (DEVELOPER_KEY, authorizer));
+	authorizer = create_global_authorizer ();
+	service = GDATA_SERVICE (gdata_youtube_service_new (DEVELOPER_KEY,
+	                                                    authorizer));
 
 	g_test_add_func ("/youtube/authentication", test_authentication);
-	g_test_add_func ("/youtube/authentication/error", test_authentication_error);
-	g_test_add_func ("/youtube/authentication/timeout", test_authentication_timeout);
-	g_test_add ("/youtube/authentication/async", GDataAsyncTestData, NULL, gdata_set_up_async_test_data, test_authentication_async,
-	            gdata_tear_down_async_test_data);
-	g_test_add ("/youtube/authentication/async/cancellation", GDataAsyncTestData, NULL, gdata_set_up_async_test_data,
-	            test_authentication_async_cancellation, gdata_tear_down_async_test_data);
 
 	g_test_add_data_func ("/youtube/query/standard_feeds", service, test_query_standard_feeds);
 	g_test_add_data_func ("/youtube/query/standard_feed", service, test_query_standard_feed);
 	g_test_add_data_func ("/youtube/query/standard_feed/with_query", service, test_query_standard_feed_with_query);
 	g_test_add_data_func ("/youtube/query/standard_feed/error", service, test_query_standard_feed_error);
 	g_test_add_data_func ("/youtube/query/standard_feed/timeout", service, test_query_standard_feed_timeout);
-	g_test_add ("/youtube/query/standard_feed/async", GDataAsyncTestData, service, gdata_set_up_async_test_data,
-	            test_query_standard_feed_async, gdata_tear_down_async_test_data);
+	g_test_add ("/youtube/query/standard_feed/async", StandardFeedData,
+	            service, set_up_standard_feed_async,
+	            (void (*)(StandardFeedData *, const void *)) test_query_standard_feed_async,
+	            tear_down_standard_feed_async);
 	g_test_add_data_func ("/youtube/query/standard_feed/async/progress_closure", service, test_query_standard_feed_async_progress_closure);
-	g_test_add ("/youtube/query/standard_feed/async/cancellation", GDataAsyncTestData, service, gdata_set_up_async_test_data,
-	            test_query_standard_feed_async_cancellation, gdata_tear_down_async_test_data);
+	g_test_add ("/youtube/query/standard_feed/async/cancellation",
+	            StandardFeedData, service, set_up_standard_feed_async,
+	            (void (*)(StandardFeedData *, const void *)) test_query_standard_feed_async_cancellation,
+	            tear_down_standard_feed_async);
+
 	g_test_add_data_func ("/youtube/query/related", service, test_query_related);
 	g_test_add ("/youtube/query/related/async", GDataAsyncTestData, service, gdata_set_up_async_test_data, test_query_related_async,
 	            gdata_tear_down_async_test_data);
@@ -2436,19 +2474,17 @@ main (int argc, char *argv[])
 	g_test_add_func ("/youtube/service/properties", test_service_properties);
 
 	g_test_add_func ("/youtube/parsing/app:control", test_parsing_app_control);
-	/*g_test_add_func ("/youtube/parsing/comments/feedLink", test_parsing_comments_feed_link);*/
 	g_test_add_func ("/youtube/parsing/yt:recorded", test_parsing_yt_recorded);
 	g_test_add_func ("/youtube/parsing/yt:accessControl", test_parsing_yt_access_control);
 	g_test_add_func ("/youtube/parsing/yt:category", test_parsing_yt_category);
 	g_test_add_func ("/youtube/parsing/video_id_from_uri", test_parsing_video_id_from_uri);
 	g_test_add_func ("/youtube/parsing/georss:where", test_parsing_georss_where);
-	g_test_add_func ("/youtube/parsing/media:group", test_parsing_media_group);
-	g_test_add_func ("/youtube/parsing/media:group/ratings", test_parsing_media_group_ratings);
-	g_test_add_func ("/youtube/parsing/media:group/ratings/error_handling", test_parsing_media_group_ratings_error_handling);
+	g_test_add_func ("/youtube/parsing/ratings", test_parsing_ratings);
 
 	g_test_add_func ("/youtube/video/escaping", test_video_escaping);
+	g_test_add_func ("/youtube/video/location", test_video_location);
 
-	g_test_add_func ("/youtube/comment/get_xml", test_comment_get_xml);
+	g_test_add_func ("/youtube/comment/get_json", test_comment_get_json);
 	g_test_add_func ("/youtube/comment/properties/parent-comment-id", test_comment_properties_parent_comment_uri);
 
 	g_test_add_func ("/youtube/query/uri", test_query_uri);
@@ -2456,8 +2492,8 @@ main (int argc, char *argv[])
 
 	retval = g_test_run ();
 
-	if (service != NULL)
-		g_object_unref (service);
+	g_clear_object (&service);
+	g_clear_object (&authorizer);
 
 	return retval;
 }

@@ -2,7 +2,7 @@
 /*
  * GData Client
  * Copyright (C) Thibault Saunier 2009 <saunierthibault@gmail.com>
- * Copyright (C) Red Hat, Inc. 2015
+ * Copyright (C) Red Hat, Inc. 2015, 2016
  *
  * GData Client is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -92,7 +92,7 @@
  * </example>
  *
  * Since: 0.4.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -104,31 +104,35 @@
 #include "gdata-types.h"
 #include "gdata-private.h"
 #include "gdata-access-handler.h"
+#include "gdata-documents-access-rule.h"
 #include "gdata-documents-service.h"
 
 #include "gdata-documents-spreadsheet.h"
 #include "gdata-documents-presentation.h"
 #include "gdata-documents-text.h"
 #include "gdata-documents-folder.h"
+#include "gdata-documents-utils.h"
 
 static void gdata_documents_entry_access_handler_init (GDataAccessHandlerIface *iface);
 static void gdata_documents_entry_finalize (GObject *object);
 static void gdata_entry_dispose (GObject *object);
+static const gchar *get_content_type (void);
 static void get_namespaces (GDataParsable *parsable, GHashTable *namespaces);
 static void gdata_documents_entry_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void gdata_documents_entry_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 static gboolean parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GError **error);
 static gboolean post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error);
+static void get_json (GDataParsable *parsable, JsonBuilder *builder);
 static gchar *get_entry_uri (const gchar *id);
 
 struct _GDataDocumentsEntryPrivate {
 	gint64 last_viewed;
-	gchar *mime_type;
 	gchar *resource_id;
 	gboolean writers_can_invite;
 	gboolean is_deleted;
 	GDataAuthor *last_modified_by;
 	goffset quota_used; /* bytes */
+	goffset file_size; /* bytes */
 };
 
 enum {
@@ -140,6 +144,7 @@ enum {
 	PROP_WRITERS_CAN_INVITE,
 	PROP_RESOURCE_ID,
 	PROP_QUOTA_USED,
+	PROP_FILE_SIZE,
 };
 
 G_DEFINE_ABSTRACT_TYPE_WITH_CODE (GDataDocumentsEntry, gdata_documents_entry, GDATA_TYPE_ENTRY,
@@ -161,6 +166,8 @@ gdata_documents_entry_class_init (GDataDocumentsEntryClass *klass)
 
 	parsable_class->parse_json = parse_json;
 	parsable_class->post_parse_json = post_parse_json;
+	parsable_class->get_content_type = get_content_type;
+	parsable_class->get_json = get_json;
 	parsable_class->get_namespaces = get_namespaces;
 
 	entry_class->get_entry_uri = get_entry_uri;
@@ -172,7 +179,7 @@ gdata_documents_entry_class_init (GDataDocumentsEntryClass *klass)
 	 *
 	 * Since: 0.4.0
 	 * Deprecated: 0.17.0: This is identical to #GDataEntry:updated.
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_EDITED,
 	                                 g_param_spec_int64 ("edited",
 	                                                     "Edited", "The last time the document was edited.",
@@ -185,7 +192,7 @@ gdata_documents_entry_class_init (GDataDocumentsEntryClass *klass)
 	 * The last time the document was viewed.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_LAST_VIEWED,
 	                                 g_param_spec_int64 ("last-viewed",
 	                                                     "Last viewed", "The last time the document was viewed.",
@@ -198,7 +205,7 @@ gdata_documents_entry_class_init (GDataDocumentsEntryClass *klass)
 	 * Indicates whether the document entry writers can invite others to edit the document.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_WRITERS_CAN_INVITE,
 	                                 g_param_spec_boolean ("writers-can-invite",
 	                                                       "Writers can invite?", "Indicates whether writers can invite others to edit.",
@@ -212,7 +219,7 @@ gdata_documents_entry_class_init (GDataDocumentsEntryClass *klass)
 	 * appear in query results if the #GDataDocumentsQuery:show-deleted property is %TRUE.
 	 *
 	 * Since: 0.5.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_IS_DELETED,
 	                                 g_param_spec_boolean ("is-deleted",
 	                                                       "Deleted?", "Indicates whether the document entry has been deleted.",
@@ -251,7 +258,7 @@ gdata_documents_entry_class_init (GDataDocumentsEntryClass *klass)
 	 *
 	 * Since: 0.4.0
 	 * Deprecated: 0.11.0: This a substring of the #GDataDocumentsEntry:resource-id, which is more general and should be used instead.
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_DOCUMENT_ID,
 	                                 g_param_spec_string ("document-id",
 	                                                      "Document ID", "The document ID of the document.",
@@ -264,7 +271,7 @@ gdata_documents_entry_class_init (GDataDocumentsEntryClass *klass)
 	 * Indicates the author of the last modification.
 	 *
 	 * Since: 0.4.0
-	 **/
+	 */
 	g_object_class_install_property (gobject_class, PROP_LAST_MODIFIED_BY,
 	                                 g_param_spec_object ("last-modified-by",
 	                                                      "Last modified by", "Indicates the author of the last modification.",
@@ -286,6 +293,22 @@ gdata_documents_entry_class_init (GDataDocumentsEntryClass *klass)
 	                                                     "Quota used", "The amount of user quota the document is occupying.",
 	                                                     0, G_MAXINT64, 0,
 	                                                     G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GDataDocumentsEntry:file-size:
+	 *
+         * The size of the document. This is only set for non-document files.
+         * Standard formats, such as #GDataDocumentsText,
+         * #GDataDocumentsSpreadsheet and #GDataDocumentsFolder are not binary
+         * data and so have no size. Measured in bytes.
+	 *
+	 * Since: 0.17.7
+	 */
+	g_object_class_install_property (gobject_class, PROP_FILE_SIZE,
+	                                 g_param_spec_int64 ("file-size",
+	                                                     "File size", "The size of the document.",
+	                                                     0, G_MAXINT64, 0,
+	                                                     G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 }
 
 static gboolean
@@ -300,11 +323,49 @@ get_authorization_domain (GDataAccessHandler *self)
 	return gdata_documents_service_get_primary_authorization_domain ();
 }
 
+static GDataFeed *
+get_rules (GDataAccessHandler *self,
+	   GDataService *service,
+	   GCancellable *cancellable,
+	   GDataQueryProgressCallback progress_callback,
+	   gpointer progress_user_data,
+	   GError **error)
+{
+	GDataAccessHandlerIface *iface;
+	GDataAuthorizationDomain *domain = NULL;
+	GDataFeed *feed;
+	GDataLink *_link;
+	SoupMessage *message;
+
+	_link = gdata_entry_look_up_link (GDATA_ENTRY (self), GDATA_LINK_ACCESS_CONTROL_LIST);
+	g_assert (_link != NULL);
+
+	iface = GDATA_ACCESS_HANDLER_GET_IFACE (self);
+	if (iface->get_authorization_domain != NULL) {
+		domain = iface->get_authorization_domain (self);
+	}
+
+	message = _gdata_service_query (service, domain, gdata_link_get_uri (_link), NULL, cancellable, error);
+	if (message == NULL) {
+		return NULL;
+	}
+
+	g_assert (message->response_body->data != NULL);
+
+	feed = _gdata_feed_new_from_json (GDATA_TYPE_FEED, message->response_body->data, message->response_body->length, GDATA_TYPE_DOCUMENTS_ACCESS_RULE,
+					  progress_callback, progress_user_data, error);
+
+	g_object_unref (message);
+
+	return feed;
+}
+
 static void
 gdata_documents_entry_access_handler_init (GDataAccessHandlerIface *iface)
 {
 	iface->is_owner_rule = is_owner_rule;
 	iface->get_authorization_domain = get_authorization_domain;
+	iface->get_rules = get_rules;
 }
 
 static void
@@ -332,7 +393,6 @@ gdata_documents_entry_finalize (GObject *object)
 {
 	GDataDocumentsEntryPrivate *priv = GDATA_DOCUMENTS_ENTRY (object)->priv;
 
-	g_free (priv->mime_type);
 	g_free (priv->resource_id);
 
 	/* Chain up to the parent class */
@@ -369,6 +429,9 @@ gdata_documents_entry_get_property (GObject *object, guint property_id, GValue *
 		case PROP_QUOTA_USED:
 			g_value_set_int64 (value, priv->quota_used);
 			break;
+		case PROP_FILE_SIZE:
+			g_value_set_int64 (value, priv->file_size);
+			break;
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -386,6 +449,7 @@ gdata_documents_entry_set_property (GObject *object, guint property_id, const GV
 			gdata_documents_entry_set_writers_can_invite (self, g_value_get_boolean (value));
 			break;
 		case PROP_QUOTA_USED:
+		case PROP_FILE_SIZE:
 			/* Read only. */
 		default:
 			/* We don't have any other property... */
@@ -526,6 +590,9 @@ parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GEr
 	gboolean success = TRUE;
 	gchar *alternate_uri = NULL;
 	gchar *kind = NULL;
+	gchar *mime_type = NULL;
+	gchar *quota_used = NULL;
+	gchar *file_size = NULL;
 	gint64 published;
 	gint64 updated;
 
@@ -542,14 +609,10 @@ parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GEr
 
 		g_free (alternate_uri);
 		return success;
-	} else if (gdata_parser_string_from_json_member (reader, "mimeType", P_DEFAULT, &(priv->mime_type), &success, error) == TRUE) {
-		if (success && priv->mime_type != NULL && priv->mime_type[0] != '\0') {
-			GDataEntryClass *klass = GDATA_ENTRY_GET_CLASS (parsable);
-
-			category = gdata_category_new (klass->kind_term, "http://schemas.google.com/g/2005#kind", priv->mime_type);
-			gdata_entry_add_category (GDATA_ENTRY (parsable), category);
-			g_object_unref (category);
-		}
+	} else if (gdata_parser_string_from_json_member (reader, "mimeType", P_DEFAULT, &mime_type, &success, error) == TRUE) {
+		if (success)
+			gdata_documents_utils_add_content_type (GDATA_DOCUMENTS_ENTRY (parsable), mime_type);
+		g_free (mime_type);
 		return success;
 	} else if (gdata_parser_int64_time_from_json_member (reader, "lastViewedByMeDate", P_DEFAULT, &(priv->last_viewed), &success, error) == TRUE ||
 		   gdata_parser_string_from_json_member (reader, "kind", P_REQUIRED | P_NON_EMPTY, &kind, &success, error) == TRUE) {
@@ -562,6 +625,30 @@ parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GEr
 	} else if (gdata_parser_int64_time_from_json_member (reader, "modifiedDate", P_DEFAULT, &updated, &success, error) == TRUE) {
 		if (success)
 			_gdata_entry_set_updated (GDATA_ENTRY (parsable), updated);
+		return success;
+	} else if (gdata_parser_string_from_json_member (reader, "quotaBytesUsed", P_DEFAULT, &quota_used, &success, error) == TRUE) {
+		gchar *end_ptr;
+		guint64 val;
+
+		/* Even though ‘quotaBytesUsed’ is documented as long,
+		 * it is actually a string in the JSON.
+		 */
+		val = g_ascii_strtoull (quota_used, &end_ptr, 10);
+		if (*end_ptr == '\0')
+			priv->quota_used = (goffset) val;
+		g_free (quota_used);
+		return success;
+	} else if (gdata_parser_string_from_json_member (reader, "fileSize", P_DEFAULT, &file_size, &success, error) == TRUE) {
+		gchar *end_ptr;
+		guint64 val;
+
+		/* like 'quotaBytesUsed', 'fileSize' is also a string
+		 * in the JSON.
+		 */
+		val = g_ascii_strtoull (file_size, &end_ptr, 10);
+		if (*end_ptr == '\0')
+			priv->file_size = (goffset) val;
+		g_free (file_size);
 		return success;
 	} else if (gdata_parser_boolean_from_json_member (reader, "shared", P_DEFAULT, &shared, &success, error) == TRUE) {
 		if (success && shared) {
@@ -750,6 +837,65 @@ post_parse_json (GDataParsable *parsable, gpointer user_data, GError **error)
 	return TRUE;
 }
 
+static const gchar *
+get_content_type (void)
+{
+	return "application/json";
+}
+
+static void
+get_json (GDataParsable *parsable, JsonBuilder *builder)
+{
+	GList *i;
+	GList *parent_folders_list;
+	const gchar *mime_type;
+
+	GDATA_PARSABLE_CLASS (gdata_documents_entry_parent_class)->get_json (parsable, builder);
+
+	/* Inserting files: https://developers.google.com/drive/v2/reference/files/insert */
+
+	mime_type = gdata_documents_utils_get_content_type (GDATA_DOCUMENTS_ENTRY (parsable));
+	if (mime_type != NULL) {
+		json_builder_set_member_name (builder, "mimeType");
+		json_builder_add_string_value (builder, mime_type);
+	}
+
+	/* Upload to a folder: https://developers.google.com/drive/v2/web/folder */
+
+	json_builder_set_member_name (builder, "parents");
+	json_builder_begin_array (builder);
+
+	parent_folders_list = gdata_entry_look_up_links (GDATA_ENTRY (parsable), GDATA_LINK_PARENT);
+	for (i = parent_folders_list; i != NULL; i = i->next) {
+		GDataLink *_link = GDATA_LINK (i->data);
+		const gchar *uri;
+		gsize uri_prefix_len;
+
+		/* HACK: Extract the ID from the GDataLink:uri by removing the prefix. Ignore links which
+		 * don't have the prefix. */
+		uri = gdata_link_get_uri (_link);
+		uri_prefix_len = strlen (GDATA_DOCUMENTS_URI_PREFIX);
+		if (g_str_has_prefix (uri, GDATA_DOCUMENTS_URI_PREFIX)) {
+			const gchar *id;
+
+			id = uri + uri_prefix_len;
+			if (id[0] != '\0') {
+				json_builder_begin_object (builder);
+				json_builder_set_member_name (builder, "kind");
+				json_builder_add_string_value (builder, "drive#fileLink");
+				json_builder_set_member_name (builder, "id");
+				json_builder_add_string_value (builder, id);
+				json_builder_end_object (builder);
+			}
+		}
+	}
+
+	json_builder_end_array (builder);
+
+	g_list_free (parent_folders_list);
+
+}
+
 static void
 get_namespaces (GDataParsable *parsable, GHashTable *namespaces)
 {
@@ -775,7 +921,7 @@ get_entry_uri (const gchar *id)
  *
  * Since: 0.4.0
  * Deprecated: 0.17.0: Use gdata_entry_get_updated() instead. See #GDataDocumentsEntry:edited.
- **/
+ */
 gint64
 gdata_documents_entry_get_edited (GDataDocumentsEntry *self)
 {
@@ -792,7 +938,7 @@ gdata_documents_entry_get_edited (GDataDocumentsEntry *self)
  * Return value: the UNIX timestamp for the time the document was last viewed, or <code class="literal">-1</code>
  *
  * Since: 0.4.0
- **/
+ */
 gint64
 gdata_documents_entry_get_last_viewed (GDataDocumentsEntry *self)
 {
@@ -815,7 +961,7 @@ gdata_documents_entry_get_last_viewed (GDataDocumentsEntry *self)
  * Return value: the folder hierarchy path containing the document, or %NULL; free with g_free()
  *
  * Since: 0.4.0
- **/
+ */
 gchar *
 gdata_documents_entry_get_path (GDataDocumentsEntry *self)
 {
@@ -881,7 +1027,7 @@ gdata_documents_entry_get_path (GDataDocumentsEntry *self)
  *
  * Since: 0.4.0
  * Deprecated: 0.11.0: Use gdata_documents_entry_get_resource_id() instead. See #GDataDocumentsEntry:document-id.
- **/
+ */
 const gchar *
 gdata_documents_entry_get_document_id (GDataDocumentsEntry *self )
 {
@@ -914,7 +1060,7 @@ gdata_documents_entry_get_resource_id (GDataDocumentsEntry *self)
  * Sets the #GDataDocumentsEntry:writers-can-invite property to @writers_can_invite.
  *
  * Since: 0.4.0
- **/
+ */
 void
 gdata_documents_entry_set_writers_can_invite (GDataDocumentsEntry *self, gboolean writers_can_invite)
 {
@@ -932,7 +1078,7 @@ gdata_documents_entry_set_writers_can_invite (GDataDocumentsEntry *self, gboolea
  * Return value: %TRUE if writers can invite other people to edit the document, %FALSE otherwise
  *
  * Since: 0.4.0
- **/
+ */
 gboolean
 gdata_documents_entry_writers_can_invite (GDataDocumentsEntry *self)
 {
@@ -949,7 +1095,7 @@ gdata_documents_entry_writers_can_invite (GDataDocumentsEntry *self)
  * Return value: (transfer none): the author who last modified the document
  *
  * Since: 0.4.0
- **/
+ */
 GDataAuthor *
 gdata_documents_entry_get_last_modified_by (GDataDocumentsEntry *self)
 {
@@ -976,6 +1122,24 @@ gdata_documents_entry_get_quota_used (GDataDocumentsEntry *self)
 }
 
 /**
+ * gdata_documents_entry_get_file_size:
+ * @self: a #GDataDocumentsEntry
+ *
+ * Gets the #GDataDocumentsEntry:file-size property.
+ *
+ * Return value: the size of the document in bytes
+ *
+ * Since: 0.17.7
+ */
+goffset
+gdata_documents_entry_get_file_size (GDataDocumentsEntry *self)
+{
+	g_return_val_if_fail (GDATA_IS_DOCUMENTS_ENTRY (self), 0);
+
+	return self->priv->file_size;
+}
+
+/**
  * gdata_documents_entry_is_deleted:
  * @self: a #GDataDocumentsEntry
  *
@@ -984,7 +1148,7 @@ gdata_documents_entry_get_quota_used (GDataDocumentsEntry *self)
  * Return value: %TRUE if the document has been deleted, %FALSE otherwise
  *
  * Since: 0.5.0
- **/
+ */
 gboolean
 gdata_documents_entry_is_deleted (GDataDocumentsEntry *self)
 {

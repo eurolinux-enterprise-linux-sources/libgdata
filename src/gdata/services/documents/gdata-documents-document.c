@@ -194,7 +194,7 @@
  * </example>
  *
  * Since: 0.7.0
- **/
+ */
 
 #include <config.h>
 #include <glib.h>
@@ -206,6 +206,7 @@
 #include "gdata-documents-presentation.h"
 #include "gdata-documents-spreadsheet.h"
 #include "gdata-documents-text.h"
+#include "gdata-documents-utils.h"
 #include "gdata-download-stream.h"
 #include "gdata-private.h"
 #include "gdata-service.h"
@@ -295,7 +296,7 @@ parse_json (GDataParsable *parsable, JsonReader *reader, gpointer user_data, GEr
 
 			format = json_reader_get_member_name (reader);
 
-			gdata_parser_string_from_json_member (reader, format, P_REQUIRED | P_NON_EMPTY, &uri, &success, NULL);
+			g_assert (gdata_parser_string_from_json_member (reader, format, P_REQUIRED | P_NON_EMPTY, &uri, &success, NULL));
 			if (success) {
 				g_hash_table_insert (priv->export_links, g_strdup (format), uri);
 				uri = NULL;
@@ -354,6 +355,8 @@ gdata_documents_document_new (const gchar *id)
  * #GInputStream operations on the #GDataDownloadStream will not cancel the entire download; merely the read or close operation in question. See the
  * #GDataDownloadStream:cancellable for more details.
  *
+ * If the given @export_format is unrecognised or not supported for this document, %GDATA_SERVICE_ERROR_NOT_FOUND will be returned.
+ *
  * If @service isn't authenticated, a %GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED will be returned.
  *
  * If there is an error getting the document, a %GDATA_SERVICE_ERROR_PROTOCOL_ERROR error will be returned.
@@ -361,7 +364,7 @@ gdata_documents_document_new (const gchar *id)
  * Return value: (transfer full): a #GDataDownloadStream to download the document with, or %NULL; unref with g_object_unref()
  *
  * Since: 0.8.0
- **/
+ */
 GDataDownloadStream *
 gdata_documents_document_download (GDataDocumentsDocument *self, GDataDocumentsService *service, const gchar *export_format, GCancellable *cancellable,
                                    GError **error)
@@ -392,6 +395,13 @@ gdata_documents_document_download (GDataDocumentsDocument *self, GDataDocumentsS
 
 	/* Get the download URI and create a stream for it */
 	download_uri = gdata_documents_document_get_download_uri (self, export_format);
+
+	if (download_uri == NULL) {
+		g_set_error (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_NOT_FOUND,
+		             _("Unknown or unsupported document export format ‘%s’."), export_format);
+		return NULL;
+	}
+
 	download_stream = GDATA_DOWNLOAD_STREAM (gdata_download_stream_new (GDATA_SERVICE (service), domain, download_uri, cancellable));
 	g_free (download_uri);
 
@@ -410,14 +420,17 @@ gdata_documents_document_download (GDataDocumentsDocument *self, GDataDocumentsS
  * @export_format should be the file extension of the desired output format for the document, from the list accepted by Google Documents. For example:
  * %GDATA_DOCUMENTS_PRESENTATION_PDF, %GDATA_DOCUMENTS_SPREADSHEET_ODS or %GDATA_DOCUMENTS_TEXT_ODT.
  *
- * Return value: the download URI; free with g_free()
+ * If the @export_format is not recognised or not supported for this document, %NULL is returned.
+ *
+ * Return value: (nullable): the download URI, or %NULL; free with g_free()
  *
  * Since: 0.7.0
- **/
+ */
 gchar *
 gdata_documents_document_get_download_uri (GDataDocumentsDocument *self, const gchar *export_format)
 {
 	const gchar *format;
+	const gchar *mime_type;
 
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_DOCUMENT (self), NULL);
 	g_return_val_if_fail (export_format != NULL && *export_format != '\0', NULL);
@@ -448,6 +461,14 @@ gdata_documents_document_get_download_uri (GDataDocumentsDocument *self, const g
 		format = "application/rtf";
 	else
 		format = export_format;
+
+	/* We use the exportLinks JSON member to do the format conversion during download. Unfortunately, there
+	 * won't be any hits if the export format matches the original MIME type. We resort to downloadUrl in
+	 * those cases.
+	 */
+	mime_type = gdata_documents_utils_get_content_type (GDATA_DOCUMENTS_ENTRY (self));
+	if (g_content_type_equals (mime_type, format))
+		return g_strdup (gdata_entry_get_content_uri (GDATA_ENTRY (self)));
 
 	return g_strdup (g_hash_table_lookup (self->priv->export_links, format));
 }

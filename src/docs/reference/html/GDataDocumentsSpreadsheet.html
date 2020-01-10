@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataDocumentsSpreadsheet: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch16.html" title="Google Documents API">
 <link rel="prev" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation">
 <link rel="next" href="GDataDocumentsText.html" title="GDataDocumentsText">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -45,7 +45,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsSpreadsheet.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -61,7 +61,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-get-download-uri" title="gdata_documents_spreadsheet_get_download_uri ()">gdata_documents_spreadsheet_get_download_uri</a> <span class="c_punctuation">()</span>
@@ -72,7 +72,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsSpreadsheet.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -115,7 +115,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsSpreadsheet.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
         <span class="lineart">╰──</span> <a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
             <span class="lineart">╰──</span> <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry">GDataDocumentsEntry</a>
@@ -140,7 +140,7 @@ GDataDocumentsSpreadsheet implements
 <p>For more details of Google Documents' GData API, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/" target="_top">online documentation</a>.
 <div class="example">
-<a name="id-1.5.5.12.9.5"></a><p class="title"><b>Example 38. Downloading a Specific Sheet of a Spreadsheet</b></p>
+<a name="id-1.5.5.12.9.5"></a><p class="title"><b>Example 37. Downloading a Specific Sheet of a Spreadsheet</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -193,54 +193,54 @@ GDataDocumentsSpreadsheet implements
 46
 47
 48</pre></td>
-        <td class="listing_code"><pre class="programlisting">GDataDocumentsService <span class="gtkdoc opt">*</span>service<span class="gtkdoc opt">;</span>
-GDataDocumentsSpreadsheet <span class="gtkdoc opt">*</span>spreadsheet<span class="gtkdoc opt">;</span>
-GFile <span class="gtkdoc opt">*</span>destination_file<span class="gtkdoc opt">;</span>
-guint gid<span class="gtkdoc opt">;</span>
-gchar <span class="gtkdoc opt">*</span>download_uri<span class="gtkdoc opt">;</span>
-GDataDownloadStream <span class="gtkdoc opt">*</span>download_stream<span class="gtkdoc opt">;</span>
-GFileOutputStream <span class="gtkdoc opt">*</span>output_stream<span class="gtkdoc opt">;</span>
-GError <span class="gtkdoc opt">*</span>error <span class="gtkdoc opt">=</span> NULL<span class="gtkdoc opt">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataDocumentsService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
+<span class="usertype">GDataDocumentsSpreadsheet</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">spreadsheet</span><span class="symbol">;</span>
+<span class="usertype">GFile</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">destination_file</span><span class="symbol">;</span>
+<span class="usertype">guint</span><span class="normal"> gid</span><span class="symbol">;</span>
+<span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">download_uri</span><span class="symbol">;</span>
+<span class="usertype">GDataDownloadStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">download_stream</span><span class="symbol">;</span>
+<span class="usertype">GFileOutputStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">output_stream</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service and retrieve the spreadsheet and sheet index (GID) to download and the file to save the download in */</span>
-service <span class="gtkdoc opt">=</span> <span class="function">create_youtube_service</span> <span class="gtkdoc opt">();</span>
-spreadsheet <span class="gtkdoc opt">=</span> <span class="function">get_document_to_download</span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
-destination_file <span class="gtkdoc opt">=</span> <span class="function">query_user_for_destination_file</span> <span class="gtkdoc opt">(</span>spreadsheet<span class="gtkdoc opt">);</span>
-gid <span class="gtkdoc opt">=</span> <span class="function">query_user_for_gid</span> <span class="gtkdoc opt">(</span>spreadsheet<span class="gtkdoc opt">);</span>
+<span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_youtube_service</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="normal">spreadsheet </span><span class="symbol">=</span><span class="normal"> </span><span class="function">get_document_to_download</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="normal">destination_file </span><span class="symbol">=</span><span class="normal"> </span><span class="function">query_user_for_destination_file</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">spreadsheet</span><span class="symbol">);</span>
+<span class="normal">gid </span><span class="symbol">=</span><span class="normal"> </span><span class="function">query_user_for_gid</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">spreadsheet</span><span class="symbol">);</span>
 
 <span class="comment">/* Create the download stream */</span>
-download_uri <span class="gtkdoc opt">=</span> <span class="function"><a href="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-get-download-uri">gdata_documents_spreadsheet_get_download_uri</a></span> <span class="gtkdoc opt">(</span>spreadsheet<span class="gtkdoc opt">,</span> GDATA_DOCUMENTS_SPREADSHEET_CSV<span class="gtkdoc opt">,</span> gid<span class="gtkdoc opt">);</span>
-download_stream <span class="gtkdoc opt">=</span> <span class="function">GDATA_DOWNLOAD_STREAM</span> <span class="gtkdoc opt">(</span><span class="function"><a href="GDataDownloadStream.html#gdata-download-stream-new">gdata_download_stream_new</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">,</span> <span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-get-spreadsheet-authorization-domain">gdata_documents_service_get_spreadsheet_authorization_domain</a></span> <span class="gtkdoc opt">(),</span>
-                                                                    download_uri<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">));</span>
-<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free">g_free</a></span> <span class="gtkdoc opt">(</span>download_uri<span class="gtkdoc opt">);</span>
+<span class="normal">download_uri </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsSpreadsheet.html#gdata-documents-spreadsheet-get-download-uri">gdata_documents_spreadsheet_get_download_uri</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">spreadsheet</span><span class="symbol">,</span><span class="normal"> <a href="GDataDocumentsSpreadsheet.html#GDATA-DOCUMENTS-SPREADSHEET-CSV:CAPS">GDATA_DOCUMENTS_SPREADSHEET_CSV</a></span><span class="symbol">,</span><span class="normal"> gid</span><span class="symbol">);</span>
+<span class="normal">download_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_DOWNLOAD_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataDownloadStream.html#gdata-download-stream-new">gdata_download_stream_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-get-spreadsheet-authorization-domain">gdata_documents_service_get_spreadsheet_authorization_domain</a></span><span class="normal"> </span><span class="symbol">(),</span>
+<span class="normal">                                                                    download_uri</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">));</span>
+<span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">download_uri</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>spreadsheet<span class="gtkdoc opt">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>service<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">spreadsheet</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
 <span class="comment">/* Create the file output stream */</span>
-output_stream <span class="gtkdoc opt">=</span> <span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-replace">g_file_replace</a></span> <span class="gtkdoc opt">(</span>destination_file<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">,</span> FALSE<span class="gtkdoc opt">,</span> G_FILE_CREATE_REPLACE_DESTINATION<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">);</span>
+<span class="normal">output_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-replace">g_file_replace</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">destination_file</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFile.html#G-FILE-CREATE-REPLACE-DESTINATION:CAPS">G_FILE_CREATE_REPLACE_DESTINATION</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>destination_file<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">destination_file</span><span class="symbol">);</span>
 
-<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error creating destination file: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
-	<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>download_stream<span class="gtkdoc opt">);</span>
-	<span class="keyword">return</span><span class="gtkdoc opt">;</span>
-<span class="gtkdoc opt">}</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error creating destination file: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">download_stream</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
+<span class="cbracket">}</span>
 
 <span class="comment">/* Download the document. This should almost always be done asynchronously. */</span>
-<span class="function"><a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice">g_output_stream_splice</a></span> <span class="gtkdoc opt">(</span><span class="function">G_OUTPUT_STREAM</span> <span class="gtkdoc opt">(</span>output_stream<span class="gtkdoc opt">),</span> <span class="function">G_INPUT_STREAM</span> <span class="gtkdoc opt">(</span>download_stream<span class="gtkdoc opt">),</span>
-                        G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE <span class="gtkdoc opt">|</span> G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET<span class="gtkdoc opt">,</span> NULL<span class="gtkdoc opt">, &amp;</span>error<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice">g_output_stream_splice</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OUTPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">output_stream</span><span class="symbol">),</span><span class="normal"> </span><span class="function">G_INPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">download_stream</span><span class="symbol">),</span>
+<span class="normal">                        <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-SOURCE:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE</a> </span><span class="symbol">|</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-TARGET:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>output_stream<span class="gtkdoc opt">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span> <span class="gtkdoc opt">(</span>download_stream<span class="gtkdoc opt">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">output_stream</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">download_stream</span><span class="symbol">);</span>
 
-<span class="keyword">if</span> <span class="gtkdoc opt">(</span>error <span class="gtkdoc opt">!=</span> NULL<span class="gtkdoc opt">) {</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-error">g_error</a></span> <span class="gtkdoc opt">(</span><span class="string">&quot;Error downloading spreadsheet: %s&quot;</span><span class="gtkdoc opt">,</span> error<span class="gtkdoc opt">-&gt;</span>message<span class="gtkdoc opt">);</span>
-	<span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span> <span class="gtkdoc opt">(</span>error<span class="gtkdoc opt">);</span>
-	<span class="keyword">return</span><span class="gtkdoc opt">;</span>
-<span class="gtkdoc opt">}</span></pre></td>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error downloading spreadsheet: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -254,11 +254,11 @@ output_stream <span class="gtkdoc opt">=</span> <span class="function"><a href="
 <div class="refsect2">
 <a name="gdata-documents-spreadsheet-new"></a><h3>gdata_documents_spreadsheet_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="returnvalue">GDataDocumentsSpreadsheet</span></a> *
-gdata_documents_spreadsheet_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
+gdata_documents_spreadsheet_new (<em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> with the given entry ID (<a class="link" href="GDataEntry.html#GDataEntry--id" title="The “id” property"><span class="type">“id”</span></a>).</p>
 <div class="refsect3">
-<a name="id-1.5.5.12.10.2.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-documents-spreadsheet-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -266,36 +266,36 @@ gdata_documents_spreadsheet_new (<em class="parameter"><code>const <a href="http
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>id</p></td>
-<td class="parameter_description"><p> the entry's ID (not the document ID of the spreadsheet), or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> the entry's ID (not the document ID of the spreadsheet), or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.5.12.10.2.6"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<a name="gdata-documents-spreadsheet-new.returns"></a><h4>Returns</h4>
+<p> a new <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.4.0</p>
+<p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-documents-spreadsheet-get-download-uri"></a><h3>gdata_documents_spreadsheet_get_download_uri ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
 gdata_documents_spreadsheet_get_download_uri
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> *self</code></em>,
-                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *export_format</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> gid</code></em>);</pre>
+                                <em class="parameter"><code>const <span class="type">gchar</span> *export_format</code></em>,
+                                <em class="parameter"><code><span class="type">gint</span> gid</code></em>);</pre>
 <p>Builds and returns the download URI for the given <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> in the desired format. Note that directly downloading
 the document using this URI isn't possible, as authentication is required. You should instead use <a class="link" href="GDataDownloadStream.html#gdata-download-stream-new" title="gdata_download_stream_new ()"><code class="function">gdata_download_stream_new()</code></a> with
-the URI, and use the resulting <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a>.</p>
+the URI, and use the resulting <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#GInputStream-struct"><span class="type">GInputStream</span></a>.</p>
 <p>When requesting a <code class="code">"csv"</code>, <code class="code">"tsv"</code>, <code class="code">"pdf"</code> or</p>
 <code class="code">"html"</code> file you may specify an additional parameter called <em class="parameter"><code>gid</code></em> which indicates which grid, or sheet, you wish to get
 <p>(the index is <code class="code">0</code>-based, so GID <code class="code">1</code> actually refers to the second sheet on a given
 spreadsheet).</p>
 <div class="refsect3">
-<a name="id-1.5.5.12.10.3.9"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-documents-spreadsheet-get-download-uri.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -321,10 +321,10 @@ spreadsheet).</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.5.12.10.3.10"></a><h4>Returns</h4>
-<p> the download URI; free with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a></p>
+<a name="gdata-documents-spreadsheet-get-download-uri.returns"></a><h4>Returns</h4>
+<p> the download URI; free with <code class="function">g_free()</code></p>
 </div>
-<p class="since">Since 0.5.0</p>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-0.5.0">0.5.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -337,7 +337,7 @@ spreadsheet).</p>
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_spreadsheets" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -348,7 +348,7 @@ GData protocol specification</a>.
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_spreadsheets" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -359,7 +359,7 @@ GData protocol specification</a>.
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_spreadsheets" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -370,7 +370,7 @@ GData protocol specification</a>.
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_spreadsheets" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -381,7 +381,7 @@ GData protocol specification</a>.
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_spreadsheets" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -392,14 +392,14 @@ GData protocol specification</a>.
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#valid_formats_for_spreadsheets" target="_top">
 GData protocol specification</a>.
-<p class="since">Since 0.7.0</p>
+<p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GDataDocumentsSpreadsheet-struct"></a><h3>GDataDocumentsSpreadsheet</h3>
 <pre class="programlisting">typedef struct _GDataDocumentsSpreadsheet GDataDocumentsSpreadsheet;</pre>
 <p>All the fields in the <a class="link" href="GDataDocumentsSpreadsheet.html" title="GDataDocumentsSpreadsheet"><span class="type">GDataDocumentsSpreadsheet</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.4.0</p>
+<p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -408,12 +408,11 @@ GData protocol specification</a>.
 } GDataDocumentsSpreadsheetClass;
 </pre>
 <p>All the fields in the <a class="link" href="GDataDocumentsSpreadsheet.html#GDataDocumentsSpreadsheetClass" title="GDataDocumentsSpreadsheetClass"><span class="type">GDataDocumentsSpreadsheetClass</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.4.0</p>
+<p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

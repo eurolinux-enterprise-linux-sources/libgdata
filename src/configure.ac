@@ -3,7 +3,7 @@ AC_PREREQ(2.65)
 # Release version
 m4_define(gdata_version_major, 0)
 m4_define(gdata_version_minor, 17)
-m4_define(gdata_version_micro, 1)
+m4_define(gdata_version_micro, 8)
 
 # API version
 # TODO: This currently isn't used in the library name; once we hit gdata_version_major=1, that should be changed
@@ -11,6 +11,7 @@ m4_define(gdata_api_version_major, 0)
 m4_define(gdata_api_version_minor, 0)
 
 AC_INIT([libgdata],[gdata_version_major.gdata_version_minor.gdata_version_micro],[https://bugzilla.gnome.org/enter_bug.cgi?product=libgdata],[libgdata],[https://wiki.gnome.org/Projects/libgdata])
+AX_IS_RELEASE([git-directory])
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -19,7 +20,7 @@ AC_CONFIG_HEADERS([config.h])
 AC_USE_SYSTEM_EXTENSIONS
 
 # tar-pax is needed for long filename support for trace files
-AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip tar-pax check-news subdir-objects parallel-tests color-tests])
+AM_INIT_AUTOMAKE([1.9 dist-xz no-dist-gzip tar-pax check-news subdir-objects parallel-tests color-tests])
 
 # Enable silent build when available (Automake 1.11)
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
@@ -28,13 +29,14 @@ AC_PROG_CXX
 AM_PROG_CC_C_O
 LT_INIT([])
 PKG_PROG_PKG_CONFIG
+AX_GENERATE_CHANGELOG
 
 AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal])
 AC_PATH_PROG([GLIB_MKENUMS],[glib-mkenums])
 
 # Requirements
-GLIB_REQS=2.31.0
-GLIB_MIN_REQUIRED=GLIB_VERSION_2_32
+GLIB_REQS=2.38.0
+GLIB_MIN_REQUIRED=GLIB_VERSION_2_38
 GLIB_MAX_ALLOWED='(G_ENCODE_VERSION(2, 38))'
 GIO_REQS=2.17.3
 SOUP_REQS=2.42.0
@@ -58,7 +60,7 @@ GDK_PIXBUF_MAX_ALLOWED=GDK_VERSION_2_14
 #  4. If any interfaces have been removed or changed since the last public release, then set age to 0.
 #
 # Note that versioning started at 2:0:0 to ensure no conflicts with e-d-s' libgdata library, whose maximum version was 1:0:0
-GDATA_LT_VERSION=22:0:0
+GDATA_LT_VERSION=24:1:2
 AC_SUBST(GDATA_LT_VERSION)
 
 GDATA_VERSION_MAJOR=gdata_version_major
@@ -91,11 +93,12 @@ GDATA_CFLAGS="$GDATA_CFLAGS -DJSON_VERSION_MIN_REQUIRED=$JSON_GLIB_MIN_REQUIRED 
 AC_SUBST(GDATA_CFLAGS)
 AC_SUBST(GDATA_LIBS)
 
-# libsoup 2.47.3 is needed for the new SoupServer API.
-PKG_CHECK_MODULES([LIBSOUP], [libsoup-2.4 >= 2.47.3],
-                  [have_libsoup_2_47_3=yes], [have_libsoup_2_47_3=no])
-AS_IF([test "x$have_libsoup_2_47_3" = "xyes"], [
-	AC_DEFINE([HAVE_LIBSOUP_2_47_3], [1],
+# libsoup 2.47.3 is needed for the new SoupServer API; but it contained a bug in
+# soup_server_set_ssl_cert_file() which was only fixed in 2.55.90.
+PKG_CHECK_MODULES([LIBSOUP], [libsoup-2.4 >= 2.55.90],
+                  [have_libsoup_2_55_90=yes], [have_libsoup_2_55_90=no])
+AS_IF([test "x$have_libsoup_2_55_90" = "xyes"], [
+	AC_DEFINE([HAVE_LIBSOUP_2_55_90], [1],
 	          [Define if the new SoupServer API is available])
 ])
 
@@ -149,14 +152,27 @@ AC_SUBST([GNOME_PACKAGES_PRIVATE])
 AC_SUBST([GNOME_PACKAGES])
 AC_SUBST([GOA_ENABLED])
 
-AC_MSG_CHECKING([whether to build tests])
-AC_ARG_ENABLE([tests], AS_HELP_STRING([--enable-tests], [Enable building of tests]),, [enable_tests=yes])
-AC_MSG_RESULT($enable_tests)
-AM_CONDITIONAL([ENABLE_TESTS], [test "x$enable_tests" = "xyes"])
+AC_ARG_ENABLE([always_build_tests],
+              AS_HELP_STRING([--enable-always-build-tests],
+                             [Enable always building tests (default: yes)]),,
+              [enable_always_build_tests=yes])
+AC_ARG_ENABLE([installed_tests],
+              AS_HELP_STRING([--enable-installed-tests],
+                             [Install test programs (default: no)]),,
+              [enable_installed_tests=no])
 
-if test "x$enable_tests" = "xyes"; then
-	PKG_CHECK_MODULES(UHTTPMOCK, libuhttpmock-0.0)
-fi
+AM_CONDITIONAL([ENABLE_ALWAYS_BUILD_TESTS],
+               [test "$enable_always_build_tests" = "yes"])
+AC_SUBST([ENABLE_ALWAYS_BUILD_TESTS],[$enable_always_build_tests])
+
+AM_CONDITIONAL([ENABLE_INSTALLED_TESTS],
+               [test "$enable_installed_tests" = "yes"])
+AC_SUBST([ENABLE_INSTALLED_TESTS],[$enable_installed_tests])
+
+AS_IF([test "$enable_always_build_tests" = "yes" ||
+       test "$enable_installed_tests" = "yes"],[
+	PKG_CHECK_MODULES([UHTTPMOCK],[libuhttpmock-0.0 >= 0.5.0])
+])
 
 # Various necessary functions and headers
 AC_CHECK_FUNCS([memset])
@@ -179,33 +195,8 @@ IT_PROG_INTLTOOL([0.40.0])
 AX_CODE_COVERAGE
 
 # General macros
-GNOME_COMPILE_WARNINGS([maximum],[
-	-Wdeclaration-after-statement
-	-Wextra
-	-Winline
-	-Wpacked
-	-Wlarger-than-65500
-	-Wmissing-declarations
-	-Wmissing-format-attribute
-	-Wmissing-noreturn
-	-Wold-style-definition
-	-Wsign-compare
-	-Wstrict-aliasing=2
-	-Wswitch-enum
-	-Wundef
-	-Wunsafe-loop-optimizations
-	-Wwrite-strings
-	-Wno-missing-field-initializers
-	-Wno-unused-parameter
-	-Wshadow
-	-Wcast-align
-	-Wformat-nonliteral
-	-Wswitch-default
-	-Waggregate-return
-	-Wredundant-decls
-	-Wunused-but-set-variable
-	-Warray-bounds
-])
+AX_COMPILER_FLAGS([WARN_CFLAGS],[WARN_LDFLAGS],[$ax_is_release],
+                  [],[-Wunsafe-loop-optimizations])
 
 GOBJECT_INTROSPECTION_CHECK([0.9.7])
 
@@ -216,7 +207,7 @@ AC_SUBST([AM_CFLAGS])
 AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
-GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
+GTK_DOC_CHECK([1.25],[--flavour no-tmpl])
 
 AC_CONFIG_FILES([
 Makefile
@@ -226,6 +217,5 @@ gdata/tests/Makefile
 po/Makefile.in
 docs/Makefile
 docs/reference/Makefile
-docs/reference/version.xml
 ])
 AC_OUTPUT

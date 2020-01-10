@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataFreebaseService: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch19.html" title="Google Freebase API">
 <link rel="prev" href="ch19.html" title="Google Freebase API">
 <link rel="next" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -45,7 +45,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataFreebaseService.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -117,7 +117,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="returnvalue">GInputStream</span></a> *
+<a href="https://developer.gnome.org/gio/unstable/GInputStream.html#GInputStream-struct"><span class="returnvalue">GInputStream</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataFreebaseService.html#gdata-freebase-service-get-image" title="gdata_freebase_service_get_image ()">gdata_freebase_service_get_image</a> <span class="c_punctuation">()</span>
@@ -128,7 +128,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataFreebaseService.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table border="0">
+<div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
@@ -136,7 +136,7 @@ justifications.
 </colgroup>
 <tbody><tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GDataFreebaseService.html#GDataFreebaseService--developer-key" title="The “developer-key” property">developer-key</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr></tbody>
@@ -144,7 +144,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataFreebaseService.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -163,7 +163,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataFreebaseService.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataService.html" title="GDataService">GDataService</a>
         <span class="lineart">╰──</span> GDataFreebaseService
 </pre>
@@ -182,26 +182,33 @@ reply. For more information and examples, see the <a class="ulink" href="https:/
 MQL overview page</a>.</p>
 <p>For more details of Google Freebase API, see the <a class="ulink" href="https://developers.google.com/freebase/v1/" target="_top">
 online documentation</a>.</p>
+<p>Since August 2016, <a class="ulink" href="https://developers.google.com/freebase/" target="_top">Google has retired Freebase</a>,
+so all of these APIs will return an error if used; and should be considered
+deprecated.</p>
 </div>
 <div class="refsect1">
 <a name="GDataFreebaseService.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="gdata-freebase-service-new"></a><h3>gdata_freebase_service_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="returnvalue">GDataFreebaseService</span></a> *
-gdata_freebase_service_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *developer_key</code></em>,
+gdata_freebase_service_new (<em class="parameter"><code>const <span class="type">gchar</span> *developer_key</code></em>,
                             <em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *authorizer</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_freebase_service_new</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>Creates a new <a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> using the given <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>. If <em class="parameter"><code>authorizer</code></em>
- is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, all requests are made as an unauthenticated user.
+ is <code class="literal">NULL</code>, all requests are made as an unauthenticated user.
 Having both <em class="parameter"><code>developer_key</code></em>
  and <em class="parameter"><code>authorizer</code></em>
- set to <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> is allowed, but this should be reserved for debugging situations, as there is a certain
+ set to <code class="literal">NULL</code> is allowed, but this should be reserved for debugging situations, as there is a certain
 key-less quota for those purposes. If this service is used on any code intended to be deployed, one or both of <em class="parameter"><code>developer_key</code></em>
  and <em class="parameter"><code>authorizer</code></em>
 
-should be non-<a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and valid.</p>
+should be non-<code class="literal">NULL</code> and valid.</p>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.2.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-freebase-service-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -210,23 +217,23 @@ should be non-<a href="https://developer.gnome.org/glib/unstable/glib-Standard-M
 <tbody>
 <tr>
 <td class="parameter_name"><p>developer_key</p></td>
-<td class="parameter_description"><p> developer key to use the API, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> developer key to use the API, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>authorizer</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.2.6"></a><h4>Returns</h4>
+<a name="gdata-freebase-service-new.returns"></a><h4>Returns</h4>
 <p> a new <a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -234,16 +241,20 @@ should be non-<a href="https://developer.gnome.org/glib/unstable/glib-Standard-M
 <pre class="programlisting"><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="returnvalue">GDataAuthorizationDomain</span></a> *
 gdata_freebase_service_get_primary_authorization_domain
                                (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_freebase_service_get_primary_authorization_domain</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>The primary <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> for interacting with Freebase. This will not normally need to be used, as it's used internally
 by the <a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> methods. However, if using the plain <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> methods to implement custom queries or requests which libgdata
 does not support natively, then this domain may be needed to authorize the requests.</p>
 <p>The domain never changes, and is interned so that pointer comparison can be used to differentiate it from other authorization domains.</p>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.3.6"></a><h4>Returns</h4>
+<a name="gdata-freebase-service-get-primary-authorization-domain.returns"></a><h4>Returns</h4>
 <p> the service's authorization domain. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.9.0</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -251,12 +262,16 @@ does not support natively, then this domain may be needed to authorize the reque
 <pre class="programlisting"><a class="link" href="GDataFreebaseResult.html" title="GDataFreebaseResult"><span class="returnvalue">GDataFreebaseResult</span></a> *
 gdata_freebase_service_query (<em class="parameter"><code><a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> *self</code></em>,
                               <em class="parameter"><code><a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a> *query</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                              <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                              <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_freebase_service_query</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>Performs a MQL query on the service, you can find out more about MQL in the <a class="ulink" href="http://mql.freebaseapps.com/index.html" target="_top">online MQL documentation</a>.</p>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.4.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-freebase-service-query.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -275,23 +290,23 @@ gdata_freebase_service_query (<em class="parameter"><code><a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.4.6"></a><h4>Returns</h4>
+<a name="gdata-freebase-service-query.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="GDataFreebaseResult.html" title="GDataFreebaseResult"><span class="type">GDataFreebaseResult</span></a> containing the query result; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -299,9 +314,13 @@ gdata_freebase_service_query (<em class="parameter"><code><a class="link" href="
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_freebase_service_query_async (<em class="parameter"><code><a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> *self</code></em>,
                                     <em class="parameter"><code><a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a> *query</code></em>,
-                                    <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                    <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                    <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_freebase_service_query_async</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>Performs a MQL query on the service. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>query</code></em>
  are all reffed when this function is called, so can safely
@@ -311,8 +330,8 @@ the result can be obtained through <a class="link" href="GDataService.html#gdata
 <p>For more details, see <a class="link" href="GDataFreebaseService.html#gdata-freebase-service-query" title="gdata_freebase_service_query ()"><code class="function">gdata_freebase_service_query()</code></a>, which is the synchronous version of
 this function.</p>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.5.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-freebase-service-query-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -331,7 +350,7 @@ this function.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -348,7 +367,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -356,13 +375,17 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="returnvalue">GDataFreebaseTopicResult</span></a> *
 gdata_freebase_service_get_topic (<em class="parameter"><code><a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> *self</code></em>,
                                   <em class="parameter"><code><a class="link" href="GDataFreebaseTopicQuery.html" title="GDataFreebaseTopicQuery"><span class="type">GDataFreebaseTopicQuery</span></a> *query</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                  <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                  <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_freebase_service_get_topic</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>Queries information about a topic, identified through a Freebase ID. You can find out more about topic queries in the</p>
 <a class="ulink" href="https://developers.google.com/freebase/v1/topic-response" target="_top">online documentation</a>.
 <div class="refsect3">
-<a name="id-1.5.8.2.10.6.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-freebase-service-get-topic.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -381,23 +404,23 @@ gdata_freebase_service_get_topic (<em class="parameter"><code><a class="link" hr
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.6.7"></a><h4>Returns</h4>
+<a name="gdata-freebase-service-get-topic.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="GDataFreebaseTopicResult.html" title="GDataFreebaseTopicResult"><span class="type">GDataFreebaseTopicResult</span></a> containing information about the topic; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -406,9 +429,13 @@ gdata_freebase_service_get_topic (<em class="parameter"><code><a class="link" hr
 gdata_freebase_service_get_topic_async
                                (<em class="parameter"><code><a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataFreebaseTopicQuery.html" title="GDataFreebaseTopicQuery"><span class="type">GDataFreebaseTopicQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_freebase_service_get_topic_async</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>Queries information about a topic, identified through a Freebase ID. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>query</code></em>
  are all reffed when this
@@ -418,8 +445,8 @@ function is called, so can safely be unreffed after this function returns. When 
 <p>For more details, see <a class="link" href="GDataFreebaseService.html#gdata-freebase-service-get-topic" title="gdata_freebase_service_get_topic ()"><code class="function">gdata_freebase_service_get_topic()</code></a>, which is the synchronous version of
 this function.</p>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.7.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-freebase-service-get-topic-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -438,7 +465,7 @@ this function.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -455,7 +482,7 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -463,15 +490,19 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataFreebaseSearchResult.html" title="GDataFreebaseSearchResult"><span class="returnvalue">GDataFreebaseSearchResult</span></a> *
 gdata_freebase_service_search (<em class="parameter"><code><a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> *self</code></em>,
                                <em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *query</code></em>,
-                               <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                               <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                               <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                               <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_freebase_service_search</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>Performs a search for any given search term, filters can be set on <em class="parameter"><code>query</code></em>
  to narrow down the results. The results returned
 are ordered by relevance. You can find out more about topic queries in the</p>
 <a class="ulink" href="https://developers.google.com/freebase/v1/search-cookbook" target="_top">online documentation</a>.
 <div class="refsect3">
-<a name="id-1.5.8.2.10.8.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-freebase-service-search.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -490,23 +521,23 @@ are ordered by relevance. You can find out more about topic queries in the</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.8.7"></a><h4>Returns</h4>
+<a name="gdata-freebase-service-search.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="GDataFreebaseSearchResult.html" title="GDataFreebaseSearchResult"><span class="type">GDataFreebaseSearchResult</span></a> containing the results for the given search query; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -514,9 +545,13 @@ are ordered by relevance. You can find out more about topic queries in the</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_freebase_service_search_async (<em class="parameter"><code><a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataFreebaseSearchQuery.html" title="GDataFreebaseSearchQuery"><span class="type">GDataFreebaseSearchQuery</span></a> *query</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                      <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                     <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_freebase_service_search_async</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>Performs a search for any given search term. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>query</code></em>
  are all reffed when this
@@ -524,8 +559,8 @@ function is called, so can safely be unreffed after this function returns.</p>
 <p>For more details, see <a class="link" href="GDataFreebaseService.html#gdata-freebase-service-search" title="gdata_freebase_service_search ()"><code class="function">gdata_freebase_service_search()</code></a>, which is the synchronous version of
 this function.</p>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.9.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-freebase-service-search-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -544,7 +579,7 @@ this function.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -561,25 +596,29 @@ function. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-freebase-service-get-image"></a><h3>gdata_freebase_service_get_image ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="returnvalue">GInputStream</span></a> *
+<pre class="programlisting"><a href="https://developer.gnome.org/gio/unstable/GInputStream.html#GInputStream-struct"><span class="returnvalue">GInputStream</span></a> *
 gdata_freebase_service_get_image (<em class="parameter"><code><a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> *self</code></em>,
                                   <em class="parameter"><code><a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicValue"><span class="type">GDataFreebaseTopicValue</span></a> *value</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> max_width</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> max_height</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                  <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                  <em class="parameter"><code><span class="type">guint</span> max_width</code></em>,
+                                  <em class="parameter"><code><span class="type">guint</span> max_height</code></em>,
+                                  <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">gdata_freebase_service_get_image</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>Creates an input stream to an image object returned in a topic query. If <em class="parameter"><code>max_width</code></em>
  and <em class="parameter"><code>max_height</code></em>
 
 are unspecified (i.e. set to 0), the image returned will be the smallest available.</p>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.10.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="gdata-freebase-service-get-image.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -598,7 +637,7 @@ are unspecified (i.e. set to 0), the image returned will be the smallest availab
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -613,18 +652,18 @@ are unspecified (i.e. set to 0), the image returned will be the smallest availab
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p> a <span class="type">GError</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.8.2.10.10.6"></a><h4>Returns</h4>
-<p> a <a href="https://developer.gnome.org/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> opened to the image; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<a name="gdata-freebase-service-get-image.returns"></a><h4>Returns</h4>
+<p> a <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#GInputStream-struct"><span class="type">GInputStream</span></a> opened to the image; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -632,8 +671,9 @@ are unspecified (i.e. set to 0), the image returned will be the smallest availab
 <div class="refsect2">
 <a name="GDataFreebaseService-struct"></a><h3>GDataFreebaseService</h3>
 <pre class="programlisting">typedef struct _GDataFreebaseService GDataFreebaseService;</pre>
+<div class="warning"><p><code class="literal">GDataFreebaseService</code> is deprecated and should not be used in newly-written code.</p></div>
 <p>All the fields in the <a class="link" href="GDataFreebaseService.html" title="GDataFreebaseService"><span class="type">GDataFreebaseService</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -641,24 +681,28 @@ are unspecified (i.e. set to 0), the image returned will be the smallest availab
 <pre class="programlisting">typedef struct {
 } GDataFreebaseServiceClass;
 </pre>
+<div class="warning"><p><code class="literal">GDataFreebaseServiceClass</code> is deprecated and should not be used in newly-written code.</p></div>
 <p>All the fields in the <a class="link" href="GDataFreebaseService.html#GDataFreebaseServiceClass" title="GDataFreebaseServiceClass"><span class="type">GDataFreebaseServiceClass</span></a> structure are private and should never be accessed directly.</p>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 </div>
 <div class="refsect1">
 <a name="GDataFreebaseService.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataFreebaseService--developer-key"></a><h3>The <code class="literal">“developer-key”</code> property</h3>
-<pre class="programlisting">  “developer-key”            <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “developer-key”            <span class="type">gchar</span> *</pre>
 <p>The developer key your application has registered with the Freebase API. For more information, see the <a class="ulink" href="https://developers.google.com/freebase/v1/how-tos/authorizing" target="_top">online documentation</a>.</p>
+<div class="warning">
+<p><code class="literal">GDataFreebaseService:developer-key</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
+<p>Google Freebase has been permanently shut down.</p>
+</div>
 <p>Flags: Read / Write / Construct Only</p>
 <p>Default value: NULL</p>
-<p class="since">Since 0.15.1</p>
+<p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

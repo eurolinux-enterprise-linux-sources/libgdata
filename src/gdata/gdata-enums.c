@@ -7,7 +7,64 @@
 #include "gdata-enums.h"
 #include "gdata-client-login-authorizer.h"
 
-/* enumerations from "./gdata/gdata-service.h" */
+/* enumerations from "/opt/gnome/source/libgdata/gdata/gdata-batch-operation.h" */
+GType
+gdata_batch_operation_type_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { GDATA_BATCH_OPERATION_QUERY, "GDATA_BATCH_OPERATION_QUERY", "query" },
+      { GDATA_BATCH_OPERATION_INSERTION, "GDATA_BATCH_OPERATION_INSERTION", "insertion" },
+      { GDATA_BATCH_OPERATION_UPDATE, "GDATA_BATCH_OPERATION_UPDATE", "update" },
+      { GDATA_BATCH_OPERATION_DELETION, "GDATA_BATCH_OPERATION_DELETION", "deletion" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("GDataBatchOperationType", values);
+  }
+  return etype;
+}
+
+/* enumerations from "/opt/gnome/source/libgdata/gdata/gdata-client-login-authorizer.h" */
+GType
+gdata_client_login_authorizer_error_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_BAD_AUTHENTICATION, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_BAD_AUTHENTICATION", "bad-authentication" },
+      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_NOT_VERIFIED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_NOT_VERIFIED", "not-verified" },
+      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_TERMS_NOT_AGREED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_TERMS_NOT_AGREED", "terms-not-agreed" },
+      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_CAPTCHA_REQUIRED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_CAPTCHA_REQUIRED", "captcha-required" },
+      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DELETED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DELETED", "account-deleted" },
+      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DISABLED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DISABLED", "account-disabled" },
+      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_SERVICE_DISABLED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_SERVICE_DISABLED", "service-disabled" },
+      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_MIGRATED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_MIGRATED", "account-migrated" },
+      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_INVALID_SECOND_FACTOR, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_INVALID_SECOND_FACTOR", "invalid-second-factor" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("GDataClientLoginAuthorizerError", values);
+  }
+  return etype;
+}
+
+/* enumerations from "/opt/gnome/source/libgdata/gdata/gdata-parsable.h" */
+GType
+gdata_parser_error_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { GDATA_PARSER_ERROR_PARSING_STRING, "GDATA_PARSER_ERROR_PARSING_STRING", "parsing-string" },
+      { GDATA_PARSER_ERROR_EMPTY_DOCUMENT, "GDATA_PARSER_ERROR_EMPTY_DOCUMENT", "empty-document" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("GDataParserError", values);
+  }
+  return etype;
+}
+
+/* enumerations from "/opt/gnome/source/libgdata/gdata/gdata-service.h" */
 GType
 gdata_operation_type_get_type (void)
 {
@@ -49,63 +106,6 @@ gdata_service_error_get_type (void)
       { 0, NULL, NULL }
     };
     etype = g_enum_register_static ("GDataServiceError", values);
-  }
-  return etype;
-}
-
-/* enumerations from "./gdata/gdata-parsable.h" */
-GType
-gdata_parser_error_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-    static const GEnumValue values[] = {
-      { GDATA_PARSER_ERROR_PARSING_STRING, "GDATA_PARSER_ERROR_PARSING_STRING", "parsing-string" },
-      { GDATA_PARSER_ERROR_EMPTY_DOCUMENT, "GDATA_PARSER_ERROR_EMPTY_DOCUMENT", "empty-document" },
-      { 0, NULL, NULL }
-    };
-    etype = g_enum_register_static ("GDataParserError", values);
-  }
-  return etype;
-}
-
-/* enumerations from "./gdata/gdata-batch-operation.h" */
-GType
-gdata_batch_operation_type_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-    static const GEnumValue values[] = {
-      { GDATA_BATCH_OPERATION_QUERY, "GDATA_BATCH_OPERATION_QUERY", "query" },
-      { GDATA_BATCH_OPERATION_INSERTION, "GDATA_BATCH_OPERATION_INSERTION", "insertion" },
-      { GDATA_BATCH_OPERATION_UPDATE, "GDATA_BATCH_OPERATION_UPDATE", "update" },
-      { GDATA_BATCH_OPERATION_DELETION, "GDATA_BATCH_OPERATION_DELETION", "deletion" },
-      { 0, NULL, NULL }
-    };
-    etype = g_enum_register_static ("GDataBatchOperationType", values);
-  }
-  return etype;
-}
-
-/* enumerations from "./gdata/gdata-client-login-authorizer.h" */
-GType
-gdata_client_login_authorizer_error_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-    static const GEnumValue values[] = {
-      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_BAD_AUTHENTICATION, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_BAD_AUTHENTICATION", "bad-authentication" },
-      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_NOT_VERIFIED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_NOT_VERIFIED", "not-verified" },
-      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_TERMS_NOT_AGREED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_TERMS_NOT_AGREED", "terms-not-agreed" },
-      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_CAPTCHA_REQUIRED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_CAPTCHA_REQUIRED", "captcha-required" },
-      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DELETED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DELETED", "account-deleted" },
-      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DISABLED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_DISABLED", "account-disabled" },
-      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_SERVICE_DISABLED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_SERVICE_DISABLED", "service-disabled" },
-      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_MIGRATED, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_ACCOUNT_MIGRATED", "account-migrated" },
-      { GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_INVALID_SECOND_FACTOR, "GDATA_CLIENT_LOGIN_AUTHORIZER_ERROR_INVALID_SECOND_FACTOR", "invalid-second-factor" },
-      { 0, NULL, NULL }
-    };
-    etype = g_enum_register_static ("GDataClientLoginAuthorizerError", values);
   }
   return etype;
 }

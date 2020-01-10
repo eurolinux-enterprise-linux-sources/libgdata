@@ -126,6 +126,7 @@ gdata_feed_get_rights
 gdata_feed_get_start_index
 gdata_feed_get_total_results
 gdata_feed_get_items_per_page
+gdata_feed_get_next_page_token
 <SUBSECTION Standard>
 GDATA_FEED
 GDATA_FEED_CLASS
@@ -470,6 +471,8 @@ gdata_calendar_service_query_events
 gdata_calendar_service_query_events_async
 gdata_calendar_service_insert_event
 gdata_calendar_service_insert_event_async
+gdata_calendar_service_insert_calendar_event
+gdata_calendar_service_insert_calendar_event_async
 <SUBSECTION Standard>
 gdata_calendar_service_get_type
 GDATA_CALENDAR_SERVICE
@@ -526,11 +529,6 @@ GDataCalendarQueryPrivate
 <SECTION>
 <FILE>gdata-calendar-calendar</FILE>
 <TITLE>GDataCalendarCalendar</TITLE>
-GDATA_CALENDAR_ACCESS_ROLE_READ
-GDATA_CALENDAR_ACCESS_ROLE_FREE_BUSY
-GDATA_CALENDAR_ACCESS_ROLE_EDITOR
-GDATA_CALENDAR_ACCESS_ROLE_OWNER
-GDATA_CALENDAR_ACCESS_ROLE_ROOT
 GDataCalendarCalendar
 GDataCalendarCalendarClass
 gdata_calendar_calendar_new
@@ -709,6 +707,7 @@ GDataAccessRulePrivate
 <TITLE>GDataParsable</TITLE>
 GDataParsable
 GDataParsableClass
+gdata_parsable_get_content_type
 gdata_parsable_new_from_xml
 gdata_parsable_get_xml
 gdata_parsable_new_from_json
@@ -1556,6 +1555,7 @@ gdata_documents_entry_get_edited
 gdata_documents_entry_get_last_modified_by
 gdata_documents_entry_get_last_viewed
 gdata_documents_entry_get_quota_used
+gdata_documents_entry_get_file_size
 gdata_documents_entry_writers_can_invite
 gdata_documents_entry_set_writers_can_invite
 gdata_documents_entry_is_deleted
@@ -2779,6 +2779,8 @@ gdata_oauth2_authorizer_request_authorization_finish
 gdata_oauth2_authorizer_get_client_id
 gdata_oauth2_authorizer_get_redirect_uri
 gdata_oauth2_authorizer_get_client_secret
+gdata_oauth2_authorizer_dup_refresh_token
+gdata_oauth2_authorizer_set_refresh_token
 gdata_oauth2_authorizer_get_locale
 gdata_oauth2_authorizer_set_locale
 gdata_oauth2_authorizer_get_timeout
@@ -2812,4 +2814,45 @@ GDATA_IS_YOUTUBE_FEED_CLASS
 GDATA_TYPE_YOUTUBE_FEED
 <SUBSECTION Private>
 GDataYouTubeFeedPrivate
+</SECTION>
+
+<SECTION>
+<FILE>gdata-calendar-access-rule</FILE>
+<TITLE>GDataCalendarAccessRule</TITLE>
+GDATA_CALENDAR_ACCESS_ROLE_READ
+GDATA_CALENDAR_ACCESS_ROLE_FREE_BUSY
+GDATA_CALENDAR_ACCESS_ROLE_EDITOR
+GDATA_CALENDAR_ACCESS_ROLE_OWNER
+GDATA_CALENDAR_ACCESS_ROLE_ROOT
+GDataCalendarAccessRule
+GDataCalendarAccessRuleClass
+gdata_calendar_access_rule_new
+<SUBSECTION Standard>
+gdata_calendar_access_rule_get_type
+GDATA_CALENDAR_ACCESS_RULE
+GDATA_CALENDAR_ACCESS_RULE_CLASS
+GDATA_CALENDAR_ACCESS_RULE_GET_CLASS
+GDATA_IS_CALENDAR_ACCESS_RULE
+GDATA_IS_CALENDAR_ACCESS_RULE_CLASS
+GDATA_TYPE_CALENDAR_ACCESS_RULE
+<SUBSECTION Private>
+GDataCalendarAccessRulePrivate
+</SECTION>
+
+<SECTION>
+<FILE>gdata-documents-access-rule</FILE>
+<TITLE>GDataDocumentsAccessRule</TITLE>
+GDataDocumentsAccessRule
+GDataDocumentsAccessRuleClass
+gdata_documents_access_rule_new
+<SUBSECTION Standard>
+gdata_documents_access_rule_get_type
+GDATA_DOCUMENTS_ACCESS_RULE
+GDATA_DOCUMENTS_ACCESS_RULE_CLASS
+GDATA_DOCUMENTS_ACCESS_RULE_GET_CLASS
+GDATA_IS_DOCUMENTS_ACCESS_RULE
+GDATA_IS_DOCUMENTS_ACCESS_RULE_CLASS
+GDATA_TYPE_DOCUMENTS_ACCESS_RULE
+<SUBSECTION Private>
+GDataDocumentsAccessRulePrivate
 </SECTION>
