@@ -1,6 +1,6 @@
 Name:           libgdata
 Version:        0.13.3
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Library for the GData protocol
 
 Group:          System Environment/Libraries
@@ -75,6 +75,12 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_datadir}/vala/
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.13.3-4
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.13.3-3
+- Mass rebuild 2013-12-27
+
 * Tue Jul 16 2013 Matthias Clasen <mclasen@redhat.com> - 0.13.3-2
 - Disable strict aliasing, since the code is not strict-aliasing-clean
 
