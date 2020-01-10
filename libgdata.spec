@@ -1,5 +1,5 @@
 Name:           libgdata
-Version:        0.17.8
+Version:        0.17.9
 Release:        1%{?dist}
 Summary:        Library for the GData protocol
 
@@ -87,6 +87,10 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_datadir}/vala/
 
 %changelog
+* Thu Aug 24 2017 Kalev Lember <klember@redhat.com> - 0.17.9-1
+- Update to 0.17.9
+- Resolves: #1570004
+
 * Mon Apr 24 2017 Debarshi Ray <rishi@fedoraproject.org> - 0.17.8-1
 - Update to 0.17.8
 - Resolves: #1387002

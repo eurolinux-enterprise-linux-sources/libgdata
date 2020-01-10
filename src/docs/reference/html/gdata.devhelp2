@@ -106,7 +106,7 @@
         <sub name="GDataContactsContact" link="GDataContactsContact.html"/>
         <sub name="GDataContactsGroup" link="GDataContactsGroup.html"/>
       </sub>
-      <sub name="Google Documents API" link="ch16.html">
+      <sub name="Google Documents/Drive API" link="ch16.html">
         <sub name="GDataDocumentsService" link="GDataDocumentsService.html"/>
         <sub name="GDataDocumentsFeed" link="GDataDocumentsFeed.html"/>
         <sub name="GDataDocumentsQuery" link="GDataDocumentsQuery.html"/>
@@ -119,6 +119,7 @@
         <sub name="GDataDocumentsPresentation" link="GDataDocumentsPresentation.html"/>
         <sub name="GDataDocumentsSpreadsheet" link="GDataDocumentsSpreadsheet.html"/>
         <sub name="GDataDocumentsText" link="GDataDocumentsText.html"/>
+        <sub name="GDataDocumentsMetadata" link="GDataDocumentsMetadata.html"/>
         <sub name="GDataDocumentsAccessRule" link="GDataDocumentsAccessRule.html"/>
       </sub>
       <sub name="Google PicasaWeb API" link="ch17.html">
@@ -171,6 +172,7 @@
       <sub name="Index of new symbols in 0.17.0" link="ix22.html"/>
       <sub name="Index of new symbols in 0.17.2" link="ix23.html"/>
       <sub name="Index of new symbols in 0.17.7" link="ix24.html"/>
+      <sub name="Index of new symbols in 0.17.9" link="ix25.html"/>
       <sub name="Annotation Glossary" link="annotation-glossary.html"/>
     </sub>
   </chapters>
@@ -1520,6 +1522,9 @@
     <keyword type="function" name="gdata_documents_service_new ()" link="GDataDocumentsService.html#gdata-documents-service-new" since="0.9.0"/>
     <keyword type="function" name="gdata_documents_service_get_primary_authorization_domain ()" link="GDataDocumentsService.html#gdata-documents-service-get-primary-authorization-domain" since="0.9.0"/>
     <keyword type="function" name="gdata_documents_service_get_spreadsheet_authorization_domain ()" link="GDataDocumentsService.html#gdata-documents-service-get-spreadsheet-authorization-domain" since="0.9.0"/>
+    <keyword type="function" name="gdata_documents_service_get_metadata ()" link="GDataDocumentsService.html#gdata-documents-service-get-metadata" since="0.17.9"/>
+    <keyword type="function" name="gdata_documents_service_get_metadata_async ()" link="GDataDocumentsService.html#gdata-documents-service-get-metadata-async" since="0.17.9"/>
+    <keyword type="function" name="gdata_documents_service_get_metadata_finish ()" link="GDataDocumentsService.html#gdata-documents-service-get-metadata-finish" since="0.17.9"/>
     <keyword type="function" name="gdata_documents_service_query_documents ()" link="GDataDocumentsService.html#gdata-documents-service-query-documents" since="0.4.0"/>
     <keyword type="function" name="gdata_documents_service_query_documents_async ()" link="GDataDocumentsService.html#gdata-documents-service-query-documents-async" since="0.9.1"/>
     <keyword type="function" name="gdata_documents_service_upload_document ()" link="GDataDocumentsService.html#gdata-documents-service-upload-document" since="0.8.0"/>
@@ -1648,6 +1653,12 @@
     <keyword type="macro" name="GDATA_DOCUMENTS_TEXT_ZIP" link="GDataDocumentsText.html#GDATA-DOCUMENTS-TEXT-ZIP:CAPS" since="0.7.0"/>
     <keyword type="struct" name="GDataDocumentsText" link="GDataDocumentsText.html#GDataDocumentsText-struct"/>
     <keyword type="struct" name="GDataDocumentsTextClass" link="GDataDocumentsText.html#GDataDocumentsTextClass" since="0.4.0"/>
+    <keyword type="function" name="gdata_documents_metadata_get_quota_total ()" link="GDataDocumentsMetadata.html#gdata-documents-metadata-get-quota-total" since="0.17.9"/>
+    <keyword type="function" name="gdata_documents_metadata_get_quota_used ()" link="GDataDocumentsMetadata.html#gdata-documents-metadata-get-quota-used" since="0.17.9"/>
+    <keyword type="struct" name="GDataDocumentsMetadata" link="GDataDocumentsMetadata.html#GDataDocumentsMetadata-struct"/>
+    <keyword type="struct" name="GDataDocumentsMetadataClass" link="GDataDocumentsMetadata.html#GDataDocumentsMetadataClass" since="0.17.9"/>
+    <keyword type="property" name="The “quota-total” property" link="GDataDocumentsMetadata.html#GDataDocumentsMetadata--quota-total"/>
+    <keyword type="property" name="The “quota-used” property" link="GDataDocumentsMetadata.html#GDataDocumentsMetadata--quota-used"/>
     <keyword type="function" name="gdata_documents_access_rule_new ()" link="GDataDocumentsAccessRule.html#gdata-documents-access-rule-new" since="0.17.2"/>
     <keyword type="struct" name="GDataDocumentsAccessRule" link="GDataDocumentsAccessRule.html#GDataDocumentsAccessRule-struct"/>
     <keyword type="struct" name="GDataDocumentsAccessRuleClass" link="GDataDocumentsAccessRule.html#GDataDocumentsAccessRuleClass" since="0.17.2"/>

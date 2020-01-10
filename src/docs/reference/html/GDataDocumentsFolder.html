@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataDocumentsFolder: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
-<link rel="up" href="ch16.html" title="Google Documents API">
+<link rel="up" href="ch16.html" title="Google Documents/Drive API">
 <link rel="prev" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument">
 <link rel="next" href="GDataDocumentsDrawing.html" title="GDataDocumentsDrawing">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -81,7 +81,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsFolder.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
         <span class="lineart">╰──</span> <a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
             <span class="lineart">╰──</span> <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry">GDataDocumentsEntry</a>
@@ -102,8 +102,8 @@ GDataDocumentsFolder implements
 <div class="refsect1">
 <a name="GDataDocumentsFolder.description"></a><h2>Description</h2>
 <p><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> is a subclass of <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> to represent a folder from Google Documents.</p>
-<p>For more details of Google Documents' GData API, see the</p>
-<a class="ulink" href="https://developers.google.com/google-apps/documents-list/" target="_top">online documentation</a>.
+<p>For more details of Google Drive's GData API, see the</p>
+<a class="ulink" href="https://developers.google.com/drive/v2/web/about-sdk" target="_top">online documentation</a>.
 <div class="example">
 <a name="id-1.5.5.8.9.5"></a><p class="title"><b>Example 36. Adding a Folder</b></p>
 <div class="example-contents">
@@ -152,42 +152,42 @@ GDataDocumentsFolder implements
         <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataAuthorizationDomain</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">domain</span><span class="symbol">;</span>
 <span class="usertype">GDataDocumentsService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
 <span class="usertype">GDataDocumentsFolder</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">folder</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">new_folder</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">parent_folder</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="normal">domain </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-get-primary-authorization-domain">gdata_documents_service_get_primary_authorization_domain</a></span><span class="normal"> </span><span class="symbol">();</span>
 
 <span class="comment">/* Create a service */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_documents_service</span><span class="normal"> </span><span class="symbol">();</span>
 
-<span class="normal">parent_folder </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_DOCUMENTS_FOLDER</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataService.html#gdata-service-query-single-entry">gdata_service_query_single_entry</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_SERVICE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> domain</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"root"</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span>
-<span class="normal">                                                                          GDATA_TYPE_DOCUMENTS_FOLDER</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">));</span>
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting root folder"</span><span class="symbol">);</span>
-<span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">parent_folder </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_DOCUMENTS_FOLDER</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataService.html#gdata-service-query-single-entry">gdata_service_query_single_entry</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_SERVICE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> domain</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"root"</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span>
+<span class="normal">                                                                          GDATA_TYPE_DOCUMENTS_FOLDER</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">));</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting root folder"</span><span class="symbol">);</span>
+<span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Create the new folder */</span>
-<span class="normal">folder </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsFolder.html#gdata-documents-folder-new">gdata_documents_folder_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="normal">folder </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsFolder.html#gdata-documents-folder-new">gdata_documents_folder_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="function"><a href="GDataEntry.html#gdata-entry-set-title">gdata_entry_set_title</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">folder</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"Folder Name"</span><span class="symbol">);</span>
 
 <span class="comment">/* Insert the folder */</span>
 <span class="normal">new_folder </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_DOCUMENTS_FOLDER</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-add-entry-to-folder">gdata_documents_service_add_entry_to_folder</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_SERVICE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> </span><span class="function">GDATA_DOCUMENTS_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">folder</span><span class="symbol">),</span>
-<span class="normal">parent_folder</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">));</span>
+<span class="normal">parent_folder</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">));</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">folder</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parent_folder</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">folder</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parent_folder</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error inserting new folder: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error inserting new folder: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Do something with the new folder, such as store its ID for future use */</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">new_folder</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">new_folder</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -201,7 +201,7 @@ GDataDocumentsFolder implements
 <div class="refsect2">
 <a name="gdata-documents-folder-new"></a><h3>gdata_documents_folder_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="returnvalue">GDataDocumentsFolder</span></a> *
-gdata_documents_folder_new (<em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
+gdata_documents_folder_new (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> with the given entry ID (<a class="link" href="GDataEntry.html#GDataEntry--id" title="The “id” property"><span class="type">“id”</span></a>).</p>
 <div class="refsect3">
 <a name="gdata-documents-folder-new.parameters"></a><h4>Parameters</h4>
@@ -213,14 +213,14 @@ gdata_documents_folder_new (<em class="parameter"><code>const <span class="type"
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>id</p></td>
-<td class="parameter_description"><p> the entry's ID (not the document ID of the folder), or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the entry's ID (not the document ID of the folder), or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
 </div>
 <div class="refsect3">
 <a name="gdata-documents-folder-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<p> a new <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
@@ -245,6 +245,6 @@ gdata_documents_folder_new (<em class="parameter"><code>const <span class="type"
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

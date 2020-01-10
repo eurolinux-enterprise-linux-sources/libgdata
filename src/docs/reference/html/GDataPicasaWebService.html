@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataPicasaWebService: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch17.html" title="Google PicasaWeb API">
 <link rel="prev" href="ch17.html" title="Google PicasaWeb API">
 <link rel="next" href="GDataPicasaWebFeed.html" title="GDataPicasaWebFeed">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -178,7 +178,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataPicasaWebService.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataService.html" title="GDataService">GDataService</a>
         <span class="lineart">╰──</span> GDataPicasaWebService
 </pre>
@@ -228,22 +228,22 @@ online documentation</a>.</p>
 
 <span class="comment">/* Create a service object and authorize against the PicasaWeb service */</span>
 <span class="normal">authorizer </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataClientLoginAuthorizer.html#gdata-client-login-authorizer-new">gdata_client_login_authorizer_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"companyName-applicationName-versionID"</span><span class="symbol">,</span><span class="normal"> GDATA_TYPE_PICASAWEB_SERVICE</span><span class="symbol">);</span>
-<span class="function"><a href="GDataClientLoginAuthorizer.html#gdata-client-login-authorizer-authenticate">gdata_client_login_authorizer_authenticate</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">,</span><span class="normal"> username</span><span class="symbol">,</span><span class="normal"> password</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="function"><a href="GDataClientLoginAuthorizer.html#gdata-client-login-authorizer-authenticate">gdata_client_login_authorizer_authenticate</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">,</span><span class="normal"> username</span><span class="symbol">,</span><span class="normal"> password</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebService.html#gdata-picasaweb-service-new">gdata_picasaweb_service_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_AUTHORIZER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">));</span>
 
 <span class="comment">/* Create a GDataPicasaWebAlbum entry for the new album, setting some information about it */</span>
-<span class="normal">album </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-new">gdata_picasaweb_album_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="normal">album </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-new">gdata_picasaweb_album_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="function"><a href="GDataEntry.html#gdata-entry-set-title">gdata_entry_set_title</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">album</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"Photos from the Rhine"</span><span class="symbol">);</span>
 <span class="function"><a href="GDataEntry.html#gdata-entry-set-summary">gdata_entry_set_summary</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">album</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"An album of our adventures on the great river."</span><span class="symbol">);</span>
 <span class="function"><a href="GDataPicasaWebAlbum.html#gdata-picasaweb-album-set-location">gdata_picasaweb_album_set_location</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">album</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"The Rhine, Germany"</span><span class="symbol">);</span>
 
 <span class="comment">/* Insert the new album on the server. Note that this is a blocking operation. */</span>
-<span class="normal">inserted_album </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebService.html#gdata-picasaweb-service-insert-album">gdata_picasaweb_service_insert_album</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> album</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="normal">inserted_album </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebService.html#gdata-picasaweb-service-insert-album">gdata_picasaweb_service_insert_album</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> album</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">album</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">inserted_album</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">album</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">inserted_album</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authorizer</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -304,40 +304,40 @@ online documentation</a>.</p>
 <span class="usertype">GFileInputStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">file_stream</span><span class="symbol">;</span>
 
 <span class="comment">/* Specify the GFile image on disk to upload */</span>
-<span class="normal">file_data </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-new-for-path">g_file_new_for_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">path</span><span class="symbol">);</span>
+<span class="normal">file_data </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_new_for_path</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">path</span><span class="symbol">);</span>
 
 <span class="comment">/* Get the file information for the file being uploaded. If another data source was being used for the upload, it would have to</span>
 <span class="comment"> * provide an appropriate slug and content type. Note that this is a blocking operation. */</span>
-<span class="normal">file_info </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-query-info">g_file_query_info</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_data</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#G-FILE-ATTRIBUTE-STANDARD-DISPLAY-NAME:CAPS">G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME</a> </span><span class="string">","</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#G-FILE-ATTRIBUTE-STANDARD-CONTENT-TYPE:CAPS">G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE</a></span><span class="symbol">,</span>
-<span class="normal">                               <a href="https://developer.gnome.org/gio/unstable/GFile.html#G-FILE-QUERY-INFO-NONE:CAPS">G_FILE_QUERY_INFO_NONE</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="normal">file_info </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_query_info</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_data</span><span class="symbol">,</span><span class="normal"> G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME </span><span class="string">","</span><span class="normal"> G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE</span><span class="symbol">,</span>
+<span class="normal">                               G_FILE_QUERY_INFO_NONE</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 
 <span class="comment">/* Create a GDataPicasaWebFile entry for the image, setting a title and caption/summary */</span>
-<span class="normal">file_entry </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebFile.html#gdata-picasaweb-file-new">gdata_picasaweb_file_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="normal">file_entry </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebFile.html#gdata-picasaweb-file-new">gdata_picasaweb_file_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="function"><a href="GDataEntry.html#gdata-entry-set-title">gdata_entry_set_title</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_entry</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"Black Cat"</span><span class="symbol">);</span>
 <span class="function"><a href="GDataEntry.html#gdata-entry-set-summary">gdata_entry_set_summary</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_entry</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"Photo of the world's most beautiful cat."</span><span class="symbol">);</span>
 
 <span class="comment">/* Create an upload stream for the file. This is non-blocking. */</span>
-<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file">gdata_picasaweb_service_upload_file</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> album</span><span class="symbol">,</span><span class="normal"> file_entry</span><span class="symbol">,</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#g-file-info-get-display-name">g_file_info_get_display_name</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">),</span>
-<span class="normal">                                                     </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#g-file-info-get-content-type">g_file_info_get_content_type</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_entry</span><span class="symbol">);</span>
+<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file">gdata_picasaweb_service_upload_file</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> album</span><span class="symbol">,</span><span class="normal"> file_entry</span><span class="symbol">,</span><span class="normal"> </span><span class="function">g_file_info_get_display_name</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">),</span>
+<span class="normal">                                                     </span><span class="function">g_file_info_get_content_type</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">),</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_entry</span><span class="symbol">);</span>
 
 <span class="comment">/* Prepare a file stream for the file to be uploaded. This is a blocking operation. */</span>
-<span class="normal">file_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-read">g_file_read</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_data</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_data</span><span class="symbol">);</span>
+<span class="normal">file_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_read</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_data</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_data</span><span class="symbol">);</span>
 
 <span class="comment">/* Upload the file to the server. Note that this is a blocking operation. */</span>
-<span class="function"><a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice">g_output_stream_splice</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OUTPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">),</span><span class="normal"> </span><span class="function">G_INPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">),</span>
-<span class="normal">                        <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-SOURCE:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE</a> </span><span class="symbol">|</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-TARGET:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="function">g_output_stream_splice</span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OUTPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">),</span><span class="normal"> </span><span class="function">G_INPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">),</span>
+<span class="normal">                        G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE </span><span class="symbol">|</span><span class="normal"> G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 
 <span class="comment">/* Parse the resulting updated entry. This is a non-blocking operation. */</span>
-<span class="normal">uploaded_file_entry </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebService.html#gdata-picasaweb-service-finish-file-upload">gdata_picasaweb_service_finish_file_upload</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> upload_stream</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
+<span class="normal">uploaded_file_entry </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataPicasaWebService.html#gdata-picasaweb-service-finish-file-upload">gdata_picasaweb_service_finish_file_upload</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> upload_stream</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
 
 <span class="comment">/* ... */</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">uploaded_file_entry</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">uploaded_file_entry</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -353,7 +353,7 @@ online documentation</a>.</p>
 <pre class="programlisting"><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="returnvalue">GDataPicasaWebService</span></a> *
 gdata_picasaweb_service_new (<em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *authorizer</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> using the given <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>. If <em class="parameter"><code>authorizer</code></em>
- is <code class="literal">NULL</code>, all requests are made as an unauthenticated user.</p>
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, all requests are made as an unauthenticated user.</p>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-new.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -364,14 +364,14 @@ gdata_picasaweb_service_new (<em class="parameter"><code><a class="link" href="G
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>authorizer</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
 </div>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<p> a new <a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
 </div>
@@ -387,7 +387,7 @@ does not support natively, then this domain may be needed to authorize the reque
 <p>The domain never changes, and is interned so that pointer comparison can be used to differentiate it from other authorization domains.</p>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-get-primary-authorization-domain.returns"></a><h4>Returns</h4>
-<p> the service's authorization domain. </p>
+<p>the service's authorization domain. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
@@ -397,9 +397,9 @@ does not support natively, then this domain may be needed to authorize the reque
 <a name="gdata-picasaweb-service-get-user"></a><h3>gdata_picasaweb_service_get_user ()</h3>
 <pre class="programlisting"><a class="link" href="GDataPicasaWebUser.html" title="GDataPicasaWebUser"><span class="returnvalue">GDataPicasaWebUser</span></a> *
 gdata_picasaweb_service_get_user (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
-                                  <em class="parameter"><code>const <span class="type">gchar</span> *username</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                  <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                  <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *username</code></em>,
+                                  <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                  <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Queries the service to return the user specified by <em class="parameter"><code>username</code></em>
 .</p>
 <div class="refsect3">
@@ -418,17 +418,17 @@ gdata_picasaweb_service_get_user (<em class="parameter"><code><a class="link" hr
 </tr>
 <tr>
 <td class="parameter_name"><p>username</p></td>
-<td class="parameter_description"><p> the username of the user whose information you wish to retrieve, or <code class="literal">NULL</code> for the currently authenticated user. </p></td>
+<td class="parameter_description"><p>the username of the user whose information you wish to retrieve, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the currently authenticated user. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -436,7 +436,7 @@ gdata_picasaweb_service_get_user (<em class="parameter"><code><a class="link" hr
 </div>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-get-user.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataPicasaWebUser.html" title="GDataPicasaWebUser"><span class="type">GDataPicasaWebUser</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataPicasaWebUser.html" title="GDataPicasaWebUser"><span class="type">GDataPicasaWebUser</span></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix08.html#api-index-0.6.0">0.6.0</a></p>
@@ -447,10 +447,10 @@ gdata_picasaweb_service_get_user (<em class="parameter"><code><a class="link" hr
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_picasaweb_service_get_user_async
                                (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *username</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *username</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Queries the service to return the user specified by <em class="parameter"><code>username</code></em>
 .</p>
 <p>For more details, see <a class="link" href="GDataPicasaWebService.html#gdata-picasaweb-service-get-user" title="gdata_picasaweb_service_get_user ()"><code class="function">gdata_picasaweb_service_get_user()</code></a> which is the synchronous version of this method.</p>
@@ -473,22 +473,22 @@ operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>username</p></td>
-<td class="parameter_description"><p> the username of the user whose information you wish to retrieve, or <code class="literal">NULL</code> for the currently authenticated user. </p></td>
+<td class="parameter_description"><p>the username of the user whose information you wish to retrieve, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the currently authenticated user. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the query is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the query is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -503,8 +503,8 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataPicasaWebUser.html" title="GDataPicasaWebUser"><span class="returnvalue">GDataPicasaWebUser</span></a> *
 gdata_picasaweb_service_get_user_finish
                                (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> *result</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GAsyncResult</span> *result</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Finishes an asynchronous user retrieval operation started with <a class="link" href="GDataPicasaWebService.html#gdata-picasaweb-service-get-user-async" title="gdata_picasaweb_service_get_user_async ()"><code class="function">gdata_picasaweb_service_get_user_async()</code></a>.</p>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-get-user-finish.parameters"></a><h4>Parameters</h4>
@@ -522,12 +522,12 @@ gdata_picasaweb_service_get_user_finish
 </tr>
 <tr>
 <td class="parameter_name"><p>result</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncResult</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -535,7 +535,7 @@ gdata_picasaweb_service_get_user_finish
 </div>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-get-user-finish.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataPicasaWebUser.html" title="GDataPicasaWebUser"><span class="type">GDataPicasaWebUser</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataPicasaWebUser.html" title="GDataPicasaWebUser"><span class="type">GDataPicasaWebUser</span></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix12.html#api-index-0.9.1">0.9.1</a></p>
@@ -547,16 +547,16 @@ gdata_picasaweb_service_get_user_finish
 gdata_picasaweb_service_query_all_albums
                                (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *username</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *username</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Queries the service to return a list of all albums belonging to the specified <em class="parameter"><code>username</code></em>
  which match the given
 <em class="parameter"><code>query</code></em>
 . If a user is authenticated with the service, <em class="parameter"><code>username</code></em>
- can be set as <code class="literal">NULL</code> to return a list of albums belonging
+ can be set as <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to return a list of albums belonging
 to the currently-authenticated user.</p>
 <p>Note that the <a class="link" href="GDataQuery.html#GDataQuery--q" title="The “q” property"><span class="type">“q”</span></a> query parameter cannot be set on <em class="parameter"><code>query</code></em>
  for album queries.</p>
@@ -577,33 +577,33 @@ to the currently-authenticated user.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>username</p></td>
-<td class="parameter_description"><p> the username of the user whose albums you wish to retrieve, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the username of the user whose albums you wish to retrieve, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -611,7 +611,7 @@ function. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-query-all-albums.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
@@ -623,13 +623,13 @@ function. </p></td>
 gdata_picasaweb_service_query_all_albums_async
                                (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *username</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *username</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Queries the service to return a list of all albums belonging to the specified <em class="parameter"><code>username</code></em>
  which match the given
 <em class="parameter"><code>query</code></em>
@@ -656,46 +656,46 @@ this function, and <a class="link" href="GDataService.html#gdata-service-query-a
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>username</p></td>
-<td class="parameter_description"><p> the username of the user whose albums you wish to retrieve, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the username of the user whose albums you wish to retrieve, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
-<td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <code class="literal">NULL</code>. This function will be
+<td class="parameter_description"><p>the function to call when <em class="parameter"><code>progress_callback</code></em>
+will not be called any more, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when authentication is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -711,14 +711,14 @@ function. </p></td>
 gdata_picasaweb_service_query_files (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *album</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                     <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                     <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                     <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                     <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Queries the specified <em class="parameter"><code>album</code></em>
  for a list of the files which match the given <em class="parameter"><code>query</code></em>
 . If <em class="parameter"><code>album</code></em>
- is <code class="literal">NULL</code> and a user is
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and a user is
 authenticated with the service, the user's default album will be queried.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
 <div class="refsect3">
@@ -737,33 +737,33 @@ authenticated with the service, the user's default album will be queried.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>album</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> from which to retrieve the files, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> from which to retrieve the files, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -771,7 +771,7 @@ function. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-query-files.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
@@ -784,16 +784,16 @@ gdata_picasaweb_service_query_files_async
                                (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *album</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Queries the specified <em class="parameter"><code>album</code></em>
  for a list of the files which match the given <em class="parameter"><code>query</code></em>
 . If <em class="parameter"><code>album</code></em>
- is <code class="literal">NULL</code> and a user is authenticated with the service,
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and a user is authenticated with the service,
 the user's default album will be queried. <em class="parameter"><code>self</code></em>
 , <em class="parameter"><code>album</code></em>
  and <em class="parameter"><code>query</code></em>
@@ -817,46 +817,46 @@ which is the base asynchronous query function.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>album</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> from which to retrieve the files, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> from which to retrieve the files, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
-<td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <code class="literal">NULL</code>. This function will be
+<td class="parameter_description"><p>the function to call when <em class="parameter"><code>progress_callback</code></em>
+will not be called any more, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the query is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the query is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -872,27 +872,27 @@ function. </p></td>
 gdata_picasaweb_service_upload_file (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *album</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> *file_entry</code></em>,
-                                     <em class="parameter"><code>const <span class="type">gchar</span> *slug</code></em>,
-                                     <em class="parameter"><code>const <span class="type">gchar</span> *content_type</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                     <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *slug</code></em>,
+                                     <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *content_type</code></em>,
+                                     <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                     <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Uploads a file (photo or video) to the given PicasaWeb <em class="parameter"><code>album</code></em>
 , using the metadata from <em class="parameter"><code>file</code></em>
  and the file data written to the resulting
 <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a>. If <em class="parameter"><code>album</code></em>
- is <code class="literal">NULL</code>, the file will be uploaded to the currently-authenticated user's "Drop Box" album. A user must be
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the file will be uploaded to the currently-authenticated user's "Drop Box" album. A user must be
 authenticated to use this function.</p>
 <p>If <em class="parameter"><code>file</code></em>
  has already been inserted, a <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-ENTRY-ALREADY-INSERTED:CAPS"><code class="literal">GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED</code></a> error will be returned.</p>
 <p>If no user is authenticated with the service, <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-AUTHENTICATION-REQUIRED:CAPS"><code class="literal">GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED</code></a> will be returned. It is recommended to retry the
 upload after refreshing the authorization tokens held by the associated <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> using <a class="link" href="GDataAuthorizer.html#gdata-authorizer-refresh-authorization" title="gdata_authorizer_refresh_authorization ()"><code class="function">gdata_authorizer_refresh_authorization()</code></a>.</p>
-<p>The stream returned by this function should be written to using the standard <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> methods, asychronously or synchronously. Once the stream
-is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-close"><code class="function">g_output_stream_close()</code></a>), <a class="link" href="GDataPicasaWebService.html#gdata-picasaweb-service-finish-file-upload" title="gdata_picasaweb_service_finish_file_upload ()"><code class="function">gdata_picasaweb_service_finish_file_upload()</code></a> should be called on it to parse and return the updated
+<p>The stream returned by this function should be written to using the standard <span class="type">GOutputStream</span> methods, asychronously or synchronously. Once the stream
+is closed (using <code class="function">g_output_stream_close()</code>), <a class="link" href="GDataPicasaWebService.html#gdata-picasaweb-service-finish-file-upload" title="gdata_picasaweb_service_finish_file_upload ()"><code class="function">gdata_picasaweb_service_finish_file_upload()</code></a> should be called on it to parse and return the updated
 <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a> for the uploaded file. This must be done, as <em class="parameter"><code>file_entry</code></em>
  isn't updated in-place.</p>
-<p>In order to cancel the upload, a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> passed in to <em class="parameter"><code>cancellable</code></em>
- must be cancelled using <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>. Cancelling the individual
-<a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire upload; merely the write or close operation in question. See the
+<p>In order to cancel the upload, a <span class="type">GCancellable</span> passed in to <em class="parameter"><code>cancellable</code></em>
+ must be cancelled using <code class="function">g_cancellable_cancel()</code>. Cancelling the individual
+<span class="type">GOutputStream</span> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire upload; merely the write or close operation in question. See the
 <a class="link" href="GDataUploadStream.html#GDataUploadStream--cancellable" title="The “cancellable” property"><span class="type">“cancellable”</span></a> for more details.</p>
 <p>Any upload errors will be thrown by the stream methods, and may come from the <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> domain.</p>
 <div class="refsect3">
@@ -911,7 +911,7 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </tr>
 <tr>
 <td class="parameter_name"><p>album</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> into which to insert the file, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> into which to insert the file, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -931,12 +931,12 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> for the entire upload stream, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GCancellable</span> for the entire upload stream, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -944,7 +944,7 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </div>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-upload-file.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the file data to, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the file data to, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -956,10 +956,10 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 gdata_picasaweb_service_finish_file_upload
                                (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> *upload_stream</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Finish off a file upload operation started by <a class="link" href="GDataPicasaWebService.html#gdata-picasaweb-service-upload-file" title="gdata_picasaweb_service_upload_file ()"><code class="function">gdata_picasaweb_service_upload_file()</code></a>, parsing the result and returning the new <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>.</p>
-<p>If an error occurred during the upload operation, it will have been returned during the operation (e.g. by <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice"><code class="function">g_output_stream_splice()</code></a> or one
-of the other stream methods). In such a case, <code class="literal">NULL</code> will be returned but <em class="parameter"><code>error</code></em>
+<p>If an error occurred during the upload operation, it will have been returned during the operation (e.g. by <code class="function">g_output_stream_splice()</code> or one
+of the other stream methods). In such a case, <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> will be returned but <em class="parameter"><code>error</code></em>
  will remain unset. <em class="parameter"><code>error</code></em>
  is only set in the case that the server
 indicates that the operation was successful, but an error is encountered in parsing the result sent by the server.</p>
@@ -984,7 +984,7 @@ indicates that the operation was successful, but an error is encountered in pars
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -992,7 +992,7 @@ indicates that the operation was successful, but an error is encountered in pars
 </div>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-finish-file-upload.returns"></a><h4>Returns</h4>
-<p> the new <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>the new <a class="link" href="GDataPicasaWebFile.html" title="GDataPicasaWebFile"><span class="type">GDataPicasaWebFile</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -1003,8 +1003,8 @@ indicates that the operation was successful, but an error is encountered in pars
 <pre class="programlisting"><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="returnvalue">GDataPicasaWebAlbum</span></a> *
 gdata_picasaweb_service_insert_album (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
                                       <em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *album</code></em>,
-                                      <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                      <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                      <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                      <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Inserts a new album described by <em class="parameter"><code>album</code></em>
 . A user must be
 authenticated to use this function.</p>
@@ -1029,12 +1029,12 @@ authenticated to use this function.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1042,8 +1042,8 @@ authenticated to use this function.</p>
 </div>
 <div class="refsect3">
 <a name="gdata-picasaweb-service-insert-album.returns"></a><h4>Returns</h4>
-<p> the inserted <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>; unref with
-<a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>the inserted <a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a>; unref with
+<a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix08.html#api-index-0.6.0">0.6.0</a></p>
@@ -1055,9 +1055,9 @@ authenticated to use this function.</p>
 gdata_picasaweb_service_insert_album_async
                                (<em class="parameter"><code><a class="link" href="GDataPicasaWebService.html" title="GDataPicasaWebService"><span class="type">GDataPicasaWebService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataPicasaWebAlbum.html" title="GDataPicasaWebAlbum"><span class="type">GDataPicasaWebAlbum</span></a> *album</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Inserts a new album described by <em class="parameter"><code>album</code></em>
 . The user must be authenticated to use this function. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>album</code></em>
@@ -1089,17 +1089,17 @@ possible errors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when insertion is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when insertion is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -1129,6 +1129,6 @@ function. </p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

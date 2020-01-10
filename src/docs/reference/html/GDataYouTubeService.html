@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataYouTubeService: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch13.html" title="YouTube API">
 <link rel="prev" href="ch13.html" title="YouTube API">
 <link rel="next" href="GDataYouTubeFeed.html" title="GDataYouTubeFeed">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -157,7 +157,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataYouTubeService.html#gdata-youtube-service-get-developer-key" title="gdata_youtube_service_get_developer_key ()">gdata_youtube_service_get_developer_key</a> <span class="c_punctuation">()</span>
@@ -176,7 +176,7 @@ justifications.
 </colgroup>
 <tbody><tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataYouTubeService.html#GDataYouTubeService--developer-key" title="The “developer-key” property">developer-key</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr></tbody>
@@ -211,7 +211,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataYouTubeService.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataService.html" title="GDataService">GDataService</a>
         <span class="lineart">╰──</span> GDataYouTubeService
 </pre>
@@ -278,21 +278,21 @@ online documentation</a>.</p>
 <span class="function"><a href="GDataService.html#gdata-service-set-locale">gdata_service_set_locale</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_SERVICE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"it"</span><span class="symbol">);</span>
 
 <span class="comment">/* Query the server for the current list of YouTube categories (in Italian) */</span>
-<span class="normal">app_categories </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeService.html#gdata-youtube-service-get-categories">gdata_youtube_service_get_categories</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="normal">app_categories </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeService.html#gdata-youtube-service-get-categories">gdata_youtube_service_get_categories</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="normal">categories </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataAPPCategories.html#gdata-app-categories-get-categories">gdata_app_categories_get_categories</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app_categories</span><span class="symbol">);</span>
 
 <span class="comment">/* Iterate through the categories */</span>
-<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> categories</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> categories</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
 <span class="normal">    </span><span class="usertype">GDataYouTubeCategory</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">category </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_YOUTUBE_CATEGORY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i</span><span class="symbol">-&gt;</span><span class="normal">data</span><span class="symbol">);</span>
 
-<span class="normal">    </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataYouTubeCategory.html#gdata-youtube-category-is-deprecated">gdata_youtube_category_is_deprecated</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">category</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> FALSE </span><span class="symbol">&amp;&amp;</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeCategory.html#gdata-youtube-category-is-browsable">gdata_youtube_category_is_browsable</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">category</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"IT"</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> TRUE</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataYouTubeCategory.html#gdata-youtube-category-is-deprecated">gdata_youtube_category_is_deprecated</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">category</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS">FALSE</a> </span><span class="symbol">&amp;&amp;</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeCategory.html#gdata-youtube-category-is-browsable">gdata_youtube_category_is_browsable</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">category</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"IT"</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS">TRUE</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
 <span class="normal">        </span><span class="comment">/* Do something with the category here, as it's not deprecated, and is browsable in the given region */</span>
 <span class="normal">        </span><span class="function">add_to_ui</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataCategory.html#gdata-category-get-term">gdata_category_get_term</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_CATEGORY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">category</span><span class="symbol">)),</span><span class="normal"> </span><span class="function"><a href="GDataCategory.html#gdata-category-get-label">gdata_category_get_label</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_CATEGORY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">category</span><span class="symbol">)));</span>
 <span class="normal">    </span><span class="cbracket">}</span>
 <span class="cbracket">}</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app_categories</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app_categories</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -407,102 +407,102 @@ online documentation</a>.</p>
         <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataYouTubeService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
 <span class="usertype">GDataYouTubeVideo</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">video</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">uploaded_video</span><span class="symbol">;</span>
 <span class="usertype">GDataMediaCategory</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">category</span><span class="symbol">;</span>
-<span class="keyword">const</span><span class="normal"> gchar </span><span class="symbol">*</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> tags</span><span class="symbol">[]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"tag1"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"tag2"</span><span class="symbol">,</span><span class="normal"> NULL </span><span class="cbracket">}</span><span class="symbol">;</span>
+<span class="keyword">const</span><span class="normal"> <a href="../glib/glib-Basic-Types.html#gchar">gchar</a> </span><span class="symbol">*</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> tags</span><span class="symbol">[]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"tag1"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"tag2"</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a> </span><span class="cbracket">}</span><span class="symbol">;</span>
 <span class="usertype">GFile</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">video_file</span><span class="symbol">;</span>
 <span class="usertype">GFileInfo</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">file_info</span><span class="symbol">;</span>
 <span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">slug</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">content_type</span><span class="symbol">;</span>
 <span class="usertype">GFileInputStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">file_stream</span><span class="symbol">;</span>
 <span class="usertype">GDataUploadStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">upload_stream</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_youtube_service</span><span class="normal"> </span><span class="symbol">();</span>
 
 <span class="comment">/* Get the video file to upload */</span>
-<span class="normal">video_file </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-new-for-path">g_file_new_for_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"sample.ogg"</span><span class="symbol">);</span>
+<span class="normal">video_file </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_new_for_path</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"sample.ogg"</span><span class="symbol">);</span>
 
 <span class="comment">/* Get the file's display name and content type */</span>
-<span class="normal">file_info </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-query-info">g_file_query_info</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video_file</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#G-FILE-ATTRIBUTE-STANDARD-DISPLAY-NAME:CAPS">G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME</a> </span><span class="string">","</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#G-FILE-ATTRIBUTE-STANDARD-CONTENT-TYPE:CAPS">G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE</a></span><span class="symbol">,</span>
-<span class="normal">                               <a href="https://developer.gnome.org/gio/unstable/GFile.html#G-FILE-QUERY-INFO-NONE:CAPS">G_FILE_QUERY_INFO_NONE</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">file_info </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_query_info</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video_file</span><span class="symbol">,</span><span class="normal"> G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME </span><span class="string">","</span><span class="normal"> G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE</span><span class="symbol">,</span>
+<span class="normal">                               G_FILE_QUERY_INFO_NONE</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting video file information: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video_file</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting video file information: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video_file</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
-<span class="normal">slug </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#g-file-info-get-display-name">g_file_info_get_display_name</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
-<span class="normal">content_type </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#g-file-info-get-content-type">g_file_info_get_content_type</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">slug </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_info_get_display_name</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">content_type </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_info_get_content_type</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
 
 <span class="comment">/* Get an input stream for the file */</span>
-<span class="normal">file_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-read">g_file_read</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video_file</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">file_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_read</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video_file</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video_file</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video_file</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting video file stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting video file stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Create the video to upload */</span>
-<span class="normal">video </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeVideo.html#gdata-youtube-video-new">gdata_youtube_video_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="normal">video </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeVideo.html#gdata-youtube-video-new">gdata_youtube_video_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 
 <span class="function"><a href="GDataEntry.html#gdata-entry-set-title">gdata_entry_set_title</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"Video Title"</span><span class="symbol">);</span>
 <span class="function"><a href="GDataYouTubeVideo.html#gdata-youtube-video-set-description">gdata_youtube_video_set_description</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Video description."</span><span class="symbol">);</span>
 <span class="function"><a href="GDataYouTubeVideo.html#gdata-youtube-video-set-keywords">gdata_youtube_video_set_keywords</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video</span><span class="symbol">,</span><span class="normal"> video_tags</span><span class="symbol">);</span>
 
-<span class="normal">category </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataMediaCategory.html#gdata-media-category-new">gdata_media_category_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"People"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"http://gdata.youtube.com/schemas/2007/categories.cat"</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="normal">category </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataMediaCategory.html#gdata-media-category-new">gdata_media_category_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"People"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"http://gdata.youtube.com/schemas/2007/categories.cat"</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="function"><a href="GDataYouTubeVideo.html#gdata-youtube-video-set-category">gdata_youtube_video_set_category</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video</span><span class="symbol">,</span><span class="normal"> category</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">category</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">category</span><span class="symbol">);</span>
 
 <span class="comment">/* Get an upload stream for the video */</span>
-<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeService.html#gdata-youtube-service-upload-video">gdata_youtube_service_upload_video</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> video</span><span class="symbol">,</span><span class="normal"> slug</span><span class="symbol">,</span><span class="normal"> content_type</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeService.html#gdata-youtube-service-upload-video">gdata_youtube_service_upload_video</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> video</span><span class="symbol">,</span><span class="normal"> slug</span><span class="symbol">,</span><span class="normal"> content_type</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">video</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting upload stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting upload stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Upload the video. This is a blocking operation, and should normally be done asynchronously. */</span>
-<span class="function"><a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice">g_output_stream_splice</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OUTPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">),</span><span class="normal"> </span><span class="function">G_INPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">),</span>
-<span class="normal">                        <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-SOURCE:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE</a> </span><span class="symbol">|</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-TARGET:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="function">g_output_stream_splice</span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OUTPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">),</span><span class="normal"> </span><span class="function">G_INPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">),</span>
+<span class="normal">                        G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE </span><span class="symbol">|</span><span class="normal"> G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error splicing streams: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error splicing streams: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Finish off the upload by parsing the returned updated video entry */</span>
 <span class="normal">uploaded_video </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeService.html#gdata-youtube-service-finish-video-upload">gdata_youtube_service_finish_video_upload</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> upload_stream</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error uploading video: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error uploading video: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Do something with the uploaded video */</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">uploaded_video</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">uploaded_video</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -545,30 +545,30 @@ online documentation</a>.</p>
         <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataYouTubeService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
 <span class="usertype">GDataFeed</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">feed</span><span class="symbol">;</span>
 <span class="usertype">GList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">i</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_youtube_service</span><span class="normal"> </span><span class="symbol">();</span>
 
 <span class="comment">/* Query for the top page of videos in the most popular feed */</span>
-<span class="normal">feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeService.html#gdata-youtube-service-query-standard-feed">gdata_youtube_service_query_standard_feed</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> <a href="GDataYouTubeService.html#GDATA-YOUTUBE-MOST-POPULAR-FEED:CAPS">GDATA_YOUTUBE_MOST_POPULAR_FEED</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeService.html#gdata-youtube-service-query-standard-feed">gdata_youtube_service_query_standard_feed</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> <a href="GDataYouTubeService.html#GDATA-YOUTUBE-MOST-POPULAR-FEED:CAPS">GDATA_YOUTUBE_MOST_POPULAR_FEED</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error querying for most popular videos: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error querying for most popular videos: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Iterate through the videos */</span>
-<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
 <span class="normal">    </span><span class="usertype">GDataYouTubeVideo</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">video </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_YOUTUBE_VIDEO</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i</span><span class="symbol">-&gt;</span><span class="normal">data</span><span class="symbol">);</span>
 
 <span class="normal">    </span><span class="comment">/* Do something with the video, like insert it into the UI */</span>
 <span class="cbracket">}</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -618,7 +618,7 @@ online documentation</a>.</p>
 <span class="usertype">GDataYouTubeQuery</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">query</span><span class="symbol">;</span>
 <span class="usertype">GDataFeed</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">feed</span><span class="symbol">;</span>
 <span class="usertype">GList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">i</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_youtube_service</span><span class="normal"> </span><span class="symbol">();</span>
@@ -628,25 +628,25 @@ online documentation</a>.</p>
 <span class="function"><a href="GDataYouTubeQuery.html#gdata-youtube-query-set-license">gdata_youtube_query_set_license</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">query</span><span class="symbol">,</span><span class="normal"> <a href="GDataYouTubeVideo.html#GDATA-YOUTUBE-LICENSE-CC:CAPS">GDATA_YOUTUBE_LICENSE_CC</a></span><span class="symbol">);</span>
 
 <span class="comment">/* Query for the videos matching the query parameters */</span>
-<span class="normal">feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeService.html#gdata-youtube-service-query-videos">gdata_youtube_service_query_videos</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> query</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataYouTubeService.html#gdata-youtube-service-query-videos">gdata_youtube_service_query_videos</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> query</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">query</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">query</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error querying for videos matching search terms ‘%s’: %s"</span><span class="symbol">,</span><span class="normal"> my_space_separated_search_terms</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error querying for videos matching search terms ‘%s’: %s"</span><span class="symbol">,</span><span class="normal"> my_space_separated_search_terms</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Iterate through the videos */</span>
-<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
 <span class="normal">    </span><span class="usertype">GDataYouTubeVideo</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">video </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_YOUTUBE_VIDEO</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i</span><span class="symbol">-&gt;</span><span class="normal">data</span><span class="symbol">);</span>
 
 <span class="normal">    </span><span class="comment">/* Do something with the video, like insert it into the UI */</span>
 <span class="cbracket">}</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -660,10 +660,10 @@ online documentation</a>.</p>
 <div class="refsect2">
 <a name="gdata-youtube-service-new"></a><h3>gdata_youtube_service_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="returnvalue">GDataYouTubeService</span></a> *
-gdata_youtube_service_new (<em class="parameter"><code>const <span class="type">gchar</span> *developer_key</code></em>,
+gdata_youtube_service_new (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *developer_key</code></em>,
                            <em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *authorizer</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> using the given <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>. If <em class="parameter"><code>authorizer</code></em>
- is <code class="literal">NULL</code>, all requests are made as an unauthenticated user.
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, all requests are made as an unauthenticated user.
 The <em class="parameter"><code>developer_key</code></em>
  must be unique for your application, and as</p>
 <a class="ulink" href="https://developers.google.com/youtube/registering_an_application" target="_top">registered with Google</a>.
@@ -683,7 +683,7 @@ The <em class="parameter"><code>developer_key</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>authorizer</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -691,7 +691,7 @@ The <em class="parameter"><code>developer_key</code></em>
 </div>
 <div class="refsect3">
 <a name="gdata-youtube-service-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<p> a new <a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
 </div>
@@ -707,7 +707,7 @@ does not support natively, then this domain may be needed to authorize the reque
 <p>The domain never changes, and is interned so that pointer comparison can be used to differentiate it from other authorization domains.</p>
 <div class="refsect3">
 <a name="gdata-youtube-service-get-primary-authorization-domain.returns"></a><h4>Returns</h4>
-<p> the service's authorization domain. </p>
+<p>the service's authorization domain. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
@@ -718,10 +718,10 @@ does not support natively, then this domain may be needed to authorize the reque
 <pre class="programlisting"><a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *
 gdata_youtube_service_query_videos (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
                                     <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                    <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                    <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                     <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                    <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                    <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                    <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                    <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Queries the service for videos matching the parameters set on the <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a>. This searches site-wide, and imposes no other restrictions or
 parameters on the query.</p>
 <p>Parameters and errors are as for <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
@@ -741,28 +741,28 @@ parameters on the query.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -770,7 +770,7 @@ function. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-youtube-service-query-videos.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
@@ -781,12 +781,12 @@ function. </p></td>
 gdata_youtube_service_query_videos_async
                                (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Queries the service for videos matching the parameters set on the <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a>. This searches site-wide, and imposes no other restrictions or
 parameters on the query. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>query</code></em>
@@ -811,41 +811,41 @@ to get the results of the operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
-<td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <code class="literal">NULL</code>. This function will be
+<td class="parameter_description"><p>the function to call when <em class="parameter"><code>progress_callback</code></em>
+will not be called any more, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when authentication is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -861,10 +861,10 @@ function. </p></td>
 gdata_youtube_service_query_related (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo"><span class="type">GDataYouTubeVideo</span></a> *video</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                     <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                     <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                     <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                     <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Queries the service for videos related to <em class="parameter"><code>video</code></em>
 . The algorithm determining which videos are related is on the server side.</p>
 <p>Parameters and other errors are as for <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
@@ -889,28 +889,28 @@ gdata_youtube_service_query_related (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -918,7 +918,7 @@ function. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-youtube-service-query-related.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
@@ -930,12 +930,12 @@ gdata_youtube_service_query_related_async
                                (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo"><span class="type">GDataYouTubeVideo</span></a> *video</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Queries the service for videos related to <em class="parameter"><code>video</code></em>
 . The algorithm determining which videos are related is on the server side.
 <em class="parameter"><code>self</code></em>
@@ -966,41 +966,41 @@ to get the results of the operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
-<td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <code class="literal">NULL</code>. This function will be
+<td class="parameter_description"><p>the function to call when <em class="parameter"><code>progress_callback</code></em>
+will not be called any more, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when authentication is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -1017,10 +1017,10 @@ gdata_youtube_service_query_standard_feed
                                (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataYouTubeService.html#GDataYouTubeStandardFeedType" title="enum GDataYouTubeStandardFeedType"><span class="type">GDataYouTubeStandardFeedType</span></a> feed_type</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Queries the service's standard <em class="parameter"><code>feed_type</code></em>
  feed to build a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a>.</p>
 <p>Note that with the port from v2 to v3 of the YouTube API in libgdata
@@ -1049,28 +1049,28 @@ deprecated. Other feed types will now transparently return
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1078,7 +1078,7 @@ function. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-youtube-service-query-standard-feed.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
@@ -1090,12 +1090,12 @@ gdata_youtube_service_query_standard_feed_async
                                (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataYouTubeService.html#GDataYouTubeStandardFeedType" title="enum GDataYouTubeStandardFeedType"><span class="type">GDataYouTubeStandardFeedType</span></a> feed_type</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Queries the service's standard <em class="parameter"><code>feed_type</code></em>
  feed to build a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a>. <em class="parameter"><code>self</code></em>
  and
@@ -1126,41 +1126,41 @@ to get the results of the operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
-<td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <code class="literal">NULL</code>. This function will be
+<td class="parameter_description"><p>the function to call when <em class="parameter"><code>progress_callback</code></em>
+will not be called any more, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when authentication is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -1175,22 +1175,22 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="returnvalue">GDataUploadStream</span></a> *
 gdata_youtube_service_upload_video (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
                                     <em class="parameter"><code><a class="link" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo"><span class="type">GDataYouTubeVideo</span></a> *video</code></em>,
-                                    <em class="parameter"><code>const <span class="type">gchar</span> *slug</code></em>,
-                                    <em class="parameter"><code>const <span class="type">gchar</span> *content_type</code></em>,
-                                    <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                    <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                    <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *slug</code></em>,
+                                    <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *content_type</code></em>,
+                                    <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                    <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Uploads a video to YouTube, using the properties from <em class="parameter"><code>video</code></em>
  and the file data written to the resulting <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a>.</p>
 <p>If <em class="parameter"><code>video</code></em>
  has already been inserted, a <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-ENTRY-ALREADY-INSERTED:CAPS"><code class="literal">GDATA_SERVICE_ERROR_ENTRY_ALREADY_INSERTED</code></a> error will be returned. If no user is authenticated
 with the service, <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-AUTHENTICATION-REQUIRED:CAPS"><code class="literal">GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED</code></a> will be returned.</p>
-<p>The stream returned by this function should be written to using the standard <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> methods, asychronously or synchronously. Once the stream
-is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-close"><code class="function">g_output_stream_close()</code></a>), <a class="link" href="GDataYouTubeService.html#gdata-youtube-service-finish-video-upload" title="gdata_youtube_service_finish_video_upload ()"><code class="function">gdata_youtube_service_finish_video_upload()</code></a> should be called on it to parse and return the updated
+<p>The stream returned by this function should be written to using the standard <span class="type">GOutputStream</span> methods, asychronously or synchronously. Once the stream
+is closed (using <code class="function">g_output_stream_close()</code>), <a class="link" href="GDataYouTubeService.html#gdata-youtube-service-finish-video-upload" title="gdata_youtube_service_finish_video_upload ()"><code class="function">gdata_youtube_service_finish_video_upload()</code></a> should be called on it to parse and return the updated
 <a class="link" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo"><span class="type">GDataYouTubeVideo</span></a> for the uploaded video. This must be done, as <em class="parameter"><code>video</code></em>
  isn't updated in-place.</p>
-<p>In order to cancel the upload, a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> passed in to <em class="parameter"><code>cancellable</code></em>
- must be cancelled using <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>. Cancelling the individual
-<a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire upload; merely the write or close operation in question. See the
+<p>In order to cancel the upload, a <span class="type">GCancellable</span> passed in to <em class="parameter"><code>cancellable</code></em>
+ must be cancelled using <code class="function">g_cancellable_cancel()</code>. Cancelling the individual
+<span class="type">GOutputStream</span> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire upload; merely the write or close operation in question. See the
 <a class="link" href="GDataUploadStream.html#GDataUploadStream--cancellable" title="The “cancellable” property"><span class="type">“cancellable”</span></a> for more details.</p>
 <p>Any upload errors will be thrown by the stream methods, and may come from the <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> domain.</p>
 <div class="refsect3">
@@ -1224,12 +1224,12 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> for the entire upload stream, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GCancellable</span> for the entire upload stream, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1237,7 +1237,7 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </div>
 <div class="refsect3">
 <a name="gdata-youtube-service-upload-video.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the video data to, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the video data to, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -1249,10 +1249,10 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 gdata_youtube_service_finish_video_upload
                                (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> *upload_stream</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Finish off a video upload operation started by <a class="link" href="GDataYouTubeService.html#gdata-youtube-service-upload-video" title="gdata_youtube_service_upload_video ()"><code class="function">gdata_youtube_service_upload_video()</code></a>, parsing the result and returning the new <a class="link" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo"><span class="type">GDataYouTubeVideo</span></a>.</p>
-<p>If an error occurred during the upload operation, it will have been returned during the operation (e.g. by <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice"><code class="function">g_output_stream_splice()</code></a> or one
-of the other stream methods). In such a case, <code class="literal">NULL</code> will be returned but <em class="parameter"><code>error</code></em>
+<p>If an error occurred during the upload operation, it will have been returned during the operation (e.g. by <code class="function">g_output_stream_splice()</code> or one
+of the other stream methods). In such a case, <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> will be returned but <em class="parameter"><code>error</code></em>
  will remain unset. <em class="parameter"><code>error</code></em>
  is only set in the case that the server
 indicates that the operation was successful, but an error is encountered in parsing the result sent by the server.</p>
@@ -1277,7 +1277,7 @@ indicates that the operation was successful, but an error is encountered in pars
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1285,7 +1285,7 @@ indicates that the operation was successful, but an error is encountered in pars
 </div>
 <div class="refsect3">
 <a name="gdata-youtube-service-finish-video-upload.returns"></a><h4>Returns</h4>
-<p> the new <a class="link" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo"><span class="type">GDataYouTubeVideo</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>the new <a class="link" href="GDataYouTubeVideo.html" title="GDataYouTubeVideo"><span class="type">GDataYouTubeVideo</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -1295,8 +1295,8 @@ indicates that the operation was successful, but an error is encountered in pars
 <a name="gdata-youtube-service-get-categories"></a><h3>gdata_youtube_service_get_categories ()</h3>
 <pre class="programlisting"><a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories"><span class="returnvalue">GDataAPPCategories</span></a> *
 gdata_youtube_service_get_categories (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
-                                      <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                      <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                      <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                      <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Gets a list of the categories currently in use on YouTube. The returned <a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories"><span class="type">GDataAPPCategories</span></a> contains a list of <a class="link" href="GDataYouTubeCategory.html" title="GDataYouTubeCategory"><span class="type">GDataYouTubeCategory</span></a>s which
 enumerate the current YouTube categories.</p>
 <p>The category labels (<a class="link" href="GDataCategory.html#GDataCategory--label" title="The “label” property"><span class="type">“label”</span></a>) are localised based on the value of <a class="link" href="GDataService.html#GDataService--locale" title="The “locale” property"><span class="type">“locale”</span></a>.</p>
@@ -1316,12 +1316,12 @@ enumerate the current YouTube categories.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a>, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GCancellable</span>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1329,7 +1329,7 @@ enumerate the current YouTube categories.</p>
 </div>
 <div class="refsect3">
 <a name="gdata-youtube-service-get-categories.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories"><span class="type">GDataAPPCategories</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories"><span class="type">GDataAPPCategories</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
@@ -1340,9 +1340,9 @@ enumerate the current YouTube categories.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_youtube_service_get_categories_async
                                (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Gets a list of the categories currently in use on YouTube. <em class="parameter"><code>self</code></em>
  is reffed when this function is called, so can safely be unreffed after this
 function returns.</p>
@@ -1366,17 +1366,17 @@ operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the request is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -1391,8 +1391,8 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories"><span class="returnvalue">GDataAPPCategories</span></a> *
 gdata_youtube_service_get_categories_finish
                                (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> *async_result</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GAsyncResult</span> *async_result</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Finishes an asynchronous request for a list of categories on YouTube, as started with <a class="link" href="GDataYouTubeService.html#gdata-youtube-service-get-categories-async" title="gdata_youtube_service_get_categories_async ()"><code class="function">gdata_youtube_service_get_categories_async()</code></a>.</p>
 <div class="refsect3">
 <a name="gdata-youtube-service-get-categories-finish.parameters"></a><h4>Parameters</h4>
@@ -1410,12 +1410,12 @@ gdata_youtube_service_get_categories_finish
 </tr>
 <tr>
 <td class="parameter_name"><p>async_result</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncResult</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1423,7 +1423,7 @@ gdata_youtube_service_get_categories_finish
 </div>
 <div class="refsect3">
 <a name="gdata-youtube-service-get-categories-finish.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories"><span class="type">GDataAPPCategories</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataAPPCategories.html" title="GDataAPPCategories"><span class="type">GDataAPPCategories</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
@@ -1431,7 +1431,7 @@ gdata_youtube_service_get_categories_finish
 <hr>
 <div class="refsect2">
 <a name="gdata-youtube-service-get-developer-key"></a><h3>gdata_youtube_service_get_developer_key ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_youtube_service_get_developer_key
                                (<em class="parameter"><code><a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a> *self</code></em>);</pre>
 <p>Gets the <a class="link" href="GDataYouTubeService.html#GDataYouTubeService--developer-key" title="The “developer-key” property"><span class="type">“developer-key”</span></a> property from the <a class="link" href="GDataYouTubeService.html" title="GDataYouTubeService"><span class="type">GDataYouTubeService</span></a>.</p>
@@ -1636,7 +1636,7 @@ documentation</a>.
 <a name="GDataYouTubeService.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataYouTubeService--developer-key"></a><h3>The <code class="literal">“developer-key”</code> property</h3>
-<pre class="programlisting">  “developer-key”            <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “developer-key”            <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>The developer key your application has registered with the YouTube API. For more information, see the <a class="ulink" href="https://developers.google.com/youtube/registering_an_application" target="_top">online documentation</a>.</p>
 <p>With the port from v2 to v3 of the YouTube API in libgdata
 0.17.0, it might be necessary to update your application’s
@@ -1647,6 +1647,6 @@ developer key.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

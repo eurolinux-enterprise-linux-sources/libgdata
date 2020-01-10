@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataContactsService: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch15.html" title="Google Contacts API">
 <link rel="prev" href="ch15.html" title="Google Contacts API">
 <link rel="next" href="GDataContactsQuery.html" title="GDataContactsQuery">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -155,7 +155,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataContactsService.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataService.html" title="GDataService">GDataService</a>
         <span class="lineart">╰──</span> GDataContactsService
 </pre>
@@ -223,24 +223,24 @@ online documentation</a>.</p>
         <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataContactsService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
 <span class="usertype">GDataFeed</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">feed</span><span class="symbol">;</span>
 <span class="usertype">GList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">i</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_contacts_service</span><span class="normal"> </span><span class="symbol">();</span>
 
 <span class="comment">/* Query for groups */</span>
-<span class="normal">feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataContactsService.html#gdata-contacts-service-query-groups">gdata_contacts_service_query_groups</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataContactsService.html#gdata-contacts-service-query-groups">gdata_contacts_service_query_groups</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error querying for groups: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error querying for groups: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Iterate through the returned groups and do something with them */</span>
-<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-get-entries">gdata_feed_get_entries</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span><span class="normal"> i </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> i</span><span class="symbol">-&gt;</span><span class="normal">next</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
 <span class="normal">    </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">system_group_id</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">group_name</span><span class="symbol">;</span>
 <span class="normal">    </span><span class="usertype">gboolean</span><span class="normal"> is_system_group</span><span class="symbol">;</span>
 <span class="normal">    </span><span class="usertype">GDataContactsGroup</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">group </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_CONTACTS_GROUP</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i</span><span class="symbol">-&gt;</span><span class="normal">data</span><span class="symbol">);</span>
@@ -248,15 +248,15 @@ online documentation</a>.</p>
 <span class="normal">    </span><span class="comment">/* Determine whether the group's a system group. If so, you should use the system group ID to provide your application's own</span>
 <span class="comment">     * translations of the group name, as it's not translated. */</span>
 <span class="normal">    system_group_id </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataContactsGroup.html#gdata-contacts-group-get-system-group-id">gdata_contacts_group_get_system_group_id</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">group</span><span class="symbol">);</span>
-<span class="normal">    is_system_group </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">system_group_id </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">?</span><span class="normal"> TRUE </span><span class="symbol">:</span><span class="normal"> FALSE</span><span class="symbol">;</span>
-<span class="normal">    group_name </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">is_system_group </span><span class="symbol">==</span><span class="normal"> TRUE</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">?</span><span class="normal"> </span><span class="function">get_group_name_for_system_group_id</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">system_group_id</span><span class="symbol">)</span>
+<span class="normal">    is_system_group </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">system_group_id </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">?</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS">TRUE</a> </span><span class="symbol">:</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS">FALSE</a></span><span class="symbol">;</span>
+<span class="normal">    group_name </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">is_system_group </span><span class="symbol">==</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS">TRUE</a></span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">?</span><span class="normal"> </span><span class="function">get_group_name_for_system_group_id</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">system_group_id</span><span class="symbol">)</span>
 <span class="normal">                                           </span><span class="symbol">:</span><span class="normal"> </span><span class="function"><a href="GDataEntry.html#gdata-entry-get-title">gdata_entry_get_title</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">group</span><span class="symbol">));</span>
 
 <span class="normal">    </span><span class="comment">/* Do something with the group here, such as insert it into a UI. Note that system groups are not allowed to be deleted,</span>
 <span class="comment">     * so you may want to make certain parts of your UI insensitive accordingly if the group is a system group. */</span>
 <span class="cbracket">}</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -337,7 +337,7 @@ operations</a> for more information.
 <span class="usertype">GDataFeed</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">feed</span><span class="symbol">;</span>
 <span class="usertype">GDataLink</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">batch_link</span><span class="symbol">;</span>
 <span class="usertype">GList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">i</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_contacts_service</span><span class="normal"> </span><span class="symbol">();</span>
@@ -346,7 +346,7 @@ operations</a> for more information.
 <span class="normal">feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function">do_some_query</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">batch_link </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-look-up-link">gdata_feed_look_up_link</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">,</span><span class="normal"> <a href="GDataLink.html#GDATA-LINK-BATCH:CAPS">GDATA_LINK_BATCH</a></span><span class="symbol">);</span>
 <span class="normal">operation </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataBatchable.html#gdata-batchable-create-operation">gdata_batchable_create_operation</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_BATCHABLE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> </span><span class="function"><a href="GDataLink.html#gdata-link-get-uri">gdata_link_get_uri</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">batch_link</span><span class="symbol">));</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span>
 
 <span class="function"><a href="GDataBatchOperation.html#gdata-batch-operation-add-query">gdata_batch_operation_add_query</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">,</span><span class="normal"> contact_entry_id_to_query</span><span class="symbol">,</span><span class="normal"> GDATA_TYPE_CONTACTS_CONTACT</span><span class="symbol">,</span>
 <span class="normal">                                 </span><span class="symbol">(</span><span class="normal"><a href="GDataBatchOperation.html#GDataBatchOperationCallback">GDataBatchOperationCallback</a></span><span class="symbol">)</span><span class="normal"> batch_query_cb</span><span class="symbol">,</span><span class="normal"> user_data</span><span class="symbol">);</span>
@@ -355,14 +355,14 @@ operations</a> for more information.
 <span class="function"><a href="GDataBatchOperation.html#gdata-batch-operation-add-deletion">gdata_batch_operation_add_deletion</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">,</span><span class="normal"> entry_to_delete</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GDataBatchOperation.html#GDataBatchOperationCallback">GDataBatchOperationCallback</a></span><span class="symbol">)</span><span class="normal"> batch_deletion_cb</span><span class="symbol">,</span><span class="normal"> user_data</span><span class="symbol">);</span>
 
 <span class="comment">/* Run the batch operation and handle the results in the various callbacks */</span>
-<span class="function">gdata_test_batch_operation_run</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="function">gdata_test_batch_operation_run</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error running batch operation: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error running batch operation: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
@@ -407,7 +407,7 @@ operations</a> for more information.
 <pre class="programlisting"><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="returnvalue">GDataContactsService</span></a> *
 gdata_contacts_service_new (<em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *authorizer</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> using the given <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>. If <em class="parameter"><code>authorizer</code></em>
- is <code class="literal">NULL</code>, all requests are made as an unauthenticated user.</p>
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, all requests are made as an unauthenticated user.</p>
 <div class="refsect3">
 <a name="gdata-contacts-service-new.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -418,14 +418,14 @@ gdata_contacts_service_new (<em class="parameter"><code><a class="link" href="GD
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>authorizer</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
 </div>
 <div class="refsect3">
 <a name="gdata-contacts-service-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<p> a new <a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
 </div>
@@ -441,7 +441,7 @@ does not support natively, then this domain may be needed to authorize the reque
 <p>The domain never changes, and is interned so that pointer comparison can be used to differentiate it from other authorization domains.</p>
 <div class="refsect3">
 <a name="gdata-contacts-service-get-primary-authorization-domain.returns"></a><h4>Returns</h4>
-<p> the service's authorization domain. </p>
+<p>the service's authorization domain. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
@@ -452,10 +452,10 @@ does not support natively, then this domain may be needed to authorize the reque
 <pre class="programlisting"><a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *
 gdata_contacts_service_query_contacts (<em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *self</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                       <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                       <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                       <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                       <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                       <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Queries the service to return a list of contacts matching the given <em class="parameter"><code>query</code></em>
 .</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
@@ -475,28 +475,28 @@ gdata_contacts_service_query_contacts (<em class="parameter"><code><a class="lin
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -504,7 +504,7 @@ function. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-contacts-service-query-contacts.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-0.2.0">0.2.0</a></p>
@@ -516,12 +516,12 @@ function. </p></td>
 gdata_contacts_service_query_contacts_async
                                (<em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Queries the service to return a list of contacts matching the given <em class="parameter"><code>query</code></em>
 . <em class="parameter"><code>self</code></em>
  and
@@ -545,41 +545,41 @@ and <a class="link" href="GDataService.html#gdata-service-query-async" title="gd
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
-<td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <code class="literal">NULL</code>. This function will be
+<td class="parameter_description"><p>the function to call when <em class="parameter"><code>progress_callback</code></em>
+will not be called any more, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the query is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the query is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -594,8 +594,8 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="returnvalue">GDataContactsContact</span></a> *
 gdata_contacts_service_insert_contact (<em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *self</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *contact</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                       <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                       <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                       <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Inserts <em class="parameter"><code>contact</code></em>
  by uploading it to the online contacts service.</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a>.</p>
@@ -620,12 +620,12 @@ gdata_contacts_service_insert_contact (<em class="parameter"><code><a class="lin
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -633,7 +633,7 @@ gdata_contacts_service_insert_contact (<em class="parameter"><code><a class="lin
 </div>
 <div class="refsect3">
 <a name="gdata-contacts-service-insert-contact.returns"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>an updated <a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-0.2.0">0.2.0</a></p>
@@ -645,9 +645,9 @@ gdata_contacts_service_insert_contact (<em class="parameter"><code><a class="lin
 gdata_contacts_service_insert_contact_async
                                (<em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataContactsContact.html" title="GDataContactsContact"><span class="type">GDataContactsContact</span></a> *contact</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Inserts <em class="parameter"><code>contact</code></em>
  by uploading it to the online contacts service. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>contact</code></em>
@@ -679,17 +679,17 @@ and <a class="link" href="GDataService.html#gdata-service-insert-entry-async" ti
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when insertion is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when insertion is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -704,10 +704,10 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *
 gdata_contacts_service_query_groups (<em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                     <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                     <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                     <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                     <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Queries the service to return a list of groups matching the given <em class="parameter"><code>query</code></em>
 .</p>
 <p>For more details, see <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a>.</p>
@@ -727,28 +727,28 @@ gdata_contacts_service_query_groups (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -756,7 +756,7 @@ function. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-contacts-service-query-groups.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of query results; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
@@ -768,12 +768,12 @@ function. </p></td>
 gdata_contacts_service_query_groups_async
                                (<em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Queries the service to return a list of groups matching the given <em class="parameter"><code>query</code></em>
 . <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>query</code></em>
@@ -797,41 +797,41 @@ which is the base asynchronous query function.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">GDataQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
-<td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <code class="literal">NULL</code>. This function will be
+<td class="parameter_description"><p>the function to call when <em class="parameter"><code>progress_callback</code></em>
+will not be called any more, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the query is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the query is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -846,8 +846,8 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataContactsGroup.html" title="GDataContactsGroup"><span class="returnvalue">GDataContactsGroup</span></a> *
 gdata_contacts_service_insert_group (<em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GDataContactsGroup.html" title="GDataContactsGroup"><span class="type">GDataContactsGroup</span></a> *group</code></em>,
-                                     <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                     <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                     <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Inserts a new contact group described by <em class="parameter"><code>group</code></em>
 . The user must be authenticated to use this function.</p>
 <div class="refsect3">
@@ -871,12 +871,12 @@ gdata_contacts_service_insert_group (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -884,7 +884,7 @@ gdata_contacts_service_insert_group (<em class="parameter"><code><a class="link"
 </div>
 <div class="refsect3">
 <a name="gdata-contacts-service-insert-group.returns"></a><h4>Returns</h4>
-<p> the inserted <a class="link" href="GDataContactsGroup.html" title="GDataContactsGroup"><span class="type">GDataContactsGroup</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>the inserted <a class="link" href="GDataContactsGroup.html" title="GDataContactsGroup"><span class="type">GDataContactsGroup</span></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
@@ -896,9 +896,9 @@ gdata_contacts_service_insert_group (<em class="parameter"><code><a class="link"
 gdata_contacts_service_insert_group_async
                                (<em class="parameter"><code><a class="link" href="GDataContactsService.html" title="GDataContactsService"><span class="type">GDataContactsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataContactsGroup.html" title="GDataContactsGroup"><span class="type">GDataContactsGroup</span></a> *group</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Inserts a new contact group described by <em class="parameter"><code>group</code></em>
 . The user must be authenticated to use this function. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>group</code></em>
@@ -930,17 +930,17 @@ errors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when insertion is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when insertion is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -970,6 +970,6 @@ function. </p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

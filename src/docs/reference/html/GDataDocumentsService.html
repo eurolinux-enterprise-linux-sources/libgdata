@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataDocumentsService: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
-<link rel="up" href="ch16.html" title="Google Documents API">
-<link rel="prev" href="ch16.html" title="Google Documents API">
+<link rel="up" href="ch16.html" title="Google Documents/Drive API">
+<link rel="prev" href="ch16.html" title="Google Documents/Drive API">
 <link rel="next" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -73,6 +73,30 @@ justifications.
 </td>
 <td class="function_name">
 <a class="link" href="GDataDocumentsService.html#gdata-documents-service-get-spreadsheet-authorization-domain" title="gdata_documents_service_get_spreadsheet_authorization_domain ()">gdata_documents_service_get_spreadsheet_authorization_domain</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataDocumentsMetadata.html" title="GDataDocumentsMetadata"><span class="returnvalue">GDataDocumentsMetadata</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsService.html#gdata-documents-service-get-metadata" title="gdata_documents_service_get_metadata ()">gdata_documents_service_get_metadata</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsService.html#gdata-documents-service-get-metadata-async" title="gdata_documents_service_get_metadata_async ()">gdata_documents_service_get_metadata_async</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="GDataDocumentsMetadata.html" title="GDataDocumentsMetadata"><span class="returnvalue">GDataDocumentsMetadata</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="GDataDocumentsService.html#gdata-documents-service-get-metadata-finish" title="gdata_documents_service_get_metadata_finish ()">gdata_documents_service_get_metadata_finish</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -205,7 +229,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gchar</span> *
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataDocumentsService.html#gdata-documents-service-get-upload-uri" title="gdata_documents_service_get_upload_uri ()">gdata_documents_service_get_upload_uri</a> <span class="c_punctuation">()</span>
@@ -239,7 +263,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsService.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataService.html" title="GDataService">GDataService</a>
         <span class="lineart">╰──</span> GDataDocumentsService
 </pre>
@@ -257,15 +281,18 @@ GDataDocumentsService implements
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsService.description"></a><h2>Description</h2>
-<p><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> is a subclass of <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> for communicating with the GData API of Google Documents. It supports querying
-for, inserting, editing and deleting documents, as well as a folder hierarchy.</p>
-<p>For more details of Google Documents' GData API, see the <a class="ulink" href="https://developers.google.com/google-apps/documents-list/" target="_top">
-online documentation</a>.</p>
+<p><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> is a subclass of <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> for communicating with the GData API of Google Drive. It supports querying
+for, inserting, editing and deleting documents, as well as a folder hierarchy.
+The API is named ‘documents’ rather than ‘drive’ as it used to use the Google
+Documents API, which has since been deprecated.</p>
+<p>For more details of Google Drive's GData API, see the</p>
+<a class="ulink" href="https://developers.google.com/drive/v2/web/about-sdk" target="_top">
+online documentation</a>.
 <p>Fore more details about the spreadsheet downloads handling, see the</p>
 <a class="ulink" href="http://groups.google.com/group/Google-Docs-Data-APIs/browse_thread/thread/bfc50e94e303a29a?pli=1" target="_top">
 online explanation about the problem</a>.
 <div class="example">
-<a name="id-1.5.5.2.9.6"></a><p class="title"><b>Example 27. Uploading a Document from Disk</b></p>
+<a name="id-1.5.5.2.9.7"></a><p class="title"><b>Example 27. Uploading a Document from Disk</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -373,104 +400,104 @@ online explanation about the problem</a>.
 <span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">slug</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">content_type</span><span class="symbol">;</span>
 <span class="usertype">GFileInputStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">file_stream</span><span class="symbol">;</span>
 <span class="usertype">GDataUploadStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">upload_stream</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_documents_service</span><span class="normal"> </span><span class="symbol">();</span>
 
 <span class="comment">/* Get the document file to upload and the folder to upload it into */</span>
-<span class="normal">document_file </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-new-for-path">g_file_new_for_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"document.odt"</span><span class="symbol">);</span>
+<span class="normal">document_file </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_new_for_path</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"document.odt"</span><span class="symbol">);</span>
 <span class="normal">destination_folder </span><span class="symbol">=</span><span class="normal"> </span><span class="function">query_user_for_destination_folder</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
 <span class="comment">/* Get the file's display name and content type */</span>
-<span class="normal">file_info </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-query-info">g_file_query_info</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document_file</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#G-FILE-ATTRIBUTE-STANDARD-DISPLAY-NAME:CAPS">G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME</a> </span><span class="string">","</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#G-FILE-ATTRIBUTE-STANDARD-CONTENT-TYPE:CAPS">G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE</a></span><span class="symbol">,</span>
-<span class="normal">                               <a href="https://developer.gnome.org/gio/unstable/GFile.html#G-FILE-QUERY-INFO-NONE:CAPS">G_FILE_QUERY_INFO_NONE</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">file_info </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_query_info</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document_file</span><span class="symbol">,</span><span class="normal"> G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME </span><span class="string">","</span><span class="normal"> G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE</span><span class="symbol">,</span>
+<span class="normal">                               G_FILE_QUERY_INFO_NONE</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting document file information: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">destination_folder</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document_file</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting document file information: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">destination_folder</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document_file</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
-<span class="normal">slug </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#g-file-info-get-display-name">g_file_info_get_display_name</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
-<span class="normal">content_type </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#g-file-info-get-content-type">g_file_info_get_content_type</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">slug </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_info_get_display_name</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">content_type </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_info_get_content_type</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
 
 <span class="comment">/* Get an input stream for the file */</span>
-<span class="normal">file_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-read">g_file_read</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document_file</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">file_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_read</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document_file</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document_file</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document_file</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting document file stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">destination_folder</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting document file stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">destination_folder</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Create the document metadata to upload */</span>
-<span class="normal">document </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsText.html#gdata-documents-text-new">gdata_documents_text_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="normal">document </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsText.html#gdata-documents-text-new">gdata_documents_text_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="function"><a href="GDataEntry.html#gdata-entry-set-title">gdata_entry_set_title</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"Document Title"</span><span class="symbol">);</span>
 
 <span class="comment">/* Get an upload stream for the document */</span>
-<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-upload-document">gdata_documents_service_upload_document</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> document</span><span class="symbol">,</span><span class="normal"> slug</span><span class="symbol">,</span><span class="normal"> content_type</span><span class="symbol">,</span><span class="normal"> destination_folder</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-upload-document">gdata_documents_service_upload_document</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> document</span><span class="symbol">,</span><span class="normal"> slug</span><span class="symbol">,</span><span class="normal"> content_type</span><span class="symbol">,</span><span class="normal"> destination_folder</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">destination_folder</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">destination_folder</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting upload stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting upload stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Upload the document. This is a blocking operation, and should normally be done asynchronously. */</span>
-<span class="function"><a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice">g_output_stream_splice</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OUTPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">),</span><span class="normal"> </span><span class="function">G_INPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">),</span>
-<span class="normal">                        <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-SOURCE:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE</a> </span><span class="symbol">|</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-TARGET:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="function">g_output_stream_splice</span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OUTPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">),</span><span class="normal"> </span><span class="function">G_INPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">),</span>
+<span class="normal">                        G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE </span><span class="symbol">|</span><span class="normal"> G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error splicing streams: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error splicing streams: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Finish off the upload by parsing the returned updated document metadata entry */</span>
 <span class="normal">uploaded_document </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-finish-upload">gdata_documents_service_finish_upload</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> upload_stream</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error uploading document: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error uploading document: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Do something with the uploaded document */</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">uploaded_document</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">uploaded_document</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 </div>
-<br class="example-break"><p>The Documents service can be manipulated using batch operations, too. See the</p>
+<br class="example-break"><p>The Drive service can be manipulated using batch operations, too. See the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#batching_acl_requests" target="_top">online documentation on batch
 operations</a> for more information.
 <div class="example">
-<a name="id-1.5.5.2.9.9"></a><p class="title"><b>Example 28. Performing a Batch Operation on Documents</b></p>
+<a name="id-1.5.5.2.9.10"></a><p class="title"><b>Example 28. Performing a Batch Operation on Documents</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -540,7 +567,7 @@ operations</a> for more information.
 <span class="usertype">GDataFeed</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">feed</span><span class="symbol">;</span>
 <span class="usertype">GDataLink</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">batch_link</span><span class="symbol">;</span>
 <span class="usertype">GList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">i</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_documents_service</span><span class="normal"> </span><span class="symbol">();</span>
@@ -549,7 +576,7 @@ operations</a> for more information.
 <span class="normal">feed </span><span class="symbol">=</span><span class="normal"> </span><span class="function">do_some_query</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">batch_link </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataFeed.html#gdata-feed-look-up-link">gdata_feed_look_up_link</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">,</span><span class="normal"> <a href="GDataLink.html#GDATA-LINK-BATCH:CAPS">GDATA_LINK_BATCH</a></span><span class="symbol">);</span>
 <span class="normal">operation </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataBatchable.html#gdata-batchable-create-operation">gdata_batchable_create_operation</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_BATCHABLE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span><span class="normal"> </span><span class="function"><a href="GDataLink.html#gdata-link-get-uri">gdata_link_get_uri</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">batch_link</span><span class="symbol">));</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">feed</span><span class="symbol">);</span>
 
 <span class="function"><a href="GDataBatchOperation.html#gdata-batch-operation-add-query">gdata_batch_operation_add_query</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">,</span><span class="normal"> presentation_entry_id_to_query</span><span class="symbol">,</span><span class="normal"> GDATA_TYPE_DOCUMENTS_PRESENTATION</span><span class="symbol">,</span>
 <span class="normal">                                 </span><span class="symbol">(</span><span class="normal"><a href="GDataBatchOperation.html#GDataBatchOperationCallback">GDataBatchOperationCallback</a></span><span class="symbol">)</span><span class="normal"> batch_query_cb</span><span class="symbol">,</span><span class="normal"> user_data</span><span class="symbol">);</span>
@@ -558,14 +585,14 @@ operations</a> for more information.
 <span class="function"><a href="GDataBatchOperation.html#gdata-batch-operation-add-deletion">gdata_batch_operation_add_deletion</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">,</span><span class="normal"> entry_to_delete</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GDataBatchOperation.html#GDataBatchOperationCallback">GDataBatchOperationCallback</a></span><span class="symbol">)</span><span class="normal"> batch_deletion_cb</span><span class="symbol">,</span><span class="normal"> user_data</span><span class="symbol">);</span>
 
 <span class="comment">/* Run the batch operation and handle the results in the various callbacks */</span>
-<span class="function">gdata_test_batch_operation_run</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="function">gdata_test_batch_operation_run</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">operation</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error running batch operation: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error running batch operation: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
@@ -604,7 +631,7 @@ operations</a> for more information.
 <br class="example-break"><p>Starred documents are denoted by being in the <a class="link" href="GDataCategory.html#GDATA-CATEGORY-SCHEMA-LABELS-STARRED:CAPS" title="GDATA_CATEGORY_SCHEMA_LABELS_STARRED"><code class="literal">GDATA_CATEGORY_SCHEMA_LABELS_STARRED</code></a> category of the <a class="link" href="GDataCategory.html#GDATA-CATEGORY-SCHEMA-LABELS:CAPS" title="GDATA_CATEGORY_SCHEMA_LABELS"><code class="literal">GDATA_CATEGORY_SCHEMA_LABELS</code></a> schema. Documents
 can be starred or unstarred simply by adding or removing this category from them and updating the document:</p>
 <div class="example">
-<a name="id-1.5.5.2.9.11"></a><p class="title"><b>Example 29. Starring a Document</b></p>
+<a name="id-1.5.5.2.9.12"></a><p class="title"><b>Example 29. Starring a Document</b></p>
 <div class="example-contents">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -643,7 +670,7 @@ can be starred or unstarred simply by adding or removing this category from them
         <td class="listing_code"><pre class="programlisting"><span class="usertype">GDataDocumentsService</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">service</span><span class="symbol">;</span>
 <span class="usertype">GDataDocumentsEntry</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">document</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">updated_document</span><span class="symbol">;</span>
 <span class="usertype">GDataCategory</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">starred_category</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service and retrieve the document to be starred */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_documents_service</span><span class="normal"> </span><span class="symbol">();</span>
@@ -652,25 +679,25 @@ can be starred or unstarred simply by adding or removing this category from them
 <span class="comment">/* Add the “starred” category to the document */</span>
 <span class="normal">starred_category </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataCategory.html#gdata-category-new">gdata_category_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GDataCategory.html#GDATA-CATEGORY-SCHEMA-LABELS-STARRED:CAPS">GDATA_CATEGORY_SCHEMA_LABELS_STARRED</a></span><span class="symbol">,</span><span class="normal"> <a href="GDataCategory.html#GDATA-CATEGORY-SCHEMA-LABELS:CAPS">GDATA_CATEGORY_SCHEMA_LABELS</a></span><span class="symbol">,</span><span class="normal"> </span><span class="string">"starred"</span><span class="symbol">);</span>
 <span class="function"><a href="GDataEntry.html#gdata-entry-add-category">gdata_entry_add_category</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">),</span><span class="normal"> starred_category</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">starred_category</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">starred_category</span><span class="symbol">);</span>
 
 <span class="comment">/* Propagate the updated document to the server */</span>
 <span class="normal">updated_document </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GDATA_DOCUMENTS_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataService.html#gdata-service-update-entry">gdata_service_update_entry</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_SERVICE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">),</span>
 <span class="normal">                                                                      </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-get-primary-authorization-domain">gdata_documents_service_get_primary_authorization_domain</a></span><span class="normal"> </span><span class="symbol">(),</span>
-<span class="normal">                                                                      </span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">));</span>
+<span class="normal">                                                                      </span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">),</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">));</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error starring document: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error starring document: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Do something with the newly-starred document, like update it in the UI */</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">updated_document</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">updated_document</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -686,7 +713,7 @@ can be starred or unstarred simply by adding or removing this category from them
 <pre class="programlisting"><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="returnvalue">GDataDocumentsService</span></a> *
 gdata_documents_service_new (<em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *authorizer</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> using the given <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>. If <em class="parameter"><code>authorizer</code></em>
- is <code class="literal">NULL</code>, all requests are made as an unauthenticated user.</p>
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, all requests are made as an unauthenticated user.</p>
 <div class="refsect3">
 <a name="gdata-documents-service-new.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -697,14 +724,14 @@ gdata_documents_service_new (<em class="parameter"><code><a class="link" href="G
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>authorizer</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to authorize the service's requests, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<p> a new <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
 </div>
@@ -720,7 +747,7 @@ does not support natively, then this domain may be needed to authorize the reque
 <p>The domain never changes, and is interned so that pointer comparison can be used to differentiate it from other authorization domains.</p>
 <div class="refsect3">
 <a name="gdata-documents-service-get-primary-authorization-domain.returns"></a><h4>Returns</h4>
-<p> the service's authorization domain. </p>
+<p>the service's authorization domain. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
@@ -738,10 +765,146 @@ requests to download or upload spreadsheet documents.</p>
 <p>The domain never changes, and is interned so that pointer comparison can be used to differentiate it from other authorization domains.</p>
 <div class="refsect3">
 <a name="gdata-documents-service-get-spreadsheet-authorization-domain.returns"></a><h4>Returns</h4>
-<p> the service's authorization domain. </p>
+<p>the service's authorization domain. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-service-get-metadata"></a><h3>gdata_documents_service_get_metadata ()</h3>
+<pre class="programlisting"><a class="link" href="GDataDocumentsMetadata.html" title="GDataDocumentsMetadata"><span class="returnvalue">GDataDocumentsMetadata</span></a> *
+gdata_documents_service_get_metadata (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                      <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                      <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Gets a <a class="link" href="GDataDocumentsMetadata.html" title="GDataDocumentsMetadata"><span class="type">GDataDocumentsMetadata</span></a> object containing metadata about the documents
+service itself, like how large the user quota is.</p>
+<div class="refsect3">
+<a name="gdata-documents-service-get-metadata.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>cancellable</p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="gdata-documents-service-get-metadata.returns"></a><h4>Returns</h4>
+<p>the service's metadata object; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix25.html#api-index-0.17.9">0.17.9</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-service-get-metadata-async"></a><h3>gdata_documents_service_get_metadata_async ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gdata_documents_service_get_metadata_async
+                               (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+<p>Gets a <a class="link" href="GDataDocumentsMetadata.html" title="GDataDocumentsMetadata"><span class="type">GDataDocumentsMetadata</span></a> object containing metadata about the documents
+service itself, like how large the user quota is.</p>
+<p>For more details, see <a class="link" href="GDataDocumentsService.html#gdata-documents-service-get-metadata" title="gdata_documents_service_get_metadata ()"><code class="function">gdata_documents_service_get_metadata()</code></a>, which is the synchronous version of this function.</p>
+<p>When the operation is finished, <em class="parameter"><code>callback</code></em>
+ will be called. You can then call <a class="link" href="GDataDocumentsService.html#gdata-documents-service-get-metadata-finish" title="gdata_documents_service_get_metadata_finish ()"><code class="function">gdata_documents_service_get_metadata_finish()</code></a> to get the results
+of the operation.</p>
+<div class="refsect3">
+<a name="gdata-documents-service-get-metadata-async.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>cancellable</p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>callback</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the operation is finished, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>user_data</p></td>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
+function. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix25.html#api-index-0.17.9">0.17.9</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gdata-documents-service-get-metadata-finish"></a><h3>gdata_documents_service_get_metadata_finish ()</h3>
+<pre class="programlisting"><a class="link" href="GDataDocumentsMetadata.html" title="GDataDocumentsMetadata"><span class="returnvalue">GDataDocumentsMetadata</span></a> *
+gdata_documents_service_get_metadata_finish
+                               (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncResult</span> *async_result</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Finish an asynchronous operation to get a <a class="link" href="GDataDocumentsMetadata.html" title="GDataDocumentsMetadata"><span class="type">GDataDocumentsMetadata</span></a> started with <a class="link" href="GDataDocumentsService.html#gdata-documents-service-get-metadata-async" title="gdata_documents_service_get_metadata_async ()"><code class="function">gdata_documents_service_get_metadata_async()</code></a>.</p>
+<div class="refsect3">
+<a name="gdata-documents-service-get-metadata-finish.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>async_result</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncResult</span></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="gdata-documents-service-get-metadata-finish.returns"></a><h4>Returns</h4>
+<p>the service's metadata object; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix25.html#api-index-0.17.9">0.17.9</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -750,10 +913,10 @@ requests to download or upload spreadsheet documents.</p>
 gdata_documents_service_query_documents
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Queries the service to return a list of documents matching the given <em class="parameter"><code>query</code></em>
 . Note that <em class="parameter"><code>query</code></em>
  has to be a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a>, rather than just
@@ -775,28 +938,28 @@ a <a class="link" href="GDataQuery.html" title="GDataQuery"><span class="type">G
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -804,7 +967,7 @@ function. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-query-documents.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="type">GDataDocumentsFeed</span></a> of query results; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataDocumentsFeed.html" title="GDataDocumentsFeed"><span class="type">GDataDocumentsFeed</span></a> of query results; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
@@ -816,12 +979,12 @@ function. </p></td>
 gdata_documents_service_query_documents_async
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Queries the service to return a list of documents matching the given <em class="parameter"><code>query</code></em>
 . <em class="parameter"><code>self</code></em>
  and
@@ -845,41 +1008,41 @@ and <a class="link" href="GDataService.html#gdata-service-query-async" title="gd
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> with the query parameters, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery"><span class="type">GDataDocumentsQuery</span></a> with the query parameters, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when an entry is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
-<td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <code class="literal">NULL</code>. This function will be
+<td class="parameter_description"><p>the function to call when <em class="parameter"><code>progress_callback</code></em>
+will not be called any more, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when authentication is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when authentication is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -895,11 +1058,11 @@ function. </p></td>
 gdata_documents_service_upload_document
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> *document</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *slug</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *content_type</code></em>,
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *slug</code></em>,
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *content_type</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Uploads a document to Google Documents, using the properties from <em class="parameter"><code>document</code></em>
  and the document data written to the resulting <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a>. If
 the document data does not need to be provided at the moment, just the metadata, use <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a> instead (e.g. in the case of
@@ -908,15 +1071,15 @@ creating a new, empty file to be edited at a later date).</p>
 upload to fail, and the entire document will have to be re-uploaded. It is recommended that <a class="link" href="GDataDocumentsService.html#gdata-documents-service-upload-document-resumable" title="gdata_documents_service_upload_document_resumable ()"><code class="function">gdata_documents_service_upload_document_resumable()</code></a>
 be used instead.</p>
 <p>If <em class="parameter"><code>document</code></em>
- is <code class="literal">NULL</code>, only the document data will be uploaded. The new document entry will be named using <em class="parameter"><code>slug</code></em>
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, only the document data will be uploaded. The new document entry will be named using <em class="parameter"><code>slug</code></em>
 , and will have default metadata.</p>
-<p>The stream returned by this function should be written to using the standard <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> methods, asychronously or synchronously. Once the stream
-is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-close"><code class="function">g_output_stream_close()</code></a>), <a class="link" href="GDataDocumentsService.html#gdata-documents-service-finish-upload" title="gdata_documents_service_finish_upload ()"><code class="function">gdata_documents_service_finish_upload()</code></a> should be called on it to parse and return the updated
+<p>The stream returned by this function should be written to using the standard <span class="type">GOutputStream</span> methods, asychronously or synchronously. Once the stream
+is closed (using <code class="function">g_output_stream_close()</code>), <a class="link" href="GDataDocumentsService.html#gdata-documents-service-finish-upload" title="gdata_documents_service_finish_upload ()"><code class="function">gdata_documents_service_finish_upload()</code></a> should be called on it to parse and return the updated
 <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> for the document. This must be done, as <em class="parameter"><code>document</code></em>
  isn't updated in-place.</p>
-<p>In order to cancel the upload, a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> passed in to <em class="parameter"><code>cancellable</code></em>
- must be cancelled using <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>. Cancelling the individual
-<a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire upload; merely the write or close operation in question. See the
+<p>In order to cancel the upload, a <span class="type">GCancellable</span> passed in to <em class="parameter"><code>cancellable</code></em>
+ must be cancelled using <code class="function">g_cancellable_cancel()</code>. Cancelling the individual
+<span class="type">GOutputStream</span> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire upload; merely the write or close operation in question. See the
 <a class="link" href="GDataUploadStream.html#GDataUploadStream--cancellable" title="The “cancellable” property"><span class="type">“cancellable”</span></a> for more details.</p>
 <p>Any upload errors will be thrown by the stream methods, and may come from the <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> domain.</p>
 <div class="refsect3">
@@ -935,7 +1098,7 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </tr>
 <tr>
 <td class="parameter_name"><p>document</p></td>
-<td class="parameter_description"><p> the <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> to insert, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> to insert, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -950,17 +1113,17 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </tr>
 <tr>
 <td class="parameter_name"><p>folder</p></td>
-<td class="parameter_description"><p> the folder to which the document should be uploaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the folder to which the document should be uploaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> for the entire upload stream, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GCancellable</span> for the entire upload stream, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -968,7 +1131,7 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-upload-document.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the document data to, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the document data to, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -980,12 +1143,12 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 gdata_documents_service_upload_document_resumable
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> *document</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *slug</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *content_type</code></em>,
-                                <em class="parameter"><code><span class="type">goffset</span> content_length</code></em>,
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *slug</code></em>,
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *content_type</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#goffset"><span class="type">goffset</span></a> content_length</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsUploadQuery.html" title="GDataDocumentsUploadQuery"><span class="type">GDataDocumentsUploadQuery</span></a> *query</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Uploads a document to Google Documents, using the properties from <em class="parameter"><code>document</code></em>
  and the document data written to the resulting <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a>. If
 the document data does not need to be provided at the moment, just the metadata, use <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a> instead (e.g. in the case of
@@ -994,25 +1157,25 @@ creating a new, empty file to be edited at a later date).</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/resumable_upload.html" target="_top">resumable upload</a> which allows for correction of
 <p>transmission errors without re-uploading the entire file. Use of this method is preferred over <a class="link" href="GDataDocumentsService.html#gdata-documents-service-upload-document" title="gdata_documents_service_upload_document ()"><code class="function">gdata_documents_service_upload_document()</code></a>.</p>
 <p>If <em class="parameter"><code>document</code></em>
- is <code class="literal">NULL</code>, only the document data will be uploaded. The new document entry will be named using <em class="parameter"><code>slug</code></em>
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, only the document data will be uploaded. The new document entry will be named using <em class="parameter"><code>slug</code></em>
 , and will have default metadata.</p>
-<p>If non-<code class="literal">NULL</code>, the <em class="parameter"><code>query</code></em>
+<p>If non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the <em class="parameter"><code>query</code></em>
  specifies parameters for the upload, such as a <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> to upload the document into; and whether to treat
 the document as an opaque file, or convert it to a standard format. If <em class="parameter"><code>query</code></em>
- is <code class="literal">NULL</code>, the document will be uploaded into the root folder, and
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the document will be uploaded into the root folder, and
 automatically converted to a standard format. No OCR or automatic language translation will be performed by default.</p>
 <p>If <em class="parameter"><code>query</code></em>
- is non-<code class="literal">NULL</code> and <a class="link" href="GDataDocumentsUploadQuery.html#GDataDocumentsUploadQuery--convert" title="The “convert” property"><span class="type">“convert”</span></a> is <code class="literal">FALSE</code>, <em class="parameter"><code>document</code></em>
+ is non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and <a class="link" href="GDataDocumentsUploadQuery.html#GDataDocumentsUploadQuery--convert" title="The “convert” property"><span class="type">“convert”</span></a> is <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>, <em class="parameter"><code>document</code></em>
  must be an instance of <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>. Otherwise,
 <em class="parameter"><code>document</code></em>
  must be a subclass of it, such as <a class="link" href="GDataDocumentsPresentation.html" title="GDataDocumentsPresentation"><span class="type">GDataDocumentsPresentation</span></a>.</p>
-<p>The stream returned by this function should be written to using the standard <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> methods, asychronously or synchronously. Once the stream
-is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-close"><code class="function">g_output_stream_close()</code></a>), <a class="link" href="GDataDocumentsService.html#gdata-documents-service-finish-upload" title="gdata_documents_service_finish_upload ()"><code class="function">gdata_documents_service_finish_upload()</code></a> should be called on it to parse and return the updated
+<p>The stream returned by this function should be written to using the standard <span class="type">GOutputStream</span> methods, asychronously or synchronously. Once the stream
+is closed (using <code class="function">g_output_stream_close()</code>), <a class="link" href="GDataDocumentsService.html#gdata-documents-service-finish-upload" title="gdata_documents_service_finish_upload ()"><code class="function">gdata_documents_service_finish_upload()</code></a> should be called on it to parse and return the updated
 <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> for the document. This must be done, as <em class="parameter"><code>document</code></em>
  isn't updated in-place.</p>
-<p>In order to cancel the upload, a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> passed in to <em class="parameter"><code>cancellable</code></em>
- must be cancelled using <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>. Cancelling the individual
-<a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire upload; merely the write or close operation in question. See the
+<p>In order to cancel the upload, a <span class="type">GCancellable</span> passed in to <em class="parameter"><code>cancellable</code></em>
+ must be cancelled using <code class="function">g_cancellable_cancel()</code>. Cancelling the individual
+<span class="type">GOutputStream</span> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire upload; merely the write or close operation in question. See the
 <a class="link" href="GDataUploadStream.html#GDataUploadStream--cancellable" title="The “cancellable” property"><span class="type">“cancellable”</span></a> for more details.</p>
 <p>Any upload errors will be thrown by the stream methods, and may come from the <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> domain.</p>
 <div class="refsect3">
@@ -1031,7 +1194,7 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </tr>
 <tr>
 <td class="parameter_name"><p>document</p></td>
-<td class="parameter_description"><p> the <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> to insert, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> to insert, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1051,17 +1214,17 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </tr>
 <tr>
 <td class="parameter_name"><p>query</p></td>
-<td class="parameter_description"><p> a query specifying parameters for the upload, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a query specifying parameters for the upload, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> for the entire upload stream, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GCancellable</span> for the entire upload stream, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1069,7 +1232,7 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-upload-document-resumable.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the document data to, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the document data to, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix15.html#api-index-0.13.0">0.13.0</a></p>
@@ -1081,23 +1244,23 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 gdata_documents_service_update_document
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> *document</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *slug</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *content_type</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *slug</code></em>,
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *content_type</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Update the document using the properties from <em class="parameter"><code>document</code></em>
  and the document data written to the resulting <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a>. If the document data does
 not need to be changed, just the metadata, use <a class="link" href="GDataService.html#gdata-service-update-entry" title="gdata_service_update_entry ()"><code class="function">gdata_service_update_entry()</code></a> instead.</p>
 <p>This performs a non-resumable upload, unlike <a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document" title="gdata_documents_service_update_document ()"><code class="function">gdata_documents_service_update_document()</code></a>. This means that errors during transmission will cause the
 upload to fail, and the entire document will have to be re-uploaded. It is recommended that <a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document-resumable" title="gdata_documents_service_update_document_resumable ()"><code class="function">gdata_documents_service_update_document_resumable()</code></a>
 be used instead.</p>
-<p>The stream returned by this function should be written to using the standard <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> methods, asychronously or synchronously. Once the stream
-is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-close"><code class="function">g_output_stream_close()</code></a>), <a class="link" href="GDataDocumentsService.html#gdata-documents-service-finish-upload" title="gdata_documents_service_finish_upload ()"><code class="function">gdata_documents_service_finish_upload()</code></a> should be called on it to parse and return the updated
+<p>The stream returned by this function should be written to using the standard <span class="type">GOutputStream</span> methods, asychronously or synchronously. Once the stream
+is closed (using <code class="function">g_output_stream_close()</code>), <a class="link" href="GDataDocumentsService.html#gdata-documents-service-finish-upload" title="gdata_documents_service_finish_upload ()"><code class="function">gdata_documents_service_finish_upload()</code></a> should be called on it to parse and return the updated
 <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> for the document. This must be done, as <em class="parameter"><code>document</code></em>
  isn't updated in-place.</p>
-<p>In order to cancel the update, a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> passed in to <em class="parameter"><code>cancellable</code></em>
- must be cancelled using <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>. Cancelling the individual
-<a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire update; merely the write or close operation in question. See the
+<p>In order to cancel the update, a <span class="type">GCancellable</span> passed in to <em class="parameter"><code>cancellable</code></em>
+ must be cancelled using <code class="function">g_cancellable_cancel()</code>. Cancelling the individual
+<span class="type">GOutputStream</span> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire update; merely the write or close operation in question. See the
 <a class="link" href="GDataUploadStream.html#GDataUploadStream--cancellable" title="The “cancellable” property"><span class="type">“cancellable”</span></a> for more details.</p>
 <p>Any upload errors will be thrown by the stream methods, and may come from the <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> domain.</p>
 <p>For more information, see <a class="link" href="GDataService.html#gdata-service-update-entry" title="gdata_service_update_entry ()"><code class="function">gdata_service_update_entry()</code></a>.</p>
@@ -1132,12 +1295,12 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> for the entire upload stream, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GCancellable</span> for the entire upload stream, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1145,7 +1308,7 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-update-document.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the document data to; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the document data to; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -1157,24 +1320,24 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 gdata_documents_service_update_document_resumable
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> *document</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *slug</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *content_type</code></em>,
-                                <em class="parameter"><code><span class="type">goffset</span> content_length</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *slug</code></em>,
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *content_type</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#goffset"><span class="type">goffset</span></a> content_length</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Update the document using the properties from <em class="parameter"><code>document</code></em>
  and the document data written to the resulting <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a>. If the document data does
 not need to be changed, just the metadata, use <a class="link" href="GDataService.html#gdata-service-update-entry" title="gdata_service_update_entry ()"><code class="function">gdata_service_update_entry()</code></a> instead.</p>
 <p>Unlike <a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document" title="gdata_documents_service_update_document ()"><code class="function">gdata_documents_service_update_document()</code></a>, this method performs a</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/resumable_upload.html" target="_top">resumable upload</a> which allows for correction of
 <p>transmission errors without re-uploading the entire file. Use of this method is preferred over <a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document" title="gdata_documents_service_update_document ()"><code class="function">gdata_documents_service_update_document()</code></a>.</p>
-<p>The stream returned by this function should be written to using the standard <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> methods, asychronously or synchronously. Once the stream
-is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-close"><code class="function">g_output_stream_close()</code></a>), <a class="link" href="GDataDocumentsService.html#gdata-documents-service-finish-upload" title="gdata_documents_service_finish_upload ()"><code class="function">gdata_documents_service_finish_upload()</code></a> should be called on it to parse and return the updated
+<p>The stream returned by this function should be written to using the standard <span class="type">GOutputStream</span> methods, asychronously or synchronously. Once the stream
+is closed (using <code class="function">g_output_stream_close()</code>), <a class="link" href="GDataDocumentsService.html#gdata-documents-service-finish-upload" title="gdata_documents_service_finish_upload ()"><code class="function">gdata_documents_service_finish_upload()</code></a> should be called on it to parse and return the updated
 <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> for the document. This must be done, as <em class="parameter"><code>document</code></em>
  isn't updated in-place.</p>
-<p>In order to cancel the update, a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> passed in to <em class="parameter"><code>cancellable</code></em>
- must be cancelled using <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>. Cancelling the individual
-<a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct"><span class="type">GOutputStream</span></a> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire update; merely the write or close operation in question. See the
+<p>In order to cancel the update, a <span class="type">GCancellable</span> passed in to <em class="parameter"><code>cancellable</code></em>
+ must be cancelled using <code class="function">g_cancellable_cancel()</code>. Cancelling the individual
+<span class="type">GOutputStream</span> operations on the <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> will not cancel the entire update; merely the write or close operation in question. See the
 <a class="link" href="GDataUploadStream.html#GDataUploadStream--cancellable" title="The “cancellable” property"><span class="type">“cancellable”</span></a> for more details.</p>
 <p>Any upload errors will be thrown by the stream methods, and may come from the <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> domain.</p>
 <p>For more information, see <a class="link" href="GDataService.html#gdata-service-update-entry" title="gdata_service_update_entry ()"><code class="function">gdata_service_update_entry()</code></a>.</p>
@@ -1214,12 +1377,12 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> for the entire upload stream, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GCancellable</span> for the entire upload stream, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1227,7 +1390,7 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-update-document-resumable.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the document data to; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> to write the document data to; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix15.html#api-index-0.13.0">0.13.0</a></p>
@@ -1238,11 +1401,11 @@ is closed (using <a href="https://developer.gnome.org/gio/unstable/GOutputStream
 <pre class="programlisting"><a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="returnvalue">GDataDocumentsDocument</span></a> *
 gdata_documents_service_finish_upload (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataUploadStream.html" title="GDataUploadStream"><span class="type">GDataUploadStream</span></a> *upload_stream</code></em>,
-                                       <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                       <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Finish off a document upload or update operation started by <a class="link" href="GDataDocumentsService.html#gdata-documents-service-upload-document" title="gdata_documents_service_upload_document ()"><code class="function">gdata_documents_service_upload_document()</code></a> or <a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document" title="gdata_documents_service_update_document ()"><code class="function">gdata_documents_service_update_document()</code></a>,
 parsing the result and returning the new or updated <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>.</p>
-<p>If an error occurred during the upload or update operation, it will have been returned during the operation (e.g. by <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice"><code class="function">g_output_stream_splice()</code></a> or one
-of the other stream methods). In such a case, <code class="literal">NULL</code> will be returned but <em class="parameter"><code>error</code></em>
+<p>If an error occurred during the upload or update operation, it will have been returned during the operation (e.g. by <code class="function">g_output_stream_splice()</code> or one
+of the other stream methods). In such a case, <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> will be returned but <em class="parameter"><code>error</code></em>
  will remain unset. <em class="parameter"><code>error</code></em>
  is only set in the case that the server
 indicates that the operation was successful, but an error is encountered in parsing the result sent by the server.</p>
@@ -1271,7 +1434,7 @@ could not be mapped to a document type with which to interpret the response from
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1279,7 +1442,7 @@ could not be mapped to a document type with which to interpret the response from
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-finish-upload.returns"></a><h4>Returns</h4>
-<p> the new or updated <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>the new or updated <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -1290,8 +1453,8 @@ could not be mapped to a document type with which to interpret the response from
 <pre class="programlisting"><a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="returnvalue">GDataDocumentsDocument</span></a> *
 gdata_documents_service_copy_document (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                        <em class="parameter"><code><a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> *document</code></em>,
-                                       <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                       <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                       <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                       <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Copy the given <em class="parameter"><code>document</code></em>
 , producing a duplicate document in the same folder and returning its <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>.</p>
 <p>Errors from <a class="link" href="GDataService.html#GDataServiceError" title="enum GDataServiceError"><span class="type">GDataServiceError</span></a> can be returned for exceptional conditions, as determined by the server.</p>
@@ -1316,12 +1479,12 @@ gdata_documents_service_copy_document (<em class="parameter"><code><a class="lin
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1329,7 +1492,7 @@ gdata_documents_service_copy_document (<em class="parameter"><code><a class="lin
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-copy-document.returns"></a><h4>Returns</h4>
-<p> the duplicate <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>the duplicate <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix16.html#api-index-0.13.1">0.13.1</a></p>
@@ -1341,9 +1504,9 @@ gdata_documents_service_copy_document (<em class="parameter"><code><a class="lin
 gdata_documents_service_copy_document_async
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> *document</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Copy the given <em class="parameter"><code>document</code></em>
 , producing a duplicate document in the same folder and returning its <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>document</code></em>
@@ -1374,17 +1537,17 @@ of the operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the operation is finished, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the operation is finished, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -1399,8 +1562,8 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="returnvalue">GDataDocumentsDocument</span></a> *
 gdata_documents_service_copy_document_finish
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> *async_result</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GAsyncResult</span> *async_result</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Finish an asynchronous operation to copy a <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> started with <a class="link" href="GDataDocumentsService.html#gdata-documents-service-copy-document-async" title="gdata_documents_service_copy_document_async ()"><code class="function">gdata_documents_service_copy_document_async()</code></a>.</p>
 <div class="refsect3">
 <a name="gdata-documents-service-copy-document-finish.parameters"></a><h4>Parameters</h4>
@@ -1418,12 +1581,12 @@ gdata_documents_service_copy_document_finish
 </tr>
 <tr>
 <td class="parameter_name"><p>async_result</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncResult</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1431,7 +1594,7 @@ gdata_documents_service_copy_document_finish
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-copy-document-finish.returns"></a><h4>Returns</h4>
-<p> the duplicate <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>the duplicate <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix16.html#api-index-0.13.1">0.13.1</a></p>
@@ -1444,8 +1607,8 @@ gdata_documents_service_add_entry_to_folder
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *entry</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Add the given <em class="parameter"><code>entry</code></em>
  to the specified <em class="parameter"><code>folder</code></em>
 , and return an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> for <em class="parameter"><code>entry</code></em>
@@ -1483,12 +1646,12 @@ into</p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1496,7 +1659,7 @@ into</p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-add-entry-to-folder.returns"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -1509,9 +1672,9 @@ gdata_documents_service_add_entry_to_folder_async
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *entry</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Add the given <em class="parameter"><code>entry</code></em>
  to the specified <em class="parameter"><code>folder</code></em>
 . <em class="parameter"><code>self</code></em>
@@ -1551,17 +1714,17 @@ to</p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the operation is finished, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the operation is finished, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -1576,8 +1739,8 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> *
 gdata_documents_service_add_entry_to_folder_finish
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> *async_result</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GAsyncResult</span> *async_result</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Finish an asynchronous operation to add a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> to a folder started with <a class="link" href="GDataDocumentsService.html#gdata-documents-service-add-entry-to-folder-async" title="gdata_documents_service_add_entry_to_folder_async ()"><code class="function">gdata_documents_service_add_entry_to_folder_async()</code></a>.</p>
 <div class="refsect3">
 <a name="gdata-documents-service-add-entry-to-folder-finish.parameters"></a><h4>Parameters</h4>
@@ -1595,12 +1758,12 @@ gdata_documents_service_add_entry_to_folder_finish
 </tr>
 <tr>
 <td class="parameter_name"><p>async_result</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncResult</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1608,7 +1771,7 @@ gdata_documents_service_add_entry_to_folder_finish
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-add-entry-to-folder-finish.returns"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -1621,8 +1784,8 @@ gdata_documents_service_remove_entry_from_folder
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *entry</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Remove the given <em class="parameter"><code>entry</code></em>
  from <em class="parameter"><code>folder</code></em>
 , and return an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> for <em class="parameter"><code>entry</code></em>
@@ -1658,12 +1821,12 @@ currently in. Note that <em class="parameter"><code>entry</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1671,7 +1834,7 @@ currently in. Note that <em class="parameter"><code>entry</code></em>
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-remove-entry-from-folder.returns"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -1684,9 +1847,9 @@ gdata_documents_service_remove_entry_from_folder_async
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> *entry</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Remove the given <em class="parameter"><code>entry</code></em>
  from the specified <em class="parameter"><code>folder</code></em>
 . <em class="parameter"><code>self</code></em>
@@ -1726,17 +1889,17 @@ from</p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the operation is finished, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the operation is finished, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -1751,8 +1914,8 @@ function. </p></td>
 <pre class="programlisting"><a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="returnvalue">GDataDocumentsEntry</span></a> *
 gdata_documents_service_remove_entry_from_folder_finish
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsService.html" title="GDataDocumentsService"><span class="type">GDataDocumentsService</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> *async_result</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GAsyncResult</span> *async_result</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Finish an asynchronous operation to remove a <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a> from a folder started with
 <a class="link" href="GDataDocumentsService.html#gdata-documents-service-remove-entry-from-folder-async" title="gdata_documents_service_remove_entry_from_folder_async ()"><code class="function">gdata_documents_service_remove_entry_from_folder_async()</code></a>.</p>
 <div class="refsect3">
@@ -1771,12 +1934,12 @@ gdata_documents_service_remove_entry_from_folder_finish
 </tr>
 <tr>
 <td class="parameter_name"><p>async_result</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncResult</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1784,7 +1947,7 @@ gdata_documents_service_remove_entry_from_folder_finish
 </div>
 <div class="refsect3">
 <a name="gdata-documents-service-remove-entry-from-folder-finish.returns"></a><h4>Returns</h4>
-<p> an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>an updated <a class="link" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry"><span class="type">GDataDocumentsEntry</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix10.html#api-index-0.8.0">0.8.0</a></p>
@@ -1792,12 +1955,12 @@ gdata_documents_service_remove_entry_from_folder_finish
 <hr>
 <div class="refsect2">
 <a name="gdata-documents-service-get-upload-uri"></a><h3>gdata_documents_service_get_upload_uri ()</h3>
-<pre class="programlisting"><span class="returnvalue">gchar</span> *
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_documents_service_get_upload_uri
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *folder</code></em>);</pre>
 <p>Gets the upload URI for documents for the service.</p>
 <p>If <em class="parameter"><code>folder</code></em>
- is <code class="literal">NULL</code>, the URI will be the one to upload documents to the "root" folder.</p>
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the URI will be the one to upload documents to the "root" folder.</p>
 <div class="refsect3">
 <a name="gdata-documents-service-get-upload-uri.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1808,7 +1971,7 @@ gdata_documents_service_get_upload_uri
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>folder</p></td>
-<td class="parameter_description"><p> the <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> into which to upload the document, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> into which to upload the document, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
@@ -1816,7 +1979,7 @@ gdata_documents_service_get_upload_uri
 <div class="refsect3">
 <a name="gdata-documents-service-get-upload-uri.returns"></a><h4>Returns</h4>
 <p> the URI permitting the upload of documents to <em class="parameter"><code>folder</code></em>
-, or <code class="literal">NULL</code>; free with <code class="function">g_free()</code></p>
+, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; free with <a href="../glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix07.html#api-index-0.5.0">0.5.0</a></p>
 </div>
@@ -1864,6 +2027,6 @@ gdata_documents_service_get_upload_uri
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

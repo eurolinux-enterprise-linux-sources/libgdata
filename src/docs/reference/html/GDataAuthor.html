@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataAuthor: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch07.html" title="Atom API">
 <link rel="prev" href="ch07.html" title="Atom API">
 <link rel="next" href="GDataCategory.html" title="GDataCategory">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -61,7 +61,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataAuthor.html#gdata-author-get-name" title="gdata_author_get_name ()">gdata_author_get_name</a> <span class="c_punctuation">()</span>
@@ -76,7 +76,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataAuthor.html#gdata-author-get-uri" title="gdata_author_get_uri ()">gdata_author_get_uri</a> <span class="c_punctuation">()</span>
@@ -91,7 +91,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataAuthor.html#gdata-author-get-email-address" title="gdata_author_get_email_address ()">gdata_author_get_email_address</a> <span class="c_punctuation">()</span>
@@ -119,19 +119,19 @@ justifications.
 <tbody>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataAuthor.html#GDataAuthor--email-address" title="The “email-address” property">email-address</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataAuthor.html#GDataAuthor--name" title="The “name” property">name</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataAuthor.html#GDataAuthor--uri" title="The “uri” property">uri</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -159,7 +159,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataAuthor.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
         <span class="lineart">╰──</span> GDataAuthor
 </pre>
@@ -186,12 +186,12 @@ GDataAuthor implements
 <div class="refsect2">
 <a name="gdata-author-new"></a><h3>gdata_author_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="returnvalue">GDataAuthor</span></a> *
-gdata_author_new (<em class="parameter"><code>const <span class="type">gchar</span> *name</code></em>,
-                  <em class="parameter"><code>const <span class="type">gchar</span> *uri</code></em>,
-                  <em class="parameter"><code>const <span class="type">gchar</span> *email_address</code></em>);</pre>
+gdata_author_new (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>,
+                  <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *uri</code></em>,
+                  <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a>. More information is available in the <a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.author" target="_top">Atom specification</a>.</p>
 <p><em class="parameter"><code>name</code></em>
- must be non-<code class="literal">NULL</code> and non-empty.</p>
+ must be non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and non-empty.</p>
 <div class="refsect3">
 <a name="gdata-author-new.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -208,12 +208,12 @@ gdata_author_new (<em class="parameter"><code>const <span class="type">gchar</sp
 </tr>
 <tr>
 <td class="parameter_name"><p>uri</p></td>
-<td class="parameter_description"><p> an IRI describing the author, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>an IRI describing the author, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>email_address</p></td>
-<td class="parameter_description"><p> the author's e-mail address, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the author's e-mail address, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -221,15 +221,15 @@ gdata_author_new (<em class="parameter"><code>const <span class="type">gchar</sp
 </div>
 <div class="refsect3">
 <a name="gdata-author-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<p> a new <a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-author-get-name"></a><h3>gdata_author_get_name ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_author_get_name (<em class="parameter"><code><a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a> *self</code></em>);</pre>
-<p>Gets the <a class="link" href="GDataAuthor.html#GDataAuthor--name" title="The “name” property"><span class="type">“name”</span></a> property. The name will always be a non-<code class="literal">NULL</code>, non-empty string.</p>
+<p>Gets the <a class="link" href="GDataAuthor.html#GDataAuthor--name" title="The “name” property"><span class="type">“name”</span></a> property. The name will always be a non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, non-empty string.</p>
 <div class="refsect3">
 <a name="gdata-author-get-name.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -256,10 +256,10 @@ gdata_author_get_name (<em class="parameter"><code><a class="link" href="GDataAu
 <a name="gdata-author-set-name"></a><h3>gdata_author_set_name ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_author_set_name (<em class="parameter"><code><a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a> *self</code></em>,
-                       <em class="parameter"><code>const <span class="type">gchar</span> *name</code></em>);</pre>
+                       <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataAuthor.html#GDataAuthor--name" title="The “name” property"><span class="type">“name”</span></a> property to <em class="parameter"><code>name</code></em>
 . <em class="parameter"><code>name</code></em>
- must be non-<code class="literal">NULL</code> and non-empty.</p>
+ must be non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and non-empty.</p>
 <div class="refsect3">
 <a name="gdata-author-set-name.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -287,9 +287,9 @@ gdata_author_set_name (<em class="parameter"><code><a class="link" href="GDataAu
 <hr>
 <div class="refsect2">
 <a name="gdata-author-get-uri"></a><h3>gdata_author_get_uri ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_author_get_uri (<em class="parameter"><code><a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a> *self</code></em>);</pre>
-<p>Gets the <a class="link" href="GDataAuthor.html#GDataAuthor--uri" title="The “uri” property"><span class="type">“uri”</span></a> property. If the URI is non-<code class="literal">NULL</code>, it will be non-empty.</p>
+<p>Gets the <a class="link" href="GDataAuthor.html#GDataAuthor--uri" title="The “uri” property"><span class="type">“uri”</span></a> property. If the URI is non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, it will be non-empty.</p>
 <div class="refsect3">
 <a name="gdata-author-get-uri.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -307,7 +307,7 @@ gdata_author_get_uri (<em class="parameter"><code><a class="link" href="GDataAut
 </div>
 <div class="refsect3">
 <a name="gdata-author-get-uri.returns"></a><h4>Returns</h4>
-<p> the author's URI, or <code class="literal">NULL</code></p>
+<p> the author's URI, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
@@ -316,12 +316,12 @@ gdata_author_get_uri (<em class="parameter"><code><a class="link" href="GDataAut
 <a name="gdata-author-set-uri"></a><h3>gdata_author_set_uri ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_author_set_uri (<em class="parameter"><code><a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a> *self</code></em>,
-                      <em class="parameter"><code>const <span class="type">gchar</span> *uri</code></em>);</pre>
+                      <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *uri</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataAuthor.html#GDataAuthor--uri" title="The “uri” property"><span class="type">“uri”</span></a> property to <em class="parameter"><code>uri</code></em>
 . <em class="parameter"><code>uri</code></em>
- must be <code class="literal">NULL</code> or non-empty.</p>
+ must be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> or non-empty.</p>
 <p>Set <em class="parameter"><code>uri</code></em>
- to <code class="literal">NULL</code> to unset the property in the author.</p>
+ to <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the author.</p>
 <div class="refsect3">
 <a name="gdata-author-set-uri.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -338,7 +338,7 @@ gdata_author_set_uri (<em class="parameter"><code><a class="link" href="GDataAut
 </tr>
 <tr>
 <td class="parameter_name"><p>uri</p></td>
-<td class="parameter_description"><p> the new URI for the author, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the new URI for the author, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -349,9 +349,9 @@ gdata_author_set_uri (<em class="parameter"><code><a class="link" href="GDataAut
 <hr>
 <div class="refsect2">
 <a name="gdata-author-get-email-address"></a><h3>gdata_author_get_email_address ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_author_get_email_address (<em class="parameter"><code><a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a> *self</code></em>);</pre>
-<p>Gets the <a class="link" href="GDataAuthor.html#GDataAuthor--email-address" title="The “email-address” property"><span class="type">“email-address”</span></a> property. If the e-mail address is non-<code class="literal">NULL</code>, it will be non-empty.</p>
+<p>Gets the <a class="link" href="GDataAuthor.html#GDataAuthor--email-address" title="The “email-address” property"><span class="type">“email-address”</span></a> property. If the e-mail address is non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, it will be non-empty.</p>
 <div class="refsect3">
 <a name="gdata-author-get-email-address.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -369,7 +369,7 @@ gdata_author_get_email_address (<em class="parameter"><code><a class="link" href
 </div>
 <div class="refsect3">
 <a name="gdata-author-get-email-address.returns"></a><h4>Returns</h4>
-<p> the author's e-mail address, or <code class="literal">NULL</code></p>
+<p> the author's e-mail address, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
@@ -378,12 +378,12 @@ gdata_author_get_email_address (<em class="parameter"><code><a class="link" href
 <a name="gdata-author-set-email-address"></a><h3>gdata_author_set_email_address ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_author_set_email_address (<em class="parameter"><code><a class="link" href="GDataAuthor.html" title="GDataAuthor"><span class="type">GDataAuthor</span></a> *self</code></em>,
-                                <em class="parameter"><code>const <span class="type">gchar</span> *email_address</code></em>);</pre>
+                                <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *email_address</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataAuthor.html#GDataAuthor--email-address" title="The “email-address” property"><span class="type">“email-address”</span></a> property to <em class="parameter"><code>email_address</code></em>
 . <em class="parameter"><code>email_address</code></em>
- must be <code class="literal">NULL</code> or non-empty.</p>
+ must be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> or non-empty.</p>
 <p>Set <em class="parameter"><code>email_address</code></em>
- to <code class="literal">NULL</code> to unset the property in the author.</p>
+ to <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the author.</p>
 <div class="refsect3">
 <a name="gdata-author-set-email-address.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -400,7 +400,7 @@ gdata_author_set_email_address (<em class="parameter"><code><a class="link" href
 </tr>
 <tr>
 <td class="parameter_name"><p>email_address</p></td>
-<td class="parameter_description"><p> the new e-mail address for the author, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the new e-mail address for the author, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -430,7 +430,7 @@ gdata_author_set_email_address (<em class="parameter"><code><a class="link" href
 <a name="GDataAuthor.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataAuthor--email-address"></a><h3>The <code class="literal">“email-address”</code> property</h3>
-<pre class="programlisting">  “email-address”            <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “email-address”            <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>An e-mail address associated with the person.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.author" target="_top">Atom specification</a>.
@@ -441,7 +441,7 @@ gdata_author_set_email_address (<em class="parameter"><code><a class="link" href
 <hr>
 <div class="refsect2">
 <a name="GDataAuthor--name"></a><h3>The <code class="literal">“name”</code> property</h3>
-<pre class="programlisting">  “name”                     <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “name”                     <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>A human-readable name for the person.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.author" target="_top">Atom specification</a>.
@@ -452,7 +452,7 @@ gdata_author_set_email_address (<em class="parameter"><code><a class="link" href
 <hr>
 <div class="refsect2">
 <a name="GDataAuthor--uri"></a><h3>The <code class="literal">“uri”</code> property</h3>
-<pre class="programlisting">  “uri”                      <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “uri”                      <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>An IRI associated with the person.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.author" target="_top">Atom specification</a>.
@@ -463,6 +463,6 @@ gdata_author_set_email_address (<em class="parameter"><code><a class="link" href
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

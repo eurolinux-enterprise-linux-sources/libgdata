@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataCategory: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch07.html" title="Atom API">
 <link rel="prev" href="GDataAuthor.html" title="GDataAuthor">
 <link rel="next" href="GDataGenerator.html" title="GDataGenerator">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -61,7 +61,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataCategory.html#gdata-category-get-term" title="gdata_category_get_term ()">gdata_category_get_term</a> <span class="c_punctuation">()</span>
@@ -76,7 +76,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataCategory.html#gdata-category-get-scheme" title="gdata_category_get_scheme ()">gdata_category_get_scheme</a> <span class="c_punctuation">()</span>
@@ -91,7 +91,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataCategory.html#gdata-category-get-label" title="gdata_category_get_label ()">gdata_category_get_label</a> <span class="c_punctuation">()</span>
@@ -119,19 +119,19 @@ justifications.
 <tbody>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataCategory.html#GDataCategory--label" title="The “label” property">label</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataCategory.html#GDataCategory--scheme" title="The “scheme” property">scheme</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataCategory.html#GDataCategory--term" title="The “term” property">term</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -175,7 +175,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataCategory.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
         <span class="lineart">╰──</span> GDataCategory
             <span class="lineart">╰──</span> <a class="link" href="GDataYouTubeCategory.html" title="GDataYouTubeCategory">GDataYouTubeCategory</a>
@@ -203,13 +203,13 @@ GDataCategory implements
 <div class="refsect2">
 <a name="gdata-category-new"></a><h3>gdata_category_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataCategory.html" title="GDataCategory"><span class="returnvalue">GDataCategory</span></a> *
-gdata_category_new (<em class="parameter"><code>const <span class="type">gchar</span> *term</code></em>,
-                    <em class="parameter"><code>const <span class="type">gchar</span> *scheme</code></em>,
-                    <em class="parameter"><code>const <span class="type">gchar</span> *label</code></em>);</pre>
+gdata_category_new (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *term</code></em>,
+                    <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *scheme</code></em>,
+                    <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *label</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataCategory.html" title="GDataCategory"><span class="type">GDataCategory</span></a>. More information is available in the <a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.category" target="_top">Atom specification</a>.</p>
 <p><em class="parameter"><code>term</code></em>
- must be non-<code class="literal">NULL</code> and non-empty. <em class="parameter"><code>scheme</code></em>
- must be <code class="literal">NULL</code> or non-empty.</p>
+ must be non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and non-empty. <em class="parameter"><code>scheme</code></em>
+ must be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> or non-empty.</p>
 <div class="refsect3">
 <a name="gdata-category-new.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -226,12 +226,12 @@ gdata_category_new (<em class="parameter"><code>const <span class="type">gchar</
 </tr>
 <tr>
 <td class="parameter_name"><p>scheme</p></td>
-<td class="parameter_description"><p> an IRI to define the categorisation scheme, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>an IRI to define the categorisation scheme, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>label</p></td>
-<td class="parameter_description"><p> a human-readable label for the category, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a human-readable label for the category, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -239,15 +239,15 @@ gdata_category_new (<em class="parameter"><code>const <span class="type">gchar</
 </div>
 <div class="refsect3">
 <a name="gdata-category-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataCategory.html" title="GDataCategory"><span class="type">GDataCategory</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<p> a new <a class="link" href="GDataCategory.html" title="GDataCategory"><span class="type">GDataCategory</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-category-get-term"></a><h3>gdata_category_get_term ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_category_get_term (<em class="parameter"><code><a class="link" href="GDataCategory.html" title="GDataCategory"><span class="type">GDataCategory</span></a> *self</code></em>);</pre>
-<p>Gets the <a class="link" href="GDataCategory.html#GDataCategory--term" title="The “term” property"><span class="type">“term”</span></a> property. The term will always be a non-<code class="literal">NULL</code>, non-empty string.</p>
+<p>Gets the <a class="link" href="GDataCategory.html#GDataCategory--term" title="The “term” property"><span class="type">“term”</span></a> property. The term will always be a non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, non-empty string.</p>
 <div class="refsect3">
 <a name="gdata-category-get-term.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -274,10 +274,10 @@ gdata_category_get_term (<em class="parameter"><code><a class="link" href="GData
 <a name="gdata-category-set-term"></a><h3>gdata_category_set_term ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_category_set_term (<em class="parameter"><code><a class="link" href="GDataCategory.html" title="GDataCategory"><span class="type">GDataCategory</span></a> *self</code></em>,
-                         <em class="parameter"><code>const <span class="type">gchar</span> *term</code></em>);</pre>
+                         <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *term</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataCategory.html#GDataCategory--term" title="The “term” property"><span class="type">“term”</span></a> property to <em class="parameter"><code>term</code></em>
 . <em class="parameter"><code>term</code></em>
- must be non-<code class="literal">NULL</code> and non-empty.</p>
+ must be non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and non-empty.</p>
 <div class="refsect3">
 <a name="gdata-category-set-term.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -305,9 +305,9 @@ gdata_category_set_term (<em class="parameter"><code><a class="link" href="GData
 <hr>
 <div class="refsect2">
 <a name="gdata-category-get-scheme"></a><h3>gdata_category_get_scheme ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_category_get_scheme (<em class="parameter"><code><a class="link" href="GDataCategory.html" title="GDataCategory"><span class="type">GDataCategory</span></a> *self</code></em>);</pre>
-<p>Gets the <a class="link" href="GDataCategory.html#GDataCategory--scheme" title="The “scheme” property"><span class="type">“scheme”</span></a> property. If the scheme is non-<code class="literal">NULL</code>, it will be non-empty.</p>
+<p>Gets the <a class="link" href="GDataCategory.html#GDataCategory--scheme" title="The “scheme” property"><span class="type">“scheme”</span></a> property. If the scheme is non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, it will be non-empty.</p>
 <div class="refsect3">
 <a name="gdata-category-get-scheme.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -325,7 +325,7 @@ gdata_category_get_scheme (<em class="parameter"><code><a class="link" href="GDa
 </div>
 <div class="refsect3">
 <a name="gdata-category-get-scheme.returns"></a><h4>Returns</h4>
-<p> the category's scheme, or <code class="literal">NULL</code></p>
+<p> the category's scheme, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
@@ -334,12 +334,12 @@ gdata_category_get_scheme (<em class="parameter"><code><a class="link" href="GDa
 <a name="gdata-category-set-scheme"></a><h3>gdata_category_set_scheme ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_category_set_scheme (<em class="parameter"><code><a class="link" href="GDataCategory.html" title="GDataCategory"><span class="type">GDataCategory</span></a> *self</code></em>,
-                           <em class="parameter"><code>const <span class="type">gchar</span> *scheme</code></em>);</pre>
+                           <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *scheme</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataCategory.html#GDataCategory--scheme" title="The “scheme” property"><span class="type">“scheme”</span></a> property to <em class="parameter"><code>scheme</code></em>
 . <em class="parameter"><code>scheme</code></em>
- must be <code class="literal">NULL</code> or non-empty.</p>
+ must be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> or non-empty.</p>
 <p>Set <em class="parameter"><code>scheme</code></em>
- to <code class="literal">NULL</code> to unset the property in the category.</p>
+ to <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the category.</p>
 <div class="refsect3">
 <a name="gdata-category-set-scheme.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -356,7 +356,7 @@ gdata_category_set_scheme (<em class="parameter"><code><a class="link" href="GDa
 </tr>
 <tr>
 <td class="parameter_name"><p>scheme</p></td>
-<td class="parameter_description"><p> the new scheme for the category, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the new scheme for the category, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -367,7 +367,7 @@ gdata_category_set_scheme (<em class="parameter"><code><a class="link" href="GDa
 <hr>
 <div class="refsect2">
 <a name="gdata-category-get-label"></a><h3>gdata_category_get_label ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_category_get_label (<em class="parameter"><code><a class="link" href="GDataCategory.html" title="GDataCategory"><span class="type">GDataCategory</span></a> *self</code></em>);</pre>
 <p>Gets the <a class="link" href="GDataCategory.html#GDataCategory--label" title="The “label” property"><span class="type">“label”</span></a> property.</p>
 <div class="refsect3">
@@ -387,7 +387,7 @@ gdata_category_get_label (<em class="parameter"><code><a class="link" href="GDat
 </div>
 <div class="refsect3">
 <a name="gdata-category-get-label.returns"></a><h4>Returns</h4>
-<p> the category's label, or <code class="literal">NULL</code></p>
+<p> the category's label, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
@@ -396,11 +396,11 @@ gdata_category_get_label (<em class="parameter"><code><a class="link" href="GDat
 <a name="gdata-category-set-label"></a><h3>gdata_category_set_label ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_category_set_label (<em class="parameter"><code><a class="link" href="GDataCategory.html" title="GDataCategory"><span class="type">GDataCategory</span></a> *self</code></em>,
-                          <em class="parameter"><code>const <span class="type">gchar</span> *label</code></em>);</pre>
+                          <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *label</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataCategory.html#GDataCategory--label" title="The “label” property"><span class="type">“label”</span></a> property to <em class="parameter"><code>label</code></em>
 .</p>
 <p>Set <em class="parameter"><code>label</code></em>
- to <code class="literal">NULL</code> to unset the property in the category.</p>
+ to <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property in the category.</p>
 <div class="refsect3">
 <a name="gdata-category-set-label.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -417,7 +417,7 @@ gdata_category_set_label (<em class="parameter"><code><a class="link" href="GDat
 </tr>
 <tr>
 <td class="parameter_name"><p>label</p></td>
-<td class="parameter_description"><p> the new label for the category, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the new label for the category, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -483,7 +483,7 @@ service-specific, but are obvious for services such as Google Documents.</p>
 <a name="GDataCategory.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataCategory--label"></a><h3>The <code class="literal">“label”</code> property</h3>
-<pre class="programlisting">  “label”                    <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “label”                    <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>A human-readable label for display in end-user applications.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.category" target="_top">
@@ -495,7 +495,7 @@ Atom specification</a>.
 <hr>
 <div class="refsect2">
 <a name="GDataCategory--scheme"></a><h3>The <code class="literal">“scheme”</code> property</h3>
-<pre class="programlisting">  “scheme”                   <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “scheme”                   <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>An IRI that identifies a categorization scheme.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.category" target="_top">
@@ -507,7 +507,7 @@ Atom specification</a>.
 <hr>
 <div class="refsect2">
 <a name="GDataCategory--term"></a><h3>The <code class="literal">“term”</code> property</h3>
-<pre class="programlisting">  “term”                     <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “term”                     <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>Identifies the category to which the entry or feed belongs.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.category" target="_top">
@@ -519,6 +519,6 @@ Atom specification</a>.
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

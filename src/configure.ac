@@ -3,7 +3,7 @@ AC_PREREQ(2.65)
 # Release version
 m4_define(gdata_version_major, 0)
 m4_define(gdata_version_minor, 17)
-m4_define(gdata_version_micro, 8)
+m4_define(gdata_version_micro, 9)
 
 # API version
 # TODO: This currently isn't used in the library name; once we hit gdata_version_major=1, that should be changed
@@ -35,10 +35,10 @@ AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal])
 AC_PATH_PROG([GLIB_MKENUMS],[glib-mkenums])
 
 # Requirements
-GLIB_REQS=2.38.0
-GLIB_MIN_REQUIRED=GLIB_VERSION_2_38
-GLIB_MAX_ALLOWED='(G_ENCODE_VERSION(2, 38))'
-GIO_REQS=2.17.3
+GLIB_REQS=2.44.0
+GLIB_MIN_REQUIRED=GLIB_VERSION_2_44
+GLIB_MAX_ALLOWED='(G_ENCODE_VERSION(2, 44))'
+GIO_REQS=2.44.0
 SOUP_REQS=2.42.0
 SOUP_MIN_REQUIRED=SOUP_VERSION_2_42
 SOUP_MAX_ALLOWED=SOUP_VERSION_2_48
@@ -60,7 +60,7 @@ GDK_PIXBUF_MAX_ALLOWED=GDK_VERSION_2_14
 #  4. If any interfaces have been removed or changed since the last public release, then set age to 0.
 #
 # Note that versioning started at 2:0:0 to ensure no conflicts with e-d-s' libgdata library, whose maximum version was 1:0:0
-GDATA_LT_VERSION=24:1:2
+GDATA_LT_VERSION=25:0:3
 AC_SUBST(GDATA_LT_VERSION)
 
 GDATA_VERSION_MAJOR=gdata_version_major

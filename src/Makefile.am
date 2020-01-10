@@ -5,6 +5,10 @@ ACLOCAL_AMFLAGS = --install -I m4 ${ACLOCAL_FLAGS}
 DISTCHECK_CONFIGURE_FLAGS =
 MAINTAINERCLEANFILES =
 
+CLEANFILES =
+EXTRA_DIST =
+BUILT_SOURCES =
+
 # Marshalling
 GDATA_MARSHAL_FILES = \
 	gdata/gdata-marshal.c	\
@@ -15,8 +19,8 @@ gdata/gdata-marshal.h: $(top_srcdir)/gdata/gdata-marshal.list
 gdata/gdata-marshal.c: $(top_srcdir)/gdata/gdata-marshal.list gdata/gdata-marshal.h
 	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=gdata_marshal --header --body $< > $@
 
-EXTRA_DIST = $(top_srcdir)/gdata/gdata-marshal.list
-CLEANFILES = $(GDATA_MARSHAL_FILES)
+EXTRA_DIST += $(top_srcdir)/gdata/gdata-marshal.list
+CLEANFILES += $(GDATA_MARSHAL_FILES)
 
 # Enums
 GDATA_ENUM_FILES = \
@@ -166,6 +170,7 @@ gdata/services/youtube/gdata-youtube-enums.c: $(gdata_youtube_headers) Makefile 
 	&& sed "s/g_data_you_tube/gdata_youtube/" gdata/services/youtube/gdata-youtube-enums.c.tmp > gdata/services/youtube/gdata-youtube-enums.c \
 	&& rm -f gdata/services/youtube/gdata-youtube-enums.c.tmp)
 
+BUILT_SOURCES += $(GDATA_ENUM_FILES)
 CLEANFILES += $(GDATA_ENUM_FILES)
 
 # libgdata library
@@ -282,6 +287,7 @@ gdatacontactsinclude_HEADERS = \
 gdatadocumentsincludedir = $(gdataincludedir)/services/documents
 gdata_documents_headers = \
 	gdata/services/documents/gdata-documents-service.h	\
+	gdata/services/documents/gdata-documents-metadata.h	\
 	gdata/services/documents/gdata-documents-feed.h		\
 	gdata/services/documents/gdata-documents-entry.h	\
 	gdata/services/documents/gdata-documents-query.h	\
@@ -422,6 +428,7 @@ gdata_sources = \
 	gdata/services/contacts/gdata-contacts-query.c		\
 	\
 	gdata/services/documents/gdata-documents-service.c	\
+	gdata/services/documents/gdata-documents-metadata.c	\
 	gdata/services/documents/gdata-documents-feed.c		\
 	gdata/services/documents/gdata-documents-entry.c	\
 	gdata/services/documents/gdata-documents-document.c	\

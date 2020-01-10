@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataFreebaseQuery: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch19.html" title="Google Freebase API">
 <link rel="prev" href="GDataFreebaseService.html" title="GDataFreebaseService">
 <link rel="next" href="GDataFreebaseResult.html" title="GDataFreebaseResult">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -80,7 +80,7 @@ justifications.
 </colgroup>
 <tbody><tr>
 <td class="property_type">
-<span class="type">GVariant</span> *</td>
+<a href="../glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataFreebaseQuery.html#GDataFreebaseQuery--variant" title="The “variant” property">variant</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr></tbody>
@@ -107,7 +107,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataFreebaseQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataQuery.html" title="GDataQuery">GDataQuery</a>
         <span class="lineart">╰──</span> GDataFreebaseQuery
 </pre>
@@ -129,7 +129,7 @@ online documentation</a>.</p>
 <div class="refsect2">
 <a name="gdata-freebase-query-new"></a><h3>gdata_freebase_query_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="returnvalue">GDataFreebaseQuery</span></a> *
-gdata_freebase_query_new (<em class="parameter"><code>const <span class="type">gchar</span> *mql</code></em>);</pre>
+gdata_freebase_query_new (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *mql</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gdata_freebase_query_new</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
 <p>Google Freebase has been permanently shut down.</p>
@@ -159,7 +159,7 @@ section</a> on the main site allows for natural search and navigation through th
 </div>
 <div class="refsect3">
 <a name="gdata-freebase-query-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a>. </p>
+<p>a new <a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
@@ -168,7 +168,7 @@ section</a> on the main site allows for natural search and navigation through th
 <div class="refsect2">
 <a name="gdata-freebase-query-new-from-variant"></a><h3>gdata_freebase_query_new_from_variant ()</h3>
 <pre class="programlisting"><a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="returnvalue">GDataFreebaseQuery</span></a> *
-gdata_freebase_query_new_from_variant (<em class="parameter"><code><span class="type">GVariant</span> *variant</code></em>);</pre>
+gdata_freebase_query_new_from_variant (<em class="parameter"><code><a href="../glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *variant</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gdata_freebase_query_new_from_variant</code> has been deprecated since version 0.17.7 and should not be used in newly-written code.</p>
 <p>Google Freebase has been permanently shut down.</p>
@@ -176,7 +176,7 @@ gdata_freebase_query_new_from_variant (<em class="parameter"><code><span class="
 <p>Creates a new <a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a> with the MQL query provided in a serialized form as <em class="parameter"><code>variant</code></em>
 
 of type "a{smv}" containing the JSON data tree of a MQL query. One convenient way
-to build the variant is using <a href="/opt/gnome/install/share/gtk-doc/html/json-glib/json-glib-JSON-GVariant-Integration.html#json-gvariant-serialize"><code class="function">json_gvariant_serialize()</code></a> from a <a href="/opt/gnome/install/share/gtk-doc/html/json-glib/json-glib-JSON-Node.html#JsonNode-struct"><span class="type">JsonNode</span></a>. For more information
+to build the variant is using <code class="function">json_gvariant_serialize()</code> from a <span class="type">JsonNode</span>. For more information
 about MQL, see <a class="link" href="GDataFreebaseQuery.html#gdata-freebase-query-new" title="gdata_freebase_query_new ()"><code class="function">gdata_freebase_query_new()</code></a>.</p>
 <p><a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a> takes ownership on <em class="parameter"><code>variant</code></em>
 , if it has a floating reference, it will be sunk.
@@ -198,7 +198,7 @@ Otherwise an extra reference will be added.</p>
 </div>
 <div class="refsect3">
 <a name="gdata-freebase-query-new-from-variant.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a>. </p>
+<p>a new <a class="link" href="GDataFreebaseQuery.html" title="GDataFreebaseQuery"><span class="type">GDataFreebaseQuery</span></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix20.html#api-index-0.15.1">0.15.1</a></p>
@@ -228,7 +228,7 @@ Otherwise an extra reference will be added.</p>
 <a name="GDataFreebaseQuery.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataFreebaseQuery--variant"></a><h3>The <code class="literal">“variant”</code> property</h3>
-<pre class="programlisting">  “variant”                  <span class="type">GVariant</span> *</pre>
+<pre class="programlisting">  “variant”                  <a href="../glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *</pre>
 <p>Variant containing the MQL query. The variant is a very generic container of type "a{smv}",
 containing (possibly nested) Freebase schema types and values.</p>
 <div class="warning">
@@ -243,6 +243,6 @@ containing (possibly nested) Freebase schema types and values.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataComparable: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch02.html" title="Core API">
 <link rel="prev" href="GDataUploadStream.html" title="GDataUploadStream">
 <link rel="next" href="ch03.html" title="Access Control List API">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -52,7 +52,7 @@ justifications.
 </colgroup>
 <tbody><tr>
 <td class="function_type">
-<span class="returnvalue">gint</span>
+<a href="../glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GDataComparable.html#gdata-comparable-compare" title="gdata_comparable_compare ()">gdata_comparable_compare</a> <span class="c_punctuation">()</span>
@@ -81,7 +81,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataComparable.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/GTypeModule.html">GInterface</a>
+<pre class="screen">    <a href="/opt/gnome/install/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
     <span class="lineart">╰──</span> GDataComparable
 </pre>
 </div>
@@ -109,7 +109,7 @@ derived type.</p>
 <a name="GDataComparable.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="gdata-comparable-compare"></a><h3>gdata_comparable_compare ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
 gdata_comparable_compare (<em class="parameter"><code><a class="link" href="GDataComparable.html" title="GDataComparable"><span class="type">GDataComparable</span></a> *self</code></em>,
                           <em class="parameter"><code><a class="link" href="GDataComparable.html" title="GDataComparable"><span class="type">GDataComparable</span></a> *other</code></em>);</pre>
 <p>Compares the two objects, returning <code class="code">-1</code> if <em class="parameter"><code>self</code></em>
@@ -118,10 +118,10 @@ gdata_comparable_compare (<em class="parameter"><code><a class="link" href="GDat
 if they're equal, or <code class="code">1</code> if <em class="parameter"><code>self</code></em>
  is "greater than" <em class="parameter"><code>other</code></em>
 .</p>
-<p><code class="literal">NULL</code> values are handled gracefully, with <code class="code">0</code> returned if both <em class="parameter"><code>self</code></em>
+<p><a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> values are handled gracefully, with <code class="code">0</code> returned if both <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>other</code></em>
- are <code class="literal">NULL</code>,</p>
-<code class="code">-1</code> if <em class="parameter"><code>self</code></em> is <code class="literal">NULL</code> and <code class="code">1</code> if <em class="parameter"><code>other</code></em> is <code class="literal">NULL</code>.
+ are <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>,</p>
+<code class="code">-1</code> if <em class="parameter"><code>self</code></em> is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and <code class="code">1</code> if <em class="parameter"><code>other</code></em> is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 <p>The <em class="parameter"><code>other</code></em>
  object must be of the same type as <em class="parameter"><code>self</code></em>
 , or of a type derived from <em class="parameter"><code>self</code></em>
@@ -137,12 +137,12 @@ if they're equal, or <code class="code">1</code> if <em class="parameter"><code>
 <tbody>
 <tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataComparable.html" title="GDataComparable"><span class="type">GDataComparable</span></a>, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataComparable.html" title="GDataComparable"><span class="type">GDataComparable</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>other</p></td>
-<td class="parameter_description"><p> another <a class="link" href="GDataComparable.html" title="GDataComparable"><span class="type">GDataComparable</span></a> of the same type, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>another <a class="link" href="GDataComparable.html" title="GDataComparable"><span class="type">GDataComparable</span></a> of the same type, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -150,7 +150,7 @@ if they're equal, or <code class="code">1</code> if <em class="parameter"><code>
 </div>
 <div class="refsect3">
 <a name="gdata-comparable-compare.returns"></a><h4>Returns</h4>
-<p> <code class="literal">TRUE</code> on success, <code class="literal">FALSE</code> otherwise</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="ix09.html#api-index-0.7.0">0.7.0</a></p>
 </div>
@@ -183,7 +183,7 @@ if they're equal, or <code class="code">1</code> if <em class="parameter"><code>
 </colgroup>
 <tbody>
 <tr>
-<td class="struct_member_name"><p><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="GDataComparableIface.parent"></a>parent</code></em>;</p></td>
+<td class="struct_member_name"><p><a href="../gobject/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="GDataComparableIface.parent"></a>parent</code></em>;</p></td>
 <td class="struct_member_description"><p>the parent type</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
@@ -194,7 +194,7 @@ object of the same type, returning <code class="code">-1</code> if the object is
 the other object, <code class="code">0</code> if they're equal, or <code class="code">1</code> if the object is "greater than" the other. The
 function can assume that neither <em class="parameter"><code>self</code></em>
 or <em class="parameter"><code>other</code></em>
-will be <code class="literal">NULL</code>, and that both have correct types. The function must be pure.</p></td>
+will be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, and that both have correct types. The function must be pure.</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 </tbody>
@@ -205,6 +205,6 @@ will be <code class="literal">NULL</code>, and that both have correct types. The
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

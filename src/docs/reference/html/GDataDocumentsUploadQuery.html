@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataDocumentsUploadQuery: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
-<link rel="up" href="ch16.html" title="Google Documents API">
+<link rel="up" href="ch16.html" title="Google Documents/Drive API">
 <link rel="prev" href="GDataDocumentsQuery.html" title="GDataDocumentsQuery">
 <link rel="next" href="GDataDocumentsEntry.html" title="GDataDocumentsEntry">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -61,7 +61,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gchar</span> *
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataDocumentsUploadQuery.html#gdata-documents-upload-query-build-uri" title="gdata_documents_upload_query_build_uri ()">gdata_documents_upload_query_build_uri</a> <span class="c_punctuation">()</span>
@@ -85,7 +85,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gboolean</span>
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GDataDocumentsUploadQuery.html#gdata-documents-upload-query-get-convert" title="gdata_documents_upload_query_get_convert ()">gdata_documents_upload_query_get_convert</a> <span class="c_punctuation">()</span>
@@ -112,7 +112,7 @@ justifications.
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><span class="type">gboolean</span></td>
+<td class="property_type"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
 <td class="property_name"><a class="link" href="GDataDocumentsUploadQuery.html#GDataDocumentsUploadQuery--convert" title="The “convert” property">convert</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -146,7 +146,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataDocumentsUploadQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> GDataDocumentsUploadQuery
 </pre>
 </div>
@@ -275,95 +275,95 @@ Google Documents features in the future.</p>
 <span class="usertype">GDataDocumentsUploadQuery</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">upload_query</span><span class="symbol">;</span>
 <span class="usertype">GFileInputStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">file_stream</span><span class="symbol">;</span>
 <span class="usertype">GDataUploadStream</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">upload_stream</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="comment">/* Create a service. */</span>
 <span class="normal">service </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_documents_service</span><span class="normal"> </span><span class="symbol">();</span>
 
 <span class="comment">/* Get the file to upload. */</span>
-<span class="normal">arbitrary_file </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-new-for-path">g_file_new_for_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"arbitrary-file.bin"</span><span class="symbol">);</span>
+<span class="normal">arbitrary_file </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_new_for_path</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"arbitrary-file.bin"</span><span class="symbol">);</span>
 
 <span class="comment">/* Get the file's display name, content type and size. */</span>
-<span class="normal">file_info </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-query-info">g_file_query_info</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">arbitrary_file</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#G-FILE-ATTRIBUTE-STANDARD-DISPLAY-NAME:CAPS">G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME</a> </span><span class="string">","</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#G-FILE-ATTRIBUTE-STANDARD-CONTENT-TYPE:CAPS">G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE</a> </span><span class="string">","</span>
-<span class="normal">                               <a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#G-FILE-ATTRIBUTE-STANDARD-SIZE:CAPS">G_FILE_ATTRIBUTE_STANDARD_SIZE</a></span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GFile.html#G-FILE-QUERY-INFO-NONE:CAPS">G_FILE_QUERY_INFO_NONE</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">file_info </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_query_info</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">arbitrary_file</span><span class="symbol">,</span><span class="normal"> G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME </span><span class="string">","</span><span class="normal"> G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE </span><span class="string">","</span>
+<span class="normal">                               G_FILE_ATTRIBUTE_STANDARD_SIZE</span><span class="symbol">,</span><span class="normal"> G_FILE_QUERY_INFO_NONE</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting arbitrary file information: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">arbitrary_file</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting arbitrary file information: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">arbitrary_file</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
-<span class="normal">slug </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#g-file-info-get-display-name">g_file_info_get_display_name</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
-<span class="normal">content_type </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#g-file-info-get-content-type">g_file_info_get_content_type</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
-<span class="normal">file_size </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFileInfo.html#g-file-info-get-size">g_file_info_get_size</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">slug </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_info_get_display_name</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">content_type </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_info_get_content_type</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">file_size </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_info_get_size</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
 
 <span class="comment">/* Get an input stream for the file. */</span>
-<span class="normal">file_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gio/unstable/GFile.html#g-file-read">g_file_read</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">arbitrary_file</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">file_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_file_read</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">arbitrary_file</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">arbitrary_file</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">arbitrary_file</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting arbitrary file stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting arbitrary file stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Create the file metadata to upload. */</span>
-<span class="normal">document </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsDocument.html#gdata-documents-document-new">gdata_documents_document_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="normal">document </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsDocument.html#gdata-documents-document-new">gdata_documents_document_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="function"><a href="GDataEntry.html#gdata-entry-set-title">gdata_entry_set_title</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDATA_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"Title for My Arbitrary File"</span><span class="symbol">);</span>
 
 <span class="comment">/* Build the upload query and set the upload to not be converted to a standard format. */</span>
 <span class="normal">upload_query </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsUploadQuery.html#gdata-documents-upload-query-new">gdata_documents_upload_query_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="function"><a href="GDataDocumentsUploadQuery.html#gdata-documents-upload-query-set-convert">gdata_documents_upload_query_set_convert</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_query</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
+<span class="function"><a href="GDataDocumentsUploadQuery.html#gdata-documents-upload-query-set-convert">gdata_documents_upload_query_set_convert</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_query</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS">FALSE</a></span><span class="symbol">);</span>
 
 <span class="comment">/* Get an upload stream for the file. */</span>
-<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-upload-document-resumable">gdata_documents_service_upload_document_resumable</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> document</span><span class="symbol">,</span><span class="normal"> slug</span><span class="symbol">,</span><span class="normal"> content_type</span><span class="symbol">,</span><span class="normal"> file_size</span><span class="symbol">,</span><span class="normal"> upload_query</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">upload_stream </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-upload-document-resumable">gdata_documents_service_upload_document_resumable</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> document</span><span class="symbol">,</span><span class="normal"> slug</span><span class="symbol">,</span><span class="normal"> content_type</span><span class="symbol">,</span><span class="normal"> file_size</span><span class="symbol">,</span><span class="normal"> upload_query</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_query</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_query</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">document</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_info</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting upload stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error getting upload stream: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Upload the document. This is a blocking operation, and should normally be done asynchronously. */</span>
-<span class="function"><a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#g-output-stream-splice">g_output_stream_splice</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OUTPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">),</span><span class="normal"> </span><span class="function">G_INPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">),</span>
-<span class="normal">                        <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-SOURCE:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE</a> </span><span class="symbol">|</span><span class="normal"> <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#G-OUTPUT-STREAM-SPLICE-CLOSE-TARGET:CAPS">G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</a></span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="function">g_output_stream_splice</span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OUTPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">),</span><span class="normal"> </span><span class="function">G_INPUT_STREAM</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">),</span>
+<span class="normal">                        G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE </span><span class="symbol">|</span><span class="normal"> G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">file_stream</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error splicing streams: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error splicing streams: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Finish off the upload by parsing the returned updated document metadata entry. */</span>
 <span class="normal">uploaded_document </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GDataDocumentsService.html#gdata-documents-service-finish-upload">gdata_documents_service_finish_upload</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">,</span><span class="normal"> upload_stream</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">upload_stream</span><span class="symbol">);</span>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">service</span><span class="symbol">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error uploading file: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Message-Logging.html#g-error">g_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error uploading file: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 
 <span class="comment">/* Do something with the uploaded document. */</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">uploaded_document</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">uploaded_document</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -381,7 +381,7 @@ gdata_documents_upload_query_new (<em class="parameter"><code><span class="type"
 <p>Constructs a new empty <a class="link" href="GDataDocumentsUploadQuery.html" title="GDataDocumentsUploadQuery"><span class="type">GDataDocumentsUploadQuery</span></a>.</p>
 <div class="refsect3">
 <a name="gdata-documents-upload-query-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataDocumentsUploadQuery.html" title="GDataDocumentsUploadQuery"><span class="type">GDataDocumentsUploadQuery</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a new <a class="link" href="GDataDocumentsUploadQuery.html" title="GDataDocumentsUploadQuery"><span class="type">GDataDocumentsUploadQuery</span></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix15.html#api-index-0.13.0">0.13.0</a></p>
@@ -389,7 +389,7 @@ gdata_documents_upload_query_new (<em class="parameter"><code><span class="type"
 <hr>
 <div class="refsect2">
 <a name="gdata-documents-upload-query-build-uri"></a><h3>gdata_documents_upload_query_build_uri ()</h3>
-<pre class="programlisting"><span class="returnvalue">gchar</span> *
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_documents_upload_query_build_uri
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsUploadQuery.html" title="GDataDocumentsUploadQuery"><span class="type">GDataDocumentsUploadQuery</span></a> *self</code></em>);</pre>
 <p>Builds an upload URI suitable for passing to <a class="link" href="GDataUploadStream.html#gdata-upload-stream-new-resumable" title="gdata_upload_stream_new_resumable ()"><code class="function">gdata_upload_stream_new_resumable()</code></a> in order to upload a document to Google Documents as described in
@@ -413,7 +413,7 @@ online documentation</a>.
 </div>
 <div class="refsect3">
 <a name="gdata-documents-upload-query-build-uri.returns"></a><h4>Returns</h4>
-<p> a complete upload URI; free with <code class="function">g_free()</code>. </p>
+<p>a complete upload URI; free with <a href="../glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix15.html#api-index-0.13.0">0.13.0</a></p>
@@ -442,7 +442,7 @@ gdata_documents_upload_query_get_folder
 </div>
 <div class="refsect3">
 <a name="gdata-documents-upload-query-get-folder.returns"></a><h4>Returns</h4>
-<p> the folder to upload into, or <code class="literal">NULL</code>. </p>
+<p>the folder to upload into, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p>
 <p><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix15.html#api-index-0.13.0">0.13.0</a></p>
@@ -472,7 +472,7 @@ gdata_documents_upload_query_set_folder
 </tr>
 <tr>
 <td class="parameter_name"><p>folder</p></td>
-<td class="parameter_description"><p> a new folder to upload into, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a new folder to upload into, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -483,7 +483,7 @@ gdata_documents_upload_query_set_folder
 <hr>
 <div class="refsect2">
 <a name="gdata-documents-upload-query-get-convert"></a><h3>gdata_documents_upload_query_get_convert ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 gdata_documents_upload_query_get_convert
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsUploadQuery.html" title="GDataDocumentsUploadQuery"><span class="type">GDataDocumentsUploadQuery</span></a> *self</code></em>);</pre>
 <p>Gets <a class="link" href="GDataDocumentsUploadQuery.html#GDataDocumentsUploadQuery--convert" title="The “convert” property"><span class="type">“convert”</span></a>.</p>
@@ -504,7 +504,7 @@ gdata_documents_upload_query_get_convert
 </div>
 <div class="refsect3">
 <a name="gdata-documents-upload-query-get-convert.returns"></a><h4>Returns</h4>
-<p> <code class="literal">TRUE</code> to convert documents to common formats, <code class="literal">FALSE</code> to upload them unmodified</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> to convert documents to common formats, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> to upload them unmodified</p>
 </div>
 <p class="since">Since: <a class="link" href="ix15.html#api-index-0.13.0">0.13.0</a></p>
 </div>
@@ -514,7 +514,7 @@ gdata_documents_upload_query_get_convert
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_documents_upload_query_set_convert
                                (<em class="parameter"><code><a class="link" href="GDataDocumentsUploadQuery.html" title="GDataDocumentsUploadQuery"><span class="type">GDataDocumentsUploadQuery</span></a> *self</code></em>,
-                                <em class="parameter"><code><span class="type">gboolean</span> convert</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> convert</code></em>);</pre>
 <p>Sets <a class="link" href="GDataDocumentsUploadQuery.html#GDataDocumentsUploadQuery--convert" title="The “convert” property"><span class="type">“convert”</span></a> to <em class="parameter"><code>convert</code></em>
 .</p>
 <div class="refsect3">
@@ -533,7 +533,7 @@ gdata_documents_upload_query_set_convert
 </tr>
 <tr>
 <td class="parameter_name"><p>convert</p></td>
-<td class="parameter_description"><p><code class="literal">TRUE</code> to convert documents to common formats, <code class="literal">FALSE</code> to upload them unmodified</p></td>
+<td class="parameter_description"><p><a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> to convert documents to common formats, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> to upload them unmodified</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -564,14 +564,14 @@ gdata_documents_upload_query_set_convert
 <a name="GDataDocumentsUploadQuery.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataDocumentsUploadQuery--convert"></a><h3>The <code class="literal">“convert”</code> property</h3>
-<pre class="programlisting">  “convert”                  <span class="type">gboolean</span></pre>
-<p><code class="literal">TRUE</code> to automatically convert the uploaded document into a standard format (such as a text document, spreadsheet, presentation, etc.).
-<code class="literal">FALSE</code> to upload the document without converting it; this allows for arbitrary files to be uploaded to Google Documents.</p>
+<pre class="programlisting">  “convert”                  <a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
+<p><a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> to automatically convert the uploaded document into a standard format (such as a text document, spreadsheet, presentation, etc.).
+<a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> to upload the document without converting it; this allows for arbitrary files to be uploaded to Google Documents.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="https://developers.google.com/google-apps/documents-list/#creating_or_uploading_files" target="_top">online documentation</a>.
-<p>Note that uploading with this property set to <code class="literal">FALSE</code> will only have an effect when using <a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document-resumable" title="gdata_documents_service_update_document_resumable ()"><code class="function">gdata_documents_service_update_document_resumable()</code></a>
+<p>Note that uploading with this property set to <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> will only have an effect when using <a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document-resumable" title="gdata_documents_service_update_document_resumable ()"><code class="function">gdata_documents_service_update_document_resumable()</code></a>
 and not <a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document" title="gdata_documents_service_update_document ()"><code class="function">gdata_documents_service_update_document()</code></a>. Additionally, the <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> passed to
-<a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document-resumable" title="gdata_documents_service_update_document_resumable ()"><code class="function">gdata_documents_service_update_document_resumable()</code></a> must be a <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> if this property is <code class="literal">FALSE</code>, and a subclass of it
+<a class="link" href="GDataDocumentsService.html#gdata-documents-service-update-document-resumable" title="gdata_documents_service_update_document_resumable ()"><code class="function">gdata_documents_service_update_document_resumable()</code></a> must be a <a class="link" href="GDataDocumentsDocument.html" title="GDataDocumentsDocument"><span class="type">GDataDocumentsDocument</span></a> if this property is <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>, and a subclass of it
 otherwise.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
@@ -581,13 +581,13 @@ otherwise.</p>
 <div class="refsect2">
 <a name="GDataDocumentsUploadQuery--folder"></a><h3>The <code class="literal">“folder”</code> property</h3>
 <pre class="programlisting">  “folder”                   <a class="link" href="GDataDocumentsFolder.html" title="GDataDocumentsFolder"><span class="type">GDataDocumentsFolder</span></a> *</pre>
-<p>Folder to upload the document into. If this is <code class="literal">NULL</code>, the document will be uploaded into the root folder.</p>
+<p>Folder to upload the document into. If this is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the document will be uploaded into the root folder.</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="ix15.html#api-index-0.13.0">0.13.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

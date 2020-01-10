@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataGDReminder: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch09.html" title="GData API">
 <link rel="prev" href="GDataGDPostalAddress.html" title="GDataGDPostalAddress">
 <link rel="next" href="GDataGDWhen.html" title="GDataGDWhen">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -61,7 +61,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataGDReminder.html#gdata-gd-reminder-get-method" title="gdata_gd_reminder_get_method ()">gdata_gd_reminder_get_method</a> <span class="c_punctuation">()</span>
@@ -77,7 +77,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gint64</span>
+<a href="../glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GDataGDReminder.html#gdata-gd-reminder-get-absolute-time" title="gdata_gd_reminder_get_absolute_time ()">gdata_gd_reminder_get_absolute_time</a> <span class="c_punctuation">()</span>
@@ -93,7 +93,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gboolean</span>
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GDataGDReminder.html#gdata-gd-reminder-is-absolute-time" title="gdata_gd_reminder_is_absolute_time ()">gdata_gd_reminder_is_absolute_time</a> <span class="c_punctuation">()</span>
@@ -101,7 +101,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gint</span>
+<a href="../glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GDataGDReminder.html#gdata-gd-reminder-get-relative-time" title="gdata_gd_reminder_get_relative_time ()">gdata_gd_reminder_get_relative_time</a> <span class="c_punctuation">()</span>
@@ -128,23 +128,23 @@ justifications.
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><span class="type">gint64</span></td>
+<td class="property_type"><a href="../glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a></td>
 <td class="property_name"><a class="link" href="GDataGDReminder.html#GDataGDReminder--absolute-time" title="The “absolute-time” property">absolute-time</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gboolean</span></td>
+<td class="property_type"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
 <td class="property_name"><a class="link" href="GDataGDReminder.html#GDataGDReminder--is-absolute-time" title="The “is-absolute-time” property">is-absolute-time</a></td>
 <td class="property_flags">Read</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataGDReminder.html#GDataGDReminder--method" title="The “method” property">method</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a></td>
 <td class="property_name"><a class="link" href="GDataGDReminder.html#GDataGDReminder--relative-time" title="The “relative-time” property">relative-time</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -184,7 +184,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataGDReminder.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
         <span class="lineart">╰──</span> GDataGDReminder
 </pre>
@@ -211,9 +211,9 @@ GDataGDReminder implements
 <div class="refsect2">
 <a name="gdata-gd-reminder-new"></a><h3>gdata_gd_reminder_new ()</h3>
 <pre class="programlisting"><a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="returnvalue">GDataGDReminder</span></a> *
-gdata_gd_reminder_new (<em class="parameter"><code>const <span class="type">gchar</span> *method</code></em>,
-                       <em class="parameter"><code><span class="type">gint64</span> absolute_time</code></em>,
-                       <em class="parameter"><code><span class="type">gint</span> relative_time</code></em>);</pre>
+gdata_gd_reminder_new (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *method</code></em>,
+                       <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> absolute_time</code></em>,
+                       <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> relative_time</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a>. More information is available in the <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdReminder" target="_top">GData specification</a>.</p>
 <div class="refsect3">
 <a name="gdata-gd-reminder-new.parameters"></a><h4>Parameters</h4>
@@ -226,7 +226,7 @@ gdata_gd_reminder_new (<em class="parameter"><code>const <span class="type">gcha
 <tbody>
 <tr>
 <td class="parameter_name"><p>method</p></td>
-<td class="parameter_description"><p> the notification method the reminder should use, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the notification method the reminder should use, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -244,14 +244,14 @@ gdata_gd_reminder_new (<em class="parameter"><code>const <span class="type">gcha
 </div>
 <div class="refsect3">
 <a name="gdata-gd-reminder-new.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a>, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
+<p> a new <a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-0.2.0">0.2.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-gd-reminder-get-method"></a><h3>gdata_gd_reminder_get_method ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_gd_reminder_get_method (<em class="parameter"><code><a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a> *self</code></em>);</pre>
 <p>Gets the <a class="link" href="GDataGDReminder.html#GDataGDReminder--method" title="The “method” property"><span class="type">“method”</span></a> property.</p>
 <div class="refsect3">
@@ -271,7 +271,7 @@ gdata_gd_reminder_get_method (<em class="parameter"><code><a class="link" href="
 </div>
 <div class="refsect3">
 <a name="gdata-gd-reminder-get-method.returns"></a><h4>Returns</h4>
-<p> the method, or <code class="literal">NULL</code></p>
+<p> the method, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
@@ -280,11 +280,11 @@ gdata_gd_reminder_get_method (<em class="parameter"><code><a class="link" href="
 <a name="gdata-gd-reminder-set-method"></a><h3>gdata_gd_reminder_set_method ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_gd_reminder_set_method (<em class="parameter"><code><a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a> *self</code></em>,
-                              <em class="parameter"><code>const <span class="type">gchar</span> *method</code></em>);</pre>
+                              <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *method</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataGDReminder.html#GDataGDReminder--method" title="The “method” property"><span class="type">“method”</span></a> property to <em class="parameter"><code>method</code></em>
 .</p>
 <p>Set <em class="parameter"><code>method</code></em>
- to <code class="literal">NULL</code> to unset the property.</p>
+ to <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset the property.</p>
 <div class="refsect3">
 <a name="gdata-gd-reminder-set-method.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -301,7 +301,7 @@ gdata_gd_reminder_set_method (<em class="parameter"><code><a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>method</p></td>
-<td class="parameter_description"><p> the new method, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the new method, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -312,7 +312,7 @@ gdata_gd_reminder_set_method (<em class="parameter"><code><a class="link" href="
 <hr>
 <div class="refsect2">
 <a name="gdata-gd-reminder-get-absolute-time"></a><h3>gdata_gd_reminder_get_absolute_time ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint64</span>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>
 gdata_gd_reminder_get_absolute_time (<em class="parameter"><code><a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a> *self</code></em>);</pre>
 <p>Gets the <a class="link" href="GDataGDReminder.html#GDataGDReminder--absolute-time" title="The “absolute-time” property"><span class="type">“absolute-time”</span></a> property. If the property is unset, <code class="code">-1</code> will be returned.</p>
 <div class="refsect3">
@@ -341,7 +341,7 @@ gdata_gd_reminder_get_absolute_time (<em class="parameter"><code><a class="link"
 <a name="gdata-gd-reminder-set-absolute-time"></a><h3>gdata_gd_reminder_set_absolute_time ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_gd_reminder_set_absolute_time (<em class="parameter"><code><a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a> *self</code></em>,
-                                     <em class="parameter"><code><span class="type">gint64</span> absolute_time</code></em>);</pre>
+                                     <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> absolute_time</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataGDReminder.html#GDataGDReminder--absolute-time" title="The “absolute-time” property"><span class="type">“absolute-time”</span></a> property to <em class="parameter"><code>absolute_time</code></em>
 .</p>
 <p>Set <em class="parameter"><code>absolute_time</code></em>
@@ -373,7 +373,7 @@ gdata_gd_reminder_set_absolute_time (<em class="parameter"><code><a class="link"
 <hr>
 <div class="refsect2">
 <a name="gdata-gd-reminder-is-absolute-time"></a><h3>gdata_gd_reminder_is_absolute_time ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 gdata_gd_reminder_is_absolute_time (<em class="parameter"><code><a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a> *self</code></em>);</pre>
 <p>Returns whether the reminder is specified as an absolute time, or as a number of minutes after
 the corresponding event's start time.</p>
@@ -394,14 +394,14 @@ the corresponding event's start time.</p>
 </div>
 <div class="refsect3">
 <a name="gdata-gd-reminder-is-absolute-time.returns"></a><h4>Returns</h4>
-<p> <code class="literal">TRUE</code> if the reminder is absolute, <code class="literal">FALSE</code> otherwise</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the reminder is absolute, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="ix06.html#api-index-0.4.0">0.4.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-gd-reminder-get-relative-time"></a><h3>gdata_gd_reminder_get_relative_time ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
 gdata_gd_reminder_get_relative_time (<em class="parameter"><code><a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a> *self</code></em>);</pre>
 <p>Gets the <a class="link" href="GDataGDReminder.html#GDataGDReminder--relative-time" title="The “relative-time” property"><span class="type">“relative-time”</span></a> property.</p>
 <div class="refsect3">
@@ -430,7 +430,7 @@ gdata_gd_reminder_get_relative_time (<em class="parameter"><code><a class="link"
 <a name="gdata-gd-reminder-set-relative-time"></a><h3>gdata_gd_reminder_set_relative_time ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_gd_reminder_set_relative_time (<em class="parameter"><code><a class="link" href="GDataGDReminder.html" title="GDataGDReminder"><span class="type">GDataGDReminder</span></a> *self</code></em>,
-                                     <em class="parameter"><code><span class="type">gint</span> relative_time</code></em>);</pre>
+                                     <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> relative_time</code></em>);</pre>
 <p>Sets the <a class="link" href="GDataGDReminder.html#GDataGDReminder--relative-time" title="The “relative-time” property"><span class="type">“relative-time”</span></a> property to <em class="parameter"><code>relative_time</code></em>
 .</p>
 <p>Set <em class="parameter"><code>relative_time</code></em>
@@ -506,7 +506,7 @@ gdata_gd_reminder_set_relative_time (<em class="parameter"><code><a class="link"
 <a name="GDataGDReminder.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataGDReminder--absolute-time"></a><h3>The <code class="literal">“absolute-time”</code> property</h3>
-<pre class="programlisting">  “absolute-time”            <span class="type">gint64</span></pre>
+<pre class="programlisting">  “absolute-time”            <a href="../glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a></pre>
 <p>Absolute time at which the reminder should be issued.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdReminder" target="_top">GData specification</a>.
@@ -518,7 +518,7 @@ gdata_gd_reminder_set_relative_time (<em class="parameter"><code><a class="link"
 <hr>
 <div class="refsect2">
 <a name="GDataGDReminder--is-absolute-time"></a><h3>The <code class="literal">“is-absolute-time”</code> property</h3>
-<pre class="programlisting">  “is-absolute-time”         <span class="type">gboolean</span></pre>
+<pre class="programlisting">  “is-absolute-time”         <a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
 <p>Whether the reminder is specified as an absolute or relative time.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdReminder" target="_top">GData specification</a>.
@@ -529,7 +529,7 @@ gdata_gd_reminder_set_relative_time (<em class="parameter"><code><a class="link"
 <hr>
 <div class="refsect2">
 <a name="GDataGDReminder--method"></a><h3>The <code class="literal">“method”</code> property</h3>
-<pre class="programlisting">  “method”                   <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “method”                   <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>The notification method the reminder should use. For example: <a class="link" href="GDataGDReminder.html#GDATA-GD-REMINDER-ALERT:CAPS" title="GDATA_GD_REMINDER_ALERT"><code class="literal">GDATA_GD_REMINDER_ALERT</code></a> or <a class="link" href="GDataGDReminder.html#GDATA-GD-REMINDER-EMAIL:CAPS" title="GDATA_GD_REMINDER_EMAIL"><code class="literal">GDATA_GD_REMINDER_EMAIL</code></a>.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdReminder" target="_top">GData specification</a>.
@@ -540,7 +540,7 @@ gdata_gd_reminder_set_relative_time (<em class="parameter"><code><a class="link"
 <hr>
 <div class="refsect2">
 <a name="GDataGDReminder--relative-time"></a><h3>The <code class="literal">“relative-time”</code> property</h3>
-<pre class="programlisting">  “relative-time”            <span class="type">gint</span></pre>
+<pre class="programlisting">  “relative-time”            <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a></pre>
 <p>Time at which the reminder should be issued, in minutes relative to the start time of the corresponding event.</p>
 <p>For more information, see the</p>
 <a class="ulink" href="http://code.google.com/apis/gdata/docs/2.0/elements.html#gdReminder" target="_top">GData specification</a>.
@@ -552,6 +552,6 @@ gdata_gd_reminder_set_relative_time (<em class="parameter"><code><a class="link"
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

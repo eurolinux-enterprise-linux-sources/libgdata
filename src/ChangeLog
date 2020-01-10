@@ -1,6 +1,422 @@
+commit f153e3c77e7699769fb8c1bde1a7bf01586261ae
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Wed Aug 23 00:22:31 2017 +0100
+
+    docs: Fix gtk-doc parsing of a function in GDataCalendarService
+
+    I don’t think it likes the mixture of attributes after the argument
+    list. Changing the line wrapping seems to fix it.
+
+    Signed-off-by: Philip Withnall <philip@tecnocode.co.uk>
+
+M	gdata/services/calendar/gdata-calendar-service.h
+
+commit 620daaeb2cbf34ae4fd0470422668cf28eab3e88
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Wed Aug 23 00:09:26 2017 +0100
+
+    docs: Add GDataDocumentsMetadata to the documentation index
+
+    Also relabel the ‘Documents API’ to ‘Documents/Drive API’
+    to make it a
+    bit clearer that it now covers Google Drive.
+
+    Signed-off-by: Philip Withnall <philip@tecnocode.co.uk>
+
+M	docs/reference/gdata-docs.xml
+M	docs/reference/gdata-sections.txt
+
+commit d83e899da86565ce397c96f4b3e54e6b2f714ccf
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:	Tue Aug 22 22:51:25 2017 +0100
+
+    core: Drop an unused variable
+
+    Signed-off-by: Philip Withnall <philip@tecnocode.co.uk>
+
+M	gdata/gdata-oauth1-authorizer.c
+
+commit a36efd9357bb8d6f44749ae47f190e4f5ff8b7a5
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:	Wed Aug 9 18:27:25 2017 +0200
+
+    documents: Silence a CRITICAL when querying a feed of entries
+
+    Querying a feed of Drive entries using Drive v2 leads to:
+      CRITICAL **: _gdata_query_set_next_uri: assertion
+	'self->priv->pagination_type == GDATA_QUERY_PAGINATION_URIS'
+	failed
+
+    When the support for pagination using page tokens was landed in
+    commit 38b934a9ef9dab89, the code in GDataDocumentsService::parse_feed
+    that added the next and previous URIs from the feed to the GDataQuery
+    was generalized and moved to GDataService::parse_feed, and
+    GDataDocumentsQuery was set to use pagination tokens.
+
+    The intention was to use pagination tokens for GDataDocuments* using
+    only the generic parsing code in the base classes.
+
+    However, the code in GDataDocumentsFeed::parse_json that added the
+    GDataLinks for the next URI to the feed wasn't removed. This tricks
+    GDataService::parse_feed into using pagination URIs with the
+    corresponding query.
+
+    This reverts commit fa3e219eff1d4617463a86deb14cb3b1f5fb9a19.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=684920
+
+M	gdata/services/documents/gdata-documents-feed.c
+
+commit a627e0e4c586696ead2556eaea36797de2cc25b6
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:	Tue Sep 27 20:23:13 2016 +0200
+
+    tests: Fix the set up for /documents/folders/remove_from_folder
+
+    In Drive v2, we can only remove an entry from a folder if it had
+    multiple parents to start with. If there was only a single parent,
+    then
+    the request is just ignored.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=684920
+
+M	gdata/tests/documents.c
+
+commit e793a0e4ab04dc930d25b4704a2dc03249743fc8
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Wed Aug 9 15:41:05 2017 +0100
+
+    picasaweb: Port from GSimpleAsyncResult to GTask
+
+    These are the last instances of GSimpleAsyncResult. Die!
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/services/picasaweb/gdata-picasaweb-service.c
+
+commit fa9ad32bb72e9586d36ba5fec5a94a35a5df7e2c
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Wed Aug 9 15:40:47 2017 +0100
+
+    picasaweb: Add g_autoptr() support for all PicasaWeb classes
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/services/picasaweb/gdata-picasaweb-album.h
+M	gdata/services/picasaweb/gdata-picasaweb-comment.h
+M	gdata/services/picasaweb/gdata-picasaweb-feed.h
+M	gdata/services/picasaweb/gdata-picasaweb-file.h
+M	gdata/services/picasaweb/gdata-picasaweb-query.h
+M	gdata/services/picasaweb/gdata-picasaweb-service.h
+M	gdata/services/picasaweb/gdata-picasaweb-user.h
+
+commit 65ca44ccdfcc19011131fa98ed820a69f57b3286
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Wed Aug 9 15:17:37 2017 +0100
+
+    youtube: Port from GSimpleAsyncResult to GTask
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/services/youtube/gdata-youtube-service.c
+
+commit 453ae0319471312a2d17cb9be1c197971c20dc44
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Wed Aug 9 15:17:18 2017 +0100
+
+    app: Add g_autoptr() support to all the gdata/app classes
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/app/gdata-app-categories.h
+
+commit e264589f13695d55955dbe8ddb8a2743bde034d8
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Wed Aug 9 14:56:59 2017 +0100
+
+    documents: Port from GSimpleAsyncResult to GTask
+
+    Port GDataDocumentsService.
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/services/documents/gdata-documents-service.c
+
+commit 3ce9cebcbdb52faf5faaaafcb40340ff9dee1585
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Wed Aug 9 14:56:29 2017 +0100
+
+    documents: Add g_autoptr() support for all Drive classes
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/services/documents/gdata-documents-access-rule.h
+M	gdata/services/documents/gdata-documents-document.h
+M	gdata/services/documents/gdata-documents-drawing.h
+M	gdata/services/documents/gdata-documents-entry.h
+M	gdata/services/documents/gdata-documents-feed.h
+M	gdata/services/documents/gdata-documents-folder.h
+M	gdata/services/documents/gdata-documents-metadata.h
+M	gdata/services/documents/gdata-documents-pdf.h
+M	gdata/services/documents/gdata-documents-presentation.h
+M	gdata/services/documents/gdata-documents-query.h
+M	gdata/services/documents/gdata-documents-service.h
+M	gdata/services/documents/gdata-documents-spreadsheet.h
+M	gdata/services/documents/gdata-documents-text.h
+M	gdata/services/documents/gdata-documents-upload-query.h
+
+commit f027dbc3204c4f6b2683f88f9ba88a996c698eb3
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Wed Aug 9 14:15:23 2017 +0100
+
+    general: Port from GSimpleAsyncResult to GTask
+
+    Port various service classes.
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/services/calendar/gdata-calendar-service.c
+M	gdata/services/contacts/gdata-contacts-contact.c
+M	gdata/services/contacts/gdata-contacts-service.c
+M	gdata/services/documents/gdata-documents-service.c
+M	gdata/services/picasaweb/gdata-picasaweb-service.c
+M	gdata/services/tasks/gdata-tasks-service.c
+
+commit 2ea00a131ba6e5c67fc8c615906957f6a93773bd
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:	Tue Sep 27 20:20:15 2016 +0200
+
+    Port gdata_documents_service_remove_entry_from_folder to Drive v2
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=684920
+
+M	gdata/services/documents/gdata-documents-service.c
+
+commit d71082cd83f4d2754279f6feb9f16955c495db5c
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:	Fri Sep 30 11:33:08 2016 +0200
+
+    documents: Split out the code to get an ID from a GDataLink
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=684920
+
+M	gdata/services/documents/gdata-documents-entry.c
+M	gdata/services/documents/gdata-documents-service.c
+M	gdata/services/documents/gdata-documents-utils.c
+M	gdata/services/documents/gdata-documents-utils.h
+
+commit 990055474e32efb4d5be71781c8feec67191e0a4
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Wed Aug 9 10:21:10 2017 +0100
+
+    gdata: Port from GSimpleAsyncResult to GTask
+
+    Finish porting the OAuth 1 code, port the OAuth 2 code and also
+    GDataCommentable.
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/gdata-commentable.c
+M	gdata/gdata-oauth1-authorizer.c
+M	gdata/gdata-oauth2-authorizer.c
+
+commit b53d927d3e7a6a8072d9642c9a6173140f2857a1
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Tue Aug 8 21:31:19 2017 +0100
+
+    gdata: Port from GSimpleAsyncResult to GTask
+
+    Some of the OAuth 1 code.
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/gdata-oauth1-authorizer.c
+
+commit b4518b3514425fb78b673e09d0dcb934f1e82b3b
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Tue Aug 8 21:31:04 2017 +0100
+
+    tests: Port from GSimpleAsyncResult to GTask
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/tests/authorization.c
+
+commit cbf5a496e29e6aae93d368fa0cdd63426cced614
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Tue Aug 8 21:10:01 2017 +0100
+
+    gdata: Port various core APIs to GTask from GSimpleAsyncResult
+
+    GSimpleAsyncResult has been deprecated for quite a long time,
+    and we’re
+    way overdue on porting to GTask. Start doing that for some of the core
+    classes. Still a number of instances of it left, though.
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/gdata-access-handler.c
+M	gdata/gdata-authorizer.c
+M	gdata/gdata-batch-operation.c
+M	gdata/gdata-client-login-authorizer.c
+M	gdata/gdata-service.c
+
+commit eb78a668687e74958331c39e6c1eba62d11d0f22
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Tue Aug 8 21:09:03 2017 +0100
+
+    gdata: Add some g_autoptr() declarations for core classes
+
+    Coverage is by no means complete, but this adds the necessary
+    public API
+    to start using GDataService, GDataFeed and GDataEntry with
+    g_autoptr().
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/gdata-entry.h
+M	gdata/gdata-feed.h
+M	gdata/gdata-service.h
+
+commit f048a49995879cd60d740b18e1e93145870fb06e
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Tue Aug 8 21:08:36 2017 +0100
+
+    build: Bump GLib dependency to 2.44
+
+    This is needed for upcoming changes which use g_autoptr() and GTask.
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	README
+M	configure.ac
+
+commit ece8e887560ef794dba594cefb4c097cd057142c
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Tue Aug 8 21:06:50 2017 +0100
+
+    tests: Fix incorrect string terminator comparison
+
+    Spotted by gcc.
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/tests/common.c
+
+commit 3128c70d3e055a08796f869e9cdb1fabbf135852
+Author: Michael Terry <mike@mterry.name>
+Date:	Mon Aug 7 22:27:13 2017 -0400
+
+    Add GDataDocumentsMetadata for quota information
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=785885
+
+M	Makefile.am
+M	docs/reference/gdata-sections.txt
+M	gdata/gdata-core.symbols
+M	gdata/gdata.h
+A	gdata/services/documents/gdata-documents-metadata.c
+A	gdata/services/documents/gdata-documents-metadata.h
+M	gdata/services/documents/gdata-documents-service.c
+M	gdata/services/documents/gdata-documents-service.h
+
+commit 47512d19d2b6c637ae19e2d7529908616ddf64f6
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Tue Aug 8 09:23:17 2017 +0100
+
+    docs: Fix some outdated documentation links in the Drive API docs
+
+    It’s all still a complete mess though.
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	gdata/services/documents/gdata-documents-document.c
+M	gdata/services/documents/gdata-documents-drawing.c
+M	gdata/services/documents/gdata-documents-entry.c
+M	gdata/services/documents/gdata-documents-folder.c
+M	gdata/services/documents/gdata-documents-pdf.c
+M	gdata/services/documents/gdata-documents-presentation.c
+M	gdata/services/documents/gdata-documents-service.c
+M	gdata/services/documents/gdata-documents-spreadsheet.c
+M	gdata/services/documents/gdata-documents-text.c
+
+commit 109d5df8e5a7033e082bfb2aec8763c20788139e
+Author: Emmanuele Bassi <ebassi@gnome.org>
+Date:	Mon Jul 17 17:13:37 2017 +0100
+
+    build: Add enumeration files to BUILT_SOURCES
+
+    These files are generated, but since dependencies are a by-product of
+    compilation, Automake won't be able to generate the dependencies
+    before
+    the files that include the headers are built.
+
+    For more information:
+
+    https://www.gnu.org/software/automake/manual/html_node/Sources.html
+
+M	Makefile.am
+
+commit a2bd6b66f2f36ed71bfeea5489c31d021ddf5a3b
+Author: Jeremy Bicha <jbicha@ubuntu.com>
+Date:	Fri Jul 7 18:58:58 2017 -0400
+
+    Fix header in Spanish translation
+
+M	po/es.po
+
+commit 9925d4bba8e58d3cfa85ad6216484eaa2cc72de5
+Author: Karl-Philipp Richter <krichter722@aol.de>
+Date:	Fri Jun 30 20:35:19 2017 +0200
+
+    build: Add initial .travis.yml
+
+    Reviewed-by: Philip Withnall <withnall@endlessm.com>
+
+    https://github.com/GNOME/libgdata/pull/1
+
+A	.travis.yml
+
+commit 868359d3803e87dea2a0ce0531ca25a42af3f9b9
+Author: Ondrej Holy <oholy@redhat.com>
+Date:	Wed May 24 15:37:50 2017 +0200
+
+    Fix invalid URIs when q and q_internal properties are set
+
+    get_query_uri produces invalid URIs for cases when q and q_internal
+    properties are set, because any separator isn't added between them.
+    Consequently, the queries end up with errors. Let's add " and
+    " between
+    them to fix this issue.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=783046
+
+M	gdata/gdata-query.c
+
+commit 82e6760060a240ed0b001f43f66923e53040c9dd
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Thu Apr 20 12:37:08 2017 +0100
+
+    build: Increment version to 0.17.9
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	configure.ac
+
+commit 19f9f9420146bc51c7dc6dba2102c7d94bae149a
+Author: Philip Withnall <withnall@endlessm.com>
+Date:	Thu Apr 20 12:34:34 2017 +0100
+
+    Release version 0.17.8
+
+    Signed-off-by: Philip Withnall <withnall@endlessm.com>
+
+M	NEWS
+M	configure.ac
+
 commit d10155034b0fa2e43e2889e55157798ce073f807
 Author: Philip Withnall <withnall@endlessm.com>
-Date:   Thu Apr 20 11:50:09 2017 +0100
+Date:	Thu Apr 20 11:50:09 2017 +0100
 
     tasks: Re-add ISO 8601 formatting workaround for Tasks service
 
@@ -12405,7 +12821,7 @@ Date:	Sat Jul 2 17:30:45 2011 +0100
 M	gdata/services/calendar/gdata-calendar-calendar.c
 
 commit e569ea84dafd1095a3ef9c998b56ab9a88271a09
-Merge: b8fd328 404a2bd
+Merge: b8fd328a 404a2bdb
 Author: Philip Withnall <philip@tecnocode.co.uk>
 Date:	Sat Jul 2 11:20:38 2011 +0100
 
@@ -12930,7 +13346,7 @@ M	po/LINGUAS
 A	po/fi.po
 
 commit 85d2d82c72ac23cbaffc0badad53cc6d39213330
-Merge: 120acd8 ae8c91a
+Merge: 120acd84 ae8c91a9
 Author: Davide Italiano <davide.italiano@gmail.com>
 Date:	Sun Jun 12 21:15:10 2011 +0200
 

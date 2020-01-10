@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataAuthorizer: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch05.html" title="Authentication/Authorization API">
 <link rel="prev" href="ch05.html" title="Authentication/Authorization API">
 <link rel="next" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -62,7 +62,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gboolean</span>
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GDataAuthorizer.html#gdata-authorizer-is-authorized-for-domain" title="gdata_authorizer_is_authorized_for_domain ()">gdata_authorizer_is_authorized_for_domain</a> <span class="c_punctuation">()</span>
@@ -70,7 +70,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gboolean</span>
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GDataAuthorizer.html#gdata-authorizer-refresh-authorization" title="gdata_authorizer_refresh_authorization ()">gdata_authorizer_refresh_authorization</a> <span class="c_punctuation">()</span>
@@ -86,7 +86,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gboolean</span>
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GDataAuthorizer.html#gdata-authorizer-refresh-authorization-finish" title="gdata_authorizer_refresh_authorization_finish ()">gdata_authorizer_refresh_authorization_finish</a> <span class="c_punctuation">()</span>
@@ -116,7 +116,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataAuthorizer.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/GTypeModule.html">GInterface</a>
+<pre class="screen">    <a href="/opt/gnome/install/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
     <span class="lineart">╰──</span> GDataAuthorizer
 </pre>
 </div>
@@ -124,7 +124,7 @@ justifications.
 <a name="GDataAuthorizer.prerequisites"></a><h2>Prerequisites</h2>
 <p>
 GDataAuthorizer requires
- <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>.</p>
+ <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GDataAuthorizer.implementations"></a><h2>Known Implementations</h2>
@@ -186,7 +186,7 @@ if it's a query from a non-logged-in user. Similarly, if the <a class="link" hre
 be made to the <em class="parameter"><code>message</code></em>
 .</p>
 <p><em class="parameter"><code>domain</code></em>
- may be <code class="literal">NULL</code> if the request doesn't require authorization.</p>
+ may be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the request doesn't require authorization.</p>
 <p>This modifies <em class="parameter"><code>message</code></em>
  in place.</p>
 <p>This method is thread safe.</p>
@@ -206,7 +206,7 @@ be made to the <em class="parameter"><code>message</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>domain</p></td>
-<td class="parameter_description"><p> the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> the query falls under, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> the query falls under, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -222,7 +222,7 @@ be made to the <em class="parameter"><code>message</code></em>
 <hr>
 <div class="refsect2">
 <a name="gdata-authorizer-is-authorized-for-domain"></a><h3>gdata_authorizer_is_authorized_for_domain ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 gdata_authorizer_is_authorized_for_domain
                                (<em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> *domain</code></em>);</pre>
@@ -233,9 +233,9 @@ of date, as the server may have since invalidated the authorization. If the <a c
 they will not be taken into account; this method effectively returns whether the last successful authorization operation performed on the
 <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> included <em class="parameter"><code>domain</code></em>
  in the list of requested authorization domains.</p>
-<p>Note that <code class="literal">NULL</code> may be passed as the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>, in which case <code class="literal">FALSE</code> will always be returned, regardless of the <em class="parameter"><code>domain</code></em>
+<p>Note that <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> may be passed as the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>, in which case <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> will always be returned, regardless of the <em class="parameter"><code>domain</code></em>
 . This is for
-convenience of checking whether a domain is authorized by the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> returned by <a class="link" href="GDataService.html#gdata-service-get-authorizer" title="gdata_service_get_authorizer ()"><code class="function">gdata_service_get_authorizer()</code></a>, which may be <code class="literal">NULL</code>.
+convenience of checking whether a domain is authorized by the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> returned by <a class="link" href="GDataService.html#gdata-service-get-authorizer" title="gdata_service_get_authorizer ()"><code class="function">gdata_service_get_authorizer()</code></a>, which may be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 For example:</p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
@@ -244,7 +244,7 @@ For example:</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataAuthorizer.html#gdata-authorizer-is-authorized-for-domain">gdata_authorizer_is_authorized_for_domain</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataService.html#gdata-service-get-authorizer">gdata_service_get_authorizer</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">my_service</span><span class="symbol">),</span><span class="normal"> my_domain</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> TRUE</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataAuthorizer.html#gdata-authorizer-is-authorized-for-domain">gdata_authorizer_is_authorized_for_domain</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GDataService.html#gdata-service-get-authorizer">gdata_service_get_authorizer</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">my_service</span><span class="symbol">),</span><span class="normal"> my_domain</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS">TRUE</a></span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
 <span class="normal">    </span><span class="symbol">/&lt;!--</span><span class="normal"> </span><span class="symbol">--&gt;*</span><span class="normal"> Code to execute only </span><span class="usertype">if</span><span class="normal"> we</span><span class="string">'re authorized for the given domain *&lt;!-- --&gt;/</span>
 <span class="string">}</span></pre></td>
       </tr>
@@ -265,7 +265,7 @@ For example:</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -278,33 +278,33 @@ For example:</p>
 </div>
 <div class="refsect3">
 <a name="gdata-authorizer-is-authorized-for-domain.returns"></a><h4>Returns</h4>
-<p> <code class="literal">TRUE</code> if the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> has been authorized to access <em class="parameter"><code>domain</code></em>
-, <code class="literal">FALSE</code> otherwise</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> has been authorized to access <em class="parameter"><code>domain</code></em>
+, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gdata-authorizer-refresh-authorization"></a><h3>gdata_authorizer_refresh_authorization ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 gdata_authorizer_refresh_authorization
                                (<em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Forces the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to refresh any authorization tokens it holds with the online service. This should typically be called when a
 <a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> query returns <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-AUTHENTICATION-REQUIRED:CAPS"><code class="literal">GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED</code></a>, and is already called transparently by methods such as
 <a class="link" href="GDataService.html#gdata-service-query" title="gdata_service_query ()"><code class="function">gdata_service_query()</code></a> and <a class="link" href="GDataService.html#gdata-service-insert-entry" title="gdata_service_insert_entry ()"><code class="function">gdata_service_insert_entry()</code></a> (see their documentation for more details).</p>
 <p>If re-authorization is successful, it's guaranteed that by the time this method returns, the properties containing the relevant authorization
 tokens on the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> instance will have been updated.</p>
-<p>If <code class="literal">FALSE</code> is returned, <em class="parameter"><code>error</code></em>
- will be set if (and only if) it's due to a refresh being attempted and failing. If a refresh is not attempted, <code class="literal">FALSE</code>
+<p>If <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> is returned, <em class="parameter"><code>error</code></em>
+ will be set if (and only if) it's due to a refresh being attempted and failing. If a refresh is not attempted, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>
 will be returned but <em class="parameter"><code>error</code></em>
  will not be set.</p>
 <p>If the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> has not been previously authenticated or authorized (using the class' specific methods), no authorization will be
-attempted, <code class="literal">FALSE</code> will be returned immediately and <em class="parameter"><code>error</code></em>
+attempted, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> will be returned immediately and <em class="parameter"><code>error</code></em>
  will not be set.</p>
 <p>Some <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> implementations may not support refreshing authorization tokens at all; for example if doing so requires user interaction.
-<code class="literal">FALSE</code> will be returned immediately in that case and <em class="parameter"><code>error</code></em>
+<a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> will be returned immediately in that case and <em class="parameter"><code>error</code></em>
  will not be set.</p>
 <p>This method is thread safe.</p>
 <div class="refsect3">
@@ -323,12 +323,12 @@ attempted, <code class="literal">FALSE</code> will be returned immediately and <
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -336,7 +336,7 @@ attempted, <code class="literal">FALSE</code> will be returned immediately and <
 </div>
 <div class="refsect3">
 <a name="gdata-authorizer-refresh-authorization.returns"></a><h4>Returns</h4>
-<p> <code class="literal">TRUE</code> if an authorization refresh was attempted and was successful, <code class="literal">FALSE</code> if a refresh wasn't attempted or was unsuccessful</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if an authorization refresh was attempted and was successful, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if a refresh wasn't attempted or was unsuccessful</p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
 </div>
@@ -346,9 +346,9 @@ attempted, <code class="literal">FALSE</code> will be returned immediately and <
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_authorizer_refresh_authorization_async
                                (<em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Forces the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> to refresh any authorization tokens it holds with the online service. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>cancellable</code></em>
  are reffed when this
@@ -376,17 +376,17 @@ to get the results of the operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p> a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the authorization refresh operation is finished, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the authorization refresh operation is finished, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid until first called."><span class="acronym">scope async</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -398,11 +398,11 @@ function. </p></td>
 <hr>
 <div class="refsect2">
 <a name="gdata-authorizer-refresh-authorization-finish"></a><h3>gdata_authorizer_refresh_authorization_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 gdata_authorizer_refresh_authorization_finish
                                (<em class="parameter"><code><a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> *async_result</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GAsyncResult</span> *async_result</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Finishes an asynchronous authorization refresh operation for the <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer"><span class="type">GDataAuthorizer</span></a>, as started with <a class="link" href="GDataAuthorizer.html#gdata-authorizer-refresh-authorization-async" title="gdata_authorizer_refresh_authorization_async ()"><code class="function">gdata_authorizer_refresh_authorization_async()</code></a>.</p>
 <p>This method is thread safe.</p>
 <div class="refsect3">
@@ -421,12 +421,12 @@ gdata_authorizer_refresh_authorization_finish
 </tr>
 <tr>
 <td class="parameter_name"><p>async_result</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncResult</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -434,7 +434,7 @@ gdata_authorizer_refresh_authorization_finish
 </div>
 <div class="refsect3">
 <a name="gdata-authorizer-refresh-authorization-finish.returns"></a><h4>Returns</h4>
-<p> <code class="literal">TRUE</code> if an authorization refresh was attempted and was successful, <code class="literal">FALSE</code> if a refresh wasn't attempted or was unsuccessful</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if an authorization refresh was attempted and was successful, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if a refresh wasn't attempted or was unsuccessful</p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
 </div>
@@ -472,14 +472,14 @@ gdata_authorizer_refresh_authorization_finish
 </colgroup>
 <tbody>
 <tr>
-<td class="struct_member_name"><p><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="GDataAuthorizerInterface.parent"></a>parent</code></em>;</p></td>
+<td class="struct_member_name"><p><a href="../gobject/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="GDataAuthorizerInterface.parent"></a>parent</code></em>;</p></td>
 <td class="struct_member_description"><p>the parent type</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GDataAuthorizerInterface.process-request"></a>process_request</code></em> ()</p></td>
 <td class="struct_member_description"><p>a function to append authorization headers to queries before they are submitted to the online service under the given
-authorization domain (which may be <code class="literal">NULL</code>); this must be implemented and must be thread safe, and must also handle being called multiple times on
+authorization domain (which may be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>); this must be implemented and must be thread safe, and must also handle being called multiple times on
 the same <span class="type">SoupMessage</span> instance (so must be careful to replace headers rather than append them, for example)</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
@@ -491,14 +491,14 @@ be thread safe</p></td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GDataAuthorizerInterface.refresh-authorization"></a>refresh_authorization</code></em> ()</p></td>
-<td class="struct_member_description"><p> a function to force a refresh of any authorization tokens the authorizer holds, returning <code class="literal">TRUE</code> if a refresh
-was attempted and was successful, or <code class="literal">FALSE</code> if a refresh wasn't attempted or was unsuccessful; if this isn't implemented it's assumed <code class="literal">FALSE</code>
+<td class="struct_member_description"><p>a function to force a refresh of any authorization tokens the authorizer holds, returning <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if a refresh
+was attempted and was successful, or <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if a refresh wasn't attempted or was unsuccessful; if this isn't implemented it's assumed <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>
 would've been returned, if it is implemented it must be thread safe. </p></td>
 <td class="struct_member_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GDataAuthorizerInterface.refresh-authorization-async"></a>refresh_authorization_async</code></em> ()</p></td>
-<td class="struct_member_description"><p> an asynchronous version of <em class="parameter"><code>refresh_authorization</code></em>
+<td class="struct_member_description"><p>an asynchronous version of <em class="parameter"><code>refresh_authorization</code></em>
 ; if this isn't implemented and <em class="parameter"><code>refresh_authorization</code></em>
 is, <em class="parameter"><code>refresh_authorization</code></em>
 will be called in a thread to simulate this function, whereas if this is implemented <em class="parameter"><code>refresh_authorization_finish</code></em>
@@ -508,7 +508,7 @@ also be implemented and both functions must be thread safe. </p></td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GDataAuthorizerInterface.refresh-authorization-finish"></a>refresh_authorization_finish</code></em> ()</p></td>
-<td class="struct_member_description"><p> a finish function for the asynchronous version of <em class="parameter"><code>refresh_authorization</code></em>
+<td class="struct_member_description"><p>a finish function for the asynchronous version of <em class="parameter"><code>refresh_authorization</code></em>
 ; this must be implemented
 exactly if <em class="parameter"><code>refresh_authorization_async</code></em>
 is implemented, and must be thread safe if it is implemented. </p></td>
@@ -522,6 +522,6 @@ is implemented, and must be thread safe if it is implemented. </p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

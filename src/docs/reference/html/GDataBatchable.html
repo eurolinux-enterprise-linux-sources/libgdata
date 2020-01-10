@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataBatchable: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch04.html" title="Batch Operation API">
 <link rel="prev" href="ch04.html" title="Batch Operation API">
 <link rel="next" href="GDataBatchOperation.html" title="GDataBatchOperation">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -82,7 +82,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataBatchable.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/GTypeModule.html">GInterface</a>
+<pre class="screen">    <a href="/opt/gnome/install/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
     <span class="lineart">╰──</span> GDataBatchable
 </pre>
 </div>
@@ -115,14 +115,14 @@ creation of a <a class="link" href="GDataBatchOperation.html" title="GDataBatchO
 <pre class="programlisting"><a class="link" href="GDataBatchOperation.html" title="GDataBatchOperation"><span class="returnvalue">GDataBatchOperation</span></a> *
 gdata_batchable_create_operation (<em class="parameter"><code><a class="link" href="GDataBatchable.html" title="GDataBatchable"><span class="type">GDataBatchable</span></a> *self</code></em>,
                                   <em class="parameter"><code><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> *domain</code></em>,
-                                  <em class="parameter"><code>const <span class="type">gchar</span> *feed_uri</code></em>);</pre>
+                                  <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *feed_uri</code></em>);</pre>
 <p>Creates a new <a class="link" href="GDataBatchOperation.html" title="GDataBatchOperation"><span class="type">GDataBatchOperation</span></a> for the given <a class="link" href="GDataBatchable.html" title="GDataBatchable"><span class="type">GDataBatchable</span></a> service, and with the given <em class="parameter"><code>feed_uri</code></em>
 . <em class="parameter"><code>feed_uri</code></em>
  is normally the <a class="link" href="GDataLink.html#GDATA-LINK-BATCH:CAPS" title="GDATA_LINK_BATCH"><code class="literal">GDATA_LINK_BATCH</code></a>
 link URI in the appropriate <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> from the service. If authorization will be required to perform any of the requests in the batch operation,
 <em class="parameter"><code>domain</code></em>
- must be non-<code class="literal">NULL</code>, and must be an authorization domain which covers all of the requests. Otherwise, <em class="parameter"><code>domain</code></em>
- may be <code class="literal">NULL</code> if authorization
+ must be non-<a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, and must be an authorization domain which covers all of the requests. Otherwise, <em class="parameter"><code>domain</code></em>
+ may be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if authorization
 is not required.</p>
 <div class="refsect3">
 <a name="gdata-batchable-create-operation.parameters"></a><h4>Parameters</h4>
@@ -140,7 +140,7 @@ is not required.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>domain</p></td>
-<td class="parameter_description"><p> the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> to authorize the operation, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> to authorize the operation, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -153,7 +153,7 @@ is not required.</p>
 </div>
 <div class="refsect3">
 <a name="gdata-batchable-create-operation.returns"></a><h4>Returns</h4>
-<p> a new <a class="link" href="GDataBatchOperation.html" title="GDataBatchOperation"><span class="type">GDataBatchOperation</span></a>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a new <a class="link" href="GDataBatchOperation.html" title="GDataBatchOperation"><span class="type">GDataBatchOperation</span></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix11.html#api-index-0.9.0">0.9.0</a></p>
@@ -188,7 +188,7 @@ is not required.</p>
 <td class="struct_member_description"><p>Determines whether the given <a class="link" href="GDataBatchOperation.html#GDataBatchOperationType" title="enum GDataBatchOperationType"><span class="type">GDataBatchOperationType</span></a> is
 supported by this <a class="link" href="GDataBatchable.html" title="GDataBatchable"><span class="type">GDataBatchable</span></a>; if not, operations using it will return
 <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-WITH-BATCH-OPERATION:CAPS"><code class="literal">GDATA_SERVICE_ERROR_WITH_BATCH_OPERATION</code></a>. It is valid for a
-<a class="link" href="GDataBatchable.html" title="GDataBatchable"><span class="type">GDataBatchable</span></a> to return <code class="literal">FALSE</code> for all <a href="GDataBatchOperation.html#GDataBatchOperationType"><span class="type">GDataBatchOperationTypes</span></a> if the
+<a class="link" href="GDataBatchable.html" title="GDataBatchable"><span class="type">GDataBatchable</span></a> to return <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> for all <a href="GDataBatchOperation.html#GDataBatchOperationType"><span class="type">GDataBatchOperationTypes</span></a> if the
 server no longer supports batch operations. If this method is not
 implemented, it is assumed that all <a href="GDataBatchOperation.html#GDataBatchOperationType"><span class="type">GDataBatchOperationTypes</span></a> are
 supported. Since: 0.17.2.</p></td>
@@ -201,6 +201,6 @@ supported. Since: 0.17.2.</p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

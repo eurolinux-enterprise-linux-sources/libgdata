@@ -262,6 +262,7 @@ am__gdata_libgdata_la_SOURCES_DIST = gdata/gdata-marshal.c \
 	gdata/services/contacts/gdata-contacts-group.c \
 	gdata/services/contacts/gdata-contacts-query.c \
 	gdata/services/documents/gdata-documents-service.c \
+	gdata/services/documents/gdata-documents-metadata.c \
 	gdata/services/documents/gdata-documents-feed.c \
 	gdata/services/documents/gdata-documents-entry.c \
 	gdata/services/documents/gdata-documents-document.c \
@@ -377,6 +378,7 @@ am__objects_5 = gdata/gdata_libgdata_la-gdata-entry.lo \
 	gdata/services/contacts/gdata_libgdata_la-gdata-contacts-group.lo \
 	gdata/services/contacts/gdata_libgdata_la-gdata-contacts-query.lo \
 	gdata/services/documents/gdata_libgdata_la-gdata-documents-service.lo \
+	gdata/services/documents/gdata_libgdata_la-gdata-documents-metadata.lo \
 	gdata/services/documents/gdata_libgdata_la-gdata-documents-feed.lo \
 	gdata/services/documents/gdata_libgdata_la-gdata-documents-entry.lo \
 	gdata/services/documents/gdata_libgdata_la-gdata-documents-document.lo \
@@ -867,12 +869,9 @@ MAINTAINERCLEANFILES = $(GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL) \
 	po/en@boldquot.header po/en@quot.header po/insert-header.sin \
 	po/quot.sed po/remove-potcdate.sin m4/gtk-doc.m4 \
 	m4/intltool.m4 $(NULL)
-
-# Marshalling
-GDATA_MARSHAL_FILES = \
-	gdata/gdata-marshal.c	\
-	gdata/gdata-marshal.h
-
+CLEANFILES = $(GDATA_MARSHAL_FILES) $(GDATA_ENUM_FILES) \
+	gdata/gdata.symbols $(am__append_5) $(am__append_7) `find \
+	"$(srcdir)" -type f -name .dirstamp -print` $(pkgconfig_DATA)
 
 # Cleaning
 EXTRA_DIST = $(top_srcdir)/gdata/gdata-marshal.list \
@@ -880,9 +879,13 @@ EXTRA_DIST = $(top_srcdir)/gdata/gdata-marshal.list \
 	m4/introspection.m4 $(am__append_8) autogen.sh HACKING \
 	gtk-doc.make libgdata.doap glib-tap.mk tap-driver.sh tap-test \
 	$(NULL) libgdata.pc.in gdata/gdata-version.h.in
-CLEANFILES = $(GDATA_MARSHAL_FILES) $(GDATA_ENUM_FILES) \
-	gdata/gdata.symbols $(am__append_5) $(am__append_7) `find \
-	"$(srcdir)" -type f -name .dirstamp -print` $(pkgconfig_DATA)
+BUILT_SOURCES = $(GDATA_ENUM_FILES)
+
+# Marshalling
+GDATA_MARSHAL_FILES = \
+	gdata/gdata-marshal.c	\
+	gdata/gdata-marshal.h
+
 
 # Enums
 GDATA_ENUM_FILES = \
@@ -993,6 +996,7 @@ gdatacontactsinclude_HEADERS = \
 gdatadocumentsincludedir = $(gdataincludedir)/services/documents
 gdata_documents_headers = \
 	gdata/services/documents/gdata-documents-service.h	\
+	gdata/services/documents/gdata-documents-metadata.h	\
 	gdata/services/documents/gdata-documents-feed.h		\
 	gdata/services/documents/gdata-documents-entry.h	\
 	gdata/services/documents/gdata-documents-query.h	\
@@ -1108,6 +1112,7 @@ gdata_sources = gdata/gdata-entry.c gdata/gdata-feed.c \
 	gdata/services/contacts/gdata-contacts-group.c \
 	gdata/services/contacts/gdata-contacts-query.c \
 	gdata/services/documents/gdata-documents-service.c \
+	gdata/services/documents/gdata-documents-metadata.c \
 	gdata/services/documents/gdata-documents-feed.c \
 	gdata/services/documents/gdata-documents-entry.c \
 	gdata/services/documents/gdata-documents-document.c \
@@ -1416,7 +1421,7 @@ DISTCLEANFILES = \
 # pkgconfig data
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libgdata.pc
-all: config.h
+all: $(BUILT_SOURCES) config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
 .SUFFIXES:
@@ -1768,6 +1773,9 @@ gdata/services/contacts/gdata_libgdata_la-gdata-contacts-query.lo:  \
 gdata/services/documents/gdata_libgdata_la-gdata-documents-service.lo:  \
 	gdata/services/documents/$(am__dirstamp) \
 	gdata/services/documents/$(DEPDIR)/$(am__dirstamp)
+gdata/services/documents/gdata_libgdata_la-gdata-documents-metadata.lo:  \
+	gdata/services/documents/$(am__dirstamp) \
+	gdata/services/documents/$(DEPDIR)/$(am__dirstamp)
 gdata/services/documents/gdata_libgdata_la-gdata-documents-feed.lo:  \
 	gdata/services/documents/$(am__dirstamp) \
 	gdata/services/documents/$(DEPDIR)/$(am__dirstamp)
@@ -2094,6 +2102,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-enums.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-feed.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-folder.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-metadata.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-pdf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-presentation.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-query.Plo@am__quote@
@@ -2653,6 +2662,13 @@ gdata/services/documents/gdata_libgdata_la-gdata-documents-service.lo: gdata/ser
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdata/services/documents/gdata-documents-service.c' object='gdata/services/documents/gdata_libgdata_la-gdata-documents-service.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gdata_libgdata_la_CPPFLAGS) $(CPPFLAGS) $(gdata_libgdata_la_CFLAGS) $(CFLAGS) -c -o gdata/services/documents/gdata_libgdata_la-gdata-documents-service.lo `test -f 'gdata/services/documents/gdata-documents-service.c' || echo '$(srcdir)/'`gdata/services/documents/gdata-documents-service.c
+
+gdata/services/documents/gdata_libgdata_la-gdata-documents-metadata.lo: gdata/services/documents/gdata-documents-metadata.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gdata_libgdata_la_CPPFLAGS) $(CPPFLAGS) $(gdata_libgdata_la_CFLAGS) $(CFLAGS) -MT gdata/services/documents/gdata_libgdata_la-gdata-documents-metadata.lo -MD -MP -MF gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-metadata.Tpo -c -o gdata/services/documents/gdata_libgdata_la-gdata-documents-metadata.lo `test -f 'gdata/services/documents/gdata-documents-metadata.c' || echo '$(srcdir)/'`gdata/services/documents/gdata-documents-metadata.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-metadata.Tpo gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-metadata.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdata/services/documents/gdata-documents-metadata.c' object='gdata/services/documents/gdata_libgdata_la-gdata-documents-metadata.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gdata_libgdata_la_CPPFLAGS) $(CPPFLAGS) $(gdata_libgdata_la_CFLAGS) $(CFLAGS) -c -o gdata/services/documents/gdata_libgdata_la-gdata-documents-metadata.lo `test -f 'gdata/services/documents/gdata-documents-metadata.c' || echo '$(srcdir)/'`gdata/services/documents/gdata-documents-metadata.c
 
 gdata/services/documents/gdata_libgdata_la-gdata-documents-feed.lo: gdata/services/documents/gdata-documents-feed.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gdata_libgdata_la_CPPFLAGS) $(CPPFLAGS) $(gdata_libgdata_la_CFLAGS) $(CFLAGS) -MT gdata/services/documents/gdata_libgdata_la-gdata-documents-feed.lo -MD -MP -MF gdata/services/documents/$(DEPDIR)/gdata_libgdata_la-gdata-documents-feed.Tpo -c -o gdata/services/documents/gdata_libgdata_la-gdata-documents-feed.lo `test -f 'gdata/services/documents/gdata-documents-feed.c' || echo '$(srcdir)/'`gdata/services/documents/gdata-documents-feed.c
@@ -3701,7 +3717,8 @@ distcleancheck: distclean
 	       exit 1; } >&2
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-recursive
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-recursive
 all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(DATA) $(HEADERS) \
 		config.h
 installdirs: installdirs-recursive
@@ -3709,7 +3726,8 @@ installdirs-am:
 	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(typelibdir)" "$(DESTDIR)$(vapidir)" "$(DESTDIR)$(gdataappincludedir)" "$(DESTDIR)$(gdataatomincludedir)" "$(DESTDIR)$(gdatacalendarincludedir)" "$(DESTDIR)$(gdatacontactsincludedir)" "$(DESTDIR)$(gdatadocumentsincludedir)" "$(DESTDIR)$(gdatafreebaseincludedir)" "$(DESTDIR)$(gdatagcontactincludedir)" "$(DESTDIR)$(gdatagdincludedir)" "$(DESTDIR)$(gdataincludedir)" "$(DESTDIR)$(gdatamediaincludedir)" "$(DESTDIR)$(gdatapicasawebincludedir)" "$(DESTDIR)$(gdatatasksincludedir)" "$(DESTDIR)$(gdatayoutubeincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-recursive
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-recursive
 install-exec: install-exec-recursive
 install-data: install-data-recursive
 uninstall: uninstall-recursive
@@ -3781,6 +3799,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-recursive
 
@@ -3881,7 +3900,8 @@ uninstall-am: uninstall-gdataappincludeHEADERS \
 	uninstall-libLTLIBRARIES uninstall-pkgconfigDATA \
 	uninstall-typelibDATA uninstall-vapiDATA
 
-.MAKE: $(am__recursive_targets) all check-am install-am install-strip
+.MAKE: $(am__recursive_targets) all check check-am install install-am \
+	install-strip
 
 .PHONY: $(am__recursive_targets) CTAGS GTAGS TAGS all all-am \
 	am--refresh check check-am check-local clean clean-cscope \

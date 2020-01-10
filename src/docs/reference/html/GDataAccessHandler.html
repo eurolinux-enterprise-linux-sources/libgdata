@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataAccessHandler: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch03.html" title="Access Control List API">
 <link rel="prev" href="ch03.html" title="Access Control List API">
 <link rel="next" href="GDataAccessRule.html" title="GDataAccessRule">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -96,7 +96,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataAccessHandler.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/GTypeModule.html">GInterface</a>
+<pre class="screen">    <a href="/opt/gnome/install/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
     <span class="lineart">╰──</span> GDataAccessHandler
 </pre>
 </div>
@@ -134,16 +134,16 @@ added, modified and deleted, with immediate effect.</p>
 <pre class="programlisting"><a class="link" href="GDataFeed.html" title="GDataFeed"><span class="returnvalue">GDataFeed</span></a> *
 gdata_access_handler_get_rules (<em class="parameter"><code><a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler"><span class="type">GDataAccessHandler</span></a> *self</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *service</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                 <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>Retrieves a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> containing all the access rules which apply to the given <a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler"><span class="type">GDataAccessHandler</span></a>. Only the owner of a <a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler"><span class="type">GDataAccessHandler</span></a> may
 view its rule feed.</p>
 <p>If <em class="parameter"><code>cancellable</code></em>
- is not <code class="literal">NULL</code>, then the operation can be cancelled by triggering the <em class="parameter"><code>cancellable</code></em>
+ is not <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, then the operation can be cancelled by triggering the <em class="parameter"><code>cancellable</code></em>
  object from another thread.
-If the operation was cancelled, the error <a href="https://developer.gnome.org/gio/unstable/gio-GIOError.html#G-IO-ERROR-CANCELLED:CAPS"><code class="literal">G_IO_ERROR_CANCELLED</code></a> will be returned.</p>
+If the operation was cancelled, the error <code class="literal">G_IO_ERROR_CANCELLED</code> will be returned.</p>
 <p>A <a class="link" href="GDataService.html#GDATA-SERVICE-ERROR-PROTOCOL-ERROR:CAPS"><code class="literal">GDATA_SERVICE_ERROR_PROTOCOL_ERROR</code></a> will be returned if the server indicates there is a problem with the query.</p>
 <p>For each rule in the response feed, <em class="parameter"><code>progress_callback</code></em>
  will be called in the main thread. If there was an error parsing the XML response,
@@ -169,23 +169,23 @@ a <a class="link" href="GDataService.html#GDataParserError" title="enum GDataPar
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when a rule is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when a rule is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>a <span class="type">GError</span>, or <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -193,7 +193,7 @@ function. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdata-access-handler-get-rules.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of access control rules, or <code class="literal">NULL</code>; unref with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of access control rules, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>; unref with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix05.html#api-index-0.3.0">0.3.0</a></p>
@@ -204,12 +204,12 @@ function. </p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdata_access_handler_get_rules_async (<em class="parameter"><code><a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler"><span class="type">GDataAccessHandler</span></a> *self</code></em>,
                                       <em class="parameter"><code><a class="link" href="GDataService.html" title="GDataService"><span class="type">GDataService</span></a> *service</code></em>,
-                                      <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                      <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                       <em class="parameter"><code><a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> progress_callback</code></em>,
-                                      <em class="parameter"><code><span class="type">gpointer</span> progress_user_data</code></em>,
-                                      <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy_progress_user_data</code></em>,
-                                      <em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                      <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                      <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> progress_user_data</code></em>,
+                                      <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy_progress_user_data</code></em>,
+                                      <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                      <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>Retrieves a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> containing all the access rules which apply to the given <a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler"><span class="type">GDataAccessHandler</span></a>. Only the owner of a <a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler"><span class="type">GDataAccessHandler</span></a> may
 view its rule feed. <em class="parameter"><code>self</code></em>
  and <em class="parameter"><code>service</code></em>
@@ -240,36 +240,36 @@ to get the results of the operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p> optional <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> object, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>optional <span class="type">GCancellable</span> object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_callback</p></td>
-<td class="parameter_description"><p> a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when a rule is loaded, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GDataService.html#GDataQueryProgressCallback" title="GDataQueryProgressCallback ()"><span class="type">GDataQueryProgressCallback</span></a> to call when a rule is loaded, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> progress_user_data]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>progress_user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>progress_callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>progress_callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>destroy_progress_user_data</p></td>
-<td class="parameter_description"><p> the function to call when <em class="parameter"><code>progress_callback</code></em>
-will not be called any more, or <code class="literal">NULL</code>. This function will be
+<td class="parameter_description"><p>the function to call when <em class="parameter"><code>progress_callback</code></em>
+will not be called any more, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This function will be
 called with <em class="parameter"><code>progress_user_data</code></em>
 as a parameter and can be used to free any memory allocated for it. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the query is finished</p></td>
+<td class="parameter_description"><p>a <span class="type">GAsyncReadyCallback</span> to call when the query is finished</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
-<td class="parameter_description"><p> data to pass to the <em class="parameter"><code>callback</code></em>
+<td class="parameter_description"><p>data to pass to the <em class="parameter"><code>callback</code></em>
 function. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span></td>
 </tr>
@@ -325,7 +325,7 @@ function. </p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="struct_member_name"><p><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="GDataAccessHandlerIface.parent"></a>parent</code></em>;</p></td>
+<td class="struct_member_name"><p><a href="../gobject/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="GDataAccessHandlerIface.parent"></a>parent</code></em>;</p></td>
 <td class="struct_member_description"><p>the parent type</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
@@ -336,14 +336,14 @@ function. </p></td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GDataAccessHandlerIface.get-authorization-domain"></a>get_authorization_domain</code></em> ()</p></td>
-<td class="struct_member_description"><p> a function to return the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> to be used for all operations on the access rules
-belonging to this access handler; not implementing this function is equivalent to returning <code class="literal">NULL</code> from it, which signifies that operations on the
+<td class="struct_member_description"><p>a function to return the <a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> to be used for all operations on the access rules
+belonging to this access handler; not implementing this function is equivalent to returning <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> from it, which signifies that operations on the
 access rules don't require authorization; new in version 0.9.0. </p></td>
 <td class="struct_member_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GDataAccessHandlerIface.get-rules"></a>get_rules</code></em> ()</p></td>
-<td class="struct_member_description"><p> a function to query, parse and return a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of
+<td class="struct_member_description"><p>a function to query, parse and return a <a class="link" href="GDataFeed.html" title="GDataFeed"><span class="type">GDataFeed</span></a> of
 <a href="GDataAccessRule.html#GDataAccessRule-struct"><span class="type">GDataAccessRules</span></a> for a given entry — the virtual function for
 <a class="link" href="GDataAccessHandler.html#gdata-access-handler-get-rules" title="gdata_access_handler_get_rules ()"><code class="function">gdata_access_handler_get_rules()</code></a>; new in version 0.17.2. </p></td>
 <td class="struct_member_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
@@ -356,6 +356,6 @@ access rules don't require authorization; new in version 0.9.0. </p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

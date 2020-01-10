@@ -25,10 +25,13 @@
  * @stability: Stable
  * @include: gdata/services/documents/gdata-documents-service.h
  *
- * #GDataDocumentsService is a subclass of #GDataService for communicating with the GData API of Google Documents. It supports querying
+ * #GDataDocumentsService is a subclass of #GDataService for communicating with the GData API of Google Drive. It supports querying
  * for, inserting, editing and deleting documents, as well as a folder hierarchy.
+ * The API is named ‘documents’ rather than ‘drive’ as it used to use the Google
+ * Documents API, which has since been deprecated.
  *
- * For more details of Google Documents' GData API, see the <ulink type="http" url="https://developers.google.com/google-apps/documents-list/">
+ * For more details of Google Drive's GData API, see the
+ * <ulink type="http" url="https://developers.google.com/drive/v2/web/about-sdk">
  * online documentation</ulink>.
  *
  * Fore more details about the spreadsheet downloads handling, see the
@@ -136,7 +139,7 @@
  * 	</programlisting>
  * </example>
  *
- * The Documents service can be manipulated using batch operations, too. See the
+ * The Drive service can be manipulated using batch operations, too. See the
  * <ulink type="http" url="https://developers.google.com/google-apps/documents-list/#batching_acl_requests">online documentation on batch
  * operations</ulink> for more information.
  *
@@ -408,6 +411,129 @@ gdata_documents_service_get_spreadsheet_authorization_domain (void)
 	return get_spreadsheets_authorization_domain ();
 }
 
+/**
+ * gdata_documents_service_get_metadata:
+ * @self: a #GDataDocumentsService
+ * @cancellable: (allow-none): optional #GCancellable object, or %NULL
+ * @error: a #GError, or %NULL
+ *
+ * Gets a #GDataDocumentsMetadata object containing metadata about the documents
+ * service itself, like how large the user quota is.
+ *
+ * Return value: (transfer full): the service's metadata object; unref with g_object_unref()
+ *
+ * Since: 0.17.9
+ */
+GDataDocumentsMetadata *
+gdata_documents_service_get_metadata (GDataDocumentsService *self, GCancellable *cancellable, GError **error)
+{
+	GDataDocumentsMetadata *metadata;
+	const gchar *uri = "https://www.googleapis.com/drive/v2/about";
+	SoupMessage *message;
+	guint status;
+
+	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
+	g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), NULL);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+	message = _gdata_service_build_message (GDATA_SERVICE (self), get_documents_authorization_domain (), SOUP_METHOD_GET, uri, NULL, FALSE);
+
+	/* Send the message */
+	status = _gdata_service_send_message (GDATA_SERVICE (self), message, cancellable, error);
+
+	if (status == SOUP_STATUS_NONE || status == SOUP_STATUS_CANCELLED) {
+		/* Redirect error or cancelled */
+		g_object_unref (message);
+		return NULL;
+	} else if (status != SOUP_STATUS_OK) {
+		/* Error */
+		GDataServiceClass *klass = GDATA_SERVICE_GET_CLASS (self);
+		g_assert (klass->parse_error_response != NULL);
+		klass->parse_error_response (GDATA_SERVICE (self), GDATA_OPERATION_QUERY, status, message->reason_phrase, message->response_body->data,
+					     message->response_body->length, error);
+		g_object_unref (message);
+		return NULL;
+	}
+
+	/* Parse the JSON; and update the entry */
+	g_assert (message->response_body->data != NULL);
+	metadata = GDATA_DOCUMENTS_METADATA (gdata_parsable_new_from_json (GDATA_TYPE_DOCUMENTS_METADATA, message->response_body->data, message->response_body->length,
+	                                                                    error));
+	g_object_unref (message);
+
+	return metadata;
+}
+
+static void
+get_metadata_thread (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
+{
+	GDataDocumentsService *service = GDATA_DOCUMENTS_SERVICE (source_object);
+	g_autoptr(GDataDocumentsMetadata) metadata = NULL;
+	g_autoptr(GError) error = NULL;
+
+	/* Copy the metadata and return */
+	metadata = gdata_documents_service_get_metadata (service, cancellable, &error);
+	if (error != NULL)
+		g_task_return_error (task, g_steal_pointer (&error));
+	else
+		g_task_return_pointer (task, g_steal_pointer (&metadata), g_object_unref);
+}
+
+/**
+ * gdata_documents_service_get_metadata_async:
+ * @self: a #GDataDocumentsService
+ * @cancellable: (allow-none): optional #GCancellable object, or %NULL
+ * @callback: a #GAsyncReadyCallback to call when the operation is finished, or %NULL
+ * @user_data: (closure): data to pass to the @callback function
+ *
+ * Gets a #GDataDocumentsMetadata object containing metadata about the documents
+ * service itself, like how large the user quota is.
+ *
+ * For more details, see gdata_documents_service_get_metadata(), which is the synchronous version of this function.
+ *
+ * When the operation is finished, @callback will be called. You can then call gdata_documents_service_get_metadata_finish() to get the results
+ * of the operation.
+ *
+ * Since: 0.17.9
+ */
+void
+gdata_documents_service_get_metadata_async (GDataDocumentsService *self, GCancellable *cancellable,
+                                            GAsyncReadyCallback callback, gpointer user_data)
+{
+	g_autoptr(GTask) task = NULL;
+
+	g_return_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self));
+	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
+
+	task = g_task_new (self, cancellable, callback, user_data);
+	g_task_set_source_tag (task, gdata_documents_service_get_metadata_async);
+	g_task_run_in_thread (task, get_metadata_thread);
+}
+
+/**
+ * gdata_documents_service_get_metadata_finish:
+ * @self: a #GDataDocumentsService
+ * @async_result: a #GAsyncResult
+ * @error: a #GError, or %NULL
+ *
+ * Finish an asynchronous operation to get a #GDataDocumentsMetadata started with gdata_documents_service_get_metadata_async().
+ *
+ * Return value: (transfer full): the service's metadata object; unref with g_object_unref()
+ *
+ * Since: 0.17.9
+ */
+GDataDocumentsMetadata *
+gdata_documents_service_get_metadata_finish (GDataDocumentsService *self, GAsyncResult *async_result, GError **error)
+{
+	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
+	g_return_val_if_fail (G_IS_ASYNC_RESULT (async_result), NULL);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+	g_return_val_if_fail (g_task_is_valid (async_result, self), NULL);
+	g_return_val_if_fail (g_async_result_is_tagged (async_result, gdata_documents_service_get_metadata_async), NULL);
+
+	return g_task_propagate_pointer (G_TASK (async_result), error);
+}
+
 static gchar *
 _query_documents_build_request_uri (GDataDocumentsQuery *query)
 {
@@ -499,11 +625,12 @@ gdata_documents_service_query_documents_async (GDataDocumentsService *self, GDat
 	/* Ensure we're authenticated first */
 	if (gdata_authorizer_is_authorized_for_domain (gdata_service_get_authorizer (GDATA_SERVICE (self)),
 	                                               get_documents_authorization_domain ()) == FALSE) {
-		GSimpleAsyncResult *result = g_simple_async_result_new (G_OBJECT (self), callback, user_data, gdata_service_query_async);
-		g_simple_async_result_set_error (result, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED, "%s",
-		                                 _("You must be authenticated to query documents."));
-		g_simple_async_result_complete_in_idle (result);
-		g_object_unref (result);
+		g_autoptr(GTask) task = NULL;
+
+		task = g_task_new (self, cancellable, callback, user_data);
+		g_task_set_source_tag (task, gdata_service_query_async);
+		g_task_return_new_error (task, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_AUTHENTICATION_REQUIRED, "%s",
+		                         _("You must be authenticated to query documents."));
 
 		return;
 	}
@@ -931,21 +1058,12 @@ gdata_documents_service_copy_document (GDataDocumentsService *self, GDataDocumen
 	parent_folders_list = gdata_entry_look_up_links (GDATA_ENTRY (document), GDATA_LINK_PARENT);
 	for (i = parent_folders_list; i != NULL; i = i->next) {
 		GDataLink *_link = GDATA_LINK (i->data);
-		const gchar *uri;
-		gsize uri_prefix_len;
+		const gchar *id;
 
-		/* HACK: Extract the ID from the GDataLink:uri by removing the prefix. Ignore links which
-		 * don't have the prefix. */
-		uri = gdata_link_get_uri (_link);
-		uri_prefix_len = strlen (GDATA_DOCUMENTS_URI_PREFIX);
-		if (g_str_has_prefix (uri, GDATA_DOCUMENTS_URI_PREFIX)) {
-			const gchar *id;
-
-			id = uri + uri_prefix_len;
-			if (id[0] != '\0') {
-				parent_id = id;
-				break;
-			}
+		id = gdata_documents_utils_get_id_from_link (_link);
+		if (id != NULL) {
+			parent_id = id;
+			break;
 		}
 	}
 
@@ -967,23 +1085,19 @@ gdata_documents_service_copy_document (GDataDocumentsService *self, GDataDocumen
 }
 
 static void
-copy_document_thread (GSimpleAsyncResult *result, GDataDocumentsService *service, GCancellable *cancellable)
+copy_document_thread (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
 {
-	GDataDocumentsDocument *document, *new_document;
-	GError *error = NULL;
-
-	document = g_simple_async_result_get_op_res_gpointer (result);
+	GDataDocumentsService *service = GDATA_DOCUMENTS_SERVICE (source_object);
+	GDataDocumentsDocument *document = task_data;
+	g_autoptr(GDataDocumentsDocument) new_document = NULL;
+	g_autoptr(GError) error = NULL;
 
 	/* Copy the document and return */
 	new_document = gdata_documents_service_copy_document (service, document, cancellable, &error);
-	if (error != NULL) {
-		g_simple_async_result_set_from_error (result, error);
-		g_error_free (error);
-		return;
-	}
-
-	/* Return the document copy */
-	g_simple_async_result_set_op_res_gpointer (result, g_object_ref (new_document), (GDestroyNotify) g_object_unref);
+	if (error != NULL)
+		g_task_return_error (task, g_steal_pointer (&error));
+	else
+		g_task_return_pointer (task, g_steal_pointer (&new_document), g_object_unref);
 }
 
 /**
@@ -1008,16 +1122,16 @@ void
 gdata_documents_service_copy_document_async (GDataDocumentsService *self, GDataDocumentsDocument *document, GCancellable *cancellable,
                                              GAsyncReadyCallback callback, gpointer user_data)
 {
-	GSimpleAsyncResult *result;
+	g_autoptr(GTask) task = NULL;
 
 	g_return_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self));
 	g_return_if_fail (GDATA_IS_DOCUMENTS_DOCUMENT (document));
 	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
 
-	result = g_simple_async_result_new (G_OBJECT (self), callback, user_data, gdata_documents_service_copy_document_async);
-	g_simple_async_result_set_op_res_gpointer (result, g_object_ref (document), (GDestroyNotify) g_object_unref);
-	g_simple_async_result_run_in_thread (result, (GSimpleAsyncThreadFunc) copy_document_thread, G_PRIORITY_DEFAULT, cancellable);
-	g_object_unref (result);
+	task = g_task_new (self, cancellable, callback, user_data);
+	g_task_set_source_tag (task, gdata_documents_service_copy_document_async);
+	g_task_set_task_data (task, g_object_ref (document), (GDestroyNotify) g_object_unref);
+	g_task_run_in_thread (task, copy_document_thread);
 }
 
 /**
@@ -1035,23 +1149,13 @@ gdata_documents_service_copy_document_async (GDataDocumentsService *self, GDataD
 GDataDocumentsDocument *
 gdata_documents_service_copy_document_finish (GDataDocumentsService *self, GAsyncResult *async_result, GError **error)
 {
-	GSimpleAsyncResult *result = G_SIMPLE_ASYNC_RESULT (async_result);
-	GDataDocumentsDocument *new_document;
-
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
 	g_return_val_if_fail (G_IS_ASYNC_RESULT (async_result), NULL);
-	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+	g_return_val_if_fail (g_task_is_valid (async_result, self), NULL);
+	g_return_val_if_fail (g_async_result_is_tagged (async_result, gdata_documents_service_copy_document_async), NULL);
 
-	g_warn_if_fail (g_simple_async_result_get_source_tag (result) == gdata_documents_service_copy_document_async);
-
-	if (g_simple_async_result_propagate_error (result, error) == TRUE) {
-		return NULL;
-	}
-
-	new_document = g_simple_async_result_get_op_res_gpointer (result);
-	g_assert (GDATA_IS_DOCUMENTS_DOCUMENT (new_document));
-
-	return new_document;
+	return g_task_propagate_pointer (G_TASK (async_result), error);
 }
 
 /**
@@ -1170,24 +1274,19 @@ add_entry_to_folder_data_free (AddEntryToFolderData *data)
 }
 
 static void
-add_entry_to_folder_thread (GSimpleAsyncResult *result, GDataDocumentsService *service, GCancellable *cancellable)
+add_entry_to_folder_thread (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
 {
-	GDataDocumentsEntry *updated_entry;
-	AddEntryToFolderData *data;
-	GError *error = NULL;
-
-	data = g_simple_async_result_get_op_res_gpointer (result);
+	GDataDocumentsService *service = GDATA_DOCUMENTS_SERVICE (source_object);
+	g_autoptr(GDataDocumentsEntry) updated_entry = NULL;
+	AddEntryToFolderData *data = task_data;
+	g_autoptr(GError) error = NULL;
 
 	/* Add the entry to the folder and return */
 	updated_entry = gdata_documents_service_add_entry_to_folder (service, data->entry, data->folder, cancellable, &error);
-	if (error != NULL) {
-		g_simple_async_result_set_from_error (result, error);
-		g_error_free (error);
-		return;
-	}
-
-	/* Return the updated entry */
-	g_simple_async_result_set_op_res_gpointer (result, updated_entry, (GDestroyNotify) g_object_unref);
+	if (error != NULL)
+		g_task_return_error (task, g_steal_pointer (&error));
+	else
+		g_task_return_pointer (task, g_steal_pointer (&updated_entry), (GDestroyNotify) g_object_unref);
 }
 
 /**
@@ -1213,7 +1312,7 @@ void
 gdata_documents_service_add_entry_to_folder_async (GDataDocumentsService *self, GDataDocumentsEntry *entry, GDataDocumentsFolder *folder,
                                                    GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data)
 {
-	GSimpleAsyncResult *result;
+	g_autoptr(GTask) task = NULL;
 	AddEntryToFolderData *data;
 
 	g_return_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self));
@@ -1225,10 +1324,10 @@ gdata_documents_service_add_entry_to_folder_async (GDataDocumentsService *self, 
 	data->entry = g_object_ref (entry);
 	data->folder = g_object_ref (folder);
 
-	result = g_simple_async_result_new (G_OBJECT (self), callback, user_data, gdata_documents_service_add_entry_to_folder_async);
-	g_simple_async_result_set_op_res_gpointer (result, data, (GDestroyNotify) add_entry_to_folder_data_free);
-	g_simple_async_result_run_in_thread (result, (GSimpleAsyncThreadFunc) add_entry_to_folder_thread, G_PRIORITY_DEFAULT, cancellable);
-	g_object_unref (result);
+	task = g_task_new (self, cancellable, callback, user_data);
+	g_task_set_source_tag (task, gdata_documents_service_add_entry_to_folder_async);
+	g_task_set_task_data (task, g_steal_pointer (&data), (GDestroyNotify) add_entry_to_folder_data_free);
+	g_task_run_in_thread (task, add_entry_to_folder_thread);
 }
 
 /**
@@ -1246,23 +1345,13 @@ gdata_documents_service_add_entry_to_folder_async (GDataDocumentsService *self, 
 GDataDocumentsEntry *
 gdata_documents_service_add_entry_to_folder_finish (GDataDocumentsService *self, GAsyncResult *async_result, GError **error)
 {
-	GSimpleAsyncResult *result = G_SIMPLE_ASYNC_RESULT (async_result);
-	GDataDocumentsEntry *entry;
-
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
 	g_return_val_if_fail (G_IS_ASYNC_RESULT (async_result), NULL);
-	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+	g_return_val_if_fail (g_task_is_valid (async_result, self), NULL);
+	g_return_val_if_fail (g_async_result_is_tagged (async_result, gdata_documents_service_add_entry_to_folder_async), NULL);
 
-	g_warn_if_fail (g_simple_async_result_get_source_tag (result) == gdata_documents_service_add_entry_to_folder_async);
-
-	if (g_simple_async_result_propagate_error (result, error) == TRUE)
-		return NULL;
-
-	entry = g_simple_async_result_get_op_res_gpointer (result);
-	if (entry != NULL)
-		return g_object_ref (entry);
-
-	g_assert_not_reached ();
+	return g_task_propagate_pointer (G_TASK (async_result), error);
 }
 
 /**
@@ -1286,10 +1375,10 @@ GDataDocumentsEntry *
 gdata_documents_service_remove_entry_from_folder (GDataDocumentsService *self, GDataDocumentsEntry *entry, GDataDocumentsFolder *folder,
                                                   GCancellable *cancellable, GError **error)
 {
-	const gchar *folder_id, *entry_id;
-	SoupMessage *message;
-	guint status;
-	gchar *uri;
+	const gchar *folder_id;
+	GList *i;
+	GList *parent_folders_list;
+	GDataLink *folder_link = NULL;
 
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_ENTRY (entry), NULL);
@@ -1304,42 +1393,32 @@ gdata_documents_service_remove_entry_from_folder (GDataDocumentsService *self, G
 		return NULL;
 	}
 
-	/* Get the document ID */
-	folder_id = gdata_documents_entry_get_resource_id (GDATA_DOCUMENTS_ENTRY (folder));
-	entry_id = gdata_documents_entry_get_resource_id (entry);
+	folder_id = gdata_entry_get_id (GDATA_ENTRY (folder));
 	g_assert (folder_id != NULL);
-	g_assert (entry_id != NULL);
 
-	uri = _gdata_service_build_uri ("%s://docs.google.com/feeds/default/private/full/%s/contents/%s", _gdata_service_get_scheme (),
-	                                folder_id, entry_id);
-	message = _gdata_service_build_message (GDATA_SERVICE (self), get_documents_authorization_domain (), SOUP_METHOD_DELETE, uri,
-	                                        gdata_entry_get_etag (GDATA_ENTRY (entry)), TRUE);
-	g_free (uri);
+	parent_folders_list = gdata_entry_look_up_links (GDATA_ENTRY (entry), GDATA_LINK_PARENT);
+	for (i = parent_folders_list; i != NULL; i = i->next) {
+		GDataLink *_link = GDATA_LINK (i->data);
+		const gchar *id;
 
-	/* Send the message */
-	status = _gdata_service_send_message (GDATA_SERVICE (self), message, cancellable, error);
+		id = gdata_documents_utils_get_id_from_link (_link);
+		if (g_strcmp0 (folder_id, id) == 0) {
+			folder_link = _link;
+			break;
+		}
+	}
 
-	if (status == SOUP_STATUS_NONE || status == SOUP_STATUS_CANCELLED) {
-		/* Redirect error or cancelled */
-		g_object_unref (message);
-		return NULL;
-	} else if (status != SOUP_STATUS_OK) {
-		/* Error */
-		GDataServiceClass *klass = GDATA_SERVICE_GET_CLASS (self);
-		g_assert (klass->parse_error_response != NULL);
-		klass->parse_error_response (GDATA_SERVICE (self), GDATA_OPERATION_UPDATE, status, message->reason_phrase,
-		                             message->response_body->data, message->response_body->length, error);
-		g_object_unref (message);
+	g_list_free (parent_folders_list);
+
+	if (folder_link == NULL) {
+		g_set_error_literal (error, GDATA_SERVICE_ERROR, GDATA_SERVICE_ERROR_NOT_FOUND, _("Parent folder not found"));
 		return NULL;
 	}
 
-	g_object_unref (message);
+	gdata_entry_remove_link (GDATA_ENTRY (entry), folder_link);
 
-	/* HACK: Google's servers don't return an updated copy of the entry, so we have to query for it again.
-	 * See: http://code.google.com/p/gdata-issues/issues/detail?id=1380 */
-	return GDATA_DOCUMENTS_ENTRY (gdata_service_query_single_entry (GDATA_SERVICE (self), get_documents_authorization_domain (),
-	                                                                gdata_entry_get_id (GDATA_ENTRY (entry)), NULL,
-	                                                                G_OBJECT_TYPE (entry), cancellable, error));
+	return GDATA_DOCUMENTS_ENTRY (gdata_service_update_entry (GDATA_SERVICE (self), get_documents_authorization_domain (), GDATA_ENTRY (entry),
+	                                                          cancellable, error));
 }
 
 typedef struct {
@@ -1356,23 +1435,19 @@ remove_entry_from_folder_data_free (RemoveEntryFromFolderData *data)
 }
 
 static void
-remove_entry_from_folder_thread (GSimpleAsyncResult *result, GDataDocumentsService *service, GCancellable *cancellable)
+remove_entry_from_folder_thread (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
 {
-	GDataDocumentsEntry *updated_entry;
-	RemoveEntryFromFolderData *data;
-	GError *error = NULL;
-
-	data = g_simple_async_result_get_op_res_gpointer (result);
+	GDataDocumentsService *service = GDATA_DOCUMENTS_SERVICE (source_object);
+	g_autoptr(GDataDocumentsEntry) updated_entry = NULL;
+	RemoveEntryFromFolderData *data = task_data;
+	g_autoptr(GError) error = NULL;
 
 	/* Remove the entry from the folder and return */
 	updated_entry = gdata_documents_service_remove_entry_from_folder (service, data->entry, data->folder, cancellable, &error);
-	if (error != NULL) {
-		g_simple_async_result_take_error (result, error);
-		return;
-	}
-
-	/* Return the updated entry */
-	g_simple_async_result_set_op_res_gpointer (result, updated_entry, (GDestroyNotify) g_object_unref);
+	if (error != NULL)
+		g_task_return_error (task, g_steal_pointer (&error));
+	else
+		g_task_return_pointer (task, g_steal_pointer (&updated_entry), g_object_unref);
 }
 
 /**
@@ -1398,7 +1473,7 @@ void
 gdata_documents_service_remove_entry_from_folder_async (GDataDocumentsService *self, GDataDocumentsEntry *entry, GDataDocumentsFolder *folder,
                                                         GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data)
 {
-	GSimpleAsyncResult *result;
+	g_autoptr(GTask) task = NULL;
 	RemoveEntryFromFolderData *data;
 
 	g_return_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self));
@@ -1410,10 +1485,10 @@ gdata_documents_service_remove_entry_from_folder_async (GDataDocumentsService *s
 	data->entry = g_object_ref (entry);
 	data->folder = g_object_ref (folder);
 
-	result = g_simple_async_result_new (G_OBJECT (self), callback, user_data, gdata_documents_service_remove_entry_from_folder_async);
-	g_simple_async_result_set_op_res_gpointer (result, data, (GDestroyNotify) remove_entry_from_folder_data_free);
-	g_simple_async_result_run_in_thread (result, (GSimpleAsyncThreadFunc) remove_entry_from_folder_thread, G_PRIORITY_DEFAULT, cancellable);
-	g_object_unref (result);
+	task = g_task_new (self, cancellable, callback, user_data);
+	g_task_set_source_tag (task, gdata_documents_service_remove_entry_from_folder_async);
+	g_task_set_task_data (task, g_steal_pointer (&data), (GDestroyNotify) remove_entry_from_folder_data_free);
+	g_task_run_in_thread (task, remove_entry_from_folder_thread);
 }
 
 /**
@@ -1432,23 +1507,13 @@ gdata_documents_service_remove_entry_from_folder_async (GDataDocumentsService *s
 GDataDocumentsEntry *
 gdata_documents_service_remove_entry_from_folder_finish (GDataDocumentsService *self, GAsyncResult *async_result, GError **error)
 {
-	GSimpleAsyncResult *result = G_SIMPLE_ASYNC_RESULT (async_result);
-	GDataDocumentsEntry *entry;
-
 	g_return_val_if_fail (GDATA_IS_DOCUMENTS_SERVICE (self), NULL);
 	g_return_val_if_fail (G_IS_ASYNC_RESULT (async_result), NULL);
-	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+	g_return_val_if_fail (g_task_is_valid (async_result, self), NULL);
+	g_return_val_if_fail (g_async_result_is_tagged (async_result, gdata_documents_service_remove_entry_from_folder_async), NULL);
 
-	g_warn_if_fail (g_simple_async_result_get_source_tag (result) == gdata_documents_service_remove_entry_from_folder_async);
-
-	if (g_simple_async_result_propagate_error (result, error) == TRUE)
-		return NULL;
-
-	entry = g_simple_async_result_get_op_res_gpointer (result);
-	if (entry != NULL)
-		return g_object_ref (entry);
-
-	g_assert_not_reached ();
+	return g_task_propagate_pointer (G_TASK (async_result), error);
 }
 
 /* NOTE: query may be NULL. */

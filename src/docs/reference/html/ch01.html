@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Object Hierarchy: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="pt01.html" title="Part I. GData Overview">
 <link rel="prev" href="gdata-running.html" title="Running GData Applications">
 <link rel="next" href="pt02.html" title="Part II. Core API">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -23,7 +23,7 @@
 <div class="titlepage"><div><div><h2 class="title">
 <a name="id-1.2.4"></a>Object Hierarchy</h2></div></div></div>
 <pre class="screen">
-    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">├──</span> <a class="link" href="GDataParsable.html" title="GDataParsable">GDataParsable</a>
     <span class="lineart">│</span>   <span class="lineart">├──</span> <a class="link" href="GDataEntry.html" title="GDataEntry">GDataEntry</a>
     <span class="lineart">│</span>   <span class="lineart">│</span>   <span class="lineart">├──</span> <a class="link" href="GDataAccessRule.html" title="GDataAccessRule">GDataAccessRule</a>
@@ -62,6 +62,7 @@
     <span class="lineart">│</span>   <span class="lineart">│</span>   <span class="lineart">╰──</span> <a class="link" href="GDataYouTubeFeed.html" title="GDataYouTubeFeed">GDataYouTubeFeed</a>
     <span class="lineart">│</span>   <span class="lineart">├──</span> <a class="link" href="GDataCategory.html" title="GDataCategory">GDataCategory</a>
     <span class="lineart">│</span>   <span class="lineart">│</span>   <span class="lineart">╰──</span> <a class="link" href="GDataYouTubeCategory.html" title="GDataYouTubeCategory">GDataYouTubeCategory</a>
+    <span class="lineart">│</span>   <span class="lineart">├──</span> <a class="link" href="GDataDocumentsMetadata.html" title="GDataDocumentsMetadata">GDataDocumentsMetadata</a>
     <span class="lineart">│</span>   <span class="lineart">├──</span> <a class="link" href="GDataGContactCalendar.html" title="GDataGContactCalendar">GDataGContactCalendar</a>
     <span class="lineart">│</span>   <span class="lineart">├──</span> <a class="link" href="GDataGContactEvent.html" title="GDataGContactEvent">GDataGContactEvent</a>
     <span class="lineart">│</span>   <span class="lineart">├──</span> <a class="link" href="GDataGContactExternalID.html" title="GDataGContactExternalID">GDataGContactExternalID</a>
@@ -110,20 +111,20 @@
     <span class="lineart">│</span>   <span class="lineart">╰──</span> <a class="link" href="GDataYouTubeQuery.html" title="GDataYouTubeQuery">GDataYouTubeQuery</a>
     <span class="lineart">├──</span> <a class="link" href="GDataClientLoginAuthorizer.html" title="GDataClientLoginAuthorizer">GDataClientLoginAuthorizer</a>
     <span class="lineart">├──</span> <a class="link" href="GDataDocumentsUploadQuery.html" title="GDataDocumentsUploadQuery">GDataDocumentsUploadQuery</a>
-    <span class="lineart">├──</span> <a href="https://developer.gnome.org/gio/unstable/GInputStream.html#GInputStream-struct">GInputStream</a>
+    <span class="lineart">├──</span> GInputStream
     <span class="lineart">│</span>   <span class="lineart">╰──</span> <a class="link" href="GDataDownloadStream.html" title="GDataDownloadStream">GDataDownloadStream</a>
     <span class="lineart">├──</span> <a class="link" href="GDataGoaAuthorizer.html" title="GDataGoaAuthorizer">GDataGoaAuthorizer</a>
     <span class="lineart">├──</span> <a class="link" href="GDataOAuth1Authorizer.html" title="GDataOAuth1Authorizer">GDataOAuth1Authorizer</a>
     <span class="lineart">├──</span> <a class="link" href="GDataOAuth2Authorizer.html" title="GDataOAuth2Authorizer">GDataOAuth2Authorizer</a>
-    <span class="lineart">╰──</span> <a href="https://developer.gnome.org/gio/unstable/GOutputStream.html#GOutputStream-struct">GOutputStream</a>
+    <span class="lineart">╰──</span> GOutputStream
         <span class="lineart">╰──</span> <a class="link" href="GDataUploadStream.html" title="GDataUploadStream">GDataUploadStream</a>
-    <a href="https://developer.gnome.org/gobject/unstable/GTypeModule.html">GInterface</a>
+    <a href="/opt/gnome/install/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
     <span class="lineart">├──</span> <a class="link" href="GDataAccessHandler.html" title="GDataAccessHandler">GDataAccessHandler</a>
     <span class="lineart">├──</span> <a class="link" href="GDataComparable.html" title="GDataComparable">GDataComparable</a>
     <span class="lineart">├──</span> <a class="link" href="GDataAuthorizer.html" title="GDataAuthorizer">GDataAuthorizer</a>
     <span class="lineart">├──</span> <a class="link" href="GDataBatchable.html" title="GDataBatchable">GDataBatchable</a>
     <span class="lineart">╰──</span> <a class="link" href="GDataCommentable.html" title="GDataCommentable">GDataCommentable</a>
-    <a href="https://developer.gnome.org/gobject/unstable/gobject-Boxed-Types.html">GBoxed</a>
+    <a href="/opt/gnome/install/share/gtk-doc/html/gobject/gobject-Boxed-Types.html">GBoxed</a>
     <span class="lineart">├──</span> <a class="link" href="gdata-GData-Types.html#GDataColor">GDataColor</a>
     <span class="lineart">├──</span> <a class="link" href="GDataFreebaseSearchResult.html#GDataFreebaseSearchResultItem">GDataFreebaseSearchResultItem</a>
     <span class="lineart">├──</span> <a class="link" href="GDataFreebaseTopicResult.html#GDataFreebaseTopicObject">GDataFreebaseTopicObject</a>
@@ -131,6 +132,6 @@
 </pre>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>

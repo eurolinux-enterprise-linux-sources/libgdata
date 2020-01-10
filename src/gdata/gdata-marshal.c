@@ -107,7 +107,7 @@ extern void gdata_marshal_STRING__OBJECT_STRING (GClosure     *closure,
                                                  gpointer      marshal_data);
 void
 gdata_marshal_STRING__OBJECT_STRING (GClosure     *closure,
-                                     GValue       *return_value G_GNUC_UNUSED,
+                                     GValue       *return_value,
                                      guint         n_param_values,
                                      const GValue *param_values,
                                      gpointer      invocation_hint G_GNUC_UNUSED,

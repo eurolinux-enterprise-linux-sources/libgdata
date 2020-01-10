@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDataAuthorizationDomain: GData Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GData Reference Manual">
 <link rel="up" href="ch05.html" title="Authentication/Authorization API">
 <link rel="prev" href="GDataAuthorizer.html" title="GDataAuthorizer">
 <link rel="next" href="GDataClientLoginAuthorizer.html" title="GDataClientLoginAuthorizer">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -52,14 +52,14 @@ justifications.
 </colgroup>
 <tbody>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataAuthorizationDomain.html#gdata-authorization-domain-get-service-name" title="gdata_authorization_domain_get_service_name ()">gdata_authorization_domain_get_service_name</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
-<td class="function_type">const <span class="returnvalue">gchar</span> *
+<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GDataAuthorizationDomain.html#gdata-authorization-domain-get-scope" title="gdata_authorization_domain_get_scope ()">gdata_authorization_domain_get_scope</a> <span class="c_punctuation">()</span>
@@ -79,13 +79,13 @@ justifications.
 <tbody>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataAuthorizationDomain.html#GDataAuthorizationDomain--scope" title="The “scope” property">scope</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
 <td class="property_name"><a class="link" href="GDataAuthorizationDomain.html#GDataAuthorizationDomain--service-name" title="The “service-name” property">service-name</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr>
@@ -113,7 +113,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="GDataAuthorizationDomain.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> GDataAuthorizationDomain
 </pre>
 </div>
@@ -141,7 +141,7 @@ accessor functions to return instances of all the authorization domains they sup
 <a name="GDataAuthorizationDomain.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="gdata-authorization-domain-get-service-name"></a><h3>gdata_authorization_domain_get_service_name ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_authorization_domain_get_service_name
                                (<em class="parameter"><code><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> *self</code></em>);</pre>
 <p>Returns the name of the service containing the authorization domain. See <a class="link" href="GDataAuthorizationDomain.html#GDataAuthorizationDomain--service-name" title="The “service-name” property"><span class="type">“service-name”</span></a> for more details.</p>
@@ -169,7 +169,7 @@ gdata_authorization_domain_get_service_name
 <hr>
 <div class="refsect2">
 <a name="gdata-authorization-domain-get-scope"></a><h3>gdata_authorization_domain_get_scope ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *
+<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 gdata_authorization_domain_get_scope (<em class="parameter"><code><a class="link" href="GDataAuthorizationDomain.html" title="GDataAuthorizationDomain"><span class="type">GDataAuthorizationDomain</span></a> *self</code></em>);</pre>
 <p>Returns a URI detailing the scope of the authorization domain. See <a class="link" href="GDataAuthorizationDomain.html#GDataAuthorizationDomain--scope" title="The “scope” property"><span class="type">“scope”</span></a> for more details.</p>
 <div class="refsect3">
@@ -216,7 +216,7 @@ gdata_authorization_domain_get_scope (<em class="parameter"><code><a class="link
 <a name="GDataAuthorizationDomain.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GDataAuthorizationDomain--scope"></a><h3>The <code class="literal">“scope”</code> property</h3>
-<pre class="programlisting">  “scope”                    <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “scope”                    <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>A URI detailing the scope of the authorization domain, as enumerated in the</p>
 <a class="ulink" href="http://code.google.com/apis/documents/faq_gdata.html#AuthScopes" target="_top">online documentation</a>.
 <p>Flags: Read / Write / Construct Only</p>
@@ -226,7 +226,7 @@ gdata_authorization_domain_get_scope (<em class="parameter"><code><a class="link
 <hr>
 <div class="refsect2">
 <a name="GDataAuthorizationDomain--service-name"></a><h3>The <code class="literal">“service-name”</code> property</h3>
-<pre class="programlisting">  “service-name”             <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “service-name”             <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
 <p>The name of the service which contains the authorization domain, as enumerated in the</p>
 <a class="ulink" href="http://code.google.com/apis/documents/faq_gdata.html#clientlogin" target="_top">online documentation</a>.
 <p>Flags: Read / Write / Construct Only</p>
@@ -236,6 +236,6 @@ gdata_authorization_domain_get_scope (<em class="parameter"><code><a class="link
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>Generated by GTK-Doc V1.26.1</div>
 </body>
 </html>
